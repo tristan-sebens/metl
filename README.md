@@ -8,7 +8,11 @@ A simple ETL pipeline to compile and consolidate data collected from satellite/a
 ### Contact
 
 Tristan N G Sebens, M.S.
+
 NOAA Affiliate - MESA Program
+
 tristan.sebens@NOAA.gov
+
 tristan.ng.sebens@gmail.com
+
 1(907)-500-5430
