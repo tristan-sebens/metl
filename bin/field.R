@@ -1,12 +1,10 @@
-setOldClass("units")
-setOldClass("symbolic_units")
 
 Field =
   #' Field class. Represents a single data field and its key metadata for future
   #`  reference, including field name, units, and DB data type.
   #'
-  #' @field name character.
-  #' @field units symbolic_units.
+  #' @field name character. The name of the field
+  #' @field units character. The SI units of the field
   #' @field data_type character. The data type of this field in a DB
   setRefClass(
     "Field",
