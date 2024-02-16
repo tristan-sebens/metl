@@ -1,7 +1,6 @@
 #----------------
 # TAG_DATA TABLE FIELDS
 #----------------
-# The output fields
 TAG_DATA_FIELDS =
   FieldMap(
     field_list =
@@ -40,11 +39,13 @@ LOTEK_1000.1100.1250_FIELDS =
         PRESSURE_FIELD =
           Field(
             name = "Pressure.PSI",
+            # units = units(units::set_units(1, "psi"))
             units = "psi"
           ),
         TEMPERATURE_FIELD =
           Field(
             name = "Temperature.C",
+            # units = units(units::set_units(1, "°C"))
             units = "°C"
           )
       )
