@@ -98,7 +98,7 @@ Decoder =
               input_field_dat_ = dat__[[input_field_obj_$name]]
 
               # Make consideration for units
-              if(!is.null(output_field_obj_$units)) {
+              if(!identical(output_field_obj_$units, character(0))) {
                 # If units are specified on the output field, define and convert units
                 input_field_dat_ =
                   units::set_units(

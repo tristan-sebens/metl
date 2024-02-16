@@ -68,60 +68,59 @@ d__  =
     output_data_field_map = TAG_DATA_FIELDS
   )
 
-LOTEK_1000.1100.1250_FIELDS$field_list[[1]]$name
-
 dat__ = d__$read(template_tag_d_ltd_1000_1100_1250)
-
-d__$input_data_field_map
 
 d__$transform(dat__)
 ```
 
 ```{r}
 transform =
-  function(dat) {
-    # Process each field in turn
-    for (field_ in names(input_data_field_map$fields)) {
-      # Identify relevant input/output field objects
-      input_field_obj_ = input_data_field_map$fields[[field_]]
-      output_field_obj_ = output_data_field_map$fields[[field_]]
+          function(dat) {
 
-      # Isolate field data
-      input_field_dat_ = dat__[[input_field_obj_$name]]
+            # Process each field in turn
+            for (field_ in names(input_data_field_map$field_list)) {
+              # Identify relevant input/output field objects
+              input_field_obj_ = input_data_field_map$field_list[[field_]]
+              output_field_obj_ = output_data_field_map$field_list[[field_]]
 
-      # Make consideration for units
-      if(!is.null(output_field_obj_$units)) {
-        # If units are specified on the output field, define and convert units
-        input_field_dat_ =
-          units::set_units(
-            # Set initial units based on input field
-            units::set_units(
-              input_field_dat_,
-              input_field_obj_$units,
-              mode="standard"
-            ),
-            # Immediately convert units based on output field
-            output_field_obj_$units,
-            mode="standard"
-          )
-      }
+              # Isolate field data
+              input_field_dat_ = dat__[[input_field_obj_$name]]
 
-      # Re-append data to original object, with new name and (if applicable) units
-      dat__[output_field_obj_$name] = input_field_dat_
-    }
+              # Make consideration for units
+              if(!identical(output_field_obj_$units, character(0))) {
+                # If units are specified on the output field, define and convert units
+                input_field_dat_ =
+                  units::set_units(
+                    # Set initial units based on input field
+                    units::set_units(
+                      input_field_dat_,
+                      input_field_obj_$units,
+                      mode="standard"
+                    ),
+                    # Immediately convert units based on output field
+                    output_field_obj_$units,
+                    mode="standard"
+                  )
+              }
 
-    return(
-      dat__[
-        lapply(
-          output_data_field_map$fields,
-          function(f) {
-            f$name
+              # Re-append data to original object, with new name and (if applicable) units
+              dat__[output_field_obj_$name] = input_field_dat_
+            }
+
+            return(
+              dat__[
+                lapply(
+                  output_data_field_map$field_list,
+                  function(f) {
+                    f$name
+                  }
+                ) %>%
+                  unlist(use.names = F)
+              ]
+            )
           }
-        ) %>%
-          unlist(use.names = F)
-      ]
-    )
-  }
+
+field_ = names(input_data_field_map$field_list)[[1]]
 
 transform(dat__)
 ```

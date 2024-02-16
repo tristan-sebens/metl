@@ -7,31 +7,14 @@ Field =
   #'
   #' @field name character.
   #' @field units symbolic_units.
-  #' @field convert logical. When set to F the system will not attempt to convert the units between the input and output data sets
   #' @field data_type character. The data type of this field in a DB
   setRefClass(
     "Field",
     fields =
       list(
         name = "character",
-        units = "symbolic_units",
-        convert = "logical", # Flag which indicates whether or not to enforce unit conversion on this field
+        units = "character",
         data_type = "character" # Data type to be used for this field in the DB
-      ),
-    methods =
-      list(
-        initialize =
-          function(
-    convert = T,
-    data_type = "varchar(32)",
-    ...
-          ) {
-            callSuper(
-              convert = convert,
-              data_type = data_type,
-              ...
-            )
-          }
       )
   )
 
