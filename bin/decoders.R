@@ -85,9 +85,6 @@ Decoder =
         #' @examples
         transform =
           function(dat) {
-            print(.self$input_data_field_map)
-            print(.self$output_data_field_map)
-
             # Process each field in turn
             for (field_ in names(.self$input_data_field_map$field_list)) {
               # Identify relevant input/output field objects
