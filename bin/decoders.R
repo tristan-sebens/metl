@@ -1,3 +1,5 @@
+source(here::here('bin', 'field.R'))
+
 #' Decoder base class
 #'
 #'  Provides base structure for all make/model specific tag decoders.
@@ -12,7 +14,8 @@ Decoder =
     "Decoder",
     fields =
       list(
-        "data_field_map" = "list"
+        input_data_field_map = "FieldMap",
+        output_data_field_map = "FieldMap"
       ),
     methods =
       list(
@@ -82,51 +85,50 @@ Decoder =
         #' @examples
         transform =
           function(dat) {
-            .self$data_field_map %>%
-              names %>%
-              # Go through the configured fields one by one
-              # Rename them to the output field names, and (unless designated) convert
-              # their units to the output field units
-              reduce(
-                .init = dat,
-                .f =
-                  function(d, n) {
-                    # First, rename the field to the corresponding output field name
-                    d =
-                      d %>%
-                      dplyr::rename(
-                        '{TAG_DATA_FIELDS[[n]]$name}' :=
-                          sym(.self$data_field_map[[n]]$name)
-                      )
+            print(.self$input_data_field_map)
+            print(.self$output_data_field_map)
 
-                    # Check to see if the field is designated for unit conversion
-                    if (TAG_DATA_FIELDS[[n]]$convert) {
-                      d =
-                        d %>%
-                        # Label the field with its corresponding units
-                        dplyr::mutate(
-                          .,
-                          '{TAG_DATA_FIELDS[[n]]$name}' :=
-                            units::set_units(
-                              .[[TAG_DATA_FIELDS[[n]]$name]],
-                              .self$data_field_map[[n]]$units,
-                              mode = 'standard'
-                            )
-                        ) %>%
-                        dplyr::mutate(
-                          .,
-                          '{TAG_DATA_FIELDS[[n]]$name}' :=
-                            units::set_units(
-                              .[[TAG_DATA_FIELDS[[n]]$name]],
-                              TAG_DATA_FIELDS[[n]]$units,
-                              mode = 'standard'
-                            )
-                        )
-                    }
+            # Process each field in turn
+            for (field_ in names(.self$input_data_field_map$field_list)) {
+              # Identify relevant input/output field objects
+              input_field_obj_ = .self$input_data_field_map$field_list[[field_]]
+              output_field_obj_ = .self$output_data_field_map$field_list[[field_]]
 
-                    return(d)
+              # Isolate field data
+              input_field_dat_ = dat__[[input_field_obj_$name]]
+
+              # Make consideration for units
+              if(!is.null(output_field_obj_$units)) {
+                # If units are specified on the output field, define and convert units
+                input_field_dat_ =
+                  units::set_units(
+                    # Set initial units based on input field
+                    units::set_units(
+                      input_field_dat_,
+                      input_field_obj_$units,
+                      mode="standard"
+                    ),
+                    # Immediately convert units based on output field
+                    output_field_obj_$units,
+                    mode="standard"
+                  )
+              }
+
+              # Re-append data to original object, with new name and (if applicable) units
+              dat__[output_field_obj_$name] = input_field_dat_
+            }
+
+            return(
+              dat__[
+                lapply(
+                  .self$output_data_field_map$field_list,
+                  function(f) {
+                    f$name
                   }
-              )
+                ) %>%
+                  unlist(use.names = F)
+              ]
+            )
           },
 
         #' Extract tag data from passed directory
@@ -150,26 +152,12 @@ Decoder =
 
 #' Decoder for the Lotek 1000/1100/1250 tags
 #'
-#' @inheritParams Decoder
-#'
-#' @examples
 Decoder_Lotek.1000.1100.1250 =
   setRefClass(
     "Decoder_Lotek.1000.1100.1250",
     contains = "Decoder",
     methods =
       list(
-        # initialize =
-        #   function(
-        #     data_field_map,
-        #     ...
-        #   ) {
-        #     callSuper(
-        #       data_field_map = LOTEK_1000.1100.1250_FIELDS,
-        #       ...
-        #     )
-        #   },
-
         #' Find a sensor specific data file based on a filename pattern
         #'
         #' @param d The directory to search in
@@ -253,7 +241,6 @@ Decoder_Lotek.1000.1100.1250 =
 
 #' Decoder for the Lotek 1300 tags
 #'
-#' @inheritParams Decoder
 #'
 #' @examples
 Decoder_Lotek.1300 =

@@ -4,7 +4,7 @@ library(tidyverse)
 
 Scratch
 ```{r}
-data_root = here::here('tag_data')
+data_root = here::here('data')
 lotek_data = file.path(data_root, 'Lotek')
 
 template_tag_fp_lat_1400_1800 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT180_0507_160722_104023_00.csv')
@@ -62,6 +62,123 @@ fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
 fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
 
 
+d__  = 
+  Decoder_Lotek.1000.1100.1250(
+    input_data_field_map = LOTEK_1000.1100.1250_FIELDS,
+    output_data_field_map = TAG_DATA_FIELDS
+  )
+
+LOTEK_1000.1100.1250_FIELDS$field_list[[1]]$name
+
+dat__ = d__$read(template_tag_d_ltd_1000_1100_1250)
+
+d__$input_data_field_map
+
+d__$transform(dat__)
+```
+
+```{r}
+transform =
+  function(dat) {
+    # Process each field in turn
+    for (field_ in names(input_data_field_map$fields)) {
+      # Identify relevant input/output field objects
+      input_field_obj_ = input_data_field_map$fields[[field_]]
+      output_field_obj_ = output_data_field_map$fields[[field_]]
+
+      # Isolate field data
+      input_field_dat_ = dat__[[input_field_obj_$name]]
+
+      # Make consideration for units
+      if(!is.null(output_field_obj_$units)) {
+        # If units are specified on the output field, define and convert units
+        input_field_dat_ =
+          units::set_units(
+            # Set initial units based on input field
+            units::set_units(
+              input_field_dat_,
+              input_field_obj_$units,
+              mode="standard"
+            ),
+            # Immediately convert units based on output field
+            output_field_obj_$units,
+            mode="standard"
+          )
+      }
+
+      # Re-append data to original object, with new name and (if applicable) units
+      dat__[output_field_obj_$name] = input_field_dat_
+    }
+
+    return(
+      dat__[
+        lapply(
+          output_data_field_map$fields,
+          function(f) {
+            f$name
+          }
+        ) %>%
+          unlist(use.names = F)
+      ]
+    )
+  }
+
+transform(dat__)
+```
+
+
+```{r}
+dat__ = d__$read(template_tag_d_ltd_1000_1100_1250)
+
+input_data_field_map = LOTEK_1000.1100.1250_FIELDS
+output_data_field_map = TAG_DATA_FIELDS
+
+for (field_ in names(input_data_field_map$fields)) {
+  # Identify relevant input/output field objects
+  input_field_obj_ = input_data_field_map$fields[[field_]]
+  output_field_obj_ = output_data_field_map$fields[[field_]]
+  
+  # Isolate field data
+  input_field_dat_ = dat__[[input_field_obj_$name]]
+  
+  
+  # Make consideration for units
+  if(!is.null(output_field_obj_$units)) {
+    # If units are specified on the output field, define and convert units
+    input_field_dat_ =
+      units::set_units(
+        # Set initial units based on input field
+        units::set_units(
+          input_field_dat_, 
+          input_field_obj_$units, 
+          mode="standard"
+        ),
+        # Immediately convert units based on output field
+        output_field_obj_$units,
+        mode="standard"
+      )
+  }
+  
+  # Re-append data to original object, with new name and (if applicable) units
+  dat__[output_field_obj_$name] = input_field_dat_
+}
+
+dat__[
+  lapply(
+    output_data_field_map$fields,
+    function(f) {
+      f$name
+    }
+  ) %>% 
+  unlist(use.names = F)
+]
+
+
+
+```
+
+
+```{r}
 dl = Decoder_Lotek.1000.1100.1250()
 class(dl)
 
@@ -126,9 +243,10 @@ c(
 )
 
 
-d__  = Decoder_Lotek.1000.1100.1250(data_field_map = LOTEK_1000.1100.1250_FIELDS)
 
-d__$transform(d__$read(template_tag_d_ltd_1000_1100_1250))
+
+
+d__$transform()
 ```
 
 
