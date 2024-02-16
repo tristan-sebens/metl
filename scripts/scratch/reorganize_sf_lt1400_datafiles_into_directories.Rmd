@@ -1,0 +1,28 @@
+```{r}
+d = here::here('tag_data', 'Lotek', 'LAT 1400', 'Sablefish')
+dir.exists(d)
+```
+
+```{r}
+fs = list.files(d, pattern = "csv")
+
+move_to_dir = 
+  function(fp) {
+    f_name = str_split(fp, '\\.')[[1]][[1]]
+    
+    TAF::mkdir(file.path(d, f_name))
+    fs::file_move(
+      file.path(d, fp),
+      file.path(d, f_name, fp)
+    )
+  }
+
+list.files(d, pattern = "csv") %>% 
+  lapply(
+    function(fp) {
+      move_to_dir(fp)
+    }
+  )
+```
+
+

@@ -1,0 +1,10 @@
+# No data files
+data/*
+!data/data.placeholder
+
+# No secrets
+secrets/*
+!secrets/secrets.placeholder
+
+# No RStudio IDE files
+.Rproj.user/*

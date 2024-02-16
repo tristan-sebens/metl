@@ -1,0 +1,131 @@
+```{r}
+library(tidyverse)
+```
+
+
+Directory definitions
+```{r}
+local_data_dir = here::here('tag_data')
+local_lotek_dir = file.path(local_data_dir, 'Lotek')
+dir.exists(local_lotek_dir)
+lotek_d = file.path(local_lotek_dir, "LTD 1300-LTD 1000-LTD 1110-LTD 1250")
+dir.exists(lotek_d)
+lotek_1300_fp = file.path(lotek_d,"Lingcod", "3898", "LTD1300D3898_130326.BIN")
+lotek_1800_fp = file.path(lotek_d, "Spiny Dogfish", "3938", "3938.DSD")
+file.exists(lotek_1800_fp)
+
+share_drive = "Y:"
+sablefish_database = file.path(share_drive, "ABL_MESA", "Sablefish Tag Database")
+lotek_archival_sablefish_d = file.path(sablefish_database, "Archival Tag Data", "Adult Sablefish", "LOTEK")
+
+# Define working directory
+d = file.path(lotek_archival_sablefish_d, "1515")
+dir.exists(d)
+
+dsd_fp = file.path(d, "1515.DSD")
+file.exists(dsd_fp)
+```
+
+```{r}
+modes = 
+  c("numeric", "double", "integer", "int", "logical", "character")
+
+other_modes = 
+  c("complex", "raw")
+
+sizes = 
+  c(1, 2, 4, 8)
+
+
+
+
+data.frame(
+  mode = "numeric",
+  size = 1
+) %>% 
+  complete(
+    mode = modes,
+    size = sizes
+  ) %>% 
+  dplyr::mutate(
+    content_length = 
+      tryCatch(
+        expr = 
+          {
+            return(
+              length(
+                readBin(
+                  con = lotek_1800_fp,
+                  what = mode,
+                  size = size
+                )
+              )
+            )
+          },
+        error = 
+          function(cond) {
+            return(0)
+          }
+      )
+  )
+
+
+readBin(
+  con = lotek_1800_fp,
+  what = mode,
+  size = 4,
+  n = 1024
+)
+
+
+modes %>% 
+  lapply(
+    FUN = 
+      function(m) {
+        print(
+          paste0(
+            m, ": ", 
+            readBin(
+              con = lotek_1800_fp, 
+              what = m,
+              
+              
+              
+              
+            )
+          )
+        )
+      }
+  )
+
+close(con)
+```
+
+
+```{r}
+fp = lotek_1300_fp
+
+# Check the file output against every known encoding
+encoding_results = 
+  data.frame(
+    encoding = iconvlist()
+  ) %>% 
+  dplyr::mutate(
+    output_length = 
+      encoding %>% 
+      lapply(
+        FUN = 
+          function(e) {
+            con = file(fp)
+            content = readLines(con = con, encoding = e)
+            close(con)
+            return(length(content))
+          }
+      ) %>% 
+      unlist()
+  )
+
+encoding_results %>% 
+  arrange(desc(output_length), encoding)
+```
+

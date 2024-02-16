@@ -1,0 +1,262 @@
+```{r}
+library(tidyverse)
+```
+
+Scratch
+```{r}
+data_root = here::here('tag_data')
+lotek_data = file.path(data_root, 'Lotek')
+
+template_tag_fp_lat_1400_1800 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT180_0507_160722_104023_00.csv')
+template_tag_d_lat_1400_1800 = file.path(lotek_data, 'LAT 1800', 'Greenland Turbot', '390')
+template_tag_d_lat_1400_1800.2 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT140_3494_180907_113944_00')
+template_tag_d_lat_1400_1800.3 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT140_0719_150615_095701_00')
+template_tag_d_lat_1300 = file.path(lotek_data, 'LTD 1300-LTD 1000-LTD 1110-LTD 1250', 'Sablefish', '5712')
+template_tag_d_ltd_1000_1100_1250 = file.path(lotek_data, 'LTD 1300-LTD 1000-LTD 1110-LTD 1250', 'Sablefish', '3315')
+```
+
+
+Model LAT 1400/1800 
+```{r}
+d = template_tag_d_lat_1400_1800
+d = template_tag_d_lat_1400_1800.2
+d = template_tag_d_lat_1400_1800.3
+
+length(Decoder_Lotek.1400.1800()$get_csv_files(d))
+
+class(Decoder_Lotek.1400.1800())
+
+fp = file.path(d, list.files(d, pattern = "\\.[C|c][S|s][V|v]$"))[[1]]
+data = read.csv(template_tag_fp_lat_1400_1800, skip = 2, nrows = 100)
+
+
+Decoder_Lotek.1400.1800()$read(template_tag_d_lat_1400_1800)
+
+dl140$find_line_in_file(fp, pattern = "Rec #")
+```
+
+
+Model LTD 1300
+```{r}
+d = template_tag_d_lat_1300
+
+fps = list.files(d, pattern = "Reguasdlar Log")
+# CHECK ONE AND ONLY ONE FILE
+fp = file.path(d, fps[[1]])
+
+read.csv(fp)
+
+length(fps)
+
+Decoder_Lotek.1300()$read(d)
+
+```
+
+
+
+Model LTD 1000/1100/1250
+```{r}
+list.files(template_tag_d_ltd_1000_1100_1250)
+fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
+fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
+fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
+
+
+dl = Decoder_Lotek.1000.1100.1250()
+class(dl)
+
+
+list.files(template_tag_d_ltd_1000_1100_1250, pattern = ".*[C|c][S|s][V|v]")
+
+df_psi = dl$read_csv_lotek_1000.1100.1250(fp_psi)
+df_temp = dl$read_csv_lotek_1000.1100.1250(fp_temp)
+df_xtemp = dl$read_csv_lotek_1000.1100.1250(fp_xtemp)
+
+full_join(
+  df_psi,
+  df_temp
+)
+
+purrr::reduce(
+  .x = 
+    list(
+      df_psi,
+      df_temp,
+      df_xtemp
+    ),
+  .f = 
+    function(x, y) {
+      # Check that the next df has any rows to join
+      if (nrow(y) > 0) {
+        return(
+          full_join(x, y)
+        )
+      }
+      return(x)
+    }
+)
+
+d = template_tag_d_ltd_1000_1100_1250
+
+c(
+  "PRESSURE",
+  "TEMPERATURE",
+  "LIGHT",
+  "SUPPLY"
+) %>% 
+  lapply(
+    FUN = 
+      function(pattern) {
+        dl$read_csv_lotek_1000.1100.1250(
+          dl$get_data_file_path(d, pattern = pattern)
+        )
+      }
+  ) %>% 
+  purrr::reduce(
+  .f = 
+    function(x, y) {
+      # Check that the next df has any rows to join
+      if (nrow(y) > 0) {
+        return(
+          full_join(x, y)
+        )
+      }
+      return(x)
+    }
+)
+
+
+d__  = Decoder_Lotek.1000.1100.1250(data_field_map = LOTEK_1000.1100.1250_FIELDS)
+
+d__$transform(d__$read(template_tag_d_ltd_1000_1100_1250))
+```
+
+
+```{r}
+d__ = dat_1000.1100.1250[1:100,]
+
+d__ %>% 
+  # Set appropriate input datatypes and units
+  dplyr::mutate(
+    "{OUTPUT_DATA_FIELDS['DATETIME_FIELD_NAME']}" := as.POSIXct(Time, format = "%Y/%m/%d %H:%M:%S")
+    # "{PRESSURE_FIELD_NAME}" := units::set_units(units::as_units(Pressure.PSI, 'psi'), PRESSURE_FIELD_UNITS, mode = "standard"),
+    # "{TEMPERATURE_FIELD_NAME}" := units::set_units(units::as_units(Temperature.C, '°C'), TEMPERATURE_FIELD_UNITS, mode = "standard")
+  )
+
+
+ 
+  dplyr::select(
+    {{DATETIME_FIELD_NAME}},
+    {{PRESSURE_FIELD_NAME}},
+    {{TEMPERATURE_FIELD_NAME}}
+  )
+  
+  d__ %>%
+    
+
+
+
+d__[[LOTEK_1000.1100.1250[['PRESSURE_FIELD_NAME']]]]
+
+sym()
+
+d__ %>% 
+  dplyr::select(
+    "{PRESSURE_FIELD_NAME}" := matches(LOTEK_1000.1100.1250[['PRESSURE_FIELD_NAME']])
+  )
+
+field_map = LOTEK_1000.1100.1250
+
+field_map %>% 
+  names %>% 
+  reduce(
+    .init = 
+      d__,
+    .f = 
+      function(d_, n) {
+        print(n)
+        return(
+          d_ %>% 
+          dplyr::rename(
+            "{OUTPUT_DATA_FIELDS[[n]]}" := sym(field_map[[n]])
+          )
+        )
+      }
+  )
+
+
+```
+
+```{r}
+INPUT_FIELDS = LOTEK_1000.1100.1250_FIELDS
+
+INPUT_FIELDS %>% 
+  names %>% 
+  # Go through the configured fields one by one
+  # Rename them to the output field names, and (unless designated) convert
+  # their units to the output field units
+  reduce(
+    .init = d__,
+    .f = 
+      function(d, n) {
+        # First, rename the fields to the corresponding output field names
+        d = 
+          d %>% 
+          dplyr::rename(
+            '{TAG_DATA_FIELDS[[n]]$name}' := sym(INPUT_FIELDS[[n]]$name)
+          )
+        
+        # Check to see if the field is designated for unit conversion
+        if (TAG_DATA_FIELDS[[n]]$convert) {
+          d %>% 
+          dplyr::mutate(
+          .,
+          '{TAG_DATA_FIELDS[[n]]$name}' := 
+            units::set_units(
+              .[[TAG_DATA_FIELDS[[n]]$name]],
+              INPUT_FIELDS[[n]]$units,
+              mode = 'standard'
+            )
+          )
+        }
+        
+        return(d)
+      }
+  )
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

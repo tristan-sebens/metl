@@ -1,0 +1,38 @@
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+con = 
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    here::here('db', 'MESA_tag.db')
+  )
+
+
+DBI::dbDisconnect(con)
+
+
+# Create the main data table
+DBI::dbCreateTable(
+  con, 
+  name = "TAG_DATA",
+  fields = 
+)
+
+TAG_DATA_FIELDS %>% 
+  reduce(
+    .init = 
+      list(),
+    .f = 
+      function(l, f) {
+        l[f$name] = f$data_type
+        return(l)
+      }
+  )
+
+
+TAG_DATA_FIELDS$generate_data_type_list()
+```
+
