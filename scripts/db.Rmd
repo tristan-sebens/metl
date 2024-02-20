@@ -9,30 +9,64 @@ con =
     RSQLite::SQLite(),
     here::here('db', 'MESA_tag.db')
   )
+```
+
+```{r}
+list.files(template_tag_d_ltd_1000_1100_1250)
+fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
+fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
+fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
+
+```
 
 
-DBI::dbDisconnect(con)
-
-
+```{r}
 # Create the main data table
 DBI::dbCreateTable(
   con, 
   name = "TAG_DATA",
-  fields = 
+  fields = output_data_field_map$generate_data_type_list()
 )
 
-TAG_DATA_FIELDS %>% 
-  reduce(
-    .init = 
-      list(),
-    .f = 
-      function(l, f) {
-        l[f$name] = f$data_type
-        return(l)
-      }
-  )
+DBI::dbCreateTable(
+  con, 
+  name = "TAG",
+  fields = TAG_FIELDS$generate_data_type_list()
+)
+```
+
+```{r}
+# Append data to table
+DBI::dbWithTransaction(
+  con,
+  {
+    DBI::dbAppendTable(
+      conn = con, 
+      name = "TAG_DATA",
+      value = 
+        d__$transform(
+          dat__,
+          output_data_field_map,
+          tag_meta_field_map
+        )
+    )
+    DBI::dbAppendTable(
+      conn = con,
+      name = "TAG",
+      value = 
+        d__$generate_tag_meta_dataframe(
+          tag_meta_field_map
+        )
+    )
+  }
+)
 
 
-TAG_DATA_FIELDS$generate_data_type_list()
+
+```
+
+
+```{r}
+DBI::dbDisconnect(con)
 ```
 
