@@ -1,19 +1,27 @@
 ```{r}
-d = here::here('tag_data', 'Lotek', 'LAT 1400', 'Sablefish')
+library(tidyverse)
+
+d = here::here('data', 'Lotek', 'LAT 1400-LAT 1800', 'Sablefish')
 dir.exists(d)
 ```
 
 ```{r}
-fs = list.files(d, pattern = "csv")
+# Identify tag ID from filename
+get_tag_id =
+  function(fp) {
+    str_extract(fp, pattern = ".*[-|_](\\d\\d\\d\\d)\\D.*", group=1)
+  }
 
+# Move lone csv to new directory named from tag id
 move_to_dir = 
   function(fp) {
     f_name = str_split(fp, '\\.')[[1]][[1]]
     
-    TAF::mkdir(file.path(d, f_name))
+    new_d = file.path(d, get_tag_id(fp))
+    TAF::mkdir(new_d)
     fs::file_move(
       file.path(d, fp),
-      file.path(d, f_name, fp)
+      file.path(new_d, fp)
     )
   }
 
