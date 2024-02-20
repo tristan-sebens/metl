@@ -1,0 +1,72 @@
+```{r}
+library(tidyverse)
+```
+
+```{r}
+data_root = here::here('data')
+lotek_data = file.path(data_root, 'Lotek')
+
+lotek_1000_1100_1250_d = file.path(lotek_data, 'LTD 1300-LTD 1000-LTD 1110-LTD 1250')
+```
+
+```{r}
+find_line_in_file =
+  function(fp, pattern, n=1000) {
+    # Find all matches in the first n lines
+    matches =
+      readLines(fp, n=n, skipNul = F) %>%
+      unlist %>%
+      str_detect(pattern = pattern)
+
+    # Check that any lines matched
+    if (!any(matches)) {
+      stop(
+        paste0(
+          "Parsing file - No matches of '",
+          pattern,
+          "' found in first ",
+          n,
+          " lines of ",
+          tail(strsplit(fp, .Platform$file.sep)[[1]], 1)
+        )
+      )
+    }
+
+    # Return the line number of the first match
+    return(which(matches)[[1]])
+  }
+```
+
+
+```{r}
+sns = 
+  list.files(lotek_1000_1100_1250_d, recursive = T, pattern = ".*PRESSURE.*\\.[C|c][S|s][V|v]", full.names = T) %>% 
+    lapply(
+      function(fp) {
+        tryCatch(
+          {
+            sn_l = read_lines(fp, skip = find_line_in_file(fp, "Serial number") - 1, n_max = 1)
+            sn = stringr::str_extract(sn_l, pattern="Serial number=(.*)", group=1)
+            
+            return(sn)
+          },
+            error = 
+              function(cond) {}
+        )
+      }
+    ) %>% 
+  unlist %>% 
+  # Some of the SNs have a bunch of commas at the end
+  str_remove_all(",")  
+
+
+
+sns %>% 
+  data.frame(
+    sns = .
+  ) %>% 
+  write.csv(here::here('data', 'sns.csv'))
+```
+
+
+
