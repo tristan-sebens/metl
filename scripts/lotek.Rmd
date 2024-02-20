@@ -7,80 +7,115 @@ Scratch
 data_root = here::here('data')
 lotek_data = file.path(data_root, 'Lotek')
 
-template_tag_fp_lat_1400_1800 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT180_0507_160722_104023_00.csv')
-template_tag_d_lat_1400_1800 = file.path(lotek_data, 'LAT 1800', 'Greenland Turbot', '390')
-template_tag_d_lat_1400_1800.2 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT140_3494_180907_113944_00')
-template_tag_d_lat_1400_1800.3 = file.path(lotek_data, 'LAT 1400', 'Sablefish', 'LAT140_0719_150615_095701_00')
-template_tag_d_lat_1300 = file.path(lotek_data, 'LTD 1300-LTD 1000-LTD 1110-LTD 1250', 'Sablefish', '5712')
 template_tag_d_ltd_1000_1100_1250 = file.path(lotek_data, 'LTD 1300-LTD 1000-LTD 1110-LTD 1250', 'Sablefish', '3315')
+
+template_tag_d_lat_1300 = file.path(lotek_data, 'LTD 1300-LTD 1000-LTD 1110-LTD 1250', 'Sablefish', '5712')
+
+template_tag_fp_lat_1400_d = file.path(lotek_data, 'LAT 1400-LAT 1800', 'Sablefish', '1535')
+template_tag_fp_lat_1400_fp = file.path(template_tag_fp_lat_1400_d, 'LAT140_1535_180907_110343_00.csv')
+
+template_tag_fp_lat_1800_d = file.path(lotek_data, 'LAT 1400-LAT 1800', 'Sablefish', '0507')
+template_tag_fp_lat_1800_fp = file.path(template_tag_fp_lat_1800_d, 'LAT180_0507_160722_104023_00.csv')
 ```
 
 
 Model LAT 1400/1800 
 ```{r}
+# Tag ID
+template_tag_fp_lat_1400_d
+dir.exists(template_tag_fp_lat_1400_d)
+
+
+tag_id_from_filename =
+  function(fp) {
+    stringr::str_match(fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]
+  }
+
+tag_id_from_dir = 
+  function(d) {
+    tag_id_from_filename(
+      list.files(
+        d, 
+        pattern = "^LAT[180|140].*csv"
+      )[[1]]
+    )
+  }
+
+tag_id_from_dir(template_tag_fp_lat_1400_d)
+
+stringr::str_match(template_tag_fp_lat_1400_fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]
+str_match(template_tag_fp_lat_1800_fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]
+str_match(template_tag_fp_lat_1400_fp, pattern = ".*LAT(140|180).*")[2]
+str_match(template_tag_fp_lat_1800_fp, pattern = ".*LAT(140|180).*")[2]
+
+
+# Data extraction
 d = template_tag_d_lat_1400_1800
 d = template_tag_d_lat_1400_1800.2
 d = template_tag_d_lat_1400_1800.3
 
 length(Decoder_Lotek.1400.1800()$get_csv_files(d))
 
-class(Decoder_Lotek.1400.1800())
 
 fp = file.path(d, list.files(d, pattern = "\\.[C|c][S|s][V|v]$"))[[1]]
 data = read.csv(template_tag_fp_lat_1400_1800, skip = 2, nrows = 100)
 
 
-Decoder_Lotek.1400.1800()$read(template_tag_d_lat_1400_1800)
-
-dl140$find_line_in_file(fp, pattern = "Rec #")
-```
-
-
-Model LTD 1300
-```{r}
-d = template_tag_d_lat_1300
-
-fps = list.files(d, pattern = "Reguasdlar Log")
-# CHECK ONE AND ONLY ONE FILE
-fp = file.path(d, fps[[1]])
-
-read.csv(fp)
-
-length(fps)
-
-Decoder_Lotek.1300()$read(d)
-
-```
-
-
-
-Model LTD 1000/1100/1250
-```{r}
-list.files(template_tag_d_ltd_1000_1100_1250)
-fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
-fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
-fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
-
-
-d__  = 
-  Decoder_Lotek.1000.1100.1250(
-    input_data_field_map = LOTEK_1000.1100.1250_FIELDS,
-    output_data_field_map = TAG_DATA_FIELDS
+dc = 
+  Decoder_Lotek.1400.1800(
+    d = template_tag_fp_lat_1400_d,
+    tag_make = "Lotek",
+    tag_model = "LAT_1400",
+    input_data_field_map = LOTEK_1400.1800_FIELDS
   )
 
-dat__ = d__$read(template_tag_d_ltd_1000_1100_1250)
+d__ = dc$extract()
 
-d__$transform(dat__)
+output_data_field_map = TAG_DATA_FIELDS
+
+dc$transform(
+  d__,
+  output_data_field_map = TAG_DATA_FIELDS,
+  tag_meta_field_map = TAG_FIELDS
+)
+
+
+dc$transform
+
 ```
 
 ```{r}
-transform =
-          function(dat) {
+input_data_field_map$field_list[names(input_data_field_map$field_list) %in% names(fm$field_list)]
 
-            # Process each field in turn
-            for (field_ in names(input_data_field_map$field_list)) {
+
+input_data_field_map$common_fields(fm = output_data_field_map)
+```
+
+
+```{r}
+
+dat__ = d__
+.self = dc
+
+transform_fields =
+          function(dat__, output_data_field_map) {
+            # Convert the datetime field(s) to a POSIXct field
+            dat__ = .self$convert_datetime_to_posix_ct(dat__)
+
+            # Process each input field in turn
+            # Limit conversion to those fields shared by both the input data field
+            #   map and the output data field map
+            for (
+              field_ in 
+              names(
+                .self$input_data_field_map$common_fields(
+                  fm = output_data_field_map
+                )
+              )
+            ) {
+            # for (field_ in names(.self$input_data_field_map$field_list)) {
               # Identify relevant input/output field objects
-              input_field_obj_ = input_data_field_map$field_list[[field_]]
+              input_field_obj_ = .self$input_data_field_map$field_list[[field_]]
               output_field_obj_ = output_data_field_map$field_list[[field_]]
 
               # Isolate field data
@@ -110,7 +145,9 @@ transform =
             return(
               dat__[
                 lapply(
-                  output_data_field_map$field_list,
+                  # Select the fields from the output field map that have corresponding
+                  #  entries in the input field map
+                  output_data_field_map$field_list[names(input_data_field_map$field_list)],
                   function(f) {
                     f$name
                   }
@@ -119,62 +156,159 @@ transform =
               ]
             )
           }
-
-field_ = names(input_data_field_map$field_list)[[1]]
-
-transform(dat__)
 ```
 
 
 ```{r}
-dat__ = d__$read(template_tag_d_ltd_1000_1100_1250)
+output_data_field_map$common_fields(input_data_field_map)
 
-input_data_field_map = LOTEK_1000.1100.1250_FIELDS
+
+.self$field_list[names(input_data_field_map$field_list)]
+```
+
+
+
+Model LTD 1300
+```{r}
+d = template_tag_d_lat_1300
+
+fps = list.files(d, pattern = "Regular Log")
+# CHECK ONE AND ONLY ONE FILE
+fp = file.path(d, fps[[1]])
+
+read.csv(fp)
+
+length(fps)
+
+dc_1300 = 
+  Decoder_Lotek.1300(
+    d = template_tag_d_lat_1300,
+    tag_make = "Lotek",
+    tag_model = "LAT_1300",
+    input_data_field_map = LOTEK_1300_FIELDS
+  )
+
+
+dat_1300__ = dc_1300$extract()
+
+dat_1300_t__ = 
+  dc_1300$transform(
+    dat_1300__,
+    output_data_field_map = TAG_DATA_FIELDS,
+    tag_meta_field_map = TAG_FIELDS
+  )
+
+dat_1300_t__ %>% 
+  drop_na()
+```
+
+
+
+Model LTD 1000/1100/1250
+```{r}
+list.files(template_tag_d_ltd_1000_1100_1250)
+fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
+fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
+fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
+
+
+dc = 
+  Decoder_Lotek.1000.1100.1250(
+    d = template_tag_d_ltd_1000_1100_1250,
+    tag_make = "Lotek",
+    tag_model = "LAT_1000/1100/1250",
+    input_data_field_map = LOTEK_1000.1100.1250_FIELDS
+  )
+
+d__ = dc$extract()
+
+dc$transform(d__, output_data_field_map = TAG_DATA_FIELDS, tag_meta_field_map = TAG_FIELDS)
+
+dc$tag_id_from_d(template_tag_d_ltd_1000_1100_1250)
+
+
+
+d__$generate_tag_meta_dataframe(tag_meta_field_map)
+```
+
+```{r}
+fp = list.files(
+  template_tag_d_ltd_1000_1100_1250,
+  pattern = "^.*[C|c][S|s][V|v]"
+)[[1]]
+
+
+
+stringr::str_match(fp, pattern = "^(\\d\\d\\d\\d)\\D*")[2]
+```
+
+
+```{r}
+.self = dc
+dat__ = d__
 output_data_field_map = TAG_DATA_FIELDS
 
-for (field_ in names(input_data_field_map$fields)) {
-  # Identify relevant input/output field objects
-  input_field_obj_ = input_data_field_map$fields[[field_]]
-  output_field_obj_ = output_data_field_map$fields[[field_]]
-  
-  # Isolate field data
-  input_field_dat_ = dat__[[input_field_obj_$name]]
-  
-  
-  # Make consideration for units
-  if(!is.null(output_field_obj_$units)) {
-    # If units are specified on the output field, define and convert units
-    input_field_dat_ =
-      units::set_units(
-        # Set initial units based on input field
-        units::set_units(
-          input_field_dat_, 
-          input_field_obj_$units, 
-          mode="standard"
-        ),
-        # Immediately convert units based on output field
-        output_field_obj_$units,
-        mode="standard"
-      )
-  }
-  
-  # Re-append data to original object, with new name and (if applicable) units
-  dat__[output_field_obj_$name] = input_field_dat_
-}
+transform_fields =
+  function(dat__, output_data_field_map) {
+    # Convert the datetime field(s) to a POSIXct field
+    dat__ = .self$convert_datetime_to_posix_ct(dat__)
 
-dat__[
-  lapply(
-    output_data_field_map$fields,
-    function(f) {
-      f$name
+    # Process each input field in turn
+    # Limit conversion to those fields shared by both the input data field
+    #   map and the output data field map
+    common_fields = 
+      names(
+          .self$input_data_field_map$common_fields(
+            fm = output_data_field_map
+          )
+        )
+    
+    for (field_ in common_fields) {
+      # for (field_ in names(.self$input_data_field_map$field_list)) {
+      # Identify relevant input/output field objects
+      input_field_obj_ = .self$input_data_field_map$field_list[[field_]]
+      output_field_obj_ = output_data_field_map$field_list[[field_]]
+
+      # Isolate field data
+      input_field_dat_ = dat__[[input_field_obj_$name]]
+
+      # Make consideration for units
+      if(!identical(output_field_obj_$units, character(0))) {
+        # If units are specified on the output field, define and convert units
+        input_field_dat_ =
+          units::set_units(
+            # Set initial units based on input field
+            units::set_units(
+              input_field_dat_,
+              input_field_obj_$units,
+              mode="standard"
+            ),
+            # Immediately convert units based on output field
+            output_field_obj_$units,
+            mode="standard"
+          )
+      }
+
+      # Re-append data to original object, with new name and (if applicable) units
+      dat__[output_field_obj_$name] = input_field_dat_
     }
-  ) %>% 
-  unlist(use.names = F)
-]
 
-
-
+    return(
+      dat__[
+        lapply(
+          # Select the fields from the output field map that have corresponding
+          #  entries in the input field map
+          output_data_field_map$field_list[common_fields],
+          function(f) {
+            f$name
+          }
+        ) %>%
+        unlist(use.names = F)
+      ]
+    )
+  }
 ```
+
 
 
 ```{r}

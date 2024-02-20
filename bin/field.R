@@ -46,6 +46,16 @@ FieldMap =
                     return(l)
                   }
               )
+          },
+
+        #' Helper function which generates a list of the Fields shared by this
+        #' FieldMap and the given FieldMap
+        #'
+        #' @return A named list. Names are the field names, values are the data types
+        common_fields =
+          function(fm) {
+            .self$field_list[names(.self$field_list) %in% names(fm$field_list)]
+            # .self$field_list[names(fm$field_list)]
           }
       )
   )
