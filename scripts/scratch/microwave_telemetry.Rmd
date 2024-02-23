@@ -1,0 +1,280 @@
+```{r}
+library(tidyverse)
+
+mt_d = here::here('data', 'Microwave Telemetry', 'X-Tag')
+
+mt_template_d = file.path(mt_d, 'Sablefish', '148402')
+```
+
+```{r}
+Decoder_MicrowaveTelemetry_XTag =
+  setRefClass(
+    "Decoder_MicrowaveTelemetry_XTag",
+    contains = "Decoder",
+    methods =
+      list(
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        tag_id_from_d =
+          function(d) {
+            list.files(path = d, pattern = "^\\d*\\.xls") %>% 
+            stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+          },
+
+        #' Convert the date time data contained in the dataframe to POSIXct format
+        #'
+        #' @return The input dataframe with the newly formatted POSIXct timestamp
+        convert_datetime_to_posix_ct =
+          function(dat) {
+            # The readxl::read_xls function already identifies the datetime as POSIXct
+            return(dat)
+          },
+
+
+        #' Extract tag data from passed directory
+        #'
+        #' @param d The directory in which the tag data resides. Directory is
+        #' expected to contain only files which relate to one common tag.
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function() {
+            # All of the temperature and pressure data is extracted from the .xls file 
+            # Find the xls file in the directory
+            mt_xt_xl_fp = list.files(.self$d, pattern = "^\\d*\\.xls", full.names = T)
+
+            suppressMessages(
+              {
+                # Read in pressure (depth) data
+                press_dat_ = 
+                  # Read the data from the pressure data sheet in the xls file
+                  readxl::read_xls(
+                    path = mt_xt_xl_fp,
+                    sheet = "Press Data",
+                    # Calculate the range of data to include
+                    range = 
+                      paste0(
+                        "A3:D",
+                        # Read in the full, unfiltered sheet to count the number of rows of data
+                        nrow(
+                          readxl::read_xls(
+                            path = mt_xt_xl_fp,
+                            sheet = "Press Data",
+                            skip=1
+                          )
+                        ) + 2 # Add two rows for the header row and the title row
+                      ),
+                    col_names = 
+                      c(
+                        'datetime',
+                        'sensor_val',
+                        'gain',
+                        'depth'
+                      )
+                  ) %>% 
+                  dplyr::mutate(depth = depth * -1)
+                
+                # Read in temperature data
+                temp_dat_ = 
+                  # Read the data from the temperature data sheet in the xls file
+                  readxl::read_xls(
+                    path = mt_xt_xl_fp,
+                    sheet = "Temp Data",
+                    # Calculate the range of data to include
+                    range = 
+                      paste0(
+                        "A3:C",
+                        # Read in the full, unfiltered sheet to count the number of rows of data
+                        nrow(
+                          readxl::read_xls(
+                            path = mt_xt_xl_fp,
+                            sheet = "Temp Data",
+                            skip=1
+                          )
+                        ) + 2 # Add two rows for the header row and the title row
+                      ),
+                    col_names = 
+                      c(
+                        'datetime',
+                        'sensor_val',
+                        'temperature'
+                      )
+                  )
+              }
+            )
+            
+            # Merge the data into a single dataframe
+            dat_ = 
+              merge(
+                dplyr::select(press_dat_, -sensor_val, -gain),
+                dplyr::select(temp_dat_, -sensor_val),
+                all.x = T,
+                all.y = T
+              )
+            
+            return(dat_)
+          }
+      )
+  )
+```
+
+
+```{r}
+mt_dc__ = 
+  Decoder_MicrowaveTelemetry_XTag(
+    d = mt_template_d,
+    tag_make = "Microwave Telemetry",
+    tag_model = "X-Tag",
+    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_FIELDS
+  )
+
+mt_dat__ = mt_dc__$extract()
+
+mt_dc__$transform(
+  mt_dat__,
+  output_data_field_map = TAG_DATA_FIELDS,
+  tag_meta_field_map = TAG_FIELDS
+)
+```
+
+```{r}
+fs = list.files(.self$d, pattern = "\\.txt$", full.names = T)
+
+fs %>% 
+  lapply(
+    function(fp) {
+      read.csv(fp, sep = "\t")
+    }
+  )
+```
+
+
+
+```{r}
+fs = list.files(.self$d, pattern = "^\\d*p\\.txt", full.names = T)
+
+if (length(fs) > 1) {
+  stop(paste0("Input File Error - Too many input files match template in directory ", .self$d))
+}
+
+mt_dat_ = 
+  read.csv(
+    fs,
+    header = F,
+    col.names = c("datetime", "pressure", "gain"),
+    sep = '\t'
+  )
+
+mt_dat_ %>% 
+  ggplot(aes(pressure)) + 
+  geom_histogram()
+
+
+pressure = read.csv(fs, sep = '\t')$Press
+```
+
+Extract data from .xls file
+```{r}
+mt_xt_xl_fp = list.files(.self$d, pattern = "^\\d*\\.xls", full.names = T)
+
+press_dat_ = 
+  # Read the data from the pressure data sheet in the xls file
+  readxl::read_xls(
+    path = mt_xt_xl_fp,
+    sheet = "Press Data",
+    # Calculate the range of data to include
+    range = 
+      paste0(
+        "A3:D",
+        # Read in the full, unfiltered sheet to count the number of rows of data
+        nrow(
+          readxl::read_xls(
+            path = mt_xt_xl_fp,
+            sheet = "Press Data",
+            skip=1
+          )
+        ) + 2 # Add two rows for the header row and the title row
+      ),
+    col_names = 
+      c(
+        'datetime',
+        'sensor_val',
+        'gain',
+        'depth'
+      )
+  ) %>% 
+  dplyr::mutate(
+    depth = units::set_units(-1 * depth, 'm')
+  )
+
+
+temp_dat_ = 
+  # Read the data from the temperature data sheet in the xls file
+  readxl::read_xls(
+    path = mt_xt_xl_fp,
+    sheet = "Temp Data",
+    # Calculate the range of data to include
+    range = 
+      paste0(
+        "A3:C",
+        # Read in the full, unfiltered sheet to count the number of rows of data
+        nrow(
+          readxl::read_xls(
+            path = mt_xt_xl_fp,
+            sheet = "Temp Data",
+            skip=1
+          )
+        ) + 2 # Add two rows for the header row and the title row
+      ),
+    col_names = 
+      c(
+        'datetime',
+        'sensor_val',
+        'temperature'
+      )
+  ) %>% 
+  dplyr::mutate(
+    temperature = units::set_units(temperature, '°C')
+  )
+
+
+dat_ = 
+  merge(
+    dplyr::select(press_dat_, -sensor_val, -gain),
+    dplyr::select(temp_dat_, -sensor_val),
+    all.x = T,
+    all.y = T
+  )
+```
+
+Identify tag_id from directory
+```{r}
+list.files(path = mt_template_d, pattern = "^\\d*\\.xls") %>% 
+  stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
