@@ -1,0 +1,128 @@
+```{r}
+library(tidyverse)
+
+so_d = here::here('data', 'Star Oddi')
+so_dst_d = file.path(so_d, 'DST', 'Sablefish', 'JS7977')
+dir.exists(so_dst_d)
+```
+
+
+DST Scratch
+```{r}
+d = so_dst_d
+
+# Extract tag id
+fs =
+  list.files(d, pattern = "^[^~]*\\.xlsx")
+
+str_extract(fs, pattern = "^([^~]*)\\.xlsx", group=1)
+
+# Read data 
+fs =
+  list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+
+fp = fs[[1]]
+
+
+
+dat_ = 
+  suppressWarnings(
+    {
+      readxl::read_xlsx(fp, sheet = "DAT", col_types = c("date", "numeric", "numeric"))
+    }
+  )
+```
+
+DST Decoder
+```{r}
+#' Decoder for the Microwave Telemetry X-tag tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_StarOddi_DST =
+  setRefClass(
+    "Decoder_StarOddi_DST",
+    contains = "Decoder",
+    methods =
+      list(
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        tag_id_from_d =
+          function(d) {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          },
+
+        #' Convert the date time data contained in the dataframe to POSIXct format
+        #'
+        #' @return The input dataframe with the newly formatted POSIXct timestamp
+        convert_datetime_to_posix_ct =
+          function(dat) {
+             # The readxl package already formats the datetime field as POSIXct
+            return(dat)
+          },
+
+
+        #' Extract tag data from passed directory
+        #'
+        #' @param d The directory in which the tag data resides. Directory is
+        #' expected to contain only files which relate to one common tag.
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function() {
+            fs =
+              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+            
+            fp = fs[[1]]
+            
+            dat_ = 
+              # readxl throws up a warning every time we convert a number to a datetime
+              # printing all of those warnings takes FOREVER
+              # so instead we just tell it to shut up
+              suppressWarnings(
+                {
+                  # Read the tag data in from the datasheet
+                  readxl::read_xlsx(
+                    fp, 
+                    sheet = "DAT", 
+                    col_types = c("date", "numeric", "numeric")                
+                  )
+                }
+              )
+            
+            return(dat_)
+          }
+      )
+  )
+
+so_dst_dc = 
+  Decoder_StarOddi_DST(
+    d = so_dst_d,
+    tag_make = "Star Oddi",
+    tag_model = "DST",
+    input_data_field_map = STAR_ODDI_DST_FIELDS
+  )
+
+so_dst_dat_ = so_dst_dc$extract()
+
+so_dst_dc$transform(
+  dat = so_dst_dat_,
+  output_data_field_map = TAG_DATA_FIELDS,
+  tag_meta_field_map = TAG_FIELDS
+)
+
+STAR_ODDI_DST_FIELDS$field_list$DEPTH_FIELD$invert
+```
+
+
+```{r}
+
+```
+
