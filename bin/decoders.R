@@ -160,6 +160,11 @@ Decoder =
               # Isolate field data
               input_field_dat_ = dat__[[input_field_obj_$name]]
 
+              # If needed, invert the field values
+              if(input_field_obj_$invert) {
+                input_field_dat_ = input_field_dat_ * -1
+              }
+
               # Make consideration for units
               if(!identical(output_field_obj_$units, character(0))) {
                 # If units are specified on the output field, define and convert units
@@ -247,10 +252,10 @@ Decoder =
             output_data_field_map,
             tag_meta_field_map
           ) {
-            # Append data to table
             DBI::dbWithTransaction(
               con,
               {
+                # Add sensor data to DB
                 DBI::dbAppendTable(
                   conn = con,
                   name = "TAG_DATA",
@@ -261,6 +266,7 @@ Decoder =
                       tag_meta_field_map
                     )
                 )
+                # Add tag metadata to DB
                 DBI::dbAppendTable(
                   conn = con,
                   name = "TAG",
@@ -570,8 +576,122 @@ Decoder_Lotek.1400.1800 =
       )
   )
 
+#' Decoder for the Microwave Telemetry X-tag tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_MicrowaveTelemetry_XTag =
+  setRefClass(
+    "Decoder_MicrowaveTelemetry_XTag",
+    contains = "Decoder",
+    methods =
+      list(
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        tag_id_from_d =
+          function(d) {
+            list.files(path = d, pattern = "^\\d*\\.xls") %>%
+              stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+          },
+
+        #' Convert the date time data contained in the dataframe to POSIXct format
+        #'
+        #' @return The input dataframe with the newly formatted POSIXct timestamp
+        convert_datetime_to_posix_ct =
+          function(dat) {
+            # The readxl::read_xls function already identifies the datetime as POSIXct
+            return(dat)
+          },
 
 
+        #' Extract tag data from passed directory
+        #'
+        #' @param d The directory in which the tag data resides. Directory is
+        #' expected to contain only files which relate to one common tag.
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function() {
+            # All of the temperature and pressure data is extracted from the .xls file
+            # Find the xls file in the directory
+            mt_xt_xl_fp = list.files(.self$d, pattern = "^\\d*\\.xls", full.names = T)
+
+            suppressMessages(
+              {
+                # Read in pressure (depth) data
+                press_dat_ =
+                  # Read the data from the pressure data sheet in the xls file
+                  readxl::read_xls(
+                    path = mt_xt_xl_fp,
+                    sheet = "Press Data",
+                    # Calculate the range of data to include
+                    range =
+                      paste0(
+                        "A3:D",
+                        # Read in the full, unfiltered sheet to count the number of rows of data
+                        nrow(
+                          readxl::read_xls(
+                            path = mt_xt_xl_fp,
+                            sheet = "Press Data",
+                            skip=1
+                          )
+                        ) + 2 # Add two rows for the header row and the title row
+                      ),
+                    col_names =
+                      c(
+                        'datetime',
+                        'sensor_val',
+                        'gain',
+                        'depth'
+                      )
+                  )
+
+                # Read in temperature data
+                temp_dat_ =
+                  # Read the data from the temperature data sheet in the xls file
+                  readxl::read_xls(
+                    path = mt_xt_xl_fp,
+                    sheet = "Temp Data",
+                    # Calculate the range of data to include
+                    range =
+                      paste0(
+                        "A3:C",
+                        # Read in the full, unfiltered sheet to count the number of rows of data
+                        nrow(
+                          readxl::read_xls(
+                            path = mt_xt_xl_fp,
+                            sheet = "Temp Data",
+                            skip=1
+                          )
+                        ) + 2 # Add two rows for the header row and the title row
+                      ),
+                    col_names =
+                      c(
+                        'datetime',
+                        'sensor_val',
+                        'temperature'
+                      )
+                  )
+              }
+            )
+
+            # Merge the data into a single dataframe
+            dat_ =
+              merge(
+                dplyr::select(press_dat_, -sensor_val, -gain),
+                dplyr::select(temp_dat_, -sensor_val),
+                all.x = T,
+                all.y = T
+              )
+
+            return(dat_)
+          }
+      )
+  )
 
 
 
