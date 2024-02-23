@@ -12,7 +12,21 @@ Field =
       list(
         name = "character",
         units = "character",
-        data_type = "character" # Data type to be used for this field in the DB
+        data_type = "character", # Data type to be used for this field in the DB
+        invert = "logical" # Flag to indicate if the values of the field should be inverted (x*-1)
+      ),
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            invert = F
+          ) {
+            callSuper(
+              invert = invert,
+              ...
+            )
+          }
       )
   )
 

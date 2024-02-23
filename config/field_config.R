@@ -21,10 +21,16 @@ TAG_DATA_FIELDS =
             units = "psi",
             data_type = "double(10, 2)"
           ),
+        DEPTH_FIELD =
+          Field(
+            name = "depth",
+            units = "m",
+            data_type = "double(10, 2)"
+          ),
         TEMPERATURE_FIELD =
           Field(
             name = "temperature",
-            units = "°F",
+            units = "°C",
             data_type = "double(10, 2)"
           )
       )
@@ -79,7 +85,7 @@ LOTEK_1000.1100.1250_FIELDS =
       )
   )
 
-LOTEK_300_FIELDS =
+LOTEK_1300_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -129,6 +135,67 @@ LOTEK_1400.1800_FIELDS =
 
       )
   )
+
+
+#----------------
+# MICROWAVE TELEMETRY TAGS
+#----------------
+MICROWAVE_TELEMETRY_XTAG_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "datetime"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "depth",
+            units = "m",
+            invert = T
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "temperature",
+            units = "°C"
+          )
+      )
+  )
+
+#----------------
+# STAR ODDI TAGS
+#----------------
+STAR_ODDI_DST_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "Date & Time"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "Depth(m)",
+            units = "m",
+            invert = T
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "Temp(°C)",
+            units = "°C"
+          )
+      )
+  )
+
+
+
+
+
+
+
+
+
+
 
 
 
