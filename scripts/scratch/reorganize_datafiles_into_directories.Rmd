@@ -1,0 +1,40 @@
+```{r}
+library(tidyverse)
+
+# Identify tag ID from filename
+get_tag_id =
+  function(fp, pattern) {
+    str_extract(fp, pattern = pattern, group=1)
+  }
+
+# Move lone csv to new directory named from tag id
+move_to_dir = 
+  function(fp, pattern) {
+    f_name = str_split(fp, '\\.')[[1]][[1]]
+    
+    new_d = file.path(d, get_tag_id(fp, pattern))
+    TAF::mkdir(new_d)
+    fs::file_move(
+      file.path(d, fp),
+      file.path(new_d, fp)
+    )
+  }
+```
+
+
+```{r}
+d = here::here('data', 'Star Oddi', 'DST', 'Sablefish')
+dir.exists(d)
+
+pattern = "(.*\\d*)\\.xls"
+
+list.files(d, pattern = "xls") %>% 
+  lapply(
+    function(fp) {
+      # get_tag_id(fp, pattern = pattern)
+      move_to_dir(fp, pattern = pattern)
+    }
+  )
+```
+
+
