@@ -17,9 +17,11 @@ Decoder =
         # Directory from which to read the tag data
         d = "character",
         # Tag metadata
+        # TODO These fields should be set in the initialize function of the child class
         tag_make = "character",
         tag_model = "character",
         # Input data field map
+        # TODO Similar to above, should be set in the initialize function of the child class
         input_data_field_map = "FieldMap"
       ),
     methods =
@@ -694,15 +696,152 @@ Decoder_MicrowaveTelemetry_XTag =
   )
 
 
+#' Decoder for the Star Oddi DST tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_StarOddi_DST =
+  setRefClass(
+    "Decoder_StarOddi_DST",
+    contains = "Decoder",
+    methods =
+      list(
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        tag_id_from_d =
+          function(d) {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          },
+
+        #' Convert the date time data contained in the dataframe to POSIXct format
+        #'
+        #' @return The input dataframe with the newly formatted POSIXct timestamp
+        convert_datetime_to_posix_ct =
+          function(dat) {
+            # The readxl package already formats the datetime field as POSIXct
+            return(dat)
+          },
 
 
+        #' Extract tag data from passed directory
+        #'
+        #' @inheritParams extract#Decoder
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function() {
+            fs =
+              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+
+            fp = fs[[1]]
+
+            dat_ =
+              # readxl throws up a warning every time we convert a number to a datetime
+              # printing all of those warnings takes FOREVER
+              # so instead we just tell it to shut up
+              suppressWarnings(
+                {
+                  # Read the tag data in from the datasheet
+                  readxl::read_xlsx(
+                    fp,
+                    sheet = "DAT",
+                    col_types = c("date", "numeric", "numeric")
+                  )
+                }
+              )
+
+            return(dat_)
+          }
+      )
+  )
 
 
+#' Decoder for the StarOddi DST magnetic tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_StarOddi_DSTmagnetic =
+  setRefClass(
+    "Decoder_StarOddi_DSTmagnetic",
+    contains = "Decoder",
+    methods =
+      list(
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        tag_id_from_d =
+          function(d) {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          },
+
+        #' Convert the date time data contained in the dataframe to POSIXct format
+        #'
+        #' @return The input dataframe with the newly formatted POSIXct timestamp
+        convert_datetime_to_posix_ct =
+          function(dat) {
+            # The readxl package already formats the datetime field as POSIXct
+            return(dat)
+          },
 
 
+        #' Extract tag data from passed directory
+        #'
+        #' @param d The directory in which the tag data resides. Directory is
+        #' expected to contain only files which relate to one common tag.
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function() {
+            fs =
+              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+
+            fp = fs[[1]]
+
+            dat_ =
+              # readxl throws up a warning every time we convert a number to a datetime
+              # printing all of those warnings takes FOREVER
+              # so instead we just tell it to shut up
+              suppressWarnings(
+                {
+                  # Read the tag data in from the datasheet
+                  readxl::read_xlsx(
+                    fp,
+                    sheet = "DAT",
+                    col_types = c("date", rep("numeric", 10))
+                  )
+                }
+              )
+
+            return(dat_)
+          }
+      )
+  )
 
 
-
+#' Decoder for the StarOddi DST milli F tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_StarOddi_DSTmilliF =
+  setRefClass(
+    "Decoder_StarOddi_DSTmilliF",
+    # Decoder is identical to the Star Oddi DST tag decoder
+    contains = "Decoder_StarOddi_DST"
+  )
 
 
 

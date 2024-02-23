@@ -3,7 +3,9 @@ library(tidyverse)
 
 so_d = here::here('data', 'Star Oddi')
 so_dst_d = file.path(so_d, 'DST', 'Sablefish', 'JS7977')
-dir.exists(so_dst_d)
+so_dstmag_d = file.path(so_d, 'DST magnetic', 'Sablefish', 'JS927')
+so_dstmf_d = file.path(so_d, 'DST milli-F', 'Sablefish', 'JS122')
+dir.exists(so_dstmf_d)
 ```
 
 
@@ -35,7 +37,7 @@ dat_ =
 
 DST Decoder
 ```{r}
-#' Decoder for the Microwave Telemetry X-tag tags
+#' Decoder for the Star Oddi DST tags
 #'
 #' @inheritParams Decoder
 #'
@@ -110,7 +112,7 @@ so_dst_dc =
     input_data_field_map = STAR_ODDI_DST_FIELDS
   )
 
-so_dst_dat_ = so_dst_dc$extract()
+so_dst_dat_ = so_dst_dc
 
 so_dst_dc$transform(
   dat = so_dst_dat_,
@@ -121,8 +123,158 @@ so_dst_dc$transform(
 STAR_ODDI_DST_FIELDS$field_list$DEPTH_FIELD$invert
 ```
 
-
+DST magnetic decoder
 ```{r}
+#' Decoder for the StarOddi DST magnetic tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_StarOddi_DSTmagnetic =
+  setRefClass(
+    "Decoder_StarOddi_DSTmagnetic",
+    contains = "Decoder",
+    methods =
+      list(
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        tag_id_from_d =
+          function(d) {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          },
 
+        #' Convert the date time data contained in the dataframe to POSIXct format
+        #'
+        #' @return The input dataframe with the newly formatted POSIXct timestamp
+        convert_datetime_to_posix_ct =
+          function(dat) {
+             # The readxl package already formats the datetime field as POSIXct
+            return(dat)
+          },
+
+
+        #' Extract tag data from passed directory
+        #'
+        #' @param d The directory in which the tag data resides. Directory is
+        #' expected to contain only files which relate to one common tag.
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function() {
+            fs =
+              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+            
+            fp = fs[[1]]
+            
+            dat_ = 
+              # readxl throws up a warning every time we convert a number to a datetime
+              # printing all of those warnings takes FOREVER
+              # so instead we just tell it to shut up
+              suppressWarnings(
+                {
+                  # Read the tag data in from the datasheet
+                  readxl::read_xlsx(
+                    fp, 
+                    sheet = "DAT", 
+                    col_types = c("date", rep("numeric", 10))                
+                  )
+                }
+              )
+            
+            return(dat_)
+          }
+      )
+  )
+
+
+so_dstmag_dc = 
+  Decoder_StarOddi_DSTmagnetic(
+    d = so_dstmag_d,
+    tag_make = "Star Oddi",
+    tag_model = "DST magnetic",
+    input_data_field_map = STAR_ODDI_DST_MAGNETIC_FIELDS
+  )
+
+so_dstmag_dat_ = 
+  so_dstmag_dc$extract()
+
+so_dstmag_dc$transform(
+  dat = so_dstmag_dat_,
+  output_data_field_map = TAG_DATA_FIELDS,
+  tag_meta_field_map = TAG_FIELDS
+)
 ```
+
+
+DST milli-F decoder
+```{r}
+#' Decoder for the StarOddi DST milli F tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+Decoder_StarOddi_DSTmilliF =
+  setRefClass(
+    "Decoder_StarOddi_DSTmilliF",
+    # Decoder is identical to the Star Oddi DST tag decoder
+    contains = "Decoder_StarOddi_DST"
+  )
+
+
+so_dstmf_dc = 
+  Decoder_StarOddi_DSTmilliF(
+    d = so_dstmf_d,
+    tag_make = "Star Oddi",
+    tag_model = "DST milli-F",
+    input_data_field_map = STAR_ODDI_DST_MILLI_F_FIELDS
+  )
+
+so_dstmf_dat_ = 
+  so_dstmf_dc$extract()
+
+so_dstmf_dc$transform(
+  dat = so_dstmf_dat_,
+  output_data_field_map = TAG_DATA_FIELDS,
+  tag_meta_field_map = TAG_FIELDS
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
