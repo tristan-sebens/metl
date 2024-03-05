@@ -1,0 +1,228 @@
+```{r}
+d = here::here('data', 'Wildlife Computers', 'Benthic sPAT', 'Sleeper Shark', '175150')
+dir.exists(d)
+
+fp = file.path(d, 'setup.rtf')
+file.exists(fp)
+```
+
+```{r}
+f = file(fp)
+
+readLines(f)
+
+close(f)
+
+dat_ = striprtf::read_rtf(fp)
+
+dat_
+```
+
+
+```{r}
+temperature_ix = 
+  which(
+    stringr::str_detect(
+      dat_, 
+      pattern=regex(".*Temperature.*Limits", ignore_case = T)
+    )
+  )
+
+temp_bin_ls =
+  dat_[seq(temperature_ix + 1, depth_ix - 1)]
+
+temp_bins = 
+  stringr::str_extract(
+    temp_bin_ls,
+    pattern = "\\s*.*\\d+\\s+([-|\\d|\\.]*)$",
+    group = 1
+  )
+
+
+
+depth_ix = 
+  which(
+    stringr::str_detect(
+      dat_, 
+      pattern=regex(".*Depth.*Limits", ignore_case = T)
+    )
+  )
+
+depth_bin_ls =
+  dat_[seq(depth_ix + 1, length(dat_) - 1)]
+
+depth_bins = 
+  stringr::str_extract(
+    depth_bin_ls,
+    pattern = "\\s*.*\\d+\\s+([-|\\d|\\.]*)$",
+    group = 1
+  )
+  
+```
+
+
+
+```{r}
+l_ = dat_[[3]]
+
+
+ws_ = stringr::str_extract(l_, pattern = "(\\s*)[^\\s].*", group=1)
+
+ws_len_ = stringr::str_length(ws_)
+
+ind_ = ws_len_ / 2
+
+```
+```{r}
+list_ = dat_
+i_ = 1
+
+
+process_strata_level = 
+  function(
+    list_, # The list of elements
+    i_ # The index at which the current strata starts
+  ) {
+    strata_ = list() # The structure which will be passed back
+    strata_level = get_indentation_number(list_[i_])
+    
+    # Initial node in the strata
+    curr_node_level = get_indentation_number(list_[i_])
+    
+    # Gather all of the nodes at the same strata level
+    while(curr_node_level == strata_level) {
+      # Gather some info about the current node
+      node_name = get_node_name(list_[i_])
+      next_node_level = get_indentation_number(list_[i_ + 1])
+      
+      if(next_node_level > curr_node_level) {
+        # This node has children
+        # Recursively process the next strata beginning at the next node
+        rec_res_ = process_strata_level(list_, i_ + 1)
+        child_strata_ = rec_res_[[1]]
+        i_ = rec_res_[[2]]
+        strata[node_name] = child_strata_
+        
+        
+      } else {
+        if(next_node_level < curr_node_level) {
+          # We have reached the end of the strata, and should close this level of the recursion
+          strata_[node_name] = "LEAF"
+          return(
+            c(
+              strata_,
+              i_
+            )
+          )
+        } else {
+          # If execution reaches this point, then the next node is the same level as the current node, meaning the current node has no children.
+          strata_
+        }
+      }
+    }
+    
+    
+  }
+
+
+i_ = i_+1
+
+
+txt_to_tree(list_=dat_, i_=1)
+```
+```{r}
+# def ttree_to_json(ttree,level=0):
+process_strata_level = 
+  function(list_, level_=0) {
+#     result = {}
+    strata_ = list()
+#     for i in range(0,len(ttree)):
+    for (i_ in seq(1, length(list_))) {
+      if (level_ == 4 & i_ == 11) {
+        # browser()
+      }
+      print(paste0("level: ", level_, " - i: ", i_))
+#         cn = ttree[i]
+      cn = list_[i_]
+#         try:
+#             nn  = ttree[i+1]
+#         except:
+#             nn = {'level':-1}
+      nn = list_[i_ + 1]
+# 
+#         # Edge cases
+#         if cn['level']>level:
+#             continue
+      if(get_indentation_number(cn) > level_) {
+        next
+      }
+#         if cn['level']<level:
+#             return result
+      if(get_indentation_number(cn) < level_) {
+        return(strata_)
+      }
+# 
+#         # Recursion
+#         if nn['level']==level:
+#             dict_insert_or_append(result,cn['name'],cn['value'])
+      if(get_indentation_number(nn) == level_) {
+        strata_ = append(strata_, get_node_name(cn))
+      }
+#         elif nn['level']>level:
+#             rr = ttree_to_json(ttree[i+1:], level=nn['level'])
+#             dict_insert_or_append(result,cn['name'],rr)
+      else {
+        if(get_indentation_number(nn) > level_) {
+          rr = 
+            process_strata_level(
+              list_[i_+1:length(list_)],
+              level_ = get_indentation_number(nn)
+            )
+          
+          elem = list()
+          elem[get_node_name(cn)] = rr
+          strata_ = append(strata_, elem)
+        } 
+#         else:
+#             dict_insert_or_append(result,cn['name'],cn['value'])
+#             return result
+        else {
+          strata_ = append(strata_, get_node_name(cn))
+        }
+      }
+    }
+#     return result
+    return(strata_)
+  }
+
+process_strata_level(list_)
+```
+
+
+```{r}
+get_node_name = 
+  function(s_) {
+    return(
+      stringr::str_extract(s_, pattern="[\\s]*([^\\s].*)", group=1)
+    )
+  }
+
+
+get_indentation_number = 
+  function(l_) {
+    if(l_ == "") {
+      return(0)
+    }
+    ws_ = stringr::str_extract(l_, pattern = "(\\s*)[^\\s].*", group=1)
+    ws_len_ = stringr::str_length(ws_)
+    ind_ = ws_len_ / 2
+    return(ind_)
+  }
+
+txt_to_tree = 
+  function(list_, i_) {
+    starting_indent = get_indentation_number(list_[i_])
+  }
+```
+
+
