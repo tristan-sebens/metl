@@ -236,6 +236,15 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
             name = "Tilt-Y(°)",
             units = "°"
           ),
+        EAL_FIELD =
+          Field(
+            name = "EAL"
+          ),
+        COMPASS_HEADING_FIELD =
+          Field(
+            name = "Comp.Head(°)",
+            units = "°"
+          ),
         INCLINATION_FIELD =
           Field(
             name = "Inclination(°)",
