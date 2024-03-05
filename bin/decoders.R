@@ -806,7 +806,7 @@ Decoder_StarOddi_DSTmagnetic =
         extract =
           function() {
             fs =
-              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+              list.files(.self$d, pattern = "^[^~]*\\.xlsx", full.names = T)
 
             fp = fs[[1]]
 
