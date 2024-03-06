@@ -23,9 +23,9 @@ DataMap =
     "DataMap",
     fields =
       list(
-        # Input data field map
-        # TODO Similar to above, should be set in the initialize function of the child class
+        # Field map for the incoming raw data
         input_data_field_map = "FieldMap",
+        # Field map for the target DB table
         output_data_field_map = "FieldMap"
       ),
     methods =
@@ -249,12 +249,12 @@ Decoder =
         #'
         #' @return The tag metadata as a single dataframe
         generate_tag_meta_dataframe =
-          function(tag_meta_field_map) {
+          function() {
             # have to do it this clumsy way bc dplyr dataframes are NOT okay with dynamically generated field names
             l = list()
-            l[tag_meta_field_map$field_list$TAG_ID_FIELD$name] = .self$tag_id
-            l[tag_meta_field_map$field_list$TAG_MAKE_FIELD$name] = .self$tag_make
-            l[tag_meta_field_map$field_list$TAG_MODEL_FIELD$name] = .self$tag_model
+            l[.self$tag_meta_field_map$field_list$TAG_ID_FIELD$name] = .self$tag_id
+            l[.self$tag_meta_field_map$field_list$TAG_MAKE_FIELD$name] = .self$tag_make
+            l[.self$tag_meta_field_map$field_list$TAG_MODEL_FIELD$name] = .self$tag_model
             return(data.frame(l))
           },
 
@@ -275,11 +275,21 @@ Decoder =
         #' @return The data with tag metadata attached
         add_meta =
           function(dat, dm) {
-            dat %>%
-              # Only the tag id needs to be connected to the actual recordings
-              dplyr::mutate(
-                '{tag_meta_field_map$field_list$TAG_ID_FIELD$name}' := .self$tag_id()
-              )
+            # Determine which fields from the tagmetadata frame should be added
+            common_fields =
+              names(TAG_FIELDS$common_fields(dm$output_data_field_map))
+
+            # Generate the tag metadataframe
+            tag_meta_df = .self$generate_tag_meta_dataframe()
+
+            # Add any meta fields which are common between the FieldMaps of the
+            # DataMap and the Decoder
+            for(f in common_fields) {
+              dat[dm$output_data_field_map$field_list[[f]]$name] =
+                tag_meta_df[dc$tag_meta_field_map$field_list[[f]]$name]
+            }
+
+            return(dat)
           },
 
         #' Execute all necessary steps to read and transform raw data for one datamap
@@ -309,10 +319,10 @@ Decoder =
             for (dm in .self$data_maps) {
               # Get the extracted and transformed data
               dat = .self$decode_datamap(dm)
-
               # Add any required metadata
-              dat_m = add_meta(dat)
-
+              dat_m = .self$add_meta(dat, dm)
+              # Load the data into the DB
+              dm$load(dat_m)
             }
           }
       )

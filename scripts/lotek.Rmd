@@ -73,10 +73,27 @@ Filter(
   ]
 )
 
-TAG_FIELDS$common_fields(dm$output_data_field_map)
+common_fields = 
+  names(TAG_FIELDS$common_fields(dm$output_data_field_map))
 
-dc$generate_tag_meta_dataframe(TAG_FIELDS)
+tag_meta_df = dc$generate_tag_meta_dataframe(TAG_FIELDS)
+# Add any meta fields which are common between the FieldMaps of the DataMap and 
+# the Decoder
+for(f in common_fields) {
+  dat[dm$output_data_field_map$field_list[[f]]$name] = 
+    dc$generate_tag_meta_dataframe(TAG_FIELDS)[dc$tag_meta_field_map$field_list[[f]]$name]
+}
+
+dc$decode()
 ```
+
+```{r}
+dc$data_maps %>% 
+  lapply(
+    function()
+  )
+```
+
 
 
 Model LAT 1400/1800 
