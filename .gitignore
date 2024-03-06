@@ -9,3 +9,4 @@ secrets/*
 # No RStudio IDE files
 .Rproj.user/*
 .Rhistory
+*.db
