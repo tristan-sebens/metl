@@ -363,34 +363,16 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
 #' @inheritParams Decoder
 #'
 #' @examples
-Decoder_StarOddi_DST =
+DataMap_StarOddi_DST_InstantSensorData =
   setRefClass(
-    "Decoder_StarOddi_DST",
-    contains = "Decoder",
+    "DataMap_StarOddi_DST_InstantSensorData",
+    contains = "DataMap_InstantSensorData_Base",
     methods =
       list(
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = STAR_ODDI_DST_FIELDS, ...)
           },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # The readxl package already formats the datetime field as POSIXct
-            return(dat)
-          },
-
 
         #' Extract tag data from passed directory
         #'
@@ -398,7 +380,7 @@ Decoder_StarOddi_DST =
         #'
         #' @return The data contained in the tag data as a single dataframe
         extract =
-          function() {
+          function(d) {
             fs =
               list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
 

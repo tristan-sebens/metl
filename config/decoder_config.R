@@ -186,3 +186,41 @@ Decoder_MicrowaveTelemetry_XTag =
 
 
 
+Decoder_StarOddi_DST =
+  setRefClass(
+    "Decoder_StarOddi_DST",
+    contains = "Decoder",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            # Initialize the child class
+            callSuper(
+              tag_make = "Star Oddi",
+              tag_model = "DST",
+              tag_meta_field_map = TAG_FIELDS,
+              # Define data maps
+              data_maps =
+                list(
+                  DataMap_StarOddi_DST_InstantSensorData()
+                ),
+              ...
+            )
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function() {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(.self$d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          }
+      )
+  )
+
+

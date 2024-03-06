@@ -5,7 +5,6 @@ so_d = here::here('data', 'Star Oddi')
 so_dst_d = file.path(so_d, 'DST', 'Sablefish', 'JS7977')
 so_dstmag_d = file.path(so_d, 'DST magnetic', 'Sablefish', 'JS927')
 so_dstmf_d = file.path(so_d, 'DST milli-F', 'Sablefish', 'JS122')
-dir.exists(so_dstmf_d)
 ```
 
 
@@ -13,19 +12,9 @@ DST Scratch
 ```{r}
 d = so_dst_d
 
-# Extract tag id
-fs =
-  list.files(d, pattern = "^[^~]*\\.xlsx")
+dc_so.dst__ = Decoder_StarOddi_DST(d = so_dst_d)
 
-str_extract(fs, pattern = "^([^~]*)\\.xlsx", group=1)
-
-# Read data 
-fs =
-  list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
-
-fp = fs[[1]]
-
-
+dc_so.dst__$decode(con)
 
 dat_ = 
   suppressWarnings(
@@ -34,6 +23,15 @@ dat_ =
     }
   )
 ```
+```{r}
+# Read in xlsx file(s) (There should only be one)
+fs = list.files(dc_so.dst__$d, pattern = "^[^~]*\\.xlsx")
+# Extract the tag id from the filenames
+str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+```
+
+
+
 
 DST Decoder
 ```{r}
