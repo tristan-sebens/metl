@@ -1,18 +1,35 @@
-#' Decoder for the Lotek 1000/1100/1250 tags
+
+#' Base class for DataMaps which map to the instant tag sensor table
 #'
-DataMap_Lotek.1000.1100.1250_InstantSensorData =
+#' @return
+#' @export
+#'
+#' @examples
+DataMap_InstantSensorData_Base =
   setRefClass(
-    "DataMap_Lotek.1000.1100.1250",
+    "DataMap_InstantSensorData_Base",
     contains = "DataMap",
     methods =
       list(
         initialize =
           function(...) {
-            callSuper(
-              input_data_field_map = LOTEK_1000.1100.1250_FIELDS,
-              output_data_field_map = TAG_DATA_FIELDS,
-              ...
-            )
+            callSuper(output_data_field_map = TAG_DATA_FIELDS, ...)
+          }
+      )
+  )
+
+
+#' DataMap for the Lotek 1000/1100/1250 tags
+#'
+DataMap_Lotek.1000.1100.1250_InstantSensorData =
+  setRefClass(
+    "DataMap_Lotek.1000.1100.1250_InstantSensorData",
+    contains = "DataMap_InstantSensorData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = LOTEK_1000.1100.1250_FIELDS, ...)
           },
         #' Read tag data from file. Data comes in standard csv format, but is
         #' preceded by a number of metadata tags which must be skipped
@@ -93,10 +110,10 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
 #'
 #'
 #' @examples
-DataMap_Lotek.1300 =
+DataMap_Lotek.1300_InstantSensorData =
   setRefClass(
-    "DataMap_Lotek.1300",
-    contains = "DataMap",
+    "DataMap_Lotek.1300_InstantSensorData",
+    contains = "DataMap_InstantSensorData_Base",
     methods =
       list(
         initialize =

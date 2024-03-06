@@ -14,7 +14,7 @@ Decoder_Lotek.1000.1100.1250 =
               # Define data maps
               data_maps =
                 list(
-                  DataMap_Lotek.1000.1100.1250()
+                  DataMap_Lotek.1000.1100.1250_InstantSensorData()
                 ),
               ...
             )
