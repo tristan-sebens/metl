@@ -1,28 +1,32 @@
 source(here::here('bin', 'field.R'))
 
-#' Decoder base class
+#' DataMap base class
 #'
-#'  Provides base structure for all make/model specific tag decoders.
+#'  Provides base structure for all make/model specific tag data maps
+#'  Analagous to a table in the final DB. Desribes programatically how the data
+#'  to be inserted into that table should be collected from the disk, and
+#'  transformed
+#'
 #'  Not intended to be implemented directly
+#'
+#' @field d character. The directory in which the tag data can be found
+#' @field input_data_field_map FieldMap. Map of the data fields and their original format
+#' @field output_data_field_map FieldMap. Map of the data fields and their corresponding DB format
 #'
 #' @return
 #' @export
 #'
 #' @examples
-Decoder =
+DataMap =
+  #----
   setRefClass(
-    "Decoder",
+    "DataMap",
     fields =
       list(
-        # Directory from which to read the tag data
-        d = "character",
-        # Tag metadata
-        # TODO These fields should be set in the initialize function of the child class
-        tag_make = "character",
-        tag_model = "character",
         # Input data field map
         # TODO Similar to above, should be set in the initialize function of the child class
-        input_data_field_map = "FieldMap"
+        input_data_field_map = "FieldMap",
+        output_data_field_map = "FieldMap"
       ),
     methods =
       list(
@@ -81,56 +85,14 @@ Decoder =
             return(which(matches)[[1]])
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            throw_error(
-              "Inheritence error: Invocation of 'tag_id_from_d' function of base
-              class 'Decoder.' Please implement a child class instead.")
-          },
-
-        #' Attach all necessary metadata to incoming tag data
-        #'
-        #' @param dat The incoming tag data
-        #'
-        #' @return The data with tag metadata attached
-        add_meta =
-          function(dat, tag_meta_field_map) {
-            dat %>%
-              # Only the tag id needs to be connected to the actual recordings
-              dplyr::mutate(
-                '{tag_meta_field_map$field_list$TAG_ID_FIELD$name}' := .self$tag_id_from_d(d)
-              )
-          },
-
-        # TODO: Update this function to dynamically name the dataframe fields based on the fields of the TAG table FieldMap. Right now the table fields are just hardcoded into this function (bad bad)
-        #' Generate a dataframe of the relevant metadata for this tag, in the format
-        #' expected by DBI::dbAppendTable
-        #'
-        #' @return The tag metadata as a single dataframe
-        generate_tag_meta_dataframe =
-          function(tag_meta_field_map) {
-            # have to do it this clumsy way bc dplyr dataframes are NOT okay with dynamically generated field names
-            l = list()
-            l[tag_meta_field_map$field_list$TAG_ID_FIELD$name] = .self$tag_id_from_d(.self$d)
-            l[tag_meta_field_map$field_list$TAG_MAKE_FIELD$name] = .self$tag_make
-            l[tag_meta_field_map$field_list$TAG_MODEL_FIELD$name] = .self$tag_model
-            return(data.frame(l))
-          },
-
         #' Convert the date time data contained in the dataframe to POSIXct format
+        #' Default behavior is to assume that the datetime field is already in
+        #' POSIXct. If this is not the case, then the method should be overridden
         #'
         #' @return The input dataframe with the newly formatted POSIXct timestamp
         convert_datetime_to_posix_ct =
           function(dat) {
-            throw_error(
-              "Inheritence error: Invocation of 'convert_datetime_to_posix_ct' function of base
-              class 'Decoder.' Please implement a child class instead."
-            )
+            return(dat)
           },
 
         #' Transform the fields of the incoming tag data as dictated by the field maps
@@ -139,7 +101,7 @@ Decoder =
         #'
         #' @return The transformed data with renamed and united fields
         transform_fields =
-          function(dat__, output_data_field_map) {
+          function(dat__) {
             # Convert the datetime field(s) to a POSIXct field
             dat__ = .self$convert_datetime_to_posix_ct(dat__)
 
@@ -149,7 +111,7 @@ Decoder =
             common_fields =
               names(
                 .self$input_data_field_map$common_fields(
-                  fm = output_data_field_map
+                  fm = .self$output_data_field_map
                 )
               )
 
@@ -157,7 +119,7 @@ Decoder =
               # for (field_ in names(.self$input_data_field_map$field_list)) {
               # Identify relevant input/output field objects
               input_field_obj_ = .self$input_data_field_map$field_list[[field_]]
-              output_field_obj_ = output_data_field_map$field_list[[field_]]
+              output_field_obj_ = .self$output_data_field_map$field_list[[field_]]
 
               # Isolate field data
               input_field_dat_ = dat__[[input_field_obj_$name]]
@@ -193,7 +155,7 @@ Decoder =
                 lapply(
                   # Select the fields from the output field map that have corresponding
                   #  entries in the input field map
-                  output_data_field_map$field_list[common_fields],
+                  .self$output_data_field_map$field_list[common_fields],
                   function(f) {
                     f$name
                   }
@@ -214,11 +176,14 @@ Decoder =
         #'
         #' @examples
         extract =
-          function() {
+          function(d) {
             throw_error(
               "Inheritence error: Invocation of 'extract' function of base
               class 'Decoder.' Please implement a child class instead.")
           },
+
+        # TODO: This function has become a wrapper function for 'transform_fields.'
+        # Should it just be removed, and the wrapped function renamed?
 
         #' Transform extracted tag data to follow standardized format
         #'
@@ -227,621 +192,132 @@ Decoder =
         #' @return The data contained in the tag data as a single dataframe
         transform =
           function(
-            dat,
-            output_data_field_map,
-            tag_meta_field_map
+            dat
           ) {
-
             # Standardize incoming fields
-            dat = .self$transform_fields(dat, output_data_field_map)
-
-            # Add tag meta to all data records
-            dat = .self$add_meta(dat, tag_meta_field_map)
+            dat = .self$transform_fields(dat)
 
             return(dat)
+          }
+      )
+  )
+  #----
+
+
+#' Decoder base class
+#'
+#' Logical representation of a single tag
+#'
+#' @field d character. The directory in which the tag data can be found
+#' @field data_maps list. The list of data maps used to map the data for this tag to the output tables in the DB
+#'
+#' The following fields should be set in initialization of child classes
+#' @field tag_make character. The manufacturer of the tag
+#' @field tag_model character. The model of the tag
+#'
+#' @return
+#' @export
+#'
+#' @examples
+Decoder =
+  #----
+  setRefClass(
+    "Decoder",
+    fields =
+      list(
+        d = "character",
+        data_maps = "list",
+        # TODO These fields should be set in the initialize function of the child class
+        tag_meta_field_map = "FieldMap",
+        tag_id = "character",
+        tag_make = "character",
+        tag_model = "character"
+      ),
+
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+
+            # Initialize the tag_id field
+            tag_id <<- .self$get_tag_id()
           },
 
-        # TODO: This function has hardcoded table names in it. They need to be refactored
-        #' Load transformed tag data into the DB
+        #' Generate a dataframe of the relevant metadata for this tag, in the format
+        #' expected by DBI::dbAppendTable
+        #'
+        #' @return The tag metadata as a single dataframe
+        generate_tag_meta_dataframe =
+          function(tag_meta_field_map) {
+            # have to do it this clumsy way bc dplyr dataframes are NOT okay with dynamically generated field names
+            l = list()
+            l[tag_meta_field_map$field_list$TAG_ID_FIELD$name] = .self$tag_id
+            l[tag_meta_field_map$field_list$TAG_MAKE_FIELD$name] = .self$tag_make
+            l[tag_meta_field_map$field_list$TAG_MODEL_FIELD$name] = .self$tag_model
+            return(data.frame(l))
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function() {
+            throw_error(
+              "Inheritence error: Invocation of 'tag_id_from_d' function of base
+              class 'Decoder.' Please implement a child class instead.")
+          },
+
+        #' Attach all necessary metadata to incoming tag data
         #'
         #' @param dat The incoming tag data
         #'
-        #' @return The data contained in the tag data as a single dataframe
-        load =
-          function(
-            dat,
-            con,
-            output_data_field_map,
-            tag_meta_field_map
-          ) {
-            DBI::dbWithTransaction(
-              con,
-              {
-                # Add sensor data to DB
-                DBI::dbAppendTable(
-                  conn = con,
-                  name = "TAG_DATA",
-                  value =
-                    d__$transform(
-                      dat__,
-                      output_data_field_map,
-                      tag_meta_field_map
-                    )
-                )
-                # Add tag metadata to DB
-                DBI::dbAppendTable(
-                  conn = con,
-                  name = "TAG",
-                  value =
-                    d__$generate_tag_meta_dataframe(
-                      tag_meta_field_map
-                    )
-                )
-              }
-            )
-          }
-      )
-  )
-
-
-#' Decoder for the Lotek 1000/1100/1250 tags
-#'
-Decoder_Lotek.1000.1100.1250 =
-  setRefClass(
-    "Decoder_Lotek.1000.1100.1250",
-    contains = "Decoder",
-    methods =
-      list(
-        tag_id_from_filename =
-          function(fp) {
-            stringr::str_match(fp, pattern = "^(\\d\\d\\d\\d)\\D*")[2]
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            .self$tag_id_from_filename(
-              list.files(
-                d,
-                pattern = "^.*[C|c][S|s][V|v]"
-              )[[1]]
-            )
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            dat[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name] =
-              as.POSIXct(
-                dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]],
-                format = "%Y/%m/%d %H:%M:%S",
-                tz = "UTC"
+        #' @return The data with tag metadata attached
+        add_meta =
+          function(dat, dm) {
+            dat %>%
+              # Only the tag id needs to be connected to the actual recordings
+              dplyr::mutate(
+                '{tag_meta_field_map$field_list$TAG_ID_FIELD$name}' := .self$tag_id()
               )
-
-            return(dat)
           },
 
-        #' Find a sensor specific data file based on a filename pattern
+        #' Execute all necessary steps to read and transform raw data for one datamap
         #'
-        #' @param d The directory to search in
-        #' @param pattern The pattern to use to find the datafile
+        #' @param dm The DataMap to use
         #'
-        #' @return The number of the first line in which the specified pattern occurs
-        #' @export
-        #'
-        #' @examples
-        get_data_file_path =
-          function(d, pattern) {
-            file.path(
-              d,
-              list.files(d, pattern = pattern)[[1]]
-            )
+        #' @return The extracted and transformed data
+        decode_datamap =
+          function(dm) {
+            dat =
+              dm$extract(.self$d)
+
+            dat_t =
+              dm$transform(dat)
+
+            return(dat_t)
           },
 
-        #' Read tag data from file. Data comes in standard csv format, but is
-        #' preceded by a number of metadata tags which must be skipped
+        #' Execute all necessary steps to read and transform raw data for one datamap
         #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
+        #' @param dm The DataMap to use
         #'
-        #' @return The data contained in the tag data as a single dataframe
-        read_csv_lotek_1000.1100.1250 =
-          function(fp) {
-            read.csv(
-              fp,
-              skip=
-                # Find the line at which the csv data begins by finding the
-                #  'CSV DATA' section header
-                .self$find_line_in_file(
-                  fp,
-                  pattern="CSV DATA")
-            ) %>%
-            # Drop any empty lines.
-            drop_na()
-          },
-
-
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
+        #' @return The extracted and transformed data
+        decode =
           function() {
-            # List of data-types to collect data for
-            c(
-              "PRESSURE",
-              "TEMPERATURE",
-              "LIGHT",
-              "SUPPLY"
-            ) %>%
-            # Find all of the relevant datafiles, and read them in as dataframes
-            lapply(
-              FUN =
-                function(pattern) {
-                  .self$read_csv_lotek_1000.1100.1250(
-                    .self$get_data_file_path(.self$d, pattern = pattern)
-                  )
-                }
-            ) %>%
-            # Join all of the dataframes together into a single frame
-            purrr::reduce(
-              .f =
-                function(x, y) {
-                  # Check that the next df has any rows to join
-                  if (nrow(y) > 0) {
-                    # Suppress 'joined by' messages that pollute the console
-                    return(suppressMessages({full_join(x, y)}))
-                  }
-                  return(x)
-                }
-            )
-          }
-      )
-  )
+            # Iterate through each data map in this decoder
+            for (dm in .self$data_maps) {
+              # Get the extracted and transformed data
+              dat = .self$decode_datamap(dm)
 
+              # Add any required metadata
+              dat_m = add_meta(dat)
 
-#' Decoder for the Lotek 1300 tags
-#'
-#'
-#' @examples
-Decoder_Lotek.1300 =
-  setRefClass(
-    "Decoder_Lotek.1300",
-    contains = "Decoder",
-    methods =
-      list(
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # Get the timestamp field name
-            ts_fieldname = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name
-
-            # For some reason the timestamps in these data files can come in one of two
-            #  formats. It escapes my why this might be the case, but here we are.
-            #  To accommodate this, we apply two different POSIX formats, and for each
-            #  record take the one that works
-            ts_1 = as.POSIXct(dat[[ts_fieldname]], format = "%d/%m/%Y %H:%M", tz = "UTC")
-            ts_2 = as.POSIXct(dat[[ts_fieldname]], format = "%H:%M:%S %d/%m/%y", tz="UTC")
-
-            dat[[ts_fieldname]] =
-              as.POSIXct(
-                ifelse(
-                  is.na(ts_2),
-                  ts_1,
-                  ts_2
-                )
-              )
-
-            return(dat)
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            list.files(d, pattern = ".*[R|r]egular.*")[1] %>%
-              stringr::str_extract("^.*LTD1300.*(\\d\\d\\d\\d)\\D.*[R|r]egular.*[C|c][S|s][V|v]", group=1)
-          },
-
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
-          function() {
-            fps = list.files(.self$d, pattern = "Regular Log")
-
-            # Check that the data files in the directory match expectations
-            if(lengths(fps) > 1) {
-              .self$throw_error(
-                paste0("Too many 'Regular Log' files in ", .self$d)
-              )
             }
-            if(lengths(fps) == 0) {
-              .self$throw_error(
-                paste0("No 'Regular Log' files in ", .self$d)
-              )
-            }
-
-            # Read and return the data from the data file
-            return(
-              read.csv(file.path(.self$d, fps[[1]]))
-            )
           }
       )
   )
-
-
-#' Decoder for the Lotek 1400/1800 tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
-Decoder_Lotek.1400.1800 =
-  setRefClass(
-    "Decoder_Lotek.1400.1800",
-    contains = "Decoder",
-    methods =
-      list(
-        # Helper function to read csv datafiles formatted by a Lotek 1400/1800
-        # tag. File contains two lines of headers which need to be skipped.
-        read_csv_lotek_1400.1800 =
-          function(fp) {
-            read.csv(
-              fp,
-              skip =
-                .self$find_line_in_file(
-                  fp,
-                  pattern = "Rec #"
-                ) - 1
-            )
-          },
-
-        tag_id_from_filename =
-          function(fp) {
-            stringr::str_match(fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            .self$tag_id_from_filename(
-              list.files(
-                d,
-                pattern = "^LAT[180|140].*csv"
-              )[[1]]
-            )
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] =
-              as.POSIXct(
-                paste(
-                  dat[[.self$input_data_field_map$field_list$DATE_FIELD$name]],
-                  dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
-                ),
-                format = "%m/%d/%Y %H:%M:%S",
-                tz = "UTC"
-              )
-
-            return(dat)
-          },
-
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
-          function() {
-            # Retrieve the csv data file
-            fps = .self$get_csv_files(d)
-            # There should be only one csv file. If there are more, we don't know
-            # which one to use.
-            if (length(fps) > 1) {
-              .self$throw_error(
-                paste0(
-                  "Too many CSV files present in directory: ",
-                  .self$d
-                )
-              )
-            }
-
-            return(
-              read_csv_lotek_1400.1800(fps[[1]])
-            )
-          }
-      )
-  )
-
-#' Decoder for the Microwave Telemetry X-tag tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
-Decoder_MicrowaveTelemetry_XTag =
-  setRefClass(
-    "Decoder_MicrowaveTelemetry_XTag",
-    contains = "Decoder",
-    methods =
-      list(
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            list.files(path = d, pattern = "^\\d*\\.xls") %>%
-              stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # The readxl::read_xls function already identifies the datetime as POSIXct
-            return(dat)
-          },
-
-
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
-          function() {
-            # All of the temperature and pressure data is extracted from the .xls file
-            # Find the xls file in the directory
-            mt_xt_xl_fp = list.files(.self$d, pattern = "^\\d*\\.xls", full.names = T)
-
-            suppressMessages(
-              {
-                # Read in pressure (depth) data
-                press_dat_ =
-                  # Read the data from the pressure data sheet in the xls file
-                  readxl::read_xls(
-                    path = mt_xt_xl_fp,
-                    sheet = "Press Data",
-                    # Calculate the range of data to include
-                    range =
-                      paste0(
-                        "A3:D",
-                        # Read in the full, unfiltered sheet to count the number of rows of data
-                        nrow(
-                          readxl::read_xls(
-                            path = mt_xt_xl_fp,
-                            sheet = "Press Data",
-                            skip=1
-                          )
-                        ) + 2 # Add two rows for the header row and the title row
-                      ),
-                    col_names =
-                      c(
-                        'datetime',
-                        'sensor_val',
-                        'gain',
-                        'depth'
-                      )
-                  )
-
-                # Read in temperature data
-                temp_dat_ =
-                  # Read the data from the temperature data sheet in the xls file
-                  readxl::read_xls(
-                    path = mt_xt_xl_fp,
-                    sheet = "Temp Data",
-                    # Calculate the range of data to include
-                    range =
-                      paste0(
-                        "A3:C",
-                        # Read in the full, unfiltered sheet to count the number of rows of data
-                        nrow(
-                          readxl::read_xls(
-                            path = mt_xt_xl_fp,
-                            sheet = "Temp Data",
-                            skip=1
-                          )
-                        ) + 2 # Add two rows for the header row and the title row
-                      ),
-                    col_names =
-                      c(
-                        'datetime',
-                        'sensor_val',
-                        'temperature'
-                      )
-                  )
-              }
-            )
-
-            # Merge the data into a single dataframe
-            dat_ =
-              merge(
-                dplyr::select(press_dat_, -sensor_val, -gain),
-                dplyr::select(temp_dat_, -sensor_val),
-                all.x = T,
-                all.y = T
-              )
-
-            return(dat_)
-          }
-      )
-  )
-
-
-#' Decoder for the Star Oddi DST tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
-Decoder_StarOddi_DST =
-  setRefClass(
-    "Decoder_StarOddi_DST",
-    contains = "Decoder",
-    methods =
-      list(
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # The readxl package already formats the datetime field as POSIXct
-            return(dat)
-          },
-
-
-        #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
-          function() {
-            fs =
-              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
-
-            fp = fs[[1]]
-
-            dat_ =
-              # readxl throws up a warning every time we convert a number to a datetime
-              # printing all of those warnings takes FOREVER
-              # so instead we just tell it to shut up
-              suppressWarnings(
-                {
-                  # Read the tag data in from the datasheet
-                  readxl::read_xlsx(
-                    fp,
-                    sheet = "DAT",
-                    col_types = c("date", "numeric", "numeric")
-                  )
-                }
-              )
-
-            return(dat_)
-          }
-      )
-  )
-
-
-#' Decoder for the StarOddi DST magnetic tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
-Decoder_StarOddi_DSTmagnetic =
-  setRefClass(
-    "Decoder_StarOddi_DSTmagnetic",
-    contains = "Decoder",
-    methods =
-      list(
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # The readxl package already formats the datetime field as POSIXct
-            return(dat)
-          },
-
-
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
-          function() {
-            fs =
-              list.files(.self$d, pattern = "^[^~]*\\.xlsx", full.names = T)
-
-            fp = fs[[1]]
-
-            dat_ =
-              # readxl throws up a warning every time we convert a number to a datetime
-              # printing all of those warnings takes FOREVER
-              # so instead we just tell it to shut up
-              suppressWarnings(
-                {
-                  # Read the tag data in from the datasheet
-                  readxl::read_xlsx(
-                    fp,
-                    sheet = "DAT",
-                    col_types = c("date", rep("numeric", 10))
-                  )
-                }
-              )
-
-            return(dat_)
-          }
-      )
-  )
-
-
-#' Decoder for the StarOddi DST milli F tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
-Decoder_StarOddi_DSTmilliF =
-  setRefClass(
-    "Decoder_StarOddi_DSTmilliF",
-    # Decoder is identical to the Star Oddi DST tag decoder
-    contains = "Decoder_StarOddi_DST"
-  )
+  #----
 
 
 

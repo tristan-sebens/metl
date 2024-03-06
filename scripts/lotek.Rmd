@@ -19,6 +19,66 @@ template_tag_fp_lat_1800_fp = file.path(template_tag_fp_lat_1800_d, 'LAT180_0507
 ```
 
 
+Model LTD 1000/1100/1250
+```{r}
+list.files(template_tag_d_ltd_1000_1100_1250)
+fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
+fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
+fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
+
+
+lt1000_dm = 
+  DataMap_Lotek.1000.1100.1250(
+    d = template_tag_d_ltd_1000_1100_1250,
+    input_data_field_map = LOTEK_1000.1100.1250_FIELDS,
+    output_data_field_map = TAG_DATA_FIELDS
+  )
+
+lt1000_dat = 
+  lt1000_dm$extract()
+
+lt1000_dm$transform(lt1000_dat)
+
+dc = 
+  Decoder_Lotek.1000.1100.1250(
+    d = template_tag_d_ltd_1000_1100_1250
+  )
+
+dat = 
+  dc$decode_datamap(dm = dc$data_maps[[1]])
+
+dc$transform(d__, output_data_field_map = TAG_DATA_FIELDS, tag_meta_field_map = TAG_FIELDS)
+
+dc$tag_id_from_d(template_tag_d_ltd_1000_1100_1250)
+
+
+
+d__$generate_tag_meta_dataframe(tag_meta_field_map)
+```
+
+```{r}
+dc = 
+  Decoder_Lotek.1000.1100.1250(
+    d = template_tag_d_ltd_1000_1100_1250,
+    tag_meta_field_map = TAG_FIELDS
+  )
+
+dm = dc$data_maps[[1]]
+
+
+Filter(
+  Negate(is.null), 
+  dm$output_data_field_map$field_list[
+    c('TAG_ID_FIELD', 'TAG_MAKE_FIELD', 'TAG_MODEL_FIELD')
+  ]
+)
+
+TAG_FIELDS$common_fields(dm$output_data_field_map)
+
+dc$generate_tag_meta_dataframe(TAG_FIELDS)
+```
+
+
 Model LAT 1400/1800 
 ```{r}
 # Tag ID
@@ -203,33 +263,6 @@ dat_1300_t__ %>%
 ```
 
 
-
-Model LTD 1000/1100/1250
-```{r}
-list.files(template_tag_d_ltd_1000_1100_1250)
-fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
-fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
-fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
-
-
-dc = 
-  Decoder_Lotek.1000.1100.1250(
-    d = template_tag_d_ltd_1000_1100_1250,
-    tag_make = "Lotek",
-    tag_model = "LAT_1000/1100/1250",
-    input_data_field_map = LOTEK_1000.1100.1250_FIELDS
-  )
-
-d__ = dc$extract()
-
-dc$transform(d__, output_data_field_map = TAG_DATA_FIELDS, tag_meta_field_map = TAG_FIELDS)
-
-dc$tag_id_from_d(template_tag_d_ltd_1000_1100_1250)
-
-
-
-d__$generate_tag_meta_dataframe(tag_meta_field_map)
-```
 
 ```{r}
 fp = list.files(

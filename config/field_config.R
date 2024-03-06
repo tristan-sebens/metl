@@ -1,7 +1,7 @@
 #----------------
-# TAG_DATA FIELDS
+# TAG FIELDS
 #----------------
-TAG_DATA_FIELDS =
+TAG_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -10,6 +10,29 @@ TAG_DATA_FIELDS =
             name = "tag_id",
             data_type = "integer"
           ),
+        TAG_MAKE_FIELD =
+          Field(
+            name = "make",
+            data_type = "varchar(32)"
+          ),
+        TAG_MODEL_FIELD =
+          Field(
+            name = "model",
+            data_type = "varchar(32)"
+          )
+      )
+  )
+
+#----------------
+# TAG_DATA FIELDS
+#----------------
+TAG_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        # Link tag id field to TAG table primary key field
+        TAG_ID_FIELD =
+          TAG_FIELDS$field_list$TAG_ID_FIELD,
         TIMESTAMP_FIELD =
           Field(
             name = "timestamp",
@@ -56,30 +79,6 @@ TAG_DATA_FIELDS =
       )
   )
 
-#----------------
-# TAG FIELDS
-#----------------
-TAG_FIELDS =
-  FieldMap(
-    field_list =
-      list(
-        TAG_ID_FIELD =
-          Field(
-            name = "tag_id",
-            data_type = "integer"
-          ),
-        TAG_MAKE_FIELD =
-          Field(
-            name = "make",
-            data_type = "varchar(32)"
-          ),
-        TAG_MODEL_FIELD =
-          Field(
-            name = "model",
-            data_type = "varchar(32)"
-          )
-      )
-  )
 
 #----------------
 # LOTEK TAGS
