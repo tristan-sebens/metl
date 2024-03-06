@@ -14,24 +14,6 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
               ...
             )
           },
-
-        #' Find a sensor specific data file based on a filename pattern
-        #'
-        #' @param d The directory to search in
-        #' @param pattern The pattern to use to find the datafile
-        #'
-        #' @return The number of the first line in which the specified pattern occurs
-        #' @export
-        #'
-        #' @examples
-        get_data_file_path =
-          function(d, pattern) {
-            file.path(
-              d,
-              list.files(d, pattern = pattern)[[1]]
-            )
-          },
-
         #' Read tag data from file. Data comes in standard csv format, but is
         #' preceded by a number of metadata tags which must be skipped
         #'

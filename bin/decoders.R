@@ -50,6 +50,23 @@ DataMap =
             file.path(d, list.files(d, pattern = "\\.[C|c][S|s][V|v]$"))
           },
 
+        #' Find a sensor specific data file based on a filename pattern
+        #'
+        #' @param d The directory to search in
+        #' @param pattern The pattern to use to find the datafile
+        #'
+        #' @return The number of the first line in which the specified pattern occurs
+        #' @export
+        #'
+        #' @examples
+        get_data_file_path =
+          function(d, pattern) {
+            file.path(
+              d,
+              list.files(d, pattern = pattern)[[1]]
+            )
+          },
+
         #' Find the first line of the given file in which the specified pattern occurs
         #'
         #' @param fp The path of the file to read
