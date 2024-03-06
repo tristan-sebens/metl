@@ -109,7 +109,20 @@ Model LAT 1400/1800
 template_tag_fp_lat_1400_d
 dir.exists(template_tag_fp_lat_1400_d)
 
+dc_1400.1800 = 
+  Decoder_Lotek.1400.1800(d = template_tag_fp_lat_1400_d)
 
+dc_1400.1800$decode(con)
+
+dm_1400.1800 = dc_1400.1800$data_maps[[1]]
+
+dat = dm_1400.1800$extract(template_tag_fp_lat_1400_d)
+
+dm_1400.1800$output_data_field_map
+```
+
+
+```{r}
 tag_id_from_filename =
   function(fp) {
     stringr::str_match(fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]

@@ -1,10 +1,7 @@
 
 #' Base class for DataMaps which map to the instant tag sensor table
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @inheritParams DataMap
 DataMap_InstantSensorData_Base =
   setRefClass(
     "DataMap_InstantSensorData_Base",
@@ -21,6 +18,7 @@ DataMap_InstantSensorData_Base =
 
 #' DataMap for the Lotek 1000/1100/1250 tags
 #'
+#' @inheritParams DataMap
 DataMap_Lotek.1000.1100.1250_InstantSensorData =
   setRefClass(
     "DataMap_Lotek.1000.1100.1250_InstantSensorData",
@@ -108,8 +106,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
 
 #' Decoder for the Lotek 1300 tags
 #'
-#'
-#' @examples
+#' @inheritParams DataMap
 DataMap_Lotek.1300_InstantSensorData =
   setRefClass(
     "DataMap_Lotek.1300_InstantSensorData",
@@ -118,37 +115,7 @@ DataMap_Lotek.1300_InstantSensorData =
       list(
         initialize =
           function(...) {
-            callSuper(
-              input_data_field_map = LOTEK_1300_FIELDS,
-              output_data_field_map = TAG_DATA_FIELDS,
-              ...
-            )
-          },
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # Get the timestamp field name
-            ts_fieldname = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name
-
-            # For some reason the timestamps in these data files can come in one of two
-            #  formats. It escapes my why this might be the case, but here we are.
-            #  To accommodate this, we apply two different POSIX formats, and for each
-            #  record take the one that works
-            ts_1 = as.POSIXct(dat[[ts_fieldname]], format = "%d/%m/%Y %H:%M", tz = "UTC")
-            ts_2 = as.POSIXct(dat[[ts_fieldname]], format = "%H:%M:%S %d/%m/%y", tz="UTC")
-
-            dat[[ts_fieldname]] =
-              as.POSIXct(
-                ifelse(
-                  is.na(ts_2),
-                  ts_1,
-                  ts_2
-                )
-              )
-
-            return(dat)
+            callSuper(input_data_field_map = LOTEK_1300_FIELDS, ...)
           },
 
         #' Extract tag data from passed directory
@@ -203,15 +170,20 @@ DataMap_Lotek.1300_InstantSensorData =
 
 #' Decoder for the Lotek 1400/1800 tags
 #'
-#' @inheritParams Decoder
+#' @inheritParams DataMap
 #'
 #' @examples
-Decoder_Lotek.1400.1800 =
+DataMap_Lotek.1400.1800_InstantSensorData =
   setRefClass(
-    "Decoder_Lotek.1400.1800",
-    contains = "Decoder",
+    "DataMap_Lotek.1400.1800_InstantSensorData",
+    contains = "DataMap_InstantSensorData_Base",
     methods =
       list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = LOTEK_1400.1800_FIELDS, ...)
+          },
+
         # Helper function to read csv datafiles formatted by a Lotek 1400/1800
         # tag. File contains two lines of headers which need to be skipped.
         read_csv_lotek_1400.1800 =
@@ -223,26 +195,6 @@ Decoder_Lotek.1400.1800 =
                   fp,
                   pattern = "Rec #"
                 ) - 1
-            )
-          },
-
-        tag_id_from_filename =
-          function(fp) {
-            stringr::str_match(fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            .self$tag_id_from_filename(
-              list.files(
-                d,
-                pattern = "^LAT[180|140].*csv"
-              )[[1]]
             )
           },
 
@@ -271,7 +223,7 @@ Decoder_Lotek.1400.1800 =
         #'
         #' @return The data contained in the tag data as a single dataframe
         extract =
-          function() {
+          function(d) {
             # Retrieve the csv data file
             fps = .self$get_csv_files(d)
             # There should be only one csv file. If there are more, we don't know
@@ -280,14 +232,26 @@ Decoder_Lotek.1400.1800 =
               .self$throw_error(
                 paste0(
                   "Too many CSV files present in directory: ",
-                  .self$d
+                  d
                 )
               )
             }
 
-            return(
-              read_csv_lotek_1400.1800(fps[[1]])
-            )
+            # Read in data
+            dat = read_csv_lotek_1400.1800(fps[[1]])
+
+            # Convert datetime field to POSIXct
+            dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] =
+              as.POSIXct(
+                paste(
+                  dat[[.self$input_data_field_map$field_list$DATE_FIELD$name]],
+                  dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
+                ),
+                format = "%m/%d/%Y %H:%M:%S",
+                tz = "UTC"
+              )
+
+            return(dat)
           }
       )
   )
