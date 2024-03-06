@@ -23,7 +23,9 @@ dc_so.dstmag__$decode(con)
 
 DST milli-F 
 ```{r}
+dc_so.dstmf__ = Decoder_StarOddi_DSTmilliF(d = so_dstmf_d)
 
+dc_so.dstmf__$decode(con)
 ```
 
 

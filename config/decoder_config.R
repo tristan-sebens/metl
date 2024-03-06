@@ -223,6 +223,7 @@ Decoder_StarOddi_DST =
       )
   )
 
+
 Decoder_StarOddi_DSTmagnetic =
   setRefClass(
     "Decoder_StarOddi_DSTmagnetic",
@@ -234,7 +235,7 @@ Decoder_StarOddi_DSTmagnetic =
             # Initialize the child class
             callSuper(
               tag_make = "Star Oddi",
-              tag_model = "DST magnetic",
+              tag_model = "DST Magnetic",
               tag_meta_field_map = TAG_FIELDS,
               # Define data maps
               data_maps =
@@ -260,4 +261,42 @@ Decoder_StarOddi_DSTmagnetic =
       )
   )
 
+
+Decoder_StarOddi_DSTmilliF =
+  setRefClass(
+    "Decoder_StarOddi_DSTmilliF",
+    # The DST milli F decoder is identical in function to the DST
+    contains = "Decoder",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            # Initialize the child class
+            callSuper(
+              tag_make = "Star Oddi",
+              tag_model = "DST milli F",
+              tag_meta_field_map = TAG_FIELDS,
+              # Define data maps
+              data_maps =
+                list(
+                  DataMap_StarOddi_DSTmilliF_InstantSensorData()
+                ),
+              ...
+            )
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function() {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(.self$d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          }
+      )
+  )
 

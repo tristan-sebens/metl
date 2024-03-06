@@ -462,10 +462,47 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
 #' @inheritParams Decoder
 #'
 #' @examples
-Decoder_StarOddi_DSTmilliF =
+DataMap_StarOddi_DSTmilliF_InstantSensorData =
   setRefClass(
-    "Decoder_StarOddi_DSTmilliF",
-    # Decoder is identical to the Star Oddi DST tag decoder
-    contains = "Decoder_StarOddi_DST"
+    "DataMap_StarOddi_DSTmilliF_InstantSensorData",
+    # DataMap is identical to the Star Oddi DST tag DataMap
+    contains = "DataMap_InstantSensorData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = STAR_ODDI_DST_MILLI_F_FIELDS, ...)
+          },
+
+        #' Extract tag data from passed directory
+        #'
+        #' @inheritParams extract#Decoder
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function(d) {
+            fs =
+              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+
+            fp = fs[[1]]
+
+            dat_ =
+              # readxl throws up a warning every time we convert a number to a datetime
+              # printing all of those warnings takes FOREVER
+              # so instead we just tell it to shut up
+              suppressWarnings(
+                {
+                  # Read the tag data in from the datasheet
+                  readxl::read_xlsx(
+                    fp,
+                    sheet = "DAT",
+                    col_types = c("date", "numeric", "numeric")
+                  )
+                }
+              )
+
+            return(dat_)
+          }
+      )
   )
 
