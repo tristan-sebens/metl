@@ -1,6 +1,6 @@
 #' Decoder for the Lotek 1000/1100/1250 tags
 #'
-DataMap_Lotek.1000.1100.1250 =
+DataMap_Lotek.1000.1100.1250_InstantSensorData =
   setRefClass(
     "DataMap_Lotek.1000.1100.1250",
     contains = "DataMap",
@@ -13,21 +13,6 @@ DataMap_Lotek.1000.1100.1250 =
               output_data_field_map = TAG_DATA_FIELDS,
               ...
             )
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            dat[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name] =
-              as.POSIXct(
-                dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]],
-                format = "%Y/%m/%d %H:%M:%S",
-                tz = "UTC"
-              )
-
-            return(dat)
           },
 
         #' Find a sensor specific data file based on a filename pattern
@@ -126,12 +111,20 @@ DataMap_Lotek.1000.1100.1250 =
 #'
 #'
 #' @examples
-Decoder_Lotek.1300 =
+DataMap_Lotek.1300 =
   setRefClass(
-    "Decoder_Lotek.1300",
-    contains = "Decoder",
+    "DataMap_Lotek.1300",
+    contains = "DataMap",
     methods =
       list(
+        initialize =
+          function(...) {
+            callSuper(
+              input_data_field_map = LOTEK_1300_FIELDS,
+              output_data_field_map = TAG_DATA_FIELDS,
+              ...
+            )
+          },
         #' Convert the date time data contained in the dataframe to POSIXct format
         #'
         #' @return The input dataframe with the newly formatted POSIXct timestamp
@@ -159,17 +152,6 @@ Decoder_Lotek.1300 =
             return(dat)
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            list.files(d, pattern = ".*[R|r]egular.*")[1] %>%
-              stringr::str_extract("^.*LTD1300.*(\\d\\d\\d\\d)\\D.*[R|r]egular.*[C|c][S|s][V|v]", group=1)
-          },
-
         #' Extract tag data from passed directory
         #'
         #' @param d The directory in which the tag data resides. Directory is
@@ -177,25 +159,44 @@ Decoder_Lotek.1300 =
         #'
         #' @return The data contained in the tag data as a single dataframe
         extract =
-          function() {
-            fps = list.files(.self$d, pattern = "Regular Log")
+          function(d) {
+            fps = list.files(d, pattern = "Regular Log")
 
             # Check that the data files in the directory match expectations
             if(lengths(fps) > 1) {
               .self$throw_error(
-                paste0("Too many 'Regular Log' files in ", .self$d)
+                paste0("Too many 'Regular Log' files in ", d)
               )
             }
             if(lengths(fps) == 0) {
               .self$throw_error(
-                paste0("No 'Regular Log' files in ", .self$d)
+                paste0("No 'Regular Log' files in ", d)
               )
             }
 
-            # Read and return the data from the data file
-            return(
-              read.csv(file.path(.self$d, fps[[1]]))
-            )
+            # Read data from the data file
+            dat = read.csv(file.path(d, fps[[1]]))
+
+            # Get the timestamp field name
+            ts_fieldname = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name
+
+            # For some reason the timestamps in these data files can come in one of two
+            #  formats. It escapes my why this might be the case, but here we are.
+            #  To accommodate this, we apply two different POSIX formats, and for each
+            #  record take the one that works
+            ts_1 = as.POSIXct(dat[[ts_fieldname]], format = "%d/%m/%Y %H:%M", tz = "UTC")
+            ts_2 = as.POSIXct(dat[[ts_fieldname]], format = "%H:%M:%S %d/%m/%y", tz="UTC")
+
+            dat[[ts_fieldname]] =
+              as.POSIXct(
+                ifelse(
+                  is.na(ts_2),
+                  ts_1,
+                  ts_2
+                )
+              )
+
+            return(dat)
           }
       )
   )

@@ -42,7 +42,7 @@ FieldMap =
     fields =
       list(
         # The DB table this FieldMap represents
-        table_name = "character",
+        table = "character",
         # The list of fields
         field_list = "list"
       ),

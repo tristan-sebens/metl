@@ -198,6 +198,25 @@ DataMap =
             dat = .self$transform_fields(dat)
 
             return(dat)
+          },
+
+
+        #' Load extracted and transformed tag data to DB
+        #'
+        #' @param con Connection to the target DB
+        #' @param dat The incoming tag data
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        load =
+          function(con, dat) {
+            DBI::dbAppendTable(
+              conn =
+                con,
+              name =
+                .self$output_data_field_map$table,
+              value =
+                dat
+            )
           }
       )
   )
@@ -242,6 +261,20 @@ Decoder =
 
             # Initialize the tag_id field
             tag_id <<- .self$get_tag_id()
+          },
+
+        # Helper function to throw an error with a pre-appended message to help identify
+        # the source of the error
+        throw_error =
+          function(msg) {
+            stop(
+              paste0(
+                "ERROR - ",
+                class(.self)[[1]],
+                ": ",
+                msg
+              )
+            )
           },
 
         #' Generate a dataframe of the relevant metadata for this tag, in the format
@@ -292,29 +325,30 @@ Decoder =
             return(dat)
           },
 
-        #' Execute all necessary steps to read and transform raw data for one datamap
+        #' Execute all necessary steps to read and transform raw data for one DataMap
         #'
         #' @param dm The DataMap to use
         #'
         #' @return The extracted and transformed data
         decode_datamap =
           function(dm) {
+            # Perform initial extraction
             dat =
               dm$extract(.self$d)
 
+            # Transform extracted data
             dat_t =
               dm$transform(dat)
 
+            # Return transformed data
             return(dat_t)
           },
 
-        #' Execute all necessary steps to read and transform raw data for one datamap
+        #' Execute all etl steps for all DataMaps
         #'
-        #' @param dm The DataMap to use
-        #'
-        #' @return The extracted and transformed data
-        decode =
-          function() {
+        #' @param con Connection to the target DB
+        decode_and_load_all_datamaps =
+          function(con) {
             # Iterate through each data map in this decoder
             for (dm in .self$data_maps) {
               # Get the extracted and transformed data
@@ -322,9 +356,41 @@ Decoder =
               # Add any required metadata
               dat_m = .self$add_meta(dat, dm)
               # Load the data into the DB
-              dm$load(dat_m)
+              dm$load(con, dat_m)
             }
+          },
+
+        #' Insert tag metadata into database
+        #'
+        #' @param con Connection to the target DB
+        load_meta =
+          function(con) {
+            DBI::dbAppendTable(
+              conn =
+                con,
+              name =
+                .self$tag_meta_field_map$table,
+              value =
+                .self$generate_tag_meta_dataframe()
+            )
+          },
+
+        #' Execute all necessary steps to read and transform raw data for one datamap
+        #'
+        #' @param con Connection to the target DB
+        #'
+        #' @return The extracted and transformed data
+        decode =
+          function(con) {
+            DBI::dbWithTransaction(
+              con,
+              {
+                .self$decode_and_load_all_datamaps(con)
+                .self$load_meta(con)
+              }
+            )
           }
+
       )
   )
   #----

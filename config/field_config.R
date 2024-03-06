@@ -3,7 +3,7 @@
 #----------------
 TAG_FIELDS =
   FieldMap(
-    table_name = "TAGS",
+    table = "TAG",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -29,7 +29,7 @@ TAG_FIELDS =
 #----------------
 TAG_DATA_FIELDS =
   FieldMap(
-    table_name = "TAG_INSTANT_SENSOR_DATA",
+    table = "TAG_DATA",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
