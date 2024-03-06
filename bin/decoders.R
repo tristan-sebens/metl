@@ -402,8 +402,8 @@ Decoder =
             DBI::dbWithTransaction(
               con,
               {
-                .self$decode_and_load_all_datamaps(con)
                 .self$load_meta(con)
+                .self$decode_and_load_all_datamaps(con)
               }
             )
           }
