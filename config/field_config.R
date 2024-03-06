@@ -68,6 +68,11 @@ TAG_DATA_FIELDS =
             name = "tilt_y",
             units = "°"
           ),
+        TILT_S_FIELD =
+          Field(
+            name = "tilt_z",
+            units = "°"
+          ),
         INCLINATION_FIELD =
           Field(
             name = "inclination",
