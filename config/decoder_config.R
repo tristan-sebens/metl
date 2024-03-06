@@ -149,3 +149,40 @@ Decoder_Lotek.1400.1800 =
   )
 
 
+Decoder_MicrowaveTelemetry_XTag =
+  setRefClass(
+    "Decoder_MicrowaveTelemetry_XTag",
+    contains = "Decoder",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            # Initialize the child class
+            callSuper(
+              tag_make = "Microwave Telemetry",
+              tag_model = "X-Tag",
+              tag_meta_field_map = TAG_FIELDS,
+              # Define data maps
+              data_maps =
+                list(
+                  DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
+                ),
+              ...
+            )
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function() {
+            list.files(path = .self$d, pattern = "^\\d*\\.xls") %>%
+              stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+          }
+      )
+  )
+
+
+

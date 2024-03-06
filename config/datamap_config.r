@@ -261,32 +261,16 @@ DataMap_Lotek.1400.1800_InstantSensorData =
 #' @inheritParams Decoder
 #'
 #' @examples
-Decoder_MicrowaveTelemetry_XTag =
+DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   setRefClass(
-    "Decoder_MicrowaveTelemetry_XTag",
-    contains = "Decoder",
+    "DataMap_MicrowaveTelemetry_XTag_InstantSensorData",
+    contains = "DataMap_InstantSensorData_Base",
     methods =
       list(
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        tag_id_from_d =
-          function(d) {
-            list.files(path = d, pattern = "^\\d*\\.xls") %>%
-              stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_FIELDS, ...)
           },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            # The readxl::read_xls function already identifies the datetime as POSIXct
-            return(dat)
-          },
-
 
         #' Extract tag data from passed directory
         #'
@@ -295,10 +279,10 @@ Decoder_MicrowaveTelemetry_XTag =
         #'
         #' @return The data contained in the tag data as a single dataframe
         extract =
-          function() {
+          function(d) {
             # All of the temperature and pressure data is extracted from the .xls file
             # Find the xls file in the directory
-            mt_xt_xl_fp = list.files(.self$d, pattern = "^\\d*\\.xls", full.names = T)
+            mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
 
             suppressMessages(
               {
