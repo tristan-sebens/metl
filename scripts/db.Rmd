@@ -2,37 +2,32 @@
 library(tidyverse)
 ```
 
-
+Connect to the DB
 ```{r}
 con = 
   DBI::dbConnect(
     RSQLite::SQLite(),
     here::here('db', 'mesa_test_db.db')
   )
+
+tables = 
+  c(
+    TAG_FIELDS,
+    TAG_DATA_INSTANT_FIELDS,
+    TAG_DATA_SUMMARY_FIELDS
+  )
 ```
 
+Create the required DB tables
 ```{r}
-list.files(template_tag_d_ltd_1000_1100_1250)
-fp_psi = file.path(template_tag_d_ltd_1000_1100_1250, "3315PRESSURE.CSV")
-fp_temp = file.path(template_tag_d_ltd_1000_1100_1250, "3315TEMPERATURE.CSV")
-fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
-
-```
-
-
-```{r}
-# Create the main data table
-DBI::dbCreateTable(
-  con, 
-  name = "TAG_DATA",
-  fields = output_data_field_map$generate_data_type_list()
-)
-
-DBI::dbCreateTable(
-  con, 
-  name = "TAG",
-  fields = TAG_FIELDS$generate_data_type_list()
-)
+# Create the necessary tables
+for (fm in tables) {
+  DBI::dbCreateTable(
+    con,
+    name = fm$table,
+    fields = fm$generate_data_type_list()
+  )
+}
 ```
 
 ```{r}

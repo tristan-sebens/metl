@@ -61,27 +61,32 @@ TAG_DATA_INSTANT_FIELDS =
         TILT_X_FIELD =
           Field(
             name = "tilt_x",
-            units = "°"
+            units = "°",
+            data_type = "double(10, 2)"
           ),
         TILT_Y_FIELD =
           Field(
             name = "tilt_y",
-            units = "°"
+            units = "°",
+            data_type = "double(10, 2)"
           ),
         TILT_S_FIELD =
           Field(
             name = "tilt_z",
-            units = "°"
+            units = "°",
+            data_type = "double(10, 2)"
           ),
         INCLINATION_FIELD =
           Field(
             name = "inclination",
-            units = "°"
+            units = "°",
+            data_type = "double(10, 2)"
           ),
         MAGNETIC_STRENGTH_FIELD =
           Field(
             name = "magnetic_field_strength",
-            units = "nanoteslas"
+            units = "nanoteslas",
+            data_type = "double(10, 2)"
           )
       )
   )
@@ -110,32 +115,38 @@ TAG_DATA_SUMMARY_FIELDS =
         MIN_DEPTH_FIELD =
           Field(
             name = "min_depth",
-            units = "m"
+            units = "m",
+            data_type = "double(10, 2)"
           ),
         MEAN_DEPTH_FIELD =
           Field(
             name = "mean_depth",
-            units = "m"
+            units = "m",
+            data_type = "double(10, 2)"
           ),
         MAX_DEPTH_FIELD =
           Field(
             name = "max_depth",
-            units = "m"
+            units = "m",
+            data_type = "double(10, 2)"
           ),
         MIN_TEMP_FIELD =
           Field(
             name = "min_temp",
-            units = "°C"
+            units = "°C",
+            data_type = "double(10, 2)"
           ),
         MEAN_TEMP_FIELD =
           Field(
             name = "mean_temp",
-            units = "°C"
+            units = "°C",
+            data_type = "double(10, 2)"
           ),
         MAX_TEMP_FIELD =
           Field(
             name = "max_temp",
-            units = "°C"
+            units = "°C",
+            data_type = "double(10, 2)"
           )
       )
   )
