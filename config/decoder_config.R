@@ -318,7 +318,8 @@ Decoder_WildlifeComputers_MiniPAT =
               # Define data maps
               data_maps =
                 list(
-                  DataMap_WildlifeComputer_MiniPAT_InstantSensorData()
+                  DataMap_WildlifeComputer_MiniPAT_InstantSensorData(),
+                  DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
                 ),
               ...
             )

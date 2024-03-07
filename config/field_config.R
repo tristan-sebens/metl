@@ -25,9 +25,9 @@ TAG_FIELDS =
   )
 
 #----------------
-# TAG_DATA FIELDS
+# INSTANT TAG DATA FIELDS
 #----------------
-TAG_DATA_FIELDS =
+TAG_DATA_INSTANT_FIELDS =
   FieldMap(
     table = "TAG_DATA_INSTANT",
     field_list =
@@ -85,6 +85,62 @@ TAG_DATA_FIELDS =
           )
       )
   )
+
+#----------------
+# SUMMARY TAG DATA FIELDS
+#----------------
+TAG_DATA_SUMMARY_FIELDS =
+  FieldMap(
+    table = "TAG_DATA_SUMMARY",
+    field_list =
+      list(
+        # Link tag id field to TAG table primary key field
+        TAG_ID_FIELD =
+          TAG_FIELDS$field_list$TAG_ID_FIELD,
+        START_TIME_FIELD =
+          Field(
+            name = "start_time",
+            data_type = "varchar(32)"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "end_time",
+            data_type = "varchar(32)"
+          ),
+        MIN_DEPTH_FIELD =
+          Field(
+            name = "min_depth",
+            units = "m"
+          ),
+        MEAN_DEPTH_FIELD =
+          Field(
+            name = "mean_depth",
+            units = "m"
+          ),
+        MAX_DEPTH_FIELD =
+          Field(
+            name = "max_depth",
+            units = "m"
+          ),
+        MIN_TEMP_FIELD =
+          Field(
+            name = "min_temp",
+            units = "°C"
+          ),
+        MEAN_TEMP_FIELD =
+          Field(
+            name = "mean_temp",
+            units = "°C"
+          ),
+        MAX_TEMP_FIELD =
+          Field(
+            name = "max_temp",
+            units = "°C"
+          )
+      )
+  )
+
+
 
 
 #----------------
@@ -285,7 +341,7 @@ STAR_ODDI_DST_MILLI_F_FIELDS =
       )
   )
 
-WILDLIFE_COMPUTERS_MINIPAT_FIELDS =
+WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -315,6 +371,42 @@ WILDLIFE_COMPUTERS_MINIPAT_FIELDS =
   )
 
 
+WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
+          Field(
+            name = "Start",
+            data_type = "varchar(32)"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End",
+            data_type = "varchar(32)"
+          ),
+        MIN_DEPTH_FIELD =
+          Field(
+            name = "MinDepth",
+            units = "m"
+          ),
+        MAX_DEPTH_FIELD =
+          Field(
+            name = "MaxDepth",
+            units = "m"
+          ),
+        MIN_TEMP_FIELD =
+          Field(
+            name = "MinTemp",
+            units = "°C"
+          ),
+        MAX_TEMP_FIELD =
+          Field(
+            name = "MaxTemp",
+            units = "°C"
+          )
+      )
+  )
 
 
 

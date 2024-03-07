@@ -5,54 +5,40 @@ wc_psat_template_d = file.path(wc_d, 'MiniPAT', 'Pacific cod', 'Transmitted data
 
 dir.exists(wc_psat_template_d)
 ```
-
+MiniPAT
 ```{r}
 .self = 
   list(
     d = wc_psat_template_d,
-    input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_FIELDS
+    input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS
   )
 
+wc_mp_inst_dm_ = 
+  DataMap_WildlifeComputer_MiniPAT_InstantSensorData()
 
-wc_mp_dm_ = DataMap_WildlifeComputer_MiniPAT_InstantSensorData()
-
-wc_mp_dm_$transform(
-  wc_mp_dm_$extract(d)
+wc_mp_inst_dm_$transform(
+  wc_mp_inst_dm_$extract(d)
 )
+```
 
+```{r}
+wc_mp_summ_dm_ = 
+  DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
 
-.self$input_data_field_map$field_list$TIMESTAMP_FIELD
+wc_mp_summ_dm_$transform(
+  wc_mp_summ_dm_$extract(d)
+)
+```
 
-d = wc_psat_template_d
-
-fn = list.files(d, pattern = regex("(\\d*)-Series\\.csv", ignore_case = T))[[1]]
-
-dat = 
-  read.csv(file.path(d, fn))
-
-# Convert the timestamp fields to POSIXct
-dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] = 
-  as.POSIXct(
-    paste0(
-      dat[[.self$input_data_field_map$field_list$DAY_FIELD$name]], 
-      " ", 
-      dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
-    ), 
-    format = "%d-%b-%Y %H:%M:%S"
-  )
-
+```{r}
 wc_mp_dc_ = Decoder_WildlifeComputers_MiniPAT(d = wc_psat_template_d)
   
 wc_mp_dc_$decode(con)
+```
 
-id = 
-  list.files(.self$d) %>% 
-  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>% 
-  unique()
-
-length(id)
-
+```{r}
 
 ```
+
 
 

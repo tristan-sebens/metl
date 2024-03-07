@@ -1,5 +1,5 @@
 
-#' Base class for DataMaps which map to the instant tag sensor table
+#' Base class for DataMaps which map to the instant data table
 #'
 #' @inheritParams DataMap
 DataMap_InstantSensorData_Base =
@@ -10,7 +10,23 @@ DataMap_InstantSensorData_Base =
       list(
         initialize =
           function(...) {
-            callSuper(output_data_field_map = TAG_DATA_FIELDS, ...)
+            callSuper(output_data_field_map = TAG_DATA_INSTANT_FIELDS, ...)
+          }
+      )
+  )
+
+#' Base class for DataMaps which map to the summary data table
+#'
+#' @inheritParams DataMap
+DataMap_SummarySensorData_Base =
+  setRefClass(
+    "DataMap_SummarySensorData_Base",
+    contains = "DataMap",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(output_data_field_map = TAG_DATA_SUMMARY_FIELDS, ...)
           }
       )
   )
@@ -104,7 +120,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
   )
 
 
-#' Decoder for the Lotek 1300 tags
+#' Datamap for the Lotek 1300 tags
 #'
 #' @inheritParams DataMap
 DataMap_Lotek.1300_InstantSensorData =
@@ -168,7 +184,7 @@ DataMap_Lotek.1300_InstantSensorData =
   )
 
 
-#' Decoder for the Lotek 1400/1800 tags
+#' Datamap for the Lotek 1400/1800 tags
 #'
 #' @inheritParams DataMap
 #'
@@ -256,7 +272,7 @@ DataMap_Lotek.1400.1800_InstantSensorData =
       )
   )
 
-#' Decoder for the Microwave Telemetry X-tag tags
+#' Datamap for the Microwave Telemetry X-tag tags
 #'
 #' @inheritParams Decoder
 #'
@@ -358,7 +374,7 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   )
 
 
-#' Decoder for the Star Oddi DST tags
+#' Datamap for the Star Oddi DST tags
 #'
 #' @inheritParams Decoder
 #'
@@ -407,7 +423,7 @@ DataMap_StarOddi_DST_InstantSensorData =
   )
 
 
-#' Decoder for the StarOddi DST magnetic tags
+#' Datamap for the StarOddi DST magnetic tags
 #'
 #' @inheritParams Decoder
 #'
@@ -457,7 +473,7 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
   )
 
 
-#' Decoder for the StarOddi DST milli F tags
+#' Datamap for the StarOddi DST milli F tags
 #'
 #' @inheritParams Decoder
 #'
@@ -508,7 +524,7 @@ DataMap_StarOddi_DSTmilliF_InstantSensorData =
 
 
 
-#' Decoder for the Wildlife Computers MiniPAT tags
+#' Datamap for the Wildlife Computers MiniPAT tags instantaneous data
 #'
 #' @inheritParams Decoder
 #'
@@ -522,7 +538,7 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
       list(
         initialize =
           function(...) {
-            callSuper(input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_FIELDS, ...)
+            callSuper(input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS, ...)
           },
 
         #' Extract tag data from passed directory
@@ -554,4 +570,75 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
           }
       )
   )
+
+
+#' Datamap for the Wildlife Computers MiniPAT tags instantaneous data
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
+  setRefClass(
+    "DataMap_WildlifeComputer_MiniPAT_SummarySensorData",
+    # DataMap is identical to the Star Oddi DST tag DataMap
+    contains = "DataMap_SummarySensorData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS, ...)
+          },
+
+        #' Extract tag data from passed directory
+        #'
+        #' @inheritParams extract#Decoder
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function(d) {
+            # Read in the raw data
+            dat =
+              read.csv(
+                list.files(
+                  d,
+                  pattern=regex("\\d*-SeriesRange\\.csv", ignore_case=T),
+                  full.names = T
+                )
+              )
+
+            # Identify the field names of the start and end timestamp fields
+            start_time_fn =
+              .self$input_data_field_map$field_list$START_TIME_FIELD$name
+            end_time_fn =
+              .self$input_data_field_map$field_list$END_TIME_FIELD$name
+
+            # Format timestamps to POSIXct
+            dat[start_time_fn] =
+              as.POSIXct(
+                dat[[start_time_fn]],
+                format = "%H:%M:%S %d-%b-%Y"
+              )
+
+            dat[end_time_fn] =
+              as.POSIXct(
+                dat[[end_time_fn]],
+                format = "%H:%M:%S %d-%b-%Y"
+              )
+
+            return(dat)
+          }
+      )
+  )
+
+
+
+
+
+
+
+
+
+
+
+
 
