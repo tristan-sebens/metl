@@ -300,3 +300,49 @@ Decoder_StarOddi_DSTmilliF =
       )
   )
 
+
+Decoder_WildlifeComputers_MiniPAT =
+  setRefClass(
+    "Decoder_WildlifeComputers_MiniPAT",
+    # The DST milli F decoder is identical in function to the DST
+    contains = "Decoder",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            # Initialize the child class
+            callSuper(
+              tag_make = "Wildlife Computers",
+              tag_model = "MiniPAT",
+              tag_meta_field_map = TAG_FIELDS,
+              # Define data maps
+              data_maps =
+                list(
+                  DataMap_WildlifeComputer_MiniPAT_InstantSensorData()
+                ),
+              ...
+            )
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function() {
+            # Find the unique ID string in all present files
+            id =
+              list.files(.self$d) %>%
+              stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+              unique()
+
+            if(length(id) > 1) {
+              .self$throw_error("Tag ID identification: too many IDs present in directory")
+            }
+
+            return(id)
+          }
+      )
+  )
+

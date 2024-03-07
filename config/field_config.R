@@ -285,6 +285,35 @@ STAR_ODDI_DST_MILLI_F_FIELDS =
       )
   )
 
+WILDLIFE_COMPUTERS_MINIPAT_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        DAY_FIELD =
+          Field(
+            name = "Day"
+          ),
+        TIME_FIELD =
+          Field(
+            name = "Time"
+          ),
+        TIMESTAMP_FIELD =
+          Field(
+            name = "Datetime"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "Depth",
+            units = "m"
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "Temperature",
+            units = "°C"
+          )
+      )
+  )
+
 
 
 

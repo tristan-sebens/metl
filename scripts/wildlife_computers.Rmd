@@ -1,0 +1,58 @@
+```{r}
+wc_d = here::here('data', 'Wildlife Computers')
+wc_psat_template_d = file.path(wc_d, 'MiniPAT', 'Pacific cod', 'Transmitted data', '183970')
+
+
+dir.exists(wc_psat_template_d)
+```
+
+```{r}
+.self = 
+  list(
+    d = wc_psat_template_d,
+    input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_FIELDS
+  )
+
+
+wc_mp_dm_ = DataMap_WildlifeComputer_MiniPAT_InstantSensorData()
+
+wc_mp_dm_$transform(
+  wc_mp_dm_$extract(d)
+)
+
+
+.self$input_data_field_map$field_list$TIMESTAMP_FIELD
+
+d = wc_psat_template_d
+
+fn = list.files(d, pattern = regex("(\\d*)-Series\\.csv", ignore_case = T))[[1]]
+
+dat = 
+  read.csv(file.path(d, fn))
+
+# Convert the timestamp fields to POSIXct
+dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] = 
+  as.POSIXct(
+    paste0(
+      dat[[.self$input_data_field_map$field_list$DAY_FIELD$name]], 
+      " ", 
+      dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
+    ), 
+    format = "%d-%b-%Y %H:%M:%S"
+  )
+
+wc_mp_dc_ = Decoder_WildlifeComputers_MiniPAT(d = wc_psat_template_d)
+  
+wc_mp_dc_$decode(con)
+
+id = 
+  list.files(.self$d) %>% 
+  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>% 
+  unique()
+
+length(id)
+
+
+```
+
+

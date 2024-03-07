@@ -506,3 +506,52 @@ DataMap_StarOddi_DSTmilliF_InstantSensorData =
       )
   )
 
+
+
+#' Decoder for the Wildlife Computers MiniPAT tags
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
+  setRefClass(
+    "DataMap_WildlifeComputer_MiniPAT_InstantSensorData",
+    # DataMap is identical to the Star Oddi DST tag DataMap
+    contains = "DataMap_InstantSensorData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_FIELDS, ...)
+          },
+
+        #' Extract tag data from passed directory
+        #'
+        #' @inheritParams extract#Decoder
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function(d) {
+            # Find the Series.csv file
+            fn = list.files(d, pattern = regex("(\\d*)-Series\\.csv", ignore_case = T))[[1]]
+
+            # Read in the data
+            dat =
+              read.csv(file.path(d, fn))
+
+            # Convert the timestamp fields to POSIXct
+            dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] =
+              as.POSIXct(
+                paste0(
+                  dat[[.self$input_data_field_map$field_list$DAY_FIELD$name]],
+                  " ",
+                  dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
+                ),
+                format = "%d-%b-%Y %H:%M:%S"
+              )
+
+            return(dat)
+          }
+      )
+  )
+
