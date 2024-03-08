@@ -147,6 +147,18 @@ TAG_DATA_SUMMARY_FIELDS =
             name = "max_temp",
             units = "°C",
             data_type = "double(10, 2)"
+          ),
+        UPRIGHT_FIELD =
+          Field(
+            name = "percent_upright",
+            units = "%",
+            data_type = "double(10, 2)"
+          ),
+        KNOCKDOWN_FIELD =
+          Field(
+            name = "knockdowns",
+            units = "1",
+            data_type = "double(10, 2)"
           )
       )
   )
@@ -420,7 +432,32 @@ WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
   )
 
 
-
+WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
+          Field(
+            name = "Start",
+            data_type = "varchar(32)"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End",
+            data_type = "varchar(32)"
+          ),
+        UPRIGHT_FIELD =
+          Field(
+            name = "Upright",
+            units = "%"
+          ),
+        KNOCKDOWN_FIELD =
+          Field(
+            name = "KnockDowns",
+            units = "1"
+          )
+      )
+  )
 
 
 

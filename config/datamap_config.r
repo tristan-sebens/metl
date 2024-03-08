@@ -572,7 +572,7 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
   )
 
 
-#' Datamap for the Wildlife Computers MiniPAT tags instantaneous data
+#' Datamap for the Wildlife Computers MiniPAT tags summary data
 #'
 #' @inheritParams Decoder
 #'
@@ -623,6 +623,65 @@ DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
               as.POSIXct(
                 dat[[end_time_fn]],
                 format = "%H:%M:%S %d-%b-%Y"
+              )
+
+            return(dat)
+          }
+      )
+  )
+
+
+#' Datamap for the Wildlife Computers Benthic sPAT tags summary data
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
+  setRefClass(
+    "DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData",
+    # DataMap is identical to the Star Oddi DST tag DataMap
+    contains = "DataMap_SummarySensorData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS, ...)
+          },
+
+        #' Extract tag data from passed directory
+        #'
+        #' @inheritParams extract#Decoder
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function(d) {
+            # Read in the raw data
+            dat =
+              read.csv(
+                list.files(
+                  d,
+                  pattern=regex("\\d*-Orientation\\.csv", ignore_case=T),
+                  full.names = T
+                )
+              )
+
+            # Identify the field names of the start and end timestamp fields
+            start_time_fn =
+              .self$input_data_field_map$field_list$START_TIME_FIELD$name
+            end_time_fn =
+              .self$input_data_field_map$field_list$END_TIME_FIELD$name
+
+            # Format timestamps to POSIXct
+            dat[start_time_fn] =
+              as.POSIXct(
+                dat[[start_time_fn]],
+                format = "%m/%d/%Y %H:%M"
+              )
+
+            dat[end_time_fn] =
+              as.POSIXct(
+                dat[[end_time_fn]],
+                format = "%m/%d/%Y %H:%M"
               )
 
             return(dat)

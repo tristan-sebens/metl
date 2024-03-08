@@ -1,15 +1,15 @@
 ```{r}
+library(tidyverse)
+
 wc_d = here::here('data', 'Wildlife Computers')
-wc_psat_template_d = file.path(wc_d, 'MiniPAT', 'Pacific cod', 'Transmitted data', '183970')
-
-
-dir.exists(wc_psat_template_d)
 ```
 MiniPAT
 ```{r}
+wc_mp_template_d = file.path(wc_d, 'MiniPAT', 'Pacific cod', 'Transmitted data', '183970')
+
 .self = 
   list(
-    d = wc_psat_template_d,
+    d = wc_mp_template_d,
     input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS
   )
 
@@ -19,25 +19,78 @@ wc_mp_inst_dm_ =
 wc_mp_inst_dm_$transform(
   wc_mp_inst_dm_$extract(d)
 )
-```
 
-```{r}
 wc_mp_summ_dm_ = 
   DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
 
 wc_mp_summ_dm_$transform(
   wc_mp_summ_dm_$extract(d)
 )
-```
 
-```{r}
-wc_mp_dc_ = Decoder_WildlifeComputers_MiniPAT(d = wc_psat_template_d)
+wc_mp_dc_ = Decoder_WildlifeComputers_MiniPAT(d = wc_mp_template_d)
   
 wc_mp_dc_$decode(con)
 ```
 
 ```{r}
+id =
+  list.files(.self$d) %>%
+  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+  unique()
 
+if(length(id) > 1) {
+  .self$throw_error("Tag ID identification: too many IDs present in directory")
+}
+
+return(id)
+```
+
+Benthic sPAT
+```{r}
+wc_ws_template_d = file.path(wc_d, 'Benthic sPAT', 'Sleeper Shark', '175150')
+
+d = wc_ws_template_d
+
+.self = 
+  list(
+    d = wc_ws_template_d,
+    input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS
+  )
+
+wc_bs_dm_ =
+  DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
+
+wc_bs_dm_$input_data_field_map$field_list
+
+dat = 
+  wc_bs_dm_$extract(wc_mp_template_d)
+
+dat_t = 
+  wc_bs_dm_$transform(dat)
+
+dat =
+  read.csv(
+    list.files(
+      d,
+      pattern=regex("\\d*-Orientation\\.csv", ignore_case=T),
+      full.names = T
+    )
+  )
+
+dat_t %>% 
+  dplyr::mutate(t = units::set_units(percent_upright, '1')) %>% 
+  dplyr::mutate(t2 = units::set_units(t, '%'))
+
+wc_bs_dc_ = 
+  Decoder_WildlifeComputers_BenthicSPAT(d = wc_mp_template_d)
+
+
+wc_bs_dc_$decode(con)
+
+wc_bs_dc_$add_meta(dat_t, dm = wc_bs_dm_)
+
+
+wc_bs_dc_$tag_meta_field_map
 ```
 
 
