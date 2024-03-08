@@ -282,6 +282,19 @@ Decoder_StarOddi =
               ...,
               tag_make = tag_make
             )
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function() {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(.self$d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
           }
       )
   )
@@ -310,19 +323,6 @@ Decoder_StarOddi_DST =
               tag_model = tag_model,
               data_maps = data_maps
             )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(.self$d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
           }
       )
   )
@@ -351,19 +351,6 @@ Decoder_StarOddi_DSTmagnetic =
               tag_model = tag_model,
               data_maps = data_maps
             )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
           }
       )
   )
@@ -393,19 +380,6 @@ Decoder_StarOddi_DSTmilliF =
               tag_model = tag_model,
               data_maps = data_maps
             )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(.self$d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
           }
       )
   )
