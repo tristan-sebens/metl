@@ -27,8 +27,11 @@ wc_mp_summ_dm_$transform(
   wc_mp_summ_dm_$extract(d)
 )
 
-wc_mp_dc_ = Decoder_WildlifeComputers_MiniPAT(d = wc_mp_template_d)
-  
+wc_mp_dc_ = 
+  Decoder_WildlifeComputers_MiniPAT(
+    d = wc_mp_template_d
+  )
+
 wc_mp_dc_$decode(con)
 ```
 
@@ -47,13 +50,13 @@ return(id)
 
 Benthic sPAT
 ```{r}
-wc_ws_template_d = file.path(wc_d, 'Benthic sPAT', 'Sleeper Shark', '175150')
+wc_bs_template_d = file.path(wc_d, 'Benthic sPAT', 'Sleeper Shark', '175150')
 
-d = wc_ws_template_d
+d = wc_bs_template_d
 
 .self = 
   list(
-    d = wc_ws_template_d,
+    d = wc_bs_template_d,
     input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS
   )
 
@@ -63,7 +66,7 @@ wc_bs_dm_ =
 wc_bs_dm_$input_data_field_map$field_list
 
 dat = 
-  wc_bs_dm_$extract(wc_mp_template_d)
+  wc_bs_dm_$extract(wc_bs_template_d)
 
 dat_t = 
   wc_bs_dm_$transform(dat)
@@ -82,12 +85,12 @@ dat_t %>%
   dplyr::mutate(t2 = units::set_units(t, '%'))
 
 wc_bs_dc_ = 
-  Decoder_WildlifeComputers_BenthicSPAT(d = wc_mp_template_d)
+  Decoder_WildlifeComputers_BenthicSPAT(d = wc_bs_template_d)
 
 
 wc_bs_dc_$decode(con)
 
-wc_bs_dc_$add_meta(dat_t, dm = wc_bs_dm_)
+wc_bs_dc_$add_meta(dat_t, dm = wc_bs_template_d)
 
 
 wc_bs_dc_$tag_meta_field_map

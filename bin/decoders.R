@@ -276,7 +276,7 @@ Decoder =
           function(...) {
             callSuper(...)
 
-            # Initialize the tag_id field
+            # Use the child implementation of get_tag_id to initialize the tag_id field
             tag_id <<- .self$get_tag_id()
           },
 

@@ -1,22 +1,72 @@
-Decoder_Lotek.1000.1100.1250 =
+#' Base implementation for all Decoder classes
+#'
+Decoder_Base =
+  #----
   setRefClass(
-    "Decoder_Lotek.1000.1100.1250",
+    "Decoder_Base",
     contains = "Decoder",
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            # At the moment, all Decoders write their metadata to the same table.
+            ...,
+            tag_meta_field_map = TAG_FIELDS
+          ) {
+            callSuper(
+              ...,
+              tag_meta_field_map = tag_meta_field_map
+            )
+          }
+      )
+  )
+#----
+
+#' Base implementation for all Lotek tag Decoders
+#'
+Decoder_Lotek =
+  #----
+  setRefClass(
+    "Decoder_Lotek",
+    contains = "Decoder_Base",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            tag_make = "Lotek"
+          ) {
+            callSuper(
+              ...,
+              tag_make = tag_make
+            )
+          }
+      )
+  )
+#----
+
+Decoder_Lotek.1000.1100.1250 =
+  #----
+  setRefClass(
+    "Decoder_Lotek.1000.1100.1250",
+    contains = "Decoder_Base",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            tag_model = "1000/1100/1250",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_Lotek.1000.1100.1250_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Lotek",
-              tag_model = "1000/1100/1250",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_Lotek.1000.1100.1250_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -46,27 +96,29 @@ Decoder_Lotek.1000.1100.1250 =
           }
       )
   )
-
+#----
 
 Decoder_Lotek.1300 =
+  #----
   setRefClass(
     "Decoder_Lotek.1300",
-    contains = "Decoder",
+    contains = "Decoder_Lotek",
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            ...,
+            tag_model = "1300",
+            data_maps =
+              list(
+                DataMap_Lotek.1300_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Lotek",
-              tag_model = "1300",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_Lotek.1300_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -102,27 +154,30 @@ Decoder_Lotek.1300 =
           }
       )
   )
-
+#----
 
 Decoder_Lotek.1400.1800 =
+  #----
   setRefClass(
     "Decoder_Lotek.1400.1800",
-    contains = "Decoder",
+    contains = "Decoder_Lotek",
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            ...,
+            tag_model = "1400/1800",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_Lotek.1400.1800_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Lotek",
-              tag_model = "1400/1800",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_Lotek.1400.1800_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -147,27 +202,53 @@ Decoder_Lotek.1400.1800 =
             }
       )
   )
+#----
 
-
-Decoder_MicrowaveTelemetry_XTag =
+#' Base implementation for all Microwave Telemetry tag Decoders
+#'
+Decoder_MicrowaveTelemetry =
+  #----
   setRefClass(
-    "Decoder_MicrowaveTelemetry_XTag",
-    contains = "Decoder",
+    "Decoder_MicrowaveTelemetry",
+    contains = "Decoder_Base",
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            ...,
+            tag_make = "Microwave Telemetry"
+          ) {
+            callSuper(
+              ...,
+              tag_make = tag_make
+            )
+          }
+      )
+  )
+  #----
+
+Decoder_MicrowaveTelemetry_XTag =
+  #----
+  setRefClass(
+    "Decoder_MicrowaveTelemetry_XTag",
+    contains = "Decoder_MicrowaveTelemetry",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            tag_model = "X-Tag",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Microwave Telemetry",
-              tag_model = "X-Tag",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -183,28 +264,51 @@ Decoder_MicrowaveTelemetry_XTag =
           }
       )
   )
+#----
 
-
-
-Decoder_StarOddi_DST =
+Decoder_StarOddi =
+  #----
   setRefClass(
-    "Decoder_StarOddi_DST",
-    contains = "Decoder",
+    "Decoder_StarOddi",
+    contains = "Decoder_Base",
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            ...,
+            tag_make = "Star Oddi"
+          ) {
+            callSuper(
+              ...,
+              tag_make = tag_make
+            )
+          }
+      )
+  )
+#----
+
+Decoder_StarOddi_DST =
+  #----
+  setRefClass(
+    "Decoder_StarOddi_DST",
+    contains = "Decoder_StarOddi",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            tag_model = "DST",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_StarOddi_DST_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Star Oddi",
-              tag_model = "DST",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_StarOddi_DST_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -222,27 +326,30 @@ Decoder_StarOddi_DST =
           }
       )
   )
-
+#----
 
 Decoder_StarOddi_DSTmagnetic =
+  #----
   setRefClass(
     "Decoder_StarOddi_DSTmagnetic",
     contains = "Decoder",
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            ...,
+            tag_model = "DST magnetic",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_StarOddi_DSTmagnetic_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Star Oddi",
-              tag_model = "DST Magnetic",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_StarOddi_DSTmagnetic_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -260,9 +367,10 @@ Decoder_StarOddi_DSTmagnetic =
           }
       )
   )
-
+#----
 
 Decoder_StarOddi_DSTmilliF =
+  #----
   setRefClass(
     "Decoder_StarOddi_DSTmilliF",
     # The DST milli F decoder is identical in function to the DST
@@ -270,18 +378,20 @@ Decoder_StarOddi_DSTmilliF =
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            ...,
+            tag_model = "DST milli F",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_StarOddi_DSTmilliF_InstantSensorData()
+              )
+          ) {
             # Initialize the child class
             callSuper(
-              tag_make = "Star Oddi",
-              tag_model = "DST milli F",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_StarOddi_DSTmilliF_InstantSensorData()
-                ),
-              ...
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
             )
           },
 
@@ -299,81 +409,27 @@ Decoder_StarOddi_DSTmilliF =
           }
       )
   )
+#----
 
-
-Decoder_WildlifeComputers_MiniPAT =
+Decoder_Wildlife_Computers =
+  #----
   setRefClass(
-    "Decoder_WildlifeComputers_MiniPAT",
-    # The DST milli F decoder is identical in function to the DST
-    contains = "Decoder",
+    "Decoder_WildlifeComputers",
+    contains = "Decoder_Base",
     methods =
       list(
         initialize =
-          function(...) {
-            # Initialize the child class
+          function(
+            ...,
+            tag_make = "Wildlife Computers"
+          ) {
             callSuper(
-              tag_make = "Wildlife Computers",
-              tag_model = "MiniPAT",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_WildlifeComputer_MiniPAT_InstantSensorData(),
-                  DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
-                ),
-              ...
+              ...,
+              tag_make = tag_make
             )
           },
 
         #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            # Find the unique ID string in all present files
-            id =
-              list.files(.self$d) %>%
-              stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
-              unique()
-
-            if(length(id) > 1) {
-              .self$throw_error("Tag ID identification: too many IDs present in directory")
-            }
-
-            return(id)
-          }
-      )
-  )
-
-
-Decoder_WildlifeComputers_BenthicSPAT =
-  setRefClass(
-    "Decoder_WildlifeComputers_BenthicSPAT",
-    # The DST milli F decoder is identical in function to the DST
-    contains = "Decoder",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            # Initialize the child class
-            callSuper(
-              tag_make = "Wildlife Computers",
-              tag_model = "Benthic sPAT",
-              tag_meta_field_map = TAG_FIELDS,
-              # Define data maps
-              data_maps =
-                list(
-                  DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
-                ),
-              ...
-            )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
         #'
         #' @return The tag ID identified from the files, as a string
         get_tag_id =
@@ -397,4 +453,87 @@ Decoder_WildlifeComputers_BenthicSPAT =
           }
       )
   )
+#----
+
+Decoder_WildlifeComputers_MiniPAT =
+  #----
+  setRefClass(
+    "Decoder_WildlifeComputers_MiniPAT",
+    # The DST milli F decoder is identical in function to the DST
+    contains = "Decoder_WildlifeComputers",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            tag_model = "MiniPAT",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_WildlifeComputer_MiniPAT_InstantSensorData(),
+                DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
+              )
+          ) {
+            # Initialize the child class
+            callSuper(
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
+
+            )
+          }
+      )
+  )
+#----
+
+Decoder_WildlifeComputers_BenthicSPAT =
+  #----
+  setRefClass(
+    "Decoder_WildlifeComputers_BenthicSPAT",
+    # The DST milli F decoder is identical in function to the DST
+    contains = "Decoder_WildlifeComputers",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            tag_model = "Benthic sPAT",
+            # Define data maps
+            data_maps =
+              list(
+                DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
+              )
+          ) {
+            # Initialize the child class
+            callSuper(
+              ...,
+              tag_model = tag_model,
+              data_maps = data_maps
+            )
+          }
+      )
+  )
+#----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
