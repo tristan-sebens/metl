@@ -336,7 +336,7 @@ Decoder =
             # DataMap and the Decoder
             for(f in common_fields) {
               dat[dm$output_data_field_map$field_list[[f]]$name] =
-                tag_meta_df[dc$tag_meta_field_map$field_list[[f]]$name]
+                tag_meta_df[.self$tag_meta_field_map$field_list[[f]]$name]
             }
 
             return(dat)
