@@ -55,13 +55,89 @@ DBI::dbWithTransaction(
     )
   }
 )
+```
+```{r}
+DBI::dbListTables(con)
 
+dat = wc_bs_dc_$add_meta(dat_t, wc_bs_dm_)
+dm = wc_bs_dm_
+.self = dm
 
+# WORKS
+temp_table_name = paste0(.self$output_data_field_map$table, "_temp")
 
+# Copy data to temporary table
+dbplyr::db_copy_to(
+  con = con,
+  table = ident(temp_table_name),
+  values = dat,
+  in_transaction = F
+)
+
+# UPSERT the new data into the target table
+DBI::dbExecute(
+  con = 
+    con,
+  statement = 
+    # Build the upsert sql statement
+    dbplyr::sql_query_upsert(
+      con = con, 
+      table = ident(.self$output_data_field_map$table),
+      from = ident(temp_table_name),
+      by = .self$output_data_field_map$get_id_field_names(),
+      update_cols = names(dat)
+    )
+)
 ```
 
 
 ```{r}
 DBI::dbDisconnect(con)
+
+con = 
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    here::here('db', 'mesa_test_db.db')
+  )
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

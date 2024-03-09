@@ -11,6 +11,7 @@ Field =
     fields =
       list(
         name = "character",
+        id_field = "logical", # Flag to indicate if this is a field used to identify unique records
         units = "character",
         data_type = "character", # Data type to be used for this field in the DB
         invert = "logical" # Flag to indicate if the values of the field should be inverted (x*-1)
@@ -73,6 +74,27 @@ FieldMap =
           function(fm) {
             .self$field_list[names(.self$field_list) %in% names(fm$field_list)]
             # .self$field_list[names(fm$field_list)]
+          },
+
+        # Return the subset of Fields in this FieldMap that are marked as ID fields
+        get_id_fields =
+          function() {
+            Filter(
+              function(f) {f$id_field},
+              .self$field_list
+            )
+          },
+
+        # Get the names of the ID fields in this FieldMap
+        get_id_field_names =
+          function() {
+            .self$get_id_fields() %>%
+            lapply(
+              function(f) {
+                f$name
+              }
+            ) %>%
+            unlist(use.names = F)
           }
       )
   )

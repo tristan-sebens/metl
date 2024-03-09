@@ -170,8 +170,8 @@ DataMap =
             return(
               dat__[
                 lapply(
-                  # Select the fields from the output field map that have corresponding
-                  #  entries in the input field map
+                  # Select the fields from the output field map that have
+                  # corresponding entries in the input field map
                   .self$output_data_field_map$field_list[common_fields],
                   function(f) {
                     f$name
@@ -179,6 +179,37 @@ DataMap =
                 ) %>%
                   unlist(use.names = F)
               ]
+            )
+          },
+
+        # Perform an UPSERT operation on the target table. Insert any missing
+        # rows, and update any rows which are already extant in the target table
+        upsert =
+          function(con, dat) {
+            # WORKS
+            temp_table_name = paste0(.self$output_data_field_map$table, "_temp")
+
+            # Copy data to temporary table
+            dbplyr::db_copy_to(
+              con = con,
+              table = ident(temp_table_name),
+              values = dat,
+              in_transaction = F
+            )
+
+            # UPSERT the new data into the target table
+            DBI::dbExecute(
+              con =
+                con,
+              statement =
+                # Build the upsert sql statement
+                dbplyr::sql_query_upsert(
+                  con = con,
+                  table = ident(.self$output_data_field_map$table),
+                  from = ident(temp_table_name),
+                  by = .self$output_data_field_map$get_id_field_names(),
+                  update_cols = names(dat)
+                )
             )
           },
 
@@ -226,14 +257,8 @@ DataMap =
         #' @return The data contained in the tag data as a single dataframe
         load =
           function(con, dat) {
-            DBI::dbAppendTable(
-              conn =
-                con,
-              name =
-                .self$output_data_field_map$table,
-              value =
-                dat
-            )
+            # Perform an upsert call
+            upsert(con, dat)
           }
       )
   )

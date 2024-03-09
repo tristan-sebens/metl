@@ -9,7 +9,8 @@ TAG_FIELDS =
         TAG_ID_FIELD =
           Field(
             name = "tag_id",
-            data_type = "integer"
+            data_type = "integer",
+            id_field = T
           ),
         TAG_MAKE_FIELD =
           Field(
@@ -38,7 +39,8 @@ TAG_DATA_INSTANT_FIELDS =
         TIMESTAMP_FIELD =
           Field(
             name = "timestamp",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            id_field = T
           ),
         PRESSURE_FIELD =
           Field(
@@ -105,12 +107,14 @@ TAG_DATA_SUMMARY_FIELDS =
         START_TIME_FIELD =
           Field(
             name = "start_time",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            id_field = T
           ),
         END_TIME_FIELD =
           Field(
             name = "end_time",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            id_field = T
           ),
         MIN_DEPTH_FIELD =
           Field(

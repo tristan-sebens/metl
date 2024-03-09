@@ -92,9 +92,34 @@ wc_bs_dc_$decode(con)
 
 wc_bs_dc_$add_meta(dat_t, dm = wc_bs_template_d)
 
+Filter(
+  function(f) {f$id_field},
+  wc_bs_dm_$output_data_field_map$field_list
+) %>% 
+  lapply(
+    function(f) {
+      f$name
+    }
+  ) %>% 
+  unlist(use.names = F)
 
-wc_bs_dc_$tag_meta_field_map
+
+dat = wc_bs_dm_$extract(wc_bs_template_d)
+dat_t = wc_bs_dm_$transform(dat)
+dat_t2 = wc_bs_dc_$add_meta(dat_t, wc_bs_dm_)
+wc_bs_dm_$upsert(con, dat_t2)
+
+DBI::dbWithTransaction(
+  con,
+  {
+    wc_bs_dc_$load_meta(con)
+    wc_bs_dc_$decode_and_load_all_datamaps(con)
+  }
+)
+
+wc_bs_dc_$decode(con)
 ```
+
 
 
 
