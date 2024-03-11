@@ -1,5 +1,5 @@
 ```{r}
-library(tidyverse)
+# library(tidyverse)
 
 so_d = here::here('data', 'Star Oddi')
 so_dst_d = file.path(so_d, 'DST', 'Sablefish', 'JS7977')
@@ -10,7 +10,9 @@ so_dstmf_d = file.path(so_d, 'DST milli-F', 'Sablefish', 'JS122')
 
 DST 
 ```{r}
-dc_so.dst__ = Decoder_StarOddi_DST(d = so_dst_d)
+d = so_dst_d
+
+dc_so.dst__ = Decoder_StarOddi_DST(d = d)
 
 dc_so.dst__$decode(con)
 ```

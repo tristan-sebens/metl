@@ -423,9 +423,9 @@ DataMap_Lotek.1400.1800_InstantSensorData =
 #' Base class for tag metadata DataMaps for Microwave Telemetry tagss
 #'
 #' @inheritParams DataMap
-MicrowaveTelemetry_XTag_TagMetaData =
+DataMap_MicrowaveTelemetry_TagMetaData =
   setRefClass(
-    "MicrowaveTelemetry_TagMetaData_Base",
+    "DataMap_MicrowaveTelemetry_TagMetaData",
     contains = "DataMap_TagMetaData_Base",
     methods =
       list(
@@ -440,10 +440,10 @@ MicrowaveTelemetry_XTag_TagMetaData =
 #' DataMap for tag metadata from Microwave Telemetry X-tags
 #'
 #' @inheritParams DataMap
-MicrowaveTelemetry_XTag_TagMetaData =
+DataMap_MicrowaveTelemetry_XTag_TagMetaData =
   setRefClass(
-    "MicrowaveTelemetry_XTag_TagMetaData",
-    contains = "MicrowaveTelemetry_TagMetaData_Base",
+    "DataMap_MicrowaveTelemetry_XTag_TagMetaData",
+    contains = "DataMap_MicrowaveTelemetry_TagMetaData",
     methods =
       list(
         initialize =
@@ -567,6 +567,54 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   )
 
 
+#' Base class for tag metadata DataMaps for Star Oddi tags
+#'
+#' @inheritParams DataMap
+DataMap_StarOddi_TagMetaData =
+  setRefClass(
+    "DataMap_StarOddi_TagMetaData",
+    contains = "DataMap_TagMetaData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            make <<- "Star Oddi"
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function(d) {
+            # Read in xlsx file(s) (There should only be one)
+            fs = list.files(d, pattern = "^[^~]*\\.xlsx")
+            # Extract the tag id from the filenames
+            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+          }
+      )
+  )
+
+
+#' DataMap for Star Oddi DST tags
+#'
+#' @inheritParams DataMap
+DataMap_StarOddi_DST_TagMetaData =
+  setRefClass(
+    "DataMap_StarOddi_DST_TagMetaData",
+    contains = "DataMap_StarOddi_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "DST"
+          }
+      )
+  )
+
 #' Datamap for the Star Oddi DST tags
 #'
 #' @inheritParams Decoder
@@ -615,6 +663,23 @@ DataMap_StarOddi_DST_InstantSensorData =
       )
   )
 
+
+#' DataMap for Star Oddi DST magnetic tags
+#'
+#' @inheritParams DataMap
+DataMap_StarOddi_DSTmagnetic_TagMetaData =
+  setRefClass(
+    "DataMap_StarOddi_DSTmagnetic_TagMetaData",
+    contains = "DataMap_StarOddi_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "DST magnetic"
+          }
+      )
+  )
 
 #' Datamap for the StarOddi DST magnetic tags
 #'
@@ -665,6 +730,23 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
       )
   )
 
+
+#' DataMap for Star Oddi DST milli-F tags
+#'
+#' @inheritParams DataMap
+DataMap_StarOddi_DSTmilliF_TagMetaData =
+  setRefClass(
+    "DataMap_StarOddi_DSTmilliF_TagMetaData",
+    contains = "DataMap_StarOddi_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "DST milli-F"
+          }
+      )
+  )
 
 #' Datamap for the StarOddi DST milli F tags
 #'

@@ -126,7 +126,7 @@ Decoder_MicrowaveTelemetry_XTag =
             ...,
             # Define data maps
             metadata_map =
-              MicrowaveTelemetry_XTag_TagMetaData(),
+              DataMap_MicrowaveTelemetry_XTag_TagMetaData(),
             data_maps =
               list(
                 DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
@@ -148,32 +148,6 @@ Decoder_StarOddi =
   setRefClass(
     "Decoder_StarOddi",
     contains = "Decoder_Base",
-    methods =
-      list(
-        initialize =
-          function(
-            ...,
-            tag_make = "Star Oddi"
-          ) {
-            callSuper(
-              ...,
-              tag_make = tag_make
-            )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            # Read in xlsx file(s) (There should only be one)
-            fs = list.files(.self$d, pattern = "^[^~]*\\.xlsx")
-            # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
-          }
-      )
   )
 #----
 
@@ -187,8 +161,9 @@ Decoder_StarOddi_DST =
         initialize =
           function(
             ...,
-            tag_model = "DST",
             # Define data maps
+            metadata_map =
+              DataMap_StarOddi_DST_TagMetaData(),
             data_maps =
               list(
                 DataMap_StarOddi_DST_InstantSensorData()
@@ -197,8 +172,8 @@ Decoder_StarOddi_DST =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
-              data_maps = data_maps
+              data_maps = data_maps,
+              metadata_map = metadata_map
             )
           }
       )
@@ -215,8 +190,9 @@ Decoder_StarOddi_DSTmagnetic =
         initialize =
           function(
             ...,
-            tag_model = "DST magnetic",
             # Define data maps
+            metadata_map =
+              DataMap_StarOddi_DSTmagnetic_TagMetaData(),
             data_maps =
               list(
                 DataMap_StarOddi_DSTmagnetic_InstantSensorData()
@@ -225,13 +201,14 @@ Decoder_StarOddi_DSTmagnetic =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
+              metadata_map = metadata_map,
               data_maps = data_maps
             )
           }
       )
   )
 #----
+
 
 Decoder_StarOddi_DSTmilliF =
   #----
@@ -244,8 +221,9 @@ Decoder_StarOddi_DSTmilliF =
         initialize =
           function(
             ...,
-            tag_model = "DST milli F",
             # Define data maps
+            metadata_map =
+              DataMap_StarOddi_DSTmilliF_TagMetaData(),
             data_maps =
               list(
                 DataMap_StarOddi_DSTmilliF_InstantSensorData()
@@ -254,7 +232,7 @@ Decoder_StarOddi_DSTmilliF =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
+              metadata_map = metadata_map,
               data_maps = data_maps
             )
           }
