@@ -8,10 +8,14 @@ mt_template_d = file.path(mt_d, 'Sablefish', '148402')
 
 
 ```{r}
+d = mt_template_d
+
 mt_dc__ = 
-  Decoder_MicrowaveTelemetry_XTag(d = mt_template_d)
+  Decoder_MicrowaveTelemetry_XTag(d = d)
 
 mt_dc__$decode(con)
+
+MicrowaveTelemetry_XTag_TagMetaData()$extract(d)
 
 mt_dm__ = mt_dc__$data_maps[[1]]
 

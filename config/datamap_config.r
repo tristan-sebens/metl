@@ -420,6 +420,51 @@ DataMap_Lotek.1400.1800_InstantSensorData =
       )
   )
 
+#' Base class for tag metadata DataMaps for Microwave Telemetry tagss
+#'
+#' @inheritParams DataMap
+MicrowaveTelemetry_XTag_TagMetaData =
+  setRefClass(
+    "MicrowaveTelemetry_TagMetaData_Base",
+    contains = "DataMap_TagMetaData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            make <<- "Microwave Telemetry"
+          }
+      )
+  )
+
+#' DataMap for tag metadata from Microwave Telemetry X-tags
+#'
+#' @inheritParams DataMap
+MicrowaveTelemetry_XTag_TagMetaData =
+  setRefClass(
+    "MicrowaveTelemetry_XTag_TagMetaData",
+    contains = "MicrowaveTelemetry_TagMetaData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "X-Tag"
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function(d) {
+            list.files(path = d, pattern = "^\\d*\\.xls") %>%
+              stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+          }
+      )
+  )
+
 #' Datamap for the Microwave Telemetry X-tag tags
 #'
 #' @inheritParams Decoder

@@ -111,19 +111,6 @@ Decoder_MicrowaveTelemetry =
   setRefClass(
     "Decoder_MicrowaveTelemetry",
     contains = "Decoder_Base",
-    methods =
-      list(
-        initialize =
-          function(
-            ...,
-            tag_make = "Microwave Telemetry"
-          ) {
-            callSuper(
-              ...,
-              tag_make = tag_make
-            )
-          }
-      )
   )
   #----
 
@@ -137,8 +124,9 @@ Decoder_MicrowaveTelemetry_XTag =
         initialize =
           function(
             ...,
-            tag_model = "X-Tag",
             # Define data maps
+            metadata_map =
+              MicrowaveTelemetry_XTag_TagMetaData(),
             data_maps =
               list(
                 DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
@@ -147,20 +135,9 @@ Decoder_MicrowaveTelemetry_XTag =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
-              data_maps = data_maps
+              data_maps = data_maps,
+              metadata_map = metadata_map
             )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            list.files(path = .self$d, pattern = "^\\d*\\.xls") %>%
-              stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
           }
       )
   )
