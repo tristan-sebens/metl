@@ -186,15 +186,21 @@ DataMap =
         # rows, and update any rows which are already extant in the target table
         upsert =
           function(con, dat) {
-            # WORKS
-            temp_table_name = paste0(.self$output_data_field_map$table, "_temp")
+            # Generate a temporary table name
+            temp_table_name =
+              paste0(
+                .self$output_data_field_map$table,
+                "_temp_",
+                stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
+                )
 
             # Copy data to temporary table
             dbplyr::db_copy_to(
               con = con,
               table = ident(temp_table_name),
               values = dat,
-              in_transaction = F
+              in_transaction = F,
+              temporary = T # Means that the table is only visible from this connection, and will be deleted when this connection is severed
             )
 
             # UPSERT the new data into the target table
@@ -223,7 +229,7 @@ DataMap =
           function(d) {
             throw_error(
               "Inheritence error: Invocation of 'extract' function of base
-              class 'Decoder.' Please implement a child class instead.")
+              class. Please implement a child class instead.")
           },
 
         # TODO: This function has become a wrapper function for 'transform_fields.'
@@ -278,6 +284,7 @@ Decoder =
     fields =
       list(
         d = "character",
+        metadata_map = "DataMap",
         data_maps = "list"
       ),
 
@@ -297,6 +304,62 @@ Decoder =
             )
           },
 
+        #' Add fields that are missing from a data frame
+        #'
+        #' Take in two data frames and their respective DataMaps
+        #' Any fields which are missing from the first dataframe and present in the second dataframe are added to the first
+        #'
+        #' @param dat_1 The dataframe being altered
+        #' @param dm_1 DataMap of the dataframe being altered
+        #' @param dat_2 Dataframe from which data may be taken
+        #' @param dm_2 DataMap of dataframe from which data may be taken
+        #'
+        #' @return dat_1 with any fields which were missing and were present in dat_2
+        add_missing_fields =
+          function(dat_1, dm_1, dat_2, dm_2) {
+            # DM 1 is the DataMap which we are working on
+            # DM 2 is the DataMap which we MAY take data from to put into the data for DM 1
+
+            dm1_op_fm = dm_1$output_data_field_map
+            dm1_ip_fm = dm_1$input_data_field_map
+            dm2_op_fm = dm_2$output_data_field_map
+
+            missing_output_fields =
+              dm1_op_fm$uncommon_fields(dm1_ip_fm)
+
+            # List of fields which are missing from DM1s output datamap and are present in DM2s output datamap
+            missing_fields_available =
+              names(missing_output_fields)[names(missing_output_fields) %in% names(dm2_op_fm$field_list)]
+
+            # For each missing field which is available in the second DataMap, add the appropriate data
+            for(f_ in missing_fields_available) {
+              dat_1[dm1_op_fm$field_list[[f_]]$name] =
+                dat_2[dm2_op_fm$field_list[[f_]]$name]
+            }
+
+            return(dat_1)
+          },
+
+        # Add requisite metadata to any outgoing datasets (typically tag id field)
+        add_meta =
+          function(dat, dm) {
+            .self$add_missing_fields(
+              dat_1 = dat,
+              dm_1 = dm,
+              dat_2 = .self$metadata_map$extract(.self$d),
+              dm_2 = .self$metadata_map
+            )
+          },
+
+        # Upload any and all tag metadata to their appropriate tables in the DB
+        upload_meta =
+          function(con) {
+            .self$metadata_map$upsert(
+              con,
+              .self$metadata_map$extract(.self$d)
+            )
+          },
+
         #' Execute all necessary steps to read and transform raw data for one DataMap
         #'
         #' @param dm The DataMap to use
@@ -306,7 +369,7 @@ Decoder =
           function(dm) {
             # Perform initial extraction
             dat =
-              dm$extract_and_save(.self$d)
+              dm$extract(.self$d)
 
             # Transform extracted data
             dat_t =
@@ -326,9 +389,9 @@ Decoder =
               # Get the extracted and transformed data
               dat = .self$decode_datamap(dm)
               # Add any required metadata
-              ## INSERT DATAMAP JOIN FUNCTION HERE
+              dat = .self$add_meta(dat, dm)
               # Load the data into the DB
-              dm$load(con, dat_m)
+              dm$load(con, dat)
             }
           },
 
@@ -342,6 +405,7 @@ Decoder =
             DBI::dbWithTransaction(
               con,
               {
+                .self$upload_meta(con)
                 .self$decode_and_load_all_datamaps(con)
               }
             )

@@ -35,7 +35,7 @@ TAG_DATA_INSTANT_TABLE_FIELDS =
       list(
         # Link tag id field to TAG table primary key field
         TAG_ID_FIELD =
-          TAG_FIELDS$field_list$TAG_ID_FIELD,
+          TAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
         TIMESTAMP_FIELD =
           Field(
             name = "timestamp",
@@ -103,7 +103,7 @@ TAG_DATA_SUMMARY_TABLE_FIELDS =
       list(
         # Link tag id field to TAG table primary key field
         TAG_ID_FIELD =
-          TAG_FIELDS$field_list$TAG_ID_FIELD,
+          TAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
         START_TIME_FIELD =
           Field(
             name = "start_time",

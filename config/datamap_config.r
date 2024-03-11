@@ -56,7 +56,7 @@ DataMap_InstantSensorData_Base =
       list(
         initialize =
           function(...) {
-            callSuper(output_data_field_map = TAG_DATA_INSTANT_FIELDS, ...)
+            callSuper(output_data_field_map = TAG_DATA_INSTANT_TABLE_FIELDS, ...)
           }
       )
   )
@@ -72,7 +72,7 @@ DataMap_SummarySensorData_Base =
       list(
         initialize =
           function(...) {
-            callSuper(output_data_field_map = TAG_DATA_SUMMARY_FIELDS, ...)
+            callSuper(output_data_field_map = TAG_DATA_SUMMARY_TABLE_FIELDS, ...)
           }
       )
   )
@@ -106,7 +106,6 @@ DataMap_Lotek.1000.1100.1250_TagMetaData =
         initialize =
           function(...) {
             callSuper(...)
-
             model <<- "1000/1100/1250"
           },
 
@@ -139,7 +138,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
       list(
         initialize =
           function(...) {
-            callSuper(input_data_field_map = LOTEK_1000.1100.1250_FIELDS, ...)
+            callSuper(input_data_field_map = LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS, ...)
           },
         #' Read tag data from file. Data comes in standard csv format, but is
         #' preceded by a number of metadata tags which must be skipped
@@ -220,7 +219,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
 #' @inheritParams DataMap
 DataMap_Lotek.1300_TagMetaData =
   setRefClass(
-    "DataMap_Lotek.1000.1100.1250_TagMetaData",
+    "DataMap_Lotek.1300_TagMetaData",
     contains = "DataMap_TagMetaData_Base",
     methods =
       list(

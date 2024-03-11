@@ -33,16 +33,18 @@ Decoder_Lotek.1000.1100.1250 =
           function(
             ...,
             # Define data maps
+            metadata_map =
+              DataMap_Lotek.1000.1100.1250_TagMetaData(),
             data_maps =
               list(
-                DataMap_Lotek.1000.1100.1250_TagMetaData(),
                 DataMap_Lotek.1000.1100.1250_InstantSensorData()
               )
           ) {
             # Initialize the child class
             callSuper(
               ...,
-              data_maps = data_maps
+              data_maps = data_maps,
+              metadata_map = metadata_map
             )
           }
       )
