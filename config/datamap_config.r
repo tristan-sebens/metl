@@ -798,6 +798,64 @@ DataMap_StarOddi_DSTmilliF_InstantSensorData =
   )
 
 
+#' Base class for tag metadata DataMaps for Wildlife Computer tags
+#'
+#' @inheritParams DataMap
+DataMap_WildlifeComputers_TagMetaData =
+  setRefClass(
+    "DataMap_WildlifeComputers_TagMetaData",
+    contains = "DataMap_TagMetaData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+
+            make <<- "Wildlife Computers"
+          }
+      )
+  )
+
+#' DataMap for Wildlife Computer MiniPAT tags
+#'
+#' @inheritParams DataMap
+DataMap_WildlifeComputers_MiniPAT_TagMetaData =
+  setRefClass(
+    "DataMap_WildlifeComputers_MiniPAT_TagMetaData",
+    contains = "DataMap_WildlifeComputers_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "MiniPAT"
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function(d) {
+            # Find the unique ID string in all present files
+            id =
+              # Strings which do not match the given pattern at all return an NA value
+              # Filter those values out here
+              Filter(
+                Negate(is.na),
+                list.files(d) %>%
+                  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+                  unique()
+              )
+
+            if(length(id) > 1) {
+              .self$throw_error("Tag ID identification: too many IDs present in directory")
+            }
+
+            return(id)
+          }
+      )
+  )
+
 
 #' Datamap for the Wildlife Computers MiniPAT tags instantaneous data
 #'
@@ -905,6 +963,45 @@ DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
       )
   )
 
+#' DataMap for Star Oddi DST milli-F tags
+#'
+#' @inheritParams DataMap
+DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
+  setRefClass(
+    "DataMap_WildlifeComputers_BenthicSPAT_TagMetaData",
+    contains = "DataMap_WildlifeComputers_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "Benthic sPAT"
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function(d) {
+            # Find the unique ID string in all present files
+            id =
+              # Strings which do not match the given pattern at all return an NA value
+              # Filter those values out here
+              Filter(
+                Negate(is.na),
+                list.files(d) %>%
+                  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+                  unique()
+              )
+
+            if(length(id) > 1) {
+              .self$throw_error("Tag ID identification: too many IDs present in directory")
+            }
+
+            return(id)
+          }
+      )
+  )
 
 #' Datamap for the Wildlife Computers Benthic sPAT tags summary data
 #'

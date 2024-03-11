@@ -60,6 +60,7 @@ d = wc_bs_template_d
     input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS
   )
 
+
 wc_bs_dm_ =
   DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
 
@@ -87,6 +88,7 @@ dat_t %>%
 wc_bs_dc_ = 
   Decoder_WildlifeComputers_BenthicSPAT(d = wc_bs_template_d)
 
+wc_bs_dc_$decode_datamap(wc_bs_dc_$data_maps[[1]])
 
 wc_bs_dc_$decode(con)
 

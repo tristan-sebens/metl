@@ -248,37 +248,9 @@ Decoder_Wildlife_Computers =
     methods =
       list(
         initialize =
-          function(
-            ...,
-            tag_make = "Wildlife Computers"
-          ) {
-            callSuper(
-              ...,
-              tag_make = tag_make
-            )
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            # Find the unique ID string in all present files
-            id =
-              # Strings which do not match the given pattern at all return an NA value
-              # Filter those values out here
-              Filter(
-                Negate(is.na),
-                list.files(.self$d) %>%
-                  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
-                  unique()
-              )
-
-            if(length(id) > 1) {
-              .self$throw_error("Tag ID identification: too many IDs present in directory")
-            }
-
-            return(id)
+          function(...) {
+            callSuper(...)
+            make <<- "Wildlife Computers"
           }
       )
   )
@@ -295,8 +267,8 @@ Decoder_WildlifeComputers_MiniPAT =
         initialize =
           function(
             ...,
-            tag_model = "MiniPAT",
             # Define data maps
+            metadata_map = DataMap_WildlifeComputers_MiniPAT_TagMetaData(),
             data_maps =
               list(
                 DataMap_WildlifeComputer_MiniPAT_InstantSensorData(),
@@ -306,9 +278,8 @@ Decoder_WildlifeComputers_MiniPAT =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
-              data_maps = data_maps
-
+              data_maps = data_maps,
+              metadata_map = metadata_map
             )
           }
       )
@@ -326,8 +297,9 @@ Decoder_WildlifeComputers_BenthicSPAT =
         initialize =
           function(
             ...,
-            tag_model = "Benthic sPAT",
             # Define data maps
+            metadata_map =
+              DataMap_WildlifeComputers_BenthicSPAT_TagMetaData(),
             data_maps =
               list(
                 DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
@@ -336,7 +308,7 @@ Decoder_WildlifeComputers_BenthicSPAT =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
+              metadata_map = metadata_map,
               data_maps = data_maps
             )
           }
