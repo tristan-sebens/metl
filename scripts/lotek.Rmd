@@ -175,6 +175,16 @@ dc_1400.1800 =
 
 dc_1400.1800$decode(con)
 
+fp = list.files(template_tag_fp_lat_1400_d)[[1]]
+
+DataMap_Lotek.1400.1800_TagMetaData()$extract(d = template_tag_fp_lat_1400_d)
+DataMap_Lotek.1400.1800_TagMetaData()$get_tag_id(d = template_tag_fp_lat_1400_d)
+
+
+fp
+
+
+
 dm_1400.1800 = dc_1400.1800$data_maps[[1]]
 
 dat = dm_1400.1800$extract(template_tag_fp_lat_1400_d)
@@ -329,6 +339,10 @@ output_data_field_map$common_fields(input_data_field_map)
 Model LTD 1300
 ```{r}
 d = template_tag_d_lat_1300
+
+lt1300_md_dm = DataMap_Lotek.1300_TagMetaData()
+
+lt1300_md_dm$extract(d)
 
 dm = DataMap_Lotek.1300()
 

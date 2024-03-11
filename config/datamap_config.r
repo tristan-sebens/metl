@@ -214,22 +214,27 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
       )
   )
 
-#' DataMap for tag metadata from Lotek 1000/1100/1250 tags
+#' DataMap for tag metadata from Lotek 1300 tags
 #'
 #' @inheritParams DataMap
 DataMap_Lotek.1300_TagMetaData =
   setRefClass(
     "DataMap_Lotek.1300_TagMetaData",
-    contains = "DataMap_TagMetaData_Base",
+    contains = "DataMap_Lotek_TagMetaData",
     methods =
       list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "1300"
+          },
 
         #' Identify Tag ID from available metadata
         #'
         #' @param d The directory in which the data files in question reside
         #'
         #' @return The tag ID identified from the files, as a string
-        extract =
+        get_tag_id =
           function(d) {
             list.files(d, pattern = ".*[R|r]egular.*")[1] %>%
               stringr::str_extract("^.*LTD1300.*(\\d\\d\\d\\d)\\D.*[R|r]egular.*[C|c][S|s][V|v]", group=1)
@@ -300,6 +305,50 @@ DataMap_Lotek.1300_InstantSensorData =
       )
   )
 
+#' DataMap for tag metadata from Lotek 1400/1800 tags
+#'
+#' @inheritParams DataMap
+DataMap_Lotek.1400.1800_TagMetaData =
+  setRefClass(
+    "DataMap_Lotek.1400.1800_TagMetaData",
+    contains = "DataMap_Lotek_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "1400/1800"
+          },
+
+        tag_id_from_filename =
+          function(fp) {
+            stringr::str_extract(
+              fp,
+              pattern =
+                regex(
+                  "^LAT\\d\\d\\d_(\\d\\d\\d\\d).*\\.csv",
+                  ignore_case = T
+                ),
+              group = 1
+            )
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function(d) {
+            .self$tag_id_from_filename(
+              list.files(
+                d,
+                pattern = regex("csv$", ignore_case = T)
+              )[[1]]
+            )
+          }
+      )
+  )
 
 #' Datamap for the Lotek 1400/1800 tags
 #'
@@ -329,24 +378,6 @@ DataMap_Lotek.1400.1800_InstantSensorData =
                   pattern = "Rec #"
                 ) - 1
             )
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] =
-              as.POSIXct(
-                paste(
-                  dat[[.self$input_data_field_map$field_list$DATE_FIELD$name]],
-                  dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
-                ),
-                format = "%m/%d/%Y %H:%M:%S",
-                tz = "UTC"
-              )
-
-            return(dat)
           },
 
         #' Extract tag data from passed directory

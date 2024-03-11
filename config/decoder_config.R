@@ -4,9 +4,7 @@ Decoder_Base =
   #----
   setRefClass(
     "Decoder_Base",
-    contains = "Decoder",
-    methods =
-      list()
+    contains = "Decoder"
   )
 #----
 
@@ -16,9 +14,7 @@ Decoder_Lotek =
   #----
   setRefClass(
     "Decoder_Lotek",
-    contains = "Decoder_Base",
-    methods =
-      list()
+    contains = "Decoder_Base"
   )
 #----
 
@@ -61,7 +57,8 @@ Decoder_Lotek.1300 =
         initialize =
           function(
             ...,
-            tag_model = "1300",
+            metadata_map =
+              DataMap_Lotek.1300_TagMetaData(),
             data_maps =
               list(
                 DataMap_Lotek.1300_InstantSensorData()
@@ -70,8 +67,8 @@ Decoder_Lotek.1300 =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
-              data_maps = data_maps
+              data_maps = data_maps,
+              metadata_map = metadata_map
             )
           }
       )
@@ -88,8 +85,9 @@ Decoder_Lotek.1400.1800 =
         initialize =
           function(
             ...,
-            tag_model = "1400/1800",
             # Define data maps
+            metadata_map =
+              DataMap_Lotek.1400.1800_TagMetaData(),
             data_maps =
               list(
                 DataMap_Lotek.1400.1800_InstantSensorData()
@@ -98,30 +96,10 @@ Decoder_Lotek.1400.1800 =
             # Initialize the child class
             callSuper(
               ...,
-              tag_model = tag_model,
-              data_maps = data_maps
+              data_maps = data_maps,
+              metadata_map = metadata_map
             )
-          },
-
-          tag_id_from_filename =
-            function(fp) {
-              stringr::str_match(fp, pattern = ".*\\D(\\d\\d\\d\\d)\\D.*")[2]
-            },
-
-          #' Identify Tag ID from available metadata
-          #'
-          #' @param d The directory in which the data files in question reside
-          #'
-          #' @return The tag ID identified from the files, as a string
-          get_tag_id =
-            function() {
-              .self$tag_id_from_filename(
-                list.files(
-                  .self$d,
-                  pattern = "^LAT[180|140].*csv"
-                )[[1]]
-              )
-            }
+          }
       )
   )
 #----
