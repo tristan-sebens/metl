@@ -43,18 +43,48 @@ dc =
   Decoder_Lotek.1000.1100.1250(
     d = template_tag_d_ltd_1000_1100_1250
   )
-
-dat = 
-  dc$decode_datamap(dm = dc$data_maps[[1]])
-
-dc$transform(d__, output_data_field_map = TAG_DATA_FIELDS, tag_meta_field_map = TAG_FIELDS)
-
-dc$tag_id_from_d(template_tag_d_ltd_1000_1100_1250)
-
-
-
-d__$generate_tag_meta_dataframe(tag_meta_field_map)
 ```
+
+```{r}
+
+# Iterate through every possible pair of the DataMaps, excluding identity pairings
+for(i_ in seq(length(t__))) {
+  for(j_ in seq(length(t__))) {
+    if(i_ == j_) {
+      next
+    }
+    print(paste0(i_, ": ", j_))
+  }
+}
+
+
+
+# DM 1 is the DataMap which we are working on
+# DM 2 is the DataMap which we MAY take data from to put into the data for DM 1
+dm_1 = dc$data_maps[[2]]
+dat_1 = dm_1$transform(dm_1$extract(dc$d))
+dm_2 = dc$data_maps[[1]]
+dat_2 = dm_2$transform(dm_2$extract(dc$d))
+
+dm1_op_fm = dm_1$output_data_field_map
+dm1_ip_fm = dm_1$input_data_field_map
+dm2_op_fm = dm_2$output_data_field_map
+
+
+missing_output_fields = 
+  dm1_op_fm$uncommon_fields(dm1_ip_fm)
+
+# List of fields which are missing from DM1s output datamap and are present in DM2s output datamap
+missing_fields_available = 
+  names(missing_output_fields)[names(missing_output_fields) %in% names(dm2_op_fm$field_list)]
+
+for(f_ in missing_fields_available) {
+  print(f_)
+  dat_1[dm1_op_fm$field_list[[f_]]$name] = 
+    dat_2[dm2_op_fm$field_list[[f_]]$name]
+}
+```
+
 
 ```{r}
 dc = 

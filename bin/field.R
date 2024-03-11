@@ -73,7 +73,12 @@ FieldMap =
         common_fields =
           function(fm) {
             .self$field_list[names(.self$field_list) %in% names(fm$field_list)]
-            # .self$field_list[names(fm$field_list)]
+          },
+
+        # Generates a list of the Fields held in this FieldMap which are not in the passed FieldMap
+        uncommon_fields =
+          function(fm) {
+            .self$field_list[!names(.self$field_list) %in% names(fm$field_list)]
           },
 
         # Return the subset of Fields in this FieldMap that are marked as ID fields

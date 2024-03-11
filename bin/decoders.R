@@ -213,16 +213,12 @@ DataMap =
             )
           },
 
-
         #' Extract tag data from passed directory
         #'
         #' @param d The directory in which the tag data resides. Directory is
         #' expected to contain only files which relate to one common tag.
         #'
         #' @return The data contained in the tag data as a single dataframe
-        #' @export
-        #'
-        #' @examples
         extract =
           function(d) {
             throw_error(
@@ -237,17 +233,12 @@ DataMap =
         #'
         #' @param dat The incoming tag data
         #'
-        #' @return The data contained in the tag data as a single dataframe
+        #' @return The transformed data
         transform =
-          function(
-            dat
-          ) {
-            # Standardize incoming fields
-            dat = .self$transform_fields(dat)
-
-            return(dat)
+          function(dat) {
+            # Standardize incoming fields, and save the result to the 'dat_' field
+            return(.self$transform_fields(dat))
           },
-
 
         #' Load extracted and transformed tag data to DB
         #'
@@ -287,24 +278,11 @@ Decoder =
     fields =
       list(
         d = "character",
-        data_maps = "list",
-        # TODO These fields should be set in the initialize function of the child class
-        tag_meta_field_map = "FieldMap",
-        tag_id = "character",
-        tag_make = "character",
-        tag_model = "character"
+        data_maps = "list"
       ),
 
     methods =
       list(
-        initialize =
-          function(...) {
-            callSuper(...)
-
-            # Use the child implementation of get_tag_id to initialize the tag_id field
-            tag_id <<- .self$get_tag_id()
-          },
-
         # Helper function to throw an error with a pre-appended message to help identify
         # the source of the error
         throw_error =
@@ -319,54 +297,6 @@ Decoder =
             )
           },
 
-        #' Generate a dataframe of the relevant metadata for this tag, in the format
-        #' expected by DBI::dbAppendTable
-        #'
-        #' @return The tag metadata as a single dataframe
-        generate_tag_meta_dataframe =
-          function() {
-            # have to do it this clumsy way bc dplyr dataframes are NOT okay with dynamically generated field names
-            l = list()
-            l[.self$tag_meta_field_map$field_list$TAG_ID_FIELD$name] = .self$tag_id
-            l[.self$tag_meta_field_map$field_list$TAG_MAKE_FIELD$name] = .self$tag_make
-            l[.self$tag_meta_field_map$field_list$TAG_MODEL_FIELD$name] = .self$tag_model
-            return(data.frame(l))
-          },
-
-        #' Identify Tag ID from available metadata
-        #'
-        #' @return The tag ID identified from the files, as a string
-        get_tag_id =
-          function() {
-            throw_error(
-              "Inheritence error: Invocation of 'tag_id_from_d' function of base
-              class 'Decoder.' Please implement a child class instead.")
-          },
-
-        #' Attach all necessary metadata to incoming tag data
-        #'
-        #' @param dat The incoming tag data
-        #'
-        #' @return The data with tag metadata attached
-        add_meta =
-          function(dat, dm) {
-            # Determine which fields from the tagmetadata frame should be added
-            common_fields =
-              names(TAG_FIELDS$common_fields(dm$output_data_field_map))
-
-            # Generate the tag metadataframe
-            tag_meta_df = .self$generate_tag_meta_dataframe()
-
-            # Add any meta fields which are common between the FieldMaps of the
-            # DataMap and the Decoder
-            for(f in common_fields) {
-              dat[dm$output_data_field_map$field_list[[f]]$name] =
-                tag_meta_df[.self$tag_meta_field_map$field_list[[f]]$name]
-            }
-
-            return(dat)
-          },
-
         #' Execute all necessary steps to read and transform raw data for one DataMap
         #'
         #' @param dm The DataMap to use
@@ -376,7 +306,7 @@ Decoder =
           function(dm) {
             # Perform initial extraction
             dat =
-              dm$extract(.self$d)
+              dm$extract_and_save(.self$d)
 
             # Transform extracted data
             dat_t =
@@ -396,25 +326,10 @@ Decoder =
               # Get the extracted and transformed data
               dat = .self$decode_datamap(dm)
               # Add any required metadata
-              dat_m = .self$add_meta(dat, dm)
+              ## INSERT DATAMAP JOIN FUNCTION HERE
               # Load the data into the DB
               dm$load(con, dat_m)
             }
-          },
-
-        #' Insert tag metadata into database
-        #'
-        #' @param con Connection to the target DB
-        load_meta =
-          function(con) {
-            DBI::dbAppendTable(
-              conn =
-                con,
-              name =
-                .self$tag_meta_field_map$table,
-              value =
-                .self$generate_tag_meta_dataframe()
-            )
           },
 
         #' Execute all necessary steps to read and transform raw data for one datamap
@@ -427,7 +342,6 @@ Decoder =
             DBI::dbWithTransaction(
               con,
               {
-                .self$load_meta(con)
                 .self$decode_and_load_all_datamaps(con)
               }
             )

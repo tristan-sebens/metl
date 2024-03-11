@@ -1,3 +1,49 @@
+#' Base class for DataMaps which map to the tag metadata table
+#'
+#' @inheritParams DataMap
+DataMap_TagMetaData_Base =
+  setRefClass(
+    "DataMap_TagMetaData_Base",
+    contains = "DataMap",
+    fields =
+      list(
+        make = "character",
+        model = "character"
+      ),
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            input_data_field_map = TAG_METADATA_FIELDS,
+            output_data_field_map = TAG_METADATA_TABLE_FIELDS
+          ) {
+            callSuper(
+              ...,
+              input_data_field_map = input_data_field_map,
+              output_data_field_map = output_data_field_map
+            )
+          },
+
+        # Each tag metadata DataMap will only need to implement the functionality to extract the tag id.
+        # For now anyways.
+        get_tag_id =
+          function(d) {
+            .self$throw_error("Inheritence error: invocation of 'get_tag_id' function from TagMetaData base class. Please implement method on child class instead.")
+          },
+
+        # All of the tag meta DataMaps will produce dataframes of the same format
+        extract =
+          function(d) {
+            data.frame(
+              tag_id = .self$get_tag_id(d),
+              make = .self$make,
+              model = .self$model
+            )
+          }
+      )
+  )
+
 
 #' Base class for DataMaps which map to the instant data table
 #'
@@ -31,6 +77,56 @@ DataMap_SummarySensorData_Base =
       )
   )
 
+#' Base class for Lotek DataMaps that map to the tag metadata table
+#'
+#' @inheritParams DataMap
+DataMap_Lotek_TagMetaData =
+  setRefClass(
+    "DataMap_Lotek_TagMetaData",
+    contains = "DataMap_TagMetaData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            make <<- "Lotek"
+          }
+      )
+  )
+
+#' DataMap for tag metadata from Lotek 1000/1100/1250 tags
+#'
+#' @inheritParams DataMap
+DataMap_Lotek.1000.1100.1250_TagMetaData =
+  setRefClass(
+    "DataMap_Lotek.1000.1100.1250_TagMetaData",
+    contains = "DataMap_Lotek_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+
+            model <<- "1000/1100/1250"
+          },
+
+        tag_id_from_filename =
+          function(fp) {
+            stringr::str_match(fp, pattern = "^(\\d\\d\\d\\d)*")[2]
+          },
+
+        get_tag_id =
+          function(d) {
+            .self$tag_id_from_filename(
+              list.files(
+                d,
+                pattern = "^.*csv$",
+                ignore.case = T
+              )[[1]]
+            )
+          }
+      )
+  )
 
 #' DataMap for the Lotek 1000/1100/1250 tags
 #'
@@ -119,6 +215,28 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
       )
   )
 
+#' DataMap for tag metadata from Lotek 1000/1100/1250 tags
+#'
+#' @inheritParams DataMap
+DataMap_Lotek.1300_TagMetaData =
+  setRefClass(
+    "DataMap_Lotek.1000.1100.1250_TagMetaData",
+    contains = "DataMap_TagMetaData_Base",
+    methods =
+      list(
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @param d The directory in which the data files in question reside
+        #'
+        #' @return The tag ID identified from the files, as a string
+        extract =
+          function(d) {
+            list.files(d, pattern = ".*[R|r]egular.*")[1] %>%
+              stringr::str_extract("^.*LTD1300.*(\\d\\d\\d\\d)\\D.*[R|r]egular.*[C|c][S|s][V|v]", group=1)
+          }
+      )
+  )
 
 #' Datamap for the Lotek 1300 tags
 #'

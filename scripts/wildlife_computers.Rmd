@@ -118,7 +118,71 @@ DBI::dbWithTransaction(
 )
 
 wc_bs_dc_$decode(con)
+
+
+
+t__ = 
+  list(
+    wc_mp_dm_,
+    wc_bs_dm_
+  )
 ```
+
+
+```{r}
+for(i_ in seq(length(t__))) {
+  for(j_ in seq(length(t__))) {
+    if(i_ == j_) {
+      next
+    }
+    print(paste0(i_, ": ", j_))
+  }
+}
+
+dm_1 = wc_bs_dm_
+dat_1 = dm_1$extract(wc_bs_template_d)
+dm_2 = wc_mp_inst_dm_
+dat_2 = dm_2$extract(wc_mp_template_d)
+
+dm_1$output_data_field_map$common_fields(dm_2$input_data_field_map)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

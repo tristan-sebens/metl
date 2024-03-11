@@ -1,7 +1,7 @@
 #----------------
-# TAG FIELDS
+# TAG TABLE FIELDS
 #----------------
-TAG_FIELDS =
+TAG_METADATA_TABLE_FIELDS =
   FieldMap(
     table = "TAG",
     field_list =
@@ -26,9 +26,9 @@ TAG_FIELDS =
   )
 
 #----------------
-# INSTANT TAG DATA FIELDS
+# INSTANT TAG DATA TABLE FIELDS
 #----------------
-TAG_DATA_INSTANT_FIELDS =
+TAG_DATA_INSTANT_TABLE_FIELDS =
   FieldMap(
     table = "TAG_DATA_INSTANT",
     field_list =
@@ -94,9 +94,9 @@ TAG_DATA_INSTANT_FIELDS =
   )
 
 #----------------
-# SUMMARY TAG DATA FIELDS
+# SUMMARY TAG DATA TABLE FIELDS
 #----------------
-TAG_DATA_SUMMARY_FIELDS =
+TAG_DATA_SUMMARY_TABLE_FIELDS =
   FieldMap(
     table = "TAG_DATA_SUMMARY",
     field_list =
@@ -168,12 +168,29 @@ TAG_DATA_SUMMARY_FIELDS =
   )
 
 
-
+TAG_METADATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TAG_ID_FIELD =
+          Field(
+            name = "tag_id"
+          ),
+        TAG_MAKE_FIELD =
+          Field(
+            name = "make"
+          ),
+        TAG_MODEL_FIELD =
+          Field(
+            name = "model"
+          )
+      )
+  )
 
 #----------------
 # LOTEK TAGS
 #----------------
-LOTEK_1000.1100.1250_FIELDS =
+LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
