@@ -9,7 +9,8 @@ wc_d = file.path(data_d, 'Wildlife Computers')
 
 lotek_1000.1100.1250_d = file.path(lt_d, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "3315")
 lotek_1300_d = file.path(lt_d, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "5712")
-lotek_1400.1800_d = file.path(lt_d, "lAT 1400-LAT 1800", "Sablefish", "0507")
+lotek_1400.1800_d = file.path(lt_d, "LAT 1400-LAT 1800", "Sablefish", "0507")
+mt_xtag_d = file.path(mt_d, "X-Tag", "Lingcod", "128306")
 ```
 
 ```{r}
@@ -76,6 +77,26 @@ Identifier_Lotek_1400.1800()$identify(lotek_1400.1800_d)
 ```
 
 
+```{r}
+Identifier_MicrowaveTelemetry_XTag = 
+   setRefClass(
+    "Identifier_MicrowaveTelemetry_XTag",
+    contains = "Identifier",
+    methods = 
+      list(
+        identify = 
+          function(d) {
+            all(
+              .self$check_for_files(d, "\\d*.xls"),
+              # Check that all files present in the directory fit the given pattern
+              .self$check_for_files(d, "\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
+            )
+          }
+      )
+  )
+
+Identifier_Lotek_1400.1800()$identify(lotek_1400.1800_d)
+```
 
 
 
