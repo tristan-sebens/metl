@@ -1,0 +1,21 @@
+```{r}
+# Build the DecoderTree from the Decoder_MasterList
+
+DecoderTree = 
+  data.frame()
+
+for(dc in Decoder_MasterList) {
+  DecoderTree = 
+    rbind(
+      DecoderTree,
+      data.frame(
+        make = dc()$metadata_map$make,
+        model = dc()$metadata_map$model,
+        class = class(dc())[[1]]
+      )
+    )
+}
+
+
+```
+
