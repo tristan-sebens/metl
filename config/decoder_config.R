@@ -186,6 +186,8 @@ Decoder_StarOddi_DST =
           function(
             ...,
             # Define data maps
+            identifier =
+              Identifier_StarOddi_DST(),
             metadata_map =
               DataMap_StarOddi_DST_TagMetaData(),
             data_maps =
@@ -196,12 +198,15 @@ Decoder_StarOddi_DST =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               data_maps = data_maps,
               metadata_map = metadata_map
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DST)
 #----
 
 Decoder_StarOddi_DSTmagnetic =
@@ -214,6 +219,8 @@ Decoder_StarOddi_DSTmagnetic =
         initialize =
           function(
             ...,
+            identifier =
+              Identifier_StarOddi_DSTmagnetic(),
             # Define data maps
             metadata_map =
               DataMap_StarOddi_DSTmagnetic_TagMetaData(),
@@ -225,12 +232,15 @@ Decoder_StarOddi_DSTmagnetic =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               metadata_map = metadata_map,
               data_maps = data_maps
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DSTmagnetic)
 #----
 
 
@@ -245,6 +255,8 @@ Decoder_StarOddi_DSTmilliF =
         initialize =
           function(
             ...,
+            identifier =
+              Identifier_StarOddi_DSTmilliF(),
             # Define data maps
             metadata_map =
               DataMap_StarOddi_DSTmilliF_TagMetaData(),
@@ -262,6 +274,8 @@ Decoder_StarOddi_DSTmilliF =
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DSTmilliF)
 #----
 
 Decoder_Wildlife_Computers =

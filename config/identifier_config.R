@@ -72,3 +72,170 @@ Identifier_MicrowaveTelemetry_XTag =
       )
   )
 
+Identifier_StarOddi_DST =
+  setRefClass(
+    "Identifier_StarOddi_DST",
+    contains = "Identifier",
+    methods =
+      list(
+
+        # The only way I know of to distinguish between the DST and DST milli-F
+        # tags is by looking at the format of this one column in the datasheet.
+        # It's brittle, but it's the best we've got.
+        check_xy_sheet_datetime_column_format =
+          function(d) {
+            fp =
+              list.files(
+                d,
+                full.names = T,
+                pattern = "^JS\\d+\\.xlsx"
+              )
+
+            suppressMessages(
+              {
+                dat = readxl::read_xlsx(fp, sheet = "XY", n_max = 10)
+              }
+            )
+
+            # DST
+            return(
+              all(
+                "POSIXct" %in% class(dat[[1]]),
+                "POSIXt" %in% class(dat[[1]])
+              )
+            )
+          },
+
+        identify =
+          function(d) {
+            return(
+              all(
+                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
+                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
+                .self$check_xy_sheet_datetime_column_format(d)
+              )
+            )
+          }
+      )
+  )
+
+
+Identifier_StarOddi_DSTmagnetic =
+  setRefClass(
+    "Identifier_StarOddi_DSTmagnetic",
+    contains = "Identifier",
+    methods =
+      list(
+        check_fields =
+          function(d) {
+            dat =
+              readxl::read_xlsx(
+                list.files(
+                  d,
+                  pattern = "^JS\\d+\\.xlsx",
+                  full.names = T
+                ),
+                sheet = "DAT",
+                n_max = 10
+              )
+
+            dat_f = names(dat)
+
+            return(
+              all(
+                # Check the number of fields
+                length(dat_f) == 11,
+                # Check that the necessary fields are present
+                "Comp.Head(°)" %in% dat_f,
+                "Tilt-X(°)" %in% dat_f
+              )
+            )
+
+          },
+
+        identify =
+          function(d) {
+            return(
+              all(
+                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
+                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
+                .self$check_fields(d)
+              )
+            )
+          }
+      )
+  )
+
+
+Identifier_StarOddi_DSTmilliF =
+  setRefClass(
+    "Identifier_StarOddi_DSTmilliF",
+    contains = "Identifier",
+    methods =
+      list(
+
+        # The only way I know of to distinguish between the DST and DST milli-F
+        # tags is by looking at the format of this one column in the datasheet.
+        # It's brittle, but it's the best we've got.
+        check_xy_sheet_datetime_column_format =
+          function(d) {
+            fp =
+              list.files(
+                d,
+                full.names = T,
+                pattern = "^JS\\d+\\.xlsx"
+              )
+
+            suppressMessages(
+              {
+                dat = readxl::read_xlsx(fp, sheet = "XY", n_max = 10)
+              }
+            )
+
+            # DST
+            return(class(dat[[1]]) == "numeric")
+          },
+
+        check_fields =
+          function(d) {
+            dat =
+              readxl::read_xlsx(
+                list.files(
+                  d,
+                  pattern = "^JS\\d+\\.xlsx",
+                  full.names = T
+                ),
+                sheet = "DAT",
+                n_max = 10
+              )
+
+            dat_f = names(dat)
+
+            return(
+              all(
+                # Check the number of fields
+                length(dat_f) == 3,
+                # Check that the necessary fields are present
+                !"Comp.Head(°)" %in% dat_f,
+                !"Tilt-X(°)" %in% dat_f
+              )
+            )
+
+          },
+
+        identify =
+          function(d) {
+            return(
+              all(
+                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
+                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
+                .self$check_xy_sheet_datetime_column_format(d),
+                .self$check_fields(d)
+              )
+            )
+          }
+      )
+  )
