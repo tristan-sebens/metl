@@ -426,6 +426,7 @@ Decoder =
     fields =
       list(
         d = "character",
+        identifier = "Identifier",
         metadata_map = "DataMap",
         data_maps = "list"
       ),
@@ -558,7 +559,47 @@ Decoder =
   #----
 
 
+#' Maps raw tag data to the appropriate Decoder based on structure of the raw data
+#'
+#' Makes decisions based on some pretty nitty-gritty details, like naming
+#' conventions, file-types present, number of files present, etc. As such, it's
+#' crucial that the data has not been altered by the user in any way since being
+#' extracted from the tag and/or run through any post-processing software.
+#'
+#' @field master_list__ list. The list of all Decoders from which to choose.
+#' Internal reference field, not intended to be set by user. Any value passed
+#' to this field will be overwritten on construction
+TagIdentifier =
+  setRefClass(
+    "TagIdentifier",
+    fields =
+      list(
+        master_list__ = "list"
+      ),
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            # Set the master list
+            master_list__ <<- Decoder_MasterList
+          },
 
+        identify_tag_decoder =
+          function(d) {
+            # Find any decoders in the Decoder_MasterList whose Identifier objects positively match the directory in question
+            matching_decoders =
+              Filter(
+                function(dc) {dc()$identifier$identify(d)},
+                .self$master_list__
+              )
+
+            if (length(matching_decoders) == 1) {
+              return(matching_decoders[[1]](d = d))
+            }
+          }
+      )
+  )
 
 
 

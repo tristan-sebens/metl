@@ -1,3 +1,7 @@
+# Start the Decoder_MasterList, which will be used to map incoming data to the appropriate Decoder object by make/ model
+Decoder_MasterList =
+  list()
+
 #' Base implementation for all Decoder classes
 #'
 Decoder_Base =
@@ -29,6 +33,8 @@ Decoder_Lotek.1000.1100.1250 =
           function(
             ...,
             # Define data maps
+            identifier =
+              Identifier_Lotek_1000.1100.1250(),
             metadata_map =
               DataMap_Lotek.1000.1100.1250_TagMetaData(),
             data_maps =
@@ -39,12 +45,15 @@ Decoder_Lotek.1000.1100.1250 =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               data_maps = data_maps,
               metadata_map = metadata_map
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1000.1100.1250)
 #----
 
 Decoder_Lotek.1300 =
@@ -57,6 +66,8 @@ Decoder_Lotek.1300 =
         initialize =
           function(
             ...,
+            identifier =
+              Identifier_Lotek_1300(),
             metadata_map =
               DataMap_Lotek.1300_TagMetaData(),
             data_maps =
@@ -67,12 +78,15 @@ Decoder_Lotek.1300 =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               data_maps = data_maps,
               metadata_map = metadata_map
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1300)
 #----
 
 Decoder_Lotek.1400.1800 =
@@ -86,6 +100,8 @@ Decoder_Lotek.1400.1800 =
           function(
             ...,
             # Define data maps
+            identifier =
+              Identifier_Lotek_1400.1800(),
             metadata_map =
               DataMap_Lotek.1400.1800_TagMetaData(),
             data_maps =
@@ -96,12 +112,15 @@ Decoder_Lotek.1400.1800 =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               data_maps = data_maps,
               metadata_map = metadata_map
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1400.1800)
 #----
 
 #' Base implementation for all Microwave Telemetry tag Decoders
@@ -125,6 +144,8 @@ Decoder_MicrowaveTelemetry_XTag =
           function(
             ...,
             # Define data maps
+            identifier =
+              Identifier_MicrowaveTelemetry_XTag(),
             metadata_map =
               DataMap_MicrowaveTelemetry_XTag_TagMetaData(),
             data_maps =
@@ -135,12 +156,15 @@ Decoder_MicrowaveTelemetry_XTag =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               data_maps = data_maps,
               metadata_map = metadata_map
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_MicrowaveTelemetry_XTag)
 #----
 
 Decoder_StarOddi =
