@@ -9,4 +9,8 @@ secrets/*
 # No RStudio IDE files
 .Rproj.user/*
 .Rhistory
-*.db
+
+# Nothing from the db folders
+db/*
+!db/db.placeholder
+db/mesa_test_db.db-journal
