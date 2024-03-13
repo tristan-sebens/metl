@@ -14,194 +14,98 @@ mt_xtag_d = file.path(mt_d, "X-Tag", "Lingcod", "128306")
 so_dst_d = file.path(so_d, "DST" , "Sablefish", "JS7977")
 so_dst_m_d = file.path(so_d, "DST magnetic" , "Sablefish", "JS927")
 so_dst_mf_d = file.path(so_d, "DST milli-F" , "Sablefish", "JS122")
+wc_bs_d = file.path(wc_d, "Benthic sPAT" , "Sleeper Shark", "175158")
+wc_mp_d = file.path(wc_d, "MiniPAT" , "Sleeper Shark", "174898")
 ```
 
 ```{r}
-Identifier_StarOddi_DST = 
+Identifier_WildlifeComputers = 
+  setRefClass(
+    "Identifier_WildlifeComputers",
+    contains = "Identifier",
+    methods = 
+      list(
+        # So far, most WC files follow the same format
+        check_for_wc_data_file = 
+          function(d, file_name, ...) {
+            .self$check_for_files(
+              d, 
+              paste0("^\\d\\d\\d\\d\\d\\d-?", file_name),
+              ...
+            )
+          }
+        
+      )
+  )
+
+
+Identifier_WildlifeComputers_BenthicSPAT = 
   setRefClass(
     "Identifier_StarOddi_DST",
-    contains = "Identifier",
+    contains = "Identifier_WildlifeComputers",
     methods = 
       list(
-        
-        # The only way I know of to distinguish between the DST and DST milli-F 
-        # tags is by looking at the format of this one column in the datasheet.
-        # It's brittle, but it's the best we've got.
-        check_xy_sheet_datetime_column_format = 
-          function(d) {
-            fp =
-              list.files(
-                d, 
-                full.names = T, 
-                pattern = "^JS\\d+\\.xlsx"
-              )
-            
-            suppressMessages(
-              {
-                dat = readxl::read_xlsx(fp, sheet = "XY", n_max = 10)
-              }
-            )
-            
-            # DST
-            return(
-              all(
-                "POSIXct" %in% class(dat[[1]]),
-                "POSIXt" %in% class(dat[[1]])
-              )
-            )
-          },
-        
         identify = 
           function(d) {
             return(
               all(
-                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
-                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
-                .self$check_xy_sheet_datetime_column_format(d)
+                # Files that should be present
+                .self$check_for_wc_data_file(d, "All.csv"),
+                .self$check_for_wc_data_file(d, "Argos.csv"),
+                .self$check_for_wc_data_file(d, "Corrupt.csv"),
+                .self$check_for_wc_data_file(d, "Orientation.csv"),
+                .self$check_for_wc_data_file(d, "RawArgos.csv"),
+                .self$check_for_wc_data_file(d, "RTC.csv"),
+                .self$check_for_wc_data_file(d, "Status.csv"),
+                .self$check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+                # Files that should not be present
+                .self$check_for_wc_data_file(d, "PDTs.csv", n=0),
+                .self$check_for_wc_data_file(d, "SSTs.csv", n=0)
               )
             )
           }
       )
   )
 
-Identifier_StarOddi_DST()$identify(so_dst_d)
-Identifier_StarOddi_DST()$identify(so_dst_mf_d)
-Identifier_StarOddi_DST()$identify(so_dst_m_d)
-```
 
-```{r}
-Identifier_StarOddi_DSTmilliF = 
-  setRefClass(
-    "Identifier_StarOddi_DSTmilliF",
-    contains = "Identifier",
-    methods = 
-      list(
-        
-        # The only way I know of to distinguish between the DST and DST milli-F 
-        # tags is by looking at the format of this one column in the datasheet.
-        # It's brittle, but it's the best we've got.
-        check_xy_sheet_datetime_column_format = 
-          function(d) {
-            fp =
-              list.files(
-                d, 
-                full.names = T, 
-                pattern = "^JS\\d+\\.xlsx"
-              )
-            
-            suppressMessages(
-              {
-                dat = readxl::read_xlsx(fp, sheet = "XY", n_max = 10)
-              }
-            )
-            
-            # DST
-            return(class(dat[[1]]) == "numeric")
-          },
-        
-        check_fields =
-          function(d) {
-            dat = 
-              readxl::read_xlsx(
-                list.files(
-                  d, 
-                  pattern = "^JS\\d+\\.xlsx",
-                  full.names = T
-                ),
-                sheet = "DAT",
-                n_max = 10
-              )
-            
-            dat_f = names(dat)
-            
-            return(
-              all(
-                # Check the number of fields
-                length(dat_f) == 3,
-                # Check that the necessary fields are present
-                !"Comp.Head(°)" %in% dat_f,
-                !"Tilt-X(°)" %in% dat_f
-              )
-            )
-            
-          },
-        
-        identify = 
-          function(d) {
-            return(
-              all(
-                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
-                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
-                .self$check_xy_sheet_datetime_column_format(d),
-                .self$check_fields(d)
-              )
-            )
-          }
-      )
-  )
-
-Identifier_StarOddi_DSTmilliF()$identify(so_dst_mf_d)
-Identifier_StarOddi_DSTmilliF()$identify(so_dst_d)
-Identifier_StarOddi_DSTmilliF()$identify(so_dst_m_d)
+Identifier_WildlifeComputers_BenthicSPAT()$identify(wc_bs_d)
+!Identifier_WildlifeComputers_BenthicSPAT()$identify(wc_mp_d)
 ```
 
 
-
-
-
 ```{r}
-Identifier_StarOddi_DSTmagnetic = 
+Identifier_WildlifeComputers_MiniPAT = 
   setRefClass(
-    "Identifier_StarOddi_DSTmagnetic",
-    contains = "Identifier",
+    "Identifier_WildlifeComputers_MiniPAT",
+    contains = "Identifier_WildlifeComputers",
     methods = 
       list(
-        check_fields =
-          function(d) {
-            dat = 
-              readxl::read_xlsx(
-                list.files(
-                  d, 
-                  pattern = "^JS\\d+\\.xlsx",
-                  full.names = T
-                ),
-                sheet = "DAT",
-                n_max = 10
-              )
-            
-            dat_f = names(dat)
-            
-            return(
-              all(
-                # Check the number of fields
-                length(dat_f) == 11,
-                # Check that the necessary fields are present
-                "Comp.Head(°)" %in% dat_f,
-                "Tilt-X(°)" %in% dat_f
-              )
-            )
-            
-          },
-        
         identify = 
           function(d) {
             return(
               all(
-                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
-                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
-                .self$check_fields(d)
+                # Files that should be present
+                .self$check_for_wc_data_file(d, "All.csv"),
+                .self$check_for_wc_data_file(d, "Argos.csv"),
+                .self$check_for_wc_data_file(d, "Corrupt.csv"),
+                .self$check_for_wc_data_file(d, "Histos.csv"),
+                .self$check_for_wc_data_file(d, "LightLoc.csv"),
+                .self$check_for_wc_data_file(d, "RawArgos.csv"),
+                .self$check_for_wc_data_file(d, "RTC.csv"),
+                .self$check_for_wc_data_file(d, "Status.csv"),
+                .self$check_for_wc_data_file(d, "PDTs.csv"),
+                .self$check_for_wc_data_file(d, "SST.csv"),
+                .self$check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+                # Files that should not be present
+                .self$check_for_wc_data_file(d, "Orientation.csv", n=0)
               )
             )
           }
       )
   )
 
-Identifier_StarOddi_DSTmagnetic()$identify(so_dst_m_d)
-Identifier_StarOddi_DSTmagnetic()$identify(so_dst_mf_d)
-Identifier_StarOddi_DSTmagnetic()$identify(so_dst_d)
+Identifier_WildlifeComputers_MiniPAT()$identify(wc_mp_d)
+!Identifier_WildlifeComputers_MiniPAT()$identify(wc_bs_d)
 ```
 
 

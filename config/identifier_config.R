@@ -239,3 +239,85 @@ Identifier_StarOddi_DSTmilliF =
           }
       )
   )
+
+
+# Base class for WC tags. Used because so far all WC tag data files follow the same
+#  naming format, so this class implements a helper function to identify those files.
+Identifier_WildlifeComputers =
+  setRefClass(
+    "Identifier_WildlifeComputers",
+    contains = "Identifier",
+    methods =
+      list(
+        # So far, most WC files follow the same format
+        check_for_wc_data_file =
+          function(d, file_name, ...) {
+            .self$check_for_files(
+              d,
+              paste0("^\\d\\d\\d\\d\\d\\d-?", file_name),
+              ...
+            )
+          }
+
+      )
+  )
+
+
+Identifier_WildlifeComputers_BenthicSPAT =
+  setRefClass(
+    "Identifier_WildlifeComputers_BenthicSPAT",
+    contains = "Identifier_WildlifeComputers",
+    methods =
+      list(
+        identify =
+          function(d) {
+            return(
+              all(
+                # Files that should be present
+                .self$check_for_wc_data_file(d, "All.csv"),
+                .self$check_for_wc_data_file(d, "Argos.csv"),
+                .self$check_for_wc_data_file(d, "Corrupt.csv"),
+                .self$check_for_wc_data_file(d, "Orientation.csv"),
+                .self$check_for_wc_data_file(d, "RawArgos.csv"),
+                .self$check_for_wc_data_file(d, "RTC.csv"),
+                .self$check_for_wc_data_file(d, "Status.csv"),
+                .self$check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+                # Files that should not be present
+                .self$check_for_wc_data_file(d, "PDTs.csv", n=0),
+                .self$check_for_wc_data_file(d, "SSTs.csv", n=0)
+              )
+            )
+          }
+      )
+  )
+
+
+Identifier_WildlifeComputers_MiniPAT =
+  setRefClass(
+    "Identifier_WildlifeComputers_MiniPAT",
+    contains = "Identifier_WildlifeComputers",
+    methods =
+      list(
+        identify =
+          function(d) {
+            return(
+              all(
+                # Files that should be present
+                .self$check_for_wc_data_file(d, "All.csv"),
+                .self$check_for_wc_data_file(d, "Argos.csv"),
+                .self$check_for_wc_data_file(d, "Corrupt.csv"),
+                .self$check_for_wc_data_file(d, "Histos.csv"),
+                .self$check_for_wc_data_file(d, "LightLoc.csv"),
+                .self$check_for_wc_data_file(d, "RawArgos.csv"),
+                .self$check_for_wc_data_file(d, "RTC.csv"),
+                .self$check_for_wc_data_file(d, "Status.csv"),
+                .self$check_for_wc_data_file(d, "PDTs.csv"),
+                .self$check_for_wc_data_file(d, "SST.csv"),
+                .self$check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+                # Files that should not be present
+                .self$check_for_wc_data_file(d, "Orientation.csv", n=0)
+              )
+            )
+          }
+      )
+  )

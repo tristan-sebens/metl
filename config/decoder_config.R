@@ -306,7 +306,10 @@ Decoder_WildlifeComputers_MiniPAT =
           function(
             ...,
             # Define data maps
-            metadata_map = DataMap_WildlifeComputers_MiniPAT_TagMetaData(),
+            identifier =
+              Identifier_WildlifeComputers_MiniPAT(),
+            metadata_map =
+              DataMap_WildlifeComputers_MiniPAT_TagMetaData(),
             data_maps =
               list(
                 DataMap_WildlifeComputer_MiniPAT_InstantSensorData(),
@@ -316,12 +319,15 @@ Decoder_WildlifeComputers_MiniPAT =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               data_maps = data_maps,
               metadata_map = metadata_map
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_WildlifeComputers_MiniPAT)
 #----
 
 Decoder_WildlifeComputers_BenthicSPAT =
@@ -336,6 +342,8 @@ Decoder_WildlifeComputers_BenthicSPAT =
           function(
             ...,
             # Define data maps
+            identifier =
+              Identifier_WildlifeComputers_BenthicSPAT(),
             metadata_map =
               DataMap_WildlifeComputers_BenthicSPAT_TagMetaData(),
             data_maps =
@@ -346,12 +354,15 @@ Decoder_WildlifeComputers_BenthicSPAT =
             # Initialize the child class
             callSuper(
               ...,
+              identifier = identifier,
               metadata_map = metadata_map,
               data_maps = data_maps
             )
           }
       )
   )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_WildlifeComputers_BenthicSPAT)
 #----
 
 
