@@ -14,3 +14,4 @@ secrets/*
 db/*
 !db/db.placeholder
 db/mesa_test_db.db-journal
+.Rproj.user
