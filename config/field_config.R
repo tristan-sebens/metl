@@ -54,11 +54,35 @@ TAG_DATA_INSTANT_TABLE_FIELDS =
             units = "m",
             data_type = "double(10, 2)"
           ),
+        DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "depth_increase_delta_limit",
+            units = "1",
+            data_type = "boolean"
+          ),
+        DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "depth_decrease_delta_limit",
+            units = "1",
+            data_type = "boolean"
+          ),
         TEMPERATURE_FIELD =
           Field(
             name = "temperature",
             units = "°C",
             data_type = "double(10, 2)"
+          ),
+        TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "temp_increase_delta_limit",
+            units = "1",
+            data_type = "boolean"
+          ),
+        TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "temp_decrease_delta_limit",
+            units = "1",
+            data_type = "boolean"
           ),
         TILT_X_FIELD =
           Field(
@@ -272,18 +296,38 @@ MICROWAVE_TELEMETRY_XTAG_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "datetime"
+            name = "Date/Time"
           ),
         DEPTH_FIELD =
           Field(
-            name = "depth",
+            name = "Depth(m)",
             units = "m",
             invert = T
           ),
+        DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "Δ Lim Dives",
+            units = "1"
+          ),
+        DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "Δ Lim Ascents",
+            units = "1"
+          ),
         TEMPERATURE_FIELD =
           Field(
-            name = "temperature",
+            name = "Temp(C)",
             units = "°C"
+          ),
+        TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "Δ Lim +Temp",
+            units = "1"
+          ),
+        TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
+          Field(
+            name = "Δ Lim -Temp",
+            units = "1"
           )
       )
   )

@@ -1,4 +1,14 @@
 
+# Import the piping operator
+# As a package, we are forbidden (by good practice) from directly importing any
+# other packages (i.e. using library or require functions). However, this code base
+# makes extensive use of the dplyr//magrittr 'piping' operator (i.e. hits the pipe),
+# and to refactor that out would be a massive pain. Instead, we simply directly
+# define the operator here for use in the rest of the package.
+# TODO This probably doesn't belong here, but at the moment there really isn't a better place to put it
+`%>%` = magrittr::"%>%"
+
+
 Field =
   #' Field class. Represents a single data field and its key metadata for future
   #`  reference, including field name, units, and DB data type.

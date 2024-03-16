@@ -481,6 +481,52 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
             callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_FIELDS, ...)
           },
 
+        # Calculate the cell range string the desired data is in
+        calc_range =
+          function(fp, sheet, col_range) {
+            row_max =
+              # Read in the full, unfiltered sheet to count the number of rows of data in the file
+              nrow(
+                readxl::read_xls(
+                  path = fp,
+                  sheet = sheet,
+                  skip=1
+                )
+              ) + 2 # Add one row for the title row
+
+            return(
+              paste0(
+                col_range[[1]],
+                '2',
+                ':',
+                col_range[[2]],
+                row_max
+              )
+            )
+          },
+
+        # Helper function to extract data from excel sheet
+        read_data_sheet =
+          function(fp, sheet, col_range) {
+            suppressMessages(
+              {
+                return(
+                  # Read the data from the pressure data sheet in the xls file
+                  readxl::read_xls(
+                    path = fp,
+                    sheet = sheet,
+                    # Calculate the range of data to include
+                    range =
+                      .self$calc_range(
+                        fp, sheet, col_range
+                      ),
+                    col_names = T
+                  )
+                )
+              }
+            )
+          },
+
         #' Extract tag data from passed directory
         #'
         #' @param d The directory in which the tag data resides. Directory is
@@ -493,75 +539,46 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
             # Find the xls file in the directory
             mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
 
-            suppressMessages(
-              {
-                # Read in pressure (depth) data
-                press_dat_ =
-                  # Read the data from the pressure data sheet in the xls file
-                  readxl::read_xls(
-                    path = mt_xt_xl_fp,
-                    sheet = "Press Data",
-                    # Calculate the range of data to include
-                    range =
-                      paste0(
-                        "A3:D",
-                        # Read in the full, unfiltered sheet to count the number of rows of data
-                        nrow(
-                          readxl::read_xls(
-                            path = mt_xt_xl_fp,
-                            sheet = "Press Data",
-                            skip=1
-                          )
-                        ) + 2 # Add two rows for the header row and the title row
-                      ),
-                    col_names =
-                      c(
-                        'datetime',
-                        'sensor_val',
-                        'gain',
-                        'depth'
-                      )
-                  )
+            press_dat =
+              .self$read_data_sheet(
+                fp = mt_xt_xl_fp,
+                sheet = "Press Data",
+                col_range = c("A", "G")
+              )
 
-                # Read in temperature data
-                temp_dat_ =
-                  # Read the data from the temperature data sheet in the xls file
-                  readxl::read_xls(
-                    path = mt_xt_xl_fp,
-                    sheet = "Temp Data",
-                    # Calculate the range of data to include
-                    range =
-                      paste0(
-                        "A3:C",
-                        # Read in the full, unfiltered sheet to count the number of rows of data
-                        nrow(
-                          readxl::read_xls(
-                            path = mt_xt_xl_fp,
-                            sheet = "Temp Data",
-                            skip=1
-                          )
-                        ) + 2 # Add two rows for the header row and the title row
-                      ),
-                    col_names =
-                      c(
-                        'datetime',
-                        'sensor_val',
-                        'temperature'
-                      )
-                  )
-              }
-            )
+            temp_dat =
+              .self$read_data_sheet(
+                fp = mt_xt_xl_fp,
+                sheet = "Temp Data",
+                col_range = c("A", "F")
+              )
 
-            # Merge the data into a single dataframe
-            dat_ =
+            dat =
               merge(
-                dplyr::select(press_dat_, -sensor_val, -gain),
-                dplyr::select(temp_dat_, -sensor_val),
+                press_dat,
+                temp_dat,
+                # join by the timestamp field
+                by = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name,
+                # Keep all records, even if they do not join
                 all.x = T,
                 all.y = T
               )
 
-            return(dat_)
+            # Convert each of the flag fields to bit flags
+            for (
+              field
+              in
+              c(
+                .self$input_data_field_map$field_list$DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD$name,
+                .self$input_data_field_map$field_list$DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD$name,
+                .self$input_data_field_map$field_list$TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD$name,
+                .self$input_data_field_map$field_list$TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD$name
+              )
+            ) {
+              dat[field] = ifelse(!is.na(dat[[field]]), 1, dat[[field]])
+            }
+
+            return(dat)
           }
       )
   )
