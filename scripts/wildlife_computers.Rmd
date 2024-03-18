@@ -1,6 +1,4 @@
 ```{r}
-library(tidyverse)
-
 wc_d = here::here('data', 'Wildlife Computers')
 ```
 MiniPAT
@@ -86,7 +84,14 @@ dat_t %>%
   dplyr::mutate(t2 = units::set_units(t, '%'))
 
 wc_bs_dc_ = 
+  .self =
   Decoder_WildlifeComputers_BenthicSPAT(d = wc_bs_template_d)
+
+.self = wc_bs_dc_$data_maps[[1]]
+
+dat = .self$extract(d)
+
+.self$transform(dat)
 
 wc_bs_dc_$decode_datamap(wc_bs_dc_$data_maps[[1]])
 
@@ -128,7 +133,24 @@ t__ =
     wc_mp_dm_,
     wc_bs_dm_
   )
+
+
+
+
 ```
+
+```{r}
+# dat =
+  read.csv(
+    list.files(
+      d,
+      pattern=stringr::regex("\\d*-Locations\\.csv", ignore_case=T),
+      full.names = T
+    ),
+    check.names = F
+  )
+```
+
 
 
 ```{r}

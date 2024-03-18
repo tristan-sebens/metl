@@ -601,6 +601,41 @@ WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
       )
   )
 
+WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "Date"
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Latitude"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Longitude"
+          ),
+        LOCATION_ERROR_RADIUS =
+          Field(
+            name = "Error radius"
+          ),
+        LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD =
+          Field(
+            name = "Error Semi-major axis"
+          ),
+        LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD =
+          Field(
+            name = "Error Semi-minor axis"
+          ),
+        LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD =
+          Field(
+            name = "Error Ellipse orientation"
+          )
+      )
+  )
+
 
 WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
   FieldMap(

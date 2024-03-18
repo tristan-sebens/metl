@@ -325,7 +325,7 @@ DataMap_Lotek.1400.1800_TagMetaData =
             stringr::str_extract(
               fp,
               pattern =
-                regex(
+                stringr::regex(
                   "^LAT\\d\\d\\d_(\\d\\d\\d\\d).*\\.csv",
                   ignore_case = T
                 ),
@@ -343,7 +343,7 @@ DataMap_Lotek.1400.1800_TagMetaData =
             .self$tag_id_from_filename(
               list.files(
                 d,
-                pattern = regex("csv$", ignore_case = T)
+                pattern = stringr::regex("csv$", ignore_case = T)
               )[[1]]
             )
           }
@@ -947,7 +947,7 @@ DataMap_WildlifeComputers_MiniPAT_TagMetaData =
               Filter(
                 Negate(is.na),
                 list.files(d) %>%
-                  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+                  stringr::str_extract(pattern=stringr::regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
                   unique()
               )
 
@@ -986,7 +986,7 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
         extract =
           function(d) {
             # Find the Series.csv file
-            fn = list.files(d, pattern = regex("(\\d*)-Series\\.csv", ignore_case = T))[[1]]
+            fn = list.files(d, pattern = stringr::regex("(\\d*)-Series\\.csv", ignore_case = T))[[1]]
 
             # Read in the data
             dat =
@@ -1038,7 +1038,7 @@ DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
               read.csv(
                 list.files(
                   d,
-                  pattern=regex("\\d*-SeriesRange\\.csv", ignore_case=T),
+                  pattern=stringr::regex("\\d*-SeriesRange\\.csv", ignore_case=T),
                   full.names = T
                 )
               )
@@ -1094,7 +1094,7 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
               Filter(
                 Negate(is.na),
                 list.files(d) %>%
-                  stringr::str_extract(pattern=regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+                  stringr::str_extract(pattern=stringr::regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
                   unique()
               )
 
@@ -1106,6 +1106,51 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
           }
       )
   )
+
+
+#' Datamap for the Wildlife Computers Benthic sPAT tags summary data
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
+  setRefClass(
+    "DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData",
+    # DataMap is identical to the Star Oddi DST tag DataMap
+    contains = "DataMap_InstantSensorData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS, ...)
+          },
+
+        #' Extract tag data from passed directory
+        #'
+        #' @inheritParams extract#Decoder
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function(d) {
+            # Read in the raw data
+            dat =
+              read.csv(
+                list.files(
+                  d,
+                  pattern=stringr::regex("\\d*-Locations\\.csv", ignore_case=T),
+                  full.names = T
+                ),
+                # Some of the fields in this file have spaces in their names
+                # without this flag, dplyr would convert those spaces to '.'s
+                check.names = F
+              )
+
+
+            return(dat)
+          }
+      )
+  )
+
 
 #' Datamap for the Wildlife Computers Benthic sPAT tags summary data
 #'
@@ -1136,7 +1181,7 @@ DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
               read.csv(
                 list.files(
                   d,
-                  pattern=regex("\\d*-Orientation\\.csv", ignore_case=T),
+                  pattern=stringr::regex("\\d*-Orientation\\.csv", ignore_case=T),
                   full.names = T
                 )
               )

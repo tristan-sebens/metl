@@ -349,6 +349,7 @@ Decoder_WildlifeComputers_BenthicSPAT =
               DataMap_WildlifeComputers_BenthicSPAT_TagMetaData(),
             data_maps =
               list(
+                DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData(),
                 DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
               )
           ) {
