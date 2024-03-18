@@ -150,7 +150,8 @@ Decoder_MicrowaveTelemetry_XTag =
               DataMap_MicrowaveTelemetry_XTag_TagMetaData(),
             data_maps =
               list(
-                DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
+                DataMap_MicrowaveTelemetry_XTag_InstantSensorData(),
+                DataMap_MicrowaveTelemetry_XTag_SummarySensorData()
               )
           ) {
             # Initialize the child class

@@ -1,6 +1,4 @@
 ```{r}
-library(tidyverse)
-
 mt_d = here::here('data', 'Microwave Telemetry', 'X-Tag')
 
 mt_template_d = file.path(mt_d, 'Rougheye Rockfish', '118375')
@@ -20,6 +18,9 @@ MicrowaveTelemetry_XTag_TagMetaData()$extract(d)
 mt_dm__ = mt_dc__$data_maps[[1]]
 
 mt_dm__$input_data_field_map
+
+units::valid_udunits() %>% 
+  dplyr::arrange(name_singular)
 ```
 
 ```{r}
@@ -148,12 +149,12 @@ list.files(path = mt_template_d, pattern = "^\\d*\\.xls") %>%
 DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   setRefClass(
     "DataMap_MicrowaveTelemetry_XTag_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap_MicrowaveTelemetry_XTag_SensorData_Base",
     methods =
       list(
         initialize =
           function(...) {
-            callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_FIELDS, ...)
+            callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS, ...)
           },
         
         # Calculate the cell range string the desired data is in
@@ -214,6 +215,7 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
             # Find the xls file in the directory
             mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
 
+            # Get pressure/depth data
             press_dat = 
               .self$read_data_sheet(
                 fp = mt_xt_xl_fp,
@@ -221,6 +223,7 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
                 col_range = c("A", "G")
               )
             
+            # Get temperature data
             temp_dat = 
               .self$read_data_sheet(
                 fp = mt_xt_xl_fp,
@@ -228,11 +231,29 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
                 col_range = c("A", "F")
               )
             
+            # Get location data
+            argos_loc_dat = 
+              .self$read_data_sheet(
+                fp = mt_xt_xl_fp,
+                sheet = "Argos Data",
+                col_range = c("A", "D")
+              ) 
+            # Mark location data type as 'satellite'
+            argos_loc_dat[.self$input_data_field_map$field_list$LOCATION_TYPE_FIELD$name] =
+              LOCATION_TYPE__SATELLITE
+
             dat =
               merge(
-                press_dat,
-                temp_dat,
-                # join by the timestamp field
+                merge(
+                  press_dat,
+                  temp_dat,
+                  # join by the timestamp field
+                  by = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name,
+                  # Keep all records, even if they do not join
+                  all.x = T,
+                  all.y = T
+                ),
+                argos_loc_dat,
                 by = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name,
                 # Keep all records, even if they do not join
                 all.x = T,
@@ -258,82 +279,111 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
       )
   )
 
-
 mt_xt_dm = 
+  .self = 
   DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
 
 dat = mt_xt_dm$extract(d = mt_template_d)
 dat_t = mt_xt_dm$transform(dat)
+mt_xt_dm$upsert(con, dat_t)
 
 mt_xt_dc = 
   Decoder_MicrowaveTelemetry_XTag(d = mt_template_d)
 
+
+dat[which(!is.na(dat["Latitude (N)"])),]
+
+
+argos_loc_dat %>% 
+  dplyr::filter(
+    !is.na("Location Type")
+  )
+```
+
+
+```{r}
+#' Datamap for the Microwave Telemetry X-tag summary data
+#'
+#' @inheritParams Decoder
+#'
+#' @examples
+DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
+  setRefClass(
+    "DataMap_MicrowaveTelemetry_XTag_SummarySensorData",
+    contains = c("DataMap_SummarySensorData_Base", "DataMap_MicrowaveTelemetry_XTag_Base"),
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS, ...)
+          },
+
+        #' Extract tag data from passed directory
+        #'
+        #' @param d The directory in which the tag data resides. Directory is
+        #' expected to contain only files which relate to one common tag.
+        #'
+        #' @return The data contained in the tag data as a single dataframe
+        extract =
+          function(d) {
+            # All of the temperature and pressure data is extracted from the .xls file
+            # Find the xls file in the directory
+            mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
+
+            # Get location data
+            light_geoloc_dat =
+              .self$read_data_sheet(
+                fp = mt_xt_xl_fp,
+                sheet = "Lat&Long",
+                col_range = c("A", "C")
+              )
+            
+            # Mark location data type as 'light-based geolocation'
+            light_geoloc_dat[.self$input_data_field_map$field_list$LOCATION_TYPE_FIELD$name] =
+              LOCATION_TYPE__LIGHT_BASED_GEOLOCATION
+
+            # Convert simple date format to start and end time format
+            light_geoloc_dat[.self$input_data_field_map$field_list$START_TIME_FIELD$name] =
+              light_geoloc_dat[.self$input_data_field_map$field_list$DATE_FIELD$name]
+
+            light_geoloc_dat[.self$input_data_field_map$field_list$END_TIME_FIELD$name] =
+              timechange::time_add(
+                light_geoloc_dat[[.self$input_data_field_map$field_list$DATE_FIELD$name]],
+                hour = 23, minute = 59, second = 59
+              )
+
+            return(light_geoloc_dat)
+          }
+      )
+  )
+
+mt_xt_dm = 
+  .self = 
+  DataMap_MicrowaveTelemetry_XTag_SummarySensorData()
+
+
+dat_ = mt_xt_dm$extract(d)
+
+dat_t_ = mt_xt_dm$transform(dat_)  
+
+
+light_geoloc_dat[["Date"]][[1]]
+
+timechange::time_add(light_geoloc_dat[["Date"]], hour = 23, minute = 59, second = 59)
+
+dat__
+```
+
+```{r}
+mt_xt_dc = 
+  .self = 
+  Decoder_MicrowaveTelemetry_XTag(d = mt_template_d)
+
+dat = mt_xt_dc$decode_datamap(mt_xt_dc$data_maps[[2]])
+
+
 mt_xt_dc$decode(con)
 ```
-
-```{r}
-col_range = c("A", "E")
-
-calc_range = 
-  function(fp, sheet, col_range) {
-    row_max = 
-      # Read in the full, unfiltered sheet to count the number of rows of data in the file
-      nrow(
-        readxl::read_xls(
-          path = fp,
-          sheet = sheet,
-          skip=1
-        )
-      ) + 2 # Add one row for the title row
-    
-    return(
-      paste0(
-        col_range[[1]], 
-        '2', 
-        ':', 
-        col_range[[2]], 
-        row_max
-      ) 
-    )
-  }
-
-  
-```
-
-```{r}
-# Read in sheet data
-fp = mt_xt_xl_fp
-sheet = "Press Data"
-cell_range = "A2:E"
-
-suppressMessages(
-  {
-    press_dat_ =
-      # Read the data from the pressure data sheet in the xls file
-      readxl::read_xls(
-        path = fp,
-        sheet = sheet,
-        # Calculate the range of data to include
-        range =
-          paste0(
-            cell_range,
-            # Read in the full, unfiltered sheet to count the number of rows of data
-            nrow(
-              readxl::read_xls(
-                path = fp,
-                sheet = sheet,
-                skip=1
-              )
-            ) + 2 # Add one row for the title row
-          ),
-        col_names = T
-      )
-  }
-)
-
-press_dat_
-```
-
 
 
 

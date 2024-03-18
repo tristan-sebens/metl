@@ -42,6 +42,61 @@ TAG_DATA_INSTANT_TABLE_FIELDS =
             data_type = "varchar(32)",
             id_field = T
           ),
+        LATITUDE_FIELD =
+          Field(
+            name = "latitude",
+            data_type = "double(10, 6)"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "longitude",
+            data_type = "double(10, 6)"
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "location_type",
+            data_type = "varchar(16)"
+          ),
+        LATITUDE_N_ERROR_FIELD =
+          Field(
+            name = "latitude_n_error",
+            data_type = "double(10, 2)"
+          ),
+        LATITUDE_S_ERROR_FIELD =
+          Field(
+            name = "latitude_s_error",
+            data_type = "double(10, 2)"
+          ),
+        LATITUDE_U_FIELD =
+          Field(
+            name = "latitude_u",
+            data_type = "double(10, 2)"
+          ),
+        LONGITUDE_ERROR_FIELD =
+          Field(
+            name = "longtitude_error",
+            data_type = "double(10, 2)"
+          ),
+        LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD =
+          Field(
+            name = "location_error_ellipse_orientation",
+            data_type = "double(10, 2)"
+          ),
+        LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD =
+          Field(
+            name = "location_error_semi_minor_axis",
+            data_type = "double(10, 2)"
+          ),
+        LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD =
+          Field(
+            name = "location_error_semi_major_axis",
+            data_type = "double(10, 2)"
+          ),
+        LOCATION_ERROR_RADIUS=
+          Field(
+            name = "location_error_radius",
+            data_type = "double(10, 2)"
+          ),
         PRESSURE_FIELD =
           Field(
             name = "pressure",
@@ -57,13 +112,11 @@ TAG_DATA_INSTANT_TABLE_FIELDS =
         DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "depth_increase_delta_limit",
-            units = "1",
             data_type = "boolean"
           ),
         DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "depth_decrease_delta_limit",
-            units = "1",
             data_type = "boolean"
           ),
         TEMPERATURE_FIELD =
@@ -75,13 +128,11 @@ TAG_DATA_INSTANT_TABLE_FIELDS =
         TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "temp_increase_delta_limit",
-            units = "1",
             data_type = "boolean"
           ),
         TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "temp_decrease_delta_limit",
-            units = "1",
             data_type = "boolean"
           ),
         TILT_X_FIELD =
@@ -139,6 +190,21 @@ TAG_DATA_SUMMARY_TABLE_FIELDS =
             name = "end_time",
             data_type = "varchar(32)",
             id_field = T
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "latitude",
+            data_type = "double(10, 6)"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "longitude",
+            data_type = "double(10, 6)"
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "location_type",
+            data_type = "varchar(16)"
           ),
         MIN_DEPTH_FIELD =
           Field(
@@ -290,7 +356,7 @@ LOTEK_1400.1800_FIELDS =
 #----------------
 # MICROWAVE TELEMETRY TAGS
 #----------------
-MICROWAVE_TELEMETRY_XTAG_FIELDS =
+MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -304,15 +370,25 @@ MICROWAVE_TELEMETRY_XTAG_FIELDS =
             units = "m",
             invert = T
           ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "Location Type"
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Latitude (N)"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Longitude (W)"
+          ),
         DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim Dives",
-            units = "1"
+            name = "Δ Lim Dives"
           ),
         DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim Ascents",
-            units = "1"
+            name = "Δ Lim Ascents"
           ),
         TEMPERATURE_FIELD =
           Field(
@@ -321,13 +397,42 @@ MICROWAVE_TELEMETRY_XTAG_FIELDS =
           ),
         TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim +Temp",
-            units = "1"
+            name = "Δ Lim +Temp"
           ),
         TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim -Temp",
-            units = "1"
+            name = "Δ Lim -Temp"
+          )
+      )
+  )
+
+MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        DATE_FIELD =
+          Field(
+            name = "Date"
+          ),
+        START_TIME_FIELD =
+          Field(
+            name = "Start"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End"
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "Location Type"
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Lat (N)"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Long (W)"
           )
       )
   )
