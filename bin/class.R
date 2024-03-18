@@ -271,9 +271,6 @@ DataMap =
         #' @return The transformed data with renamed and united fields
         transform_fields =
           function(dat__) {
-            # Convert the datetime field(s) to a POSIXct field
-            dat__ = .self$convert_datetime_to_posix_ct(dat__)
-
             # Process each input field in turn
             # Limit conversion to those fields shared by both the input data field
             #   map and the output data field map
@@ -349,7 +346,7 @@ DataMap =
             # Copy data to temporary table
             dbplyr::db_copy_to(
               con = con,
-              table = ident(temp_table_name),
+              table = dbplyr::ident(temp_table_name),
               values = dat,
               in_transaction = F,
               temporary = T # Means that the table is only visible from this connection, and will be deleted when this connection is severed
@@ -363,8 +360,8 @@ DataMap =
                 # Build the upsert sql statement
                 dbplyr::sql_query_upsert(
                   con = con,
-                  table = ident(.self$output_data_field_map$table),
-                  from = ident(temp_table_name),
+                  table = dplyr::ident(.self$output_data_field_map$table),
+                  from = dplyr::ident(temp_table_name),
                   by = .self$output_data_field_map$get_id_field_names(),
                   update_cols = names(dat)
                 )
