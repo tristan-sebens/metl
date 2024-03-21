@@ -1,7 +1,3 @@
-```{r}
-library(tidyverse)
-```
-
 Scratch
 ```{r}
 data_root = here::here('data')
