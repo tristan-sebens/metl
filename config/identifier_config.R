@@ -48,7 +48,7 @@ Identifier_Lotek_1400.1800 =
         identify =
           function(d) {
             all(
-              .self$check_for_files(d, "LAT(180|140)_(\\d|_)*_00\\.csv")
+              .self$check_for_files(d, "LAT(180|140)_(\\d|_)*_\\d\\d\\.csv")
             )
           }
       )
