@@ -159,7 +159,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                   pattern="CSV DATA")
             ) %>%
               # Drop any empty lines.
-              drop_na()
+              tidyr::drop_na()
           },
 
 
@@ -1126,10 +1126,6 @@ DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
           },
 
         #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # Read in the raw data
@@ -1170,10 +1166,6 @@ DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
           },
 
         #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # Read in the raw data

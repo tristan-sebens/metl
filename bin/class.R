@@ -234,7 +234,7 @@ DataMap =
             matches =
               readLines(fp, n=n, skipNul = F) %>%
               unlist %>%
-              str_detect(pattern = pattern)
+              stringr::str_detect(pattern = pattern)
 
             # Check that any lines matched
             if (!any(matches)) {
@@ -245,7 +245,7 @@ DataMap =
                   "' found in first ",
                   n,
                   " lines of ",
-                  tail(strsplit(fp, .Platform$file.sep)[[1]], 1)
+                  tail(stringr::str_split(fp, .Platform$file.sep)[[1]], 1)
                 )
               )
             }
@@ -565,7 +565,6 @@ Decoder =
   )
   #----
 
-
 #' Maps raw tag data to the appropriate Decoder based on structure of the raw data
 #'
 #' Makes decisions based on some pretty nitty-gritty details, like naming
@@ -577,6 +576,7 @@ Decoder =
 #' Internal reference field, not intended to be set by user. Any value passed
 #' to this field will be overwritten on construction
 TagIdentifier =
+  #----
   setRefClass(
     "TagIdentifier",
     fields =
@@ -594,23 +594,239 @@ TagIdentifier =
 
         identify_tag_decoder =
           function(d) {
-            # Find any decoders in the Decoder_MasterList whose Identifier objects positively match the directory in question
-            matching_decoders =
-              Filter(
-                function(dc) {dc()$identifier$identify(d)},
-                .self$master_list__
+            # Initialize tibble
+            # First field 'dc' is a list of all possible decoders from the master list
+            t__ =
+              tibble::tibble(dc = ti_$master_list__)
+
+            # Update the tibble to include the name associated with each decoder
+            t__['name'] =
+              t__[['dc']] %>%
+              lapply(
+                function(dc) {
+                  Filter(
+                    function(c) {
+                      stringr::str_detect(c, 'Decoder')
+                    },
+                    class(dc())
+                  )
+                }
+              ) %>%
+              unlist()
+
+            # Apply the identifier of each decoder in the tibble to the directory in question
+            # and record the results
+            t__ =
+              cbind(
+                t__,
+                t__[['dc']] %>%
+                  lapply(
+                    function(dc) {
+                      tryCatch(
+                        {
+                          return(
+                            c(
+                              'result' = dc()$identifier$identify(d),
+                              'message' = ""
+                            )
+                          )
+                        },
+                        error =
+                          function(cond) {
+                            return(
+                              c(
+                                'result' = FALSE,
+                                'message' = cond$message
+                              )
+                            )
+                          }
+                      )
+                    }
+                  ) %>%
+                  do.call(rbind, .) %>%
+                  as.data.frame()
               )
 
-            if (length(matching_decoders) == 1) {
-              return(matching_decoders[[1]](d = d))
+            # Return the dataframe
+            return(t__)
+          }
+      )
+  )
+#----
+TagProcessor =
+  setRefClass(
+    "TagProcessor",
+    fields =
+      list(
+        d = "character", # The directory to process
+        dir_tree__ = "Node" # The directory tree object. Private attribute, not intended to be set
+      ),
+
+    methods =
+      list(
+        initialize =
+          function(d, ...) {
+            callSuper(d = d, ...)
+            # Build datatree object from directory
+            dir_tree__ <<- .self$build_datatree(d)
+          },
+
+        # Helper method. Used by reporting function
+        # Recursively calculates the number of leaves on the tree
+        num_leaves =
+          function(node) {
+            if(node$isLeaf) {
+              return(1)
+            } else {
+              return(
+                sum(sapply(node$children, num_leaves))
+              )
+            }
+          },
+
+        # Helper method. Used by reporting function
+        # Recursively calculates the number of decoded data directories
+        num_decoded =
+          function(node) {
+            if(node$isLeaf) {
+              if(node$decoded) {
+                return(1)
+              } else {
+                return(0)
+              }
+            } else {
+              return(
+                sum(sapply(node$children, num_decoded))
+              )
+            }
+          },
+
+        # Builds the report dataframe from the directory data tree
+        build_report =
+          function() {
+            data.tree::ToDataFrameTree(
+              tp__$dir_tree__,
+              n_tags = num_leaves,
+              n_decoded = num_decoded,
+              "decoded",
+              "decode_error"
+            ) %>%
+              dplyr::mutate(
+                pct_decoded = round(100 * n_decoded / n_tags, 1),
+                pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
+              ) %>%
+              dplyr::select(dir=levelName, pct_decoded, decoded, decode_error)
+          },
+
+        # Build a datatree from the directory structure, rooted at the passed directory
+        build_datatree =
+          function(d) {
+            # Convert a directory tree into a data.tree object
+            dt =
+              data.frame(
+                pathString =
+                  list.dirs(d) %>%
+                  Filter(
+                    function(d) {
+                      length(list.dirs(d, recursive=F)) == 0
+                    },
+                    .
+                  )
+              ) %>%
+              # By default the tree is rooted at the drive root
+              # Here we reset the root to the actual root of the data directory
+              dplyr::mutate(
+                pathString =
+                  stringr::str_replace(pathString, dirname(d), '')
+              ) %>%
+              data.tree::as.Node()
+
+            # Set some custom attributes on each node:
+            dt$Do(
+              function(node) {
+                # fullPath: the full file path to the directory
+                node$fullPath =
+                  file.path(dirname(.self$d), node$pathString)
+              }
+            )
+
+            dt$Do(
+              function(node) {
+                # decoded: flag indicating if the directory was successfully uploaded
+                node$decoded =
+                  FALSE
+
+                # decode error: placeholder for any error which occurs when processing a node
+                node$decode_error =
+                  ""
+              },
+              filterFun = function(node) {return(node$isLeaf)}
+            )
+
+            return(dt)
+          },
+
+        # Traverse the tree, and return all of the nodes which refer to leaf
+        # directories (i.e. data directories)
+        data_dirs =
+          function() {
+            return(
+              data.tree::Traverse(
+                .self$dir_tree__,
+                filterFun = function(node) {return(node$isLeaf)}
+              )
+            )
+          },
+
+        process_directory =
+          function(data_directory, con) {
+            print(
+              paste0(
+                "Processing ",
+                data_directory$name,
+                "..."
+              )
+            )
+            # Apply the TagIdentifier to determine which decoders match the data directory
+            # Record these results on the data directory object
+            data_directory$tag_identifier_results =
+              TagIdentifier()$identify_tag_decoder(data_directory$fullPath)
+
+            # Filter to those decoders which matched the data directory
+            pos_id =
+              data_directory$tag_identifier_results %>%
+              dplyr::filter(result == T)
+
+            # If there is exactly one decoder which matches the data directory, use that
+            # decoder to upload the tag data to the DB
+            if(nrow(pos_id) == 1) {
+              dc = pos_id$dc[[1]](d = data_directory$fullPath)
+              tryCatch(
+                {
+                  dc$decode(con)
+                  data_directory$decoded = T
+                },
+                error =
+                  function(cond) {
+                    data_directory$decode_error = cond
+                  }
+              )
+            } else {
+              data_directory$decode_error = paste0("Matching decoders: ", nrow(pos_id))
+            }
+          },
+
+        # Process all tag data contained within the directory tree
+        process =
+          function(con) {
+            # Process each leaf (data) directory
+            for (data_directory in .self$data_dirs()) {
+              .self$process_directory(data_directory, con)
             }
           }
       )
   )
-
-
-
-
+#----
 
 
 
