@@ -7,6 +7,7 @@
 # define the operator here for use in the rest of the package.
 # TODO This probably doesn't belong here, but at the moment there really isn't a better place to put it
 `%>%` = magrittr::"%>%"
+setOldClass("Node")
 
 
 Field =
@@ -597,7 +598,7 @@ TagIdentifier =
             # Initialize tibble
             # First field 'dc' is a list of all possible decoders from the master list
             t__ =
-              tibble::tibble(dc = ti_$master_list__)
+              tibble::tibble(dc = .self$master_list__)
 
             # Update the tibble to include the name associated with each decoder
             t__['name'] =
