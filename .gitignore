@@ -1,5 +1,6 @@
 # No data files
 data/*
+data_aux
 !data/data.placeholder
 
 # No secrets
