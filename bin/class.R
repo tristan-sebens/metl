@@ -707,8 +707,8 @@ TagProcessor =
           function() {
             data.tree::ToDataFrameTree(
               tp__$dir_tree__,
-              n_tags = num_leaves,
-              n_decoded = num_decoded,
+              n_tags = .self$num_leaves,
+              n_decoded = .self$num_decoded,
               "decoded",
               "decode_error"
             ) %>%
@@ -781,13 +781,6 @@ TagProcessor =
 
         process_directory =
           function(data_directory, con) {
-            print(
-              paste0(
-                "Processing ",
-                data_directory$name,
-                "..."
-              )
-            )
             # Apply the TagIdentifier to determine which decoders match the data directory
             # Record these results on the data directory object
             data_directory$tag_identifier_results =
@@ -820,10 +813,16 @@ TagProcessor =
         # Process all tag data contained within the directory tree
         process =
           function(con) {
-            # Process each leaf (data) directory
-            for (data_directory in .self$data_dirs()) {
-              .self$process_directory(data_directory, con)
-            }
+            print("Processing directory.")
+            # Traverse directory tree and process each data directory (leaf node)
+            tp__$dir_tree__$Do(
+              function(node) {
+                print(node$levelName)
+                if (node$isLeaf) {
+                  .self$process_directory(node, con)
+                }
+              }
+            )
           }
       )
   )
