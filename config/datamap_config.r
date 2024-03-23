@@ -195,7 +195,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                       # Check that the next df has any rows to join
                       if (nrow(y) > 0) {
                         # Suppress 'joined by' messages that pollute the console
-                        return(suppressMessages({full_join(x, y)}))
+                        return(suppressMessages({dplyr::full_join(x, y)}))
                       }
                       return(x)
                     }
