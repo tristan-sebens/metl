@@ -1,8 +1,6 @@
 
 Notebook to help determine likely units of pressure by calculating the apparent depth in seawater assuming different SI units for the value 
 ```{r}
-library(units)
-
 # Constants
 rho_ = units::set_units(1000, 'kg/m^3') # Density of water
 g_ = units::set_units(9.8, 'm/s^2') # Gravitational constant
@@ -41,24 +39,24 @@ calc_depth_for_pressure_across_units =
         'mmhg'
       )
   ) {
-  units__ %>% 
-  reduce(
-    .init = 
-      data.frame(
-        pressure
-      ),
-    .f = 
-      function(df, u_) {
-        df %>% 
-        dplyr::mutate(
-          "{u_}" := 
-            depth_from_pressure(
-              units::set_units(pressure, u_, mode="standard")
-            )
-          
-        )
-      }
-  )
+    units__ %>% 
+    purrr::reduce(
+      .init = 
+        data.frame(
+          pressure = units::drop_units(pressure)
+        ),
+      .f = 
+        function(df, u_) {
+          df %>% 
+          dplyr::mutate(
+            "{u_}" := 
+              depth_from_pressure(
+                units::set_units(pressure, u_, mode="standard")
+              )
+            
+          )
+        }
+    )
   }
 
 plot_depth_dist_by_pressure_unit = 
@@ -69,7 +67,7 @@ plot_depth_dist_by_pressure_unit =
   ) {
     p = 
       press_units_df__ %>% 
-      pivot_longer(
+      tidyr::pivot_longer(
         ., 
         cols = names(.)[names(.) != 'pressure'],
         names_to = 'unit', values_to = 'depth'
@@ -77,21 +75,21 @@ plot_depth_dist_by_pressure_unit =
       dplyr::filter(
         !unit %in% exclude
       ) %>% 
-      ggplot() + 
-      geom_histogram(aes(depth, fill = unit), position='dodge')
+      ggplot2::ggplot() + 
+      ggplot2::geom_histogram(aes(depth, fill = unit), position='dodge')
     
     if(!is.null(benchmarks)) {
       # Convert list to dataframe
       benchmarks = 
         benchmarks %>% 
         data.frame() %>% 
-        pivot_longer(., cols = names(.), names_to = "name", values_to = "x") %>% 
+        tidyr::pivot_longer(., cols = names(.), names_to = "name", values_to = "x") %>% 
         dplyr::mutate(x = units::set_units(x, 'm'))
       
       # Add depth benchmark indicators
       p = 
         p + 
-        geom_segment(
+        ggplot2::geom_segment(
           data = benchmarks,
           aes(
             x = x, 
@@ -102,7 +100,7 @@ plot_depth_dist_by_pressure_unit =
           size = 2,
           linetype = "dashed",
         ) + 
-        geom_label(
+        ggplot2::geom_label(
           data = benchmarks, 
           aes(
             x = x, 
@@ -129,16 +127,16 @@ labeled_depths =
 Plot
 ```{r}
 calc_depth_for_pressure_across_units(
-  65
+  dat_t_$pressure
 ) %>% 
   plot_depth_dist_by_pressure_unit(
-    exclude = c("MPa", "bar", "psi", "decibar"),
-    benchmarks = 
-      list(
-        "sealevel" = 0
-        # "shelf" = 200
-        # "basin" = 3500
-      )
+    exclude = c("Pa", "MPa", "bar", "mmhg")
+    # benchmarks = 
+    #   list(
+    #     "sealevel" = 0,
+    #     "shelf" = 200
+    #     # "basin" = 3500
+    #   )
   )
 ```
 
