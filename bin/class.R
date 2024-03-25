@@ -32,9 +32,9 @@ Field =
       list(
         initialize =
           function(
-            ...,
-            invert = F,
-            alternate_names = list()
+    ...,
+    invert = F,
+    alternate_names = list()
           ) {
             callSuper(
               ...,
@@ -155,7 +155,7 @@ Identifier =
               return(TRUE)
             }
             return(FALSE)
-        }
+          }
       )
   )
 
