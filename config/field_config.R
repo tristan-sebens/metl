@@ -513,26 +513,6 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
       )
   )
 
-STAR_ODDI_DST_MILLI_F_FIELDS =
-  FieldMap(
-    field_list =
-      list(
-        TIMESTAMP_FIELD =
-          Field(
-            name = "Date & Time"
-          ),
-        DEPTH_FIELD =
-          Field(
-            name = "Depth(m)",
-            units = "m"
-          ),
-        TEMPERATURE_FIELD =
-          Field(
-            name = "Temp(°C)",
-            units = "°C"
-          )
-      )
-  )
 
 WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS =
   FieldMap(

@@ -714,7 +714,7 @@ DataMap_StarOddi_DST_TagMetaData =
         initialize =
           function(...) {
             callSuper(...)
-            model <<- "DST"
+            model <<- "DST (centi/milli)-(TD/F)"
           }
       )
   )
@@ -825,73 +825,6 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
                     fp,
                     sheet = "DAT",
                     col_types = c("date", rep("numeric", 10))
-                  )
-                }
-              )
-
-            return(dat_)
-          }
-      )
-  )
-
-
-#' DataMap for Star Oddi DST milli-F tags
-#'
-#' @inheritParams DataMap
-DataMap_StarOddi_DSTmilliF_TagMetaData =
-  setRefClass(
-    "DataMap_StarOddi_DSTmilliF_TagMetaData",
-    contains = "DataMap_StarOddi_TagMetaData",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            callSuper(...)
-            model <<- "DST milli-F"
-          }
-      )
-  )
-
-#' Datamap for the StarOddi DST milli F tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
-DataMap_StarOddi_DSTmilliF_InstantSensorData =
-  setRefClass(
-    "DataMap_StarOddi_DSTmilliF_InstantSensorData",
-    # DataMap is identical to the Star Oddi DST tag DataMap
-    contains = "DataMap_InstantSensorData_Base",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            callSuper(input_data_field_map = STAR_ODDI_DST_MILLI_F_FIELDS, ...)
-          },
-
-        #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
-        extract =
-          function(d) {
-            fs =
-              list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
-
-            fp = fs[[1]]
-
-            dat_ =
-              # readxl throws up a warning every time we convert a number to a datetime
-              # printing all of those warnings takes FOREVER
-              # so instead we just tell it to shut up
-              suppressWarnings(
-                {
-                  # Read the tag data in from the datasheet
-                  readxl::read_xlsx(
-                    fp,
-                    sheet = "DAT",
-                    col_types = c("date", "numeric", "numeric")
                   )
                 }
               )

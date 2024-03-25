@@ -244,41 +244,6 @@ Decoder_StarOddi_DSTmagnetic =
 Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DSTmagnetic)
 #----
 
-
-Decoder_StarOddi_DSTmilliF =
-  #----
-  setRefClass(
-    "Decoder_StarOddi_DSTmilliF",
-    # The DST milli F decoder is identical in function to the DST
-    contains = "Decoder",
-    methods =
-      list(
-        initialize =
-          function(
-            ...,
-            identifier =
-              Identifier_StarOddi_DSTmilliF(),
-            # Define data maps
-            metadata_map =
-              DataMap_StarOddi_DSTmilliF_TagMetaData(),
-            data_maps =
-              list(
-                DataMap_StarOddi_DSTmilliF_InstantSensorData()
-              )
-          ) {
-            # Initialize the child class
-            callSuper(
-              ...,
-              metadata_map = metadata_map,
-              data_maps = data_maps
-            )
-          }
-      )
-  )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DSTmilliF)
-#----
-
 Decoder_Wildlife_Computers =
   #----
   setRefClass(
