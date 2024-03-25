@@ -172,13 +172,14 @@ TagProcessor =
               n_tags = .self$num_leaves,
               n_decoded = .self$num_decoded,
               "decoded",
+              "identified_decoder",
               "decode_error"
             ) %>% 
             dplyr::mutate(
               pct_decoded = round(100 * n_decoded / n_tags, 1),
               pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
             ) %>% 
-            dplyr::select(dir=levelName, pct_decoded, decoded, decode_error)
+            dplyr::select(dir=levelName, pct_decoded, decoded, identified_decoder, decode_error)
           },
         
         # Build a datatree from the directory structure, rooted at the passed directory
@@ -222,23 +223,14 @@ TagProcessor =
                 # decode error: placeholder for any error which occurs when processing a node
                 node$decode_error = 
                   ""
+                
+                node$identified_decoder = 
+                  ""
               },
               filterFun = function(node) {return(node$isLeaf)}
             )
             
             return(dt)
-          },
-        
-        # Traverse the tree, and return all of the nodes which refer to leaf 
-        # directories (i.e. data directories)
-        data_dirs = 
-          function() {
-            return(
-              data.tree::Traverse(
-                .self$dir_tree__,
-                filterFun = function(node) {return(node$isLeaf)}
-              )
-            )
           },
         
         process_directory = 
@@ -261,6 +253,7 @@ TagProcessor =
                 {
                   dc$decode(con)
                   data_directory$decoded = T
+                  data_directory$identified_decoder = pos_id$name
                 },
                 error = 
                   function(cond) {
@@ -292,24 +285,36 @@ TagProcessor =
 
 
 ```{r}
+source(here::here('bin', 'class.R'))
+source(here::here('config', 'const_config.R'))
+source(here::here('config', 'field_config.R'))
+source(here::here('config', 'datamap_config.R'))
+source(here::here('config', 'identifier_config.R'))
+source(here::here('config', 'decoder_config.R'))
+
 tp__ = 
   .self = 
-  TagProcessor(data_d)
+  TagProcessor(here::here('data', 'Lotek', 'LTD 1300-LTD 1000-LTD 1110-LTD 1250'))
 
 tp__$process(con)
-tp__$build_report() %>% 
-  dplyr::select(dir, decode_error)
-  
-  dplyr::filter(decode_error != "") %>% 
-  dplyr::pull(decode_error) %>% 
-  unique()
 
-  
-report = tp__$build_report()
-pander::pandoc.table(report, split.cells = c(5, 5, 5, 20))
+report = 
+  tp__$build_report()
+
+report
+
+report %>% 
+  write.csv(here::here('data', 'decode_report.csv'), row.names = F)
+```
+
+```{r}
+id_res = 
+  tp__$dir_tree__$Lingcod$`5732`$tag_identifier_results
+
 
 
 ```
+
 
 
 

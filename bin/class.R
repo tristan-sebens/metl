@@ -653,8 +653,18 @@ TagIdentifier =
           }
       )
   )
-#----
+
+
+#' TagProcessor class. Facilitates the automated identification and decoding of
+#' tag data directories. Recursively traverses a directory tree, attempting to
+#' process any data directories within.
+#'
+#' Implements some basic reporting to aid in diagnosing systemic decoding issues
+#'
+#' @field d Data directory.
+#' @field dir_tree__ Private variable, not to be set by user. Any user-submitted value is overwritten on construction
 TagProcessor =
+  #----
   setRefClass(
     "TagProcessor",
     fields =
@@ -710,13 +720,14 @@ TagProcessor =
               n_tags = .self$num_leaves,
               n_decoded = .self$num_decoded,
               "decoded",
+              "identified_decoder",
               "decode_error"
             ) %>%
               dplyr::mutate(
                 pct_decoded = round(100 * n_decoded / n_tags, 1),
                 pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
               ) %>%
-              dplyr::select(dir=levelName, pct_decoded, decoded, decode_error)
+              dplyr::select(dir=levelName, pct_decoded, decoded, identified_decoder, decode_error)
           },
 
         # Build a datatree from the directory structure, rooted at the passed directory
@@ -760,23 +771,14 @@ TagProcessor =
                 # decode error: placeholder for any error which occurs when processing a node
                 node$decode_error =
                   ""
+
+                node$identified_decoder =
+                  ""
               },
               filterFun = function(node) {return(node$isLeaf)}
             )
 
             return(dt)
-          },
-
-        # Traverse the tree, and return all of the nodes which refer to leaf
-        # directories (i.e. data directories)
-        data_dirs =
-          function() {
-            return(
-              data.tree::Traverse(
-                .self$dir_tree__,
-                filterFun = function(node) {return(node$isLeaf)}
-              )
-            )
           },
 
         process_directory =
@@ -799,6 +801,7 @@ TagProcessor =
                 {
                   dc$decode(con)
                   data_directory$decoded = T
+                  data_directory$identified_decoder = pos_id$name
                 },
                 error =
                   function(cond) {
@@ -826,7 +829,6 @@ TagProcessor =
           }
       )
   )
-#----
 
 
 
