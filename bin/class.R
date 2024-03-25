@@ -606,13 +606,50 @@ Decoder =
             }
           },
 
+        #' Check if this tag has already been uploaded to the DB
+        #'
+        #' @param con Connection to the target DB
+        #'
+        #' @return Boolean value indicating if the tag ID is already present in the metadata table
+        tag_already_loaded =
+          function(con) {
+            # Get the name of the id field in the metadata table
+            id_field =
+              .self$metadata_map$output_data_field_map$field_list$TAG_ID_FIELD$name
+
+            # Collect a list of all IDs already in the table
+            ids_in_db =
+              dplyr::tbl(
+                con,
+                .self$metadata_map$output_data_field_map$table
+              ) %>%
+              dplyr::select(id_field) %>%
+              dplyr::pull()
+
+            # Get the ID of this tag
+            tag_id =
+              .self$metadata_map$get_tag_id(d)
+
+            # Check if this tag is already in the DB table
+            return(tag_id %in% ids_in_db)
+          },
+
         #' Execute all necessary steps to read and transform raw data for one datamap
         #'
         #' @param con Connection to the target DB
         #'
         #' @return The extracted and transformed data
         decode =
-          function(con) {
+          function(con, overwrite = T) {
+            # If the user has specified not to overwrite existing data, check if
+            # this tag is already in the DB
+            if(!overwrite) {
+              if(.self$tag_already_loaded(con)) {
+                # The tag is already present in the DB
+                return(TRUE)
+              }
+            }
+
             DBI::dbWithTransaction(
               con,
               {
@@ -620,6 +657,8 @@ Decoder =
                 .self$decode_and_load_all_datamaps(con)
               }
             )
+
+            return(TRUE)
           }
 
       )
@@ -722,6 +761,7 @@ TagIdentifier =
 #' Implements some basic reporting to aid in diagnosing systemic decoding issues
 #'
 #' @field d Data directory.
+#' @field overwrite Boolean flag. If set to TRUE, the TagProcessor will check if a tag is already present in the tag metadata table, and will not process the tag if it is.
 #' @field dir_tree__ Private variable, not to be set by user. Any user-submitted value is overwritten on construction
 TagProcessor =
   #----
@@ -730,14 +770,15 @@ TagProcessor =
     fields =
       list(
         d = "character", # The directory to process
+        overwrite = "logical", # Whether or not to overwrite data already in DB
         dir_tree__ = "Node" # The directory tree object. Private attribute, not intended to be set
       ),
 
     methods =
       list(
         initialize =
-          function(d, ...) {
-            callSuper(d = d, ...)
+          function(d, overwrite = T, ...) {
+            callSuper(d = d, overwrite = overwrite, ...)
             # Build datatree object from directory
             dir_tree__ <<- .self$build_datatree(d)
           },
@@ -859,7 +900,7 @@ TagProcessor =
               dc = pos_id$dc[[1]](d = data_directory$fullPath)
               tryCatch(
                 {
-                  dc$decode(con)
+                  dc$decode(con, overwrite = .self$overwrite)
                   data_directory$decoded = T
                   data_directory$identified_decoder = pos_id$name
                 },
