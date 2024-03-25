@@ -24,11 +24,12 @@ fp_xtemp = file.path(template_tag_d_ltd_1000_1100_1250, "3315XTEMPERATURE.CSV")
 
 
 lt1000_dm = 
-  DataMap_Lotek.1000.1100.1250(
-    d = template_tag_d_ltd_1000_1100_1250,
-    input_data_field_map = LOTEK_1000.1100.1250_FIELDS,
-    output_data_field_map = TAG_DATA_FIELDS
-  )
+  .self = 
+  DataMap_Lotek.1000.1100.1250_InstantSensorData()
+
+dat__ = 
+  lt1000_dm$extract(template_tag_d_ltd_1000_1100_1250)
+
 
 lt1000_dat = 
   lt1000_dm$extract()
@@ -40,6 +41,30 @@ dc =
     d = template_tag_d_ltd_1000_1100_1250
   )
 ```
+
+
+```{r}
+d = file.path(lotek_data, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "1484")
+
+dc_ = 
+  Decoder_Lotek.1000.1100.1250()
+
+dm_ = 
+  .self = 
+  DataMap_Lotek.1000.1100.1250_InstantSensorData()
+
+dat_ = dm_$extract(d)
+
+dat_t_ = dm_$transform(dat_)
+```
+
+```{r}
+d2 = file.path(lotek_data, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "2485")
+
+dat2_ = dm_$extract(d2)
+dat2_t_ = dm_$transform(dat2_)
+```
+
 
 ```{r}
 
@@ -627,7 +652,6 @@ INPUT_FIELDS %>%
         return(d)
       }
   )
-
 
 
 

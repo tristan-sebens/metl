@@ -159,7 +159,7 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                   pattern="CSV DATA")
             ) %>%
               # Drop any empty lines.
-              tidyr::drop_na()
+              dplyr::select_if(function(x) { sum(!is.na(x)) > 0 })
           },
 
 
@@ -179,35 +179,51 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                 "LIGHT",
                 "SUPPLY"
               ) %>%
-                # Find all of the relevant datafiles, and read them in as dataframes
-                lapply(
-                  FUN =
-                    function(pattern) {
-                      .self$read_csv_lotek_1000.1100.1250(
-                        .self$get_data_file_path(d, pattern = pattern)
-                      )
-                    }
-                ) %>%
-                # Join all of the dataframes together into a single frame
-                purrr::reduce(
-                  .f =
-                    function(x, y) {
-                      # Check that the next df has any rows to join
-                      if (nrow(y) > 0) {
-                        # Suppress 'joined by' messages that pollute the console
-                        return(suppressMessages({dplyr::full_join(x, y)}))
-                      }
-                      return(x)
-                    }
-                )
+              # Find all of the relevant datafiles, and read them in as dataframes
+              lapply(
+                FUN =
+                  function(pattern) {
+                    dat =
+                      .self$get_data_file_path(d, pattern = pattern) %>%
+                      .self$read_csv_lotek_1000.1100.1250()
 
-            # Convert timestamp field to POSIXct
-            dat[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name] =
-              as.POSIXct(
-                dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]],
-                format = "%Y/%m/%d %H:%M:%S",
-                tz = "UTC"
+                    ts_field =
+                      .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name
+
+                    # Once again, for reasons outside understanding, there are
+                    # multiple formats for the timestamp field we must account for
+                    dat[ts_field] =
+                      .self$POSIXct_format(
+                        ts_dat =
+                          dat[[ts_field]],
+                        format =
+                          c("%m/%d/%Y %H:%M", "%Y/%m/%d %H:%M:%S")
+
+                      )
+
+                    return(dat)
+                  }
+              ) %>%
+              # Join all of the dataframes together into a single frame
+              purrr::reduce(
+                .f =
+                  function(x, y) {
+                    # Check that the next df has any rows to join
+                    if (nrow(y) > 0) {
+                      # Suppress 'joined by' messages that pollute the console
+                      return(suppressMessages({dplyr::full_join(x, y)}))
+                    }
+                    return(x)
+                  }
               )
+
+            # # Convert timestamp field to POSIXct
+            # dat[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name] =
+            #   as.POSIXct(
+            #     dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]],
+            #     format = "%Y/%m/%d %H:%M:%S",
+            #     tz = "UTC"
+            #   )
 
             return(dat)
           }

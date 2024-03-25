@@ -22,6 +22,7 @@ Field =
     fields =
       list(
         name = "character",
+        alternate_names = "list",
         id_field = "logical", # Flag to indicate if this is a field used to identify unique records
         units = "character",
         data_type = "character", # Data type to be used for this field in the DB
@@ -31,12 +32,14 @@ Field =
       list(
         initialize =
           function(
-    ...,
-    invert = F
+            ...,
+            invert = F,
+            alternate_names = list()
           ) {
             callSuper(
+              ...,
               invert = invert,
-              ...
+              alternate_names = alternate_names
             )
           }
       )
@@ -80,13 +83,16 @@ FieldMap =
         #' Helper function which generates a list of the Fields shared by this
         #' FieldMap and the given FieldMap
         #'
-        #' @return A named list. Names are the field names, values are the data types
+        #' @return Named list of the shared Field objects
         common_fields =
           function(fm) {
             .self$field_list[names(.self$field_list) %in% names(fm$field_list)]
           },
 
-        # Generates a list of the Fields held in this FieldMap which are not in the passed FieldMap
+        #' Helper function which generates a list of the Fields NOT shared by this
+        #' FieldMap and the given FieldMap
+        #'
+        #' @return Named list of the Field objects present in this FieldMap but not in the passed FieldMap
         uncommon_fields =
           function(fm) {
             .self$field_list[!names(.self$field_list) %in% names(fm$field_list)]
@@ -255,6 +261,47 @@ DataMap =
             return(which(matches)[[1]])
           },
 
+        #' Helper function for calculating POSIXct timestamps. Able to handle multiple
+        #' possible formats.
+        #'
+        #' If multiple formats are provided, it is implicitly assumed that each row will
+        #' match only one of the provided formats. If a timestamp matches more than one
+        #' passed format, the output will be meaningless
+        #'
+        #' @param ts_dat The raw timestamp data, of unknown format or of multiple formats
+        #' @param formats The format string(s) to use ot
+        #'
+        #' @return
+        #' @export
+        #'
+        #' @examples
+        POSIXct_format =
+          function(ts_dat, formats) {
+            res =
+              # Apply every conversion format to the timestamp field.
+              # Produces a list of vectors, each the result of applying one of the formats
+              formats %>%
+              lapply(
+                function(format) {
+                  as.POSIXct(ts_dat, format=format, tz="UTC")
+                }
+              )
+
+            ret =
+              # Condense this list of columns into a data.frame
+              as.data.frame(do.call(cbind, res)) %>%
+              # Unite the values. This implicitly assumes there is only one non-NA
+              # value in each row
+              tidyr::unite(col = "ts", na.rm = T) %>%
+              # Unite returns the united columns as character strings
+              # Re-convert to POSIXct
+              dplyr::pull(ts) %>%
+              as.numeric() %>%
+              as.POSIXct(tz = "UTC")
+
+            return(ret)
+          },
+
         #' Convert the date time data contained in the dataframe to POSIXct format
         #' Default behavior is to assume that the datetime field is already in
         #' POSIXct. If this is not the case, then the method should be overridden
@@ -263,6 +310,19 @@ DataMap =
         convert_datetime_to_posix_ct =
           function(dat) {
             return(dat)
+          },
+
+        get_field_data =
+          function(dat__, input_field_obj_) {
+            if(input_field_obj_$name %in% names(dat__)) {
+              return(dat__[[input_field_obj_$name]])
+            }
+
+            for (name_ in input_field_obj_$alternate_names) {
+              if(name_ %in% names(dat__)) {
+                return(dat__[[name_]])
+              }
+            }
           },
 
         #' Transform the fields of the incoming tag data as dictated by the field maps
@@ -289,7 +349,7 @@ DataMap =
               output_field_obj_ = .self$output_data_field_map$field_list[[field_]]
 
               # Isolate field data
-              input_field_dat_ = dat__[[input_field_obj_$name]]
+              input_field_dat_ = .self$get_field_data(dat__, input_field_obj_)
 
               # If needed, invert the field values
               if(input_field_obj_$invert) {

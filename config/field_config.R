@@ -291,11 +291,13 @@ LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
         PRESSURE_FIELD =
           Field(
             name = "Pressure.PSI",
+            alternate_names = list("Pressure"),
             units = "psi"
           ),
         TEMPERATURE_FIELD =
           Field(
             name = "Temperature.C",
+            alternate_names = list("Temperature"),
             units = "°C"
           )
       )
