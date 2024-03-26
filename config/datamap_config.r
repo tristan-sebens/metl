@@ -712,7 +712,7 @@ DataMap_StarOddi_TagMetaData =
             # Read in xlsx file(s) (There should only be one)
             fs = list.files(d, pattern = "^[^~]*\\.xlsx")
             # Extract the tag id from the filenames
-            str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
+            stringr::str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
           }
       )
   )
@@ -840,7 +840,15 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
                   readxl::read_xlsx(
                     fp,
                     sheet = "DAT",
-                    col_types = c("date", rep("numeric", 10))
+                    col_types =
+                      c(
+                        "date",
+                        rep(
+                          "numeric",
+                          # Read in the sheet to find out how many columns there are
+                          ncol(readxl::read_xlsx(fp, sheet = "DAT")) - 1
+                        )
+                      )
                   )
                 }
               )

@@ -65,27 +65,83 @@ Identifier_MicrowaveTelemetry_XTag =
         identify =
           function(d) {
             all(
-              .self$check_for_files(d, "\\d*.xls"),
+              .self$check_for_files(d, "^\\d*.xls"),
               # Check that all files present in the directory fit the given pattern
-              .self$check_for_files(d, "\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
+              .self$check_for_files(d, "^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
             )
           }
       )
   )
 
+
+# Base class for StarOddi Identifier objects. Used to help standardize
+# checking for specific fields in the excel files
+Identifier_StarOddi =
+  setRefClass(
+    "Identifier_StarOddi",
+    contains = "Identifier",
+    methods =
+      list(
+        # Checks for the presence absence of specified fields in the specified file
+        # When present == TRUE, checks for the presence of specified fields,
+        # otherwise checks for absence.
+        check_for_fields =
+          function(fp, fields, present=T) {
+            xl_fields_ =
+              names(readxl::read_xlsx(fp, n_max = 1))
+
+            res_ =
+              fields %>%
+              lapply(
+                function(f_) {
+                  return(f_ %in% xl_fields_)
+                }
+              ) %>%
+              unlist() %>%
+              all()
+
+            if (present) {
+              return(res_)
+            } else {
+              return(!res_)
+            }
+          }
+      )
+  )
+
+
 Identifier_StarOddi_DST =
   setRefClass(
     "Identifier_StarOddi_DST",
-    contains = "Identifier",
+    contains = "Identifier_StarOddi",
     methods =
       list(
         identify =
           function(d) {
+            fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
             return(
               all(
-                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
+                .self$check_for_files(
+                  d,
+                  "^JS\\d+\\.xlsx"
+                ),
                 # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d)))
+                .self$check_for_files(
+                  d,
+                  "(~$)*JS\\d+\\.xlsx",
+                  n=length(list.files(d))
+                ),
+                .self$check_for_fields(
+                  fp =
+                    fp,
+                  fields =
+                    c(
+                      "Comp.Head(°)",
+                      "Comp.4p(°)",
+                      "Mag.vec(nT)"
+                    ),
+                  present = F
+                )
               )
             )
           }
@@ -96,36 +152,9 @@ Identifier_StarOddi_DST =
 Identifier_StarOddi_DSTmagnetic =
   setRefClass(
     "Identifier_StarOddi_DSTmagnetic",
-    contains = "Identifier",
+    contains = "Identifier_StarOddi",
     methods =
       list(
-        check_fields =
-          function(d) {
-            dat =
-              readxl::read_xlsx(
-                list.files(
-                  d,
-                  pattern = "^JS\\d+\\.xlsx",
-                  full.names = T
-                ),
-                sheet = "DAT",
-                n_max = 10
-              )
-
-            dat_f = names(dat)
-
-            return(
-              all(
-                # Check the number of fields
-                length(dat_f) == 11,
-                # Check that the necessary fields are present
-                "Comp.Head(°)" %in% dat_f,
-                "Tilt-X(°)" %in% dat_f
-              )
-            )
-
-          },
-
         identify =
           function(d) {
             return(
@@ -133,13 +162,21 @@ Identifier_StarOddi_DSTmagnetic =
                 .self$check_for_files(d, "^JS\\d+\\.xlsx"),
                 # Check that all files in the directory are either the datafile, or Excel's temporary lock file
                 .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
-                .self$check_fields(d)
+                .self$check_for_fields(
+                  fp =
+                    fp,
+                  fields =
+                    c(
+                      "Comp.Head(°)",
+                      "Comp.4p(°)",
+                      "Mag.vec(nT)"
+                    )
+                )
               )
             )
           }
       )
   )
-
 
 # Base class for WC tags. Used because so far all WC tag data files follow the same
 #  naming format, so this class implements a helper function to identify those files.

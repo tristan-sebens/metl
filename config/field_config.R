@@ -343,11 +343,13 @@ LOTEK_1400.1800_FIELDS =
         PRESSURE_FIELD =
           Field(
             name = "Pressure..dBars.",
+            alternate_names = list("Pressure"),
             units = "decibars"
           ),
         TEMPERATURE_FIELD =
           Field(
             name = "IntTemp..C.",
+            alternate_names = list("IntTemp"),
             units = "°C"
           )
 
@@ -481,6 +483,7 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
         TEMPERATURE_FIELD =
           Field(
             name = "Temp(°C)",
+            alternate_names = list("Temperature(°C)"),
             units = "°C"
           ),
         TILT_X_FIELD =
