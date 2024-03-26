@@ -1,14 +1,13 @@
 ```{r}
+# Rebuild package
 source(here::here('bin', 'class.R'))
 source(here::here('config', 'const_config.R'))
 source(here::here('config', 'field_config.R'))
 source(here::here('config', 'datamap_config.R'))
 source(here::here('config', 'identifier_config.R'))
 source(here::here('config', 'decoder_config.R'))
-```
 
-
-```{r}
+# Reset DB connection
 if(!is.null(globalenv()$con)) {
   DBI::dbDisconnect(con)
 }
@@ -18,26 +17,25 @@ con =
     RSQLite::SQLite(),
     here::here('db', 'mesa_test_db.db')
   )
-```
 
-
-```{r}
+# Process tag data
 tp__ = 
   .self = 
   TagProcessor(
-    d = here::here('data', 'Lotek', 'LTD 1300-LTD 1000-LTD 1110-LTD 1250'),
-    overwrite = F
+    d = here::here('data', 'Star Oddi'),
+    overwrite = T
   )
 
 tp__$process(con)
 
+# Build and save processing report
 report = 
   tp__$build_report()
 
 report
 
 report %>% 
-  write.csv(here::here('data', 'decode_report.csv'), row.names = F)
+  write.csv(here::here('doc', 'Processing Reports', 'Star Oddi', 'so_decode_report.csv'), row.names = F)
 ```
 
 

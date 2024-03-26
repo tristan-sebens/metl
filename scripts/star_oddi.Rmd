@@ -1,6 +1,4 @@
 ```{r}
-# library(tidyverse)
-
 so_d = here::here('data', 'Star Oddi')
 so_dst_d = file.path(so_d, 'DST', 'Sablefish', 'JS7977')
 so_dstmag_d = file.path(so_d, 'DST magnetic', 'Sablefish', 'JS927')
@@ -8,30 +6,42 @@ so_dstmf_d = file.path(so_d, 'DST milli-F', 'Sablefish', 'JS122')
 ```
 
 
-DST 
 ```{r}
-d = so_dst_d
+d = file.path(so_d, "DST magnetic", "Sablefish", "JS923")
+d = file.path(so_d, "DST milli-F", "Sablefish", "JS108")
 
-dc_so.dst__ = Decoder_StarOddi_DST(d = d)
+fp = list.files(d, full.names = T, pattern = "^JS\\d\\d\\d\\.xlsx$")
 
-dc_so.dst__$decode(con)
+TagIdentifier()$identify_tag_decoder(d)
+
+
+fp = list.files(d, full.names = T)[[2]]
+
+dm_ = 
+  .self = 
+  DataMap_StarOddi_DSTmagnetic_InstantSensorData()
+
+id_ = 
+  .self = 
+  Identifier_StarOddi_DST()
+
+Identifier_StarOddi_DST()$identify(d)
+Identifier_StarOddi_DSTmagnetic()$identify(d)
+
+
+dat = 
+  dat_ =
+  dat__ = 
+  dm_$extract(d)
+
+dat_t = 
+  dm_$transform(dat)
+
+
+dm_$input_data_field_map$field_list$TEMPERATURE_FIELD
+
+readxl::read_xlsx(fp, sheet = "DAT", n_max = 1)
 ```
-DST Magnetic
-```{r}
-dc_so.dstmag__ = Decoder_StarOddi_DSTmagnetic(d = so_dstmag_d)
-
-dc_so.dstmag__$decode(con)
-```
-
-DST milli-F 
-```{r}
-dc_so.dstmf__ = Decoder_StarOddi_DSTmilliF(d = so_dstmf_d)
-
-dc_so.dstmf__$decode(con)
-```
-
-
-
 
 
 
