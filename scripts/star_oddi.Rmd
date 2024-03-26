@@ -41,6 +41,10 @@ dat_t =
 dm_$input_data_field_map$field_list$TEMPERATURE_FIELD
 
 readxl::read_xlsx(fp, sheet = "DAT", n_max = 1)
+
+suppressMessages(
+  class
+)
 ```
 
 

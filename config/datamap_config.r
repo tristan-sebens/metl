@@ -835,6 +835,7 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
               # printing all of those warnings takes FOREVER
               # so instead we just tell it to shut up
               suppressWarnings(
+                classes = c("warning", "message"),
                 {
                   # Read the tag data in from the datasheet
                   readxl::read_xlsx(
@@ -846,7 +847,7 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
                         rep(
                           "numeric",
                           # Read in the sheet to find out how many columns there are
-                          suppressMessages({ncol(readxl::read_xlsx(fp, sheet = "DAT")) - 1})
+                          ncol(readxl::read_xlsx(fp, sheet = "DAT")) - 1
                         )
                       )
                   )

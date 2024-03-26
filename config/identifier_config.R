@@ -87,8 +87,13 @@ Identifier_StarOddi =
         # otherwise checks for absence.
         check_for_fields =
           function(fp, fields, present=T) {
-            xl_fields_ =
-              names(readxl::read_xlsx(fp, n_max = 1))
+            suppressMessages(
+              classes = c("warning", "message"),
+              {
+                xl_fields_ =
+                  names(readxl::read_xlsx(fp, n_max = 1))
+              }
+            )
 
             res_ =
               fields %>%
