@@ -97,13 +97,12 @@ Identifier_StarOddi =
                   return(f_ %in% xl_fields_)
                 }
               ) %>%
-              unlist() %>%
-              all()
+              unlist()
 
             if (present) {
-              return(res_)
+              return(all(res_))
             } else {
-              return(!res_)
+              return(!any(res_))
             }
           }
       )
@@ -157,11 +156,12 @@ Identifier_StarOddi_DSTmagnetic =
       list(
         identify =
           function(d) {
+            fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
             return(
               all(
                 .self$check_for_files(d, "^JS\\d+\\.xlsx"),
                 # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
+                # .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
                 .self$check_for_fields(
                   fp =
                     fp,

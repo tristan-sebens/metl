@@ -461,6 +461,7 @@ STAR_ODDI_DST_FIELDS =
         TEMPERATURE_FIELD =
           Field(
             name = "Temp(°C)",
+            alternate_names = list("Temperature(°C)"),
             units = "°C"
           )
       )

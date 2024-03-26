@@ -846,7 +846,7 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
                         rep(
                           "numeric",
                           # Read in the sheet to find out how many columns there are
-                          ncol(readxl::read_xlsx(fp, sheet = "DAT")) - 1
+                          suppressMessages({ncol(readxl::read_xlsx(fp, sheet = "DAT")) - 1})
                         )
                       )
                   )
