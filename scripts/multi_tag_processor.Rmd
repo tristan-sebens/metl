@@ -22,7 +22,7 @@ con =
 tp__ = 
   .self = 
   TagProcessor(
-    d = here::here('data', 'Star Oddi'),
+    d = here::here('data', 'Microwave Telemetry'),
     overwrite = T
   )
 
@@ -35,7 +35,7 @@ report =
 report
 
 report %>% 
-  write.csv(here::here('doc', 'Processing Reports', 'Star Oddi', 'so_decode_report.csv'), row.names = F)
+  write.csv(here::here('doc', 'Processing Reports', 'Microwave Telemetry', 'mt_decode_report.csv'), row.names = F)
 ```
 
 
