@@ -9,6 +9,19 @@ source(here::here('config', 'decoder_config.R'))
 
 
 ```{r}
+if(!is.null(globalenv()$con)) {
+  DBI::dbDisconnect(con)
+}
+  
+con = 
+  DBI::dbConnect(
+    RSQLite::SQLite(),
+    here::here('db', 'mesa_test_db.db')
+  )
+```
+
+
+```{r}
 tp__ = 
   .self = 
   TagProcessor(

@@ -44,25 +44,31 @@ dc =
 
 
 ```{r}
-d = file.path(lotek_data, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "1484")
+d = file.path(lotek_data, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "4000")
+
+TagIdentifier()$identify_tag_decoder(d)
 
 dc_ = 
-  Decoder_Lotek.1000.1100.1250()
+  # Decoder_Lotek.1300(d = d)
+  Decoder_Lotek.1000.1100.1250(d = d)
+
+dc_$decode(con)
 
 dm_ = 
   .self = 
   DataMap_Lotek.1000.1100.1250_InstantSensorData()
 
-dat_ = dm_$extract(d)
+dat_ = 
+  dm_$extract(d)
 
-dat_t_ = dm_$transform(dat_)
+dat_t_ = 
+  dm_$transform(dat_)
 ```
 
 ```{r}
-d2 = file.path(lotek_data, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "2485")
+d = file.path(lotek_data, "LTD 1300-LTD 1000-LTD 1110-LTD 1250", "Sablefish", "3900")
 
-dat2_ = dm_$extract(d2)
-dat2_t_ = dm_$transform(dat2_)
+TagIdentifier()$identify_tag_decoder(d)
 ```
 
 

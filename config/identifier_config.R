@@ -12,9 +12,9 @@ Identifier_Lotek_1000.1100.1250 =
             return(
               all(
                 .self$check_for_files(d, "^\\d*pressure\\.csv"),
-                .self$check_for_files(d, "^\\d*temperature\\.csv"),
-                .self$check_for_files(d, "^\\d*supply\\.csv"),
-                .self$check_for_files(d, "^\\d*light\\.csv")
+                .self$check_for_files(d, "^\\d*temperature\\.csv")
+                # .self$check_for_files(d, "^\\d*supply\\.csv"),
+                # .self$check_for_files(d, "^\\d*light\\.csv")
               )
             )
           }
@@ -31,7 +31,7 @@ Identifier_Lotek_1300 =
         identify =
           function(d) {
             all(
-              .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_\\d*\\.bin"),
+              # .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_\\d*\\.bin"),
               .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_day log.csv"),
               .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_regular log.csv")
             )

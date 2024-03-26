@@ -174,10 +174,10 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
             dat =
               # List of data-types to collect data for
               c(
+                # "LIGHT",
+                # "SUPPLY",
                 "PRESSURE",
-                "TEMPERATURE",
-                "LIGHT",
-                "SUPPLY"
+                "TEMPERATURE"
               ) %>%
               # Find all of the relevant datafiles, and read them in as dataframes
               lapply(
