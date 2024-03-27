@@ -1,0 +1,331 @@
+"dir","pct_decoded","decoded","identified_decoder","decode_error"
+"data                                             ",77.9,NA,NA,NA
+" ¦--Desert Star                                  ",0,NA,NA,NA
+" ¦   °--SeaTag MOD                               ",0,NA,NA,NA
+" ¦       °--Sablefish                            ",NA,FALSE,"","Matching decoders: 0"
+" ¦--Lotek                                        ",79.4,NA,NA,NA
+" ¦   ¦--KIWISAT                                  ",NA,FALSE,"","Matching decoders: 0"
+" ¦   ¦--LAT 1400-LAT 1800                        ",95.8,NA,NA,NA
+" ¦   ¦   ¦--Greenland turbot                     ",100,NA,NA,NA
+" ¦   ¦   ¦   ¦--383                              ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦   ¦   ¦--386                              ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦   ¦   ¦--387                              ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦   ¦   ¦--390                              ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦   ¦   ¦--403                              ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦   ¦   °--406                              ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦   °--Sablefish                            ",94.4,NA,NA,NA
+" ¦   ¦       ¦--0507                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--0513                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--0541                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--0594                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--0595                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--0673                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--0719                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦   ¦       ¦--0728                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--1535                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--1546                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--1842                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--2283                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--2304                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--2340                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--3420                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--3421                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       ¦--3470                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   ¦       °--3494                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦   °--LTD 1300-LTD 1000-LTD 1110-LTD 1250      ",77.3,NA,NA,NA
+" ¦       ¦--Greenland turbot                     ",58.3,NA,NA,NA
+" ¦       ¦   ¦--2466                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--3880                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--3883                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--4122                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--4126                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--4542                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--4551                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--5282                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--5319                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--5334                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--5364                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   °--5385                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦--Lingcod                              ",100,NA,NA,NA
+" ¦       ¦   ¦--3788                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--3898                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--4071                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--5295                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   °--5732                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦--Sablefish                            ",78.2,NA,NA,NA
+" ¦       ¦   ¦--0739                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1476                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1484                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1486                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1496                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1498                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1507                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1508                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1510                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1515                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1567                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1574                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1582                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1587                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1593                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1599                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1602                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1627                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1744                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1745                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1749                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1755                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1762                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1776                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1787                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1789                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1794                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1795                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1809                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1831                             ",NA,FALSE,"","ERROR - DataMap_Lotek.1000.1100.1250_InstantSensorData: Parsing file - No matches of 'CSV DATA' found in first 1000 lines of 1831PRESSURE.CSV, .self$throw_error(paste0(""Parsing file - No matches of '"", pattern, ""' found in first "", n, "" lines of "", tail(stringr::str_split(fp, .Platform$file.sep)[[1]], 1)))"
+" ¦       ¦   ¦--1832                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1847                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1851                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1869                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1870                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1903                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1911                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1958                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1968                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--1979                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--1987                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--2485                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2543                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2546                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2556                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2558                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2563                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2564                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2694                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2733                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--2996                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3048                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3287                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3298                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--3301                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3310                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--3315                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3316                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--3412                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--3415                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3426                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3876                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3885                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3890                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3894                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   ¦--3900                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3902                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3908                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3912                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3917                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3922                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3925                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3929                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3933                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3937                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3938                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3943                             ",NA,FALSE,"","ERROR - DataMap_Lotek.1000.1100.1250_InstantSensorData: Parsing file - No matches of 'CSV DATA' found in first 1000 lines of 3943PRESSURE.csv, .self$throw_error(paste0(""Parsing file - No matches of '"", pattern, ""' found in first "", n, "" lines of "", tail(stringr::str_split(fp, .Platform$file.sep)[[1]], 1)))"
+" ¦       ¦   ¦--3945                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3951                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3952                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3955                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3962                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3968                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3970                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3974                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--3999                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4000                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4001                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4003                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4004                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4007                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4011                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4014                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4023                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4026                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4030                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4038                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4043                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4046                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4050                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4051                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4060                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4061                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4066                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4067                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4077                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4079                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4086                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4096                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4097                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4099                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4108                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4126                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4168                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4169                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4171                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4180                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4190                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--4197                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦       ¦   ¦--5663                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--5712                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--5728                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦       ¦   ¦--6                                ",NA,FALSE,"","Matching decoders: 0"
+" ¦       ¦   °--ET 12_ LOTEK 1513                ",NA,FALSE,"","Matching decoders: 0"
+" ¦       °--Spiny Dogfish                        ",77.8,NA,NA,NA
+" ¦           ¦--0300                             ",NA,TRUE,"Decoder_Lotek.1400.1800",""
+" ¦           ¦--2353                             ",NA,TRUE,"Decoder_Lotek.1300",""
+" ¦           ¦--2862                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦           ¦--3938                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦           ¦--4140                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦           ¦--5294                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦           ¦--5363                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦           ¦--5392                             ",NA,TRUE,"Decoder_Lotek.1000.1100.1250",""
+" ¦           °--5663                             ",NA,FALSE,"","Matching decoders: 0"
+" ¦--Microwave Telemetry                          ",94.1,NA,NA,NA
+" ¦   °--X-Tag                                    ",94.1,NA,NA,NA
+" ¦       ¦--Lingcod                              ",100,NA,NA,NA
+" ¦       ¦   ¦--128305                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--128306                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--128307                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   °--128309                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦--Rougheye Rockfish                    ",100,NA,NA,NA
+" ¦       ¦   ¦--117230                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--118353                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--118361                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--118368                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--118375                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--128308                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--128310                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--128312                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   °--128319                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦--Sablefish                            ",100,NA,NA,NA
+" ¦       ¦   ¦--148402                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   ¦--148408                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       ¦   °--148410                           ",NA,TRUE,"Decoder_MicrowaveTelemetry_XTag",""
+" ¦       °--Spiny Dogfish                        ",0,NA,NA,NA
+" ¦           °--Tribuzio                         ",NA,FALSE,"","Matching decoders: 0"
+" ¦--Star Oddi                                    ",85.7,NA,NA,NA
+" ¦   ¦--DST magnetic                             ",71.4,NA,NA,NA
+" ¦   ¦   °--Sablefish                            ",71.4,NA,NA,NA
+" ¦   ¦       ¦--JS893                            ",NA,FALSE,"","Assigned data `input_field_dat_` must be compatible with existing data., , tp__$process(con), tp__$dir_tree__$Do(function(node) {
+    print(node$levelName)
+    if (node$isLeaf) {
+        .self$process_directory(node, con)
+    }
+}), Do(t, fun, ...), fun(node, ...), .self$process_directory(node, con), tryCatch({
+    dc$decode(con, overwrite = .self$overwrite)
+    data_directory$decoded = T
+    data_directory$identified_decoder = pos_id$name
+}, error = function(cond) {
+    data_directory$decode_error = cond
+}), tryCatchList(expr, classes, parentenv, handlers), tryCatchOne(expr, names, parentenv, handlers[[1]]), doTryCatch(return(expr), name, parentenv, handler), dc$decode(con, overwrite = .self$overwrite), DBI::dbWithTransaction(con, {
+    .self$upload_meta(con)
+    .self$decode_and_load_all_datamaps(con)
+}), DBI::dbWithTransaction(con, {
+    .self$upload_meta(con)
+    .self$decode_and_load_all_datamaps(con)
+}), .local(conn, code, ...), tryCatch({
+    res <- force(code)
+    call <- dbCommit(conn)
+    if (identical(call, FALSE)) {
+        stop(""Failed to commit transaction"", call. = FALSE)
+    }
+    res
+}, dbi_abort = rollback_because, error = rollback_because), tryCatchList(expr, classes, parentenv, handlers), tryCatchOne(tryCatchList(expr, names[-nh], parentenv, handlers[-nh]), names[nh], parentenv, handlers[[nh]]), doTryCatch(return(expr), name, parentenv, handler), tryCatchList(expr, names[-nh], parentenv, handlers[-nh]), tryCatchOne(expr, names, parentenv, handlers[[1]]), doTryCatch(return(expr), name, parentenv, handler), force(code), .self$decode_and_load_all_datamaps(con), .self$decode_datamap(dm), dm$transform(dat), .self$transform_fields(dat), `[<-`(`*tmp*`, output_field_obj_$name, value = `<[m]>`), `[<-.tbl_df`(`*tmp*`, output_field_obj_$name, value = `<[m]>`), tbl_subassign(x, i, j, value, i_arg, j_arg, substitute(value)), vectbl_recycle_rhs_rows(value, fast_nrow(xo), i_arg = NULL, value_arg, call), withCallingHandlers(for (j in seq_along(value)) {
+    if (!is.null(value[[j]])) {
+        value[[j]] <- vec_recycle(value[[j]], nrow)
+    }
+}, vctrs_error_recycle_incompatible_size = function(cnd) {
+    abort_assign_incompatible_size(nrow, value, j, i_arg, value_arg, cnd, call = call)
+}, vctrs_error_scalar_type = function(cnd) {
+    abort_assign_vector(value, j, value_arg, cnd, call = call)
+}), vec_recycle(value[[j]], nrow), stop_recycle_incompatible_size(x_size = 0, size = 333, x_arg = """", call = `<env>`), stop_vctrs(x_size = x_size, y_size = size, x_arg = x_arg, class = c(""vctrs_error_incompatible_size"", ""vctrs_error_recycle_incompatible_size""), call = call), abort(message, class = c(class, ""vctrs_error""), ..., call = call), 0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 10, 10, 12, 13, 14, 15, 16, 15, 18, 19, 13, 10, 22, 23, 24, 25, 25, 27, 28, 29, 29, 0, 32, 33, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, NA, NA, data.tree, NA, NA, base, base, base, base, NA, DBI, DBI, DBI, base, base, base, base, base, base, base, base, NA, NA, NA, NA, base, tibble, tibble, tibble, base, vctrs, vctrs, vctrs, rlang, NA, NA, ::, NA, NA, ::, local, local, local, NA, ::, ::, local, ::, local, local, local, local, local, local, ::, NA, NA, NA, NA, ::, :::, :::, :::, ::, ::, :::, :::, ::, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, 0, 333, , TRUE, vectbl_recycle_rhs_rows(value, fast_nrow(xo), i_arg = NULL, value_arg, call), 333, 0, 1, Existing data has 333 rows., Assigned data has 0 rows., Only vectors of size 1 are recycled., TRUE, `[<-`(`*tmp*`, output_field_obj_$name, value = numeric(0)), TRUE"
+" ¦   ¦       ¦--JS923                            ",NA,TRUE,"Decoder_StarOddi_DSTmagnetic",""
+" ¦   ¦       ¦--JS925                            ",NA,TRUE,"Decoder_StarOddi_DSTmagnetic",""
+" ¦   ¦       ¦--JS927                            ",NA,TRUE,"Decoder_StarOddi_DSTmagnetic",""
+" ¦   ¦       ¦--JS929                            ",NA,TRUE,"Decoder_StarOddi_DSTmagnetic",""
+" ¦   ¦       ¦--JS930                            ",NA,FALSE,"","Assigned data `input_field_dat_` must be compatible with existing data., , tp__$process(con), tp__$dir_tree__$Do(function(node) {
+    print(node$levelName)
+    if (node$isLeaf) {
+        .self$process_directory(node, con)
+    }
+}), Do(t, fun, ...), fun(node, ...), .self$process_directory(node, con), tryCatch({
+    dc$decode(con, overwrite = .self$overwrite)
+    data_directory$decoded = T
+    data_directory$identified_decoder = pos_id$name
+}, error = function(cond) {
+    data_directory$decode_error = cond
+}), tryCatchList(expr, classes, parentenv, handlers), tryCatchOne(expr, names, parentenv, handlers[[1]]), doTryCatch(return(expr), name, parentenv, handler), dc$decode(con, overwrite = .self$overwrite), DBI::dbWithTransaction(con, {
+    .self$upload_meta(con)
+    .self$decode_and_load_all_datamaps(con)
+}), DBI::dbWithTransaction(con, {
+    .self$upload_meta(con)
+    .self$decode_and_load_all_datamaps(con)
+}), .local(conn, code, ...), tryCatch({
+    res <- force(code)
+    call <- dbCommit(conn)
+    if (identical(call, FALSE)) {
+        stop(""Failed to commit transaction"", call. = FALSE)
+    }
+    res
+}, dbi_abort = rollback_because, error = rollback_because), tryCatchList(expr, classes, parentenv, handlers), tryCatchOne(tryCatchList(expr, names[-nh], parentenv, handlers[-nh]), names[nh], parentenv, handlers[[nh]]), doTryCatch(return(expr), name, parentenv, handler), tryCatchList(expr, names[-nh], parentenv, handlers[-nh]), tryCatchOne(expr, names, parentenv, handlers[[1]]), doTryCatch(return(expr), name, parentenv, handler), force(code), .self$decode_and_load_all_datamaps(con), .self$decode_datamap(dm), dm$transform(dat), .self$transform_fields(dat), `[<-`(`*tmp*`, output_field_obj_$name, value = `<[m]>`), `[<-.tbl_df`(`*tmp*`, output_field_obj_$name, value = `<[m]>`), tbl_subassign(x, i, j, value, i_arg, j_arg, substitute(value)), vectbl_recycle_rhs_rows(value, fast_nrow(xo), i_arg = NULL, value_arg, call), withCallingHandlers(for (j in seq_along(value)) {
+    if (!is.null(value[[j]])) {
+        value[[j]] <- vec_recycle(value[[j]], nrow)
+    }
+}, vctrs_error_recycle_incompatible_size = function(cnd) {
+    abort_assign_incompatible_size(nrow, value, j, i_arg, value_arg, cnd, call = call)
+}, vctrs_error_scalar_type = function(cnd) {
+    abort_assign_vector(value, j, value_arg, cnd, call = call)
+}), vec_recycle(value[[j]], nrow), stop_recycle_incompatible_size(x_size = 0, size = 4286, x_arg = """", call = `<env>`), stop_vctrs(x_size = x_size, y_size = size, x_arg = x_arg, class = c(""vctrs_error_incompatible_size"", ""vctrs_error_recycle_incompatible_size""), call = call), abort(message, class = c(class, ""vctrs_error""), ..., call = call), 0, 1, 2, 3, 4, 5, 6, 7, 8, 5, 10, 10, 12, 13, 14, 15, 16, 15, 18, 19, 13, 10, 22, 23, 24, 25, 25, 27, 28, 29, 29, 0, 32, 33, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, NA, NA, data.tree, NA, NA, base, base, base, base, NA, DBI, DBI, DBI, base, base, base, base, base, base, base, base, NA, NA, NA, NA, base, tibble, tibble, tibble, base, vctrs, vctrs, vctrs, rlang, NA, NA, ::, NA, NA, ::, local, local, local, NA, ::, ::, local, ::, local, local, local, local, local, local, ::, NA, NA, NA, NA, ::, :::, :::, :::, ::, ::, :::, :::, ::, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, 0, 4286, , TRUE, vectbl_recycle_rhs_rows(value, fast_nrow(xo), i_arg = NULL, value_arg, call), 4286, 0, 1, Existing data has 4286 rows., Assigned data has 0 rows., Only vectors of size 1 are recycled., TRUE, `[<-`(`*tmp*`, output_field_obj_$name, value = numeric(0)), TRUE"
+" ¦   ¦       °--JS932                            ",NA,TRUE,"Decoder_StarOddi_DSTmagnetic",""
+" ¦   ¦--DST milli-F                              ",100,NA,NA,NA
+" ¦   ¦   °--Sablefish                            ",100,NA,NA,NA
+" ¦   ¦       ¦--JS108                            ",NA,TRUE,"Decoder_StarOddi_DST",""
+" ¦   ¦       ¦--JS122                            ",NA,TRUE,"Decoder_StarOddi_DST",""
+" ¦   ¦       ¦--JS1229                           ",NA,TRUE,"Decoder_StarOddi_DST",""
+" ¦   ¦       ¦--JS142                            ",NA,TRUE,"Decoder_StarOddi_DST",""
+" ¦   ¦       ¦--JS43                             ",NA,TRUE,"Decoder_StarOddi_DST",""
+" ¦   ¦       °--JS47                             ",NA,TRUE,"Decoder_StarOddi_DST",""
+" ¦   °--DST                                      ",100,NA,NA,NA
+" ¦       °--Sablefish                            ",100,NA,NA,NA
+" ¦           °--JS7977                           ",NA,TRUE,"Decoder_StarOddi_DST",""
+" °--Wildlife Computers                           ",54.2,NA,NA,NA
+"     ¦--Benthic sPAT                             ",64.7,NA,NA,NA
+"     ¦   °--Sleeper Shark                        ",64.7,NA,NA,NA
+"     ¦       ¦--175146                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175147                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175148                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦       ¦--175149                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦       ¦--175150                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175151                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175152                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175153                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦       ¦--175155                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦       ¦--175156                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦       ¦--175157                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175158                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175159                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175160                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175161                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       ¦--175162                           ",NA,TRUE,"Decoder_WildlifeComputers_BenthicSPAT",""
+"     ¦       °--194847                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦--MiniPAT                                  ",33.3,NA,NA,NA
+"     ¦   ¦--Pacific cod                          ",0,NA,NA,NA
+"     ¦   ¦   ¦--Detailed data                    ",0,NA,NA,NA
+"     ¦   ¦   ¦   °--183968                       ",0,NA,NA,NA
+"     ¦   ¦   ¦       °--19P0582_tag_serial_number",NA,FALSE,"","Matching decoders: 0"
+"     ¦   ¦   °--Transmitted data                 ",0,NA,NA,NA
+"     ¦   ¦       °--183970                       ",NA,FALSE,"","Matching decoders: 0"
+"     ¦   ¦--Salmon Shark                         ",NA,FALSE,"","Matching decoders: 0"
+"     ¦   °--Sleeper Shark                        ",66.7,NA,NA,NA
+"     ¦       ¦--174897                           ",NA,FALSE,"","Matching decoders: 0"
+"     ¦       ¦--174898                           ",NA,TRUE,"Decoder_WildlifeComputers_MiniPAT",""
+"     ¦       °--174900                           ",NA,TRUE,"Decoder_WildlifeComputers_MiniPAT",""
+"     °--SPOT2                                    ",0,NA,NA,NA
+"         °--Salmon Shark                         ",NA,FALSE,"","Matching decoders: 0"
