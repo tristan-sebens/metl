@@ -372,7 +372,8 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
           Field(
             name = "Depth(m)",
             units = "m",
-            invert = T
+            # Initially recorded as negative depth. Invert the values
+            trans_fn = function(v) {return(v * -1)}
           ),
         LOCATION_TYPE_FIELD =
           Field(
@@ -456,7 +457,8 @@ STAR_ODDI_DST_FIELDS =
           Field(
             name = "Depth(m)",
             units = "m",
-            invert = T
+            # Initially recorded as negative depth. Invert the values
+            trans_fn = function(v) {return(v * -1)}
           ),
         TEMPERATURE_FIELD =
           Field(
@@ -479,7 +481,8 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
           Field(
             name = "Depth(m)",
             units = "m",
-            invert = T
+            # Initially recorded as negative depth. Invert the values
+            trans_fn = function(v) {return(v * -1)}
           ),
         TEMPERATURE_FIELD =
           Field(
@@ -649,6 +652,122 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
           )
       )
   )
+
+
+DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "date(dd/mm/yyy)/time"
+          ),
+        TAG_ID_FIELD =
+          Field(
+            name = "Tag SN"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "depth(m)",
+            units = 'm',
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "temp(deg C)",
+            units = "°C",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        MAGNETIC_STRENGTH_X_FIELD =
+          Field(
+            name = "magX(nT)",
+            units = "nT",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        MAGNETIC_STRENGTH_Y_FIELD =
+          Field(
+            name = "magY(nT)",
+            units = "nT",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        MAGNETIC_STRENGTH_Z_FIELD =
+          Field(
+            name = "magZ(nT)",
+            units = "nT",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        ACCELERATION_X_FIELD =
+          Field(
+            name = "accelX(G)",
+            units = "G",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        ACCELERATION_Y_FIELD =
+          Field(
+            name = "accelY(G)",
+            units = "G",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        ACCELERATION_Z_FIELD =
+          Field(
+            name = "accelZ(G)",
+            units = "G",
+            trans_fn = function(v) {return(as.numeric(v))}
+          ),
+        ACCELERATION_DELTA_MAGNITUDE_FIELD =
+          Field(
+            name = "accel delta mag(G)",
+            units = "G",
+            trans_fn = function(v) {return(as.numeric(v))}
+          )
+      )
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

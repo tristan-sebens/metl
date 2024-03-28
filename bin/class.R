@@ -26,20 +26,20 @@ Field =
         id_field = "logical", # Flag to indicate if this is a field used to identify unique records
         units = "character",
         data_type = "character", # Data type to be used for this field in the DB
-        invert = "logical" # Flag to indicate if the values of the field should be inverted (x*-1)
+        trans_fn = "function" # Function which will be applied to this field individually. Applied before all other transformations.
       ),
     methods =
       list(
         initialize =
           function(
-    ...,
-    invert = F,
-    alternate_names = list()
+            ...,
+            alternate_names = list(),
+            trans_fn = function(v) {v}
           ) {
             callSuper(
               ...,
-              invert = invert,
-              alternate_names = alternate_names
+              alternate_names = alternate_names,
+              trans_fn = trans_fn
             )
           }
       )
@@ -351,10 +351,8 @@ DataMap =
               # Isolate field data
               input_field_dat_ = .self$get_field_data(dat__, input_field_obj_)
 
-              # If needed, invert the field values
-              if(input_field_obj_$invert) {
-                input_field_dat_ = input_field_dat_ * -1
-              }
+              # Perform any specified pre-transformations
+              input_field_dat_ = input_field_obj_$trans_fn(input_field_dat_)
 
               # Make consideration for units
               if(!identical(output_field_obj_$units, character(0))) {
