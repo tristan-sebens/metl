@@ -345,10 +345,10 @@ Decoder_DesertStar_SeaTagMOD =
           function(
             ...,
             # Define data maps
-            # identifier =
-            #   Identifier_DesertStar_SeaTagMOD(),
-            # metadata_map =
-            #   DataMap_DesertStar_SeaTagMOD(),
+            identifier =
+                Identifier_DesertStar_SeaTagMOD(),
+            metadata_map =
+              DataMap_DesertStar_SeaTagMOD_TagMetaData(),
             data_maps =
               list(
                 DataMap_DesertStar_SeaTagMOD_InstantSensorData()

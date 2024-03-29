@@ -263,3 +263,21 @@ Identifier_WildlifeComputers_MiniPAT =
           }
       )
   )
+
+
+Identifier_DesertStar_SeaTagMOD =
+  setRefClass(
+    "Identifier_DesertStar_SeaTagMOD",
+    contains = "Identifier",
+    methods =
+      list(
+        identify =
+          function(d) {
+            .self$check_for_files(
+              d,
+              "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv",
+              n = length(list.files(d))
+            )
+          }
+      )
+  )

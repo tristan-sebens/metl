@@ -22,7 +22,7 @@ con =
 tp__ = 
   .self = 
   TagProcessor(
-    d = here::here('data', 'test'),
+    d = here::here('data', 'DesertStar'),
     overwrite = T
   )
 

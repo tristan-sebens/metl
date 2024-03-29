@@ -39,6 +39,15 @@ md_dat %>%
 ```
 
 
+```{r}
+Identifier_DesertStar_SeaTagMOD()$identify(ds_d)
+
+fs = list.files(ds_d)
+fs_patt = list.files(ds_d, pattern = "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv", ignore.case = T)
+
+```
+
+
 
 ```{r}
 d = here::here('data', 'Desert Star', 'SeaTag MOD', 'Sablefish')
