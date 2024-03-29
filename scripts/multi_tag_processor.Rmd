@@ -22,7 +22,7 @@ con =
 tp__ = 
   .self = 
   TagProcessor(
-    d = here::here('data'),
+    d = here::here('data', 'test'),
     overwrite = T
   )
 
@@ -34,8 +34,8 @@ report =
 
 report
 
-report %>% 
-  write.csv(here::here('doc', 'Processing Reports', 'all_decode_report.csv'), row.names = F)
+# report %>% 
+#   write.csv(here::here('doc', 'Processing Reports', 'all_decode_report.csv'), row.names = F)
 ```
 
 

@@ -371,7 +371,7 @@ lt1300_md_dm = DataMap_Lotek.1300_TagMetaData()
 
 lt1300_md_dm$extract(d)
 
-dm = DataMap_Lotek.1300()
+dm = DataMap_Lotek.1300_InstantSensorData()
 
 dc_1300 = 
   Decoder_Lotek.1300(
@@ -380,37 +380,23 @@ dc_1300 =
 
 dat = dm$extract(d)
 
-dc_1300$decode(con)
+dat_t = dm$transform(dat)
+
+dm$input_data_field_map$field_list$TIMESTAMP_FIELD$trans_fn
+
+length(dat$TimeS)
 
 
-fps = list.files(d, pattern = "Regular Log")
-# CHECK ONE AND ONLY ONE FILE
-fp = file.path(d, fps[[1]])
-
-read.csv(fp)
-
-length(fps)
-
-dc_1300 = 
-  Decoder_Lotek.1300(
-    d = template_tag_d_lat_1300,
-    tag_make = "Lotek",
-    tag_model = "LAT_1300",
-    input_data_field_map = LOTEK_1300_FIELDS
+data.frame(
+  dt1 = dat$TimeS[c(1:10, 10000: 10010, 100000:100010)]
+) %>% 
+  dplyr::mutate(
+    dt2 = 
+      lubridate::parse_date_time(
+        dt1,
+        c("%d/%m/%Y %H:%M","%H:%M:%S %d/%m/%y"),
+      )
   )
-
-
-dat_1300__ = dc_1300$extract()
-
-dat_1300_t__ = 
-  dc_1300$transform(
-    dat_1300__,
-    output_data_field_map = TAG_DATA_FIELDS,
-    tag_meta_field_map = TAG_FIELDS
-  )
-
-dat_1300_t__ %>% 
-  drop_na()
 ```
 
 

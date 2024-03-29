@@ -1,28 +1,29 @@
 ```{r}
 wc_d = here::here('data', 'Wildlife Computers')
 ```
+
 MiniPAT
 ```{r}
 wc_mp_template_d = file.path(wc_d, 'MiniPAT', 'Pacific cod', 'Transmitted data', '183970')
 
-.self = 
-  list(
-    d = wc_mp_template_d,
-    input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS
-  )
-
 wc_mp_inst_dm_ = 
-  DataMap_WildlifeComputer_MiniPAT_InstantSensorData()
+  DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
 
-wc_mp_inst_dm_$transform(
-  wc_mp_inst_dm_$extract(d)
-)
+dat = 
+  wc_mp_inst_dm_$extract(wc_mp_template_d)
+
+dat_t = 
+  wc_mp_inst_dm_$transform(
+    dat
+  )
 
 wc_mp_summ_dm_ = 
   DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
 
 wc_mp_summ_dm_$transform(
-  wc_mp_summ_dm_$extract(d)
+  wc_mp_summ_dm_$extract(
+    d = wc_mp_template_d
+  )
 )
 
 wc_mp_dc_ = 
@@ -50,19 +51,8 @@ Benthic sPAT
 ```{r}
 wc_bs_template_d = file.path(wc_d, 'Benthic sPAT', 'Sleeper Shark', '175150')
 
-d = wc_bs_template_d
-
-.self = 
-  list(
-    d = wc_bs_template_d,
-    input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS
-  )
-
-
 wc_bs_dm_ =
-  DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
-
-wc_bs_dm_$input_data_field_map$field_list
+  DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData()
 
 dat = 
   wc_bs_dm_$extract(wc_bs_template_d)
@@ -70,6 +60,12 @@ dat =
 dat_t = 
   wc_bs_dm_$transform(dat)
 
+
+wc_bs_dm_$input_data_field_map$field_list$START_TIME_FIELD$trans_fn(dat$Start)
+```
+
+
+```{r}
 dat =
   read.csv(
     list.files(
