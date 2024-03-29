@@ -660,7 +660,8 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "date(dd/mm/yyy)/time"
+            name = "date(dd/mm/yyy)/time",
+            trans_fn = function(v) {as.POSIXct(v, format = "%m/%d/%Y %H:%M")}
           ),
         TAG_ID_FIELD =
           Field(

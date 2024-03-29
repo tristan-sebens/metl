@@ -1161,8 +1161,216 @@ DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
   )
 
 
+#' Base class for tag metadata DataMaps for DesertStar tags
+#'
+#' @inheritParams DataMap
+DataMap_DesertStar_TagMetaData =
+  setRefClass(
+    "DataMap_DesertStar_TagMetaData",
+    contains = "DataMap_TagMetaData_Base",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            make <<- "Desert Star"
+          }
+      )
+  )
 
 
+DataMap_DesertStar_SeaTagMOD =
+  setRefClass(
+    "DataMap_DesertStar_SeaTagMOD",
+    methods =
+      list(
+        # In a list of strings, find the index(es) of the string(s) that match
+        # the given pattern
+        find_pattern_in_list =
+          function(lines_, pattern_) {
+            which(
+              !is.na(
+                stringr::str_match(
+                  lines_,
+                  pattern=pattern_
+                )
+              )
+            )
+          },
+
+        # Extract the subset of strings in a list of strings based on a pattern
+        # which marks the start of the subset and (optionally) a pattern which
+        # marks the end of the subset.
+        subset_list_by_pattern =
+          function(
+            lines_,
+            start_pattern,
+            end_pattern=NULL,
+            include_start = 0,
+            include_end = 0
+          ) {
+            lines_[
+              seq(
+                .self$find_pattern_in_list(lines_, start_pattern) + (1-include_start),
+                ifelse(
+                  is.null(end_pattern),
+                  length(lines_),
+                  .self$find_pattern_in_list(lines_, end_pattern) -(1-include_end)
+                )
+              )
+            ]
+          },
+
+        # Parse the DesertStar file and extract the packet header definitions
+        extract_packet_headers =
+          function(
+            fp,
+            start_pattern = "Packet definitions",
+            end_pattern = "Beginning of log"
+          ) {
+            # Get the raw lines of the file which define the packet structure
+            packet_defs_raw =
+              .self$subset_list_by_pattern(
+                readLines(fp),
+                start_pattern, # "Packet definitions",
+                end_pattern #"Beginning of log"
+              )
+
+            # Construct list of packet field name headers
+            packet_defs = list()
+            for (e in packet_defs_raw) {
+              e_ =
+                strsplit(
+                  e,
+                  split = ','
+                ) %>%
+                unlist()
+
+              # Extract packet name
+              name =
+                e_[[1]]
+              # Extract packet field names
+              values =
+                Filter(
+                  function(i) {i != ""},
+                  e_[seq(2, length(e_))]
+                )
+
+              packet_defs[name] = list(values)
+            }
+
+            return(packet_defs)
+          },
+
+        # Extract all packets of a given type from a directory.
+        # Returned as a single data.frame
+        extract_packet_type_from_dir =
+          function(d, packet_name) {
+            fs =
+              list.files(
+                d,
+                full.names = T,
+                pattern = ".*\\.csv$",
+                ignore.case = T
+              )
+
+            dat =
+              fs %>%
+              lapply(
+                function(fp) {
+                  pkts =
+                    extract_packet_dataframes(fp)
+
+                  return(pkts[[packet_name]])
+                }
+              ) %>%
+              do.call(rbind, .)
+
+            return(dat)
+          }
+      )
+  )
+
+
+DataMap_DesertStar_SeaTagMOD_TagMetaData =
+  setRefClass(
+    "DataMap_DesertStar_SeaTagMOD_TagMetaData",
+    contains =
+      c(
+        "DataMap_DesertStar_SeaTagMOD",
+        "DataMap_DesertStar_TagMetaData"
+      ),
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "SeaTag MOD"
+          },
+
+        #' Identify Tag ID from available metadata
+        #'
+        #' @return The tag ID identified from the files, as a string
+        get_tag_id =
+          function(d) {
+            # We'll have to look through a couple of packets
+            packet.tag_id.map =
+              list(
+                "SDPT_MODSN2" = "Tag SN"
+                # "SDPT_MODDAILY" = "tag serial number",
+                # "SDPT_MODENG" = "tag serial number"
+              )
+
+            ids =
+              packet.tag_id.map %>%
+              names %>%
+              lapply(
+                function(p) {
+                  df = extract_packet_type_from_dir(d, p)
+
+                  return(df[[packet.tag_id.map[[p]]]])
+                }
+              ) %>%
+              unlist() %>%
+              unique() %>%
+              Filter(
+                function(id) {!id == ""},
+                .
+              )
+
+            return(ids)
+          }
+      )
+  )
+
+
+DataMap_DesertStar_SeaTagMOD_InstantSensorData =
+  setRefClass(
+    "DataMap_DesertStar_SeaTagMOD_InstantSensorData",
+    contains =
+      c(
+        "DataMap_InstantSensorData_Base",
+        "DataMap_DesertStar_SeaTagMOD"
+      ),
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(input_data_field_map = DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS, ...)
+          },
+
+        extract =
+          function(d) {
+            dat =
+              .self$extract_packet_type_from_dir(
+                d = d,
+                packet_name = "SDPT_MODSN2"
+              )
+
+            return(dat)
+          }
+      )
+  )
 
 
 

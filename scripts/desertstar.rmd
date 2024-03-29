@@ -1,0 +1,423 @@
+
+```{r}
+ds_d = here::here('data', 'Desert Star', 'SeaTag MOD', 'Sablefish')
+
+ds_dm_ = 
+  .self = 
+  DataMap_DesertStar_SeaTagMOD_InstantSensorData()
+
+dat = 
+  ds_dm_$extract(ds_d)
+
+dat_t = 
+  ds_dm_$transform(dat)
+
+ds_mddm_ = 
+  DataMap_DesertStar_SeaTagMOD_TagMetaData()
+
+md_dat = 
+  ds_mddm_$extract(ds_d)
+
+md_dat
+
+
+
+dat_t %>% 
+  dplyr::pull(tag_id) %>% 
+  unique() %>% 
+  as.numeric %>% 
+  sort ==
+
+md_dat %>% 
+  dplyr::pull(tag_id) %>% 
+  unique() %>% 
+  as.numeric %>% 
+  sort
+
+
+
+```
+
+
+
+```{r}
+d = here::here('data', 'Desert Star', 'SeaTag MOD', 'Sablefish')
+dir.exists(d)
+
+
+fs = list.files(d, full.names = T)
+fs_names = list.files(d, full.names = F)
+
+# Find the file with the most lines in it
+fp = (
+  data.frame(
+    fs = fs
+  ) %>% 
+  dplyr::rowwise() %>% 
+  dplyr::mutate(
+    n = length(readLines(fs))
+  ) %>% 
+  dplyr::arrange(desc(n)) %>% 
+  dplyr::pull(fs)
+)[[1]]
+```
+
+Helper functions
+```{r}
+find_pattern_in_list = 
+  function(lines_, pattern_) {
+    which(
+      !is.na(
+        stringr::str_match(
+          lines_, 
+          pattern=pattern_
+        )
+      )
+    )
+  }
+  
+subset_list_by_pattern = 
+  function(lines_, start_pattern, end_pattern=NULL, include_start = 0, include_end = 0) {
+    lines_[
+      seq(
+        find_pattern_in_list(lines_, start_pattern) + (1-include_start),
+        ifelse(
+          is.null(end_pattern),
+          length(lines_),
+          find_pattern_in_list(lines_, end_pattern) -(1-include_end)
+        )
+      )
+    ]
+  }
+
+
+# Parse the DesertStar file and extract the packet header definitions
+extract_packet_headers = 
+  function(fp) {
+    # Get the raw lines of the file which define the packet structure
+    packet_defs_raw = 
+      subset_list_by_pattern(
+        readLines(fp), 
+        "Packet definitions",
+        "Beginning of log"
+      )
+  
+    # Construct list of packet field name headers
+    packet_defs = list()
+    for (e in packet_defs_raw) {
+      e_ =
+        strsplit(
+          e,
+          split = ','
+        ) %>% 
+        unlist()
+      
+      # Extract packet name
+      name = 
+        e_[[1]]
+      # Extract packet field names
+      values = 
+        Filter(
+          function(i) {i != ""},
+          e_[seq(2, length(e_))]
+        )
+      
+      packet_defs[name] = list(values)
+    }
+    
+    return(packet_defs)
+  }
+
+
+#' Parse a DesertStar, and extract the packet records within.
+#' Data is returned as a collection of dataframe, each of which contains all of 
+#' the records of a single packet type found in the data file. Each dataframe is 
+#' also structured according to the 'Packet Definition' records found within the 
+#' data file
+#'
+#' @param fp 
+#'
+#' @return
+extract_packet_dataframes = 
+  function(fp) {
+    packet_defs = extract_packet_headers(fp)
+          
+    df_raw = 
+      subset_list_by_pattern(
+        readLines(fp),
+        start_pattern = "Beginning of log"
+      ) %>% 
+      data.frame('raw' = .)
+    
+    df_packet = 
+      df_raw %>% 
+      dplyr::rowwise() %>% 
+      dplyr::mutate(
+        packet = unlist(strsplit(raw, ','))[[1]]
+      ) %>% 
+      dplyr::ungroup() %>% 
+      dplyr::filter(
+        stringr::str_detect(
+          packet,
+          "SDPT_"
+        )
+      ) %>% 
+      dplyr::select(packet, raw)
+    
+    
+    df_packet_list = list() 
+    
+    suppressWarnings(
+      {
+        df_packet %>% 
+        dplyr::group_by(packet) %>% 
+        dplyr::group_split(.keep = T) %>% 
+        lapply(
+          function(df) {
+            # Get the packet type
+            name = df$packet[[1]]
+            # Build the dataframe
+            value = 
+              df$raw %>% 
+              # Split each raw line into separate fields
+              lapply(
+                function(l) {
+                  return(strsplit(l, split=',')[[1]])
+                }
+              ) %>% 
+              # Bind the split values into a matrix
+              do.call(rbind, .) %>% 
+              # Convert to dataframe
+              as.data.frame() %>% 
+              # Set column names based on packet definition
+              magrittr::set_colnames(c("Packet Type", packet_defs[[df$packet[[1]]]])) %>% 
+              # Drop empty columns
+              dplyr::select(., names(.)[!is.na(names(.))])
+            
+            df_packet_list[[name]] <<- value
+          }
+        )
+      }
+    )
+    
+    return(df_packet_list)
+  }
+
+
+extract_packet_type_from_dir = 
+  function(d, packet_name) {
+    fs = 
+      list.files(
+        d, 
+        full.names = T,
+        pattern = ".*\\.csv$",
+        ignore.case = T
+      )
+    
+    dat = 
+      fs %>% 
+      lapply(
+        function(fp) {
+          pkts = 
+            extract_packet_dataframes(fp)
+          
+          return(pkts[[packet_name]])
+        }
+      ) %>% 
+      do.call(rbind, .)
+  }
+```
+
+Some of the files appear to have been reorganized (post-processing). Lets see how many
+```{r}
+reorg_ixs = 
+  fs[-1] %>% 
+  lapply(
+    extract_packet_headers
+  ) %>% 
+  lapply(
+    function(l) {
+      return(!"SDPT_ARGOS" %in% names(l))
+    }
+  ) %>% 
+  unlist() %>% 
+  which()
+
+reorg_fs = 
+  fs[-1][reorg_ixs]
+
+reorg_fs %>% 
+  lapply(
+    function(fp) {
+      file.rename(
+        fp, 
+        file.path(
+          dirname(fp),
+          'reorg',
+          stringr::str_replace(fp, paste0(dirname(fp), .Platform$file.sep), '')
+        )
+      )
+    }
+  )
+
+length(reorg_fs)/length(fs)
+
+stringr::str_replace(fp, paste0(dirname(fp), .Platform$file.sep), '')
+```
+Only about 12%. We'll focus on the standard ones for now, circle back to the non-standard ones.
+
+
+```{r}
+# Subset the files to only those files which are unaltered 
+fs_ = fs[-reorg_ixs]
+
+reorg_ixs_ = 
+  fs_ %>% 
+  lapply(
+    extract_packet_headers
+  ) %>% 
+  lapply(
+    function(l) {
+      return(!"SDPT_ARGOS" %in% names(l))
+    }
+  ) %>% 
+  unlist() %>% 
+  which()
+
+if(!identical(reorg_ixs_, integer(0))) stop("Reorganized files still present in filtered list")
+```
+
+```{r}
+packets = 
+  fs_ %>% 
+  lapply(
+    function(fp) {
+      pkts = 
+        extract_packet_dataframes(fp)
+      return(names(pkts))
+    }
+  )
+
+packets %>% 
+  unlist() %>% 
+  unique()
+
+packets %>% 
+  lapply(
+    function(p) {
+      return(
+        "SDPT_MODSN2" %in% p &
+        "SDPT_MODSNS" %in% p
+      )
+    }
+  ) %>% 
+  unlist() %>% which
+```
+
+Get tag IDs present in directory
+```{r}
+# We'll have to look through a couple of packets
+packet.tag_id.map = 
+  list(
+    "SDPT_MODSN2" = "Tag SN",
+    "SDPT_MODDAILY" = "tag serial number",
+    "SDPT_MODENG" = "tag serial number"
+  )
+
+ids = 
+  packet.tag_id.map %>% 
+  names %>% 
+  lapply(
+    function(p) {
+      df = extract_packet_type_from_dir(d, p)
+      
+      return(df[[packet.tag_id.map[[p]]]])
+    }
+  ) %>% 
+  unlist() %>% 
+  unique()
+
+
+
+```
+
+
+```{r}
+
+
+dat = 
+  extract_packet_type_from_dir(
+    d, 
+    packet_name = "SDPT_MODSN2"
+  )
+
+
+
+
+
+```
+
+
+```{r}
+packet_dfs =
+  extract_packet_dataframes(fs_[[24]])
+
+packet_dfs$SDPT_MODSN2$`Tag SN` %>% unique
+
+packet_dfs$SDPT_MODENG$`tag serial number` %>% unique
+
+plyr::rbind.fill(
+  packet_dfs$SDPT_MODDAILY,
+  packet_dfs$SDPT_MODENG
+)
+
+packet_dfs[c(2,3)] %>% 
+  lapply(names)
+```
+
+
+```{r}
+packet_dfs$SDPT_ARGOS
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

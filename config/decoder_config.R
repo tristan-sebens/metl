@@ -244,19 +244,11 @@ Decoder_StarOddi_DSTmagnetic =
 Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DSTmagnetic)
 #----
 
-Decoder_Wildlife_Computers =
+Decoder_WildlifeComputers =
   #----
   setRefClass(
     "Decoder_WildlifeComputers",
-    contains = "Decoder_Base",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            callSuper(...)
-            make <<- "Wildlife Computers"
-          }
-      )
+    contains = "Decoder_Base"
   )
 #----
 
@@ -330,6 +322,50 @@ Decoder_WildlifeComputers_BenthicSPAT =
   )
 
 Decoder_MasterList = append(Decoder_MasterList, Decoder_WildlifeComputers_BenthicSPAT)
+#----
+
+
+Decoder_DesertStar =
+  #----
+setRefClass(
+  "Decoder_DesertStar",
+  contains = "Decoder_Base"
+)
+
+
+Decoder_DesertStar_SeaTagMOD =
+  #----
+  setRefClass(
+    "Decoder_DesertStar_SeaTagMOD",
+    # The DST milli F decoder is identical in function to the DST
+    contains = "Decoder_DesertStar",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            # Define data maps
+            # identifier =
+            #   Identifier_DesertStar_SeaTagMOD(),
+            # metadata_map =
+            #   DataMap_DesertStar_SeaTagMOD(),
+            data_maps =
+              list(
+                DataMap_DesertStar_SeaTagMOD_InstantSensorData()
+              )
+          ) {
+            # Initialize the child class
+            callSuper(
+              ...,
+              identifier = identifier,
+              metadata_map = metadata_map,
+              data_maps = data_maps
+            )
+          }
+      )
+  )
+
+Decoder_MasterList = append(Decoder_MasterList, Decoder_DesertStar_SeaTagMOD)
 #----
 
 
