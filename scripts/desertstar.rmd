@@ -60,6 +60,10 @@ fp = (
   dplyr::arrange(desc(n)) %>% 
   dplyr::pull(fs)
 )[[1]]
+
+df_packet
+
+df_packet_list
 ```
 
 Helper functions

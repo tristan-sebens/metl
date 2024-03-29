@@ -1154,6 +1154,83 @@ DataMap_DesertStar_SeaTagMOD =
             return(packet_defs)
           },
 
+        #' Parse a DesertStar, and extract the packet records within.
+        #' Data is returned as a collection of dataframe, each of which contains all of
+        #' the records of a single packet type found in the data file. Each dataframe is
+        #' also structured according to the 'Packet Definition' records found within the
+        #' data file
+        #'
+        #' @param fp
+        #'
+        #' @return
+        extract_packet_dataframes =
+          function(fp) {
+            # Extract the raw packet data from the file
+            packet_defs = .self$extract_packet_headers(fp)
+
+            df_raw =
+              .self$subset_list_by_pattern(
+                readLines(fp),
+                start_pattern = "Beginning of log"
+              ) %>%
+              data.frame('raw' = .)
+
+            # Organize the raw data into a dataframe, containing the name of the
+            # packet, and the raw data string
+            df_packet =
+              df_raw %>%
+              dplyr::rowwise() %>%
+              dplyr::mutate(
+                packet = unlist(strsplit(raw, ','))[[1]]
+              ) %>%
+              dplyr::ungroup() %>%
+              dplyr::filter(
+                stringr::str_detect(
+                  packet,
+                  "SDPT_"
+                )
+              ) %>%
+              dplyr::select(packet, raw)
+
+            # Initialize an empty list which we will use to collect our results
+            df_packet_list = list()
+
+            suppressWarnings(
+              {
+                df_packet %>%
+                  dplyr::group_by(packet) %>%
+                  dplyr::group_split(.keep = T) %>%
+                  lapply(
+                    function(df) {
+                      # Get the packet type
+                      name = df$packet[[1]]
+                      # Build the dataframe
+                      value =
+                        df$raw %>%
+                        # Split each raw line into separate fields
+                        lapply(
+                          function(l) {
+                            return(strsplit(l, split=',')[[1]])
+                          }
+                        ) %>%
+                        # Bind the split values into a matrix
+                        do.call(rbind, .) %>%
+                        # Convert to dataframe
+                        as.data.frame() %>%
+                        # Set column names based on packet definition
+                        magrittr::set_colnames(c("Packet Type", packet_defs[[df$packet[[1]]]])) %>%
+                        # Drop empty columns
+                        dplyr::select(., names(.)[!is.na(names(.))])
+
+                      df_packet_list[[name]] <<- value
+                    }
+                  )
+              }
+            )
+
+            return(df_packet_list)
+          },
+
         # Extract all packets of a given type from a directory.
         # Returned as a single data.frame
         extract_packet_type_from_dir =
