@@ -1,47 +1,4 @@
 #----------------
-# HELPER FUNCTIONS
-#----------------
-
-#' Helper function for calculating POSIXct timestamps. Able to handle multiple
-#' possible formats.
-#'
-#' If multiple formats are provided, it is implicitly assumed that each row will
-#' match only one of the provided formats. If a timestamp matches more than one
-#' passed format, the output will be meaningless
-#'
-#' @param ts_dat The raw timestamp data, of unknown format or of multiple formats
-#' @param formats The format string(s) to use ot
-#'
-#' @return The values of ts_dat, reformatted into POSIXct timestamps
-POSIXct_format =
-  function(ts_dat, formats) {
-    res =
-      # Apply every conversion format to the timestamp field.
-      # Produces a list of vectors, each the result of applying one of the formats
-      formats %>%
-      lapply(
-        function(format) {
-          as.POSIXct(ts_dat, format=format, tz="UTC")
-        }
-      )
-
-    ret =
-      # Condense this list of columns into a data.frame
-      as.data.frame(do.call(cbind, res)) %>%
-      # Unite the values. This implicitly assumes there is only one non-NA
-      # value in each row
-      tidyr::unite(col = "ts", na.rm = T) %>%
-      # Unite returns the united columns as character strings
-      # Re-convert to POSIXct
-      dplyr::pull(ts) %>%
-      as.numeric() %>%
-      as.POSIXct(tz = "UTC")
-
-    return(ret)
-  }
-
-
-#----------------
 # TAG TABLE FIELDS
 #----------------
 TAG_METADATA_TABLE_FIELDS =
@@ -334,10 +291,10 @@ LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
               function(v, ...) {
                 # For some reason, the timestamps can come in one of two formats
                 # which OF COURSE are INTERMIXED with one another
-                POSIXct_format(
-                  ts_dat =
+                lubridate::parse_date_time(
+                  x =
                     v,
-                  format =
+                  orders =
                     c(
                       "%m/%d/%Y %H:%M",
                       "%Y/%m/%d %H:%M:%S"
@@ -371,10 +328,10 @@ LOTEK_1300_FIELDS =
               function(v, ...) {
                 # For some reason, the timestamps can come in one of two formats
                 # which OF COURSE are INTERMIXED with one another
-                POSIXct_format(
-                  ts_dat =
+                lubridate::parse_date_time(
+                  x =
                     v,
-                  format =
+                  orders =
                     c(
                       "%d/%m/%Y %H:%M",
                       "%H:%M:%S %d/%m/%y"
@@ -646,7 +603,15 @@ WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS =
           ),
         TIMESTAMP_FIELD =
           Field(
-            name = "Datetime"
+            name = "Datetime",
+            trans_fn =
+              function(v, dat)
+              {
+                 as.POSIXct(
+                   paste0(dat$Day, dat$Time),
+                   format = "%d-%b-%Y %H:%M:%S"
+                 )
+              }
           ),
         DEPTH_FIELD =
           Field(
@@ -669,12 +634,20 @@ WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
         START_TIME_FIELD =
           Field(
             name = "Start",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            trans_fn =
+              function(v, ...) {
+                as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
+              }
           ),
         END_TIME_FIELD =
           Field(
             name = "End",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            trans_fn =
+              function(v, ...) {
+                as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
+              }
           ),
         MIN_DEPTH_FIELD =
           Field(
@@ -705,7 +678,11 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "Date"
+            name = "Date",
+            trans_fn =
+              function(v, ...) {
+                as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
+              }
           ),
         LATITUDE_FIELD =
           Field(
@@ -742,12 +719,20 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
         START_TIME_FIELD =
           Field(
             name = "Start",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            trans_fn =
+              function(v, ...) {
+                as.POSIXct(v, format = "%m/%d/%Y %H:%M")
+              }
           ),
         END_TIME_FIELD =
           Field(
             name = "End",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            trans_fn =
+              function(v, ...) {
+                as.POSIXct(v, format = "%m/%d/%Y %H:%M")
+              }
           ),
         UPRIGHT_FIELD =
           Field(
@@ -770,7 +755,10 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
         TIMESTAMP_FIELD =
           Field(
             name = "date(dd/mm/yyy)/time",
-            trans_fn = function(v, ...) {as.POSIXct(v, format = "%m/%d/%Y %H:%M")}
+            trans_fn =
+              function(v, ...) {
+                as.POSIXct(v, format = "%m/%d/%Y %H:%M")
+              }
           ),
         TAG_ID_FIELD =
           Field(

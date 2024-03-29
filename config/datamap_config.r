@@ -853,17 +853,6 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
             dat =
               read.csv(file.path(d, fn))
 
-            # Convert the timestamp fields to POSIXct
-            dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] =
-              as.POSIXct(
-                paste0(
-                  dat[[.self$input_data_field_map$field_list$DAY_FIELD$name]],
-                  " ",
-                  dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
-                ),
-                format = "%d-%b-%Y %H:%M:%S"
-              )
-
             return(dat)
           }
       )
@@ -903,25 +892,25 @@ DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
                   full.names = T
                 )
               )
-
-            # Identify the field names of the start and end timestamp fields
-            start_time_fn =
-              .self$input_data_field_map$field_list$START_TIME_FIELD$name
-            end_time_fn =
-              .self$input_data_field_map$field_list$END_TIME_FIELD$name
-
-            # Format timestamps to POSIXct
-            dat[start_time_fn] =
-              as.POSIXct(
-                dat[[start_time_fn]],
-                format = "%H:%M:%S %d-%b-%Y"
-              )
-
-            dat[end_time_fn] =
-              as.POSIXct(
-                dat[[end_time_fn]],
-                format = "%H:%M:%S %d-%b-%Y"
-              )
+#
+#             # Identify the field names of the start and end timestamp fields
+#             start_time_fn =
+#               .self$input_data_field_map$field_list$START_TIME_FIELD$name
+#             end_time_fn =
+#               .self$input_data_field_map$field_list$END_TIME_FIELD$name
+#
+#             # Format timestamps to POSIXct
+#             dat[start_time_fn] =
+#               as.POSIXct(
+#                 dat[[start_time_fn]],
+#                 format = "%H:%M:%S %d-%b-%Y"
+#               )
+#
+#             dat[end_time_fn] =
+#               as.POSIXct(
+#                 dat[[end_time_fn]],
+#                 format = "%H:%M:%S %d-%b-%Y"
+#               )
 
             return(dat)
           }
@@ -1039,24 +1028,24 @@ DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
                 )
               )
 
-            # Identify the field names of the start and end timestamp fields
-            start_time_fn =
-              .self$input_data_field_map$field_list$START_TIME_FIELD$name
-            end_time_fn =
-              .self$input_data_field_map$field_list$END_TIME_FIELD$name
-
-            # Format timestamps to POSIXct
-            dat[start_time_fn] =
-              as.POSIXct(
-                dat[[start_time_fn]],
-                format = "%m/%d/%Y %H:%M"
-              )
-
-            dat[end_time_fn] =
-              as.POSIXct(
-                dat[[end_time_fn]],
-                format = "%m/%d/%Y %H:%M"
-              )
+#             # Identify the field names of the start and end timestamp fields
+#             start_time_fn =
+#               .self$input_data_field_map$field_list$START_TIME_FIELD$name
+#             end_time_fn =
+#               .self$input_data_field_map$field_list$END_TIME_FIELD$name
+#
+#             # Format timestamps to POSIXct
+#             dat[start_time_fn] =
+#               as.POSIXct(
+#                 dat[[start_time_fn]],
+#                 format = "%m/%d/%Y %H:%M"
+#               )
+#
+#             dat[end_time_fn] =
+#               as.POSIXct(
+#                 dat[[end_time_fn]],
+#                 format = "%m/%d/%Y %H:%M"
+#               )
 
             return(dat)
           }
