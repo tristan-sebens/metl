@@ -13,15 +13,18 @@ mt_dc__ =
 
 mt_dc__$decode(con)
 
-MicrowaveTelemetry_XTag_TagMetaData()$extract(d)
+mt_dm__ = DataMap_MicrowaveTelemetry_XTag_InstantSensorData()
+mt_sdm__ = DataMap_MicrowaveTelemetry_XTag_SummarySensorData()
 
-mt_dm__ = mt_dc__$data_maps[[1]]
+dat = mt_dm__$extract(d)
+dat = mt_sdm__$extract(d)
 
-mt_dm__$input_data_field_map
+dat_t = mt_sdm__$transform(dat)
 
-units::valid_udunits() %>% 
-  dplyr::arrange(name_singular)
+dat_t %>% 
+  dplyr::filter(!is.na(latitude) | !is.na(longitude))
 ```
+
 
 ```{r}
 fs = list.files(.self$d, pattern = "\\.txt$", full.names = T)

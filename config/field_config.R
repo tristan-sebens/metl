@@ -459,7 +459,8 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
           ),
         LOCATION_TYPE_FIELD =
           Field(
-            name = "Location Type"
+            name = "Location Type",
+            trans_fn = function(v, ...) {return(LOCATION_TYPE__SATELLITE)}
           ),
         LATITUDE_FIELD =
           Field(
@@ -471,11 +472,13 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
           ),
         DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim Dives"
+            name = "Δ Lim Dives",
+            trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           ),
         DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim Ascents"
+            name = "Δ Lim Ascents",
+            trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           ),
         TEMPERATURE_FIELD =
           Field(
@@ -484,11 +487,13 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
           ),
         TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim +Temp"
+            name = "Δ Lim +Temp",
+            trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           ),
         TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "Δ Lim -Temp"
+            name = "Δ Lim -Temp",
+            trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           )
       )
   )
@@ -497,21 +502,33 @@ MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        DATE_FIELD =
+        # DATE_FIELD =
+        #   Field(
+        #     name = "Date"
+        #   ),
+        # START_TIME_FIELD =
+        #   Field(
+        #     name = "Start"
+        #   ),
+        START_TIME_FIELD =
           Field(
             name = "Date"
           ),
-        START_TIME_FIELD =
-          Field(
-            name = "Start"
-          ),
         END_TIME_FIELD =
           Field(
-            name = "End"
+            name = "End",
+            trans_fn =
+              function(v, dat, ...) {
+                timechange::time_add(
+                  dat[['Date']],
+                  hour = 23, minute = 59, second = 59
+                )
+              }
           ),
         LOCATION_TYPE_FIELD =
           Field(
-            name = "Location Type"
+            name = "Location Type",
+            trans_fn = function(v, ...) {return(LOCATION_TYPE__LIGHT_BASED_GEOLOCATION)}
           ),
         LATITUDE_FIELD =
           Field(

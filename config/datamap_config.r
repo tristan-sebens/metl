@@ -536,9 +536,6 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
                 sheet = "Argos Data",
                 col_range = c("A", "D")
               )
-            # Mark location data type as 'satellite'
-            argos_loc_dat[.self$input_data_field_map$field_list$LOCATION_TYPE_FIELD$name] =
-              LOCATION_TYPE__SATELLITE
 
             dat =
               merge(
@@ -557,20 +554,6 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
                 all.x = T,
                 all.y = T
               )
-
-            # Convert each of the flag fields to bit flags
-            for (
-              field
-              in
-              c(
-                .self$input_data_field_map$field_list$DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD$name,
-                .self$input_data_field_map$field_list$DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD$name,
-                .self$input_data_field_map$field_list$TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD$name,
-                .self$input_data_field_map$field_list$TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD$name
-              )
-            ) {
-              dat[field] = ifelse(!is.na(dat[[field]]), 1, dat[[field]])
-            }
 
             return(dat)
           }
@@ -614,20 +597,6 @@ DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
               ) %>%
               # Drop any rows which don't actually have location data
               tidyr::drop_na()
-
-            # Mark location data type as 'light-based geolocation'
-            light_geoloc_dat[.self$input_data_field_map$field_list$LOCATION_TYPE_FIELD$name] =
-              LOCATION_TYPE__LIGHT_BASED_GEOLOCATION
-
-            # Convert simple date format to start and end time format
-            light_geoloc_dat[.self$input_data_field_map$field_list$START_TIME_FIELD$name] =
-              light_geoloc_dat[.self$input_data_field_map$field_list$DATE_FIELD$name]
-
-            light_geoloc_dat[.self$input_data_field_map$field_list$END_TIME_FIELD$name] =
-              timechange::time_add(
-                light_geoloc_dat[[.self$input_data_field_map$field_list$DATE_FIELD$name]],
-                hour = 23, minute = 59, second = 59
-              )
 
             return(light_geoloc_dat)
           }
