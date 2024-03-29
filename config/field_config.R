@@ -550,7 +550,12 @@ STAR_ODDI_DST_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "Date & Time"
+            name = "Date & Time",
+            # Excel datestamps are recorded as days from a unique origin
+            # The reason for this is actually quite interesting, and has to do
+            # with backwards compatibility with data from an application known
+            # as 'Lotus 123'
+            trans_fn = function(v, ...) {return(as.POSIXct(as.Date(v, origin = "1899-12-30")))}
           ),
         DEPTH_FIELD =
           Field(
@@ -574,7 +579,12 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "Date & Time"
+            name = "Date & Time",
+            # Excel datestamps are recorded as days from a unique origin
+            # The reason for this is actually quite interesting, and has to do
+            # with backwards compatibility with data from an application known
+            # as 'Lotus 123'
+            trans_fn = function(v, ...) {return(as.POSIXct(as.Date(v, origin = "1899-12-30")))}
           ),
         DEPTH_FIELD =
           Field(

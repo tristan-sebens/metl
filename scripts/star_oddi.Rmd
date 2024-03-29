@@ -10,6 +10,9 @@ so_dstmf_d = file.path(so_d, 'DST milli-F', 'Sablefish', 'JS122')
 d = file.path(so_d, "DST magnetic", "Sablefish", "JS923")
 d = file.path(so_d, "DST milli-F", "Sablefish", "JS108")
 
+
+fs = list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+
 fp = list.files(d, full.names = T, pattern = "^JS\\d\\d\\d\\.xlsx$")
 
 TagIdentifier()$identify_tag_decoder(d)
@@ -17,9 +20,8 @@ TagIdentifier()$identify_tag_decoder(d)
 
 fp = list.files(d, full.names = T)[[2]]
 
-dm_ = 
-  .self = 
-  DataMap_StarOddi_DSTmagnetic_InstantSensorData()
+dm_ = DataMap_StarOddi_DSTmagnetic_InstantSensorData()
+dm_ = DataMap_StarOddi_DST_InstantSensorData()
 
 id_ = 
   .self = 
@@ -30,8 +32,6 @@ Identifier_StarOddi_DSTmagnetic()$identify(d)
 
 
 dat = 
-  dat_ =
-  dat__ = 
   dm_$extract(d)
 
 dat_t = 
@@ -46,6 +46,29 @@ suppressMessages(
   class
 )
 ```
+
+```{r}
+dat2 = 
+  readxl::read_xlsx(
+  fp,
+  sheet = "DAT"
+)
+
+data.frame(
+  dat2 = dat2$`Date & Time`,
+  dat1 = dat$`Date & Time`
+) %>% 
+  dplyr::mutate(
+    date = as.POSIXct(as.Date(dat2, origin = "1899-12-30"))
+  )
+
+as.POSIXct()
+
+
+
+lubridate::hour(date__)
+```
+
 
 
 

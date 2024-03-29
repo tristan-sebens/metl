@@ -684,13 +684,12 @@ DataMap_StarOddi_DST_InstantSensorData =
               # readxl throws up a warning every time we convert a number to a datetime
               # printing all of those warnings takes FOREVER
               # so instead we just tell it to shut up
-              suppressWarnings(
+              suppressMessages(
                 {
                   # Read the tag data in from the datasheet
                   readxl::read_xlsx(
                     fp,
-                    sheet = "DAT",
-                    col_types = c("date", "numeric", "numeric")
+                    sheet = "DAT"
                   )
                 }
               )
@@ -748,25 +747,12 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
             fp = fs[[1]]
 
             dat_ =
-              # readxl throws up a warning every time we convert a number to a datetime
-              # printing all of those warnings takes FOREVER
-              # so instead we just tell it to shut up
-              suppressWarnings(
-                classes = c("warning", "message"),
+              suppressMessages(
                 {
                   # Read the tag data in from the datasheet
                   readxl::read_xlsx(
                     fp,
-                    sheet = "DAT",
-                    col_types =
-                      c(
-                        "date",
-                        rep(
-                          "numeric",
-                          # Read in the sheet to find out how many columns there are
-                          ncol(readxl::read_xlsx(fp, sheet = "DAT")) - 1
-                        )
-                      )
+                    sheet = "DAT"
                   )
                 }
               )
