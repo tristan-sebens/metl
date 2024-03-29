@@ -187,20 +187,6 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                       .self$get_data_file_path(d, pattern = pattern) %>%
                       .self$read_csv_lotek_1000.1100.1250()
 
-                    ts_field =
-                      .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name
-
-                    # Once again, for reasons outside understanding, there are
-                    # multiple formats for the timestamp field we must account for
-                    dat[ts_field] =
-                      .self$POSIXct_format(
-                        ts_dat =
-                          dat[[ts_field]],
-                        format =
-                          c("%m/%d/%Y %H:%M", "%Y/%m/%d %H:%M:%S")
-
-                      )
-
                     return(dat)
                   }
               ) %>%
@@ -216,14 +202,6 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                     return(x)
                   }
               )
-
-            # # Convert timestamp field to POSIXct
-            # dat[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name] =
-            #   as.POSIXct(
-            #     dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]],
-            #     format = "%Y/%m/%d %H:%M:%S",
-            #     tz = "UTC"
-            #   )
 
             return(dat)
           }
@@ -296,25 +274,6 @@ DataMap_Lotek.1300_InstantSensorData =
 
             # Read data from the data file
             dat = read.csv(file.path(d, fps[[1]]))
-
-            # Get the timestamp field name
-            ts_fieldname = .self$input_data_field_map$field_list$TIMESTAMP_FIELD$name
-
-            # For some reason the timestamps in these data files can come in one of two
-            #  formats. It escapes my why this might be the case, but here we are.
-            #  To accommodate this, we apply two different POSIX formats, and for each
-            #  record take the one that works
-            ts_1 = as.POSIXct(dat[[ts_fieldname]], format = "%d/%m/%Y %H:%M", tz = "UTC")
-            ts_2 = as.POSIXct(dat[[ts_fieldname]], format = "%H:%M:%S %d/%m/%y", tz="UTC")
-
-            dat[[ts_fieldname]] =
-              as.POSIXct(
-                ifelse(
-                  is.na(ts_2),
-                  ts_1,
-                  ts_2
-                )
-              )
 
             return(dat)
           }
@@ -419,17 +378,6 @@ DataMap_Lotek.1400.1800_InstantSensorData =
 
             # Read in data
             dat = read_csv_lotek_1400.1800(fps[[1]])
-
-            # Convert datetime field to POSIXct
-            dat[[.self$input_data_field_map$field_list$TIMESTAMP_FIELD$name]] =
-              as.POSIXct(
-                paste(
-                  dat[[.self$input_data_field_map$field_list$DATE_FIELD$name]],
-                  dat[[.self$input_data_field_map$field_list$TIME_FIELD$name]]
-                ),
-                format = "%m/%d/%Y %H:%M:%S",
-                tz = "UTC"
-              )
 
             return(dat)
           }

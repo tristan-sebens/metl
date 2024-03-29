@@ -34,7 +34,7 @@ Field =
           function(
             ...,
             alternate_names = list(),
-            trans_fn = function(v) {v}
+            trans_fn = function(v, ...) {v}
           ) {
             callSuper(
               ...,
@@ -261,57 +261,6 @@ DataMap =
             return(which(matches)[[1]])
           },
 
-        #' Helper function for calculating POSIXct timestamps. Able to handle multiple
-        #' possible formats.
-        #'
-        #' If multiple formats are provided, it is implicitly assumed that each row will
-        #' match only one of the provided formats. If a timestamp matches more than one
-        #' passed format, the output will be meaningless
-        #'
-        #' @param ts_dat The raw timestamp data, of unknown format or of multiple formats
-        #' @param formats The format string(s) to use ot
-        #'
-        #' @return
-        #' @export
-        #'
-        #' @examples
-        POSIXct_format =
-          function(ts_dat, formats) {
-            res =
-              # Apply every conversion format to the timestamp field.
-              # Produces a list of vectors, each the result of applying one of the formats
-              formats %>%
-              lapply(
-                function(format) {
-                  as.POSIXct(ts_dat, format=format, tz="UTC")
-                }
-              )
-
-            ret =
-              # Condense this list of columns into a data.frame
-              as.data.frame(do.call(cbind, res)) %>%
-              # Unite the values. This implicitly assumes there is only one non-NA
-              # value in each row
-              tidyr::unite(col = "ts", na.rm = T) %>%
-              # Unite returns the united columns as character strings
-              # Re-convert to POSIXct
-              dplyr::pull(ts) %>%
-              as.numeric() %>%
-              as.POSIXct(tz = "UTC")
-
-            return(ret)
-          },
-
-        #' Convert the date time data contained in the dataframe to POSIXct format
-        #' Default behavior is to assume that the datetime field is already in
-        #' POSIXct. If this is not the case, then the method should be overridden
-        #'
-        #' @return The input dataframe with the newly formatted POSIXct timestamp
-        convert_datetime_to_posix_ct =
-          function(dat) {
-            return(dat)
-          },
-
         get_field_data =
           function(dat__, input_field_obj_) {
             if(input_field_obj_$name %in% names(dat__)) {
@@ -343,7 +292,6 @@ DataMap =
               )
 
             for (field_ in common_fields) {
-              # for (field_ in names(.self$input_data_field_map$field_list)) {
               # Identify relevant input/output field objects
               input_field_obj_ = .self$input_data_field_map$field_list[[field_]]
               output_field_obj_ = .self$output_data_field_map$field_list[[field_]]
@@ -352,7 +300,11 @@ DataMap =
               input_field_dat_ = .self$get_field_data(dat__, input_field_obj_)
 
               # Perform any specified pre-transformations
-              input_field_dat_ = input_field_obj_$trans_fn(input_field_dat_)
+              input_field_dat_ =
+                input_field_obj_$trans_fn(
+                  v = input_field_dat_,
+                  dat = dat__
+                )
 
               # Make consideration for units
               if(!identical(output_field_obj_$units, character(0))) {
@@ -381,11 +333,9 @@ DataMap =
                   # Select the fields from the output field map that have
                   # corresponding entries in the input field map
                   .self$output_data_field_map$field_list[common_fields],
-                  function(f) {
-                    f$name
-                  }
+                  function(f) {f$name}
                 ) %>%
-                  unlist(use.names = F)
+                unlist(use.names = F)
               ]
             )
           },

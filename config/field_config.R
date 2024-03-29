@@ -1,4 +1,47 @@
 #----------------
+# HELPER FUNCTIONS
+#----------------
+
+#' Helper function for calculating POSIXct timestamps. Able to handle multiple
+#' possible formats.
+#'
+#' If multiple formats are provided, it is implicitly assumed that each row will
+#' match only one of the provided formats. If a timestamp matches more than one
+#' passed format, the output will be meaningless
+#'
+#' @param ts_dat The raw timestamp data, of unknown format or of multiple formats
+#' @param formats The format string(s) to use ot
+#'
+#' @return The values of ts_dat, reformatted into POSIXct timestamps
+POSIXct_format =
+  function(ts_dat, formats) {
+    res =
+      # Apply every conversion format to the timestamp field.
+      # Produces a list of vectors, each the result of applying one of the formats
+      formats %>%
+      lapply(
+        function(format) {
+          as.POSIXct(ts_dat, format=format, tz="UTC")
+        }
+      )
+
+    ret =
+      # Condense this list of columns into a data.frame
+      as.data.frame(do.call(cbind, res)) %>%
+      # Unite the values. This implicitly assumes there is only one non-NA
+      # value in each row
+      tidyr::unite(col = "ts", na.rm = T) %>%
+      # Unite returns the united columns as character strings
+      # Re-convert to POSIXct
+      dplyr::pull(ts) %>%
+      as.numeric() %>%
+      as.POSIXct(tz = "UTC")
+
+    return(ret)
+  }
+
+
+#----------------
 # TAG TABLE FIELDS
 #----------------
 TAG_METADATA_TABLE_FIELDS =
@@ -286,7 +329,21 @@ LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "Time"
+            name = "Time",
+            trans_fn =
+              function(v, ...) {
+                # For some reason, the timestamps can come in one of two formats
+                # which OF COURSE are INTERMIXED with one another
+                POSIXct_format(
+                  ts_dat =
+                    v,
+                  format =
+                    c(
+                      "%m/%d/%Y %H:%M",
+                      "%Y/%m/%d %H:%M:%S"
+                    )
+                )
+              }
           ),
         PRESSURE_FIELD =
           Field(
@@ -309,7 +366,21 @@ LOTEK_1300_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "TimeS"
+            name = "TimeS",
+            trans_fn =
+              function(v, ...) {
+                # For some reason, the timestamps can come in one of two formats
+                # which OF COURSE are INTERMIXED with one another
+                POSIXct_format(
+                  ts_dat =
+                    v,
+                  format =
+                    c(
+                      "%d/%m/%Y %H:%M",
+                      "%H:%M:%S %d/%m/%y"
+                    )
+                )
+              }
           ),
         PRESSURE_FIELD =
           Field(
@@ -338,7 +409,18 @@ LOTEK_1400.1800_FIELDS =
           ),
         TIMESTAMP_FIELD =
           Field(
-            name = "Datetime"
+            name = "Datetime",
+            trans_fn =
+              function(v, dat) {
+                as.POSIXct(
+                  paste(
+                    dat[["Date"]],
+                    dat[["Time"]]
+                  ),
+                  format = "%m/%d/%Y %H:%M:%S",
+                  tz = "UTC"
+                )
+              }
           ),
         PRESSURE_FIELD =
           Field(
@@ -373,7 +455,7 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
             name = "Depth(m)",
             units = "m",
             # Initially recorded as negative depth. Invert the values
-            trans_fn = function(v) {return(v * -1)}
+            trans_fn = function(v, ...) {return(v * -1)}
           ),
         LOCATION_TYPE_FIELD =
           Field(
@@ -458,7 +540,7 @@ STAR_ODDI_DST_FIELDS =
             name = "Depth(m)",
             units = "m",
             # Initially recorded as negative depth. Invert the values
-            trans_fn = function(v) {return(v * -1)}
+            trans_fn = function(v, ...) {return(v * -1)}
           ),
         TEMPERATURE_FIELD =
           Field(
@@ -482,7 +564,7 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
             name = "Depth(m)",
             units = "m",
             # Initially recorded as negative depth. Invert the values
-            trans_fn = function(v) {return(v * -1)}
+            trans_fn = function(v, ...) {return(v * -1)}
           ),
         TEMPERATURE_FIELD =
           Field(
@@ -661,7 +743,7 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
         TIMESTAMP_FIELD =
           Field(
             name = "date(dd/mm/yyy)/time",
-            trans_fn = function(v) {as.POSIXct(v, format = "%m/%d/%Y %H:%M")}
+            trans_fn = function(v, ...) {as.POSIXct(v, format = "%m/%d/%Y %H:%M")}
           ),
         TAG_ID_FIELD =
           Field(
@@ -671,55 +753,55 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
           Field(
             name = "depth(m)",
             units = 'm',
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         TEMPERATURE_FIELD =
           Field(
             name = "temp(deg C)",
             units = "°C",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         MAGNETIC_STRENGTH_X_FIELD =
           Field(
             name = "magX(nT)",
             units = "nT",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         MAGNETIC_STRENGTH_Y_FIELD =
           Field(
             name = "magY(nT)",
             units = "nT",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         MAGNETIC_STRENGTH_Z_FIELD =
           Field(
             name = "magZ(nT)",
             units = "nT",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_X_FIELD =
           Field(
             name = "accelX(G)",
             units = "G",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_Y_FIELD =
           Field(
             name = "accelY(G)",
             units = "G",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_Z_FIELD =
           Field(
             name = "accelZ(G)",
             units = "G",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_DELTA_MAGNITUDE_FIELD =
           Field(
             name = "accel delta mag(G)",
             units = "G",
-            trans_fn = function(v) {return(as.numeric(v))}
+            trans_fn = function(v, ...) {return(as.numeric(v))}
           )
       )
   )
