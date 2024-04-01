@@ -1,9 +1,0 @@
-$(document).ready(function(){if($('.dt-picker').length){$('.dt-picker').each(function(){if($(this).attr('data-dt-picker-format')==='undefined')
-jFrmt='MM/DD/YYYY';else
-jFrmt=$(this).attr('data-dt-picker-format');$(this).datetimepicker({format:jFrmt});});}
-if($('.dt-pickerMY').length){$('.dt-picker').each(function(){$(this).datetimepicker({format:"MMM YYYY",startView:"year",minViewMode:"months"});});}
-if($('#colorsection  .color-box').length){$('#colorsection  .color-box').click(function(e){e.preventDefault();jActive=$(this).attr('data-color-active');$('#inactiveWarning').hide('slow');jClrCss=$(this).attr('data-color-class');jClrTxt=$(this).attr('data-color-text');jClrID=$(this).attr('data-color-id');if(jActive==1){$('#colorSwatch').show();$('#colorsection  .color-box').each(function(){if($(this).hasClass('active'))
-$(this).removeClass('active');});$(this).addClass('active');$('#ProductColorID').val(jClrID);jSlctdClrCss=$('#colorsection .color-swatch-lg').attr('data-color-class');$('#colorsection .color-swatch-lg').removeClass(jSlctdClrCss).addClass(jClrCss).attr('data-color-class',jClrCss);$('#colortext').html(jClrTxt);}
-else{$('#inactiveWarning').html('Not available in '+jClrTxt);$('#inactiveWarning').show('slow');}});}
-if($('.form-group .showhidecode').length){$('.form-group .showhidecode').click(function(e){e.preventDefault();jTrgtD=$(this).attr('target-data-id');if($('#'+jTrgtD).attr('type')=='password'){$('#'+jTrgtD).attr('type','text');$('span',this).html('Hide Characters');}
-else{$('#'+jTrgtD).attr('type','password');$('span',this).html('Show Characters');}});}});
