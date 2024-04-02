@@ -24,6 +24,15 @@ Implements some basic reporting to aid in diagnosing systemic decoding issues
 \item{\code{overwrite}}{Boolean flag. If set to TRUE, the TagProcessor will check if a tag is already present in the tag metadata table, and will not process the tag if it is.}
 }}
 
+\section{Methods}{
+
+\describe{
+\item{\code{build_report()}}{Builds a report (data.frame) detailing the current state of the data directory}
+
+\item{\code{process(con, overwrite = T)}}{Recursively process a directory tree, attempting to process each directory.}
+
+\item{\code{process_node(node, con, overwrite = T)}}{Attempt to process directory `d`. TagProcessor will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data.}
+}}
 
 \examples{
 data_directory = here::here() # Root data directory

@@ -1,6 +1,9 @@
 # Identifier classes for each tag type
 
 
+#' Identifier - Lotek 1000/1100/1250 tags
+#'
+#' @export
 Identifier_Lotek_1000.1100.1250 =
   setRefClass(
     "Identifier_Lotek_1000.1100.1250",
@@ -21,7 +24,9 @@ Identifier_Lotek_1000.1100.1250 =
       )
   )
 
-
+#' Identifier - Lotek 1300 tags
+#'
+#' @export
 Identifier_Lotek_1300 =
   setRefClass(
     "Identifier_Lotek_1300",
@@ -39,7 +44,9 @@ Identifier_Lotek_1300 =
       )
   )
 
-
+#' Identifier - Lotek 1400/1800 tags
+#'
+#' @export
 Identifier_Lotek_1400.1800 =
   setRefClass(
     "Identifier_Lotek_1400.1800",
@@ -55,7 +62,9 @@ Identifier_Lotek_1400.1800 =
       )
   )
 
-
+#' Identifier - Microwave Telemetry X-tags
+#'
+#' @export
 Identifier_MicrowaveTelemetry_XTag =
   setRefClass(
     "Identifier_MicrowaveTelemetry_XTag",
@@ -74,8 +83,9 @@ Identifier_MicrowaveTelemetry_XTag =
   )
 
 
-# Base class for StarOddi Identifier objects. Used to help standardize
-# checking for specific fields in the excel files
+#' Identifier - StarOddi tags - base class
+#'
+#' @export
 Identifier_StarOddi =
   setRefClass(
     "Identifier_StarOddi",
@@ -113,7 +123,9 @@ Identifier_StarOddi =
       )
   )
 
-
+#' Identifier - StarOddi DST tags
+#'
+#' @export
 Identifier_StarOddi_DST =
   setRefClass(
     "Identifier_StarOddi_DST",
@@ -152,7 +164,9 @@ Identifier_StarOddi_DST =
       )
   )
 
-
+#' Identifier - StarOddi DST magnetic tags
+#'
+#' @export
 Identifier_StarOddi_DSTmagnetic =
   setRefClass(
     "Identifier_StarOddi_DSTmagnetic",
@@ -183,8 +197,9 @@ Identifier_StarOddi_DSTmagnetic =
       )
   )
 
-# Base class for WC tags. Used because so far all WC tag data files follow the same
-#  naming format, so this class implements a helper function to identify those files.
+#' Identifier - Wildlife Computer tags
+#'
+#' @export
 Identifier_WildlifeComputers =
   setRefClass(
     "Identifier_WildlifeComputers",
@@ -204,7 +219,9 @@ Identifier_WildlifeComputers =
       )
   )
 
-
+#' Identifier - Wildlife Computer Benthic sPAT tags
+#'
+#' @export
 Identifier_WildlifeComputers_BenthicSPAT =
   setRefClass(
     "Identifier_WildlifeComputers_BenthicSPAT",
@@ -233,7 +250,9 @@ Identifier_WildlifeComputers_BenthicSPAT =
       )
   )
 
-
+#' Identifier - Wildlife Computer MiniPAT tags
+#'
+#' @export
 Identifier_WildlifeComputers_MiniPAT =
   setRefClass(
     "Identifier_WildlifeComputers_MiniPAT",
@@ -264,7 +283,9 @@ Identifier_WildlifeComputers_MiniPAT =
       )
   )
 
-
+#' Identifier - Desert Star SeaTag MOD tags
+#'
+#' @export
 Identifier_DesertStar_SeaTagMOD =
   setRefClass(
     "Identifier_DesertStar_SeaTagMOD",

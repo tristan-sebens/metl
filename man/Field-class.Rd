@@ -13,9 +13,15 @@ Field class. Represents a single data field and its key metadata for future
 \describe{
 \item{\code{name}}{character. The name of the field}
 
+\item{\code{alternate_names}}{list. Optional. Alternative names for the field.}
+
 \item{\code{units}}{character. The SI units of the field}
 
 \item{\code{data_type}}{character. The data type of this field in a DB}
+
+\item{\code{id_field}}{logical. If set to TRUE this field will be used to identify unique records}
+
+\item{\code{trans_fn}}{function. Applied to the data vector associated with this Field immediately prior to standard transformation of units and fieldnames. MUST be of the form function(v, ...) {\if{html}{\out{<transformation here>}}}. Must return a data vector. If necessary, other fields can be accessed within the function by modifying the parameter signature to function(v, dat, ...) {\if{html}{\out{<transformation here>}}}, where dat will contain the unstransformed data.frame}
 }}
 
 

@@ -4,8 +4,8 @@
 \name{Decoder_Base-class}
 \alias{Decoder_Base-class}
 \alias{Decoder_Base}
-\title{Base implementation for all Decoder classes}
+\title{Decoder - base class}
 \description{
-Base implementation for all Decoder classes
+Decoder - base class
 }
 

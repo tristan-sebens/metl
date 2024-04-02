@@ -48,9 +48,9 @@ DataMap_TagMetaData_Base =
   )
 
 
-DataMap_InstantSensorData_Base =
 #' DataMap - Instant sensor data - base class
 #' @export
+DataMap_InstantSensorData_Base =
   setRefClass(
     "DataMap_InstantSensorData_Base",
     contains = "DataMap",
@@ -94,38 +94,6 @@ DataMap_Lotek_TagMetaData =
       )
   )
 
-#' DataMap - Lotek 1000/1100/1250 tag metadata
-#' @export
-DataMap_Lotek.1000.1100.1250_TagMetaData =
-  setRefClass(
-    "DataMap_Lotek.1000.1100.1250_TagMetaData",
-    contains = "DataMap_Lotek_TagMetaData",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            callSuper(...)
-            model <<- "1000/1100/1250"
-          },
-
-        tag_id_from_filename =
-          function(fp) {
-            stringr::str_match(fp, pattern = "^(\\d\\d\\d\\d)*")[2]
-          },
-
-        get_tag_id =
-          function(d) {
-            .self$tag_id_from_filename(
-              list.files(
-                d,
-                pattern = "^.*csv$",
-                ignore.case = T
-              )[[1]]
-            )
-          }
-      )
-  )
-
 
 #' DataMap - Base map for Lotek instant sensor data
 #' @export
@@ -163,6 +131,39 @@ DataMap_Lotek_InstantSensorData =
           }
       )
   )
+
+#' DataMap - Lotek 1000/1100/1250 tag metadata
+#' @export
+DataMap_Lotek.1000.1100.1250_TagMetaData =
+  setRefClass(
+    "DataMap_Lotek.1000.1100.1250_TagMetaData",
+    contains = "DataMap_Lotek_TagMetaData",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+            model <<- "1000/1100/1250"
+          },
+
+        tag_id_from_filename =
+          function(fp) {
+            stringr::str_match(fp, pattern = "^(\\d\\d\\d\\d)*")[2]
+          },
+
+        get_tag_id =
+          function(d) {
+            .self$tag_id_from_filename(
+              list.files(
+                d,
+                pattern = "^.*csv$",
+                ignore.case = T
+              )[[1]]
+            )
+          }
+      )
+  )
+
 
 #' DataMap for the Lotek 1000/1100/1250 tags
 #' @export
@@ -361,7 +362,13 @@ DataMap_Lotek.1400.1800_InstantSensorData =
         extract =
           function(d) {
             # Retrieve the csv data file
-            fps = list.files(d, pattern = "^.*\\.csv", ignore.case = T)
+            fps =
+              list.files(
+                d,
+                pattern = "^.*\\.csv",
+                ignore.case = T,
+                full.names = T
+              )
             # There should be only one csv file. If there are more, we don't know
             # which one to use.
             if (length(fps) > 1) {
@@ -562,12 +569,6 @@ DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
             callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # All of the temperature and pressure data is extracted from the .xls file
@@ -898,7 +899,7 @@ DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
             callSuper(input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
+        # Extract tag data from passed directory
         extract =
           function(d) {
             # Read in the raw data
@@ -933,7 +934,7 @@ DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
             callSuper(input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
+        # Extract tag data from passed directory
         extract =
           function(d) {
             # Read in the raw data
@@ -1053,11 +1054,11 @@ DataMap_DesertStar_SeaTagMOD =
             return(packet_defs)
           },
 
-        #' Parse a DesertStar, and extract the packet records within.
-        #' Data is returned as a collection of dataframe, each of which contains all of
-        #' the records of a single packet type found in the data file. Each dataframe is
-        #' also structured according to the 'Packet Definition' records found within the
-        #' data file
+        # Parse a DesertStar, and extract the packet records within.
+        # Data is returned as a collection of dataframe, each of which contains all of
+        # the records of a single packet type found in the data file. Each dataframe is
+        # also structured according to the 'Packet Definition' records found within the
+        # data file
         extract_packet_dataframes =
           function(fp) {
             # Extract the raw packet data from the file
@@ -1173,9 +1174,7 @@ DataMap_DesertStar_SeaTagMOD_TagMetaData =
             model <<- "SeaTag MOD"
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @return The tag ID identified from the files, as a string
+        # Identify Tag ID from available metadata
         get_tag_id =
           function(d) {
             # We'll have to look through a couple of packets

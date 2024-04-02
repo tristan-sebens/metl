@@ -1,9 +1,10 @@
-# Start the Decoder_MasterList, which will be used to map incoming data to the appropriate Decoder object by make/ model
+# Decoder_MasterList
+# Used to map data directories to the appropriate Decoder object
 Decoder_MasterList =
   list()
 
-#' Base implementation for all Decoder classes
-#'
+#' Decoder - base class
+#' @export
 Decoder_Base =
   #----
   setRefClass(
@@ -13,7 +14,6 @@ Decoder_Base =
 #----
 
 #' Base implementation for all Lotek tag Decoders
-#'
 Decoder_Lotek =
   #----
   setRefClass(
@@ -124,7 +124,6 @@ Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1400.1800)
 #----
 
 #' Base implementation for all Microwave Telemetry tag Decoders
-#'
 Decoder_MicrowaveTelemetry =
   #----
   setRefClass(

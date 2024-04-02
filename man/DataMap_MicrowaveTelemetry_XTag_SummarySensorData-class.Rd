@@ -5,13 +5,6 @@
 \alias{DataMap_MicrowaveTelemetry_XTag_SummarySensorData-class}
 \alias{DataMap_MicrowaveTelemetry_XTag_SummarySensorData}
 \title{Datamap - Microwave Telemetry X-tag summary sensor data}
-\arguments{
-\item{d}{The directory in which the tag data resides. Directory is
-expected to contain only files which relate to one common tag.}
-}
-\value{
-The data contained in the tag data as a single dataframe
-}
 \description{
 Datamap - Microwave Telemetry X-tag summary sensor data
 }

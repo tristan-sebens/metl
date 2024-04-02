@@ -10,13 +10,16 @@
 setOldClass("Node")
 
 
+#' Field class. Represents a single data field and its key metadata for future
+#`  reference, including field name, units, and DB data type.
+#'
+#' @field name character. The name of the field
+#' @field alternate_names list. Optional. Alternative names for the field.
+#' @field units character. The SI units of the field
+#' @field data_type character. The data type of this field in a DB
+#' @field id_field logical. If set to TRUE this field will be used to identify unique records
+#' @field trans_fn function. Applied to the data vector associated with this Field immediately prior to standard transformation of units and fieldnames. MUST be of the form function(v, ...) {<transformation here>}. Must return a data vector. If necessary, other fields can be accessed within the function by modifying the parameter signature to function(v, dat, ...) {<transformation here>}, where dat will contain the unstransformed data.frame
 Field =
-  #' Field class. Represents a single data field and its key metadata for future
-  #`  reference, including field name, units, and DB data type.
-  #'
-  #' @field name character. The name of the field
-  #' @field units character. The SI units of the field
-  #' @field data_type character. The data type of this field in a DB
   setRefClass(
     "Field",
     fields =
@@ -46,12 +49,12 @@ Field =
   )
 
 
-FieldMap =
   #' FieldMap class. Collection of Field objects, with some added functionality
   #' to facilitate the convenient use of said Field objects both within the package
   #' and when interfacing with a DB
   #'
   #' @field fields Field. The Field objects contained within this map/
+FieldMap =
   setRefClass(
     "FieldMap",
     fields =
@@ -63,9 +66,7 @@ FieldMap =
       ),
     methods =
       list(
-        #' Generate a field data type list, in the format expected by the DBI package
-        #'
-        #' @return A named list. Names are the field names, values are the data types
+        # Generate a field data type list, in the format expected by the DBI package
         generate_data_type_list =
           function() {
             .self$field_list %>%
@@ -80,27 +81,26 @@ FieldMap =
               )
           },
 
-        #' Helper function which generates a list of the Fields shared by this
-        #' FieldMap and the given FieldMap
-        #'
-        #' @return Named list of the shared Field objects
+        # Helper function which generates a list of the Fields shared by this
+        # FieldMap and the given FieldMap
         common_fields =
           function(fm) {
+            "Generates a list of the Fields shared by this FieldMap and the given FieldMap"
             .self$field_list[names(.self$field_list) %in% names(fm$field_list)]
           },
 
-        #' Helper function which generates a list of the Fields NOT shared by this
-        #' FieldMap and the given FieldMap
-        #'
-        #' @return Named list of the Field objects present in this FieldMap but not in the passed FieldMap
+        # Helper function which generates a list of the Fields NOT shared by this
+        # FieldMap and the given FieldMap
         uncommon_fields =
           function(fm) {
+            "Generate a list of the Fields NOT shared by this FieldMap and the given FieldMap"
             .self$field_list[!names(.self$field_list) %in% names(fm$field_list)]
           },
 
         # Return the subset of Fields in this FieldMap that are marked as ID fields
         get_id_fields =
           function() {
+            "Return the subset of Fields in this FieldMap that are marked as ID fields"
             Filter(
               function(f) {f$id_field},
               .self$field_list
@@ -110,6 +110,7 @@ FieldMap =
         # Get the names of the ID fields in this FieldMap
         get_id_field_names =
           function() {
+            "Get the names of the ID fields in this FieldMap"
             .self$get_id_fields() %>%
               lapply(
                 function(f) {
@@ -129,17 +130,19 @@ Identifier =
     "Identifier",
     methods =
       list(
-        #' Returns TRUE/FALSE indicating if the metadata in the passed directory matches the patterns expected of the tag type with which this Identifier child class is associated
+        # Returns TRUE/FALSE indicating if the metadata in the passed directory matches the patterns expected of the tag type with which this Identifier child class is associated
         identify =
           function(d) {
+            "Returns TRUE/FALSE indicating if the metadata in the passed directory
+            matches the patterns expected of the tag type with which this Identifier
+            child class is associated"
             stop("Inheritence error: Invocation of identify function on base class Identifier. Please implement child class instead.")
           },
 
-        #' Check number of files in directory which match pattern
-        #'
-        #' Helper function to quickly determine if an expected number of files
-        #' match the given pattern
-        #'
+        # Check number of files in directory which match pattern
+        #
+        # Helper function to quickly determine if an expected number of files
+        # match the given pattern
         check_for_files =
           function(d, pattern, n=1, ignore.case = T) {
             # Check if the number of files which match the given pattern match the expected number
@@ -342,19 +345,13 @@ DataMap =
 
 #' Decoder base class
 #'
-#' Logical representation of a single tag
+#' Logical representation of a single tag, which contains all necessary logic to parse and extract all required data from an appropriately formatted directory. Contains one or more [DataMap] objects, each of which the Decoder will apply in turn to the directory in order to extract the necessary data. Contains an [Identifier] object, which can be used to automatically determine if a given directory contains the data generated by a tag of the make/model to which this Decoder refers.
 #'
 #' @field d character. The directory in which the tag data can be found
+#' @field metadata_map DataMap. The [DataMap] used to extract the tag metadata
 #' @field data_maps list. The list of data maps used to map the data for this tag to the output tables in the DB
 #'
-#' The following fields should be set in initialization of child classes
-#' @field tag_make character. The manufacturer of the tag
-#' @field tag_model character. The model of the tag
-#'
-#' @return
 #' @export
-#'
-#' @examples
 Decoder =
   #----
   setRefClass(
@@ -383,19 +380,13 @@ Decoder =
             )
           },
 
-        #' Add fields that are missing from a data frame
-        #'
-        #' Take in two data frames and their respective DataMaps
-        #' Any fields which are missing from the first dataframe and present in the second dataframe are added to the first
-        #'
-        #' @param dat_1 The dataframe being altered
-        #' @param dm_1 DataMap of the dataframe being altered
-        #' @param dat_2 Dataframe from which data may be taken
-        #' @param dm_2 DataMap of dataframe from which data may be taken
-        #'
-        #' @return dat_1 with any fields which were missing and were present in dat_2
         add_missing_fields =
           function(dat_1, dm_1, dat_2, dm_2) {
+            "Add fields from one data frame to a second dataframe, based on their
+            respective DataMaps. dat_1/dm_1 refer to the data which may be missing
+            fields. dat_2/dm_2 refer to the data from which we MAY take data to
+            put into dat_1. Any fields defined by dm_1$output_data_field_map which
+            are missing from dat_1 but are present in dat_2 will be added to dat_1."
             # DM 1 is the DataMap which we are working on
             # DM 2 is the DataMap which we MAY take data from to put into the data for DM 1
 
@@ -403,6 +394,9 @@ Decoder =
             dm1_ip_fm = dm_1$input_data_field_map
             dm2_op_fm = dm_2$output_data_field_map
 
+            # Determine which fields are present in the output FieldMap of dm_1,
+            # but missing from the input FieldMap of dm_1. These are the fields
+            # which must be added from other sources.
             missing_output_fields =
               dm1_op_fm$uncommon_fields(dm1_ip_fm)
 
@@ -433,19 +427,17 @@ Decoder =
         # Upload any and all tag metadata to their appropriate tables in the DB
         upload_meta =
           function(con) {
+          "Upload the data extracted by the Decoder's metadata DataMap into the DB"
             .self$metadata_map$upsert(
               con,
               .self$metadata_map$extract(.self$d)
             )
           },
 
-        #' Execute all necessary steps to read and transform raw data for one DataMap
-        #'
-        #' @param dm The DataMap to use
-        #'
-        #' @return The extracted and transformed data
+        # Execute all necessary steps to read and transform raw data for one DataMap
         decode_datamap =
           function(dm) {
+            "Execute all necessary steps to read and transform raw data for one DataMap"
             # Perform initial extraction
             dat =
               dm$extract(.self$d)
@@ -458,11 +450,10 @@ Decoder =
             return(dat_t)
           },
 
-        #' Execute all etl steps for all DataMaps
-        #'
-        #' @param con Connection to the target DB
+        # Execute all etl steps for all DataMaps
         decode_and_load_all_datamaps =
           function(con) {
+            "Execute all etl steps for all DataMaps"
             # Iterate through each data map in this decoder
             for (dm in .self$data_maps) {
               # Get the extracted and transformed data
@@ -474,13 +465,11 @@ Decoder =
             }
           },
 
-        #' Check if this tag has already been uploaded to the DB
-        #'
-        #' @param con Connection to the target DB
-        #'
-        #' @return Boolean value indicating if the tag ID is already present in the metadata table
+        # Check if this tag has already been uploaded to the DB
         tag_already_loaded =
           function(con) {
+            "Check if the tag referred to by this Decoder has already been uploaded
+            to the DB"
             # Get the name of the id field in the metadata table
             id_field =
               .self$metadata_map$output_data_field_map$field_list$TAG_ID_FIELD$name
@@ -502,13 +491,11 @@ Decoder =
             return(tag_id %in% ids_in_db)
           },
 
-        #' Execute all necessary steps to read and transform raw data for one datamap
-        #'
-        #' @param con Connection to the target DB
-        #'
-        #' @return The extracted and transformed data
+        # Execute all necessary steps to extract, transform, and load all data contained within directory `d`
         decode =
           function(con, overwrite = T) {
+            "Execute all necessary steps to extract, transform, and load all data
+            contained within directory `d`"
             # If the user has specified not to overwrite existing data, check if
             # this tag is already in the DB
             if(!overwrite) {
@@ -518,10 +505,13 @@ Decoder =
               }
             }
 
+            # Perform all uploads within a single transaction
             DBI::dbWithTransaction(
               con,
               {
+                # Upload tag metadata
                 .self$upload_meta(con)
+                # Upload all other tag data
                 .self$decode_and_load_all_datamaps(con)
               }
             )
@@ -533,16 +523,12 @@ Decoder =
   )
   #----
 
-#' Maps raw tag data to the appropriate Decoder based on structure of the raw data
+#' Tag Identifier
 #'
-#' Makes decisions based on some pretty nitty-gritty details, like naming
-#' conventions, file-types present, number of files present, etc. As such, it's
-#' crucial that the data has not been altered by the user in any way since being
-#' extracted from the tag and/or run through any post-processing software.
+#' Maps raw tag data to the appropriate Decoder based on structure of the raw data. Used internally by the [TagProcessor] class.
 #'
-#' @field master_list__ list. The list of all Decoders from which to choose.
-#' Internal reference field, not intended to be set by user. Any value passed
-#' to this field will be overwritten on construction
+#' @details The logic implemented by this class makes decisions based on some pretty nitty-gritty details, like naming conventions, file-types present, number of files present, etc. As such, it's crucial that the data has not been altered by the user in any way since being extracted from the tag and/or run through any post-processing software, as even a very small change (by human standards) can result in a directory becoming un-identifiable.
+#' @export
 TagIdentifier =
   #----
   setRefClass(
@@ -560,11 +546,12 @@ TagIdentifier =
             master_list__ <<- Decoder_MasterList
           },
 
-        identify_tag_decoder =
+        identify =
           function(d) {
+            "Applies the Identifiers of all known Decoders to the directory. Returns results as a data.frame"
             # Initialize tibble
-            # First field 'dc' is a list of all possible decoders from the master list
             t__ =
+            # First field 'dc' is a list of all possible decoders from the master list
               tibble::tibble(dc = .self$master_list__)
 
             # Update the tibble to include the name associated with each decoder
@@ -696,24 +683,6 @@ TagProcessor =
             }
           },
 
-        # Builds the report dataframe from the directory data tree
-        build_report =
-          function() {
-            data.tree::ToDataFrameTree(
-              tp__$dir_tree__,
-              n_tags = .self$num_leaves,
-              n_decoded = .self$num_decoded,
-              "decoded",
-              "identified_decoder",
-              "decode_error"
-            ) %>%
-              dplyr::mutate(
-                pct_decoded = round(100 * n_decoded / n_tags, 1),
-                pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
-              ) %>%
-              dplyr::select(dir=levelName, pct_decoded, decoded, identified_decoder, decode_error)
-          },
-
         # Build a datatree from the directory structure, rooted at the passed directory
         build_datatree =
           function(d) {
@@ -765,48 +734,70 @@ TagProcessor =
             return(dt)
           },
 
-        process_directory =
-          function(data_directory, con, overwrite = T) {
-            # Apply the TagIdentifier to determine which decoders match the data directory
-            # Record these results on the data directory object
-            data_directory$tag_identifier_results =
-              TagIdentifier()$identify_tag_decoder(data_directory$fullPath)
+        # Builds the report dataframe from the directory data tree
+        build_report =
+          function() {
+            "Builds a report (data.frame) detailing the current state of the data directory"
+            # Build a data.frame from the internal data.tree object (dir_tree__)
+            data.tree::ToDataFrameTree(
+              tp__$dir_tree__,
+              n_tags = .self$num_leaves,
+              n_decoded = .self$num_decoded,
+              "decoded",
+              "identified_decoder",
+              "decode_error"
+            ) %>%
+              dplyr::mutate(
+                pct_decoded = round(100 * n_decoded / n_tags, 1),
+                pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
+              ) %>%
+              dplyr::select(dir=levelName, pct_decoded, decoded, identified_decoder, decode_error)
+          },
+
+        process_node =
+          function(node, con, overwrite = T) {
+            "Attempt to process directory `d`. TagProcessor will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
+            # Apply the TagIdentifier to determine which decoders match the data
+            # directory.  Record these results on the data directory object
+            node$tag_identifier_results =
+              TagIdentifier()$identify(node$fullPath)
 
             # Filter to those decoders which matched the data directory
             pos_id =
-              data_directory$tag_identifier_results %>%
+              node$tag_identifier_results %>%
               dplyr::filter(result == T)
 
             # If there is exactly one decoder which matches the data directory, use that
             # decoder to upload the tag data to the DB
             if(nrow(pos_id) == 1) {
-              dc = pos_id$dc[[1]](d = data_directory$fullPath)
+              dc = pos_id$dc[[1]](d = node$fullPath)
               tryCatch(
                 {
                   dc$decode(con, overwrite = overwrite)
-                  data_directory$decoded = T
-                  data_directory$identified_decoder = pos_id$name
+                  node$decoded = T
+                  node$identified_decoder = pos_id$name
                 },
                 error =
                   function(cond) {
-                    data_directory$decode_error = cond
+                    node$decode_error = cond
                   }
               )
             } else {
-              data_directory$decode_error = paste0("Matching decoders: ", nrow(pos_id))
+              node$decode_error = paste0("Matching decoders: ", nrow(pos_id))
             }
           },
 
         # Process all tag data contained within the directory tree
         process =
           function(con, overwrite = T) {
+          "Recursively process a directory tree, attempting to process each directory."
             print("Processing directory.")
             # Traverse directory tree and process each data directory (leaf node)
-            tp__$dir_tree__$Do(
+            .self$dir_tree__$Do(
               function(node) {
                 print(node$levelName)
                 if (node$isLeaf) {
-                  .self$process_directory(node, con, overwrite = overwrite)
+                  .self$process_node(node, con, overwrite = overwrite)
                 }
               }
             )

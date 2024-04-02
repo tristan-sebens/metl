@@ -5,9 +5,6 @@
 \alias{DataMap_DesertStar_SeaTagMOD_TagMetaData-class}
 \alias{DataMap_DesertStar_SeaTagMOD_TagMetaData}
 \title{DataMap - Desert Star SeaTag MOD tag metadata}
-\value{
-The tag ID identified from the files, as a string
-}
 \description{
 DataMap - Desert Star SeaTag MOD tag metadata
 }

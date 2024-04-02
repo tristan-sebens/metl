@@ -7,17 +7,6 @@
 \title{FieldMap class. Collection of Field objects, with some added functionality
 to facilitate the convenient use of said Field objects both within the package
 and when interfacing with a DB}
-\value{
-A named list. Names are the field names, values are the data types
-Helper function which generates a list of the Fields shared by this
-FieldMap and the given FieldMap
-
-Named list of the shared Field objects
-Helper function which generates a list of the Fields NOT shared by this
-FieldMap and the given FieldMap
-
-Named list of the Field objects present in this FieldMap but not in the passed FieldMap
-}
 \description{
 FieldMap class. Collection of Field objects, with some added functionality
 to facilitate the convenient use of said Field objects both within the package
@@ -26,8 +15,18 @@ and when interfacing with a DB
 \section{Fields}{
 
 \describe{
-\item{\code{fields}}{Field. The Field objects contained within this map/
-Generate a field data type list, in the format expected by the DBI package}
+\item{\code{fields}}{Field. The Field objects contained within this map/}
 }}
 
+\section{Methods}{
+
+\describe{
+\item{\code{common_fields(fm)}}{Generates a list of the Fields shared by this FieldMap and the given FieldMap}
+
+\item{\code{get_id_field_names()}}{Get the names of the ID fields in this FieldMap}
+
+\item{\code{get_id_fields()}}{Return the subset of Fields in this FieldMap that are marked as ID fields}
+
+\item{\code{uncommon_fields(fm)}}{Generate a list of the Fields NOT shared by this FieldMap and the given FieldMap}
+}}
 

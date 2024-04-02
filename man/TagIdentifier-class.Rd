@@ -4,19 +4,16 @@
 \name{TagIdentifier-class}
 \alias{TagIdentifier-class}
 \alias{TagIdentifier}
-\title{Maps raw tag data to the appropriate Decoder based on structure of the raw data}
+\title{Tag Identifier}
 \description{
-Makes decisions based on some pretty nitty-gritty details, like naming
-conventions, file-types present, number of files present, etc. As such, it's
-crucial that the data has not been altered by the user in any way since being
-extracted from the tag and/or run through any post-processing software.
+Maps raw tag data to the appropriate Decoder based on structure of the raw data. Used internally by the \link{TagProcessor} class.
 }
-\section{Fields}{
+\details{
+The logic implemented by this class makes decisions based on some pretty nitty-gritty details, like naming conventions, file-types present, number of files present, etc. As such, it's crucial that the data has not been altered by the user in any way since being extracted from the tag and/or run through any post-processing software, as even a very small change (by human standards) can result in a directory becoming un-identifiable.
+}
+\section{Methods}{
 
 \describe{
-\item{\code{master_list__}}{list. The list of all Decoders from which to choose.
-Internal reference field, not intended to be set by user. Any value passed
-to this field will be overwritten on construction}
+\item{\code{identify(d)}}{Applies the Identifiers of all known Decoders to the directory. Returns results as a data.frame}
 }}
-
 
