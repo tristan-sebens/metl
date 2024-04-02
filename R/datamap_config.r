@@ -211,7 +211,12 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                 FUN =
                   function(pattern) {
                     dat =
-                      list.files(d, pattern = pattern, ignore.case = T)[[1]] %>%
+                      list.files(
+                        d,
+                        pattern = pattern,
+                        ignore.case = T,
+                        full.names = T
+                      )[[1]] %>%
                       .self$read_csv_lotek_1000.1100.1250()
 
                     return(dat)
