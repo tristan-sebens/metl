@@ -1,6 +1,4 @@
 #' Base class for DataMaps which map to the tag metadata table
-#'
-#' @inheritParams DataMap
 DataMap_TagMetaData_Base =
   setRefClass(
     "DataMap_TagMetaData_Base",
@@ -364,7 +362,7 @@ DataMap_Lotek.1400.1800_InstantSensorData =
         extract =
           function(d) {
             # Retrieve the csv data file
-            fps = .self$get_csv_files(d)
+            fps = list.files(d, pattern = "^.*\\.csv", ignore.case = T)
             # There should be only one csv file. If there are more, we don't know
             # which one to use.
             if (length(fps) > 1) {
