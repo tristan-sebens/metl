@@ -10,21 +10,20 @@ License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-
 Imports:
-  tidyverse (>= 2.0.0)
-  dbplyr
-  dplyr
-  data.tree
-  DBI
-  magrittr
-  stringi
-  stringr
-  tibble
-  units
-  purrr
-  readxl
-  stringr
-  tidyr
-  lubridate
-  timechange
+    tidyverse (>= 2.0.0),
+    dbplyr,
+    dplyr,
+    data.tree,
+    DBI,
+    magrittr,
+    stringi,
+    stringr,
+    tibble,
+    units,
+    purrr,
+    readxl,
+    stringr,
+    tidyr,
+    lubridate,
+    timechange
