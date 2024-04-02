@@ -159,25 +159,23 @@ Identifier =
       )
   )
 
-#' DataMap base class
+#' DataMap
 #'
-#'  Provides base structure for all make/model specific tag data maps
-#'  Analagous to a table in the final DB. Desribes programatically how the data
-#'  to be inserted into that table should be collected from the disk, and
-#'  transformed
-#'
-#'  Not intended to be implemented directly
+#' Provides base structure for all make/model specific tag data maps
+#' Analagous to a table in the final DB. Desribes programatically how the data
+#' to be inserted into that table should be collected from the disk, and
+#' transformed.
+#' Not intended to be implemented directly
 #'
 #' @field d character. The directory in which the tag data can be found
 #' @field input_data_field_map FieldMap. Map of the data fields and their original format
 #' @field output_data_field_map FieldMap. Map of the data fields and their corresponding DB format
 #'
-#' @return
-#' @export
+#' @return An instance of the DataMap class
 #'
-#' @examples
+#' @export
 DataMap =
-  #----
+#----
   setRefClass(
     "DataMap",
     fields =
@@ -203,65 +201,8 @@ DataMap =
             )
           },
 
-        # Helper function to retrieve all csv files from a directory
-        get_csv_files =
-          function(d) {
-            file.path(d, list.files(d, pattern = "\\.[C|c][S|s][V|v]$"))
-          },
-
-        #' Find a sensor specific data file based on a filename pattern
-        #'
-        #' @param d The directory to search in
-        #' @param pattern The pattern to use to find the datafile
-        #'
-        #' @return The number of the first line in which the specified pattern occurs
-        #' @export
-        #'
-        #' @examples
-        get_data_file_path =
-          function(d, pattern) {
-            file.path(
-              d,
-              list.files(d, pattern = pattern)[[1]]
-            )
-          },
-
-        #' Find the first line of the given file in which the specified pattern occurs
-        #'
-        #' @param fp The path of the file to read
-        #' @param n The number of lines to search. Prevents excessive line reading
-        #'
-        #' @return The number of the first line in which the specified pattern occurs
-        #' @export
-        #'
-        #' @examples
-        find_line_in_file =
-          function(fp, pattern, n=1000) {
-            # Find all matches in the first n lines
-            matches =
-              readLines(fp, n=n, skipNul = F) %>%
-              unlist %>%
-              stringr::str_detect(pattern = pattern)
-
-            # Check that any lines matched
-            if (!any(matches)) {
-              .self$throw_error(
-                paste0(
-                  "Parsing file - No matches of '",
-                  pattern,
-                  "' found in first ",
-                  n,
-                  " lines of ",
-                  tail(stringr::str_split(fp, .Platform$file.sep)[[1]], 1)
-                )
-              )
-            }
-
-            # Return the line number of the first match
-            return(which(matches)[[1]])
-          },
-
         get_field_data =
+          # Return the raw data from dat__ which is referred to by the input_field_obj__
           function(dat__, input_field_obj_) {
             if(input_field_obj_$name %in% names(dat__)) {
               return(dat__[[input_field_obj_$name]])
@@ -274,11 +215,7 @@ DataMap =
             }
           },
 
-        #' Transform the fields of the incoming tag data as dictated by the field maps
-        #'
-        #' @param dat The incoming data
-        #'
-        #' @return The transformed data with renamed and united fields
+        # Transform the fields of the incoming tag data as dictated by the field maps
         transform_fields =
           function(dat__) {
             # Process each input field in turn
@@ -377,14 +314,9 @@ DataMap =
             )
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
+            "Extract data from directory `d`"
             throw_error(
               "Inheritence error: Invocation of 'extract' function of base
               class. Please implement a child class instead.")
@@ -392,24 +324,12 @@ DataMap =
 
         # TODO: This function has become a wrapper function for 'transform_fields.'
         # Should it just be removed, and the wrapped function renamed?
-
-        #' Transform extracted tag data to follow standardized format
-        #'
-        #' @param dat The incoming tag data
-        #'
-        #' @return The transformed data
         transform =
           function(dat) {
             # Standardize incoming fields, and save the result to the 'dat_' field
             return(.self$transform_fields(dat))
           },
 
-        #' Load extracted and transformed tag data to DB
-        #'
-        #' @param con Connection to the target DB
-        #' @param dat The incoming tag data
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         load =
           function(con, dat) {
             # Perform an upsert call
@@ -702,7 +622,9 @@ TagIdentifier =
   )
 
 
-#' TagProcessor class. Facilitates the automated identification and decoding of
+#' TagProcessor class.
+#'
+#' Facilitates the automated identification and decoding of
 #' tag data directories. Recursively traverses a directory tree, attempting to
 #' process any data directories within.
 #'
@@ -710,7 +632,21 @@ TagIdentifier =
 #'
 #' @field d Data directory.
 #' @field overwrite Boolean flag. If set to TRUE, the TagProcessor will check if a tag is already present in the tag metadata table, and will not process the tag if it is.
-#' @field dir_tree__ Private variable, not to be set by user. Any user-submitted value is overwritten on construction
+#'
+#' @return Instance of the TagProcessor class
+#'
+#' @examples
+#' data_directory = here::here() # Root data directory
+#'
+#' # Initialize the object
+#' tp__ = TagProcessor(d = data_directory)
+#'
+#' # Process the directory
+#' tp__$process(con = con, overwrite = F)
+#'
+#' # Build the processing report
+#' report = tp__$build_report()
+#' print(report)
 TagProcessor =
   #----
   setRefClass(
@@ -718,15 +654,14 @@ TagProcessor =
     fields =
       list(
         d = "character", # The directory to process
-        overwrite = "logical", # Whether or not to overwrite data already in DB
         dir_tree__ = "Node" # The directory tree object. Private attribute, not intended to be set
       ),
 
     methods =
       list(
         initialize =
-          function(d, overwrite = T, ...) {
-            callSuper(d = d, overwrite = overwrite, ...)
+          function(d, ...) {
+            callSuper(d = d, ...)
             # Build datatree object from directory
             dir_tree__ <<- .self$build_datatree(d)
           },
@@ -831,7 +766,7 @@ TagProcessor =
           },
 
         process_directory =
-          function(data_directory, con) {
+          function(data_directory, con, overwrite = T) {
             # Apply the TagIdentifier to determine which decoders match the data directory
             # Record these results on the data directory object
             data_directory$tag_identifier_results =
@@ -848,7 +783,7 @@ TagProcessor =
               dc = pos_id$dc[[1]](d = data_directory$fullPath)
               tryCatch(
                 {
-                  dc$decode(con, overwrite = .self$overwrite)
+                  dc$decode(con, overwrite = overwrite)
                   data_directory$decoded = T
                   data_directory$identified_decoder = pos_id$name
                 },
@@ -864,14 +799,14 @@ TagProcessor =
 
         # Process all tag data contained within the directory tree
         process =
-          function(con) {
+          function(con, overwrite = T) {
             print("Processing directory.")
             # Traverse directory tree and process each data directory (leaf node)
             tp__$dir_tree__$Do(
               function(node) {
                 print(node$levelName)
                 if (node$isLeaf) {
-                  .self$process_directory(node, con)
+                  .self$process_directory(node, con, overwrite = overwrite)
                 }
               }
             )

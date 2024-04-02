@@ -1,4 +1,10 @@
-#' Base class for DataMaps which map to the tag metadata table
+#' Tag metadata map
+#'
+#' Base class for DataMaps for tag metadata
+#'
+#' @field make character. Tag manufacturer/brand
+#' @field model character. Tag model
+#' @export
 DataMap_TagMetaData_Base =
   setRefClass(
     "DataMap_TagMetaData_Base",
@@ -13,12 +19,10 @@ DataMap_TagMetaData_Base =
         initialize =
           function(
             ...,
-            input_data_field_map = TAG_METADATA_FIELDS,
             output_data_field_map = TAG_METADATA_TABLE_FIELDS
           ) {
             callSuper(
               ...,
-              input_data_field_map = input_data_field_map,
               output_data_field_map = output_data_field_map
             )
           },
@@ -27,6 +31,7 @@ DataMap_TagMetaData_Base =
         # For now anyways.
         get_tag_id =
           function(d) {
+            "Extract tag id from directory `d`"
             .self$throw_error("Inheritence error: invocation of 'get_tag_id' function from TagMetaData base class. Please implement method on child class instead.")
           },
 
@@ -43,10 +48,9 @@ DataMap_TagMetaData_Base =
   )
 
 
-#' Base class for DataMaps which map to the instant data table
-#'
-#' @inheritParams DataMap
 DataMap_InstantSensorData_Base =
+#' DataMap - Instant sensor data - base class
+#' @export
   setRefClass(
     "DataMap_InstantSensorData_Base",
     contains = "DataMap",
@@ -59,9 +63,8 @@ DataMap_InstantSensorData_Base =
       )
   )
 
-#' Base class for DataMaps which map to the summary data table
-#'
-#' @inheritParams DataMap
+#' DataMap - Summary sensor data - base class
+#' @export
 DataMap_SummarySensorData_Base =
   setRefClass(
     "DataMap_SummarySensorData_Base",
@@ -75,9 +78,8 @@ DataMap_SummarySensorData_Base =
       )
   )
 
-#' Base class for Lotek DataMaps that map to the tag metadata table
-#'
-#' @inheritParams DataMap
+#' DataMap - Lotek tag metadata - base class
+#' @export
 DataMap_Lotek_TagMetaData =
   setRefClass(
     "DataMap_Lotek_TagMetaData",
@@ -92,9 +94,8 @@ DataMap_Lotek_TagMetaData =
       )
   )
 
-#' DataMap for tag metadata from Lotek 1000/1100/1250 tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Lotek 1000/1100/1250 tag metadata
+#' @export
 DataMap_Lotek.1000.1100.1250_TagMetaData =
   setRefClass(
     "DataMap_Lotek.1000.1100.1250_TagMetaData",
@@ -125,28 +126,62 @@ DataMap_Lotek.1000.1100.1250_TagMetaData =
       )
   )
 
+
+#' DataMap - Base map for Lotek instant sensor data
+#' @export
+DataMap_Lotek_InstantSensorData =
+  setRefClass(
+    "DataMap_Lotek_InstantSensorData",
+    contains = "DataMap_InstantSensorData_Base",
+    methods =
+      list(
+        # Find the first line of the given file in which the specified pattern occurs
+        find_line_in_file =
+          function(fp, pattern, n=1000) {
+            # Find all matches in the first n lines
+            matches =
+              readLines(fp, n=n, skipNul = F) %>%
+              unlist %>%
+              stringr::str_detect(pattern = pattern)
+
+            # Check that any lines matched
+            if (!any(matches)) {
+              .self$throw_error(
+                paste0(
+                  "Parsing file - No matches of '",
+                  pattern,
+                  "' found in first ",
+                  n,
+                  " lines of ",
+                  tail(stringr::str_split(fp, .Platform$file.sep)[[1]], 1)
+                )
+              )
+            }
+
+            # Return the line number of the first match
+            return(which(matches)[[1]])
+          }
+      )
+  )
+
 #' DataMap for the Lotek 1000/1100/1250 tags
-#'
-#' @inheritParams DataMap
+#' @export
 DataMap_Lotek.1000.1100.1250_InstantSensorData =
   setRefClass(
     "DataMap_Lotek.1000.1100.1250_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap_Lotek_InstantSensorData",
     methods =
       list(
         initialize =
           function(...) {
             callSuper(input_data_field_map = LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS, ...)
           },
-        #' Read tag data from file. Data comes in standard csv format, but is
-        #' preceded by a number of metadata tags which must be skipped
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
+
+        # Read tag data from file. Data comes in standard csv format, but is
+        # preceded by a number of metadata tags which must be skipped
         read_csv_lotek_1000.1100.1250 =
           function(fp) {
+            "Read csv data from Lotek 1000/1100/1250 formatted file"
             read.csv(
               fp,
               skip=
@@ -160,13 +195,6 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
               dplyr::select_if(function(x) { sum(!is.na(x)) > 0 })
           },
 
-
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             dat =
@@ -206,9 +234,8 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
       )
   )
 
-#' DataMap for tag metadata from Lotek 1300 tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Tag metadata from Lotek 1300 tags
+#' @export
 DataMap_Lotek.1300_TagMetaData =
   setRefClass(
     "DataMap_Lotek.1300_TagMetaData",
@@ -221,11 +248,6 @@ DataMap_Lotek.1300_TagMetaData =
             model <<- "1300"
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
         get_tag_id =
           function(d) {
             list.files(d, pattern = ".*[R|r]egular.*")[1] %>%
@@ -234,13 +256,12 @@ DataMap_Lotek.1300_TagMetaData =
       )
   )
 
-#' Datamap for the Lotek 1300 tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Instant sensor data from Lotek 1300 tags
+#' @export
 DataMap_Lotek.1300_InstantSensorData =
   setRefClass(
     "DataMap_Lotek.1300_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap_Lotek_InstantSensorData",
     methods =
       list(
         initialize =
@@ -248,12 +269,6 @@ DataMap_Lotek.1300_InstantSensorData =
             callSuper(input_data_field_map = LOTEK_1300_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             fps = list.files(d, pattern = "Regular Log")
@@ -278,9 +293,8 @@ DataMap_Lotek.1300_InstantSensorData =
       )
   )
 
-#' DataMap for tag metadata from Lotek 1400/1800 tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Tag metadata from Lotek 1400/1800 tags
+#' @export
 DataMap_Lotek.1400.1800_TagMetaData =
   setRefClass(
     "DataMap_Lotek.1400.1800_TagMetaData",
@@ -306,11 +320,6 @@ DataMap_Lotek.1400.1800_TagMetaData =
             )
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
         get_tag_id =
           function(d) {
             .self$tag_id_from_filename(
@@ -323,15 +332,12 @@ DataMap_Lotek.1400.1800_TagMetaData =
       )
   )
 
-#' Datamap for the Lotek 1400/1800 tags
-#'
-#' @inheritParams DataMap
-#'
-#' @examples
+#' Datamap - Lotek 1400/1800 instant sensor data
+#' @export
 DataMap_Lotek.1400.1800_InstantSensorData =
   setRefClass(
     "DataMap_Lotek.1400.1800_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap_Lotek_InstantSensorData",
     methods =
       list(
         initialize =
@@ -339,10 +345,9 @@ DataMap_Lotek.1400.1800_InstantSensorData =
             callSuper(input_data_field_map = LOTEK_1400.1800_FIELDS, ...)
           },
 
-        # Helper function to read csv datafiles formatted by a Lotek 1400/1800
-        # tag. File contains two lines of headers which need to be skipped.
         read_csv_lotek_1400.1800 =
           function(fp) {
+            "Read csv data from Lotek 1400/1800 formatted csv file"
             read.csv(
               fp,
               skip =
@@ -353,12 +358,6 @@ DataMap_Lotek.1400.1800_InstantSensorData =
             )
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # Retrieve the csv data file
@@ -382,9 +381,8 @@ DataMap_Lotek.1400.1800_InstantSensorData =
       )
   )
 
-#' Base class for tag metadata DataMaps for Microwave Telemetry tagss
-#'
-#' @inheritParams DataMap
+#' DataMap - Microwave Telemetry tag metadata - base class
+#' @export
 DataMap_MicrowaveTelemetry_TagMetaData =
   setRefClass(
     "DataMap_MicrowaveTelemetry_TagMetaData",
@@ -399,9 +397,8 @@ DataMap_MicrowaveTelemetry_TagMetaData =
       )
   )
 
-#' DataMap for tag metadata from Microwave Telemetry X-tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Microwave Telemetry X-Tag metadata
+#' @export
 DataMap_MicrowaveTelemetry_XTag_TagMetaData =
   setRefClass(
     "DataMap_MicrowaveTelemetry_XTag_TagMetaData",
@@ -414,11 +411,6 @@ DataMap_MicrowaveTelemetry_XTag_TagMetaData =
             model <<- "X-Tag"
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
         get_tag_id =
           function(d) {
             list.files(path = d, pattern = "^\\d*\\.xls") %>%
@@ -428,11 +420,11 @@ DataMap_MicrowaveTelemetry_XTag_TagMetaData =
   )
 
 
-# Base class for XTag datamap classes. Contains readxl functions useful for
-# both instant and summary datamaps
-DataMap_MicrowaveTelemetry_XTag_Base =
+#' DataMap - Microwave Telemetry X-Tag metadata
+#' @export
+DataMap_MicrowaveTelemetry_XTag_SensorData =
   setRefClass(
-    "DataMap_MicrowaveTelemetry_XTag_Base",
+    "DataMap_MicrowaveTelemetry_XTag_SensorData",
     methods =
       list(
         # Calculate the cell range string the desired data is in
@@ -483,15 +475,16 @@ DataMap_MicrowaveTelemetry_XTag_Base =
       )
   )
 
-#' Datamap for the Microwave Telemetry X-tag instant data
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' Datamap - Microwave Telemetry X-tag instant sensor data
+#' @export
 DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   setRefClass(
     "DataMap_MicrowaveTelemetry_XTag_InstantSensorData",
-    contains = c("DataMap_InstantSensorData_Base", "DataMap_MicrowaveTelemetry_XTag_Base"),
+    contains =
+      c(
+        "DataMap_InstantSensorData_Base",
+        "DataMap_MicrowaveTelemetry_XTag_SensorData"
+      ),
     methods =
       list(
         initialize =
@@ -499,12 +492,6 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
             callSuper(input_data_field_map = MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # All of the temperature and pressure data is extracted from the .xls file
@@ -558,15 +545,16 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
       )
   )
 
-#' Datamap for the Microwave Telemetry X-tag summary data
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' Datamap - Microwave Telemetry X-tag summary sensor data
+#' @export
 DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
   setRefClass(
     "DataMap_MicrowaveTelemetry_XTag_SummarySensorData",
-    contains = c("DataMap_SummarySensorData_Base", "DataMap_MicrowaveTelemetry_XTag_Base"),
+    contains =
+      c(
+        "DataMap_SummarySensorData_Base",
+        "DataMap_MicrowaveTelemetry_XTag_SensorData"
+      ),
     methods =
       list(
         initialize =
@@ -602,9 +590,8 @@ DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
   )
 
 
-#' Base class for tag metadata DataMaps for Star Oddi tags
-#'
-#' @inheritParams DataMap
+#' DataMap - StarOddi tag metadata - base class
+#' @export
 DataMap_StarOddi_TagMetaData =
   setRefClass(
     "DataMap_StarOddi_TagMetaData",
@@ -617,11 +604,6 @@ DataMap_StarOddi_TagMetaData =
             make <<- "Star Oddi"
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @param d The directory in which the data files in question reside
-        #'
-        #' @return The tag ID identified from the files, as a string
         get_tag_id =
           function(d) {
             # Read in xlsx file(s) (There should only be one)
@@ -633,9 +615,8 @@ DataMap_StarOddi_TagMetaData =
   )
 
 
-#' DataMap for Star Oddi DST tags
-#'
-#' @inheritParams DataMap
+#' DataMap - StarOddi DST tag metadata
+#' @export
 DataMap_StarOddi_DST_TagMetaData =
   setRefClass(
     "DataMap_StarOddi_DST_TagMetaData",
@@ -650,11 +631,9 @@ DataMap_StarOddi_DST_TagMetaData =
       )
   )
 
-#' Datamap for the Star Oddi DST tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+
+#' DataMap - StarOddi DST instant sensor data
+#' @export
 DataMap_StarOddi_DST_InstantSensorData =
   setRefClass(
     "DataMap_StarOddi_DST_InstantSensorData",
@@ -666,11 +645,6 @@ DataMap_StarOddi_DST_InstantSensorData =
             callSuper(input_data_field_map = STAR_ODDI_DST_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             fs =
@@ -698,9 +672,8 @@ DataMap_StarOddi_DST_InstantSensorData =
   )
 
 
-#' DataMap for Star Oddi DST magnetic tags
-#'
-#' @inheritParams DataMap
+#' DataMap - StarOddi DST magnetic tag metadata
+#' @export
 DataMap_StarOddi_DSTmagnetic_TagMetaData =
   setRefClass(
     "DataMap_StarOddi_DSTmagnetic_TagMetaData",
@@ -715,11 +688,8 @@ DataMap_StarOddi_DSTmagnetic_TagMetaData =
       )
   )
 
-#' Datamap for the StarOddi DST magnetic tags
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' DataMap - StarOddi DST magnetic instant sensor data
+#' @export
 DataMap_StarOddi_DSTmagnetic_InstantSensorData =
   setRefClass(
     "Decoder_StarOddi_DSTmagnetic_InstantSensorData",
@@ -731,12 +701,6 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
             callSuper(input_data_field_map = STAR_ODDI_DST_MAGNETIC_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @param d The directory in which the tag data resides. Directory is
-        #' expected to contain only files which relate to one common tag.
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             fs =
@@ -761,9 +725,8 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
   )
 
 
-#' Base class for tag metadata DataMaps for Wildlife Computer tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Wildlife Computers tag metadata - base class
+#' @export
 DataMap_WildlifeComputers_TagMetaData =
   setRefClass(
     "DataMap_WildlifeComputers_TagMetaData",
@@ -779,9 +742,8 @@ DataMap_WildlifeComputers_TagMetaData =
       )
   )
 
-#' DataMap for Wildlife Computer MiniPAT tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Wildlife Computers MiniPAT tag metadata
+#' @export
 DataMap_WildlifeComputers_MiniPAT_TagMetaData =
   setRefClass(
     "DataMap_WildlifeComputers_MiniPAT_TagMetaData",
@@ -794,9 +756,6 @@ DataMap_WildlifeComputers_MiniPAT_TagMetaData =
             model <<- "MiniPAT"
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @return The tag ID identified from the files, as a string
         get_tag_id =
           function(d) {
             # Find the unique ID string in all present files
@@ -806,7 +765,11 @@ DataMap_WildlifeComputers_MiniPAT_TagMetaData =
               Filter(
                 Negate(is.na),
                 list.files(d) %>%
-                  stringr::str_extract(pattern=stringr::regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+                  stringr::str_extract(
+                    pattern=
+                      stringr::regex("(\\d*)-.*\\.csv", ignore_case = T),
+                    group=1
+                  ) %>%
                   unique()
               )
 
@@ -820,11 +783,8 @@ DataMap_WildlifeComputers_MiniPAT_TagMetaData =
   )
 
 
-#' Datamap for the Wildlife Computers MiniPAT tags instantaneous data
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' DataMap - Wildlife Computers MiniPAT instant sensor data
+#' @export
 DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
   setRefClass(
     "DataMap_WildlifeComputer_MiniPAT_InstantSensorData",
@@ -837,11 +797,6 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
             callSuper(input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # Find the Series.csv file
@@ -857,11 +812,8 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
   )
 
 
-#' Datamap for the Wildlife Computers MiniPAT tags summary data
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' DataMap - Wildlife Computers MiniPAT summary sensor
+#' @export
 DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
   setRefClass(
     "DataMap_WildlifeComputer_MiniPAT_SummarySensorData",
@@ -874,11 +826,6 @@ DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
             callSuper(input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS, ...)
           },
 
-        #' Extract tag data from passed directory
-        #'
-        #' @inheritParams extract#Decoder
-        #'
-        #' @return The data contained in the tag data as a single dataframe
         extract =
           function(d) {
             # Read in the raw data
@@ -890,34 +837,14 @@ DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
                   full.names = T
                 )
               )
-#
-#             # Identify the field names of the start and end timestamp fields
-#             start_time_fn =
-#               .self$input_data_field_map$field_list$START_TIME_FIELD$name
-#             end_time_fn =
-#               .self$input_data_field_map$field_list$END_TIME_FIELD$name
-#
-#             # Format timestamps to POSIXct
-#             dat[start_time_fn] =
-#               as.POSIXct(
-#                 dat[[start_time_fn]],
-#                 format = "%H:%M:%S %d-%b-%Y"
-#               )
-#
-#             dat[end_time_fn] =
-#               as.POSIXct(
-#                 dat[[end_time_fn]],
-#                 format = "%H:%M:%S %d-%b-%Y"
-#               )
 
             return(dat)
           }
       )
   )
 
-#' DataMap for Star Oddi DST milli-F tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Wildlife Computers Benthic sPAT tag metadata
+#' @export
 DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
   setRefClass(
     "DataMap_WildlifeComputers_BenthicSPAT_TagMetaData",
@@ -930,9 +857,6 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
             model <<- "Benthic sPAT"
           },
 
-        #' Identify Tag ID from available metadata
-        #'
-        #' @return The tag ID identified from the files, as a string
         get_tag_id =
           function(d) {
             # Find the unique ID string in all present files
@@ -942,7 +866,11 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
               Filter(
                 Negate(is.na),
                 list.files(d) %>%
-                  stringr::str_extract(pattern=stringr::regex("(\\d*)-.*\\.csv", ignore_case = T), group=1) %>%
+                  stringr::str_extract(
+                    pattern=
+                      stringr::regex("(\\d*)-.*\\.csv", ignore_case = T),
+                    group=1
+                  ) %>%
                   unique()
               )
 
@@ -956,11 +884,8 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
   )
 
 
-#' Datamap for the Wildlife Computers Benthic sPAT tags summary data
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' DataMap - Wildlife Computers Benthic sPAT instant sensor data
+#' @export
 DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
   setRefClass(
     "DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData",
@@ -988,19 +913,14 @@ DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
                 # without this flag, dplyr would convert those spaces to '.'s
                 check.names = F
               )
-
-
             return(dat)
           }
       )
   )
 
 
-#' Datamap for the Wildlife Computers Benthic sPAT tags summary data
-#'
-#' @inheritParams Decoder
-#'
-#' @examples
+#' DataMap - Wildlife Computers Benthic sPAT summary sensor data
+#' @export
 DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
   setRefClass(
     "DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData",
@@ -1026,34 +946,14 @@ DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
                 )
               )
 
-#             # Identify the field names of the start and end timestamp fields
-#             start_time_fn =
-#               .self$input_data_field_map$field_list$START_TIME_FIELD$name
-#             end_time_fn =
-#               .self$input_data_field_map$field_list$END_TIME_FIELD$name
-#
-#             # Format timestamps to POSIXct
-#             dat[start_time_fn] =
-#               as.POSIXct(
-#                 dat[[start_time_fn]],
-#                 format = "%m/%d/%Y %H:%M"
-#               )
-#
-#             dat[end_time_fn] =
-#               as.POSIXct(
-#                 dat[[end_time_fn]],
-#                 format = "%m/%d/%Y %H:%M"
-#               )
-
             return(dat)
           }
       )
   )
 
 
-#' Base class for tag metadata DataMaps for DesertStar tags
-#'
-#' @inheritParams DataMap
+#' DataMap - Desert Star tag metadata - base class
+#' @export
 DataMap_DesertStar_TagMetaData =
   setRefClass(
     "DataMap_DesertStar_TagMetaData",
@@ -1068,7 +968,8 @@ DataMap_DesertStar_TagMetaData =
       )
   )
 
-
+#' DataMap - Desert Star SeaTag MOD data - base class
+#' @export
 DataMap_DesertStar_SeaTagMOD =
   setRefClass(
     "DataMap_DesertStar_SeaTagMOD",
@@ -1157,10 +1058,6 @@ DataMap_DesertStar_SeaTagMOD =
         #' the records of a single packet type found in the data file. Each dataframe is
         #' also structured according to the 'Packet Definition' records found within the
         #' data file
-        #'
-        #' @param fp
-        #'
-        #' @return
         extract_packet_dataframes =
           function(fp) {
             # Extract the raw packet data from the file
@@ -1258,7 +1155,8 @@ DataMap_DesertStar_SeaTagMOD =
       )
   )
 
-
+#' DataMap - Desert Star SeaTag MOD tag metadata
+#' @export
 DataMap_DesertStar_SeaTagMOD_TagMetaData =
   setRefClass(
     "DataMap_DesertStar_SeaTagMOD_TagMetaData",
@@ -1310,7 +1208,8 @@ DataMap_DesertStar_SeaTagMOD_TagMetaData =
       )
   )
 
-
+#' DataMap - Desert Star SeaTag MOD instant sensor data
+#' @export
 DataMap_DesertStar_SeaTagMOD_InstantSensorData =
   setRefClass(
     "DataMap_DesertStar_SeaTagMOD_InstantSensorData",
