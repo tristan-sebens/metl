@@ -1098,34 +1098,34 @@ DataMap_DesertStar_SeaTagMOD =
 
             suppressWarnings(
               {
-                df_packet %>%
+                for (
+                  df in
+                  df_packet %>%
                   dplyr::group_by(packet) %>%
-                  dplyr::group_split(.keep = T) %>%
-                  lapply(
-                    function(df) {
+                  dplyr::group_split(.keep = T)
+                ) {
                       # Get the packet type
-                      name = df$packet[[1]]
-                      # Build the dataframe
-                      value =
-                        df$raw %>%
-                        # Split each raw line into separate fields
-                        lapply(
-                          function(l) {
-                            return(strsplit(l, split=',')[[1]])
-                          }
-                        ) %>%
-                        # Bind the split values into a matrix
-                        do.call(rbind, .) %>%
-                        # Convert to dataframe
-                        as.data.frame() %>%
-                        # Set column names based on packet definition
-                        magrittr::set_colnames(c("Packet Type", packet_defs[[df$packet[[1]]]])) %>%
-                        # Drop empty columns
-                        dplyr::select(., names(.)[!is.na(names(.))])
+                    name = df$packet[[1]]
+                    # Build the dataframe
+                    value =
+                      df$raw %>%
+                      # Split each raw line into separate fields
+                      lapply(
+                        function(l) {
+                          return(strsplit(l, split=',')[[1]])
+                        }
+                      ) %>%
+                      # Bind the split values into a matrix
+                      do.call(rbind, .) %>%
+                      # Convert to dataframe
+                      as.data.frame() %>%
+                      # Set column names based on packet definition
+                      magrittr::set_colnames(c("Packet Type", packet_defs[[df$packet[[1]]]])) %>%
+                      # Drop empty columns
+                      dplyr::select(., names(.)[!is.na(names(.))])
+                      df_packet_list[[name]] = value
+                  }
 
-                      df_packet_list[[name]] <<- value
-                    }
-                  )
               }
             )
 
