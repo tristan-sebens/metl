@@ -70,7 +70,7 @@ FieldMap =
         generate_data_type_list =
           function() {
             .self$field_list %>%
-              reduce(
+              purrr::reduce(
                 .init =
                   list(),
                 .f =
