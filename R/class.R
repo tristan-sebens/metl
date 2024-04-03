@@ -599,7 +599,12 @@ TagIdentifier =
                     }
                   ) %>%
                   do.call(rbind, .) %>%
-                  as.data.frame()
+                  as.data.frame() %>%
+                  dplyr::mutate(
+                    # For some reason the ID results get turned into characters
+                    # Here we convert them back to Boolean values
+                    result = ifelse(result == "TRUE", T, F)
+                  )
               )
 
             # Return the dataframe
