@@ -1,0 +1,171 @@
+DST converted data file, produced 2006/08/28 14:24:48 by tagtalk32 0.992.101 (32)
+
+One file per sensor, output files are:
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 42--\RMA 4298\CLIENT DATA\5295PRESSURE.CSV
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 42--\RMA 4298\CLIENT DATA\5295TEMPERATURE.CSV
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 42--\RMA 4298\CLIENT DATA\5295XTEMPERATURE.CSV  <-- This file
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 42--\RMA 4298\CLIENT DATA\5295LIGHT.CSV
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 42--\RMA 4298\CLIENT DATA\5295SUPPLY.CSV
+
+Source file: \\SJ-FILE\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 42--\RMA 4298\CLIENT DATA\5295.DSD
+
+
+--------------- original header information ---------------
+
+[ANNOTATION]
+
+[TAG STATUS]
+Serial number=030014AF030620513E2D285E00000000
+Version=03.11  
+Channels=5
+Descriptor 1=2:1:0:0:1:0:0
+Descriptor 2=1:1:1:0:2:0:0
+Descriptor 3=7:1:2:0:2:0:0
+Descriptor 4=3:3:3:0:0:0:0:4:0:0:0:0
+Descriptor 5=6:-:5:0:3:-:-
+Descriptor 6=
+Descriptor 7=
+Descriptor 8=
+Chips=3
+Min interval=10
+End point=1:113
+Start time=040515000000
+Mem lo=1759
+Mem ptr=324614
+Mem hi=1566720
+
+[INFO]
+I 1=
+I 2=
+I 3=
+I 4=
+I 5=
+I 6=
+I 7=
+I 8=
+I 9=
+I 10=
+
+[CALIBRATION]
+0=1,4,-2.62045E+02,5.87096E-01,-4.75570E-06,6.74004E-10,PSI
+1=1,4,7.71153E+01,-5.15804E-02,1.37612E-05,-2.00784E-09,C
+2=
+3=
+4=
+5=2,1,318,2,0,1,V
+
+[AUXILIARY]
+
+
+
+[FORMATTED HEADER]
+------------------- Deployment synopsis -------------------
+
+Serial number           Software revision       Installed memory
+5295                    03.11                   1528.3KB
+
+Deployment started      Expected end
+04/05/15 00:00:00       14/05/13 00:00:09
+
+Data expected           Data in file            Completed
+1375.9KB                314.9KB                 22.9%
+
+------------------- Tag sensor summary --------------------
+
+data id    name                                       units
+ 0         Pressure                                   PSI
+ 1         Temperature,endcap                         C
+ 2         Xtemperature,temp 2                        linear
+ 3         Light,Vactec                               linear
+ 4         Light high gain,Vactec                     linear
+ 5         Supply                                     V
+
+----------------------- Calibrations ----------------------
+Original calibrations from header applied
+
+data id    equation
+ 0         1,4,-262.045,0.587096,-4.7557E-6,6.74004E-10
+ 1         1,4,77.1153,-5.15804E-2,1.37612E-5,-2.00784E-9
+ 2         1,2,0.0,1.0
+ 3         1,2,0.0,1.0
+ 4         1,2,0.0,1.0
+ 5         2,1,318.0,2,2.0,0.0
+
+------------------ Logging regime table -------------------
+
+Pressure (350400 readings, duration 3650:00:00:09 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      350400     0:00:15:00    3650:00:00:003650:00:00:00
+2      0          0:00:00:01    0:00:00:01   3650:00:00:01
+3      0          0:00:00:01    0:00:00:01   3650:00:00:02
+4      0          0:00:00:01    0:00:00:01   3650:00:00:03
+5      0          0:00:00:01    0:00:00:01   3650:00:00:04
+6      0          0:00:00:01    0:00:00:01   3650:00:00:05
+7      0          0:00:00:01    0:00:00:01   3650:00:00:06
+8      0          0:00:00:01    0:00:00:01   3650:00:00:07
+9      0          0:00:00:01    0:00:00:01   3650:00:00:08
+10     0          0:00:00:01    0:00:00:01   3650:00:00:09
+
+Temperature,endcap (350400 readings, duration 3650:00:00:09 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      350400     0:00:15:00    3650:00:00:003650:00:00:00
+2      0          0:00:00:01    0:00:00:01   3650:00:00:01
+3      0          0:00:00:01    0:00:00:01   3650:00:00:02
+4      0          0:00:00:01    0:00:00:01   3650:00:00:03
+5      0          0:00:00:01    0:00:00:01   3650:00:00:04
+6      0          0:00:00:01    0:00:00:01   3650:00:00:05
+7      0          0:00:00:01    0:00:00:01   3650:00:00:06
+8      0          0:00:00:01    0:00:00:01   3650:00:00:07
+9      0          0:00:00:01    0:00:00:01   3650:00:00:08
+10     0          0:00:00:01    0:00:00:01   3650:00:00:09
+
+Xtemperature,temp 2 (0 readings, duration 0:00:00:10 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      0          0:00:00:01    0:00:00:01   0:00:00:01
+2      0          0:00:00:01    0:00:00:01   0:00:00:02
+3      0          0:00:00:01    0:00:00:01   0:00:00:03
+4      0          0:00:00:01    0:00:00:01   0:00:00:04
+5      0          0:00:00:01    0:00:00:01   0:00:00:05
+6      0          0:00:00:01    0:00:00:01   0:00:00:06
+7      0          0:00:00:01    0:00:00:01   0:00:00:07
+8      0          0:00:00:01    0:00:00:01   0:00:00:08
+9      0          0:00:00:01    0:00:00:01   0:00:00:09
+10     0          0:00:00:01    0:00:00:01   0:00:00:10
+
+Light,Vactec (0 readings, duration 0:00:00:10 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      0          0:00:00:01    0:00:00:01   0:00:00:01
+2      0          0:00:00:01    0:00:00:01   0:00:00:02
+3      0          0:00:00:01    0:00:00:01   0:00:00:03
+4      0          0:00:00:01    0:00:00:01   0:00:00:04
+5      0          0:00:00:01    0:00:00:01   0:00:00:05
+6      0          0:00:00:01    0:00:00:01   0:00:00:06
+7      0          0:00:00:01    0:00:00:01   0:00:00:07
+8      0          0:00:00:01    0:00:00:01   0:00:00:08
+9      0          0:00:00:01    0:00:00:01   0:00:00:09
+10     0          0:00:00:01    0:00:00:01   0:00:00:10
+
+Supply (3650 readings, duration 3650:00:00:09 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      3650       1:00:00:00    3650:00:00:003650:00:00:00
+2      0          0:00:00:01    0:00:00:01   3650:00:00:01
+3      0          0:00:00:01    0:00:00:01   3650:00:00:02
+4      0          0:00:00:01    0:00:00:01   3650:00:00:03
+5      0          0:00:00:01    0:00:00:01   3650:00:00:04
+6      0          0:00:00:01    0:00:00:01   3650:00:00:05
+7      0          0:00:00:01    0:00:00:01   3650:00:00:06
+8      0          0:00:00:01    0:00:00:01   3650:00:00:07
+9      0          0:00:00:01    0:00:00:01   3650:00:00:08
+10     0          0:00:00:01    0:00:00:01   3650:00:00:09
+
+
+----------------------- Output data -----------------------
+Calibration conversions applied, output is in real units
+
+[CSV DATA]
+Time,Xtemperature linear

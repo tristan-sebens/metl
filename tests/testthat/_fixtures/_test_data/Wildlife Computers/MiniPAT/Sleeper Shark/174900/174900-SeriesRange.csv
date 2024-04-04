@@ -1,0 +1,8 @@
+DeployID,Ptt,DepthSensor,Source,Instr,Count,Start,End,LocationQuality,Latitude,Longitude,MinDepth,MinDepthAccuracy,MaxDepth,MaxDepthAccuracy,MinTemp,MinTempAccuracy,MaxTemp,MaxTempAccuracy,MobMean,MobSD,ActivitySum
+174900,174900,0.500000,Transmission,MiniPAT,1,16:00:00 11-Jul-2023,00:00:00 12-Jul-2023,,,,,,,,5.9,0.00,6.2,0.00,,,
+174900,174900,0.500000,Transmission,MiniPAT,2,00:00:00 12-Jul-2023,08:00:00 12-Jul-2023,,,,295.5,3.75,728.0,7.75,5.9,0.00,6.2,0.00,,,
+174900,174900,0.500000,Transmission,MiniPAT,2,16:00:00 12-Jul-2023,00:00:00 13-Jul-2023,,,,391.5,3.75,792.0,7.75,5.9,0.00,6.2,0.00,,,
+174900,174900,0.500000,Transmission,MiniPAT,3,08:00:00 13-Jul-2023,16:00:00 13-Jul-2023,,,,171.5,1.75,728.0,7.75,5.9,0.00,6.2,0.00,,,
+174900,174900,0.500000,Transmission,MiniPAT,3,16:00:00 13-Jul-2023,00:00:00 14-Jul-2023,,,,227.5,1.75,792.0,7.75,5.9,0.00,6.2,0.00,,,
+174900,174900,0.500000,Transmission,MiniPAT,2,00:00:00 14-Jul-2023,08:00:00 14-Jul-2023,,,,311.5,3.75,792.0,7.75,5.9,0.00,6.2,0.00,,,
+174900,174900,0.500000,Transmission,MiniPAT,1,08:00:00 14-Jul-2023,16:00:00 14-Jul-2023,,,,535.5,7.75,792.0,7.75,,,,,,,

@@ -1,0 +1,86 @@
+ Desert Star Systems LLC SeaTag Log File,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Log from: SeaDock 2.1.9.11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Log downloaded on(UTC): 6/4/2013 10:59:25 PM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Tag Serial number: 173,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Tag Argos ID: 4922,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Median argos transmit signal strength: 4922,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Packets with checksum OK: 26/38,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ ------Manufacturing Statistics-------,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+" ""tag SN""",packets received,good packets,percent good,avg signal strength(dB),packets transmitted,percent received,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+169,2,0,0,4922,0,Infinity,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ ------Packet definitions-------,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,Program,PTT,Satellite,Location date,Location class,Latitude,Longitude,Message date,Compression index,SENSOR #01,SENSOR #02,SENSOR #03,SENSOR #04,SENSOR #05,SENSOR #06,SENSOR #07,SENSOR #08,SENSOR #09,SENSOR #10,SENSOR #11,SENSOR #12,SENSOR #13,SENSOR #14,SENSOR #15,SENSOR #16,SENSOR #17,SENSOR #18,SENSOR #19,SENSOR #20,SENSOR #21,SENSOR #22,SENSOR #23,SENSOR #24,SENSOR #25,SENSOR #26,SENSOR #27,SENSOR #28,SENSOR #29,SENSOR #30,SENSOR #31
+SDPT_MODDAILY,Checksum OK,tag serial number,status byte,depth avg(m),depth max(m),depth min(m),accel delta avg(G/sec),temp avg(C),magnetic field amplitude avg(nT),day length(seconds),noon time(UTC),capacitor avg(V),solar panel avg(V),argos transmit day counter;,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_MODSN2,Checksum OK,argos transmission number,date(dd/mm/yyy)/time,depth(m),solar(V),capacitor(V),temp(deg C),magX(nT),magY(nT),magZ(nT),accelX(G),accelY(G),accelZ(G),accel delta mag(G),solar low res (V),Tag SN,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_MODSNS,Checksum OK,date(dd/mm/yyy)/time,depth(cm sea water),temperature(mdeg C),Argos transmission SN,solar panel voltage(mV),capacitor voltage(mV),magnetic field amplitude(nT),X-axis acceleration(G),"Y-axis acceleration(G)""","Z-axis acceleration(G)""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_HST_DEPTH,Checksum OK,Start date/time,Duration(hh:mm),Minimum depth(m),Bin size(m),Bin 1(%),Bin 2(%),Bin 3(%),Bin 4(%),Bin 5(%),Bin 6(%),Bin 7(%),Bin 8(%),Bin 9(%),Bin 10(%),Bin 11(%),Bin 12(%),Bin 13(%),Bin 14(%),Bin 15(%),Bin 16(%),Bin 17(%),Bin 18(%),Bin 19(%);,,,,,,,,,,,,,,,,
+SDPT_MODENG,Checksum OK,status,tag serial number,argos transmission number,date(dd/mm/yyy)/time,noon time(UTC),day length(seconds),solar panel avg(V),capacitor avg(V),temp avg(C),magnetic field amplitude avg(nT),magnetic field amplitude(nT),depth avg(m),depth(m),,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_POSDPT,date,latitude,longitude,locationClass,depth(m),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_HRA_TS,time/date,sample rate(seconds),status,X_accel_0,Y_accel_0,Z_accel_0,X_accel_1,Y_accel_1,Z_accel_1,X_accel_2,Y_accel_2,Z_accel_2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_HRA_GS,Checksum OK,date/time,Resoultuion(G),gforce std deviation 0 (G),gforce std deviation 1 (G),gforce std deviation 2 (G),gforce std deviation 3 (G),gforce std deviation 4 (G),gforce std deviation 5 (G),gforce std deviation 6 (G),gforce std deviation 7 (G),gforce std deviation 8 (G),gforce std deviation 9 (G),gforce std deviation 10 (G),gforce std deviation 11 (G),gforce std deviation 12 (G),gforce std deviation 13 (G),gforce std deviation 14 (G),gforce std deviation 15 (G),gforce std deviation 16 (G),gforce std deviation 17 (G),gforce std deviation 18 (G),gforce std deviation 19 (G),gforce std deviation 20 (G),gforce std deviation 21 (G),gforce std deviation 22 (G),gforce std deviation 23 (G),gforce std deviation 24 (G),,,,,,,,,,,,
+SDPT_HRA_3XMS,Checksum OK,date/time,scale max value(G),x axis std dev 0 (G),x axis mean 0 (G),y axis std dev 0 (G),y axis mean 0 (G),z axis std dev 0 (G),z axis mean 0 (G),x axis std dev 1 (G),x axis mean 1 (G),y axis std dev 1 (G),y axis mean 1 (G),z axis std dev 1 (G),z axis mean 1 (G),x axis std dev 2 (G),x axis mean 2 (G),y axis std dev 2 (G),y axis mean 2 (G),z axis std dev 2 (G),z axis mean 2 (G),x axis std dev 3 (G),x axis mean 3 (G),y axis std dev 3 (G),y axis mean 3 (G),z axis std dev 3 (G),z axis mean 3 (G),,,,,,,,,,,,,
+ ------Beginning of log (Import the following as a semi-comma delimited file into Excel or similar)-------,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106158,L,8/21/2012 18:43,B,57.085,-137.586,8/21/2012 18:43,1,6,0,0,4F,FB,DC,8A,0,21,88,D8,0,0E,BD,0,4A,F9,51,E8,CD,0,0B,FF,36,4,15,0,81,3C,57,24
+SDPT_ARGOS,4922,106158,L,8/21/2012 20:24,B,57.046,-137.675,8/21/2012 20:24,1,0B,8A,0,A9,7,F8,0,16,97,E9,0,15,51,EF,6C,48,6,B9,0B,EB,F5,93,EA,E3,C7,9,4F,C0,77,78,DF
+SDPT_ARGOS,4922,106158,L,8/21/2012 20:24,B,57.046,-137.675,8/21/2012 20:29,1,6,0,0,4F,FB,E3,1A,0,21,AA,D8,0,0E,BC,FB,C6,3,B8,E8,F1,0,13,FF,32,4,15,0,1,3E,16,3E
+SDPT_MODSN2,TRUE,0,7/10/2012 8:08,814.3,0.008618,3.456,3.772,-10820,9520,-59030,0.019,-0.206,1.045,0,0,169,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106158,N,8/21/2012 20:24,B,57.046,-137.675,8/21/2012 20:24,1,0B,8A,0,A9,7,F8,0,16,97,E9,0,15,51,EF,6C,48,6,B9,49,FC,25,8,90,A8,FA,F8,EA,FC,0,87,14
+SDPT_ARGOS,4922,106158,A,8/21/2012 21:25,B,57.003,-137.668,8/21/2012 21:22,1,6,0,0,4F,FB,EE,5A,0,21,62,D7,0,0F,44,FF,F4,5,FA,EA,E3,9,22,78,25,4F,DE,1B,16,AB,F8,52
+SDPT_ARGOS,4922,106158,A,8/21/2012 21:25,B,57.003,-137.668,8/21/2012 21:28,1,6,0,0,4F,FB,EF,4A,0,21,86,D7,0,0F,46,FA,27,FD,A6,E8,F1,0,27,FF,49,4,11,0,1,3F,C7,7B
+SDPT_MODSN2,TRUE,0,7/10/2012 9:00,818.63,0.008582,3.44,3.91,-14970,-6020,-59030,0.039,-0.183,1.041,0,0,169,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106158,N,8/21/2012 22:10,B,56.98,-137.7,8/21/2012 22:10,1,6,0,0,4F,FB,F3,0A,0,21,70,D7,0,0F,4D,2,C1,FA,1E,E8,BA,0,0,FF,41,4,11,7F,50,8C,8C,7D
+SDPT_ARGOS,4922,106158,L,8/21/2012 22:10,B,57.004,-137.676,8/21/2012 22:10,1,6,0,0,4F,FB,F3,0A,0,21,70,D7,0,1E,CD,2,C1,FA,1E,E8,BA,0,0,FF,41,4,11,10,77,DA,B6,FC
+SDPT_ARGOS,4922,106175,P,8/21/2012 12:38,B,56.904,-135.586,8/21/2012 12:38,1,6,0,0,4F,F7,7C,14,0,2D,DE,DD,0,5D,21,FB,BC,EC,D0,6,D0,1,3B,FB,EF,FF,C2,0D,0,0,C0,C0
+SDPT_MODSN2,TRUE,0,7/7/2012 0:00,1.92,0.011742,3.536,23.841,-10920,-49120,17440,0.315,-1.041,-0.062,0.13,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,M,8/21/2012 17:17,B,56.921,-135.523,8/21/2012 17:17,1,6,0,0,4F,F7,C2,64,0,2C,BA,DD,0,58,8B,FE,D1,EC,FB,2,95,1,6A,FC,39,FF,D9,5,0,0,8E,8F
+SDPT_MODSN2,TRUE,0,7/7/2012 5:00,1.42,0.01145,3.536,22.667,-3030,-48690,6610,0.362,-0.967,-0.039,0.05,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/21/2012 18:10,B,56.918,-135.569,8/21/2012 18:10,1,6,0,0,4F,F7,DE,84,0,2C,16,DD,0,56,FB,FE,F9,ED,0E,2,95,1,1,FC,1E,FF,C6,5,0,0,AB,C7
+SDPT_MODSN2,TRUE,0,7/7/2012 7:00,1.71,0.011286,3.536,22.267,-2630,-48500,6610,0.257,-0.994,-0.058,0.05,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,L,8/21/2012 18:47,B,56.946,-135.471,8/21/2012 18:47,1,6,0,0,4F,F8,8,B4,0,2C,24,DD,0,57,9,2,D0,EE,63,0A,E5,1,57,FC,5C,FF,D2,9,0,0,A2,2B
+SDPT_MODSN2,TRUE,0,7/7/2012 10:00,1.62,0.0113,3.536,22.281,7200,-45090,27890,0.343,-0.932,-0.046,0.09,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,M,8/21/2012 19:00,B,56.942,-135.422,8/21/2012 18:57,1,6,0,0,4F,F8,16,C4,0,2C,76,DD,0,57,47,2,BF,EE,63,0B,2C,1,2C,FC,8F,FF,E9,4,0,0,62,6C
+SDPT_MODSN2,TRUE,0,7/7/2012 11:00,0.98,0.011382,3.536,22.343,7030,-45090,28600,0.3,-0.881,-0.023,0.04,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,M,8/21/2012 19:00,B,56.942,-135.422,8/21/2012 19:04,1,6,0,0,4F,F8,24,D4,0,2C,52,DD,0,57,85,2,A8,EE,51,0B,2C,1,3B,FC,4D,FF,CA,0,0,0,77,9E
+SDPT_MODSN2,TRUE,0,7/7/2012 12:00,1.19,0.011346,3.536,22.405,6800,-45270,28600,0.315,-0.947,-0.054,0,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/21/2012 19:15,B,56.925,-135.43,8/21/2012 19:15,1,6,0,0,4F,F8,40,F4,0,2C,8C,DD,0,58,4A,FD,35,EC,C3,2,B6,0,ED,FC,4D,FF,D2,7,0,0,61,3F
+SDPT_MODSN2,TRUE,0,7/7/2012 14:00,0.97,0.011404,3.536,22.602,-7150,-49250,6940,0.237,-0.947,-0.046,0.07,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/21/2012 19:15,B,56.925,-135.43,8/21/2012 19:21,1,6,0,1,4F,F8,4F,4,0,2C,7E,DD,0,59,3A,FC,4B,EC,91,5,30,1,18,FC,70,FF,ED,1,0,0,68,71
+SDPT_MODSN2,TRUE,1,7/7/2012 15:00,1.04,0.01139,3.536,22.842,-9490,-49750,13280,0.28,-0.912,-0.019,0.01,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/21/2012 19:39,B,56.938,-135.431,8/21/2012 19:39,1,6,0,1,4F,F8,6B,24,0,2D,28,DD,0,5A,EA,4,E4,EE,D9,9,3A,1,38,FC,7F,FF,DD,1,0,0,BB,6E
+SDPT_MODSN2,TRUE,1,7/7/2012 17:00,1.87,0.01156,3.536,23.274,12520,-43910,23620,0.312,-0.897,-0.035,0.01,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/21/2012 19:39,B,56.938,-135.431,8/21/2012 19:47,1,6,0,1,4F,F8,79,34,0,2D,72,DD,0,5C,49,FE,6A,EA,62,3,19,1,34,FC,1E,FF,D2,9,0,0,83,67
+SDPT_MODSN2,TRUE,1,7/7/2012 18:00,1.31,0.011634,3.536,23.625,-4060,-55340,7930,0.308,-0.994,-0.046,0.09,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,L,8/21/2012 20:29,B,56.94,-135.419,8/21/2012 20:29,1,6,0,1,4F,F8,BF,84,8,D4,94,DC,0,3E,C5,FD,8B,FA,59,F8,2F,FD,56,FD,71,0,A6,82,0,0,67,4C
+SDPT_ARGOS,4922,106175,N,8/21/2012 20:29,B,56.937,-135.425,8/21/2012 20:29,1,6,0,1,4F,F8,BF,84,8,D4,94,DC,0,3E,C5,FD,8B,FA,59,F8,2F,FD,56,FD,71,0,A4,2,0,0,67,4C
+SDPT_ARGOS,4922,106175,M,8/21/2012 20:36,B,56.937,-135.425,8/21/2012 20:36,1,6,0,1,4F,F8,CD,94,0,5A,4E,DC,0,4A,61,F4,73,F9,99,EF,6D,FD,79,FD,66,0,8C,1,0,0,8F,D7
+SDPT_MODSN2,TRUE,1,7/8/2012 0:00,1.43,0.023118,3.52,19.041,-29570,-16390,-42430,-0.647,-0.666,0.14,0.01,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/21/2012 20:57,B,56.94,-135.425,8/21/2012 20:57,1,6,0,1,4F,F8,E9,B4,0,2D,A2,DD,0,5C,65,F2,26,FC,C6,EE,35,FD,14,FD,46,0,75,8,0,0,71,68
+SDPT_MODSN2,TRUE,1,7/8/2012 2:00,1.13,0.011682,3.536,23.653,-35460,-8260,-45550,-0.748,-0.698,0.117,0.08,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/21/2012 20:57,B,56.94,-135.425,8/21/2012 21:05,1,4,0,4F,F8,AE,23,24,90,0,56,0D,D5,0,53,0,12,C5,0,36,0,0B,0,24,0,1,0,C8,0,1,3A,64
+SDPT_MODDAILY,TRUE,314,0,1.1,3.6,0.1,0.54,21.248,48050,18720,7/7/2012 21:46,3.541,0.086,200,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/21/2012 21:23,B,56.941,-135.425,8/21/2012 21:19,1,6,0,1,4F,F9,5,D4,0,2D,AE,DD,0,5C,4F,F1,D0,FD,55,EE,0F,FD,5A,FD,5E,0,5D,8,0,0,7D,D0
+SDPT_MODSN2,TRUE,1,7/8/2012 4:00,1.25,0.011694,3.536,23.631,-36320,-6830,-45930,-0.678,-0.674,0.093,0.08,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/21/2012 21:23,B,56.941,-135.425,8/21/2012 21:27,1,6,0,1,4F,F9,13,E4,0,2D,7E,DD,0,5B,38,F1,75,FD,C5,EE,40,CC,D8,9C,CC,C4,6E,6E,44,CB,97,73
+SDPT_ARGOS,4922,106175,N,8/21/2012 22:12,B,56.95,-135.402,8/21/2012 22:12,1,6,0,3,4F,F9,68,44,0,2D,C8,DD,0,5C,67,F2,F4,FB,F9,EE,14,FD,0,FD,3B,0,A7,1,0,0,67,4D
+SDPT_MODSN2,TRUE,3,7/8/2012 11:00,1.03,0.01172,3.536,23.655,-33400,-10310,-45880,-0.768,-0.709,0.167,0.01,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,K,8/21/2012 22:20,B,56.947,-135.407,8/21/2012 22:20,1,6,0,3,4F,F9,76,54,0,2D,D4,DD,0,5C,D4,F4,B8,F9,35,F0,1C,FD,14,FD,5A,0,3E,4,0,0,5B,EB
+SDPT_MODSN2,TRUE,3,7/8/2012 12:00,0.91,0.011732,3.536,23.764,-28880,-17390,-40680,-0.748,-0.678,0.062,0.04,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/21/2012 22:36,B,56.946,-135.416,8/21/2012 22:37,1,6,0,3,4F,F9,92,74,0,2E,38,DD,0,5D,62,F5,63,F8,3D,F1,9A,FD,71,FD,66,0,80,1,0,0,A1,9B
+SDPT_MODSN2,TRUE,3,7/8/2012 14:00,1.61,0.011832,3.536,23.906,-27170,-19870,-36860,-0.655,-0.666,0.128,0.01,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/21/2012 22:36,B,56.946,-135.416,8/21/2012 22:45,1,6,0,3,4F,F9,A0,84,0,2E,52,DD,0,5D,84,F4,73,F9,C4,EF,4C,FD,56,FD,62,0,5D,4,0,0,95,45
+SDPT_MODSN2,TRUE,3,7/8/2012 15:00,1.49,0.011858,3.536,23.94,-29570,-15960,-42760,-0.682,-0.67,0.093,0.04,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,N,8/21/2012 23:50,B,56.941,-135.419,8/21/2012 23:50,1,6,0,4,4F,F9,D8,C4,0B,C2,96,DC,0,3A,EB,FF,94,FB,E1,E0,35,1,BA,C3,6A,3F,A4,0F,F8,70,7,FF
+SDPT_ARGOS,4922,106175,K,8/21/2012 23:55,B,56.939,-135.42,8/21/2012 23:50,1,6,0,4,4F,F9,D8,C4,0B,C2,96,DC,0,3A,EB,FF,94,FB,E1,FF,CA,FE,7A,FC,8B,0,BB,0,0,0,64,57
+SDPT_MODSN2,TRUE,4,7/8/2012 19:00,1,0.77071,3.52,15.083,-1080,-10550,-540,-0.39,-0.885,0.187,0,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,K,8/21/2012 23:55,B,56.939,-135.42,8/22/2012 0:01,1,6,0,4,4F,F9,E6,D4,0B,63,74,DC,0,3A,7F,FF,5,FC,19,1,9F,FE,B5,FC,A6,0,65,0,0,0,2B,DE
+SDPT_MODSN2,TRUE,4,7/8/2012 20:00,0.43,0.746356,3.52,14.975,-2510,-9990,4150,-0.331,-0.858,0.101,0,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/22/2012 0:23,B,56.938,-135.421,8/22/2012 0:23,1,6,0,4,4F,FA,2,F4,0F,CD,56,DC,0,3A,EA,0,7D,FB,0D,FB,69,FE,F3,FC,5C,0,90,8,0,0,47,73
+SDPT_MODSN2,TRUE,4,7/8/2012 22:00,0.71,1.035606,3.52,15.082,1250,-12670,-11750,-0.269,-0.932,0.144,0.08,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/22/2012 0:38,B,56.943,-135.417,8/22/2012 0:38,1,6,0,4,4F,FA,11,4,0,22,72,DC,0,10,5F,3,26,F6,A9,EB,21,FF,FD,FE,48,3,C7,4,0,F9,5D,7E
+SDPT_MODSN2,TRUE,4,7/8/2012 23:00,638.37,0.008818,3.52,4.191,8060,-23910,-53430,-0.003,-0.44,0.967,0.04,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,K,8/22/2012 1:32,B,56.948,-135.401,8/22/2012 1:32,1,4,1,4F,F6,2B,3,0,0,1,61,F7,7D,0,5A,75,0,0,0,2F,FF,F7,0,1C,FF,A6,0,C8,0,1,3A,F9
+SDPT_MODDAILY,TRUE,314,1,-0.9,2.8,-9,0.47,23.157,0,0,7/6/2012 0:02,63.357,0.353,200,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,A,8/22/2012 5:41,B,56.974,-135.349,8/22/2012 5:41,1,6,0,0,4F,F6,46,B4,0,2D,FA,DD,0,5E,39,F9,75,EB,AC,4,6C,0,A3,FC,70,FF,F9,3,0,0,9D,3
+SDPT_MODSN2,TRUE,0,7/6/2012 2:00,1.57,0.01177,3.536,24.121,-16750,-52040,11320,0.163,-0.912,-0.007,0.03,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106198,N,,,,,8/22/2012 1:30,1,6,0,4,50,2D,97,AF,0,26,96,DD,0,4F,FD,70,96,29,77,58,90,0,A7,FC,9E,7,48,D3,26,23,5A,3F
+SDPT_ARGOS,4922,106198,K,,,,,8/22/2012 3:15,1,6,0,0,50,2D,89,9F,0,28,24,E0,38,78,E1,C7,87,8F,0F,7,8F,D7,C1,FD,0B,FC,0,57,FB,FF,1F,1D

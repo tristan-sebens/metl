@@ -1,0 +1,2 @@
+DeployID,Ptt,Instr,SW,PercentDecoded,Passes,PercentArgosLoc,MsgPerPass,DS,DI,MinPower,AvgPower,MaxPower,MinInterval,EarliestXmitTime,LatestXmitTime,XmitDays,EarliestDataTime,LatestDataTime,DataDays,ReleaseDate,ReleaseType,DeployDate
+175147,175147,MiniPAT,2.04n,78,473,82,5,2220,,,,,59,01:11:11 14-Sep-2019,10:30:37 22-Sep-2019,8,10:00:00 31-Aug-2019,00:00:00 15-Sep-2019,15,01:00:00 14-Sep-2019,Floater,10:42:00 31-Aug-2019

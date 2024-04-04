@@ -1,0 +1,29 @@
+ Desert Star Systems LLC SeaTag Log File,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Log from: SeaDock 2.1.9.11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Log downloaded on(UTC): 6/4/2013 6:44:14 PM,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Tag Serial number: 314,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Tag Argos ID: 4922,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Median argos transmit signal strength: 4922,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ Packets with checksum OK: 2/5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ ------Manufacturing Statistics-------,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+" ""tag SN""",packets received,good packets,percent good,avg signal strength(dB),packets transmitted,percent received,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+ ------Packet definitions-------,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,Program,PTT,Satellite,Location date,Location class,Latitude,Longitude,Message date,Compression index,SENSOR #01,SENSOR #02,SENSOR #03,SENSOR #04,SENSOR #05,SENSOR #06,SENSOR #07,SENSOR #08,SENSOR #09,SENSOR #10,SENSOR #11,SENSOR #12,SENSOR #13,SENSOR #14,SENSOR #15,SENSOR #16,SENSOR #17,SENSOR #18,SENSOR #19,SENSOR #20,SENSOR #21,SENSOR #22,SENSOR #23,SENSOR #24,SENSOR #25,SENSOR #26,SENSOR #27,SENSOR #28,SENSOR #29,SENSOR #30,SENSOR #31
+SDPT_MODDAILY,Checksum OK,tag serial number,status byte,depth avg(m),depth max(m),depth min(m),accel delta avg(G/sec),temp avg(C),magnetic field amplitude avg(nT),day length(seconds),noon time(UTC),capacitor avg(V),solar panel avg(V),argos transmit day counter;,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_MODSN2,Checksum OK,argos transmission number,date(dd/mm/yyy)/time,depth(m),solar(V),capacitor(V),temp(deg C),magX(nT),magY(nT),magZ(nT),accelX(G),accelY(G),accelZ(G),accel delta mag(G),solar low res (V),Tag SN,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_MODSNS,Checksum OK,date(dd/mm/yyy)/time,depth(cm sea water),temperature(mdeg C),Argos transmission SN,solar panel voltage(mV),capacitor voltage(mV),magnetic field amplitude(nT),X-axis acceleration(G),"Y-axis acceleration(G)""","Z-axis acceleration(G)""",,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_HST_DEPTH,Checksum OK,Start date/time,Duration(hh:mm),Minimum depth(m),Bin size(m),Bin 1(%),Bin 2(%),Bin 3(%),Bin 4(%),Bin 5(%),Bin 6(%),Bin 7(%),Bin 8(%),Bin 9(%),Bin 10(%),Bin 11(%),Bin 12(%),Bin 13(%),Bin 14(%),Bin 15(%),Bin 16(%),Bin 17(%),Bin 18(%),Bin 19(%);,,,,,,,,,,,,,,,,
+SDPT_MODENG,Checksum OK,status,tag serial number,argos transmission number,date(dd/mm/yyy)/time,noon time(UTC),day length(seconds),solar panel avg(V),capacitor avg(V),temp avg(C),magnetic field amplitude avg(nT),magnetic field amplitude(nT),depth avg(m),depth(m),,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_POSDPT,date,latitude,longitude,locationClass,depth(m),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_HRA_TS,time/date,sample rate(seconds),status,X_accel_0,Y_accel_0,Z_accel_0,X_accel_1,Y_accel_1,Z_accel_1,X_accel_2,Y_accel_2,Z_accel_2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_HRA_GS,Checksum OK,date/time,Resoultuion(G),gforce std deviation 0 (G),gforce std deviation 1 (G),gforce std deviation 2 (G),gforce std deviation 3 (G),gforce std deviation 4 (G),gforce std deviation 5 (G),gforce std deviation 6 (G),gforce std deviation 7 (G),gforce std deviation 8 (G),gforce std deviation 9 (G),gforce std deviation 10 (G),gforce std deviation 11 (G),gforce std deviation 12 (G),gforce std deviation 13 (G),gforce std deviation 14 (G),gforce std deviation 15 (G),gforce std deviation 16 (G),gforce std deviation 17 (G),gforce std deviation 18 (G),gforce std deviation 19 (G),gforce std deviation 20 (G),gforce std deviation 21 (G),gforce std deviation 22 (G),gforce std deviation 23 (G),gforce std deviation 24 (G),,,,,,,,,,,,
+SDPT_HRA_3XMS,Checksum OK,date/time,scale max value(G),x axis std dev 0 (G),x axis mean 0 (G),y axis std dev 0 (G),y axis mean 0 (G),z axis std dev 0 (G),z axis mean 0 (G),x axis std dev 1 (G),x axis mean 1 (G),y axis std dev 1 (G),y axis mean 1 (G),z axis std dev 1 (G),z axis mean 1 (G),x axis std dev 2 (G),x axis mean 2 (G),y axis std dev 2 (G),y axis mean 2 (G),z axis std dev 2 (G),z axis mean 2 (G),x axis std dev 3 (G),x axis mean 3 (G),y axis std dev 3 (G),y axis mean 3 (G),z axis std dev 3 (G),z axis mean 3 (G),,,,,,,,,,,,,
+ ------Beginning of log (Import the following as a semi-comma delimited file into Excel or similar)-------,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,N,8/3/2012 12:11,B,56.942,-135.453,8/3/2012 12:11,1,6,0,0,4F,F7,51,E4,0,2D,62,DD,0,5C,6F,FC,12,ED,77,0A,30,0,F9,FC,3D,FF,C2,0,0,0,98,10
+SDPT_MODSN2,TRUE,0,7/6/2012 21:00,1.52,0.011618,3.536,23.663,-10060,-47450,26080,0.249,-0.963,-0.062,0,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,L,8/3/2012 19:09,B,56.94,-135.461,8/3/2012 19:09,1,4,1,4F,F7,D1,D3,0,0,0,6,0D,DB,0,5D,16,15,4B,0,23,0,13,77,DF,94,6,0,C8,0,1,3A,ED
+SDPT_ARGOS,4922,106175,P,8/3/2012 22:27,B,56.928,-135.442,8/3/2012 22:27,1,6,0,0,4F,F8,8,B4,0,2C,24,DD,0,57,9,2,D0,EE,63,0A,E5,1,57,FC,5C,FF,D2,9,0,0,A2,2B
+SDPT_MODSN2,TRUE,0,7/7/2012 10:00,1.62,0.0113,3.536,22.281,7200,-45090,27890,0.343,-0.932,-0.046,0.09,0,314,,,,,,,,,,,,,,,,,,,,,,,,
+SDPT_ARGOS,4922,106175,P,8/4/2012 0:11,B,56.935,-135.418,8/4/2012 0:11,1,6,0,1,4F,F8,5D,14,0,2D,18,DD,0,5A,21,FC,EB,EC,79,6,7E,0,BF,FC,6C,FF,42,5A,DA,4B,6D,2D
+SDPT_ARGOS,4922,106175,K,8/4/2012 0:35,B,56.937,-135.416,8/4/2012 0:35,1,6,0,1,4F,F8,6B,24,0,2D,28,DD,0,5A,EA,4,E4,EE,D9,66,C5,1,C7,FF,87,E1,D8,C6,9B,1E,30,E9

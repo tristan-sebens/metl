@@ -1,0 +1,154 @@
+DST converted data file, produced 2005/10/21 08:37:04 by tagtalk32 0.992.101 (32)
+
+One file per sensor, output files are:
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 38--\RMA 3827\CLIENT DATA\1484PRESSURE.CSV
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 38--\RMA 3827\CLIENT DATA\1484TEMPERATURE.CSV
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 38--\RMA 3827\CLIENT DATA\1484LIGHT.CSV
+S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 38--\RMA 3827\CLIENT DATA\1484SUPPLY.CSV  <-- This file
+
+Source file: S:\OPS\PRIVATE\TESTING AND CALIBRATION\RMA SERVICE\RMA 38--\RMA 3827\CLIENT DATA\1484.DSD
+
+
+--------------- original header information ---------------
+
+[ANNOTATION]
+
+[TAG STATUS]
+Serial number=020005CC0302204134B0FAAD00000000
+Version=01.11  
+Channels=4
+Descriptor 1=2:1:0:0:1:0:0
+Descriptor 2=1:1:1:0:2:0:0
+Descriptor 3=3:1:2:0:0:0:0:3:0:0:0:0
+Descriptor 4=6:-:4:0:3:-:-
+Descriptor 5=
+Descriptor 6=
+Descriptor 7=
+Descriptor 8=
+Chips=2
+Min interval=1
+End point=1:113
+Start time=980615000000
+Mem lo=1677
+Mem ptr=1044480
+Mem hi=1044480
+
+[INFO]
+I 1=
+I 2=
+I 3=
+I 4=
+I 5=
+I 6=
+I 7=
+I 8=
+I 9=
+I 10=
+
+[CALIBRATION]
+0=1,4,-2.58271E+02,6.39482E-01,7.84225E-06,-6.02573E-10,
+1=1,4,7.64354E+01,-5.03628E-02,1.31321E-05,-1.91494E-09,
+2=1,4,0.00000E+00,1.00000E+00,0.00000E+00,0.00000E+00,
+3=1,4,0.00000E+00,1.00000E+00,0.00000E+00,0.00000E+00,
+4=2,1,318,2,0,1,v
+
+[AUXILIARY]
+
+
+
+[FORMATTED HEADER]
+------------------- Deployment synopsis -------------------
+
+Serial number           Software revision       Installed memory
+1484                    01.11                   1018.4KB
+
+Deployment started      Expected end
+98/06/15 00:00:00       08/06/12 00:00:09
+
+Data expected           Data in file            Completed
+1017.2KB                1018.0KB                100.1%
+
+------------------- Tag sensor summary --------------------
+
+data id    name                                       units
+ 0         Pressure                                   
+ 1         Temperature,endcap                         
+ 2         Light,Hamamatsu                            
+ 3         Light high gain,Hamamatsu                  
+ 4         Supply                                     v
+
+----------------------- Calibrations ----------------------
+Original calibrations from header applied
+
+data id    equation
+ 0         1,4,-258.271,0.639482,7.84225E-6,-6.02573E-10
+ 1         1,4,76.4354,-5.03628E-2,1.31321E-5,-1.91494E-9
+ 2         1,4,0.0,1.0,0.0,0.0
+ 3         1,4,0.0,1.0,0.0,0.0
+ 4         2,1,318.0,2,2.0,0.0
+
+------------------ Logging regime table -------------------
+
+Pressure (87600 readings, duration 3650:00:00:09 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      87600      0:01:00:00    3650:00:00:003650:00:00:00
+2      0          0:00:00:01    0:00:00:01   3650:00:00:01
+3      0          0:00:00:01    0:00:00:01   3650:00:00:02
+4      0          0:00:00:01    0:00:00:01   3650:00:00:03
+5      0          0:00:00:01    0:00:00:01   3650:00:00:04
+6      0          0:00:00:01    0:00:00:01   3650:00:00:05
+7      0          0:00:00:01    0:00:00:01   3650:00:00:06
+8      0          0:00:00:01    0:00:00:01   3650:00:00:07
+9      0          0:00:00:01    0:00:00:01   3650:00:00:08
+10     0          0:00:00:01    0:00:00:01   3650:00:00:09
+
+Temperature,endcap (87600 readings, duration 3650:00:00:09 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      87600      0:01:00:00    3650:00:00:003650:00:00:00
+2      0          0:00:00:01    0:00:00:01   3650:00:00:01
+3      0          0:00:00:01    0:00:00:01   3650:00:00:02
+4      0          0:00:00:01    0:00:00:01   3650:00:00:03
+5      0          0:00:00:01    0:00:00:01   3650:00:00:04
+6      0          0:00:00:01    0:00:00:01   3650:00:00:05
+7      0          0:00:00:01    0:00:00:01   3650:00:00:06
+8      0          0:00:00:01    0:00:00:01   3650:00:00:07
+9      0          0:00:00:01    0:00:00:01   3650:00:00:08
+10     0          0:00:00:01    0:00:00:01   3650:00:00:09
+
+Light,Hamamatsu (345600 readings, duration 300:00:00:05 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      120960     0:00:01:00    84:00:00:00  84:00:00:00
+2      0          30:00:00:00   30:00:00:00  114:00:00:00
+3      208800     0:00:01:00    145:00:00:00 259:00:00:00
+4      0          30:00:00:00   30:00:00:00  289:00:00:00
+5      15840      0:00:01:00    11:00:00:00  300:00:00:00
+6      0          0:00:00:01    0:00:00:01   300:00:00:01
+7      0          0:00:00:01    0:00:00:01   300:00:00:02
+8      0          0:00:00:01    0:00:00:01   300:00:00:03
+9      0          0:00:00:01    0:00:00:01   300:00:00:04
+10     0          0:00:00:01    0:00:00:01   300:00:00:05
+
+Supply (1 readings, duration 0:00:00:19 overall)
+Line   Readings   Interval      Duration     Elapsed
+                  dd:hh:mm:ss   dd:hh:mm:ss  dd:hh:mm:ss
+1      1          0:00:00:10    0:00:00:10   0:00:00:10
+2      0          0:00:00:01    0:00:00:01   0:00:00:11
+3      0          0:00:00:01    0:00:00:01   0:00:00:12
+4      0          0:00:00:01    0:00:00:01   0:00:00:13
+5      0          0:00:00:01    0:00:00:01   0:00:00:14
+6      0          0:00:00:01    0:00:00:01   0:00:00:15
+7      0          0:00:00:01    0:00:00:01   0:00:00:16
+8      0          0:00:00:01    0:00:00:01   0:00:00:17
+9      0          0:00:00:01    0:00:00:01   0:00:00:18
+10     0          0:00:00:01    0:00:00:01   0:00:00:19
+
+
+----------------------- Output data -----------------------
+Calibration conversions applied, output is in real units
+
+[CSV DATA]
+Time,Supply v
+1998/06/15 00:00:00,3.212121
