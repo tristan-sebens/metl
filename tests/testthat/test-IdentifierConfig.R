@@ -1,37 +1,3 @@
-# Get the root directory of the test data
-test_data_d =
-  function(...) {
-    return(test_path("_fixtures", "_test_data", ...))
-  }
-
-#' Find all data directories
-#'
-#' Recursively travers a directory tree and return only the leaf directories
-#'
-#' @param root Root of the directory tree
-get_data_dirs =
-  function(root) {
-    folders = list.dirs(root)
-    return(folders[sapply(folders, function(x) length(list.dirs(x, recursive = FALSE)) == 0)])
-  }
-
-#' Apply test to all data directories
-#'
-#' Helper function to iteratively test each data directory present in a directory tree
-#'
-#' @param test_d Root of the directory to iterate over
-#' @param test_fn_ Test function to call on each data directory. Must take only a single character parameter `d`, which will be the data directory
-test_all_data_dirs =
-  function(test_d, test_fn) {
-    # Recursively find all data directories present in the directory tree
-    for (d in get_data_dirs(test_d)) {
-      # Test each data directory
-
-      test_fn(d)
-    }
-  }
-
-
 #' Test Identifier object
 #'
 #' Custom test for Identifier objects. Accepts an Identifier object constructor, and a root directory. Applies the Identifier to every data directory in the directory tree. For each such directory `d`, the test ensures that the passed Identifier object gives a positive match to `d`, and that only a single known Identifier gives a positive match for `d`
