@@ -7,8 +7,10 @@
 # define the operator here for use in the rest of the package.
 # TODO This probably doesn't belong here, but at the moment there really isn't a better place to put it
 `%>%` = magrittr::"%>%"
-setOldClass("Node")
 
+# The TagProcessor class uses the data.tree data structure as an attribute, which
+# has class 'Node'. Define it here so the constructor knows what we're talking about
+setOldClass("Node")
 
 #' Field class. Represents a single data field and its key metadata for future
 #`  reference, including field name, units, and DB data type.
