@@ -286,21 +286,7 @@ LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "Time",
-            trans_fn =
-              function(v, ...) {
-                # For some reason, the timestamps can come in one of two formats
-                # which OF COURSE are INTERMIXED with one another
-                lubridate::parse_date_time(
-                  x =
-                    v,
-                  orders =
-                    c(
-                      "%m/%d/%Y %H:%M",
-                      "%Y/%m/%d %H:%M:%S"
-                    )
-                )
-              }
+            name = "Time"
           ),
         PRESSURE_FIELD =
           Field(
