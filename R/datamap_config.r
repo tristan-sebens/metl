@@ -217,7 +217,25 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
                         ignore.case = T,
                         full.names = T
                       )[[1]] %>%
-                      .self$read_csv_lotek_1000.1100.1250()
+                      .self$read_csv_lotek_1000.1100.1250() %>%
+                      # Parse the timestamps into POSIXcts
+                      # Typically this should be done in the 'trans_fn' of the
+                      # timestamp field object. However, for reasons surpassing
+                      # understanding, Lotek encodes it's timestamps in different
+                      # formats for temperature and pressure data, so if we don't
+                      # do this here the two won't join properly
+                      dplyr::mutate(
+                        Time =
+                          lubridate::parse_date_time(
+                            x =
+                              Time,
+                            orders =
+                              c(
+                                "%m/%d/%Y %H:%M",
+                                "%Y/%m/%d %H:%M:%S"
+                              )
+                          )
+                      )
 
                     return(dat)
                   }
