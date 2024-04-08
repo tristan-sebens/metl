@@ -181,6 +181,73 @@ test_all_data_dirs =
     }
   }
 
+#' Check if vector is emtpy
+#'
+#' Returns true if vector contains only NA or NULL values
+#'
+#' @param v The vector to check
+field_is_empty =
+  function(v) {
+    return(
+      any(
+        sum(is.na(dat[[field]])) > 0,
+        sum(is.null(dat[[field]])) > 0
+      )
+    )
+  }
+
+
+#' Test time field(s) format
+#'
+#' Returns TRUE if all time fields in `dat_t_` are in POSIXct format.
+#'
+#' @param dm The datamap which produced `dat_t_`
+#' @param dat_t_ The data.frame of transformed data.
+test_timestamp_format =
+  function(dm, dat_t_) {
+    # TODO: This should be refactored somehow so that which fields are checked is
+    # more elegantly determined.
+    for (
+      time_field in
+      c(
+        "TIMESTAMP_FIELD",
+        "START_TIME_FIELD",
+        "END_TIME_FIELD"
+      )
+    ) {
+      if(time_field %in% names(dm$output_data_field_map$field_list)) {
+        # Get the column name of the time field
+        time_field_column = dm$output_data_field_map$field_list[[time_field]]$name
+
+        expect(
+          ok =
+            "POSIXct" %in% class(dat_t_[[time_field_column]]),
+          failure_message =
+            paste0(
+              "Column '", time_field_column, "' is not in POSIXct format"
+            )
+        )
+      }
+    }
+  }
+
+#' Test for empty fields in a data.frame
+#'
+#' Returns TRUE if any of the fields in `dat` are empty
+#'
+#' @param dat The data.frame to check
+test_for_empty_fields =
+  function(dat) {
+    # Test that none of the incoming columns are completely empty
+    for (field in names(dat)) {
+      expect(
+        ok =
+          !field_is_empty(dat[[field]]),
+        failure_message =
+          paste0(field, " has no data.")
+      )
+    }
+  }
 
 #' Test DataMap outputs against a single directory
 #'
@@ -196,40 +263,10 @@ test_datamap_directory =
       dm$transform(dat_)
 
     # Test that timestamp data (if present) is in POSIXct format
-    for (
-      time_field in
-      c(
-        "TIMESTAMP_FIELD",
-        "START_TIME_FIELD",
-        "END_TIME_FIELD"
-      )
-    ) {
-      if(time_field %in% names(dm$output_data_field_map$field_list)) {
-        time_field_column = dm$output_data_field_map$field_list[[time_field]]$name
+    test_timestamp_format(dm, dat_t_)
 
-        expect(
-          ok =
-            "POSIXct" %in% class(dat_t_[[time_field_column]]),
-          failure_message =
-            paste0(
-              "Column '", time_field_column, "' is not in POSIXct format"
-            )
-        )
-      }
-    }
-
-    # Test that none of the incoming columns are completely empty
-    expect_equal(
-      dat_t_,
-      dat_t_ %>%
-        dplyr::select_if(
-          .predicate =
-            function(f) {
-              sum(!is.na(f)) > 0 &
-              sum(!is.null(f)) > 0
-            }
-        )
-    )
+    # Test that none of the transformed fields are completely empty
+    test_for_empty_fields(dat_t_)
 
     # Test that data is in expected form
     expect_snapshot(dat_)
