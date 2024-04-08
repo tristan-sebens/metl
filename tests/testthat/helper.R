@@ -181,7 +181,7 @@ test_all_data_dirs =
     }
   }
 
-#' Check if vector is emtpy
+#' Check if vector is empty
 #'
 #' Returns true if vector contains only NA or NULL values
 #'
@@ -190,8 +190,8 @@ field_is_empty =
   function(v) {
     return(
       any(
-        sum(is.na(dat[[field]])) > 0,
-        sum(is.null(dat[[field]])) > 0
+        sum(!is.na(v)) == 0,
+        sum(!is.null(v)) == 0
       )
     )
   }
@@ -237,14 +237,14 @@ test_timestamp_format =
 #'
 #' @param dat The data.frame to check
 test_for_empty_fields =
-  function(dat) {
+  function(dat, d) {
     # Test that none of the incoming columns are completely empty
     for (field in names(dat)) {
       expect(
         ok =
           !field_is_empty(dat[[field]]),
         failure_message =
-          paste0(field, " has no data.")
+          paste0(d, "->\n\t '", field, "' field has no data.")
       )
     }
   }
@@ -266,7 +266,7 @@ test_datamap_directory =
     test_timestamp_format(dm, dat_t_)
 
     # Test that none of the transformed fields are completely empty
-    test_for_empty_fields(dat_t_)
+    test_for_empty_fields(dat_t_, d)
 
     # Test that data is in expected form
     expect_snapshot(dat_)
