@@ -177,7 +177,6 @@ test_all_data_dirs =
     # Recursively find all data directories present in the directory tree
     for (d in get_data_dirs(test_d)) {
       # Test each data directory
-
       test_fn(d)
     }
   }
@@ -195,6 +194,29 @@ test_datamap_directory =
     # Perform transformation
     dat_t_ =
       dm$transform(dat_)
+
+    # Test that timestamp data (if present) is in POSIXct format
+    for (
+      time_field in
+      c(
+        "TIMESTAMP_FIELD",
+        "START_TIME_FIELD",
+        "END_TIME_FIELD"
+      )
+    ) {
+      if(time_field %in% names(dm$output_data_field_map$field_list)) {
+        time_field_column = dm$output_data_field_map$field_list[[time_field]]$name
+
+        expect(
+          ok =
+            "POSIXct" %in% class(dat_t_[[time_field_column]]),
+          failure_message =
+            paste0(
+              "Column '", time_field_column, "' is not in POSIXct format"
+            )
+        )
+      }
+    }
 
     # Test that data is in expected form
     expect_snapshot(dat_)
