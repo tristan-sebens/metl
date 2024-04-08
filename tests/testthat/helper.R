@@ -218,6 +218,19 @@ test_datamap_directory =
       }
     }
 
+    # Test that none of the incoming columns are completely empty
+    expect_equal(
+      dat_t_,
+      dat_t_ %>%
+        dplyr::select_if(
+          .predicate =
+            function(f) {
+              sum(!is.na(f)) > 0 &
+              sum(!is.null(f)) > 0
+            }
+        )
+    )
+
     # Test that data is in expected form
     expect_snapshot(dat_)
     # Test that transformed data is in expected form

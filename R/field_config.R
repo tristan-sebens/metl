@@ -708,7 +708,7 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
             data_type = "varchar(32)",
             trans_fn =
               function(v, ...) {
-                as.POSIXct(v, format = "%m/%d/%Y %H:%M")
+                as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
               }
           ),
         END_TIME_FIELD =
@@ -717,7 +717,7 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
             data_type = "varchar(32)",
             trans_fn =
               function(v, ...) {
-                as.POSIXct(v, format = "%m/%d/%Y %H:%M")
+                as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
               }
           ),
         UPRIGHT_FIELD =
