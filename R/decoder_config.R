@@ -269,8 +269,8 @@ Decoder_WildlifeComputers_MiniPAT =
               DataMap_WildlifeComputers_MiniPAT_TagMetaData(),
             data_maps =
               list(
-                DataMap_WildlifeComputer_MiniPAT_InstantSensorData(),
-                DataMap_WildlifeComputer_MiniPAT_SummarySensorData()
+                DataMap_WildlifeComputers_MiniPAT_InstantSensorData(),
+                DataMap_WildlifeComputers_MiniPAT_SummarySensorData()
               )
           ) {
             # Initialize the child class
@@ -305,8 +305,8 @@ Decoder_WildlifeComputers_BenthicSPAT =
               DataMap_WildlifeComputers_BenthicSPAT_TagMetaData(),
             data_maps =
               list(
-                DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData(),
-                DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData()
+                DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData(),
+                DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData()
               )
           ) {
             # Initialize the child class

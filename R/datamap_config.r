@@ -809,9 +809,9 @@ DataMap_WildlifeComputers_MiniPAT_TagMetaData =
 
 #' DataMap - Wildlife Computers MiniPAT instant sensor data
 #' @export
-DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
+DataMap_WildlifeComputers_MiniPAT_InstantSensorData =
   setRefClass(
-    "DataMap_WildlifeComputer_MiniPAT_InstantSensorData",
+    "DataMap_WildlifeComputers_MiniPAT_InstantSensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
     contains = "DataMap_InstantSensorData_Base",
     methods =
@@ -838,9 +838,9 @@ DataMap_WildlifeComputer_MiniPAT_InstantSensorData =
 
 #' DataMap - Wildlife Computers MiniPAT summary sensor
 #' @export
-DataMap_WildlifeComputer_MiniPAT_SummarySensorData =
+DataMap_WildlifeComputers_MiniPAT_SummarySensorData =
   setRefClass(
-    "DataMap_WildlifeComputer_MiniPAT_SummarySensorData",
+    "DataMap_WildlifeComputers_MiniPAT_SummarySensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
     contains = "DataMap_SummarySensorData_Base",
     methods =
@@ -910,9 +910,9 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
 
 #' DataMap - Wildlife Computers Benthic sPAT instant sensor data
 #' @export
-DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
+DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData =
   setRefClass(
-    "DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData",
+    "DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
     contains = "DataMap_InstantSensorData_Base",
     methods =
@@ -945,9 +945,9 @@ DataMap_WildlifeComputer_BenthicSPAT_InstantSensorData =
 
 #' DataMap - Wildlife Computers Benthic sPAT summary sensor data
 #' @export
-DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData =
+DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData =
   setRefClass(
-    "DataMap_WildlifeComputer_BenthicSPAT_SummarySensorData",
+    "DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
     contains = "DataMap_SummarySensorData_Base",
     methods =
