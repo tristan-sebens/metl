@@ -183,4 +183,42 @@ test_all_data_dirs =
   }
 
 
+#' Test DataMap outputs against a single directory
+#'
+#' @param dm DataMap to test
+#' @param d Data directory
+test_datamap_directory =
+  function(dm, d) {
+    # Extract data from the directory
+    dat_ =
+      dm$extract(d)
+    # Perform transformation
+    dat_t_ =
+      dm$transform(dat_)
+
+    # Test that data is in expected form
+    expect_snapshot(dat_)
+    # Test that transformed data is in expected form
+    expect_snapshot(dat_t_)
+  }
+
+#' Test DataMap configuration
+#'
+#' Uses snapshot tests to check that the extract and transform outputs of a
+#' given DataMap remains consistent.
+#'
+#' @param dm DataMap object
+#' @param d Test data directory
+#' @export
+test_datamap =
+  function(dm, d) {
+    test_all_data_dirs(
+      test_d = d,
+      test_fn =
+        function(data_d) {
+          test_datamap_directory(dm, data_d)
+        }
+    )
+  }
+
 
