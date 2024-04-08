@@ -1,0 +1,45 @@
+LOTEK
+```{r}
+root = here::here('tests', 'testthat', '_fixtures', '_test_data', 'Lotek', 'LTD 1000.1100.1250')
+dir.exists(root)
+
+ds = get_data_dirs(d)
+dd = ds[[1]]
+
+fps = list.files(dd, full.names = T)
+fp = fps[[3]]
+
+
+shorten_Lotek_datafile =
+  function(fp) {
+    n =
+      DataMap_Lotek_InstantSensorData()$find_line_in_file(
+        fp = fp,
+        pattern = "CSV DATA"
+      )
+    
+    writeLines(readLines(fp, n = n + 100), fp)
+  }
+
+for (dd in get_data_dirs(root)) {
+  for (fp in list.files(dd, full.names = T, pattern = "\\.csv", ignore.case = T)) {
+    shorten_Lotek_datafile(fp)
+  }
+}
+```
+
+
+MICROWAVE TELEMETRY
+```{r}
+root = here::here('tests', 'testthat', '_fixtures', '_test_data', 'Microwave Telemetry', 'X-Tag')
+dir.exists(root)
+
+ds = get_data_dirs(root)
+dd = ds[[1]]
+
+fps = list.files(dd, full.names = T, pattern = "\\.xls", ignore.case = F)
+fp = fps[[1]]
+
+
+```
+
