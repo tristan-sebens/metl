@@ -482,7 +482,7 @@ Decoder =
                 con,
                 .self$metadata_map$output_data_field_map$table
               ) %>%
-              dplyr::select(id_field) %>%
+              dplyr::select(all_of(id_field)) %>%
               dplyr::pull()
 
             # Get the ID of this tag
