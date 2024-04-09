@@ -47,19 +47,19 @@ build_test_fieldmaps =
               ),
             DATA_FIELD_1 =
                Field(
-                 name = "Depth",
+                 name = "depth",
                  data_type = "double(10, 2)",
                  units = "m"
                ),
             DATA_FIELD_2 =
               Field(
-                name = "Pressure",
+                name = "pressure",
                 data_type = "double(10, 2)",
                 units = "psi"
               ),
             DATA_FIELD_3 =
               Field(
-                name = "Weight",
+                name = "weight",
                 data_type = "double(10, 2)",
                 units = "g"
               )
@@ -70,11 +70,6 @@ build_test_fieldmaps =
       FieldMap(
         field_list =
           list(
-            ID_FIELD =
-              Field(
-                name = "Tag ID",
-                id_field = T
-              ),
             START_FIELD =
               Field(
                 name = "Start"
@@ -83,12 +78,12 @@ build_test_fieldmaps =
               Field(
                 name = "End"
               ),
-            DATA_FIELD_1 =
+            DEPTH_FIELD =
               Field(
                 name = "Depth",
                 units = "m"
               ),
-            DATA_FIELD_2 =
+            PRESSURE_FIELD =
               Field(
                 name = "Pressure",
                 units = "bar"
@@ -108,19 +103,21 @@ build_test_fieldmaps =
               ),
             START_FIELD =
               Field(
-                name = "start"
+                name = "start",
+                id_field = T
               ),
             END_FIELD =
               Field(
-                name = "end"
+                name = "end",
+                id_field = T
               ),
-            DATA_FIELD_1 =
+            DEPTH_FIELD =
               Field(
                 name = "depth",
                 data_type = "double(10, 2)",
                 units = "m"
               ),
-            DATA_FIELD_2 =
+            PRESSURE_FIELD =
               Field(
                 name = "pressure",
                 data_type = "double(10, 2)",
