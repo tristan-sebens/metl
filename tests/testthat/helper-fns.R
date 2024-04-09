@@ -99,6 +99,35 @@ build_test_fieldmaps =
     return(c(TEST_FIELD_MAP_1, TEST_FIELD_MAP_2))
   }
 
+build_test_metadata_map =
+  function() {
+    METADATA_MAP =
+      FieldMap(
+        table = "METADATA_TABLE",
+        field_list =
+          list(
+            ID_FIELD =
+              Field(
+                name = "id",
+                data_type = "integer",
+                id_field = T
+              ),
+            MAKE_FIELD =
+              Field(
+                name = "make",
+                data_type = "varchar(32)"
+              ),
+            MODEL_FIELD =
+              Field(
+                name = "model",
+                data_type = "varchar(32)"
+              )
+          )
+      )
+
+    return(METADATA_MAP)
+  }
+
 
 build_test_dataset =
   function() {
@@ -161,57 +190,57 @@ build_test_decoder =
     # Build the necessary inputs
 
     # First the FieldMaps
-    # The input FieldMap for dm1, which will be missing the ID Field
-    dm1_ifm = build_test_fieldmaps()[[2]]
-    # Remove the ID field from the first FieldMap
-    dm1_ifm$field_list =
-      dm1_ifm$field_list[-1]
-    # Next the output FieldMap for dm1
-    dm1_ofm =
+    # The input FieldMap for sensor data, which will be missing the ID Field
+    sdm_ifm = build_test_fieldmaps()[[2]]
+    # Remove all metadata from the first FieldMap
+    sdm_ifm$field_list =
+      sdm_ifm$field_list[-c(1,3,4)]
+    # Next the output FieldMap for sensor data
+    sdm_ofm =
       build_test_fieldmaps()[[1]]
-    dm1_ofm$field_list =
-      dm1_ofm$field_list[-7]
+    sdm_ofm$field_list =
+      # Remove unneeded fields
+      sdm_ofm$field_list[-c(3, 4, 7)]
 
     # Now build the DataMaps
 
     # First the DataMap for the incoming dataset
-    dm1 =
+    sensordata_map =
       DataMap_TestStub(
-        input_data_field_map = dm1_ifm,
-        output_data_field_map = dm1_ofm
+        input_data_field_map = sdm_ifm,
+        output_data_field_map = sdm_ofm
       )
 
     # Instantiate the metadata map
-    dm2 =
+    metadata_map =
       DataMap_TestStub(
         input_data_field_map = build_test_fieldmaps()[[2]],
-        output_data_field_map = build_test_fieldmaps()[[1]]
+        # output_data_field_map = build_test_fieldmaps()[[1]]
+        output_data_field_map = build_test_metadata_map()
       )
 
     # Finally the datasets
     # The transformed dat1 dataset
-    dat1 =
+    sensor_dat =
       build_test_dataset() %>%
       # Remove the ID field so we can put it back in
       dplyr::select(-'Tag ID') %>%
-      dm1$transform()
+      sensordata_map$transform()
 
-    dat2 =
+    metadata_dat =
       build_test_dataset() %>%
-      dm2$transform() %>%
-      dplyr::select(1) %>%
-      head(1) %>%
-      dplyr::mutate(extra_field = "extra")
+      metadata_map$transform() %>%
+      head(1)
 
     # Set the outputs for 'extract' to our dummy datasets
-    dm1$extract_return = dat1
-    dm2$extract_return = dat2
+    sensordata_map$extract_return = sensor_dat
+    metadata_map$extract_return = metadata_dat
 
     # Instantate the Decoder
     dc =
       Decoder(
-        data_maps = list(dm1),
-        metadata_map = dm2
+        data_maps = list(sensordata_map),
+        metadata_map = metadata_map
       )
 
     return(dc)
