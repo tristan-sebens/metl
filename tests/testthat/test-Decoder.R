@@ -164,6 +164,51 @@ test_that(
   }
 )
 
+test_that(
+  "Decoder::decode",
+  {
+    dc = build_test_decoder()
+
+    # Build emtpy DB
+    con = build_test_db()
+
+    # Check that uploads go as expected
+    expect_snapshot(dc$decode(con))
+
+    # # Check states of tables
+    # Metadata
+    md_tbl =
+      data.frame(
+        dplyr::tbl(
+          con,
+          dc$metadata_map$output_data_field_map$table
+        )
+      )
+    expect_snapshot(md_tbl) # Check snapshot
+    expect_gt(nrow(md_tbl), 0, label = "# rows in instant sensor data table") # Check table not empty
+    # Instant sensor data
+    is_tbl =
+      data.frame(
+        dplyr::tbl(
+          con,
+          dc$data_maps[[1]]$output_data_field_map$table
+        )
+      )
+    expect_snapshot(is_tbl) # Check snapshot
+    expect_gt(nrow(is_tbl), 0, label = "# rows in instant sensor data table") # Check table not empty
+    # Summary sensor data
+    ss_tbl =
+      data.frame(
+        dplyr::tbl(
+          con,
+          dc$data_maps[[2]]$output_data_field_map$table
+        )
+      )
+    expect_snapshot(ss_tbl) # Check snapshot
+    expect_gt(nrow(ss_tbl), 0, label = "# rows in summary sensor data table") # Check table not empty
+  }
+)
+
 
 
 
