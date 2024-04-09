@@ -33,7 +33,7 @@ build_test_fieldmaps =
         table = "INSTANT_DATA",
         field_list =
           list(
-            ID_FIELD =
+            TAG_ID_FIELD =
               Field(
                 name = "tag_id",
                 data_type = "integer",
@@ -96,7 +96,7 @@ build_test_fieldmaps =
         table = "SUMMARY_DATA",
         field_list =
           list(
-            ID_FIELD =
+            TAG_ID_FIELD =
               Field(
                 name = "tag_id",
                 id_field = T
@@ -143,7 +143,7 @@ build_test_metadata_map =
         table = "METADATA",
         field_list =
           list(
-            ID_FIELD =
+            TAG_ID_FIELD =
               Field(
                 name = "tag_id",
                 data_type = "integer",
@@ -205,7 +205,9 @@ build_test_decoder =
 
     metadata_map =
       DataMap_TestStub(
-        output_data_field_map = build_test_metadata_map()
+        output_data_field_map = build_test_metadata_map(),
+        extract_return = build_test_metadata_dataset(),
+        get_tag_id_return = "1"
       )
 
     instant_sensor_data_map =
@@ -213,7 +215,8 @@ build_test_decoder =
         input_data_field_map =
           build_test_fieldmaps()$INSTANT_DATA_INPUT_FIELD_MAP,
         output_data_field_map =
-          build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+          build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
+        extract_return = build_test_dataset()
       )
 
     summary_sensor_data_map =
@@ -221,13 +224,9 @@ build_test_decoder =
         input_data_field_map =
           build_test_fieldmaps()$SUMMARY_DATA_INPUT_FIELD_MAP,
         output_data_field_map =
-          build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
+          build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP,
+        extract_return = build_test_summary_dataset()
       )
-
-    # Set the outputs for 'extract' to our dummy datasets
-    metadata_map$extract_return = build_test_metadata_dataset()
-    instant_sensor_data_map$extract_return = build_test_dataset()
-    summary_sensor_data_map$extract_return = build_test_summary_dataset()
 
     # Instantate the Decoder
     dc =
