@@ -9,13 +9,13 @@
       $timestamp
       [1] "varchar(32)"
       
-      $Depth
+      $depth
       [1] "double(10, 2)"
       
-      $Pressure
+      $pressure
       [1] "double(10, 2)"
       
-      $Weight
+      $weight
       [1] "double(10, 2)"
       
 
