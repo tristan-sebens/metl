@@ -299,12 +299,6 @@
 # DataMap::upsert
 
     Code
-      populate_test_db(con = con, table = fm1$table, utils::head(dat_t__, as.integer(
-        nrow(dat__) / 10)), append = T)
-
----
-
-    Code
       data.frame(dplyr::tbl(con, fm1$table))
     Output
          id timestamp     make model data_1    data_2    data_4

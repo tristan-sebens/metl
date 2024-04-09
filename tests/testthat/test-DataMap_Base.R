@@ -58,19 +58,11 @@ test_that(
       dm$transform(dat__)
 
     # Instantiate a connection to a temporary DB
-    con =
-      build_test_db()
+    dats = list()
+    dats[[fm1$table]] = utils::head(dat_t__, as.integer(nrow(dat__)/10))
 
-    # Populate the db with some test data
-    expect_snapshot(
-      populate_test_db(
-        con = con,
-        table = fm1$table,
-        # Insert ~10% of the data into the table
-        utils::head(dat_t__, as.integer(nrow(dat__)/10)),
-        append = T
-      )
-    )
+    con =
+      build_test_db(dats = dats)
 
     # Check that state of the DB table is as expected
     # Wrapped in a DF call bc the location of the DB will change between test
@@ -80,12 +72,12 @@ test_that(
 
     # Perform the upsert
     # Check that the result is as expected
-    expect_snapshot(
-      dm$upsert(con, dat_t__)
-    )
+    expect_snapshot(dm$upsert(con, dat_t__))
 
     # Check that the new state of the DB table is as expected
     expect_snapshot(data.frame(dplyr::tbl(con, fm1$table)))
+
+    DBI::dbDisconnect(con)
   }
 )
 
