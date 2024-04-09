@@ -3,7 +3,7 @@
     Code
       test_fm_1$generate_data_type_list()
     Output
-      $id
+      $tag_id
       [1] "integer"
       
       $timestamp
@@ -59,5 +59,5 @@
     Code
       t_fm1$get_id_field_names()
     Output
-      [1] "id"        "timestamp"
+      [1] "tag_id"    "timestamp"
 
