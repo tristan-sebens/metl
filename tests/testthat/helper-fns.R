@@ -11,18 +11,18 @@ build_test_fieldmaps =
               ),
             DATA_FIELD_1 =
               Field(
-                name = "Data 1",
+                name = "Depth",
                 units = "m"
               ),
             DATA_FIELD_2 =
               Field(
-                name = "Data 2",
+                name = "Pressure",
                 data_type = "double(10, 2)",
                 units = "bar"
               ),
             DATA_FIELD_4 =
               Field(
-                name = "Data 4",
+                name = "Temperature",
                 units = "°F"
               )
           )
@@ -47,19 +47,19 @@ build_test_fieldmaps =
               ),
             DATA_FIELD_1 =
                Field(
-                 name = "data_1",
+                 name = "Depth",
                  data_type = "double(10, 2)",
                  units = "m"
                ),
             DATA_FIELD_2 =
               Field(
-                name = "data_2",
+                name = "Pressure",
                 data_type = "double(10, 2)",
                 units = "psi"
               ),
             DATA_FIELD_3 =
               Field(
-                name = "data_3",
+                name = "Weight",
                 data_type = "double(10, 2)",
                 units = "g"
               )
@@ -85,12 +85,12 @@ build_test_fieldmaps =
               ),
             DATA_FIELD_1 =
               Field(
-                name = "Data 1",
+                name = "Depth",
                 units = "m"
               ),
             DATA_FIELD_2 =
               Field(
-                name = "Data 2",
+                name = "Pressure",
                 units = "bar"
               )
           )
@@ -116,13 +116,13 @@ build_test_fieldmaps =
               ),
             DATA_FIELD_1 =
               Field(
-                name = "data_1",
+                name = "depth",
                 data_type = "double(10, 2)",
                 units = "m"
               ),
             DATA_FIELD_2 =
               Field(
-                name = "data_2",
+                name = "pressure",
                 data_type = "double(10, 2)",
                 units = "psi"
               )
@@ -185,6 +185,70 @@ build_test_summary_dataset =
     )
   }
 
+build_test_metadata_dataset =
+  function() {
+    read.csv(
+      here::here('tests', 'testthat', '_fixtures', '_test_metadata_dataset.csv'),
+      check.names = F
+    )
+  }
+
+
+#' Build a Decoder class for testing
+#'
+#' @return
+#' @export
+#'
+#' @examples
+build_test_decoder =
+  function() {
+    # Build the necessary inputs
+
+    # First the DataMaps for the incoming datasets
+
+    metadata_map =
+      DataMap_TestStub(
+        output_data_field_map = build_test_metadata_map()
+      )
+
+    instant_sensor_data_map =
+      DataMap_TestStub(
+        input_data_field_map =
+          build_test_fieldmaps()$INSTANT_DATA_INPUT_FIELD_MAP,
+        output_data_field_map =
+          build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+      )
+
+    summary_sensor_data_map =
+      DataMap_TestStub(
+        input_data_field_map =
+          build_test_fieldmaps()$SUMMARY_DATA_INPUT_FIELD_MAP,
+        output_data_field_map =
+          build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
+      )
+
+    # Set the outputs for 'extract' to our dummy datasets
+    metadata_map$extract_return = build_test_metadata_dataset()
+    instant_sensor_data_map$extract_return = build_test_dataset()
+    summary_sensor_data_map$extract_return = build_test_summary_dataset()
+
+    # Instantate the Decoder
+    dc =
+      Decoder(
+        data_maps =
+          list(
+            instant_sensor_data_map,
+            summary_sensor_data_map
+          ),
+        metadata_map =
+          metadata_map
+      )
+
+    return(dc)
+  }
+
+
+
 #' Build a temporary testing DB
 #'
 #' Builds a testing DB based on a snapshot. Test DB is saved to a temporary directory by default
@@ -226,74 +290,6 @@ build_test_db =
 
     return(con)
   }
-
-#' Build a Decoder class for testing
-#'
-#' @return
-#' @export
-#'
-#' @examples
-build_test_decoder =
-  function() {
-    # Build the necessary inputs
-
-    # First the FieldMaps
-    # The input FieldMap for sensor data, which will be missing the ID Field
-    sdm_ifm = build_test_fieldmaps()[[2]]
-    # Remove all metadata from the first FieldMap
-    sdm_ifm$field_list =
-      sdm_ifm$field_list[-c(1,3,4)]
-    # Next the output FieldMap for sensor data
-    sdm_ofm =
-      build_test_fieldmaps()[[1]]
-    sdm_ofm$field_list =
-      # Remove unneeded fields
-      sdm_ofm$field_list[-c(3, 4, 7)]
-
-    # Now build the DataMaps
-
-    # First the DataMap for the incoming dataset
-    sensordata_map =
-      DataMap_TestStub(
-        input_data_field_map = sdm_ifm,
-        output_data_field_map = sdm_ofm
-      )
-
-    # Instantiate the metadata map
-    metadata_map =
-      DataMap_TestStub(
-        input_data_field_map = build_test_fieldmaps()[[2]],
-        # output_data_field_map = build_test_fieldmaps()[[1]]
-        output_data_field_map = build_test_metadata_map()
-      )
-
-    # Finally the datasets
-    # The transformed dat1 dataset
-    sensor_dat =
-      build_test_dataset() %>%
-      # Remove the ID field so we can put it back in
-      dplyr::select(-c(1, 2, 3))
-
-    metadata_dat =
-      build_test_dataset() %>%
-      dplyr::select(1, 2, 3) %>%
-      metadata_map$transform() %>%
-      head(1)
-
-    # Set the outputs for 'extract' to our dummy datasets
-    sensordata_map$extract_return = sensor_dat
-    metadata_map$extract_return = metadata_dat
-
-    # Instantate the Decoder
-    dc =
-      Decoder(
-        data_maps = list(sensordata_map),
-        metadata_map = metadata_map
-      )
-
-    return(dc)
-  }
-
 
 
 # Insert data into the test db
