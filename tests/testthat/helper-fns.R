@@ -110,10 +110,13 @@ build_test_dataset =
 
 # Build a temporary testing DB
 build_test_db =
-  function() {
+  function(
+    from_ = test_path("_fixtures", "test_db_snapshot.db"),
+    to_ = withr::local_tempfile(pattern = "metl_test_db")
+  ) {
 
     # Generate a temporary file path for the new DB
-    temp_db_path =
+    to_ =
       withr::local_tempfile(
         pattern = "metl_test_db"
       )
@@ -122,15 +125,15 @@ build_test_db =
     # instantiated DB (like constraints and primary key definitions) without
     # having to recreate them ourselves every time
     file.copy(
-      from = test_path("_fixtures", "test_db_snapshot.db"),
-      to = temp_db_path
+      from = from_,
+      to = to_
     )
 
     # Instantiate a connection to the new DB instance
     con =
       DBI::dbConnect(
         drv = RSQLite::SQLite(),
-        temp_db_path
+        to_
       )
 
     return(con)
