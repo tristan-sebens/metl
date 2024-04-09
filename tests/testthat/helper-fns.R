@@ -224,11 +224,11 @@ build_test_decoder =
     sensor_dat =
       build_test_dataset() %>%
       # Remove the ID field so we can put it back in
-      dplyr::select(-'Tag ID') %>%
-      sensordata_map$transform()
+      dplyr::select(-c(1, 2, 3))
 
     metadata_dat =
       build_test_dataset() %>%
+      dplyr::select(1, 2, 3) %>%
       metadata_map$transform() %>%
       head(1)
 

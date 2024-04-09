@@ -1,13 +1,12 @@
 test_that(
   "Decoder::add_missing_fields",
   {
-    dc =
-      build_test_decoder()
+    dc = build_test_decoder()
 
     dm1 = dc$data_maps[[1]]
     dm2 = dc$metadata_map
 
-    dat1 = dm1$extract()
+    dat1 = dm1$transform(dm1$extract())
     dat2 = dm2$extract()
 
     dat3 =
@@ -38,7 +37,7 @@ test_that(
   {
     dc = build_test_decoder()
     dm1 = dc$data_maps[[1]]
-    dat1 = dm1$extract()
+    dat1 = dm1$transform(dm1$extract())
 
     # Execute the function
     dat3 = dc$add_meta(dat1, dm1)
@@ -101,6 +100,17 @@ test_that(
   }
 )
 
+
+test_that(
+  "Decoder::decode_datamap",
+  {
+    dc = build_test_decoder()
+
+    dm = .self = dc$data_maps[[1]]
+
+    dc$decode_datamap(dm)
+  }
+)
 
 
 
