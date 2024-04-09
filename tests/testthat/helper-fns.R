@@ -96,7 +96,71 @@ build_test_fieldmaps =
           )
       )
 
-    return(c(TEST_FIELD_MAP_1, TEST_FIELD_MAP_2))
+    SUMMARY_DATA_INPUT_FIELD_MAP =
+      FieldMap(
+        field_list =
+          list(
+            ID_FIELD =
+              Field(
+                name = "Tag ID",
+                id_field = T
+              ),
+            START_FIELD =
+              Field(
+                name = "Start"
+              ),
+            END_FIELD =
+              Field(
+                name = "End"
+              ),
+            DATA_FIELD_1 =
+              Field(
+                name = "Data 1",
+                units = "m"
+              ),
+            DATA_FIELD_2 =
+              Field(
+                name = "Data 2",
+                units = "bar"
+              )
+          )
+      )
+
+    SUMMARY_DATA_OUTPUT_FIELD_MAP =
+      FieldMap(
+        table = "SUMMARY_DATA",
+        field_list =
+          list(
+            ID_FIELD =
+              Field(
+                name = "tag_id",
+                id_field = T
+              ),
+            START_FIELD =
+              Field(
+                name = "start"
+              ),
+            END_FIELD =
+              Field(
+                name = "end"
+              ),
+            DATA_FIELD_1 =
+              Field(
+                name = "data_1",
+                data_type = "double(10, 2)",
+                units = "m"
+              ),
+            DATA_FIELD_2 =
+              Field(
+                name = "data_2",
+                data_type = "double(10, 2)",
+                units = "psi"
+              )
+          )
+      )
+
+
+    return(c(TEST_FIELD_MAP_1, TEST_FIELD_MAP_2, SUMMARY_DATA_FIELD_MAP))
   }
 
 build_test_metadata_map =
@@ -133,6 +197,14 @@ build_test_dataset =
   function() {
     read.csv(
       here::here('tests', 'testthat', '_fixtures', '_test_dataset.csv'),
+      check.names = F
+    )
+  }
+
+build_test_summary_dataset =
+  function() {
+    read.csv(
+      here::here('tests', 'testthat', '_fixtures', '_test_summary_dataset.csv'),
       check.names = F
     )
   }
