@@ -16,7 +16,7 @@ build_test_fieldmaps =
               ),
             DATA_FIELD_2 =
               Field(
-                name = "Data 1",
+                name = "Data 2",
                 data_type = "double(10, 2)",
                 units = "bar"
               ),
@@ -35,7 +35,7 @@ build_test_fieldmaps =
           list(
             ID_FIELD =
               Field(
-                name = "id",
+                name = "tag_id",
                 data_type = "integer",
                 id_field = T
               ),
@@ -143,7 +143,7 @@ build_test_metadata_map =
   function() {
     METADATA_MAP =
       FieldMap(
-        table = "METADATA_TABLE",
+        table = "METADATA",
         field_list =
           list(
             ID_FIELD =
