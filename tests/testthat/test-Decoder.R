@@ -63,6 +63,44 @@ test_that(
 )
 
 
+test_that(
+  "Decoder::upload_meta",
+  {
+    dc = build_test_decoder()
+
+    # Test inserting into an empty table
+    con =
+      build_test_db()
+
+    # Test that the upload completes succesfully
+    expect_equal(dc$upload_meta(con), 1)
+    # Test that DB metadata table is in the expected state
+    expect_snapshot(
+      # Load into local DF to compare data without db meta in dbplyr tbl
+      data.frame(
+        dplyr::tbl(
+          con,
+          dc$metadata_map$output_data_field_map$table
+        )
+      )
+    )
+
+    # Test inserting into a table in which the meta is already present
+    # Test that the upload completes succesfully
+    expect_equal(dc$upload_meta(con), 1)
+    # Test that DB metadata table is in the expected state
+    expect_snapshot(
+      # Load into local DF to compare data without db meta in dbplyr tbl
+      data.frame(
+        dplyr::tbl(
+          con,
+          dc$metadata_map$output_data_field_map$table
+        )
+      )
+    )
+  }
+)
+
 
 
 
