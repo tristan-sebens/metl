@@ -808,15 +808,7 @@
 ---
 
     Code
-      data.frame(dplyr::tbl(con, dc$metadata_map$output_data_field_map$table))
-    Output
-      [1] tag_id make   model 
-      <0 rows> (or 0-length row.names)
-
----
-
-    Code
-      data.frame(dplyr::tbl(con, dc$data_maps[[1]]$output_data_field_map$table))
+      is_tbl
     Output
           tag_id timestamp depth  pressure weight
       1        1      9529   8.7 118.64087     NA
@@ -1078,7 +1070,7 @@
 ---
 
     Code
-      data.frame(dplyr::tbl(con, dc$data_maps[[2]]$output_data_field_map$table))
+      ss_tbl
     Output
           tag_id start    end depth  pressure
       1        1  9529  34762   8.7 118.64087
@@ -1336,4 +1328,11 @@
       253      1 58616  77745   7.5  56.99983
       254      1 44489  71652   3.0  68.89293
       255      1 60082  82609   9.0  35.38921
+
+# Decoder::tag_already_loaded
+
+    Code
+      dc$upload_meta(con)
+    Output
+      [1] 1
 
