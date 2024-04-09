@@ -136,6 +136,75 @@ build_test_db =
     return(con)
   }
 
+#' Build a Decoder class for testing
+#'
+#' @return
+#' @export
+#'
+#' @examples
+build_test_decoder =
+  function() {
+    # Build the necessary inputs
+
+    # First the FieldMaps
+    # The input FieldMap for dm1, which will be missing the ID Field
+    dm1_ifm = build_test_fieldmaps()[[2]]
+    # Remove the ID field from the first FieldMap
+    dm1_ifm$field_list =
+      dm1_ifm$field_list[-1]
+    # Next the output FieldMap for dm1
+    dm1_ofm =
+      build_test_fieldmaps()[[1]]
+    dm1_ofm$field_list =
+      dm1_ofm$field_list[-7]
+
+    # Now build the DataMaps
+
+    # First the DataMap for the incoming dataset
+    dm1 =
+      DataMap_TestStub(
+        input_data_field_map = dm1_ifm,
+        output_data_field_map = dm1_ofm
+      )
+
+    # Instantiate the metadata map
+    dm2 =
+      DataMap_TestStub(
+        input_data_field_map = build_test_fieldmaps()[[2]],
+        output_data_field_map = build_test_fieldmaps()[[1]]
+      )
+
+    # Finally the datasets
+    # The transformed dat1 dataset
+    dat1 =
+      build_test_dataset() %>%
+      # Remove the ID field so we can put it back in
+      dplyr::select(-'Tag ID') %>%
+      dm1$transform()
+
+    dat2 =
+      build_test_dataset() %>%
+      dm2$transform() %>%
+      dplyr::select(1) %>%
+      head(1) %>%
+      dplyr::mutate(extra_field = "extra")
+
+    # Set the outputs for 'extract' to our dummy datasets
+    dm1$extract_return = dat1
+    dm2$extract_return = dat2
+
+    # Instantate the Decoder
+    dc =
+      Decoder(
+        data_maps = list(dm1),
+        metadata_map = dm2
+      )
+
+    return(dc)
+  }
+
+
+
 # Insert data into the test db
 populate_test_db =
   function(con, table, dat, ...) {
