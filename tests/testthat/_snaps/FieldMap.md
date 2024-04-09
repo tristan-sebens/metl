@@ -9,12 +9,6 @@
       $timestamp
       [1] "varchar(32)"
       
-      $make
-      [1] "varchar(32)"
-      
-      $model
-      [1] "varchar(32)"
-      
       $data_1
       [1] "double(10, 2)"
       
@@ -24,29 +18,32 @@
       $data_3
       [1] "double(10, 2)"
       
-      $data_4
-      [1] "double(10, 2)"
-      
 
 # FieldMap::common_fields
 
     Code
       names(fm1_fm2_cf)
     Output
-      [1] "ID_FIELD"        "TIMESTAMP_FIELD" "MAKE_FIELD"      "MODEL_FIELD"    
-      [5] "DATA_FIELD_1"    "DATA_FIELD_2"    "DATA_FIELD_4"   
+      [1] "TIMESTAMP_FIELD" "DATA_FIELD_1"    "DATA_FIELD_2"   
 
 # FieldMap::uncommon_fields
 
     Code
       names(fm1_fm2_ucf)
     Output
-      [1] "DATA_FIELD_3"
+      [1] "DATA_FIELD_4"
 
 ---
 
     Code
       names(fm2_fm1_ucf)
+    Output
+      [1] "ID_FIELD"     "DATA_FIELD_3"
+
+---
+
+    Code
+      names(fm1_fm1_ucf)
     Output
       character(0)
 
