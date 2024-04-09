@@ -108,7 +108,7 @@ build_test_metadata_map =
           list(
             ID_FIELD =
               Field(
-                name = "id",
+                name = "tag_id",
                 data_type = "integer",
                 id_field = T
               ),
