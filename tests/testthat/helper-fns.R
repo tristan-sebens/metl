@@ -1,8 +1,36 @@
 build_test_fieldmaps =
   function() {
-    TEST_FIELD_MAP_1 =
+    INSTANT_DATA_INPUT_FIELD_MAP =
       FieldMap(
-        table = "TEST_TABLE_1",
+        field_list =
+          list(
+            TIMESTAMP_FIELD =
+              Field(
+                name = "Timestamp",
+                id_field = T
+              ),
+            DATA_FIELD_1 =
+              Field(
+                name = "Data 1",
+                units = "m"
+              ),
+            DATA_FIELD_2 =
+              Field(
+                name = "Data 1",
+                data_type = "double(10, 2)",
+                units = "bar"
+              ),
+            DATA_FIELD_4 =
+              Field(
+                name = "Data 4",
+                units = "°F"
+              )
+          )
+      )
+
+    INSTANT_DATA_OUTPUT_FIELD_MAP =
+      FieldMap(
+        table = "INSTANT_DATA",
         field_list =
           list(
             ID_FIELD =
@@ -16,16 +44,6 @@ build_test_fieldmaps =
                 name = "timestamp",
                 data_type = "varchar(32)",
                 id_field = T
-              ),
-            MAKE_FIELD =
-              Field(
-                name = "make",
-                data_type = "varchar(32)"
-              ),
-            MODEL_FIELD =
-              Field(
-                name = "model",
-                data_type = "varchar(32)"
               ),
             DATA_FIELD_1 =
                Field(
@@ -44,54 +62,6 @@ build_test_fieldmaps =
                 name = "data_3",
                 data_type = "double(10, 2)",
                 units = "g"
-              ),
-            DATA_FIELD_4 =
-              Field(
-                name = "data_4",
-                data_type = "double(10, 2)",
-                units = "°C"
-              )
-          )
-      )
-
-
-    TEST_FIELD_MAP_2 =
-      FieldMap(
-        field_list =
-          list(
-            ID_FIELD =
-              Field(
-                name = "Tag ID",
-                id_field = T
-              ),
-            TIMESTAMP_FIELD =
-              Field(
-                name = "Timestamp",
-                id_field = T
-              ),
-            MAKE_FIELD =
-              Field(
-                name = "Manufacturer"
-              ),
-            MODEL_FIELD =
-              Field(
-                name = "Type"
-              ),
-            DATA_FIELD_1 =
-              Field(
-                name = "Data 1",
-                units = "m"
-              ),
-            DATA_FIELD_2 =
-              Field(
-                name = "Data 1",
-                data_type = "double(10, 2)",
-                units = "bar"
-              ),
-            DATA_FIELD_4 =
-              Field(
-                name = "Data 4",
-                units = "°F"
               )
           )
       )
@@ -159,8 +129,14 @@ build_test_fieldmaps =
           )
       )
 
-
-    return(c(TEST_FIELD_MAP_1, TEST_FIELD_MAP_2, SUMMARY_DATA_FIELD_MAP))
+    return(
+      list(
+        "INSTANT_DATA_INPUT_FIELD_MAP" = INSTANT_DATA_INPUT_FIELD_MAP,
+        "INSTANT_DATA_OUTPUT_FIELD_MAP" = INSTANT_DATA_OUTPUT_FIELD_MAP,
+        "SUMMARY_DATA_INPUT_FIELD_MAP" = SUMMARY_DATA_INPUT_FIELD_MAP,
+        "SUMMARY_DATA_OUTPUT_FIELD_MAP" = SUMMARY_DATA_OUTPUT_FIELD_MAP
+      )
+    )
   }
 
 build_test_metadata_map =
