@@ -1,13 +1,13 @@
 #' Tag metadata map
 #'
-#' Base class for DataMaps for tag metadata
+#' Base class for tag metadata DataMaps.
 #'
 #' @field make character. Tag manufacturer/brand
 #' @field model character. Tag model
 #' @export
-DataMap_TagMetaData_Base =
+DataMap_TagMetaData =
   setRefClass(
-    "DataMap_TagMetaData_Base",
+    "DataMap_TagMetaData",
     contains = "DataMap",
     fields =
       list(
@@ -16,17 +16,6 @@ DataMap_TagMetaData_Base =
       ),
     methods =
       list(
-        initialize =
-          function(
-            ...,
-            output_data_field_map = TAG_METADATA_TABLE_FIELDS
-          ) {
-            callSuper(
-              ...,
-              output_data_field_map = output_data_field_map
-            )
-          },
-
         # Each tag metadata DataMap will only need to implement the functionality to extract the tag id.
         # For now anyways.
         get_tag_id =
@@ -47,43 +36,12 @@ DataMap_TagMetaData_Base =
       )
   )
 
-
-#' DataMap - Instant sensor data - base class
-#' @export
-DataMap_InstantSensorData_Base =
-  setRefClass(
-    "DataMap_InstantSensorData_Base",
-    contains = "DataMap",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            callSuper(output_data_field_map = TAG_DATA_INSTANT_TABLE_FIELDS, ...)
-          }
-      )
-  )
-
-#' DataMap - Summary sensor data - base class
-#' @export
-DataMap_SummarySensorData_Base =
-  setRefClass(
-    "DataMap_SummarySensorData_Base",
-    contains = "DataMap",
-    methods =
-      list(
-        initialize =
-          function(...) {
-            callSuper(output_data_field_map = TAG_DATA_SUMMARY_TABLE_FIELDS, ...)
-          }
-      )
-  )
-
 #' DataMap - Lotek tag metadata - base class
 #' @export
 DataMap_Lotek_TagMetaData =
   setRefClass(
     "DataMap_Lotek_TagMetaData",
-    contains = "DataMap_TagMetaData_Base",
+    contains = "DataMap_TagMetaData",
     methods =
       list(
         initialize =
@@ -96,11 +54,14 @@ DataMap_Lotek_TagMetaData =
 
 
 #' DataMap - Base map for Lotek instant sensor data
+#'
+#' Defines the `find_line_in_file` helper method, required for reading from Lotek csvs
+#'
 #' @export
 DataMap_Lotek_InstantSensorData =
   setRefClass(
     "DataMap_Lotek_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap",
     methods =
       list(
         # Find the first line of the given file in which the specified pattern occurs
@@ -133,10 +94,13 @@ DataMap_Lotek_InstantSensorData =
   )
 
 #' DataMap - Lotek 1000/1100/1250 tag metadata
+#'
+#' Implementes the `get_tag_id` function for Lotek 1000/1100/1250 models
+#'
 #' @export
-DataMap_Lotek.1000.1100.1250_TagMetaData =
+DataMap_Lotek_1000.1100.1250_TagMetaData =
   setRefClass(
-    "DataMap_Lotek.1000.1100.1250_TagMetaData",
+    "DataMap_Lotek_1000.1100.1250_TagMetaData",
     contains = "DataMap_Lotek_TagMetaData",
     methods =
       list(
@@ -164,12 +128,11 @@ DataMap_Lotek.1000.1100.1250_TagMetaData =
       )
   )
 
-
 #' DataMap for the Lotek 1000/1100/1250 tags
 #' @export
-DataMap_Lotek.1000.1100.1250_InstantSensorData =
+DataMap_Lotek_1000.1100.1250_InstantSensorData =
   setRefClass(
-    "DataMap_Lotek.1000.1100.1250_InstantSensorData",
+    "DataMap_Lotek_1000.1100.1250_InstantSensorData",
     contains = "DataMap_Lotek_InstantSensorData",
     methods =
       list(
@@ -260,9 +223,9 @@ DataMap_Lotek.1000.1100.1250_InstantSensorData =
 
 #' DataMap - Tag metadata from Lotek 1300 tags
 #' @export
-DataMap_Lotek.1300_TagMetaData =
+DataMap_Lotek_1300_TagMetaData =
   setRefClass(
-    "DataMap_Lotek.1300_TagMetaData",
+    "DataMap_Lotek_1300_TagMetaData",
     contains = "DataMap_Lotek_TagMetaData",
     methods =
       list(
@@ -282,9 +245,9 @@ DataMap_Lotek.1300_TagMetaData =
 
 #' DataMap - Instant sensor data from Lotek 1300 tags
 #' @export
-DataMap_Lotek.1300_InstantSensorData =
+DataMap_Lotek_1300_InstantSensorData =
   setRefClass(
-    "DataMap_Lotek.1300_InstantSensorData",
+    "DataMap_Lotek_1300_InstantSensorData",
     contains = "DataMap_Lotek_InstantSensorData",
     methods =
       list(
@@ -319,9 +282,9 @@ DataMap_Lotek.1300_InstantSensorData =
 
 #' DataMap - Tag metadata from Lotek 1400/1800 tags
 #' @export
-DataMap_Lotek.1400.1800_TagMetaData =
+DataMap_Lotek_1400.1800_TagMetaData =
   setRefClass(
-    "DataMap_Lotek.1400.1800_TagMetaData",
+    "DataMap_Lotek_1400.1800_TagMetaData",
     contains = "DataMap_Lotek_TagMetaData",
     methods =
       list(
@@ -358,9 +321,9 @@ DataMap_Lotek.1400.1800_TagMetaData =
 
 #' Datamap - Lotek 1400/1800 instant sensor data
 #' @export
-DataMap_Lotek.1400.1800_InstantSensorData =
+DataMap_Lotek_1400.1800_InstantSensorData =
   setRefClass(
-    "DataMap_Lotek.1400.1800_InstantSensorData",
+    "DataMap_Lotek_1400.1800_InstantSensorData",
     contains = "DataMap_Lotek_InstantSensorData",
     methods =
       list(
@@ -416,7 +379,7 @@ DataMap_Lotek.1400.1800_InstantSensorData =
 DataMap_MicrowaveTelemetry_TagMetaData =
   setRefClass(
     "DataMap_MicrowaveTelemetry_TagMetaData",
-    contains = "DataMap_TagMetaData_Base",
+    contains = "DataMap_TagMetaData",
     methods =
       list(
         initialize =
@@ -449,8 +412,10 @@ DataMap_MicrowaveTelemetry_XTag_TagMetaData =
       )
   )
 
-
 #' DataMap - Microwave Telemetry X-Tag metadata
+#'
+#' Implements the `read_data_sheet` helper method, valuable when parsing data from X-Tag data files
+#'
 #' @export
 DataMap_MicrowaveTelemetry_XTag_SensorData =
   setRefClass(
@@ -512,8 +477,8 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
     "DataMap_MicrowaveTelemetry_XTag_InstantSensorData",
     contains =
       c(
-        "DataMap_InstantSensorData_Base",
-        "DataMap_MicrowaveTelemetry_XTag_SensorData"
+        "DataMap_MicrowaveTelemetry_XTag_SensorData",
+        "DataMap"
       ),
     methods =
       list(
@@ -582,8 +547,8 @@ DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
     "DataMap_MicrowaveTelemetry_XTag_SummarySensorData",
     contains =
       c(
-        "DataMap_SummarySensorData_Base",
-        "DataMap_MicrowaveTelemetry_XTag_SensorData"
+        "DataMap_MicrowaveTelemetry_XTag_SensorData",
+        "DataMap"
       ),
     methods =
       list(
@@ -619,7 +584,7 @@ DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
 DataMap_StarOddi_TagMetaData =
   setRefClass(
     "DataMap_StarOddi_TagMetaData",
-    contains = "DataMap_TagMetaData_Base",
+    contains = "DataMap_TagMetaData",
     methods =
       list(
         initialize =
@@ -661,7 +626,7 @@ DataMap_StarOddi_DST_TagMetaData =
 DataMap_StarOddi_DST_InstantSensorData =
   setRefClass(
     "DataMap_StarOddi_DST_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap",
     methods =
       list(
         initialize =
@@ -716,8 +681,8 @@ DataMap_StarOddi_DSTmagnetic_TagMetaData =
 #' @export
 DataMap_StarOddi_DSTmagnetic_InstantSensorData =
   setRefClass(
-    "Decoder_StarOddi_DSTmagnetic_InstantSensorData",
-    contains = "DataMap_InstantSensorData_Base",
+    "DataMap_StarOddi_DSTmagnetic_InstantSensorData",
+    contains = "DataMap",
     methods =
       list(
         initialize =
@@ -748,19 +713,17 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
       )
   )
 
-
 #' DataMap - Wildlife Computers tag metadata - base class
 #' @export
 DataMap_WildlifeComputers_TagMetaData =
   setRefClass(
     "DataMap_WildlifeComputers_TagMetaData",
-    contains = "DataMap_TagMetaData_Base",
+    contains = "DataMap_TagMetaData",
     methods =
       list(
         initialize =
           function(...) {
             callSuper(...)
-
             make <<- "Wildlife Computers"
           }
       )
@@ -813,7 +776,7 @@ DataMap_WildlifeComputers_MiniPAT_InstantSensorData =
   setRefClass(
     "DataMap_WildlifeComputers_MiniPAT_InstantSensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap",
     methods =
       list(
         initialize =
@@ -842,7 +805,7 @@ DataMap_WildlifeComputers_MiniPAT_SummarySensorData =
   setRefClass(
     "DataMap_WildlifeComputers_MiniPAT_SummarySensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
-    contains = "DataMap_SummarySensorData_Base",
+    contains = "DataMap",
     methods =
       list(
         initialize =
@@ -914,7 +877,7 @@ DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData =
   setRefClass(
     "DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
-    contains = "DataMap_InstantSensorData_Base",
+    contains = "DataMap",
     methods =
       list(
         initialize =
@@ -949,7 +912,7 @@ DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData =
   setRefClass(
     "DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData",
     # DataMap is identical to the Star Oddi DST tag DataMap
-    contains = "DataMap_SummarySensorData_Base",
+    contains = "DataMap",
     methods =
       list(
         initialize =
@@ -981,7 +944,7 @@ DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData =
 DataMap_DesertStar_TagMetaData =
   setRefClass(
     "DataMap_DesertStar_TagMetaData",
-    contains = "DataMap_TagMetaData_Base",
+    contains = "DataMap_TagMetaData",
     methods =
       list(
         initialize =
@@ -1235,11 +1198,7 @@ DataMap_DesertStar_SeaTagMOD_TagMetaData =
 DataMap_DesertStar_SeaTagMOD_InstantSensorData =
   setRefClass(
     "DataMap_DesertStar_SeaTagMOD_InstantSensorData",
-    contains =
-      c(
-        "DataMap_InstantSensorData_Base",
-        "DataMap_DesertStar_SeaTagMOD"
-      ),
+    contains = "DataMap_DesertStar_SeaTagMOD",
     methods =
       list(
         initialize =

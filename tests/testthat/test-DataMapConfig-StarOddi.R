@@ -9,7 +9,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_StarOddi_DST_TagMetaData(),
+        DataMap_ABLTAG_StarOddi_DST_TagMetaData(),
       d =
         test_data_d('Star Oddi', 'DST')
     )
@@ -21,7 +21,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_StarOddi_DST_InstantSensorData(),
+        DataMap_ABLTAG_StarOddi_DST_InstantSensorData(),
       d =
         test_data_d('Star Oddi', 'DST')
     )
@@ -36,7 +36,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_StarOddi_DST_TagMetaData(),
+        DataMap_ABLTAG_StarOddi_DST_TagMetaData(),
       d =
         test_data_d('Star Oddi', 'DST milli-F')
     )
@@ -48,7 +48,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_StarOddi_DST_InstantSensorData(),
+        DataMap_ABLTAG_StarOddi_DST_InstantSensorData(),
       d =
         test_data_d('Star Oddi', 'DST milli-F')
     )
@@ -63,7 +63,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_StarOddi_DSTmagnetic_TagMetaData(),
+        DataMap_ABLTAG_StarOddi_DSTmagnetic_TagMetaData(),
       d =
         test_data_d('Star Oddi', 'DST magnetic')
     )
@@ -75,7 +75,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_StarOddi_DSTmagnetic_InstantSensorData(),
+        DataMap_ABLTAG_StarOddi_DSTmagnetic_InstantSensorData(),
       d =
         test_data_d('Star Oddi', 'DST magnetic')
     )

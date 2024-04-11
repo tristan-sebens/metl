@@ -1,7 +1,7 @@
 #----------------
 # TAG TABLE FIELDS
 #----------------
-TAG_METADATA_TABLE_FIELDS =
+ABLTAG_METADATA_TABLE_FIELDS =
   FieldMap(
     table = "TAG",
     field_list =
@@ -28,14 +28,14 @@ TAG_METADATA_TABLE_FIELDS =
 #----------------
 # INSTANT TAG DATA TABLE FIELDS
 #----------------
-TAG_DATA_INSTANT_TABLE_FIELDS =
+ABLTAG_DATA_INSTANT_TABLE_FIELDS =
   FieldMap(
     table = "TAG_DATA_INSTANT",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
         TAG_ID_FIELD =
-          TAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
+          ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
         TIMESTAMP_FIELD =
           Field(
             name = "timestamp",
@@ -171,14 +171,14 @@ TAG_DATA_INSTANT_TABLE_FIELDS =
 #----------------
 # SUMMARY TAG DATA TABLE FIELDS
 #----------------
-TAG_DATA_SUMMARY_TABLE_FIELDS =
+ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
   FieldMap(
     table = "TAG_DATA_SUMMARY",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
         TAG_ID_FIELD =
-          TAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
+          ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
         START_TIME_FIELD =
           Field(
             name = "start_time",
@@ -253,26 +253,6 @@ TAG_DATA_SUMMARY_TABLE_FIELDS =
             name = "knockdowns",
             units = "1",
             data_type = "double(10, 2)"
-          )
-      )
-  )
-
-
-TAG_METADATA_FIELDS =
-  FieldMap(
-    field_list =
-      list(
-        TAG_ID_FIELD =
-          Field(
-            name = "tag_id"
-          ),
-        TAG_MAKE_FIELD =
-          Field(
-            name = "make"
-          ),
-        TAG_MODEL_FIELD =
-          Field(
-            name = "model"
           )
       )
   )
@@ -445,14 +425,6 @@ MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        # DATE_FIELD =
-        #   Field(
-        #     name = "Date"
-        #   ),
-        # START_TIME_FIELD =
-        #   Field(
-        #     name = "Start"
-        #   ),
         START_TIME_FIELD =
           Field(
             name = "Date"

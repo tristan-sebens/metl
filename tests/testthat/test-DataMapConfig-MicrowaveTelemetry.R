@@ -10,7 +10,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_MicrowaveTelemetry_XTag_TagMetaData(),
+        DataMap_ABLTAG_MicrowaveTelemetry_XTag_TagMetaData(),
       d =
         test_data_d('Microwave Telemetry', 'X-Tag')
     )
@@ -22,7 +22,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_MicrowaveTelemetry_XTag_InstantSensorData(),
+        DataMap_ABLTAG_MicrowaveTelemetry_XTag_InstantSensorData(),
       d =
         test_data_d('Microwave Telemetry', 'X-Tag')
     )
@@ -34,7 +34,7 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_MicrowaveTelemetry_XTag_SummarySensorData(),
+        DataMap_ABLTAG_MicrowaveTelemetry_XTag_SummarySensorData(),
       d =
         test_data_d('Microwave Telemetry', 'X-Tag')
     )

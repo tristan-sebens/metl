@@ -1,4 +1,4 @@
-# DataMap_Lotek.1000.1100.1250_TagMetaData
+# DataMap_Lotek_1000.1100.1250_TagMetaData
 
     Code
       dat_
@@ -88,7 +88,7 @@
     Output
       data frame with 0 columns and 1 row
 
-# DataMap_Lotek.1000.1100.1250_InstantSensorData
+# DataMap_Lotek_1000.1100.1250_InstantSensorData
 
     Code
       dat_
@@ -1360,7 +1360,7 @@
       98 2002-05-11 12:15:00 -0.02271176 [psi] 11.11387 [°C]
       99 2002-05-11 12:30:00 -0.02271176 [psi] 11.11387 [°C]
 
-# DataMap_Lotek.1300_TagMetaData
+# DataMap_Lotek_1300_TagMetaData
 
     Code
       dat_
@@ -1405,7 +1405,7 @@
     Output
       data frame with 0 columns and 1 row
 
-# DataMap_Lotek.1300_InstantSensorData
+# DataMap_Lotek_1300_InstantSensorData
 
     Code
       dat_
@@ -2041,7 +2041,7 @@
       98 2008-06-03 20:04:00 -2.900755 [psi]  21.82 [°C]
       99 2008-06-03 20:08:00 -1.450377 [psi]  21.80 [°C]
 
-# DataMap_Lotek.1400.1800_TagMetaData
+# DataMap_Lotek_1400.1800_TagMetaData
 
     Code
       dat_
@@ -2071,7 +2071,7 @@
     Output
       data frame with 0 columns and 1 row
 
-# DataMap_Lotek.1400.1800_InstantSensorData
+# DataMap_Lotek_1400.1800_InstantSensorData
 
     Code
       dat_
