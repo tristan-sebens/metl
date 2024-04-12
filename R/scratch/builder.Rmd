@@ -38,14 +38,39 @@ Builder =
   setRefClass( 
     "Builder",
     contains = "Duplicator",
+    fields = 
+      list(
+        product_class = "character"
+      ),
     methods = 
       list(
+        get_refclass_fields = 
+          function(rc) {
+            return(
+              getRefClass(rc)$fields()
+            )
+          },
+        
         set_field = 
           function(f, v) {
             dup__ = .self$duplicate()
             dup__[[f]] = v
             
             return(dup__)
+          },
+        
+        subset_fields = 
+          function(product_class) {
+            # Get the names of the fields in the product class
+            # By definition, all of these fields should also be present in this class
+            product_class_field_names = 
+              names(get_refclass_fields(product_class))
+            
+            fields__ = list()
+            for(f_ in product_class_field_names) {
+              fields__[[f_]] = .self[[f_]]
+            }
+            return(fields__)
           }
       )
   )
@@ -66,47 +91,19 @@ ClassBuilder_Builder =
 #' @examples
   setRefClass(
     "ClassBuilder_Builder",
+    contains = "Builder",
     fields = 
       list(
         class_name = "character",
-        contains = "list",
-        fields = "list",
-        methods = "list"
+        product_class = "character"
       ),
     methods = 
       list(
-        initialize = 
-          function(
-            ...,
-            contains = list()
-          ) {
-            callSuper(
-              ...,
-              contains = contains
-            )
-          },
-        
-        get_refclass_fields = 
-          function(rc) {
-            return(
-              names(rc$fields())
-            )
-          },
-        
-        build = 
-          function() {
-            cg = 
-              setRefClass(
-                class_name,
-                contains = unlist(unique(append(contains, "Builder"))),
-                fields = fields,
-                methods = methods
-              )
-            
+        make_get_methods = 
+          function(product_class_field_names) {
             # Build methods as a named list of functions
             args_ = list()
-            # Define getter functions
-            for (f_ in get_refclass_fields(cg)) {
+            for (f_ in product_class_field_names) {
               args_[[paste0("get_", f_)]] = 
                 eval(
                   parse(
@@ -115,8 +112,15 @@ ClassBuilder_Builder =
                   )
                 )
             }
-            # Define setter functions
-            for (f_ in get_refclass_fields(cg)) {
+            
+            return(args_)
+          },
+        
+        make_set_methods = 
+          function(product_class_field_names) {
+            # Build methods as a named list of functions
+            args_ = list()
+            for (f_ in product_class_field_names) {
               args_[[paste0("set_", f_)]] = 
                 eval(
                   parse(
@@ -127,8 +131,51 @@ ClassBuilder_Builder =
                 )
             }
             
+            return(args_)
+          },
+        
+        make_build_method = 
+          function(pc) {
+            args = list()
+            
+            args[['build']] = 
+              eval(
+                parse(
+                  text =
+                    paste0(
+                      "function() {do.call(what=methods::new, args = c('Class' = '", 
+                      pc, 
+                      "', subset_fields('", 
+                      pc, 
+                      "')))}"
+                    )
+                )
+              )
+            
+            return(args)
+          },
+        
+        build = 
+          function() {
+            product_class_field_defs = get_refclass_fields(product_class)
+            product_class_field_names = names(product_class_field_defs)
+            
+            cg = 
+              setRefClass(
+                class_name,
+                contains = "Builder",
+                fields = product_class_field_defs
+              )
+            
+            # Construct builder object methods
+            args = list()
+            # Define getter/setter functions
+            args = append(args, make_get_methods(product_class_field_names))
+            args = append(args, make_set_methods(product_class_field_names))
+            # Make build function
+            args = append(args, make_build_method(product_class))
             # Attach methods to reference class generator
-            do.call(cg$methods, args = args_)
+            do.call(cg$methods, args = args)
             
             # Return constructed generator
             return(cg)
@@ -137,38 +184,45 @@ ClassBuilder_Builder =
   )
 
 
-# Define the Builder class for Decoders
-Decoder_ClassBuilder = 
+# Define a Builder class for Decoders
+Decoder_Builder = 
   ClassBuilder_Builder(
-    class_name = "Decoder_ClassBuilder",
-    fields = 
-      list(
-        d = "character",
-        identifier = "Identifier",
-        metadata_map = "DataMap",
-        data_maps = "list"
-      ),
-    methods = list()
+    class_name = "Decoder_Builder",
+    product_class = "Decoder"
   )$build()
-
-ClassBuilder_Builder()$get_refclass_fields(Decoder_ClassBuilder)
 ```
 
 ```{r}
-# Define the Builder class for Decoders
-Decoder_ClassBuilder = 
-  ClassBuilder_Builder(
-    class_name = "Decoder_ClassBuilder",
-    contains = list("Decoder"),
-  )$build()
-
-
-
-dcb = Decoder_ClassBuilder()
-
-dbc
-
+Decoder_Lotek_1000.1100.1250_Builder = 
+  # Start with base class builder
+  Decoder_Builder()$
+  # Add specifics
+  set_identifier(Identifier_Lotek_1000.1100.1250())$
+  set_metadata_map(DataMap_Lotek_1000.1100.1250_TagMetaData())$
+  set_data_maps(list(DataMap_Lotek_1000.1100.1250_InstantSensorData()))
 ```
+
+```{r}
+make_build_method = 
+  function(pc) {
+    args = list()
+    
+    args[['build']] = 
+      eval(
+        parse(
+          text =
+            paste0(
+              "function() {do.call(what=methods::new, args = c('Class' = '", 
+              pc, 
+              "', fields__))}"
+            )
+        )
+      )
+    
+    return(args)
+  }
+```
+
 
 
 
