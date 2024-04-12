@@ -1,0 +1,220 @@
+```{r}
+
+```
+
+
+
+
+```{r}
+Duplicator = 
+#' Duplicator base class
+#' 
+#' Object interface which supports deep copying (or something close to it). Implements the 'duplicate' method, which returns a deep copy of the calling object instance.
+#' 
+#' Duplicates are created by creating a new instance of the calling object and populating all fields with the fields of the calling object. If a field on the calling instance is a complex object (i.e. not a basic type, e.g. numeric, character, etc), then the complex object must also be a Duplicator object (or child class). If not, the duplicated object will contain a reference to the field of the original object, not a true copy. 
+#' 
+#' @field parent_class character. 
+#' @field new_field numeric. 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+Dulicator = 
+  setRefClass(
+    "Duplicator",
+    methods = 
+      list(
+        duplicate = 
+          function(.self) {
+            dup__ = methods::new(Class = .self$getClass())
+            dup__$import(.self)
+            return(dup__)
+          }
+      )
+  )
+
+Builder = 
+  setRefClass( 
+    "Builder",
+    contains = "Duplicator",
+    methods = 
+      list(
+        set_field = 
+          function(f, v) {
+            dup__ = .self$duplicate()
+            dup__[[f]] = v
+            
+            return(dup__)
+          }
+      )
+  )
+
+ClassBuilder_Builder = 
+#' Builder object for reference-class generators of builder objects 
+#'
+#' This class facilitates building generators for other reference classes that follow the builder pattern, and automatically populates the new object with getter/setter methods. All generators produced by this object will build objects that are children of the `Builder` class.
+#'
+#' @field class_name Name for new class 
+#' @field contains contains
+#' @field fields list. 
+#' @field methods list. 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+  setRefClass(
+    "ClassBuilder_Builder",
+    fields = 
+      list(
+        class_name = "character",
+        contains = "list",
+        fields = "list",
+        methods = "list"
+      ),
+    methods = 
+      list(
+        initialize = 
+          function(
+            ...,
+            contains = list()
+          ) {
+            callSuper(
+              ...,
+              contains = contains
+            )
+          },
+        
+        get_refclass_fields = 
+          function(rc) {
+            return(
+              names(rc$fields())
+            )
+          },
+        
+        build = 
+          function() {
+            cg = 
+              setRefClass(
+                class_name,
+                contains = unlist(unique(append(contains, "Builder"))),
+                fields = fields,
+                methods = methods
+              )
+            
+            # Build methods as a named list of functions
+            args_ = list()
+            # Define getter functions
+            for (f_ in get_refclass_fields(cg)) {
+              args_[[paste0("get_", f_)]] = 
+                eval(
+                  parse(
+                    text = 
+                      paste0("function(v) {return(", f_, ")}")
+                  )
+                )
+            }
+            # Define setter functions
+            for (f_ in get_refclass_fields(cg)) {
+              args_[[paste0("set_", f_)]] = 
+                eval(
+                  parse(
+                    text = 
+                      # paste0("function(v) {", f_, " <<- v}")
+                      paste0("function(v) {set_field('", f_, "', v)}")
+                  )
+                )
+            }
+            
+            # Attach methods to reference class generator
+            do.call(cg$methods, args = args_)
+            
+            # Return constructed generator
+            return(cg)
+          }
+      )
+  )
+
+
+# Define the Builder class for Decoders
+Decoder_ClassBuilder = 
+  ClassBuilder_Builder(
+    class_name = "Decoder_ClassBuilder",
+    fields = 
+      list(
+        d = "character",
+        identifier = "Identifier",
+        metadata_map = "DataMap",
+        data_maps = "list"
+      ),
+    methods = list()
+  )$build()
+
+ClassBuilder_Builder()$get_refclass_fields(Decoder_ClassBuilder)
+```
+
+```{r}
+# Define the Builder class for Decoders
+Decoder_ClassBuilder = 
+  ClassBuilder_Builder(
+    class_name = "Decoder_ClassBuilder",
+    contains = list("Decoder"),
+  )$build()
+
+
+
+dcb = Decoder_ClassBuilder()
+
+dbc
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
