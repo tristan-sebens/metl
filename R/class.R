@@ -627,8 +627,6 @@ TagIdentifier =
 #' @field d Data directory.
 #' @field overwrite Boolean flag. If set to TRUE, the TagProcessor will check if a tag is already present in the tag metadata table, and will not process the tag if it is.
 #'
-#' @return Instance of the TagProcessor class
-#'
 #' @examples
 #' data_directory = here::here() # Root data directory
 #'
