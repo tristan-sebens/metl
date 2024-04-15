@@ -1,8 +1,3 @@
-# Decoder_MasterList
-# Used to map data directories to the appropriate Decoder object
-Decoder_MasterList =
-  list()
-
 #' Decoder - base class
 #' @export
 Decoder_Base =
@@ -22,7 +17,7 @@ Decoder_Lotek =
   )
 #----
 
-Decoder_Lotek.1000.1100.1250 =
+Decoder_Lotek_1000.1100.1250 =
   #----
   setRefClass(
     "Decoder_Lotek.1000.1100.1250",
@@ -36,10 +31,10 @@ Decoder_Lotek.1000.1100.1250 =
             identifier =
               Identifier_Lotek_1000.1100.1250(),
             metadata_map =
-              DataMap_Lotek.1000.1100.1250_TagMetaData(),
+              DataMap_Lotek_1000.1100.1250_TagMetaData(),
             data_maps =
               list(
-                DataMap_Lotek.1000.1100.1250_InstantSensorData()
+                DataMap_Lotek_1000.1100.1250_InstantSensorData()
               )
           ) {
             # Initialize the child class
@@ -52,11 +47,9 @@ Decoder_Lotek.1000.1100.1250 =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1000.1100.1250)
 #----
 
-Decoder_Lotek.1300 =
+Decoder_Lotek_1300 =
   #----
   setRefClass(
     "Decoder_Lotek.1300",
@@ -69,10 +62,10 @@ Decoder_Lotek.1300 =
             identifier =
               Identifier_Lotek_1300(),
             metadata_map =
-              DataMap_Lotek.1300_TagMetaData(),
+              DataMap_Lotek_1300_TagMetaData(),
             data_maps =
               list(
-                DataMap_Lotek.1300_InstantSensorData()
+                DataMap_Lotek_1300_InstantSensorData()
               )
           ) {
             # Initialize the child class
@@ -85,11 +78,9 @@ Decoder_Lotek.1300 =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1300)
 #----
 
-Decoder_Lotek.1400.1800 =
+Decoder_Lotek_1400.1800 =
   #----
   setRefClass(
     "Decoder_Lotek.1400.1800",
@@ -103,10 +94,10 @@ Decoder_Lotek.1400.1800 =
             identifier =
               Identifier_Lotek_1400.1800(),
             metadata_map =
-              DataMap_Lotek.1400.1800_TagMetaData(),
+              DataMap_Lotek_1400.1800_TagMetaData(),
             data_maps =
               list(
-                DataMap_Lotek.1400.1800_InstantSensorData()
+                DataMap_Lotek_1400.1800_InstantSensorData()
               )
           ) {
             # Initialize the child class
@@ -119,8 +110,6 @@ Decoder_Lotek.1400.1800 =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_Lotek.1400.1800)
 #----
 
 #' Base implementation for all Microwave Telemetry tag Decoders
@@ -163,8 +152,6 @@ Decoder_MicrowaveTelemetry_XTag =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_MicrowaveTelemetry_XTag)
 #----
 
 Decoder_StarOddi =
@@ -205,8 +192,6 @@ Decoder_StarOddi_DST =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DST)
 #----
 
 Decoder_StarOddi_DSTmagnetic =
@@ -239,8 +224,6 @@ Decoder_StarOddi_DSTmagnetic =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_StarOddi_DSTmagnetic)
 #----
 
 Decoder_WildlifeComputers =
@@ -283,8 +266,6 @@ Decoder_WildlifeComputers_MiniPAT =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_WildlifeComputers_MiniPAT)
 #----
 
 Decoder_WildlifeComputers_BenthicSPAT =
@@ -319,8 +300,6 @@ Decoder_WildlifeComputers_BenthicSPAT =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_WildlifeComputers_BenthicSPAT)
 #----
 
 
@@ -363,8 +342,6 @@ Decoder_DesertStar_SeaTagMOD =
           }
       )
   )
-
-Decoder_MasterList = append(Decoder_MasterList, Decoder_DesertStar_SeaTagMOD)
 #----
 
 

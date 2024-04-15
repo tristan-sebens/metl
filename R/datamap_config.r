@@ -253,7 +253,7 @@ DataMap_Lotek_1300_InstantSensorData =
       list(
         initialize =
           function(...) {
-            callSuper(input_data_field_map = LOTEK_1300_FIELDS, ...)
+            callSuper(input_data_field_map = LOTEK_1300_INSTANT_DATA_FIELDS, ...)
           },
 
         extract =
@@ -329,7 +329,7 @@ DataMap_Lotek_1400.1800_InstantSensorData =
       list(
         initialize =
           function(...) {
-            callSuper(input_data_field_map = LOTEK_1400.1800_FIELDS, ...)
+            callSuper(input_data_field_map = LOTEK_1400.1800_INSTANT_DATA_FIELDS, ...)
           },
 
         read_csv_lotek_1400.1800 =

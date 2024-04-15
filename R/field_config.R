@@ -283,7 +283,7 @@ LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
       )
   )
 
-LOTEK_1300_FIELDS =
+LOTEK_1300_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -318,7 +318,7 @@ LOTEK_1300_FIELDS =
       )
   )
 
-LOTEK_1400.1800_FIELDS =
+LOTEK_1400.1800_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
