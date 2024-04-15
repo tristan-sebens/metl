@@ -960,6 +960,7 @@ DataMap_DesertStar_TagMetaData =
 DataMap_DesertStar_SeaTagMOD =
   setRefClass(
     "DataMap_DesertStar_SeaTagMOD",
+    contains = "DataMap",
     methods =
       list(
         # In a list of strings, find the index(es) of the string(s) that match
