@@ -537,24 +537,17 @@ TagIdentifier =
     "TagIdentifier",
     fields =
       list(
-        master_list__ = "list"
+        decoders = "list"
       ),
     methods =
       list(
-        initialize =
-          function(...) {
-            callSuper(...)
-            # Set the master list
-            master_list__ <<- Decoder_MasterList
-          },
-
         identify =
           function(d) {
             "Applies the Identifiers of all known Decoders to the directory. Returns results as a data.frame"
             # Initialize tibble
             t__ =
-            # First field 'dc' is a list of all possible decoders from the master list
-              tibble::tibble(dc = .self$master_list__)
+            # First field 'dc' is a list of all possible decoders
+              tibble::tibble(dc = .self$decoders)
 
             # Update the tibble to include the name associated with each decoder
             t__['name'] =
@@ -646,16 +639,24 @@ TagProcessor =
     fields =
       list(
         d = "character", # The directory to process
+        decoders = "list",
         dir_tree__ = "Node" # The directory tree object. Private attribute, not intended to be set
       ),
 
     methods =
       list(
         initialize =
-          function(d, ...) {
-            callSuper(d = d, ...)
+          function(d, tag_identifier=TagIdentifier(), ...) {
+            callSuper(d = d, tag_identifier=tag_identifier, ...)
             # Build datatree object from directory
             dir_tree__ <<- .self$build_datatree(d)
+          },
+
+
+        register_decoder =
+          function(dc) {
+            "Add one or more Decoder objects to the list of decoders used by this TagProcessor"
+            .self$decoders <<- append(.self$decoders, dc)
           },
 
         # Helper method. Used by reporting function
@@ -762,10 +763,11 @@ TagProcessor =
         process_node =
           function(node, con, overwrite = T) {
             "Attempt to process directory `d`. TagProcessor will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
-            # Apply the TagIdentifier to determine which decoders match the data
-            # directory.  Record these results on the data directory object
             node$tag_identifier_results =
-              TagIdentifier()$identify(node$fullPath)
+              # Instantiate the identifier object based on the list of Decoders held by this TagProcessor
+              TagIdentifier(decoders = .self$decoders)$
+              # Apply the identifier objects to this directory and record the results
+              identify(node$fullPath)
 
             # Filter to those decoders which matched the data directory
             pos_id =
