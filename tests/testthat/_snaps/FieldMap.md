@@ -38,7 +38,7 @@
     Code
       names(fm2_fm1_ucf)
     Output
-      [1] "ID_FIELD"     "DATA_FIELD_3"
+      [1] "TAG_ID_FIELD" "DATA_FIELD_3"
 
 ---
 
@@ -52,7 +52,7 @@
     Code
       names(t_fm1$get_id_fields())
     Output
-      [1] "ID_FIELD"        "TIMESTAMP_FIELD"
+      [1] "TAG_ID_FIELD"    "TIMESTAMP_FIELD"
 
 # FieldMap::get_id_field_names
 
