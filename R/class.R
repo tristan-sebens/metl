@@ -556,7 +556,7 @@ TagIdentifier =
                     function(c) {
                       stringr::str_detect(c, 'Decoder')
                     },
-                    class(dc())
+                    class(dc)
                   )
                 }
               ) %>%
@@ -574,7 +574,7 @@ TagIdentifier =
                         {
                           return(
                             c(
-                              'result' = dc()$identifier$identify(d),
+                              'result' = dc$identifier$identify(d),
                               'message' = ""
                             )
                           )
@@ -616,6 +616,7 @@ TagIdentifier =
 #' Implements some basic reporting to aid in diagnosing systemic decoding issues
 #'
 #' @field d Data directory.
+#' @field decoders A list of Decoder objects which can be use to extract and load the data produced by different tags
 #' @field overwrite Boolean flag. If set to TRUE, the TagProcessor will check if a tag is already present in the tag metadata table, and will not process the tag if it is.
 #'
 #' @examples
@@ -637,15 +638,15 @@ TagProcessor =
     fields =
       list(
         d = "character", # The directory to process
-        decoders = "list",
+        decoders = "list", # The list of decoders to use for processing data directories
         dir_tree__ = "Node" # The directory tree object. Private attribute, not intended to be set
       ),
 
     methods =
       list(
         initialize =
-          function(d, tag_identifier=TagIdentifier(), ...) {
-            callSuper(d = d, tag_identifier=tag_identifier, ...)
+          function(d, ...) {
+            callSuper(d = d, ...)
             # Build datatree object from directory
             dir_tree__ <<- .self$build_datatree(d)
           },
@@ -775,10 +776,14 @@ TagProcessor =
             # If there is exactly one decoder which matches the data directory, use that
             # decoder to upload the tag data to the DB
             if(nrow(pos_id) == 1) {
-              dc = pos_id$dc[[1]](d = node$fullPath)
+              dc = pos_id$dc[[1]]
               tryCatch(
                 {
-                  dc$decode(con, overwrite = overwrite)
+                  dc$decode(
+                    con,
+                    d = node$fullPath,
+                    overwrite = overwrite
+                  )
                   node$decoded = T
                   node$identified_decoder = pos_id$name
                 },
