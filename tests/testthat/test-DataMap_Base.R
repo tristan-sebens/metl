@@ -17,14 +17,21 @@ test_that(
     expect_snapshot(
       dm$get_field_data(
         dat__ = build_test_dataset(),
-        input_field_obj_ = fm1$field_list$DATA_FIELD_1
+        input_field_obj_ = fm1$field_list$DEPTH_FIELD
       )
     )
 
     expect_snapshot(
       dm$get_field_data(
         dat__ = build_test_dataset(),
-        input_field_obj_ = fm1$field_list$DATA_FIELD_2
+        input_field_obj_ = fm1$field_list$LATITUDE_FIELD
+      )
+    )
+
+    expect_snapshot(
+      dm$get_field_data(
+        dat__ = build_test_dataset(),
+        input_field_obj_ = fm1$field_list$LONGITUDE_FIELD
       )
     )
   }

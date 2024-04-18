@@ -1,130 +1,134 @@
 build_test_fieldmaps =
   function() {
     INSTANT_DATA_INPUT_FIELD_MAP =
-      FieldMap(
-        field_list =
-          list(
-            TIMESTAMP_FIELD =
-              Field(
-                name = "Timestamp",
-                id_field = T
-              ),
-            DATA_FIELD_1 =
-              Field(
-                name = "Depth",
-                units = "m"
-              ),
-            DATA_FIELD_2 =
-              Field(
-                name = "Pressure",
-                data_type = "double(10, 2)",
-                units = "bar"
-              ),
-            DATA_FIELD_4 =
-              Field(
-                name = "Temperature",
-                units = "°F"
-              )
-          )
-      )
+      MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS
+      # FieldMap(
+      #   field_list =
+      #     list(
+      #       TIMESTAMP_FIELD =
+      #         Field(
+      #           name = "Timestamp",
+      #           id_field = T
+      #         ),
+      #       DATA_FIELD_1 =
+      #         Field(
+      #           name = "Depth",
+      #           units = "m"
+      #         ),
+      #       DATA_FIELD_2 =
+      #         Field(
+      #           name = "Pressure",
+      #           data_type = "double(10, 2)",
+      #           units = "bar"
+      #         ),
+      #       DATA_FIELD_4 =
+      #         Field(
+      #           name = "Temperature",
+      #           units = "°F"
+      #         )
+      #     )
+      # )
 
     INSTANT_DATA_OUTPUT_FIELD_MAP =
-      FieldMap(
-        table = "INSTANT_DATA",
-        field_list =
-          list(
-            TAG_ID_FIELD =
-              Field(
-                name = "tag_id",
-                data_type = "integer",
-                id_field = T
-              ),
-            TIMESTAMP_FIELD =
-              Field(
-                name = "timestamp",
-                data_type = "varchar(32)",
-                id_field = T
-              ),
-            DATA_FIELD_1 =
-               Field(
-                 name = "depth",
-                 data_type = "double(10, 2)",
-                 units = "m"
-               ),
-            DATA_FIELD_2 =
-              Field(
-                name = "pressure",
-                data_type = "double(10, 2)",
-                units = "psi"
-              ),
-            DATA_FIELD_3 =
-              Field(
-                name = "weight",
-                data_type = "double(10, 2)",
-                units = "g"
-              )
-          )
-      )
+      # FieldMap(
+      #   table = "INSTANT_DATA",
+      #   field_list =
+      #     list(
+      #       TAG_ID_FIELD =
+      #         Field(
+      #           name = "tag_id",
+      #           data_type = "integer",
+      #           id_field = T
+      #         ),
+      #       TIMESTAMP_FIELD =
+      #         Field(
+      #           name = "timestamp",
+      #           data_type = "varchar(32)",
+      #           id_field = T
+      #         ),
+      #       DATA_FIELD_1 =
+      #          Field(
+      #            name = "depth",
+      #            data_type = "double(10, 2)",
+      #            units = "m"
+      #          ),
+      #       DATA_FIELD_2 =
+      #         Field(
+      #           name = "pressure",
+      #           data_type = "double(10, 2)",
+      #           units = "psi"
+      #         ),
+      #       DATA_FIELD_3 =
+      #         Field(
+      #           name = "weight",
+      #           data_type = "double(10, 2)",
+      #           units = "g"
+      #         )
+      #     )
+      # )
+      ABLTAG_DATA_INSTANT_TABLE_FIELDS
 
     SUMMARY_DATA_INPUT_FIELD_MAP =
-      FieldMap(
-        field_list =
-          list(
-            START_FIELD =
-              Field(
-                name = "Start"
-              ),
-            END_FIELD =
-              Field(
-                name = "End"
-              ),
-            DEPTH_FIELD =
-              Field(
-                name = "Depth",
-                units = "m"
-              ),
-            PRESSURE_FIELD =
-              Field(
-                name = "Pressure",
-                units = "bar"
-              )
-          )
-      )
+      MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS
+      # FieldMap(
+      #   field_list =
+      #     list(
+      #       START_FIELD =
+      #         Field(
+      #           name = "Start"
+      #         ),
+      #       END_FIELD =
+      #         Field(
+      #           name = "End"
+      #         ),
+      #       DEPTH_FIELD =
+      #         Field(
+      #           name = "Depth",
+      #           units = "m"
+      #         ),
+      #       PRESSURE_FIELD =
+      #         Field(
+      #           name = "Pressure",
+      #           units = "bar"
+      #         )
+      #     )
+      # )
 
     SUMMARY_DATA_OUTPUT_FIELD_MAP =
-      FieldMap(
-        table = "SUMMARY_DATA",
-        field_list =
-          list(
-            TAG_ID_FIELD =
-              Field(
-                name = "tag_id",
-                id_field = T
-              ),
-            START_FIELD =
-              Field(
-                name = "start",
-                id_field = T
-              ),
-            END_FIELD =
-              Field(
-                name = "end",
-                id_field = T
-              ),
-            DEPTH_FIELD =
-              Field(
-                name = "depth",
-                data_type = "double(10, 2)",
-                units = "m"
-              ),
-            PRESSURE_FIELD =
-              Field(
-                name = "pressure",
-                data_type = "double(10, 2)",
-                units = "psi"
-              )
-          )
-      )
+      ABLTAG_DATA_SUMMARY_TABLE_FIELDS
+      # FieldMap(
+      #   table = "SUMMARY_DATA",
+      #   field_list =
+      #     list(
+      #       TAG_ID_FIELD =
+      #         Field(
+      #           name = "tag_id",
+      #           id_field = T
+      #         ),
+      #       START_FIELD =
+      #         Field(
+      #           name = "start",
+      #           id_field = T
+      #         ),
+      #       END_FIELD =
+      #         Field(
+      #           name = "end",
+      #           id_field = T
+      #         ),
+      #       DEPTH_FIELD =
+      #         Field(
+      #           name = "depth",
+      #           data_type = "double(10, 2)",
+      #           units = "m"
+      #         ),
+      #       PRESSURE_FIELD =
+      #         Field(
+      #           name = "pressure",
+      #           data_type = "double(10, 2)",
+      #           units = "psi"
+      #         )
+      #     )
+      # )
 
     return(
       list(
@@ -139,55 +143,65 @@ build_test_fieldmaps =
 build_test_metadata_map =
   function() {
     METADATA_MAP =
-      FieldMap(
-        table = "METADATA",
-        field_list =
-          list(
-            TAG_ID_FIELD =
-              Field(
-                name = "tag_id",
-                data_type = "integer",
-                id_field = T
-              ),
-            MAKE_FIELD =
-              Field(
-                name = "make",
-                data_type = "varchar(32)"
-              ),
-            MODEL_FIELD =
-              Field(
-                name = "model",
-                data_type = "varchar(32)"
-              )
-          )
-      )
+      ABLTAG_METADATA_TABLE_FIELDS
+      # FieldMap(
+      #   table = "METADATA",
+      #   field_list =
+      #     list(
+      #       TAG_ID_FIELD =
+      #         Field(
+      #           name = "tag_id",
+      #           data_type = "integer",
+      #           id_field = T
+      #         ),
+      #       MAKE_FIELD =
+      #         Field(
+      #           name = "make",
+      #           data_type = "varchar(32)"
+      #         ),
+      #       MODEL_FIELD =
+      #         Field(
+      #           name = "model",
+      #           data_type = "varchar(32)"
+      #         )
+      #     )
+      # )
 
     return(METADATA_MAP)
   }
 
+test_d =
+  here::here('tests', 'testthat', '_fixtures', '_test_data')
+mt_d =
+  file.path(test_d, 'Microwave Telemetry')
+mt_x_d =
+  file.path(mt_d, 'X-Tag', 'Lingcod', '128305')
 
 build_test_dataset =
   function() {
-    read.csv(
-      here::here('tests', 'testthat', '_fixtures', '_test_dataset.csv'),
-      check.names = F
-    )
+    # read.csv(
+    #   here::here('tests', 'testthat', '_fixtures', '_test_dataset.csv'),
+    #   check.names = F
+    # )
+    DataMap_MicrowaveTelemetry_XTag_InstantSensorData$extract(mt_x_d)
   }
 
 build_test_summary_dataset =
   function() {
-    read.csv(
-      here::here('tests', 'testthat', '_fixtures', '_test_summary_dataset.csv'),
-      check.names = F
-    )
+    # read.csv(
+    #   here::here('tests', 'testthat', '_fixtures', '_test_summary_dataset.csv'),
+    #   check.names = F
+    # )
+    DataMap_MicrowaveTelemetry_XTag_SummarySensorData$extract(mt_x_d)
   }
 
 build_test_metadata_dataset =
   function() {
-    read.csv(
-      here::here('tests', 'testthat', '_fixtures', '_test_metadata_dataset.csv'),
-      check.names = F
-    )
+    # read.csv(
+    #   here::here('tests', 'testthat', '_fixtures', '_test_metadata_dataset.csv'),
+    #   check.names = F
+    # )
+    DataMap_MicrowaveTelemetry_XTag_TagMetaData$extract(mt_x_d)
   }
 
 #' Get list of decoders for testing
@@ -293,7 +307,8 @@ build_test_db =
   function(
     from_ = test_path("_fixtures", "test_db_snapshot.db"),
     to_ = withr::local_tempfile(pattern = "metl_test_db"),
-    dats = list()
+    dats = list(),
+    ...
   ) {
     # Create a new instance of test db based on the stored snapshot
     # By doing this, we can maintain the more complex aspects of a fully
@@ -308,7 +323,8 @@ build_test_db =
     con =
       DBI::dbConnect(
         drv = RSQLite::SQLite(),
-        to_
+        to_,
+        ...
       )
 
     # Populate db tables from `dats`
