@@ -1,0 +1,335 @@
+test_that(
+  "TagProcessor::register_decoder",
+  {
+    dcs =
+      build_test_decoder_list()[-1]
+
+    tp__ =
+      build_test_tag_processor(decoders = dcs)
+
+    expect_equal(
+      length(tp__$decoders),
+      length(dcs),
+      label = "# of registered decoders",
+      expected.label = "# of supplied decoders"
+    )
+
+    tp__$register_decoder(build_test_decoder_list()[[1]])
+
+    expect_equal(
+      length(tp__$decoders),
+      length(build_test_decoder_list()),
+      label = "# of registered decoders",
+      expected.label = "# of supplied decoders"
+    )
+
+    tp__$register_decoder(build_test_decoder_list()[[1]])
+
+    expect_equal(
+      length(tp__$decoders),
+      length(build_test_decoder_list()),
+      label = "# of registered decoders",
+      expected.label = "# of supplied decoders"
+    )
+  }
+)
+
+test_that(
+  "TagProcessor::num_leaves",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    expect_snapshot(tp__$num_leaves(tp__$dir_tree__))
+  }
+)
+
+test_that(
+  "TagProcessor::num_decoded",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    expect_equal(
+      tp__$num_decoded(tp__$dir_tree__),
+      0,
+      label = "# of decoded directories"
+    )
+
+    con =
+      build_test_db()
+
+    tp__$process(con, silent=T)
+    expect_snapshot(tp__$num_decoded(tp__$dir_tree__))
+  }
+)
+
+test_that(
+  "TagProcessor::build_datatree",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    expect_snapshot(tp__$dir_tree__)
+  }
+)
+
+test_that(
+  "TagProcessor::build_report",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    con =
+      build_test_db()
+
+    tp__$process(con, silent=T)
+    expect_snapshot(tp__$build_report())
+  }
+)
+
+test_that(
+  "TagProcessor::add_missing_fields",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    d =
+      tp__$dir_tree__$Lotek$`LTD 1300`$`Greenland Turbot`$`3880`$fullPath
+
+    dc =
+      Decoder_Lotek_1300
+
+    dat1 = dc$decode_instant_datamap(d, tp__$instant_fieldmap)
+    dat2 = dc$decode_metadata_map(d, tp__$metadata_fieldmap)
+
+    dat3 =
+      tp__$add_missing_fields(
+        dat1 = dat1,
+        dat1_op_fm = tp__$instant_fieldmap,
+        dat2 = dat2,
+        dat2_op_fm = tp__$metadata_fieldmap
+      )
+
+    # Ensure that the output data.frame is as expected# Ensure that the output data.frame is as expected# Ensure that the output data.frame is as expected
+    expect_snapshot(dat3)
+
+    # Ensure that all of the data from dat1 is still present in dat3
+    expect_contains(
+      names(dat3),
+      names(dat1)
+    )
+    expect_equal(
+      nrow(dat1),
+      nrow(dat3),
+      label = "# rows in original data.frame",
+      expected.label = "# rows in updated data.frame"
+    )
+
+    # Ensure that only the ID field was added to dat1
+    expect_false(names(dat2)[[2]] %in% names(dat3))
+  }
+)
+
+test_that(
+  "TagProcessor::complete_dataframes",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    d =
+      tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$`Rougheye Rockfish`$`118353`$fullPath
+
+    dc =
+      Decoder_MicrowaveTelemetry_XTag
+
+
+    # Decode metadata
+    metadata =
+      dc$decode_metadata_map(
+        d = d,
+        op_fm = tp__$metadata_fieldmap
+      )
+
+    # Decode instant data
+    instant_data =
+      dc$decode_instant_datamap(
+        d = d,
+        op_fm = tp__$instant_fieldmap
+      )
+
+    # Decode summary data
+    summary_data =
+      dc$decode_summary_datamap(
+        d = d,
+        op_fm = tp__$summary_fieldmap
+      )
+
+    # Now that we have all of the necessary data, complete
+    # the decoded data.frames
+    completed_dfs =
+      tp__$complete_dataframes(
+        dfs =
+          list(
+            metadata,
+            instant_data,
+            summary_data
+          ),
+        op_fms =
+          list(
+            tp__$metadata_fieldmap,
+            tp__$instant_fieldmap,
+            tp__$summary_fieldmap
+          )
+      )
+
+    metadata_c = completed_dfs[[1]]
+    instant_data_c = completed_dfs[[2]]
+    summary_data_c = completed_dfs[[3]]
+
+    # Check that each completed dataframe matches the existing snapshot,
+    # and that all of the fields in the un-completed data.frame are still
+    # present in the completed data.frame
+    expect_snapshot(metadata_c)
+    expect_contains(names(metadata_c), names(metadata))
+    # Also ensure that the metadata data.frame remained unchanged
+    expect_equal(names(metadata_c), names(metadata))
+
+    expect_snapshot(instant_data_c)
+    expect_contains(names(instant_data_c), names(instant_data))
+
+    expect_snapshot(summary_data_c)
+    expect_contains(names(summary_data_c), names(summary_data))
+
+    # Check that the two
+    expect_contains(
+      names(instant_data_c),
+      tp__$metadata_fieldmap$field_list$TAG_ID_FIELD$name
+    )
+
+    expect_contains(
+      names(summary_data_c),
+      tp__$metadata_fieldmap$field_list$TAG_ID_FIELD$name
+    )
+  }
+)
+
+test_that(
+  "TagProcessor::get_node_data",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    node_data =
+      tp__$get_node_data(
+        dc =
+          Decoder_MicrowaveTelemetry_XTag,
+        node =
+          tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$`Rougheye Rockfish`$`118353`
+      )
+
+    metadata = node_data[[1]]
+    instant_data = node_data[[2]]
+    summary_data = node_data[[3]]
+
+    expect_gt(length(node_data), 0)
+    expect_snapshot(metadata)
+    expect_gt(nrow(metadata), 0)
+    expect_snapshot(instant_data)
+    expect_gt(nrow(instant_data), 0)
+    expect_snapshot(summary_data)
+    expect_gt(nrow(summary_data), 0)
+  }
+)
+
+test_that(
+  "TagProcessor::upsert",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    con =
+      build_test_db()
+
+    op_fm =
+      build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+
+    out_tbl =
+      data.frame(
+        dplyr::tbl(
+          con,
+          op_fm$table
+        )
+      )
+
+    expect_equal(nrow(out_tbl), 0)
+
+    dc =
+      build_test_decoder()
+
+    dat =
+      dc$decode_instant_datamap(op_fm = op_fm)
+
+    dat$tag_id = 1
+
+    tp__$upsert(
+      con,
+      dat = head(dat, round(nrow(dat)*.1)),
+      output_data_field_map = op_fm
+    )
+
+    out_tbl =
+      data.frame(
+        dplyr::tbl(
+          con,
+          op_fm$table
+        )
+      )
+
+    expect_snapshot(out_tbl)
+    expect_gt(nrow(out_tbl), 0)
+    expect_lt(nrow(out_tbl), nrow(dat))
+
+    tp__$upsert(
+      con,
+      dat = dat,
+      output_data_field_map = op_fm
+    )
+
+    out_tbl =
+      data.frame(
+        dplyr::tbl(
+          con,
+          op_fm$table
+        )
+      )
+
+    expect_snapshot(out_tbl)
+    expect_gt(nrow(out_tbl), 0)
+    expect_equal(nrow(out_tbl), nrow(dat))
+  }
+)
+
+
+# TODO: Needs to be implemented still, but requires setting up a test DB with real data. Could be worth migrating all of the tests to use real data from the '_test_data' directory
+# test_that(
+#   "TagProcessor::decode_node",
+#   {
+#     tp__ =
+#       build_test_tag_processor()
+#
+#     dc =
+#       Decoder_MicrowaveTelemetry_XTag
+#
+#     con =
+#       build_test_db()
+#
+#
+#     tp__$decode_node(
+#       con,
+#       dc,
+#       tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
+#     )
+#
+#   }
+# )

@@ -9,7 +9,9 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_ABLTAG_WildlifeComputers_MiniPAT_TagMetaData(),
+        DataMap_WildlifeComputers_MiniPAT_TagMetaData,
+      od_fm =
+        ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('Wildlife Computers', 'MiniPAT')
     )
@@ -21,7 +23,9 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_ABLTAG_WildlifeComputers_MiniPAT_InstantSensorData(),
+        DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
+      od_fm =
+        ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('Wildlife Computers', 'MiniPAT')
     )
@@ -34,7 +38,9 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_ABLTAG_WildlifeComputers_MiniPAT_SummarySensorData(),
+        DataMap_WildlifeComputers_MiniPAT_SummarySensorData,
+      od_fm =
+        ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
         test_data_d('Wildlife Computers', 'MiniPAT')
     )
@@ -49,7 +55,9 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_ABLTAG_WildlifeComputers_BenthicSPAT_TagMetaData(),
+        DataMap_WildlifeComputers_BenthicSPAT_TagMetaData,
+      od_fm =
+        ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('Wildlife Computers', 'Benthic sPAT')
     )
@@ -61,7 +69,9 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_ABLTAG_WildlifeComputers_BenthicSPAT_InstantSensorData(),
+        DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData,
+      od_fm =
+        ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('Wildlife Computers', 'Benthic sPAT')
     )
@@ -73,7 +83,9 @@ test_that(
   {
     test_datamap(
       dm =
-        DataMap_ABLTAG_WildlifeComputers_BenthicSPAT_SummarySensorData(),
+        DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData,
+      od_fm =
+        ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
         test_data_d('Wildlife Computers', 'Benthic sPAT')
     )

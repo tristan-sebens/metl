@@ -1,304 +1,250 @@
 # Identifier classes for each tag type
 
 
+# Check number of files in directory which match pattern
+#
+# Helper function to quickly determine if an expected number of files
+# match the given pattern
+check_for_files =
+  function(d, pattern, n=1, ignore.case = T) {
+    # Check if the number of files which match the given pattern match the expected number
+    if(
+      length(
+        list.files(
+          d,
+          pattern = pattern,
+          ignore.case = ignore.case
+        )
+      ) == n
+    ) {
+      return(TRUE)
+    }
+    return(FALSE)
+  }
+
 #' Identifier - Lotek 1000/1100/1250 tags
 #'
 #' @export
 Identifier_Lotek_1000.1100.1250 =
-  setRefClass(
-    "Identifier_Lotek_1000.1100.1250",
-    contains = "Identifier",
-    methods =
-      list(
-        identify =
-          function(d) {
-            return(
-              all(
-                .self$check_for_files(d, "^\\d*pressure\\.csv"),
-                .self$check_for_files(d, "^\\d*temperature\\.csv")
-                # .self$check_for_files(d, "^\\d*supply\\.csv"),
-                # .self$check_for_files(d, "^\\d*light\\.csv")
-              )
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        return(
+          all(
+            check_for_files(d, "^\\d*pressure\\.csv"),
+            check_for_files(d, "^\\d*temperature\\.csv")
+          )
+        )
+      }
   )
 
 #' Identifier - Lotek 1300 tags
 #'
 #' @export
 Identifier_Lotek_1300 =
-  setRefClass(
-    "Identifier_Lotek_1300",
-    contains = "Identifier",
-    methods =
-      list(
-        identify =
-          function(d) {
-            all(
-              # .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_\\d*\\.bin"),
-              .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_day log.csv"),
-              .self$check_for_files(d, "LTD1300.\\d\\d\\d\\d_regular log.csv")
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        all(
+          check_for_files(d, "LTD1300.\\d\\d\\d\\d_day log.csv"),
+          check_for_files(d, "LTD1300.\\d\\d\\d\\d_regular log.csv")
+        )
+      }
   )
 
 #' Identifier - Lotek 1400/1800 tags
 #'
 #' @export
 Identifier_Lotek_1400.1800 =
-  setRefClass(
-    "Identifier_Lotek_1400.1800",
-    contains = "Identifier",
-    methods =
-      list(
-        identify =
-          function(d) {
-            all(
-              .self$check_for_files(d, "LAT(180|140)_(\\d|_)*_\\d\\d\\.csv")
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        all(
+          check_for_files(d, "LAT(180|140)_(\\d|_)*_\\d\\d\\.csv")
+        )
+      }
   )
 
 #' Identifier - Microwave Telemetry X-tags
 #'
 #' @export
 Identifier_MicrowaveTelemetry_XTag =
-  setRefClass(
-    "Identifier_MicrowaveTelemetry_XTag",
-    contains = "Identifier",
-    methods =
-      list(
-        identify =
-          function(d) {
-            all(
-              .self$check_for_files(d, "^\\d*.xls"),
-              # Check that all files present in the directory fit the given pattern
-              .self$check_for_files(d, "^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        all(
+          check_for_files(d, "^\\d*.xls"),
+          # Check that all files present in the directory fit the given pattern
+          check_for_files(d, "^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
+        )
+      }
   )
 
+check_for_fields =
+  function(fp, fields, present=T) {
+    suppressMessages(
+      classes = c("warning", "message"),
+      {
+        xl_fields_ =
+          names(readxl::read_xlsx(fp, n_max = 1))
+      }
+    )
 
-#' Identifier - StarOddi tags - base class
-#'
-#' @export
-Identifier_StarOddi =
-  setRefClass(
-    "Identifier_StarOddi",
-    contains = "Identifier",
-    methods =
-      list(
-        # Checks for the presence absence of specified fields in the specified file
-        # When present == TRUE, checks for the presence of specified fields,
-        # otherwise checks for absence.
-        check_for_fields =
-          function(fp, fields, present=T) {
-            suppressMessages(
-              classes = c("warning", "message"),
-              {
-                xl_fields_ =
-                  names(readxl::read_xlsx(fp, n_max = 1))
-              }
-            )
+    res_ =
+      fields %>%
+      lapply(
+        function(f_) {
+          return(f_ %in% xl_fields_)
+        }
+      ) %>%
+      unlist()
 
-            res_ =
-              fields %>%
-              lapply(
-                function(f_) {
-                  return(f_ %in% xl_fields_)
-                }
-              ) %>%
-              unlist()
-
-            if (present) {
-              return(all(res_))
-            } else {
-              return(!any(res_))
-            }
-          }
-      )
-  )
+    if (present) {
+      return(all(res_))
+    } else {
+      return(!any(res_))
+    }
+  }
 
 #' Identifier - StarOddi DST tags
 #'
 #' @export
 Identifier_StarOddi_DST =
-  setRefClass(
-    "Identifier_StarOddi_DST",
-    contains = "Identifier_StarOddi",
-    methods =
-      list(
-        identify =
-          function(d) {
-            fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
-            return(
-              all(
-                .self$check_for_files(
-                  d,
-                  "^JS\\d+\\.xlsx"
+  Identifier(
+    identify_ =
+      function(d) {
+        fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
+        return(
+          all(
+            check_for_files(
+              d,
+              "^JS\\d+\\.xlsx"
+            ),
+            # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+            check_for_files(
+              d,
+              "(~$)*JS\\d+\\.xlsx",
+              n=length(list.files(d))
+            ),
+            check_for_fields(
+              fp =
+                fp,
+              fields =
+                c(
+                  "Comp.Head(°)",
+                  "Comp.4p(°)",
+                  "Mag.vec(nT)"
                 ),
-                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                .self$check_for_files(
-                  d,
-                  "(~$)*JS\\d+\\.xlsx",
-                  n=length(list.files(d))
-                ),
-                .self$check_for_fields(
-                  fp =
-                    fp,
-                  fields =
-                    c(
-                      "Comp.Head(°)",
-                      "Comp.4p(°)",
-                      "Mag.vec(nT)"
-                    ),
-                  present = F
-                )
-              )
+              present = F
             )
-          }
-      )
+          )
+        )
+      }
   )
 
 #' Identifier - StarOddi DST magnetic tags
 #'
 #' @export
 Identifier_StarOddi_DSTmagnetic =
-  setRefClass(
-    "Identifier_StarOddi_DSTmagnetic",
-    contains = "Identifier_StarOddi",
-    methods =
-      list(
-        identify =
-          function(d) {
-            fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
-            return(
-              all(
-                .self$check_for_files(d, "^JS\\d+\\.xlsx"),
-                # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                # .self$check_for_files(d, "(~$)*JS\\d+\\.xlsx", n=length(list.files(d))),
-                .self$check_for_fields(
-                  fp =
-                    fp,
-                  fields =
-                    c(
-                      "Comp.Head(°)",
-                      "Comp.4p(°)",
-                      "Mag.vec(nT)"
-                    )
+  Identifier(
+    identify_ =
+      function(d) {
+        fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
+        return(
+          all(
+            check_for_files(d, "^JS\\d+\\.xlsx"),
+            # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+            check_for_fields(
+              fp =
+                fp,
+              fields =
+                c(
+                  "Comp.Head(°)",
+                  "Comp.4p(°)",
+                  "Mag.vec(nT)"
                 )
-              )
             )
-          }
-      )
+          )
+        )
+      }
   )
 
-#' Identifier - Wildlife Computer tags
-#'
-#' @export
-Identifier_WildlifeComputers =
-  setRefClass(
-    "Identifier_WildlifeComputers",
-    contains = "Identifier",
-    methods =
-      list(
-        # So far, most WC files follow the same format
-        check_for_wc_data_file =
-          function(d, file_name, ...) {
-            .self$check_for_files(
-              d,
-              paste0("^\\d\\d\\d\\d\\d\\d-?", file_name),
-              ...
-            )
-          }
 
-      )
-  )
+check_for_wc_data_file =
+  function(d, file_name, ...) {
+    check_for_files(
+      d,
+      paste0("^\\d\\d\\d\\d\\d\\d-?", file_name),
+      ...
+    )
+  }
 
 #' Identifier - Wildlife Computer Benthic sPAT tags
 #'
 #' @export
 Identifier_WildlifeComputers_BenthicSPAT =
-  setRefClass(
-    "Identifier_WildlifeComputers_BenthicSPAT",
-    contains = "Identifier_WildlifeComputers",
-    methods =
-      list(
-        identify =
-          function(d) {
-            return(
-              all(
-                # Files that should be present
-                .self$check_for_wc_data_file(d, "All.csv"),
-                .self$check_for_wc_data_file(d, "Argos.csv"),
-                .self$check_for_wc_data_file(d, "Corrupt.csv"),
-                .self$check_for_wc_data_file(d, "Orientation.csv"),
-                .self$check_for_wc_data_file(d, "RawArgos.csv"),
-                .self$check_for_wc_data_file(d, "RTC.csv"),
-                .self$check_for_wc_data_file(d, "Status.csv"),
-                .self$check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
-                # Files that should not be present
-                .self$check_for_wc_data_file(d, "PDTs.csv", n=0),
-                .self$check_for_wc_data_file(d, "SSTs.csv", n=0)
-              )
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        return(
+          all(
+            # Files that should be present
+            check_for_wc_data_file(d, "All.csv"),
+            check_for_wc_data_file(d, "Argos.csv"),
+            check_for_wc_data_file(d, "Corrupt.csv"),
+            check_for_wc_data_file(d, "Orientation.csv"),
+            check_for_wc_data_file(d, "RawArgos.csv"),
+            check_for_wc_data_file(d, "RTC.csv"),
+            check_for_wc_data_file(d, "Status.csv"),
+            check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+            # Files that should not be present
+            check_for_wc_data_file(d, "PDTs.csv", n=0),
+            check_for_wc_data_file(d, "SSTs.csv", n=0)
+          )
+        )
+      }
   )
 
 #' Identifier - Wildlife Computer MiniPAT tags
 #'
 #' @export
 Identifier_WildlifeComputers_MiniPAT =
-  setRefClass(
-    "Identifier_WildlifeComputers_MiniPAT",
-    contains = "Identifier_WildlifeComputers",
-    methods =
-      list(
-        identify =
-          function(d) {
-            return(
-              all(
-                # Files that should be present
-                .self$check_for_wc_data_file(d, "All.csv"),
-                .self$check_for_wc_data_file(d, "Argos.csv"),
-                .self$check_for_wc_data_file(d, "Corrupt.csv"),
-                .self$check_for_wc_data_file(d, "Histos.csv"),
-                .self$check_for_wc_data_file(d, "LightLoc.csv"),
-                .self$check_for_wc_data_file(d, "RawArgos.csv"),
-                .self$check_for_wc_data_file(d, "RTC.csv"),
-                .self$check_for_wc_data_file(d, "Status.csv"),
-                .self$check_for_wc_data_file(d, "PDTs.csv"),
-                .self$check_for_wc_data_file(d, "SST.csv"),
-                .self$check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
-                # Files that should not be present
-                .self$check_for_wc_data_file(d, "Orientation.csv", n=0)
-              )
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        return(
+          all(
+            # Files that should be present
+            check_for_wc_data_file(d, "All.csv"),
+            check_for_wc_data_file(d, "Argos.csv"),
+            check_for_wc_data_file(d, "Corrupt.csv"),
+            check_for_wc_data_file(d, "Histos.csv"),
+            check_for_wc_data_file(d, "LightLoc.csv"),
+            check_for_wc_data_file(d, "RawArgos.csv"),
+            check_for_wc_data_file(d, "RTC.csv"),
+            check_for_wc_data_file(d, "Status.csv"),
+            check_for_wc_data_file(d, "PDTs.csv"),
+            check_for_wc_data_file(d, "SST.csv"),
+            check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+            # Files that should not be present
+            check_for_wc_data_file(d, "Orientation.csv", n=0)
+          )
+        )
+      }
   )
 
 #' Identifier - Desert Star SeaTag MOD tags
 #'
 #' @export
 Identifier_DesertStar_SeaTagMOD =
-  setRefClass(
-    "Identifier_DesertStar_SeaTagMOD",
-    contains = "Identifier",
-    methods =
-      list(
-        identify =
-          function(d) {
-            .self$check_for_files(
-              d,
-              "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv",
-              n = length(list.files(d))
-            )
-          }
-      )
+  Identifier(
+    identify_ =
+      function(d) {
+        check_for_files(
+          d,
+          "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv",
+          n = length(list.files(d))
+        )
+      }
   )
+

@@ -1,24 +1,3 @@
-#' Get list of decoders for testing
-#'
-#' Identifiers must be instantiated with a list of Decoder generators. This function provides that list
-get_decoder_test_list =
-  function() {
-    return(
-      list(
-        Decoder_Lotek_1000.1100.1250,
-        Decoder_Lotek_1300,
-        Decoder_Lotek_1400.1800,
-        Decoder_MicrowaveTelemetry_XTag,
-        Decoder_StarOddi_DST,
-        Decoder_StarOddi_DSTmagnetic,
-        Decoder_WildlifeComputers_MiniPAT,
-        Decoder_WildlifeComputers_BenthicSPAT,
-        Decoder_DesertStar_SeaTagMOD
-      )
-    )
-  }
-
-
 #' Test Identifier object
 #'
 #' Custom test for Identifier objects. Accepts an Identifier object constructor, and a root directory. Applies the Identifier to every data directory in the directory tree. For each such directory `d`, the test ensures that the passed Identifier object gives a positive match to `d`, and that only a single known Identifier gives a positive match for `d`
@@ -31,7 +10,7 @@ test_identifier =
     d
   ) {
     test_that(
-      class(identifier_())[[1]],
+      class(identifier_)[[1]],
       {
         test_all_data_dirs(
           test_d = d,
@@ -42,17 +21,17 @@ test_identifier =
               # Specified Identifier object should positively match to directory
               expect(
                 ok =
-                  identifier_()$identify(d),
+                  identifier_$identify(d),
                 failure_message =
                   paste0(
-                    class(identifier_())[[1]],
+                    class(identifier_)[[1]],
                     " does not match to test directory: \n",
                     stringr::str_replace(d, test_data_d(), "")
                   )
               )
 
               # Apply all Identifiers to data directory
-              id_res = TagIdentifier(decoders = get_decoder_test_list())$identify(d)
+              id_res = TagIdentifier(decoders = build_test_decoder_list())$identify(d)
 
               # Only one Identifier object should positively match to directory
               expect_equal(

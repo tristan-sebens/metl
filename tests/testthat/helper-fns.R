@@ -190,6 +190,25 @@ build_test_metadata_dataset =
     )
   }
 
+#' Get list of decoders for testing
+#'
+#' Identifiers must be instantiated with a list of Decoder generators. This function provides that list
+build_test_decoder_list =
+  function() {
+    return(
+      list(
+        Decoder_Lotek_1000.1100.1250,
+        Decoder_Lotek_1300,
+        Decoder_Lotek_1400.1800,
+        Decoder_MicrowaveTelemetry_XTag,
+        Decoder_StarOddi_DST,
+        Decoder_StarOddi_DSTmagnetic,
+        Decoder_WildlifeComputers_MiniPAT,
+        Decoder_WildlifeComputers_BenthicSPAT,
+        Decoder_DesertStar_SeaTagMOD
+      )
+    )
+  }
 
 #' Build a Decoder class for testing
 #'
@@ -205,17 +224,18 @@ build_test_decoder =
 
     metadata_map =
       DataMap_TestStub(
-        output_data_field_map = build_test_metadata_map(),
-        extract_return = build_test_metadata_dataset(),
-        get_tag_id_return = "1"
+        input_data_field_map =
+          build_test_metadata_map(),
+        extract_return =
+          build_test_metadata_dataset(),
+        get_tag_id_return =
+          "1"
       )
 
     instant_sensor_data_map =
       DataMap_TestStub(
         input_data_field_map =
           build_test_fieldmaps()$INSTANT_DATA_INPUT_FIELD_MAP,
-        output_data_field_map =
-          build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
         extract_return = build_test_dataset()
       )
 
@@ -223,19 +243,18 @@ build_test_decoder =
       DataMap_TestStub(
         input_data_field_map =
           build_test_fieldmaps()$SUMMARY_DATA_INPUT_FIELD_MAP,
-        output_data_field_map =
-          build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP,
+        # output_data_field_map =
+        #   build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP,
         extract_return = build_test_summary_dataset()
       )
 
     # Instantate the Decoder
     dc =
       Decoder(
-        data_maps =
-          list(
+        instant_datamap =
             instant_sensor_data_map,
-            summary_sensor_data_map
-          ),
+        summary_datamap =
+            summary_sensor_data_map,
         metadata_map =
           metadata_map
       )
@@ -243,6 +262,24 @@ build_test_decoder =
     return(dc)
   }
 
+build_test_tag_processor =
+  function(
+    d = test_data_d(), # Root at the base of the test data directory
+    decoders = build_test_decoder_list(),
+    # The following parameters are the output FieldMap objects for the metadata, instant data, and summary tables, respectivey
+    #TODO: These tests would ideally not use these objects, as they're technically subject to being changed in the future. However, we need to use FieldMaps which match the input/output structure of our test data, and it would take time to rewrite them in the proper way, time that I think is better spent otherwise at the moment. However, this is worth fixing in the future.
+    metadata_fieldmap = ABLTAG_METADATA_TABLE_FIELDS,
+    instant_fieldmap = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
+    summary_fieldmap = ABLTAG_DATA_SUMMARY_TABLE_FIELDS
+  ) {
+    TagProcessor(
+      d = d,
+      decoders = decoders,
+      metadata_fieldmap = metadata_fieldmap,
+      instant_fieldmap = instant_fieldmap,
+      summary_fieldmap = summary_fieldmap
+    )
+  }
 
 
 #' Build a temporary testing DB
@@ -356,7 +393,7 @@ field_is_empty =
 #' @param dm The datamap which produced `dat_t_`
 #' @param dat_t_ The data.frame of transformed data.
 test_timestamp_format =
-  function(dm, dat_t_) {
+  function(dm, od_fm, dat_t_) {
     # TODO: This should be refactored somehow so that which fields are checked is
     # more elegantly determined.
     for (
@@ -367,9 +404,9 @@ test_timestamp_format =
         "END_TIME_FIELD"
       )
     ) {
-      if(time_field %in% names(dm$output_data_field_map$field_list)) {
+      if(time_field %in% names(od_fm$field_list)) {
         # Get the column name of the time field
-        time_field_column = dm$output_data_field_map$field_list[[time_field]]$name
+        time_field_column = od_fm$field_list[[time_field]]$name
 
         expect(
           ok =
@@ -406,16 +443,16 @@ test_for_empty_fields =
 #' @param dm DataMap to test
 #' @param d Data directory
 test_datamap_directory =
-  function(dm, d) {
+  function(dm, od_fm, d) {
     # Extract data from the directory
     dat_ =
       dm$extract(d)
     # Perform transformation
     dat_t_ =
-      dm$transform(dat_)
+      dm$transform(dat_, od_fm)
 
     # Test that timestamp data (if present) is in POSIXct format
-    test_timestamp_format(dm, dat_t_)
+    test_timestamp_format(dm, od_fm, dat_t_)
 
     # Test that none of the transformed fields are completely empty
     test_for_empty_fields(dat_t_, d)
@@ -435,12 +472,12 @@ test_datamap_directory =
 #' @param d Test data directory
 #' @export
 test_datamap =
-  function(dm, d) {
+  function(dm, od_fm, d) {
     test_all_data_dirs(
       test_d = d,
       test_fn =
         function(data_d) {
-          test_datamap_directory(dm, data_d)
+          test_datamap_directory(dm, od_fm, data_d)
         }
     )
   }

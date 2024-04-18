@@ -11,7 +11,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id      make                    model
+      1 JS7977 Star Oddi DST (centi/milli)-(TD/F)
 
 # DataMap_StarOddi_DST_InstantSensorData
 
@@ -66,7 +67,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id      make                    model
+      1 JS1229 Star Oddi DST (centi/milli)-(TD/F)
 
 ---
 
@@ -81,7 +83,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id      make                    model
+      1  JS142 Star Oddi DST (centi/milli)-(TD/F)
 
 # DataMap_StarOddi_DSTmilliF_InstantSensorData
 
@@ -176,7 +179,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id      make        model
+      1  JS923 Star Oddi DST magnetic
 
 ---
 
@@ -191,7 +195,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id      make        model
+      1  JS927 Star Oddi DST magnetic
 
 # DataMap_StarOddi_DSTmagnetic_InstantSensorData
 

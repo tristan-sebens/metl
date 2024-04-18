@@ -1,3 +1,5 @@
+# source(here::here('R', 'class.R'))
+
 #----------------
 # TAG TABLE FIELDS
 #----------------
@@ -260,6 +262,8 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
 #----------------
 # LOTEK TAGS
 #----------------
+
+
 LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =

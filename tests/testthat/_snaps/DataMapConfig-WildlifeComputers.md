@@ -11,7 +11,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id               make   model
+      1 174898 Wildlife Computers MiniPAT
 
 ---
 
@@ -26,7 +27,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id               make   model
+      1 174900 Wildlife Computers MiniPAT
 
 # DataMap_WildlifeComputers_MiniPAT_InstantSensorData
 
@@ -6433,7 +6435,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id               make        model
+      1 175146 Wildlife Computers Benthic sPAT
 
 ---
 
@@ -6448,7 +6451,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id               make        model
+      1 175147 Wildlife Computers Benthic sPAT
 
 ---
 
@@ -6463,7 +6467,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id               make        model
+      1 175157 Wildlife Computers Benthic sPAT
 
 ---
 
@@ -6478,7 +6483,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id               make        model
+      1 175158 Wildlife Computers Benthic sPAT
 
 # DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData
 

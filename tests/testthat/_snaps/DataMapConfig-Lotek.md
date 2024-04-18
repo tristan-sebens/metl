@@ -11,7 +11,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make          model
+      1   4071 Lotek 1000/1100/1250
 
 ---
 
@@ -26,7 +27,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make          model
+      1   5295 Lotek 1000/1100/1250
 
 ---
 
@@ -41,7 +43,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make          model
+      1   1484 Lotek 1000/1100/1250
 
 ---
 
@@ -56,7 +59,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make          model
+      1   1486 Lotek 1000/1100/1250
 
 ---
 
@@ -71,7 +75,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make          model
+      1   4066 Lotek 1000/1100/1250
 
 ---
 
@@ -86,7 +91,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make          model
+      1   4067 Lotek 1000/1100/1250
 
 # DataMap_Lotek_1000.1100.1250_InstantSensorData
 
@@ -1373,7 +1379,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make model
+      1   2466 Lotek  1300
 
 ---
 
@@ -1388,7 +1395,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make model
+      1   3880 Lotek  1300
 
 ---
 
@@ -1403,7 +1411,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make model
+      1   3788 Lotek  1300
 
 # DataMap_Lotek_1300_InstantSensorData
 
@@ -2054,7 +2063,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make     model
+      1   0383 Lotek 1400/1800
 
 ---
 
@@ -2069,7 +2079,8 @@
     Code
       dat_t_
     Output
-      data frame with 0 columns and 1 row
+        tag_id  make     model
+      1   1546 Lotek 1400/1800
 
 # DataMap_Lotek_1400.1800_InstantSensorData
 
