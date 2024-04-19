@@ -1,7 +1,8 @@
 build_test_fieldmaps =
   function() {
     INSTANT_DATA_INPUT_FIELD_MAP =
-      MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS
+      WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS
+      # MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS
       # FieldMap(
       #   field_list =
       #     list(
@@ -30,6 +31,7 @@ build_test_fieldmaps =
       # )
 
     INSTANT_DATA_OUTPUT_FIELD_MAP =
+      ABLTAG_DATA_INSTANT_TABLE_FIELDS
       # FieldMap(
       #   table = "INSTANT_DATA",
       #   field_list =
@@ -66,10 +68,9 @@ build_test_fieldmaps =
       #         )
       #     )
       # )
-      ABLTAG_DATA_INSTANT_TABLE_FIELDS
 
     SUMMARY_DATA_INPUT_FIELD_MAP =
-      MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS
+      WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS
       # FieldMap(
       #   field_list =
       #     list(
@@ -176,32 +177,48 @@ mt_d =
   file.path(test_d, 'Microwave Telemetry')
 mt_x_d =
   file.path(mt_d, 'X-Tag', 'Lingcod', '128305')
+wc_d =
+  file.path(test_d, 'Wildlife Computers')
+wc_mp_d =
+  file.path(wc_d, 'MiniPAT', 'Sleeper Shark', '174898')
 
 build_test_dataset =
   function() {
-    # read.csv(
-    #   here::here('tests', 'testthat', '_fixtures', '_test_dataset.csv'),
-    #   check.names = F
-    # )
-    DataMap_MicrowaveTelemetry_XTag_InstantSensorData$extract(mt_x_d)
+    test_inst_fp = here::here('tests', 'testthat', '_fixtures', '_test_instant_dataset.csv')
+    read.csv(
+      test_inst_fp,
+      check.names = F
+    )
+    # DataMap_MicrowaveTelemetry_XTag_InstantSensorData$extract(mt_x_d)
+    # DataMap_WildlifeComputers_MiniPAT_InstantSensorData$extract(wc_mp_d) %>%
+    #   dplyr::filter(!is.na(Depth)) %>%
+    #   head(10) %>%
+    #   write.csv(test_inst_fp, row.names = F)
   }
 
 build_test_summary_dataset =
   function() {
-    # read.csv(
-    #   here::here('tests', 'testthat', '_fixtures', '_test_summary_dataset.csv'),
-    #   check.names = F
-    # )
-    DataMap_MicrowaveTelemetry_XTag_SummarySensorData$extract(mt_x_d)
+    test_summ_fp = here::here('tests', 'testthat', '_fixtures', '_test_summary_dataset.csv')
+    read.csv(
+      test_summ_fp,
+      check.names = F
+    )
+    # DataMap_MicrowaveTelemetry_XTag_SummarySensorData$extract(mt_x_d)
+    # DataMap_WildlifeComputers_MiniPAT_SummarySensorData$extract(wc_mp_d) %>%
+    #   head(10) %>%
+    #   write.csv(test_summ_fp, row.names = F)
   }
 
 build_test_metadata_dataset =
   function() {
-    # read.csv(
-    #   here::here('tests', 'testthat', '_fixtures', '_test_metadata_dataset.csv'),
-    #   check.names = F
-    # )
-    DataMap_MicrowaveTelemetry_XTag_TagMetaData$extract(mt_x_d)
+    test_metadata_fp = here::here('tests', 'testthat', '_fixtures', '_test_metadata_dataset.csv')
+    read.csv(
+      test_metadata_fp,
+      check.names = F
+    )
+    # DataMap_MicrowaveTelemetry_XTag_TagMetaData$extract(mt_x_d)
+    # DataMap_WildlifeComputers_MiniPAT_TagMetaData$extract(wc_mp_d) %>%
+    #   write.csv(test_metadata_fp, row.names = F)
   }
 
 #' Get list of decoders for testing
@@ -257,8 +274,6 @@ build_test_decoder =
       DataMap_TestStub(
         input_data_field_map =
           build_test_fieldmaps()$SUMMARY_DATA_INPUT_FIELD_MAP,
-        # output_data_field_map =
-        #   build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP,
         extract_return = build_test_summary_dataset()
       )
 

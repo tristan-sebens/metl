@@ -274,6 +274,7 @@ test_that(
 
     tp__$upsert(
       con,
+      # Insert a subset of the data (~10%)
       dat = head(dat, round(nrow(dat)*.1)),
       output_data_field_map = op_fm
     )

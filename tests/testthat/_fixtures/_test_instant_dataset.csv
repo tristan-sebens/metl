@@ -1,0 +1,11 @@
+"DeployID","Ptt","DepthSensor","Source","Instr","Day","Time","LocationQuality","Latitude","Longitude","Depth","DRange","Temperature","TRange","Activity","ARange"
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","16:00:00",NA,NA,NA,228.5,8.75,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","16:10:00",NA,NA,NA,241,9,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","16:20:00",NA,NA,NA,228.5,8.75,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","16:30:00",NA,NA,NA,213.5,5.5,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","16:40:00",NA,NA,NA,219.5,5.5,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","16:50:00",NA,NA,NA,241,9,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","17:00:00",NA,NA,NA,241,9,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","17:10:00",NA,NA,NA,241,9,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","17:20:00",NA,NA,NA,241,9,5.3,0.1,NA,NA
+174898,174898,0.5,"Transmission","MiniPAT","31-Jul-2022","17:30:00",NA,NA,NA,228.5,8.75,5.3,0.1,NA,NA

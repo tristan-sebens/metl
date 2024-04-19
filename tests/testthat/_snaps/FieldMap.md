@@ -84,44 +84,42 @@
     Code
       names(fm1_fm2_cf)
     Output
-       [1] "TIMESTAMP_FIELD"                          
-       [2] "DEPTH_FIELD"                              
-       [3] "LOCATION_TYPE_FIELD"                      
-       [4] "LATITUDE_FIELD"                           
-       [5] "LONGITUDE_FIELD"                          
-       [6] "DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD"      
-       [7] "DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD"      
-       [8] "TEMPERATURE_FIELD"                        
-       [9] "TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD"
-      [10] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
+      [1] "TIMESTAMP_FIELD"   "DEPTH_FIELD"       "TEMPERATURE_FIELD"
 
 # FieldMap::uncommon_fields
 
     Code
       names(fm1_fm2_ucf)
     Output
-      character(0)
+      [1] "DAY_FIELD"  "TIME_FIELD"
 
 ---
 
     Code
       names(fm2_fm1_ucf)
     Output
-       [1] "TAG_ID_FIELD"                            
-       [2] "LATITUDE_N_ERROR_FIELD"                  
-       [3] "LATITUDE_S_ERROR_FIELD"                  
-       [4] "LATITUDE_U_FIELD"                        
-       [5] "LONGITUDE_ERROR_FIELD"                   
-       [6] "LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD"
-       [7] "LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD"    
-       [8] "LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD"    
-       [9] "LOCATION_ERROR_RADIUS"                   
-      [10] "PRESSURE_FIELD"                          
-      [11] "TILT_X_FIELD"                            
-      [12] "TILT_Y_FIELD"                            
-      [13] "TILT_S_FIELD"                            
-      [14] "INCLINATION_FIELD"                       
-      [15] "MAGNETIC_STRENGTH_FIELD"                 
+       [1] "TAG_ID_FIELD"                             
+       [2] "LATITUDE_FIELD"                           
+       [3] "LONGITUDE_FIELD"                          
+       [4] "LOCATION_TYPE_FIELD"                      
+       [5] "LATITUDE_N_ERROR_FIELD"                   
+       [6] "LATITUDE_S_ERROR_FIELD"                   
+       [7] "LATITUDE_U_FIELD"                         
+       [8] "LONGITUDE_ERROR_FIELD"                    
+       [9] "LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD" 
+      [10] "LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD"     
+      [11] "LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD"     
+      [12] "LOCATION_ERROR_RADIUS"                    
+      [13] "PRESSURE_FIELD"                           
+      [14] "DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD"      
+      [15] "DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD"      
+      [16] "TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD"
+      [17] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
+      [18] "TILT_X_FIELD"                             
+      [19] "TILT_Y_FIELD"                             
+      [20] "TILT_S_FIELD"                             
+      [21] "INCLINATION_FIELD"                        
+      [22] "MAGNETIC_STRENGTH_FIELD"                  
 
 ---
 
