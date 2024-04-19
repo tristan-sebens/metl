@@ -684,6 +684,9 @@ TagProcessor =
             # DM 1 is the DataMap which we are working on
             # DM 2 is the DataMap which we MAY take data from to put into the data for DM 1
 
+            # If dat1 is emtpy, there's nothing to do.
+            if(nrow(dat1) == 0) {return(dat1)}
+
             # Determine which fields are present in the output FieldMap of dm_1,
             # but missing from the input FieldMap of dm_1. These are the fields
             # which must be added from other sources.
@@ -760,7 +763,6 @@ TagProcessor =
                 op_fm = .self$instant_fieldmap
               )
 
-
             # Decode summary data
             summary_data =
               dc$decode_summary_datamap(
@@ -777,10 +779,10 @@ TagProcessor =
                 .self$metadata_fieldmap
               )
 
-            instant_data =
+            summary_data =
               add_missing_fields(
                 summary_data,
-                .self$instant_fieldmap,
+                .self$summary_fieldmap,
                 metadata,
                 .self$summary_fieldmap
               )
@@ -800,6 +802,8 @@ TagProcessor =
         # rows, and update any rows which are already extant in the target table
         upsert =
           function(con, dat, output_data_field_map) {
+            # If the incoming data.frame is empty, there is nothing to upsert
+            if(nrow(dat) == 0) return()
             # Generate a temporary table name
             temp_table_name =
               paste0(
