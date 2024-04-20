@@ -84,7 +84,9 @@ test_that(
       build_test_db()
 
     tp__$process(con, silent=T)
-    expect_snapshot(tp__$build_report())
+
+    report = tp__$build_report()
+    expect_snapshot(report)
   }
 )
 
@@ -311,26 +313,122 @@ test_that(
   }
 )
 
+test_that(
+  "TagProcessor::decode_node",
+  {
+    tp__ =
+      build_test_tag_processor()
 
-# TODO: Needs to be implemented still, but requires setting up a test DB with real data. Could be worth migrating all of the tests to use real data from the '_test_data' directory
-# test_that(
-#   "TagProcessor::decode_node",
-#   {
-#     tp__ =
-#       build_test_tag_processor()
-#
-#     dc =
-#       Decoder_MicrowaveTelemetry_XTag
-#
-#     con =
-#       build_test_db()
-#
-#
-#     tp__$decode_node(
-#       con,
-#       dc,
-#       tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
-#     )
-#
-#   }
-# )
+    dc =
+      Decoder_MicrowaveTelemetry_XTag
+
+    con =
+      build_test_db()
+
+    # We shouldn't expect any error to be thrown
+    expect_no_error(
+      tp__$decode_node(
+        con,
+        dc,
+        node = tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
+      )
+    )
+
+    # We should also expect the function to return true.
+    expect_true(
+      tp__$decode_node(
+        con,
+        dc,
+        node = tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
+      )
+    )
+  }
+)
+
+# Test the 'decode_node' function against all test directories
+test_all_data_dirs(
+  test_d = test_data_d(),
+  test_fn =
+    function(d) {
+      d_sub = stringr::str_replace(d, test_data_d(), '')
+
+      # Build name for test
+      test_that(
+        paste0(
+          "TagProcessor::process_node - ",
+          d_sub
+        ),
+        {
+          # Test an individual directory by rooting the TagProcessor in d
+          tp__ =
+            build_test_tag_processor(d = d)
+
+          # The root of the tree is the node we are interested in
+          node = tp__$dir_tree__
+
+          con =
+            build_test_db()
+
+          expect_false(node$decoded)
+          expect_null(node$tag_identifier_results)
+          expect_null(node$pos_id)
+
+          tp__$process_node(node, con)
+
+          expect_true(node$decoded)
+          # Expect the identifier results to be populated
+          expect_gt(nrow(node$tag_identifier_results), 0)
+          # Expect each decoder to be represented in the identifier results
+          expect_equal(nrow(node$tag_identifier_results), length(tp__$decoders))
+          # Expect only one decoder to have matched to the directory
+          expect_equal(sum(node$tag_identifier_results$result), 1)
+          expect_equal(node$decode_error, "")
+        }
+      )
+    }
+)
+
+test_that(
+  "TagProcessor::process_node - Failure",
+  {
+    # Instantiate a tag processor that is missing the Lotek 1000 Decoder
+    tp__ =
+      build_test_tag_processor(
+        decoders = build_test_decoder_list()[-1]
+      )
+
+    node =
+      tp__$dir_tree__$Lotek$`LTD 1000.1100.1250`$Sablefish$`4067`
+
+    con =
+      build_test_db()
+
+    # Try to decode a directory of the missing type
+    tp__$process_node(node = node, con = con)
+
+    expect_false(node$decoded)
+    expect_equal(node$identified_decoder, "")
+    expect_snapshot(node$decode_error)
+  }
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

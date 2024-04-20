@@ -80,120 +80,63 @@
     Code
       tp__$build_report()
     Output
-                                   dir pct_decoded decoded identified_decoder
-      1  _test_data                            100      NA               <NA>
-      2   ¦--Desert Star                       100      NA               <NA>
-      3   ¦   °--SeaTagMOD                     100      NA               <NA>
-      4   ¦       °--Sablefish                  NA    TRUE            Decoder
-      5   ¦--Lotek                             100      NA               <NA>
-      6   ¦   ¦--LAT 1400.1800                 100      NA               <NA>
-      7   ¦   ¦   ¦--Greenland Turbot          100      NA               <NA>
-      8   ¦   ¦   ¦   °--383                    NA    TRUE            Decoder
-      9   ¦   ¦   °--Sablefish                 100      NA               <NA>
-      10  ¦   ¦       °--1546                   NA    TRUE            Decoder
-      11  ¦   ¦--LTD 1000.1100.1250            100      NA               <NA>
-      12  ¦   ¦   ¦--Lingcod                   100      NA               <NA>
-      13  ¦   ¦   ¦   ¦--4071                   NA    TRUE            Decoder
-      14  ¦   ¦   ¦   °--5295                   NA    TRUE            Decoder
-      15  ¦   ¦   °--Sablefish                 100      NA               <NA>
-      16  ¦   ¦       ¦--1484                   NA    TRUE            Decoder
-      17  ¦   ¦       ¦--1486                   NA    TRUE            Decoder
-      18  ¦   ¦       ¦--4066                   NA    TRUE            Decoder
-      19  ¦   ¦       °--4067                   NA    TRUE            Decoder
-      20  ¦   °--LTD 1300                      100      NA               <NA>
-      21  ¦       ¦--Greenland Turbot          100      NA               <NA>
-      22  ¦       ¦   ¦--2466                   NA    TRUE            Decoder
-      23  ¦       ¦   °--3880                   NA    TRUE            Decoder
-      24  ¦       °--Lingcod                   100      NA               <NA>
-      25  ¦           °--3788                   NA    TRUE            Decoder
-      26  ¦--Microwave Telemetry               100      NA               <NA>
-      27  ¦   °--X-Tag                         100      NA               <NA>
-      28  ¦       ¦--Lingcod                   100      NA               <NA>
-      29  ¦       ¦   ¦--128305                 NA    TRUE            Decoder
-      30  ¦       ¦   °--128306                 NA    TRUE            Decoder
-      31  ¦       °--Rougheye Rockfish         100      NA               <NA>
-      32  ¦           ¦--117230                 NA    TRUE            Decoder
-      33  ¦           °--118353                 NA    TRUE            Decoder
-      34  ¦--Star Oddi                         100      NA               <NA>
-      35  ¦   ¦--DST magnetic                  100      NA               <NA>
-      36  ¦   ¦   °--Sablefish                 100      NA               <NA>
-      37  ¦   ¦       ¦--JS923                  NA    TRUE            Decoder
-      38  ¦   ¦       °--JS927                  NA    TRUE            Decoder
-      39  ¦   ¦--DST milli-F                   100      NA               <NA>
-      40  ¦   ¦   °--Sablefish                 100      NA               <NA>
-      41  ¦   ¦       ¦--JS1229                 NA    TRUE            Decoder
-      42  ¦   ¦       °--JS142                  NA    TRUE            Decoder
-      43  ¦   °--DST                           100      NA               <NA>
-      44  ¦       °--Sablefish                 100      NA               <NA>
-      45  ¦           °--JS7977                 NA    TRUE            Decoder
-      46  °--Wildlife Computers                100      NA               <NA>
-      47      ¦--Benthic sPAT                  100      NA               <NA>
-      48      ¦   °--Sleeper Shark             100      NA               <NA>
-      49      ¦       ¦--175146                 NA    TRUE            Decoder
-      50      ¦       ¦--175147                 NA    TRUE            Decoder
-      51      ¦       ¦--175157                 NA    TRUE            Decoder
-      52      ¦       °--175158                 NA    TRUE            Decoder
-      53      °--MiniPAT                       100      NA               <NA>
-      54          °--Sleeper Shark             100      NA               <NA>
-      55              ¦--174898                 NA    TRUE            Decoder
-      56              °--174900                 NA    TRUE            Decoder
-         decode_error
-      1          <NA>
-      2          <NA>
-      3          <NA>
-      4              
-      5          <NA>
-      6          <NA>
-      7          <NA>
-      8              
-      9          <NA>
-      10             
-      11         <NA>
-      12         <NA>
-      13             
-      14             
-      15         <NA>
-      16             
-      17             
-      18             
-      19             
-      20         <NA>
-      21         <NA>
-      22             
-      23             
-      24         <NA>
-      25             
-      26         <NA>
-      27         <NA>
-      28         <NA>
-      29             
-      30             
-      31         <NA>
-      32             
-      33             
-      34         <NA>
-      35         <NA>
-      36         <NA>
-      37             
-      38             
-      39         <NA>
-      40         <NA>
-      41             
-      42             
-      43         <NA>
-      44         <NA>
-      45             
-      46         <NA>
-      47         <NA>
-      48         <NA>
-      49             
-      50             
-      51             
-      52             
-      53         <NA>
-      54         <NA>
-      55             
-      56             
+                                   dir pct_decoded decoded identified_decoder decode_error
+      1  _test_data                            100      NA               <NA>         <NA>
+      2   ¦--Desert Star                       100      NA               <NA>         <NA>
+      3   ¦   °--SeaTagMOD                     100      NA               <NA>         <NA>
+      4   ¦       °--Sablefish                  NA    TRUE            Decoder             
+      5   ¦--Lotek                             100      NA               <NA>         <NA>
+      6   ¦   ¦--LAT 1400.1800                 100      NA               <NA>         <NA>
+      7   ¦   ¦   ¦--Greenland Turbot          100      NA               <NA>         <NA>
+      8   ¦   ¦   ¦   °--383                    NA    TRUE            Decoder             
+      9   ¦   ¦   °--Sablefish                 100      NA               <NA>         <NA>
+      10  ¦   ¦       °--1546                   NA    TRUE            Decoder             
+      11  ¦   ¦--LTD 1000.1100.1250            100      NA               <NA>         <NA>
+      12  ¦   ¦   ¦--Lingcod                   100      NA               <NA>         <NA>
+      13  ¦   ¦   ¦   ¦--4071                   NA    TRUE            Decoder             
+      14  ¦   ¦   ¦   °--5295                   NA    TRUE            Decoder             
+      15  ¦   ¦   °--Sablefish                 100      NA               <NA>         <NA>
+      16  ¦   ¦       ¦--1484                   NA    TRUE            Decoder             
+      17  ¦   ¦       ¦--1486                   NA    TRUE            Decoder             
+      18  ¦   ¦       ¦--4066                   NA    TRUE            Decoder             
+      19  ¦   ¦       °--4067                   NA    TRUE            Decoder             
+      20  ¦   °--LTD 1300                      100      NA               <NA>         <NA>
+      21  ¦       ¦--Greenland Turbot          100      NA               <NA>         <NA>
+      22  ¦       ¦   ¦--2466                   NA    TRUE            Decoder             
+      23  ¦       ¦   °--3880                   NA    TRUE            Decoder             
+      24  ¦       °--Lingcod                   100      NA               <NA>         <NA>
+      25  ¦           °--3788                   NA    TRUE            Decoder             
+      26  ¦--Microwave Telemetry               100      NA               <NA>         <NA>
+      27  ¦   °--X-Tag                         100      NA               <NA>         <NA>
+      28  ¦       ¦--Lingcod                   100      NA               <NA>         <NA>
+      29  ¦       ¦   ¦--128305                 NA    TRUE            Decoder             
+      30  ¦       ¦   °--128306                 NA    TRUE            Decoder             
+      31  ¦       °--Rougheye Rockfish         100      NA               <NA>         <NA>
+      32  ¦           ¦--117230                 NA    TRUE            Decoder             
+      33  ¦           °--118353                 NA    TRUE            Decoder             
+      34  ¦--Star Oddi                         100      NA               <NA>         <NA>
+      35  ¦   ¦--DST magnetic                  100      NA               <NA>         <NA>
+      36  ¦   ¦   °--Sablefish                 100      NA               <NA>         <NA>
+      37  ¦   ¦       ¦--JS923                  NA    TRUE            Decoder             
+      38  ¦   ¦       °--JS927                  NA    TRUE            Decoder             
+      39  ¦   ¦--DST milli-F                   100      NA               <NA>         <NA>
+      40  ¦   ¦   °--Sablefish                 100      NA               <NA>         <NA>
+      41  ¦   ¦       ¦--JS1229                 NA    TRUE            Decoder             
+      42  ¦   ¦       °--JS142                  NA    TRUE            Decoder             
+      43  ¦   °--DST                           100      NA               <NA>         <NA>
+      44  ¦       °--Sablefish                 100      NA               <NA>         <NA>
+      45  ¦           °--JS7977                 NA    TRUE            Decoder             
+      46  °--Wildlife Computers                100      NA               <NA>         <NA>
+      47      ¦--Benthic sPAT                  100      NA               <NA>         <NA>
+      48      ¦   °--Sleeper Shark             100      NA               <NA>         <NA>
+      49      ¦       ¦--175146                 NA    TRUE            Decoder             
+      50      ¦       ¦--175147                 NA    TRUE            Decoder             
+      51      ¦       ¦--175157                 NA    TRUE            Decoder             
+      52      ¦       °--175158                 NA    TRUE            Decoder             
+      53      °--MiniPAT                       100      NA               <NA>         <NA>
+      54          °--Sleeper Shark             100      NA               <NA>         <NA>
+      55              ¦--174898                 NA    TRUE            Decoder             
+      56              °--174900                 NA    TRUE            Decoder             
 
 # TagProcessor::add_missing_fields
 
@@ -10301,4 +10244,11 @@
       8                              NA                    NA
       9                              NA                    NA
       10                             NA                    NA
+
+# TagProcessor::process_node - Failure
+
+    Code
+      node$decode_error
+    Output
+      [1] "Matching decoders: 0"
 
