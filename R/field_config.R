@@ -10,18 +10,18 @@ ABLTAG_METADATA_TABLE_FIELDS =
       list(
         TAG_ID_FIELD =
           Field(
-            name = "tag_id",
+            name = "TAG_ID",
             data_type = "integer",
             id_field = T
           ),
         TAG_MAKE_FIELD =
           Field(
-            name = "make",
+            name = "MAKE",
             data_type = "varchar(32)"
           ),
         TAG_MODEL_FIELD =
           Field(
-            name = "model",
+            name = "MODEL",
             data_type = "varchar(32)"
           )
       )
@@ -40,130 +40,130 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
           ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
         TIMESTAMP_FIELD =
           Field(
-            name = "timestamp",
+            name = "TIMESTAMP",
             data_type = "varchar(32)",
             id_field = T
           ),
         LATITUDE_FIELD =
           Field(
-            name = "latitude",
+            name = "LATITUDE",
             data_type = "double(10, 6)"
           ),
         LONGITUDE_FIELD =
           Field(
-            name = "longitude",
+            name = "LONGITUDE",
             data_type = "double(10, 6)"
           ),
         LOCATION_TYPE_FIELD =
           Field(
-            name = "location_type",
+            name = "LOCATION_TYPE",
             data_type = "varchar(16)"
           ),
         LATITUDE_N_ERROR_FIELD =
           Field(
-            name = "latitude_n_error",
+            name = "LATITUDE_N_ERROR",
             data_type = "double(10, 2)"
           ),
         LATITUDE_S_ERROR_FIELD =
           Field(
-            name = "latitude_s_error",
+            name = "LATITUDE_s_ERROR",
             data_type = "double(10, 2)"
           ),
         LATITUDE_U_FIELD =
           Field(
-            name = "latitude_u",
+            name = "LATITUDE_U",
             data_type = "double(10, 2)"
           ),
         LONGITUDE_ERROR_FIELD =
           Field(
-            name = "longtitude_error",
+            name = "LONGITUDE_U",
             data_type = "double(10, 2)"
           ),
         LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD =
           Field(
-            name = "location_error_ellipse_orientation",
+            name = "LOCATION_ERROR_ELLIPSE_ORIENTATION",
             data_type = "double(10, 2)"
           ),
         LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD =
           Field(
-            name = "location_error_semi_minor_axis",
+            name = "LOCATION_ERROR_SEMI_MINOR_AXIS",
             data_type = "double(10, 2)"
           ),
         LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD =
           Field(
-            name = "location_error_semi_major_axis",
+            name = "LOCATION_ERROR_SEMI_MAJOR_AXIS",
             data_type = "double(10, 2)"
           ),
         LOCATION_ERROR_RADIUS=
           Field(
-            name = "location_error_radius",
+            name = "LOCATION_ERROR_RADIUS",
             data_type = "double(10, 2)"
           ),
         PRESSURE_FIELD =
           Field(
-            name = "pressure",
+            name = "PRESSURE",
             units = "psi",
             data_type = "double(10, 2)"
           ),
         DEPTH_FIELD =
           Field(
-            name = "depth",
+            name = "DEPTH",
             units = "m",
             data_type = "double(10, 2)"
           ),
         DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "depth_increase_delta_limit",
+            name = "DEPTH_INCREASE_DELTA_LIMIT",
             data_type = "boolean"
           ),
         DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "depth_decrease_delta_limit",
+            name = "DEPTH_DECREASE_DELTA_LIMIT",
             data_type = "boolean"
           ),
         TEMPERATURE_FIELD =
           Field(
-            name = "temperature",
+            name = "TEMPERATURE",
             units = "°C",
             data_type = "double(10, 2)"
           ),
         TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "temp_increase_delta_limit",
+            name = "TEMP_INCREASE_DELTA_LIMIT",
             data_type = "boolean"
           ),
         TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
-            name = "temp_decrease_delta_limit",
+            name = "TEMP_DECREASE_DELTA_LIMIT",
             data_type = "boolean"
           ),
         TILT_X_FIELD =
           Field(
-            name = "tilt_x",
+            name = "TILT_X",
             units = "°",
             data_type = "double(10, 2)"
           ),
         TILT_Y_FIELD =
           Field(
-            name = "tilt_y",
+            name = "TILT_Y",
             units = "°",
             data_type = "double(10, 2)"
           ),
         TILT_S_FIELD =
           Field(
-            name = "tilt_z",
+            name = "TILT_Z",
             units = "°",
             data_type = "double(10, 2)"
           ),
         INCLINATION_FIELD =
           Field(
-            name = "inclination",
+            name = "INCLINATION",
             units = "°",
             data_type = "double(10, 2)"
           ),
         MAGNETIC_STRENGTH_FIELD =
           Field(
-            name = "magnetic_field_strength",
+            name = "MAGNETIC_FIELD_STRENGTH",
             units = "nanoteslas",
             data_type = "double(10, 2)"
           )
@@ -183,87 +183,86 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
           ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
         START_TIME_FIELD =
           Field(
-            name = "start_time",
+            name = "START_TIME",
             data_type = "varchar(32)",
             id_field = T
           ),
         END_TIME_FIELD =
           Field(
-            name = "end_time",
+            name = "END_TIME",
             data_type = "varchar(32)",
             id_field = T
           ),
         LATITUDE_FIELD =
           Field(
-            name = "latitude",
+            name = "LATITUDE",
             data_type = "double(10, 6)"
           ),
         LONGITUDE_FIELD =
           Field(
-            name = "longitude",
+            name = "LONGITUDE",
             data_type = "double(10, 6)"
           ),
         LOCATION_TYPE_FIELD =
           Field(
-            name = "location_type",
+            name = "LOCATION_TYPE",
             data_type = "varchar(16)"
           ),
         MIN_DEPTH_FIELD =
           Field(
-            name = "min_depth",
+            name = "MIN_DEPTH",
             units = "m",
             data_type = "double(10, 2)"
           ),
         MEAN_DEPTH_FIELD =
           Field(
-            name = "mean_depth",
+            name = "MEAN_DEPTH",
             units = "m",
             data_type = "double(10, 2)"
           ),
         MAX_DEPTH_FIELD =
           Field(
-            name = "max_depth",
+            name = "MAX_DEPTH",
             units = "m",
             data_type = "double(10, 2)"
           ),
         MIN_TEMP_FIELD =
           Field(
-            name = "min_temp",
+            name = "MIN_TEMP",
             units = "°C",
             data_type = "double(10, 2)"
           ),
         MEAN_TEMP_FIELD =
           Field(
-            name = "mean_temp",
+            name = "MEAN_TEMP",
             units = "°C",
             data_type = "double(10, 2)"
           ),
         MAX_TEMP_FIELD =
           Field(
-            name = "max_temp",
+            name = "MAX_TEMP",
             units = "°C",
             data_type = "double(10, 2)"
           ),
         UPRIGHT_FIELD =
           Field(
-            name = "percent_upright",
+            name = "PERCENT_UPRIGHT",
             units = "%",
             data_type = "double(10, 2)"
           ),
         KNOCKDOWN_FIELD =
           Field(
-            name = "knockdowns",
+            name = "KNOCKDOWNS",
             units = "1",
             data_type = "double(10, 2)"
           )
       )
   )
 
+
 #----------------
 # LOTEK TAGS
 #----------------
-
-
 LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =

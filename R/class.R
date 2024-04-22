@@ -320,9 +320,9 @@ DataMap_TagMetaData =
         extract =
           function(d) {
             data.frame(
-              tag_id = .self$get_tag_id(d),
-              make = .self$make,
-              model = .self$model
+              TAG_ID = .self$get_tag_id(d),
+              MAKE = .self$make,
+              MODEL = .self$model
             )
           },
 
@@ -821,6 +821,9 @@ TagProcessor =
               temporary = T # Means that the table is only visible from this connection, and will be deleted when this connection is severed
             )
 
+            # Determine fields used to identify individual records
+            id_fs = output_data_field_map$get_id_field_names()
+
             # UPSERT the new data into the target table
             DBI::dbExecute(
               con =
@@ -831,8 +834,11 @@ TagProcessor =
                   con = con,
                   table = dplyr::ident(output_data_field_map$table),
                   from = dplyr::ident(temp_table_name),
-                  by = output_data_field_map$get_id_field_names(),
-                  update_cols = names(dat)
+                  # Fields used to find unique records
+                  by = id_fs,
+                  # Fields to be updated (non-id fields)
+                  update_cols = names(dat)[!names(dat) %in% id_fs]
+
                 )
             )
           },
