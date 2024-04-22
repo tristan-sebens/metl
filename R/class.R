@@ -660,7 +660,7 @@ TagProcessor =
             "Builds a report (data.frame) detailing the current state of the data directory"
             # Build a data.frame from the internal data.tree object (dir_tree__)
             data.tree::ToDataFrameTree(
-              tp__$dir_tree__,
+              .self$dir_tree__,
               n_tags = .self$num_leaves,
               n_decoded = .self$num_decoded,
               "decoded",
