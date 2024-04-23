@@ -45,7 +45,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                as.integer(v)
+                as.numeric(v)
               }
           ),
         LATITUDE_FIELD =
@@ -192,7 +192,7 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                as.integer(v)
+                as.numeric(v)
               }
           ),
         END_TIME_FIELD =
@@ -202,7 +202,7 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                as.integer(v)
+                as.numeric(v)
               }
           ),
         LATITUDE_FIELD =

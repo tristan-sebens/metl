@@ -5227,7 +5227,7 @@
     Output
       # A tibble: 20 x 6
          START_TIME   END_TIME LOCATION_TYPE           LATITUDE LONGITUDE TAG_ID
-              <int>      <int> <chr>                      <dbl>     <dbl> <chr> 
+              <dbl>      <dbl> <chr>                      <dbl>     <dbl> <chr> 
        1 1379462400 1379548799 LIGHT_BASED_GEOLOCATION     66.5      135. 118353
        2 1379548800 1379635199 LIGHT_BASED_GEOLOCATION     42.5      139. 118353
        3 1379635200 1379721599 LIGHT_BASED_GEOLOCATION     59.0      135. 118353
@@ -10175,7 +10175,7 @@
     Output
       # A tibble: 20 x 6
          START_TIME   END_TIME LOCATION_TYPE           LATITUDE LONGITUDE TAG_ID
-              <int>      <int> <chr>                      <dbl>     <dbl> <chr> 
+              <dbl>      <dbl> <chr>                      <dbl>     <dbl> <chr> 
        1 1379462400 1379548799 LIGHT_BASED_GEOLOCATION     66.5      135. 118353
        2 1379548800 1379635199 LIGHT_BASED_GEOLOCATION     42.5      139. 118353
        3 1379635200 1379721599 LIGHT_BASED_GEOLOCATION     59.0      135. 118353
@@ -10202,14 +10202,16 @@
     Code
       out_tbl
     Output
-        tag_id  timestamp pressure depth temperature tilt_x tilt_y tilt_z inclination
-      1    1.0 1659312000       NA 228.5         5.3     NA     NA     NA          NA
-        magnetic_field_strength depth_increase_delta_limit depth_decrease_delta_limit
-      1                      NA                         NA                         NA
-        temp_increase_delta_limit temp_decrease_delta_limit latitude longitude
-      1                        NA                        NA       NA        NA
-        location_type latitude_n_error latitude_s_error latitude_u longitude_error
-      1          <NA>               NA               NA         NA              NA
+        tag_id    timestamp pressure depth temperature tilt_x tilt_y tilt_z
+      1    1.0 1659312000.0       NA 228.5         5.3     NA     NA     NA
+        inclination magnetic_field_strength depth_increase_delta_limit
+      1          NA                      NA                         NA
+        depth_decrease_delta_limit temp_increase_delta_limit
+      1                         NA                        NA
+        temp_decrease_delta_limit latitude longitude location_type latitude_n_error
+      1                        NA       NA        NA          <NA>               NA
+        latitude_s_error latitude_u longitude_error
+      1               NA         NA              NA
         location_error_ellipse_orientation location_error_semi_minor_axis
       1                                 NA                             NA
         location_error_semi_major_axis location_error_radius
@@ -10220,17 +10222,17 @@
     Code
       out_tbl
     Output
-         tag_id  timestamp pressure depth temperature tilt_x tilt_y tilt_z
-      1     1.0 1659312000       NA 228.5         5.3     NA     NA     NA
-      2     1.0 1659312600       NA 241.0         5.3     NA     NA     NA
-      3     1.0 1659313200       NA 228.5         5.3     NA     NA     NA
-      4     1.0 1659313800       NA 213.5         5.3     NA     NA     NA
-      5     1.0 1659314400       NA 219.5         5.3     NA     NA     NA
-      6     1.0 1659315000       NA 241.0         5.3     NA     NA     NA
-      7     1.0 1659315600       NA 241.0         5.3     NA     NA     NA
-      8     1.0 1659316200       NA 241.0         5.3     NA     NA     NA
-      9     1.0 1659316800       NA 241.0         5.3     NA     NA     NA
-      10    1.0 1659317400       NA 228.5         5.3     NA     NA     NA
+         tag_id    timestamp pressure depth temperature tilt_x tilt_y tilt_z
+      1     1.0 1659312000.0       NA 228.5         5.3     NA     NA     NA
+      2     1.0 1659312600.0       NA 241.0         5.3     NA     NA     NA
+      3     1.0 1659313200.0       NA 228.5         5.3     NA     NA     NA
+      4     1.0 1659313800.0       NA 213.5         5.3     NA     NA     NA
+      5     1.0 1659314400.0       NA 219.5         5.3     NA     NA     NA
+      6     1.0 1659315000.0       NA 241.0         5.3     NA     NA     NA
+      7     1.0 1659315600.0       NA 241.0         5.3     NA     NA     NA
+      8     1.0 1659316200.0       NA 241.0         5.3     NA     NA     NA
+      9     1.0 1659316800.0       NA 241.0         5.3     NA     NA     NA
+      10    1.0 1659317400.0       NA 228.5         5.3     NA     NA     NA
          inclination magnetic_field_strength depth_increase_delta_limit
       1           NA                      NA                         NA
       2           NA                      NA                         NA
