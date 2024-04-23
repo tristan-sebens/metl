@@ -394,4 +394,39 @@ TagProcessor =
   )
 
 
+ABLTAG_TagProcessor =
+  setRefClass(
+    "ABLTAG_TagProcessor",
+    contains = "TagProcessor",
+    methods =
+      list(
+        initialize =
+          function(
+            ...,
+            metadata_fieldmap = ABLTAG_METADATA_TABLE_FIELDS,
+            instant_fieldmap = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
+            summary_fieldmap = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
+            decoders =
+              list(
+                Decoder_Lotek_1000.1100.1250,
+                Decoder_Lotek_1300,
+                Decoder_Lotek_1400.1800,
+                Decoder_MicrowaveTelemetry_XTag,
+                Decoder_StarOddi_DST,
+                Decoder_StarOddi_DSTmagnetic,
+                Decoder_WildlifeComputers_MiniPAT,
+                Decoder_WildlifeComputers_BenthicSPAT,
+                Decoder_DesertStar_SeaTagMOD
+              )
+          ) {
+            callSuper(
+              ...,
+              decoders = decoders,
+              metadata_fieldmap = metadata_fieldmap,
+              instant_fieldmap = instant_fieldmap,
+              summary_fieldmap = summary_fieldmap
+            )
+          }
+      )
+  )
 

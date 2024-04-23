@@ -412,6 +412,26 @@ test_that(
   }
 )
 
+test_that(
+  "ABLTAG_TagProcessor::process",
+  {
+    tp__ =
+      ABLTAG_TagProcessor(
+        d = test_data_d()
+      )
+
+    con =
+      build_test_db()
+
+    tp__$process(con)
+
+    report =
+      tp__$build_report()
+
+    expect_equal(report$pct_decoded[[1]], 100)
+  }
+)
+
 
 
 
