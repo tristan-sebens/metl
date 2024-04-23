@@ -143,32 +143,12 @@ build_test_fieldmaps =
 
 build_test_metadata_map =
   function() {
-    METADATA_MAP =
-      ABLTAG_METADATA_TABLE_FIELDS
-      # FieldMap(
-      #   table = "METADATA",
-      #   field_list =
-      #     list(
-      #       TAG_ID_FIELD =
-      #         Field(
-      #           name = "tag_id",
-      #           data_type = "integer",
-      #           id_field = T
-      #         ),
-      #       MAKE_FIELD =
-      #         Field(
-      #           name = "make",
-      #           data_type = "varchar(32)"
-      #         ),
-      #       MODEL_FIELD =
-      #         Field(
-      #           name = "model",
-      #           data_type = "varchar(32)"
-      #         )
-      #     )
-      # )
-
-    return(METADATA_MAP)
+    return(
+      list(
+        METADATA_INPUT_FIELD_MAP = DEFAULT_METADATA_FIELDS,
+        METADATA_OUTPUT_FIELD_MAP = ABLTAG_METADATA_TABLE_FIELDS
+      )
+    )
   }
 
 test_d =
@@ -256,7 +236,7 @@ build_test_decoder =
     metadata_map =
       DataMap_TestStub(
         input_data_field_map =
-          build_test_metadata_map(),
+          build_test_metadata_map()$METADATA_INPUT_FIELD_MAP,
         extract_return =
           build_test_metadata_dataset(),
         get_tag_id_return =

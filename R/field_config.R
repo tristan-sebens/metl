@@ -259,6 +259,27 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
       )
   )
 
+#----------------
+# METADATA DEFAULT MAP
+#----------------
+DEFAULT_METADATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TAG_ID_FIELD =
+          Field(
+            name = "tag_id"
+          ),
+        TAG_MAKE_FIELD =
+          Field(
+            name = "make"
+          ),
+        TAG_MODEL_FIELD =
+          Field(
+            name = "model"
+          )
+      )
+  )
 
 #----------------
 # LOTEK TAGS

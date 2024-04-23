@@ -3,7 +3,7 @@
     Code
       metadata
     Output
-        tag_id               make   model
+        TAG_ID               MAKE   MODEL
       1 174898 Wildlife Computers MiniPAT
 
 ---
@@ -11,7 +11,7 @@
     Code
       instant_data
     Output
-                   timestamp     depth temperature
+                   TIMESTAMP     DEPTH TEMPERATURE
       1  2022-07-31 16:00:00 228.5 [m]    5.3 [°C]
       2  2022-07-31 16:10:00 241.0 [m]    5.3 [°C]
       3  2022-07-31 16:20:00 228.5 [m]    5.3 [°C]
@@ -28,7 +28,7 @@
     Code
       summary_data
     Output
-                  start_time            end_time min_depth max_depth min_temp
+                  START_TIME            END_TIME MIN_DEPTH MAX_DEPTH MIN_TEMP
       1  2022-07-31 08:00:00 2022-07-31 16:00:00    NA [m]    NA [m] 5.1 [°C]
       2  2022-07-31 16:00:00 2022-08-01 00:00:00 179.5 [m]   272 [m] 5.1 [°C]
       3  2022-08-01 00:00:00 2022-08-01 08:00:00  95.5 [m]   272 [m] 5.1 [°C]
@@ -39,7 +39,7 @@
       8  2022-08-02 16:00:00 2022-08-03 00:00:00 179.5 [m]   220 [m] 5.4 [°C]
       9  2022-08-03 00:00:00 2022-08-03 08:00:00  63.5 [m]   264 [m] 5.0 [°C]
       10 2022-08-03 08:00:00 2022-08-03 16:00:00  34.5 [m]   264 [m] 5.0 [°C]
-         max_temp
+         MAX_TEMP
       1  7.4 [°C]
       2  5.7 [°C]
       3  5.7 [°C]

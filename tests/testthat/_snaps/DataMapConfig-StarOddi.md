@@ -11,7 +11,7 @@
     Code
       dat_t_
     Output
-        tag_id      make                    model
+        TAG_ID      MAKE                    MODEL
       1 JS7977 Star Oddi DST (centi/milli)-(TD/F)
 
 # DataMap_StarOddi_DST_InstantSensorData
@@ -40,7 +40,7 @@
       dat_t_
     Output
       # A tibble: 45,369 x 3
-         timestamp           depth temperature
+         TIMESTAMP           DEPTH TEMPERATURE
          <dttm>                [m]        [°C]
        1 2016-07-12 21:20:00  1.1         24.8
        2 2016-07-12 22:20:00  1.58        24.0
@@ -67,7 +67,7 @@
     Code
       dat_t_
     Output
-        tag_id      make                    model
+        TAG_ID      MAKE                    MODEL
       1 JS1229 Star Oddi DST (centi/milli)-(TD/F)
 
 ---
@@ -83,7 +83,7 @@
     Code
       dat_t_
     Output
-        tag_id      make                    model
+        TAG_ID      MAKE                    MODEL
       1  JS142 Star Oddi DST (centi/milli)-(TD/F)
 
 # DataMap_StarOddi_DSTmilliF_InstantSensorData
@@ -112,7 +112,7 @@
       dat_t_
     Output
       # A tibble: 108,889 x 3
-         timestamp           depth temperature
+         TIMESTAMP           DEPTH TEMPERATURE
          <dttm>                [m]        [°C]
        1 2015-07-24 10:00:00 -10.2        14.0
        2 2015-07-24 10:02:00 -10.2        14.0
@@ -152,7 +152,7 @@
       dat_t_
     Output
       # A tibble: 697,833 x 3
-         timestamp            depth temperature
+         TIMESTAMP            DEPTH TEMPERATURE
          <dttm>                 [m]        [°C]
        1 2015-05-27 15:17:59  -7.82       11.1 
        2 2015-05-27 15:20:00 -27.0        10.7 
@@ -179,7 +179,7 @@
     Code
       dat_t_
     Output
-        tag_id      make        model
+        TAG_ID      MAKE        MODEL
       1  JS923 Star Oddi DST magnetic
 
 ---
@@ -195,7 +195,7 @@
     Code
       dat_t_
     Output
-        tag_id      make        model
+        TAG_ID      MAKE        MODEL
       1  JS927 Star Oddi DST magnetic
 
 # DataMap_StarOddi_DSTmagnetic_InstantSensorData
@@ -227,7 +227,7 @@
       dat_t_
     Output
       # A tibble: 5,381 x 7
-         timestamp           depth temperature tilt_x tilt_y inclination
+         TIMESTAMP           DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
          <dttm>                [m]        [°C]    [°]    [°]         [°]
        1 2015-12-03 12:00:00 -12.9        5.44     -6    -22          59
        2 2015-12-03 16:00:00 -13.5        6.08     -6    -27          64
@@ -240,7 +240,7 @@
        9 2015-12-04 19:59:59 -12.9        6.33     -8    -27          82
       10 2015-12-05 00:00:00 -12.8        6.22     -7    -28          78
       # i 5,371 more rows
-      # i 1 more variable: magnetic_field_strength [nanoteslas]
+      # i 1 more variable: MAGNETIC_FIELD_STRENGTH [nanoteslas]
 
 ---
 
@@ -270,7 +270,7 @@
       dat_t_
     Output
       # A tibble: 6,931 x 7
-         timestamp           depth temperature tilt_x tilt_y inclination
+         TIMESTAMP           DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
          <dttm>                [m]        [°C]    [°]    [°]         [°]
        1 2015-12-03 12:00:00 -6.35        5.26      1    -69          30
        2 2015-12-03 16:00:00 -6.35        5.91      3    -64          32
@@ -283,5 +283,5 @@
        9 2015-12-04 19:59:59 -6.35        6.41      1    -66          48
       10 2015-12-05 00:00:00 -7.19        6.41      2    -65          37
       # i 6,921 more rows
-      # i 1 more variable: magnetic_field_strength [nanoteslas]
+      # i 1 more variable: MAGNETIC_FIELD_STRENGTH [nanoteslas]
 

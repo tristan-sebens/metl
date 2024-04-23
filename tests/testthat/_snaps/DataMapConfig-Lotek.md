@@ -11,7 +11,7 @@
     Code
       dat_t_
     Output
-        tag_id  make          model
+        TAG_ID  MAKE          MODEL
       1   4071 Lotek 1000/1100/1250
 
 ---
@@ -27,7 +27,7 @@
     Code
       dat_t_
     Output
-        tag_id  make          model
+        TAG_ID  MAKE          MODEL
       1   5295 Lotek 1000/1100/1250
 
 ---
@@ -43,7 +43,7 @@
     Code
       dat_t_
     Output
-        tag_id  make          model
+        TAG_ID  MAKE          MODEL
       1   1484 Lotek 1000/1100/1250
 
 ---
@@ -59,7 +59,7 @@
     Code
       dat_t_
     Output
-        tag_id  make          model
+        TAG_ID  MAKE          MODEL
       1   1486 Lotek 1000/1100/1250
 
 ---
@@ -75,7 +75,7 @@
     Code
       dat_t_
     Output
-        tag_id  make          model
+        TAG_ID  MAKE          MODEL
       1   4066 Lotek 1000/1100/1250
 
 ---
@@ -91,7 +91,7 @@
     Code
       dat_t_
     Output
-        tag_id  make          model
+        TAG_ID  MAKE          MODEL
       1   4067 Lotek 1000/1100/1250
 
 # DataMap_Lotek_1000.1100.1250_InstantSensorData
@@ -205,7 +205,7 @@
     Code
       dat_t_
     Output
-                   timestamp       pressure   temperature
+                   TIMESTAMP       PRESSURE   TEMPERATURE
       1  2004-05-15 00:00:00 0.869204 [psi] 22.04689 [°C]
       2  2004-05-15 00:15:00 0.869204 [psi] 22.00061 [°C]
       3  2004-05-15 00:30:00 0.290357 [psi] 21.97749 [°C]
@@ -417,7 +417,7 @@
     Code
       dat_t_
     Output
-                   timestamp          pressure   temperature
+                   TIMESTAMP          PRESSURE   TEMPERATURE
       1  2004-05-15 00:00:00  0.08012332 [psi] 21.98282 [°C]
       2  2004-05-15 00:15:00 -0.50312100 [psi] 21.91354 [°C]
       3  2004-05-15 00:30:00  0.08012332 [psi] 21.89046 [°C]
@@ -629,7 +629,7 @@
     Code
       dat_t_
     Output
-                   timestamp          pressure   temperature
+                   TIMESTAMP          PRESSURE   TEMPERATURE
       1  1998-06-15 00:00:00  1.31997500 [psi] 19.31769 [°C]
       2  1998-06-15 01:00:00  0.67445900 [psi] 19.49633 [°C]
       3  1998-06-15 02:00:00  0.67445900 [psi] 19.63059 [°C]
@@ -841,7 +841,7 @@
     Code
       dat_t_
     Output
-                   timestamp          pressure    temperature
+                   TIMESTAMP          PRESSURE    TEMPERATURE
       1  1998-05-15 00:00:00    0.209354 [psi] 22.574157 [°C]
       2  1998-05-15 01:00:00    0.000000 [psi]  3.117647 [°C]
       3  1998-05-15 02:00:00    0.209354 [psi] 22.926749 [°C]
@@ -1053,7 +1053,7 @@
     Code
       dat_t_
     Output
-                   timestamp        pressure   temperature
+                   TIMESTAMP        PRESSURE   TEMPERATURE
       1  2002-05-10 12:00:00 -6.116089 [psi] 23.64611 [°C]
       2  2002-05-10 12:15:00 -5.456364 [psi] 23.59873 [°C]
       3  2002-05-10 12:30:00 -6.116089 [psi] 23.55137 [°C]
@@ -1265,7 +1265,7 @@
     Code
       dat_t_
     Output
-                   timestamp          pressure   temperature
+                   TIMESTAMP          PRESSURE   TEMPERATURE
       1  2002-05-10 12:00:00 -3.29827700 [psi] 20.12788 [°C]
       2  2002-05-10 12:15:00 -3.95344400 [psi] 20.12788 [°C]
       3  2002-05-10 12:30:00 -3.29827700 [psi] 20.12788 [°C]
@@ -1379,7 +1379,7 @@
     Code
       dat_t_
     Output
-        tag_id  make model
+        TAG_ID  MAKE MODEL
       1   2466 Lotek  1300
 
 ---
@@ -1395,7 +1395,7 @@
     Code
       dat_t_
     Output
-        tag_id  make model
+        TAG_ID  MAKE MODEL
       1   3880 Lotek  1300
 
 ---
@@ -1411,7 +1411,7 @@
     Code
       dat_t_
     Output
-        tag_id  make model
+        TAG_ID  MAKE MODEL
       1   3788 Lotek  1300
 
 # DataMap_Lotek_1300_InstantSensorData
@@ -1525,7 +1525,7 @@
     Code
       dat_t_
     Output
-                   timestamp       pressure temperature
+                   TIMESTAMP       PRESSURE TEMPERATURE
       1  2007-05-09 16:24:00 1.450377 [psi]  23.80 [°C]
       2  2007-05-09 16:28:00 2.900755 [psi]  24.00 [°C]
       3  2007-05-09 16:32:00 1.450377 [psi]  23.87 [°C]
@@ -1737,7 +1737,7 @@
     Code
       dat_t_
     Output
-                   timestamp        pressure temperature
+                   TIMESTAMP        PRESSURE TEMPERATURE
       1  2008-05-14 14:04:00  1.450377 [psi]  22.48 [°C]
       2  2008-05-14 14:08:00  0.000000 [psi]  22.35 [°C]
       3  2008-05-14 14:12:00  2.900755 [psi]  22.29 [°C]
@@ -1949,7 +1949,7 @@
     Code
       dat_t_
     Output
-                   timestamp        pressure temperature
+                   TIMESTAMP        PRESSURE TEMPERATURE
       1  2008-06-03 13:36:00  0.000000 [psi]  23.71 [°C]
       2  2008-06-03 13:40:00 -1.450377 [psi]  23.47 [°C]
       3  2008-06-03 13:44:00 -1.450377 [psi]  23.36 [°C]
@@ -2063,7 +2063,7 @@
     Code
       dat_t_
     Output
-        tag_id  make     model
+        TAG_ID  MAKE     MODEL
       1   0383 Lotek 1400/1800
 
 ---
@@ -2079,7 +2079,7 @@
     Code
       dat_t_
     Output
-        tag_id  make     model
+        TAG_ID  MAKE     MODEL
       1   1546 Lotek 1400/1800
 
 # DataMap_Lotek_1400.1800_InstantSensorData
@@ -2329,7 +2329,7 @@
     Code
       dat_t_
     Output
-                    timestamp        pressure temperature
+                    TIMESTAMP        PRESSURE TEMPERATURE
       1   2011-05-16 16:00:00 -1.725949 [psi]  20.82 [°C]
       2   2011-05-16 16:01:00 -1.725949 [psi]  20.80 [°C]
       3   2011-05-16 16:02:00 -2.451138 [psi]  20.80 [°C]
@@ -2863,7 +2863,7 @@
     Code
       dat_t_
     Output
-                    timestamp         pressure temperature
+                    TIMESTAMP         PRESSURE TEMPERATURE
       1   2009-05-12 10:09:59  0.3625943 [psi]  25.42 [°C]
       2   2009-05-12 10:19:59  1.0877830 [psi]  24.94 [°C]
       3   2009-05-12 10:29:59  1.0877830 [psi]  24.76 [°C]

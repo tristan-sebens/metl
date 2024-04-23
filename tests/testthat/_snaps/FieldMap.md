@@ -3,79 +3,79 @@
     Code
       test_fm_1$generate_data_type_list()
     Output
-      $tag_id
+      $TAG_ID
       [1] "integer"
       
-      $timestamp
+      $TIMESTAMP
       [1] "varchar(32)"
       
-      $latitude
+      $LATITUDE
       [1] "double(10, 6)"
       
-      $longitude
+      $LONGITUDE
       [1] "double(10, 6)"
       
-      $location_type
+      $LOCATION_TYPE
       [1] "varchar(16)"
       
-      $latitude_n_error
+      $LATITUDE_N_ERROR
       [1] "double(10, 2)"
       
-      $latitude_s_error
+      $LATITUDE_s_ERROR
       [1] "double(10, 2)"
       
-      $latitude_u
+      $LATITUDE_U
       [1] "double(10, 2)"
       
-      $longtitude_error
+      $LONGITUDE_U
       [1] "double(10, 2)"
       
-      $location_error_ellipse_orientation
+      $LOCATION_ERROR_ELLIPSE_ORIENTATION
       [1] "double(10, 2)"
       
-      $location_error_semi_minor_axis
+      $LOCATION_ERROR_SEMI_MINOR_AXIS
       [1] "double(10, 2)"
       
-      $location_error_semi_major_axis
+      $LOCATION_ERROR_SEMI_MAJOR_AXIS
       [1] "double(10, 2)"
       
-      $location_error_radius
+      $LOCATION_ERROR_RADIUS
       [1] "double(10, 2)"
       
-      $pressure
+      $PRESSURE
       [1] "double(10, 2)"
       
-      $depth
+      $DEPTH
       [1] "double(10, 2)"
       
-      $depth_increase_delta_limit
+      $DEPTH_INCREASE_DELTA_LIMIT
       [1] "boolean"
       
-      $depth_decrease_delta_limit
+      $DEPTH_DECREASE_DELTA_LIMIT
       [1] "boolean"
       
-      $temperature
+      $TEMPERATURE
       [1] "double(10, 2)"
       
-      $temp_increase_delta_limit
+      $TEMP_INCREASE_DELTA_LIMIT
       [1] "boolean"
       
-      $temp_decrease_delta_limit
+      $TEMP_DECREASE_DELTA_LIMIT
       [1] "boolean"
       
-      $tilt_x
+      $TILT_X
       [1] "double(10, 2)"
       
-      $tilt_y
+      $TILT_Y
       [1] "double(10, 2)"
       
-      $tilt_z
+      $TILT_Z
       [1] "double(10, 2)"
       
-      $inclination
+      $INCLINATION
       [1] "double(10, 2)"
       
-      $magnetic_field_strength
+      $MAGNETIC_FIELD_STRENGTH
       [1] "double(10, 2)"
       
 
@@ -140,5 +140,5 @@
     Code
       t_fm1$get_id_field_names()
     Output
-      [1] "tag_id"    "timestamp"
+      [1] "TAG_ID"    "TIMESTAMP"
 

@@ -7,7 +7,7 @@ test_that(
     metadata =
       dc$decode_metadata_map(
         d = "placeholder",
-        op_fm = build_test_metadata_map()
+        op_fm = build_test_metadata_map()$METADATA_OUTPUT_FIELD_MAP
       )
 
     expect_snapshot(metadata)

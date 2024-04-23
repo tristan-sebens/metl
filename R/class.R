@@ -316,25 +316,26 @@ DataMap_TagMetaData =
       ),
     methods =
       list(
-        # All of the tag meta DataMaps will produce dataframes of the same format
-        extract =
-          function(d) {
-            data.frame(
-              TAG_ID = .self$get_tag_id(d),
-              MAKE = .self$make,
-              MODEL = .self$model
+        initialize =
+          function(
+            ...,
+            # All of the tag meta DataMaps will produce dataframes of the same format
+            input_data_field_map = DEFAULT_METADATA_FIELDS
+          ) {
+            callSuper(
+              ...,
+              input_data_field_map = input_data_field_map
             )
           },
 
-        transform =
-          function(dat, output_data_field_map) {
-            input_data_field_map <<-
-              output_data_field_map
-
-            callSuper(
-              dat = dat,
-              output_data_field_map = output_data_field_map
-            )
+        extract =
+          function(d) {
+            data.frame() %>%
+              dplyr::summarize(
+                "{.self$input_data_field_map$field_list$TAG_ID_FIELD$name}" := .self$get_tag_id(d),
+                "{.self$input_data_field_map$field_list$TAG_MAKE_FIELD$name}" := .self$make,
+                "{.self$input_data_field_map$field_list$TAG_MODEL_FIELD$name}" := .self$model
+              )
           }
       )
   )

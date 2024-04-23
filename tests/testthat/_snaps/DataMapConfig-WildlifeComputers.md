@@ -11,7 +11,7 @@
     Code
       dat_t_
     Output
-        tag_id               make   model
+        TAG_ID               MAKE   MODEL
       1 174898 Wildlife Computers MiniPAT
 
 ---
@@ -27,7 +27,7 @@
     Code
       dat_t_
     Output
-        tag_id               make   model
+        TAG_ID               MAKE   MODEL
       1 174900 Wildlife Computers MiniPAT
 
 # DataMap_WildlifeComputers_MiniPAT_InstantSensorData
@@ -3641,7 +3641,7 @@
     Code
       dat_t_
     Output
-                     timestamp     depth temperature
+                     TIMESTAMP     DEPTH TEMPERATURE
       1    2022-07-31 08:00:00    NA [m]    5.4 [°C]
       2    2022-07-31 08:10:00    NA [m]    5.4 [°C]
       3    2022-07-31 08:20:00    NA [m]    5.4 [°C]
@@ -5864,7 +5864,7 @@
     Code
       dat_t_
     Output
-                    timestamp     depth temperature
+                    TIMESTAMP     DEPTH TEMPERATURE
       1   2023-07-11 16:00:00    NA [m]    6.1 [°C]
       2   2023-07-11 16:10:00    NA [m]    6.1 [°C]
       3   2023-07-11 16:20:00    NA [m]    6.1 [°C]
@@ -6317,7 +6317,7 @@
     Code
       dat_t_
     Output
-                  start_time            end_time min_depth max_depth  min_temp
+                  START_TIME            END_TIME MIN_DEPTH MAX_DEPTH  MIN_TEMP
       1  2022-07-31 08:00:00 2022-07-31 16:00:00    NA [m]    NA [m]  5.1 [°C]
       2  2022-07-31 16:00:00 2022-08-01 00:00:00 179.5 [m] 272.0 [m]  5.1 [°C]
       3  2022-08-01 00:00:00 2022-08-01 08:00:00  95.5 [m] 272.0 [m]  5.1 [°C]
@@ -6343,7 +6343,7 @@
       23 2022-08-08 08:00:00 2022-08-08 16:00:00   0.5 [m]   2.5 [m] 10.6 [°C]
       24 2022-08-08 16:00:00 2022-08-09 00:00:00   0.5 [m]   2.5 [m] 10.6 [°C]
       25 2022-08-09 08:00:00 2022-08-09 16:00:00   0.5 [m]   2.5 [m] 10.8 [°C]
-          max_temp
+          MAX_TEMP
       1   7.4 [°C]
       2   5.7 [°C]
       3   5.7 [°C]
@@ -6413,7 +6413,7 @@
     Code
       dat_t_
     Output
-                 start_time            end_time min_depth max_depth min_temp max_temp
+                 START_TIME            END_TIME MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
       1 2023-07-11 16:00:00 2023-07-12 00:00:00    NA [m]    NA [m] 5.9 [°C] 6.2 [°C]
       2 2023-07-12 00:00:00 2023-07-12 08:00:00 295.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]
       3 2023-07-12 16:00:00 2023-07-13 00:00:00 391.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]
@@ -6435,7 +6435,7 @@
     Code
       dat_t_
     Output
-        tag_id               make        model
+        TAG_ID               MAKE        MODEL
       1 175146 Wildlife Computers Benthic sPAT
 
 ---
@@ -6451,7 +6451,7 @@
     Code
       dat_t_
     Output
-        tag_id               make        model
+        TAG_ID               MAKE        MODEL
       1 175147 Wildlife Computers Benthic sPAT
 
 ---
@@ -6467,7 +6467,7 @@
     Code
       dat_t_
     Output
-        tag_id               make        model
+        TAG_ID               MAKE        MODEL
       1 175157 Wildlife Computers Benthic sPAT
 
 ---
@@ -6483,7 +6483,7 @@
     Code
       dat_t_
     Output
-        tag_id               make        model
+        TAG_ID               MAKE        MODEL
       1 175158 Wildlife Computers Benthic sPAT
 
 # DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData
@@ -7901,7 +7901,7 @@
     Code
       dat_t_
     Output
-                    timestamp latitude longitude location_error_radius
+                    TIMESTAMP LATITUDE LONGITUDE LOCATION_ERROR_RADIUS
       1   2019-09-02 00:08:47  56.0818 -169.5286                  2423
       2   2019-09-02 00:12:45  56.0984 -169.5298                  1253
       3   2019-09-02 00:38:10  56.1029 -169.5376                  3777
@@ -8252,7 +8252,7 @@
       348 2019-09-10 15:43:31  56.5380 -168.3923                   196
       349 2019-09-10 15:52:55  56.5344 -168.3974                   662
       350 2019-09-10 17:07:40  56.5425 -168.4120                 10893
-          location_error_semi_minor_axis location_error_semi_major_axis
+          LOCATION_ERROR_SEMI_MINOR_AXIS LOCATION_ERROR_SEMI_MAJOR_AXIS
       1                            12572                            466
       2                             4948                            317
       3                            31703                            449
@@ -8603,7 +8603,7 @@
       348                            783                             48
       349                           1123                            389
       350                          75579                           1570
-          location_error_ellipse_orientation
+          LOCATION_ERROR_ELLIPSE_ORIENTATION
       1                                  156
       2                                  110
       3                                    4
@@ -10526,7 +10526,7 @@
     Code
       dat_t_
     Output
-                    timestamp latitude longitude location_error_radius
+                    TIMESTAMP LATITUDE LONGITUDE LOCATION_ERROR_RADIUS
       1   2019-09-14 01:14:38  58.5051 -176.6335                   640
       2   2019-09-14 01:43:46  58.5018 -176.6306                   834
       3   2019-09-14 02:39:10  58.5037 -176.6145                   958
@@ -10916,7 +10916,7 @@
       387 2019-09-22 09:39:17  58.0188 -178.0331                   494
       388 2019-09-22 09:51:08  58.0214 -178.0310                   599
       389 2019-09-22 10:30:37  58.0349 -177.8739                  2248
-          location_error_semi_minor_axis location_error_semi_major_axis
+          LOCATION_ERROR_SEMI_MINOR_AXIS LOCATION_ERROR_SEMI_MAJOR_AXIS
       1                             1723                            237
       2                             2316                            300
       3                             6727                            136
@@ -11306,7 +11306,7 @@
       387                           1675                            145
       388                            893                            401
       389                          48369                            104
-          location_error_ellipse_orientation
+          LOCATION_ERROR_ELLIPSE_ORIENTATION
       1                                  102
       2                                   83
       3                                  101
@@ -15044,7 +15044,7 @@
     Code
       dat_t_
     Output
-                    timestamp latitude longitude location_error_radius
+                    TIMESTAMP LATITUDE LONGITUDE LOCATION_ERROR_RADIUS
       1   2019-08-19 07:15:00  55.7981 -169.3614                   159
       2   2019-08-19 07:15:00  55.7981 -169.3614                   159
       3   2019-08-19 07:21:54  55.8004 -169.3633                   233
@@ -15878,7 +15878,7 @@
       831 2019-09-04 22:12:53  56.3609 -169.6698                   308
       832 2019-09-04 22:28:15  56.3651 -169.6664                   301
       833 2019-09-04 22:45:37  56.3662 -169.6617                   283
-          location_error_semi_minor_axis location_error_semi_major_axis
+          LOCATION_ERROR_SEMI_MINOR_AXIS LOCATION_ERROR_SEMI_MAJOR_AXIS
       1                              468                             54
       2                              468                             54
       3                              487                            111
@@ -16712,7 +16712,7 @@
       831                           1248                             76
       832                            507                            179
       833                           1098                             73
-          location_error_ellipse_orientation
+          LOCATION_ERROR_ELLIPSE_ORIENTATION
       1                                   81
       2                                   81
       3                                   91
@@ -20498,7 +20498,7 @@
     Code
       dat_t_
     Output
-                    timestamp latitude longitude location_error_radius
+                    TIMESTAMP LATITUDE LONGITUDE LOCATION_ERROR_RADIUS
       1   2019-08-19 19:22:39  55.2141 -168.0051                   303
       2   2019-08-19 19:43:19  55.2137 -168.0108                   215
       3   2019-08-19 19:56:07  55.2164 -168.0167                   196
@@ -21233,7 +21233,7 @@
       732 2019-09-03 18:55:36  54.3807 -170.3105                   350
       733 2019-09-03 19:10:58  54.3838 -170.3068                  2229
       734 2019-09-03 19:16:54  54.3814 -170.2941                   312
-          location_error_semi_minor_axis location_error_semi_major_axis
+          LOCATION_ERROR_SEMI_MINOR_AXIS LOCATION_ERROR_SEMI_MAJOR_AXIS
       1                              313                            292
       2                              624                             73
       3                              338                            113
@@ -21968,7 +21968,7 @@
       732                            614                            199
       733                           5734                            866
       734                            629                            154
-          location_error_ellipse_orientation
+          LOCATION_ERROR_ELLIPSE_ORIENTATION
       1                                  122
       2                                  103
       3                                   77
@@ -22863,7 +22863,7 @@
     Code
       dat_t_
     Output
-                  start_time            end_time percent_upright knockdowns
+                  START_TIME            END_TIME PERCENT_UPRIGHT KNOCKDOWNS
       1  2019-08-27 22:00:00 2019-08-28 00:00:00          99 [%]      1 [1]
       2  2019-08-28 00:00:00 2019-08-28 02:00:00         100 [%]      0 [1]
       3  2019-08-28 02:00:00 2019-08-28 04:00:00          97 [%]     15 [1]
@@ -23301,7 +23301,7 @@
     Code
       dat_t_
     Output
-                   start_time            end_time percent_upright knockdowns
+                   START_TIME            END_TIME PERCENT_UPRIGHT KNOCKDOWNS
       1   2019-08-31 10:00:00 2019-08-31 12:00:00          59 [%]    124 [1]
       2   2019-08-31 12:00:00 2019-08-31 14:00:00          37 [%]    127 [1]
       3   2019-08-31 14:00:00 2019-08-31 16:00:00          53 [%]    127 [1]
@@ -23777,7 +23777,7 @@
     Code
       dat_t_
     Output
-                   start_time            end_time percent_upright knockdowns
+                   START_TIME            END_TIME PERCENT_UPRIGHT KNOCKDOWNS
       1   2019-08-08 02:00:00 2019-08-08 04:00:00          99 [%]      2 [1]
       2   2019-08-08 04:00:00 2019-08-08 06:00:00         100 [%]      0 [1]
       3   2019-08-08 06:00:00 2019-08-08 08:00:00          99 [%]      1 [1]
@@ -24329,7 +24329,7 @@
     Code
       dat_t_
     Output
-                   start_time            end_time percent_upright knockdowns
+                   START_TIME            END_TIME PERCENT_UPRIGHT KNOCKDOWNS
       1   2019-08-03 14:00:00 2019-08-03 16:00:00          98 [%]      3 [1]
       2   2019-08-03 16:00:00 2019-08-03 18:00:00         100 [%]      0 [1]
       3   2019-08-03 18:00:00 2019-08-03 20:00:00         100 [%]      0 [1]

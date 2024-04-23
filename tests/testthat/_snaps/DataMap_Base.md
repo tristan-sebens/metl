@@ -17,7 +17,7 @@
     Code
       dm$transform_fields(dat__, op_fm)
     Output
-                   timestamp     depth temperature
+                   TIMESTAMP     DEPTH TEMPERATURE
       1  2022-07-31 16:00:00 228.5 [m]    5.3 [°C]
       2  2022-07-31 16:10:00 241.0 [m]    5.3 [°C]
       3  2022-07-31 16:20:00 228.5 [m]    5.3 [°C]
