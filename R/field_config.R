@@ -41,8 +41,12 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
         TIMESTAMP_FIELD =
           Field(
             name = "TIMESTAMP",
-            data_type = "varchar(32)",
-            id_field = T
+            data_type = "integer",
+            id_field = T,
+            trans_fn =
+              function(v, ...) {
+                as.integer(v)
+              }
           ),
         LATITUDE_FIELD =
           Field(
@@ -184,14 +188,22 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
         START_TIME_FIELD =
           Field(
             name = "START_TIME",
-            data_type = "varchar(32)",
-            id_field = T
+            data_type = "integer",
+            id_field = T,
+            trans_fn =
+              function(v, ...) {
+                as.integer(v)
+              }
           ),
         END_TIME_FIELD =
           Field(
             name = "END_TIME",
-            data_type = "varchar(32)",
-            id_field = T
+            data_type = "integer",
+            id_field = T,
+            trans_fn =
+              function(v, ...) {
+                as.integer(v)
+              }
           ),
         LATITUDE_FIELD =
           Field(
