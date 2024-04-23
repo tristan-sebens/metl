@@ -18,11 +18,9 @@ Not intended to be implemented directly
 \section{Fields}{
 
 \describe{
-\item{\code{d}}{character. The directory in which the tag data can be found}
-
 \item{\code{input_data_field_map}}{FieldMap. Map of the data fields and their original format}
 
-\item{\code{output_data_field_map}}{FieldMap. Map of the data fields and their corresponding DB format}
+\item{\code{extract_fn}}{function(d) Function which extracts the appropriate data from the files in directory \code{d}}
 }}
 
 \section{Methods}{

@@ -23,6 +23,8 @@ and when interfacing with a DB
 \describe{
 \item{\code{common_fields(fm)}}{Generates a list of the Fields shared by this FieldMap and the given FieldMap}
 
+\item{\code{get_field_names()}}{Get the names of the ID fields in this FieldMap}
+
 \item{\code{get_id_field_names()}}{Get the names of the ID fields in this FieldMap}
 
 \item{\code{get_id_fields()}}{Return the subset of Fields in this FieldMap that are marked as ID fields}

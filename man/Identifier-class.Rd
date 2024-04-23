@@ -8,11 +8,4 @@
 \description{
 Base class. Not intended to be implemented directly.
 }
-\section{Methods}{
-
-\describe{
-\item{\code{identify(d)}}{Returns TRUE/FALSE indicating if the metadata in the passed directory
-matches the patterns expected of the tag type with which this Identifier
-child class is associated}
-}}
 

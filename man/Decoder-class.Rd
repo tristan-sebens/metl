@@ -11,8 +11,6 @@ Logical representation of a single tag, which contains all necessary logic to pa
 \section{Fields}{
 
 \describe{
-\item{\code{d}}{character. The directory in which the tag data can be found}
-
 \item{\code{metadata_map}}{DataMap. The \link{DataMap} used to extract the tag metadata}
 
 \item{\code{data_maps}}{list. The list of data maps used to map the data for this tag to the output tables in the DB}
@@ -21,22 +19,6 @@ Logical representation of a single tag, which contains all necessary logic to pa
 \section{Methods}{
 
 \describe{
-\item{\code{add_missing_fields(dat_1, dm_1, dat_2, dm_2)}}{Add fields from one data frame to a second dataframe, based on their
-respective DataMaps. dat_1/dm_1 refer to the data which may be missing
-fields. dat_2/dm_2 refer to the data from which we MAY take data to
-put into dat_1. Any fields defined by dm_1$output_data_field_map which
-are missing from dat_1 but are present in dat_2 will be added to dat_1.}
-
-\item{\code{decode(con, overwrite = T)}}{Execute all necessary steps to extract, transform, and load all data
-contained within directory `d`}
-
-\item{\code{decode_and_load_all_datamaps(con)}}{Execute all etl steps for all DataMaps}
-
-\item{\code{decode_datamap(dm)}}{Execute all necessary steps to read and transform raw data for one DataMap}
-
-\item{\code{tag_already_loaded(con)}}{Check if the tag referred to by this Decoder has already been uploaded
-to the DB}
-
-\item{\code{upload_meta(con)}}{Upload the data extracted by the Decoder's metadata DataMap into the DB}
+\item{\code{decode_datamap(d, dm, op_fm)}}{Execute all necessary steps to read and transform raw data for one DataMap}
 }}
 

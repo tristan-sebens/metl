@@ -5,9 +5,6 @@
 \alias{TagProcessor-class}
 \alias{TagProcessor}
 \title{TagProcessor class.}
-\value{
-Instance of the TagProcessor class
-}
 \description{
 Facilitates the automated identification and decoding of
 tag data directories. Recursively traverses a directory tree, attempting to
@@ -21,17 +18,27 @@ Implements some basic reporting to aid in diagnosing systemic decoding issues
 \describe{
 \item{\code{d}}{Data directory.}
 
+\item{\code{decoders}}{A list of Decoder objects which can be use to extract and load the data produced by different tags}
+
 \item{\code{overwrite}}{Boolean flag. If set to TRUE, the TagProcessor will check if a tag is already present in the tag metadata table, and will not process the tag if it is.}
 }}
 
 \section{Methods}{
 
 \describe{
+\item{\code{add_missing_fields(dat1, dat1_op_fm, dat2, dat2_op_fm)}}{Add fields from one data frame to a second dataframe, based on their
+respective DataMaps. dat_1/dm_1 refer to the data which may be missing
+fields. dat_2/dm_2 refer to the data from which we MAY take data to
+put into dat_1. Any fields defined by dm_1$output_data_field_map which
+are missing from dat_1 but are present in dat_2 will be added to dat_1.}
+
 \item{\code{build_report()}}{Builds a report (data.frame) detailing the current state of the data directory}
 
-\item{\code{process(con, overwrite = T)}}{Recursively process a directory tree, attempting to process each directory.}
+\item{\code{process(con, overwrite = T, silent = F)}}{Recursively process a directory tree, attempting to process each directory.}
 
 \item{\code{process_node(node, con, overwrite = T)}}{Attempt to process directory `d`. TagProcessor will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data.}
+
+\item{\code{register_decoder(dc)}}{Add one or more Decoder objects to the list of decoders used by this TagProcessor}
 }}
 
 \examples{
