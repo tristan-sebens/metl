@@ -33,7 +33,11 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/testthat/start-first: TagProcessor, DataMapConfig
 Collate:
-    'class.R'
+    'field.R'
+    'data_map.R'
+    'identifier.R'
+    'decoder.R'
+    'processor.R'
     'const_config.R'
     'field_config.R'
     'datamap_config.r'
