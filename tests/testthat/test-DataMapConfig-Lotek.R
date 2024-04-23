@@ -84,7 +84,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1400.1800_InstantSensorData,
-            od_fm =
+      od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('Lotek', 'LAT 1400.1800')

@@ -458,12 +458,15 @@ test_datamap_directory =
     # Extract data from the directory
     dat_ =
       dm$extract(d)
+
+    # Test that timestamp data (if present) is in POSIXct format
+    # UPDATE: timestamps no longer go to the DB as POSIXct objects, but rather as integers, so this test is unusable
+    # test_timestamp_format(dm, dm$input_data_field_map, dat_)
+
     # Perform transformation
     dat_t_ =
       dm$transform(dat_, od_fm)
 
-    # Test that timestamp data (if present) is in POSIXct format
-    test_timestamp_format(dm, od_fm, dat_t_)
 
     # Test that none of the transformed fields are completely empty
     test_for_empty_fields(dat_t_, d)

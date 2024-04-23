@@ -7,7 +7,7 @@
       [1] "integer"
       
       $TIMESTAMP
-      [1] "varchar(32)"
+      [1] "integer"
       
       $LATITUDE
       [1] "double(10, 6)"
