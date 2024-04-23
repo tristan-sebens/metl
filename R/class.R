@@ -331,7 +331,7 @@ DataMap_TagMetaData =
         extract =
           function(d) {
             data.frame() %>%
-              dplyr::summarize(
+              dplyr::reframe(
                 "{.self$input_data_field_map$field_list$TAG_ID_FIELD$name}" := .self$get_tag_id(d),
                 "{.self$input_data_field_map$field_list$TAG_MAKE_FIELD$name}" := .self$make,
                 "{.self$input_data_field_map$field_list$TAG_MODEL_FIELD$name}" := .self$model

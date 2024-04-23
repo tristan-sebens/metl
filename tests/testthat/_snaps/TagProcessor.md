@@ -200,7 +200,7 @@
     Code
       dat3
     Output
-                   timestamp        pressure temperature tag_id
+                   TIMESTAMP        PRESSURE TEMPERATURE TAG_ID
       1  2008-05-14 14:04:00  1.450377 [psi]  22.48 [°C]   3880
       2  2008-05-14 14:08:00  0.000000 [psi]  22.35 [°C]   3880
       3  2008-05-14 14:12:00  2.900755 [psi]  22.29 [°C]   3880
@@ -306,7 +306,7 @@
     Code
       metadata_c
     Output
-        tag_id                make model
+        TAG_ID                MAKE MODEL
       1 118353 Microwave Telemetry X-Tag
 
 ---
@@ -314,7 +314,7 @@
     Code
       instant_data_c
     Output
-                     timestamp          depth location_type latitude longitude
+                     TIMESTAMP          DEPTH LOCATION_TYPE LATITUDE LONGITUDE
       1    2013-09-06 00:00:00 244.766340 [m]     SATELLITE       NA        NA
       2    2013-09-06 00:15:00         NA [m]     SATELLITE       NA        NA
       3    2013-09-06 00:30:00         NA [m]     SATELLITE       NA        NA
@@ -1949,7 +1949,7 @@
       1632 2013-10-07 05:30:40         NA [m]     SATELLITE   56.383   134.655
       1633 2013-10-07 13:22:45         NA [m]     SATELLITE   56.361   134.439
       1634 2013-10-11 05:48:00         NA [m]     SATELLITE   56.380   134.620
-           depth_increase_delta_limit depth_decrease_delta_limit    temperature
+           DEPTH_INCREASE_DELTA_LIMIT DEPTH_DECREASE_DELTA_LIMIT    TEMPERATURE
       1                             0                          0  5.989378 [°C]
       2                             0                          0  5.989378 [°C]
       3                             0                          0  5.989378 [°C]
@@ -3584,7 +3584,7 @@
       1632                          0                          0        NA [°C]
       1633                          0                          0        NA [°C]
       1634                          0                          0        NA [°C]
-           temp_increase_delta_limit temp_decrease_delta_limit tag_id
+           TEMP_INCREASE_DELTA_LIMIT TEMP_DECREASE_DELTA_LIMIT TAG_ID
       1                            0                         0 118353
       2                            0                         0 118353
       3                            0                         0 118353
@@ -5226,7 +5226,7 @@
       summary_data_c
     Output
       # A tibble: 20 x 6
-         start_time          end_time            location_type      latitude longitude
+         START_TIME          END_TIME            LOCATION_TYPE      LATITUDE LONGITUDE
          <dttm>              <dttm>              <chr>                 <dbl>     <dbl>
        1 2013-09-18 00:00:00 2013-09-18 23:59:59 LIGHT_BASED_GEOLO~     66.5      135.
        2 2013-09-19 00:00:00 2013-09-19 23:59:59 LIGHT_BASED_GEOLO~     42.5      139.
@@ -5248,14 +5248,14 @@
       18 2013-10-05 00:00:00 2013-10-05 23:59:59 LIGHT_BASED_GEOLO~     51.5      133.
       19 2013-10-06 00:00:00 2013-10-06 23:59:59 LIGHT_BASED_GEOLO~     50.5      136.
       20 2013-10-09 00:00:00 2013-10-09 23:59:59 LIGHT_BASED_GEOLO~     53.3      134.
-      # i 1 more variable: tag_id <chr>
+      # i 1 more variable: TAG_ID <chr>
 
 # TagProcessor::get_node_data
 
     Code
       metadata
     Output
-        tag_id                make model
+        TAG_ID                MAKE MODEL
       1 118353 Microwave Telemetry X-Tag
 
 ---
@@ -5263,7 +5263,7 @@
     Code
       instant_data
     Output
-                     timestamp          depth location_type latitude longitude
+                     TIMESTAMP          DEPTH LOCATION_TYPE LATITUDE LONGITUDE
       1    2013-09-06 00:00:00 244.766340 [m]     SATELLITE       NA        NA
       2    2013-09-06 00:15:00         NA [m]     SATELLITE       NA        NA
       3    2013-09-06 00:30:00         NA [m]     SATELLITE       NA        NA
@@ -6898,7 +6898,7 @@
       1632 2013-10-07 05:30:40         NA [m]     SATELLITE   56.383   134.655
       1633 2013-10-07 13:22:45         NA [m]     SATELLITE   56.361   134.439
       1634 2013-10-11 05:48:00         NA [m]     SATELLITE   56.380   134.620
-           depth_increase_delta_limit depth_decrease_delta_limit    temperature
+           DEPTH_INCREASE_DELTA_LIMIT DEPTH_DECREASE_DELTA_LIMIT    TEMPERATURE
       1                             0                          0  5.989378 [°C]
       2                             0                          0  5.989378 [°C]
       3                             0                          0  5.989378 [°C]
@@ -8533,7 +8533,7 @@
       1632                          0                          0        NA [°C]
       1633                          0                          0        NA [°C]
       1634                          0                          0        NA [°C]
-           temp_increase_delta_limit temp_decrease_delta_limit tag_id
+           TEMP_INCREASE_DELTA_LIMIT TEMP_DECREASE_DELTA_LIMIT TAG_ID
       1                            0                         0 118353
       2                            0                         0 118353
       3                            0                         0 118353
@@ -10175,7 +10175,7 @@
       summary_data
     Output
       # A tibble: 20 x 6
-         start_time          end_time            location_type      latitude longitude
+         START_TIME          END_TIME            LOCATION_TYPE      LATITUDE LONGITUDE
          <dttm>              <dttm>              <chr>                 <dbl>     <dbl>
        1 2013-09-18 00:00:00 2013-09-18 23:59:59 LIGHT_BASED_GEOLO~     66.5      135.
        2 2013-09-19 00:00:00 2013-09-19 23:59:59 LIGHT_BASED_GEOLO~     42.5      139.
@@ -10197,7 +10197,7 @@
       18 2013-10-05 00:00:00 2013-10-05 23:59:59 LIGHT_BASED_GEOLO~     51.5      133.
       19 2013-10-06 00:00:00 2013-10-06 23:59:59 LIGHT_BASED_GEOLO~     50.5      136.
       20 2013-10-09 00:00:00 2013-10-09 23:59:59 LIGHT_BASED_GEOLO~     53.3      134.
-      # i 1 more variable: tag_id <chr>
+      # i 1 more variable: TAG_ID <chr>
 
 # TagProcessor::upsert
 
