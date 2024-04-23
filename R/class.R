@@ -261,8 +261,15 @@ DataMap =
                   )
               }
 
+              # Perform any specified post-transformations
+              output_field_dat_ =
+                output_field_obj_$trans_fn(
+                  v = input_field_dat_,
+                  dat = dat__
+                )
+
               # Re-append data to original object, with new name and (if applicable) units
-              dat__[output_field_obj_$name] = input_field_dat_
+              dat__[output_field_obj_$name] = output_field_dat_
             }
 
             return(
