@@ -19,3 +19,5 @@ db/mesa_test_db.db-journal
 
 # No lock files
 ~$*
+
+R/scratch
