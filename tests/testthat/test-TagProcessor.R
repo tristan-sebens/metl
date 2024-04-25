@@ -425,10 +425,10 @@ test_that(
 )
 
 test_that(
-  "ABLTAG_TagProcessor::process_to_db",
+  "TagProcessor::process_to_db",
   {
     tp__ =
-      ABLTAG_TagProcessor(
+      TagProcessor(
         d = test_data_d()
       )
 
@@ -478,10 +478,10 @@ test_that(
 
 
 test_that(
-  "ABLTAG_TagProcessor::process_to_dataframe",
+  "TagProcessor::process_to_dataframe",
   {
     tp__ =
-      ABLTAG_TagProcessor(
+      TagProcessor(
         d = test_data_d()
       )
 
@@ -509,10 +509,10 @@ test_that(
 
 
 test_that(
-  "ABLTAG_TagProcessor::process_to_csv",
+  "TagProcessor::process_to_csv",
   {
     tp__ =
-      ABLTAG_TagProcessor(
+      TagProcessor(
         d = test_data_d()
       )
 
