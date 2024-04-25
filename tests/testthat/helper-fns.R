@@ -2,134 +2,15 @@ build_test_fieldmaps =
   function() {
     INSTANT_DATA_INPUT_FIELD_MAP =
       WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS
-      # MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS
-      # FieldMap(
-      #   field_list =
-      #     list(
-      #       TIMESTAMP_FIELD =
-      #         Field(
-      #           name = "Timestamp",
-      #           id_field = T
-      #         ),
-      #       DATA_FIELD_1 =
-      #         Field(
-      #           name = "Depth",
-      #           units = "m"
-      #         ),
-      #       DATA_FIELD_2 =
-      #         Field(
-      #           name = "Pressure",
-      #           data_type = "double(10, 2)",
-      #           units = "bar"
-      #         ),
-      #       DATA_FIELD_4 =
-      #         Field(
-      #           name = "Temperature",
-      #           units = "°F"
-      #         )
-      #     )
-      # )
 
     INSTANT_DATA_OUTPUT_FIELD_MAP =
       ABLTAG_DATA_INSTANT_TABLE_FIELDS
-      # FieldMap(
-      #   table = "INSTANT_DATA",
-      #   field_list =
-      #     list(
-      #       TAG_ID_FIELD =
-      #         Field(
-      #           name = "tag_id",
-      #           data_type = "integer",
-      #           id_field = T
-      #         ),
-      #       TIMESTAMP_FIELD =
-      #         Field(
-      #           name = "timestamp",
-      #           data_type = "varchar(32)",
-      #           id_field = T
-      #         ),
-      #       DATA_FIELD_1 =
-      #          Field(
-      #            name = "depth",
-      #            data_type = "double(10, 2)",
-      #            units = "m"
-      #          ),
-      #       DATA_FIELD_2 =
-      #         Field(
-      #           name = "pressure",
-      #           data_type = "double(10, 2)",
-      #           units = "psi"
-      #         ),
-      #       DATA_FIELD_3 =
-      #         Field(
-      #           name = "weight",
-      #           data_type = "double(10, 2)",
-      #           units = "g"
-      #         )
-      #     )
-      # )
 
     SUMMARY_DATA_INPUT_FIELD_MAP =
       WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS
-      # FieldMap(
-      #   field_list =
-      #     list(
-      #       START_FIELD =
-      #         Field(
-      #           name = "Start"
-      #         ),
-      #       END_FIELD =
-      #         Field(
-      #           name = "End"
-      #         ),
-      #       DEPTH_FIELD =
-      #         Field(
-      #           name = "Depth",
-      #           units = "m"
-      #         ),
-      #       PRESSURE_FIELD =
-      #         Field(
-      #           name = "Pressure",
-      #           units = "bar"
-      #         )
-      #     )
-      # )
 
     SUMMARY_DATA_OUTPUT_FIELD_MAP =
       ABLTAG_DATA_SUMMARY_TABLE_FIELDS
-      # FieldMap(
-      #   table = "SUMMARY_DATA",
-      #   field_list =
-      #     list(
-      #       TAG_ID_FIELD =
-      #         Field(
-      #           name = "tag_id",
-      #           id_field = T
-      #         ),
-      #       START_FIELD =
-      #         Field(
-      #           name = "start",
-      #           id_field = T
-      #         ),
-      #       END_FIELD =
-      #         Field(
-      #           name = "end",
-      #           id_field = T
-      #         ),
-      #       DEPTH_FIELD =
-      #         Field(
-      #           name = "depth",
-      #           data_type = "double(10, 2)",
-      #           units = "m"
-      #         ),
-      #       PRESSURE_FIELD =
-      #         Field(
-      #           name = "pressure",
-      #           data_type = "double(10, 2)",
-      #           units = "psi"
-      #         )
-      #     )
-      # )
 
     return(
       list(
@@ -232,7 +113,6 @@ build_test_decoder =
     # Build the necessary inputs
 
     # First the DataMaps for the incoming datasets
-
     metadata_map =
       DataMap_TestStub(
         input_data_field_map =
@@ -261,9 +141,9 @@ build_test_decoder =
     dc =
       Decoder(
         instant_datamap =
-            instant_sensor_data_map,
+          instant_sensor_data_map,
         summary_datamap =
-            summary_sensor_data_map,
+          summary_sensor_data_map,
         metadata_map =
           metadata_map
       )
@@ -298,7 +178,7 @@ build_test_tag_processor =
 #' @param from_ Path of DB snapshot
 #' @param to_ Path of temporary DB
 #' @param dats Named list of data.frames to use to populate the DB.
-build_test_db =
+build_temp_db =
   function(
     from_ = test_path("_fixtures", "test_db_snapshot.db"),
     to_ = withr::local_tempfile(pattern = "metl_test_db"),

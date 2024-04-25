@@ -57,7 +57,7 @@ test_that(
     )
 
     con =
-      build_test_db()
+      build_temp_db()
 
     tp__$process(con, silent=T)
     expect_snapshot(tp__$num_decoded(tp__$dir_tree__))
@@ -81,7 +81,7 @@ test_that(
       build_test_tag_processor()
 
     con =
-      build_test_db()
+      build_temp_db()
 
     tp__$process(con, silent=T)
 
@@ -251,7 +251,7 @@ test_that(
       build_test_tag_processor()
 
     con =
-      build_test_db()
+      build_temp_db()
 
     op_fm =
       build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
@@ -323,7 +323,7 @@ test_that(
       Decoder_MicrowaveTelemetry_XTag
 
     con =
-      build_test_db()
+      build_temp_db()
 
     # We shouldn't expect any error to be thrown
     expect_no_error(
@@ -367,7 +367,7 @@ test_all_data_dirs(
           node = tp__$dir_tree__
 
           con =
-            build_test_db()
+            build_temp_db()
 
           expect_false(node$decoded)
           expect_null(node$tag_identifier_results)
@@ -401,7 +401,7 @@ test_that(
       tp__$dir_tree__$Lotek$`LTD 1000.1100.1250`$Sablefish$`4067`
 
     con =
-      build_test_db()
+      build_temp_db()
 
     # Try to decode a directory of the missing type
     tp__$process_node(node = node, con = con)
@@ -421,7 +421,7 @@ test_that(
       )
 
     con =
-      build_test_db()
+      build_temp_db()
 
     tp__$process(con)
 
