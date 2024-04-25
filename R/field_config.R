@@ -153,7 +153,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
             units = "°",
             data_type = "double(10, 2)"
           ),
-        TILT_S_FIELD =
+        TILT_Z_FIELD =
           Field(
             name = "TILT_Z",
             units = "°",
