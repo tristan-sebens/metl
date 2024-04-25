@@ -117,7 +117,7 @@
       [17] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
       [18] "TILT_X_FIELD"                             
       [19] "TILT_Y_FIELD"                             
-      [20] "TILT_S_FIELD"                             
+      [20] "TILT_Z_FIELD"                             
       [21] "INCLINATION_FIELD"                        
       [22] "MAGNETIC_STRENGTH_FIELD"                  
 
