@@ -59,8 +59,10 @@ test_that(
     con =
       build_temp_db()
 
-    tp__$process(con, silent=T)
+    tp__$process_to_db(con, silent=T)
     expect_snapshot(tp__$num_decoded(tp__$dir_tree__))
+
+    DBI::dbDisconnect(con)
   }
 )
 
@@ -83,10 +85,12 @@ test_that(
     con =
       build_temp_db()
 
-    tp__$process(con, silent=T)
+    tp__$process_to_db(con, silent=T)
 
     report = tp__$build_report()
     expect_snapshot(report)
+
+    DBI::dbDisconnect(con)
   }
 )
 
@@ -310,6 +314,8 @@ test_that(
     expect_snapshot(out_tbl)
     expect_gt(nrow(out_tbl), 0)
     expect_equal(nrow(out_tbl), nrow(dat))
+
+    DBI::dbDisconnect(con)
   }
 )
 
@@ -342,6 +348,8 @@ test_that(
         node = tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
       )
     )
+
+    DBI::dbDisconnect(con)
   }
 )
 
@@ -383,6 +391,8 @@ test_all_data_dirs(
           # Expect only one decoder to have matched to the directory
           expect_equal(sum(node$tag_identifier_results$result), 1)
           expect_equal(node$decode_error, "")
+
+          DBI::dbDisconnect(con)
         }
       )
     }
@@ -409,11 +419,13 @@ test_that(
     expect_false(node$decoded)
     expect_equal(node$identified_decoder, "")
     expect_snapshot(node$decode_error)
+
+    DBI::dbDisconnect(con)
   }
 )
 
 test_that(
-  "ABLTAG_TagProcessor::process",
+  "ABLTAG_TagProcessor::process_to_db",
   {
     tp__ =
       ABLTAG_TagProcessor(
@@ -423,20 +435,128 @@ test_that(
     con =
       build_temp_db()
 
-    tp__$process(con)
+    tp__$process_to_db(con, silent = T)
 
     report =
       tp__$build_report()
 
     expect_equal(report$pct_decoded[[1]], 100)
+
+    meta_dat =
+      data.frame(
+        dplyr::tbl(
+          con,
+          tp__$metadata_fieldmap$table
+        )
+      )
+    expect_gt(nrow(meta_dat), 0)
+    expect_snapshot(meta_dat)
+
+    instant_dat =
+      data.frame(
+        dplyr::tbl(
+          con,
+          tp__$instant_fieldmap$table
+        )
+      )
+    expect_gt(nrow(instant_dat), 0)
+    expect_snapshot(instant_dat)
+
+    summary_dat =
+      data.frame(
+        dplyr::tbl(
+          con,
+          tp__$summary_fieldmap$table
+        )
+      )
+    expect_gt(nrow(summary_dat), 0)
+    expect_snapshot(summary_dat)
+
+    DBI::dbDisconnect(con)
   }
 )
 
 
+test_that(
+  "ABLTAG_TagProcessor::process_to_dataframe",
+  {
+    tp__ =
+      ABLTAG_TagProcessor(
+        d = test_data_d()
+      )
+
+    res =
+      tp__$process_to_dataframe(silent = T)
+
+    report =
+      tp__$build_report()
+
+    expect_equal(report$pct_decoded[[1]], 100)
+
+    meta_dat = res$meta
+    expect_gt(nrow(meta_dat), 0)
+    expect_snapshot(meta_dat)
+
+    instant_dat = res$instant
+    expect_gt(nrow(instant_dat), 0)
+    expect_snapshot(instant_dat)
+
+    summary_dat = res$summary
+    expect_gt(nrow(summary_dat), 0)
+    expect_snapshot(summary_dat)
+  }
+)
 
 
+test_that(
+  "ABLTAG_TagProcessor::process_to_csv",
+  {
+    tp__ =
+      ABLTAG_TagProcessor(
+        d = test_data_d()
+      )
 
+    test_d =
+      withr::local_tempdir(pattern = "metl_test_csv")
 
+    tp__$process_to_csv(out_d = test_d, silent = T)
+
+    report =
+      tp__$build_report()
+
+    expect_equal(report$pct_decoded[[1]], 100)
+
+    meta_dat =
+      read.csv(
+        file.path(
+          test_d,
+          paste0(tp__$metadata_fieldmap$table, '.csv')
+        )
+      )
+    expect_gt(nrow(meta_dat), 0)
+    expect_snapshot(meta_dat)
+
+    instant_dat =
+      read.csv(
+        file.path(
+          test_d,
+          paste0(tp__$instant_fieldmap$table, '.csv')
+        )
+      )
+    expect_gt(nrow(instant_dat), 0)
+    expect_snapshot(instant_dat)
+
+    summary_dat =
+      read.csv(
+        file.path(
+          test_d,
+          paste0(tp__$summary_fieldmap$table, '.csv')
+        )
+      )
+    expect_gt(nrow(summary_dat), 0)
+    expect_snapshot(summary_dat)
+  }
+)
 
 
 

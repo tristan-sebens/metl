@@ -376,7 +376,7 @@ TagProcessor =
           },
 
         # Process all tag data contained within the directory tree
-        process =
+        process_to_db =
           function(con, overwrite = T, silent = F) {
           "Recursively process a directory tree, attempting to process each directory."
             if(!silent) print("Processing directory.")
@@ -389,6 +389,86 @@ TagProcessor =
                 }
               }
             )
+          },
+
+        process_to_dataframe =
+          function(...) {
+            "Extract tag data and return it as a list of dataframes"
+            # Build a temporary DB
+            con =
+              build_temp_db()
+
+            # Populate the temporary DB with the tag data as normal
+            process_to_db(con, ...)
+
+            # Extract the three data types out of the temp DB
+            ret =
+              list(
+                meta =
+                  dplyr::tbl(
+                    con,
+                    tp__$metadata_fieldmap$table
+                  ) %>%
+                  data.frame(),
+
+                instant =
+                  dplyr::tbl(
+                    con,
+                    tp__$instant_fieldmap$table
+                  ) %>%
+                  data.frame(),
+
+                summary =
+                  dplyr::tbl(
+                    con,
+                    tp__$summary_fieldmap$table
+                  ) %>%
+                  data.frame()
+              )
+
+            # Sever the connection to the temp DB
+            DBI::dbDisconnect(con)
+
+            return(ret)
+          },
+
+        process_to_csv =
+          function(out_d, ...) {
+            "Extract tag data and write it to csv files in `out_d`"
+            # Generate the three output data.frames from the tag data
+            res = process_to_dataframe(...)
+
+            # Write the metadata to a csv file
+            write.csv(
+              x = res$meta,
+              file =
+                file.path(
+                  out_d,
+                  paste0(metadata_fieldmap$table, '.csv')
+                ),
+              row.names = F
+            )
+            # Write the instant data to a csv file
+            write.csv(
+              x = res$instant,
+              file =
+                file.path(
+                  out_d,
+                  paste0(instant_fieldmap$table, '.csv')
+                ),
+              row.names = F
+            )
+            # Write the summary data to a csv file
+            write.csv(
+              x = res$summary,
+              file =
+                file.path(
+                  out_d,
+                  paste0(summary_fieldmap$table, '.csv')
+                ),
+              row.names = F
+            )
+
           }
       )
   )
