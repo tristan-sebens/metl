@@ -1,14 +1,16 @@
 ---
 title: "METL pipe"
 subtitle: "Marine Ecosystem & Stock Assessment (**M**ESA) Extract Transform Load (**ETL**) pipe"
-author: "Tristan N. G. Sebens"
-date: "2024-04-25"
+author: "Tristan N. G. Sebens, M.S."
 output:
   html_document:
     css: dark_readme.css
+    toc: true
+    toc_depth: 2
+    number_sections: true
 ---
 
-### **Description**
+# **Description**
 
 `metl` provides a simple R interface for users to extract raw sensor data from a variety of different makes/models of marine biological research tags, and standardize the format of their output. This data can be output in one of three ways:
 
@@ -16,23 +18,23 @@ output:
 2. writing the data to `.csv` files
 3. loading the data directly into a database
 
-### **Installation**
+# **Installation**
 `metl` can be installed with `devtools`
 ```
 devtools::install_github(<afsc git repo>)
 ```
 
-### **Usage**
+# **Usage**
 
 `metl` assumes that the data from individual tags is organized into individual data directories. Each directory must contain all data from a single tag, and only data from that tag. However, tag data directories can then be nested in any kind of directory structure. Additionally, no sub-directories may be present in a data directory.
 
-`metl` currently supports [13 models](#Supported tags) of tags, but also provides functionality by which users can define support for additional tags.
+`metl` currently supports [13 models](#list-of-supported-tags) of tags, but also provides functionality by which users can define support for additional tags.
 
-#### **Use case 1: Extracting data to data.frames**
+## **Use case 1: Extracting data to data.frames**
 
-We will start with the simplest example: extracting the tag data as data.frames. We will also cover [extracting to csv files](), and [loading to a database]().
+We will start with the simplest example: extracting the tag data as data.frames. We will also cover [extracting to csv files](#use-case-2-extract-data-to-.csv-files), and [loading to a database](#use-case-3-load-data-directly-into-database).
 
-##### **1. Instantiate the TagProcessor object**
+### **Instantiate the TagProcessor object**
 
 The `TagProcessor` object is the workhorse of the `metl` package, and coordinates processing the tag data from its raw format on disk to its final standardized format.
 
@@ -46,7 +48,7 @@ tag_processor =
     d = tag_data_directory, # Root directory of tag data
   ) 
 ```
-##### **2. Initiate extraction**
+### **Initiate extraction**
 
 Once instantiated, we can use the `TagProcessor` object to extract tag data. 
 ```
@@ -54,7 +56,7 @@ res = tag_processor$process_to_dataframes(con = db_conn)
 ```
 The `TagProcessor` will now traverse the entire directory tree rooted in `d`, and will attempt to extract all data within.
 
-##### **3. View report**
+### **View report**
 
 `TagProcessor` can produce a detailed report which specifies which directories `metl` was able to successfully extract from, as well as an error report for those directories for which extraction failed.
 ```
@@ -62,7 +64,7 @@ report = tag_processor$build_report()
 print(report)
 ```
 
-##### **4. Retrieve results**
+### **Retrieve results**
 
 Finally, we can retrieve the raw data which have been extracted from our tags.
 
@@ -80,7 +82,7 @@ instant_data = res$instant
 summary_data = res$summary
 ```
 
-#### **Use case 2: Extract data to `.csv` files**
+## **Use case 2: Extract data to `.csv` files**
 
 The `TagProcessor` can also output the data as three `.csv` files written to disk. To do this, we call `process_to_csv`, and specify a directory into which the files should be written:
 ```
@@ -90,11 +92,11 @@ csv_directory = here::here() # Specify the directory into which the csv files sh
 tag_processor$process_to_csv(out_d = csv_directory) 
 ```
 
-#### **Use case 3: Load data directly into database**
+## **Use case 3: Load data directly into database**
 
-Finally, `TagProcessor` is capable of loading the data extracted from the tag directories directly into a suitably formatted database. `TagProcessor` is, by default, configured with an output data structure suitable for loading into the AFSC ABLTAG database. If you are not loading into this database, you will either need to ensure that your database conforms to the same data structure as ABLTAG, or you will need to [adjust the configuration of `TagProcessor` to your database's structure]().
+`TagProcessor` is capable of loading the data extracted from the tag directories directly into a suitably formatted database. `TagProcessor` is, by default, configured with an output data structure matching that of the AFSC ABLTAG database. If you are not loading into this database, you will either need to ensure that your database conforms to the same data structure as ABLTAG, or you will need to [adjust the configuration of `TagProcessor` to your database's structure](#configuring-tagprocessor-object).
 
-##### **1. Establish a connection to the output database**
+### **Establish a connection to the output database**
 
 First we need to establish a connection to our database. We do this by constructing a database connection object using `DBI::dbConnect`.
 
@@ -118,7 +120,7 @@ db_conn =
   )
 ```
 
-##### **2. Call `process_to_db`**
+### **Call `process_to_db`**
 
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
 
@@ -128,7 +130,27 @@ tag_processor$process_to_db(con = db_conn)
 
 As before, the `TagProcessor` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
 
-#### **Uploading duplicate data to a database - UNIQUE constraints**
+# **List of supported tags**
+The following tags are currently supported on the main branch. However, it should be noted that the package has been designed to make adding support for additional tag types to be as accessible as possible.
+
+Manufacture  | Model
+------------- | -------------
+Lotek | LTD 1000
+Lotek | LTD 1100
+Lotek | LTD 1250
+Lotek | LTD 1300
+Lotek | LAT 1400
+Lotek | LAT 1800
+Microwave Telemetry | X-Tag
+Star Oddi | DST
+Star Oddi | DST milli-F
+Star Oddi | DST magnetic
+Wildlife Computers | Benthic sPAT
+Wildlife Computers | MiniPAT
+Desert Star | SeaTag MOD
+
+
+# **Uploading duplicate data to a database - UNIQUE constraints**
 
 When writing to a database, it is expected that we may be attempting to insert data which is already present. This could occur because we are reprocessing a directory in which some of the tags have already been loaded, or because additional data became after a tag was physically recovered, or some other reason. To prevent duplicate data from being inserted into the database, `TagProcessor` performs an **upsert** operation when writing to the database. It first loads the data into a temporary table in the database (this table is automatically deleted afterwards), and then performs a merge operation between the temporary table and the target table. This ensures that any records in the target table which are also present in the temporary table are overwritten with the new data.
 
@@ -140,7 +162,7 @@ ABLTAG uses the following constraints, and we recommend following the same patte
  - instant data table - UNIQUE constraint on the combination of the 'tag_id' and 'timestamp' fields
  - summary data table - UNIQUE constraint on the combination of the 'tag_id', 'start_time', and 'end_time' fields
 
-##### **Configuring `TagProcessor` object**
+### **Configuring `TagProcessor` object**
 
 Configuring the TagProcessor object means specifying where each type of data produced by eTags should be loaded in the database.
 
@@ -197,14 +219,14 @@ Within `metl` the input `FieldMap` objects are already defined (for supported ta
 In order for `metl` to understand which input fields map to the output fields we define, we have to work within a pre-defined vocabulary of `Field` list names, which can be found in the [Field vocabulary](#Field vocabulary) section
 
 
-### **Extending `metl` to unsupported tags**
+# **Extending `metl` to unsupported tags**
 `metl` was intentionally structured to make extending its functionality to additional unsupported tags as easy as possible.
 
 
-### **Field vocabulary**
+# **Field vocabulary**
 This section lists the standardized names for each type of data produced by the supported tags. Output `FieldMaps` must use these same terms for their `Field` objects in order for the corresponding input fields to be mapped properly.
 
-##### **Metadata**
+### **Metadata**
 
 Data type | Field name
 ------------- | -------------
@@ -212,7 +234,7 @@ Tag ID # | `TAG_ID_FIELD`
 Tag brand / make / manufacture | `TAG_MAKE_FIELD`
 Tag model | `TAG_MODEL_FIELD`
 
-##### **Instant Data**
+### **Instant Data**
 
 Data type | Field name | Units | Notes
 ------------- | ------------- | ------------- | -------------
@@ -242,7 +264,7 @@ Tilt (z axis) | `TILT_Z_FIELD` | ° | Change in orientation from vertical, z-axi
 Inclination (away from vertical) | `INCLINATION_FIELD` | ° | Absolute angle of deviation from vertical
 Magnetic field strength | `MAGNETIC_STRENGTH_FIELD` | nT | Strength of the Earth's magnetic field
 
-##### **Summary data**
+### **Summary data**
 
 Data type | Field name | Units | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,43 +284,16 @@ Percentage upright | `UPRIGHT_FIELD` | % | The percentage of the time period tha
 Knockdowns | `KNOCKDOWN_FIELD` | | The number of times that the tag was knocked over during this time period
 
 
-### Supported tags
-The following tags are currently supported on the main branch. However, it should be noted that the package has been designed to make adding support for additional tag types to be as simple as possible.
+# **Bug Reporting**
 
-Manufacture  | Model
-------------- | -------------
-Lotek | LTD 1000
-Lotek | LTD 1100
-Lotek | LTD 1250
-Lotek | LTD 1300
-Lotek | LAT 1400
-Lotek | LAT 1800
-Microwave Telemetry | X-Tag
-Star Oddi | DST
-Star Oddi | DST milli-F
-Star Oddi | DST magnetic
-Wildlife Computers | Benthic sPAT
-Wildlife Computers | MiniPAT
-Desert Star | SeaTag MOD
+The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or any other form of input, please create an issue on the GitHub website. Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users.
 
-### Directions for use
+# **Disclaimer** 
 
-##### Supported tags
+This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department
+of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government. 
 
-TagProcessor -> processing directory tree
-Code example
-
-##### Unsupported tags
-
-If a tag is not currently supported by `metl`, users can easily construct the necessary functionality to support a novel tag-type
-
-
-
-
-
-
-
-### Contact
+# Contact
 
 Tristan N G Sebens, M.S.
 
