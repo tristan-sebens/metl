@@ -416,7 +416,7 @@ TagProcessor =
             )
           },
 
-        process_to_dataframe =
+        process_to_dataframes =
           function(...) {
             "Extract tag data and return it as a list of dataframes"
             # Build a temporary DB
@@ -461,7 +461,7 @@ TagProcessor =
           function(out_d, ...) {
             "Extract tag data and write it to csv files in `out_d`"
             # Generate the three output data.frames from the tag data
-            res = process_to_dataframe(...)
+            res = process_to_dataframes(...)
 
             # Write the metadata to a csv file
             write.csv(

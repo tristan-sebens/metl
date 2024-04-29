@@ -478,7 +478,7 @@ test_that(
 
 
 test_that(
-  "TagProcessor::process_to_dataframe",
+  "TagProcessor::process_to_dataframes",
   {
     tp__ =
       TagProcessor(
@@ -486,7 +486,7 @@ test_that(
       )
 
     res =
-      tp__$process_to_dataframe(silent = T)
+      tp__$process_to_dataframes(silent = T)
 
     report =
       tp__$build_report()
