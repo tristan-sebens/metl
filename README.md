@@ -26,7 +26,7 @@ devtools::install_github("https://github.com/tristan-sebens/metl")
 
 # **Use**
 
-`metl` assumes that the data from individual tags is organized into individual data directories. Each directory must contain all data from a single tag, and only data from that tag. However, tag data directories can then be nested in any kind of directory structure. Additionally, no sub-directories may be present in a data directory.
+`metl` assumes that the data from individual tags is organized into individual data directories. Each directory must contain all data from a single tag, and only data from that tag. Additionally, no sub-directories may be present in a data directory. However, tag data directories can then be nested in any kind of directory structure. 
 
 `metl` currently supports [13 models](#list-of-supported-tags) of tags, but also provides functionality by which users can define support for additional tags.
 
@@ -130,24 +130,39 @@ tag_processor$process_to_db(con = db_conn)
 
 As before, the `TagProcessor` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
 
+# **Proprietary post-processing software**
+
+When dealing with telemetry tags, very often there is a post-processing step which takes the raw data files from the tag and converts them into usable files. Examples of this post-processing software include *tag-talk32* for Lotek tags, *SeaStar* for StarOddi tags, or *SeaDock* for Desert Star tags. Typically, the raw data which is actually output by the tag is encoded in a proprietary file format which only the post-processing software is capable of reading. Alternatively, the files may be readable, but only interpretable when the organization of the underlying data is understood *a priori*. 
+
+Either way, the use of these post-processing software packages is typically unavoidable when obtaining data from telemetry tags. As such, `metl` is NOT intended as a replacement for these software packages, but is rather a followup package used to quickly and consistently read and format the data output by these post-processing packages. [The expected inputs for each of the supported tag types are listed below](#list-of-supported-tags).
+
+When using `metl` to process tag data, it is **CRITICAL** that the structure and contents of the data have not been altered in ANY way. In order to identify the make/model of the tag which produced a given data directory, `metl` must make some *very* specific assumptions about the naming conventions, file formats, and presence/absence of files in a given directory. Even files which are not actually read by the extraction code may be important markers used by `metl` to identify which tag type was used to produce the data, and therefore how to extract and format the data within.
+
 # **List of supported tags**
 The following tags are currently supported on the main branch. However, it should be noted that the package has been designed to make adding support for additional tag types to be as accessible as possible.
 
-Manufacture  | Model
-------------- | -------------
-Lotek | LTD 1000
-Lotek | LTD 1100
-Lotek | LTD 1250
-Lotek | LTD 1300
-Lotek | LAT 1400
-Lotek | LAT 1800
-Microwave Telemetry | X-Tag
-Star Oddi | DST
-Star Oddi | DST milli-F
-Star Oddi | DST magnetic
-Wildlife Computers | Benthic sPAT
-Wildlife Computers | MiniPAT
-Desert Star | SeaTag MOD
+Manufacture  | Model | `metl` expected inputs
+------------- | ------------- | -------------
+Lotek | LTD 1000 | Output of [**tagtalk32**](https://www.lotek.com/)
+Lotek | LTD 1100 | Output of [**tagtalk32**](https://www.lotek.com/)
+Lotek | LTD 1250 | Output of [**tagtalk32**](https://www.lotek.com/)
+Lotek | LTD 1300 | Output of [**tagtalk32**](https://www.lotek.com/)
+Lotek | LAT 1400 | Output of [**tagtalk32**](https://www.lotek.com/)
+Lotek | LAT 1800 | Output of [**tagtalk32**](https://www.lotek.com/)
+Microwave Telemetry | X-Tag | `.xls` file, product of post-processing software
+Star Oddi | DST | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software)
+Star Oddi | DST milli-F | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software)
+Star Oddi | DST magnetic | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software)
+Wildlife Computers | Benthic sPAT | Data downloaded from [Wildlife Computers portal](https://my.wildlifecomputers.com/)
+Wildlife Computers | MiniPAT | Data downloaded from [Wildlife Computers portal](https://my.wildlifecomputers.com/)
+Desert Star | SeaTag MOD | Output of [**SeaDock**](https://desert-star-systems-llc1.odoo.com/page/software)
+
+
+# **Adding support for additional tags**
+
+Users can extend `metl` to support additional makes and models of tags.
+
+*This section to be expanded later*
 
 
 # **Uploading duplicate data to a database - UNIQUE constraints**
@@ -164,7 +179,7 @@ ABLTAG uses the following constraints, and we recommend following the same patte
 
 ### **Configuring `TagProcessor` object**
 
-Configuring the TagProcessor object means specifying where each type of data produced by eTags should be loaded in the database.
+Configuring the `TagProcessor` object means specifying where each type of data retrieved from the tags should be loaded in the database.
 
 To do this, we use `FieldMap` objects. `FieldMap` objects describe the fields of a particular data source. They are made up of a list of `Field` objects, which describe individual fields: name, type, units, etc. We can define how one data source is mapped to another data source by defining two `FieldMap` objects, one for the input data source, and one for the output data source.
 
