@@ -21,10 +21,10 @@ output:
 # **Installation**
 `metl` can be installed with `devtools`
 ```
-devtools::install_github(<afsc git repo>)
+devtools::install_github("https://github.com/tristan-sebens/metl")
 ```
 
-# **Usage**
+# **Use**
 
 `metl` assumes that the data from individual tags is organized into individual data directories. Each directory must contain all data from a single tag, and only data from that tag. However, tag data directories can then be nested in any kind of directory structure. Additionally, no sub-directories may be present in a data directory.
 
