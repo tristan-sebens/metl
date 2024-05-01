@@ -53,31 +53,3 @@ build_temp_db =
 
     return(con)
   }
-
-decorate_error =
-  function(err, ...) {
-    l = list(...)
-    for (k in names(l)) {
-      err[k] = l[k]
-    }
-
-    return(err)
-  }
-
-#' Decorator for try/catch block
-#'
-#' Accepts an expression and any number of named values. If an error is thrown while evaluating the expression, then the error is caught, and the named values are appended to the error object. Then the error is rethrown to be caught further up the call stack
-#'
-#' @param expr The expression to evaluate
-#' @param ... Named values to be appended to any caught error conditions
-try_catch_decorate =
-  function(expr, ...) {
-    tryCatch(
-      expr = expr,
-      error =
-        function(err) {
-          err = decorate_error(err = err, ...)
-          stop(err)
-        }
-    )
-  }
