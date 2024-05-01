@@ -1,18 +1,18 @@
 ---
 title: "METL pipe"
-subtitle: "Marine Ecosystem & Stock Assessment (**M**ESA) Extract Transform Load (**ETL**) pipe"
+subtitle: "Marine Ecosystem & Stock Assessment (**M**ESA) Extract/Transform/Load (**ETL**) pipe"
 author: "Tristan N. G. Sebens, M.S."
 output:
   html_document:
     css: dark_readme.css
     toc: true
-    toc_depth: 2
+    toc_depth: 4
     number_sections: true
 ---
 
 # **Description**
 
-`metl` provides a simple R interface for users to extract raw sensor data from a variety of different makes/models of marine biological research tags, and standardize the format of their output. This data can be output in one of three ways:
+`metl` provides an R interface for users to extract raw sensor data from a variety of different makes/models of marine biological research tags, and standardize the format of their output. This data can be output in one of three ways:
 
 1. returning the data as `data.frame` objects
 2. writing the data to `.csv` files
@@ -20,6 +20,7 @@ output:
 
 # **Installation**
 `metl` can be installed with `devtools`
+
 ```
 devtools::install_github("https://github.com/tristan-sebens/metl")
 ```
@@ -28,7 +29,7 @@ devtools::install_github("https://github.com/tristan-sebens/metl")
 
 `metl` assumes that the data from individual tags is organized into individual data directories. Each directory must contain all data from a single tag, and only data from that tag. Additionally, no sub-directories may be present in a data directory. However, tag data directories can then be nested in any kind of directory structure. 
 
-`metl` currently supports [13 models](#list-of-supported-tags) of tags, but also provides functionality by which users can define support for additional tags.
+`metl` currently supports [13 models](#list-of-supported-tags) of tags, but users can extend `metl` to support additional tags.
 
 ## **Use case 1: Extracting data to data.frames**
 
@@ -158,12 +159,248 @@ Wildlife Computers | MiniPAT | Data downloaded from [Wildlife Computers portal](
 Desert Star | SeaTag MOD | Output of [**SeaDock**](https://desert-star-systems-llc1.odoo.com/page/software)
 
 
-# **Adding support for additional tags**
+# **Extending `metl`**
 
-Users can extend `metl` to support additional makes and models of tags.
+Users can extend `metl` to support additional makes and models of tags, and can customize its inputs/outputs to suit their needs. Doing so requires a stronger overview of the internal mechanics of the package.
 
-*This section to be expanded later*
+## **Classes of the `metl` package**
 
+`metl` is an object-oriented package, and uses a handful of custom object classes to define how data is extracted and exported from tags.
+
+- `Decoder` - Defines all logic required to process a particular make/model of tag.
+  - Attributes:
+    - `identifier` - An `Identifier` object used to determine whether or not a data directory was produced by the given tag type.
+    - `metadata_map`, `instant_datamap`, and `summary_datamap` - `DataMap` objects which define how to extract each of the three types of data from a data directory.
+- `DataMap` - Defines all logic required to take data of a single type (meta/instant/summary) from a data directory all the way to the final output format. 
+  - Attributes:
+    - `extract_`
+      - Function which accepts a single parameter `d`, which is the path to a data directory, and returns a single `data.frame` object, which is the raw input data to be transformed and then loaded by the pipeline.
+    - `input_data_field_map`
+      - `FieldMap` object which describes the fields that are present in the `data.frame` returned by `extract_`.
+- `FieldMap` - Defines the fields present in a dataset. Can describe both input and output datasets. Used by the `DataMap` class to define how input fields map to output fields.
+  - Attributes:
+    `field_list` - List of `Field` objects, each of which describes a single field in the corresponding dataset.
+- `Field`
+  - Defines a single field in a dataset, either input or output.
+  - Attributes:
+    - `name` - The name of the field in the dataset
+    - `units` - Units of the field. Must be valid units as described by `units::valid_udunits()`
+    
+    
+## **Basic example: adding a new type of tag to `metl`**
+
+Let's consider a basic example. Suppose we have a new tag type, as-yet unsupported by the `metl` package: the 'Tuff1' tag, made by 'TuffTags INC.' We have a data directory at path `d`, which is the output data products collected from a single Tuff1 tag.
+
+For the simplicity, we'll assume that the Tuff1 tag only produces instantaneous data, a common pattern in older tags. We'll start by defining the ETL pathway for the instant data.
+
+### **Building a custom `DataMap`**
+
+#### **The `extract_` function**
+
+To start with, we'll define our `extract_` function. This function must accept `d` as its only parameter, and return a single `data.frame`, the instant data in its raw input format.
+
+Tuff1 tags are simple devices, and very conveniently store all of their instantaneous sensor data in a single `.csv` file. This `.csv` file is always named 'sensor_<id>.csv', where <id> is the four digit ID used to identify the tag. Luckily for us, all of the instant sensor data fields are stored in this `.csv` file, so our `extract_` function will be very simple:
+
+```
+tuff1_extract = function(d) {
+  # Use a regular expression to find the instant sensor data
+  instant_data_filepath = list.files(d, pattern = "sensor_\\d*\\.csv")[[1]]
+  
+  # Read in the instant sensor data from the file
+  instant_sensor_data = read.csv(instant_data_filepath)
+  
+  # Return the data
+  return(instant_sensor_data)
+}
+```
+
+We can now use `tuff1_extract()` to quickly extract the instant sensor data from any data directory produced by a Tuff1 tag. 
+
+#### **Defining a `FieldMap`**
+
+Next we need to define a `FieldMap` for our extracted data. Tuff1 tags record temperature and depth data, along with the date and time of the reading:
+
+timestamp | depth | temperature
+-- | -- | --
+2024-04-01 13:00:00 | -48 | 5.3
+2024-04-01 14:00:00 | -56 | 5.1
+2024-04-01 15:00:00 | -47 | 4.9
+2024-04-01 16:00:00 | -51 | 5.2
+2024-04-01 16:00:00 | -53 | 5.6
+2024-04-01 16:00:00 | -56 | 5.5
+... | ... | ...
+
+Based on this, we define a `FieldMap` which identifies each field within the dataset:
+
+```
+tuff1_input_fieldmap = 
+  FieldMap(
+    # A list of the fields contained within the incoming dataset
+    field_list = 
+      list(
+        TIMESTAMP_FIELD = 
+          Field(
+            name = "timestamp"
+          ),
+        DEPTH_FIELD = 
+          Field(
+            name = "depth"
+          ),
+        TEMPERATURE_FIELD = 
+          Field(
+            name = "temperature"
+          )
+      )
+  )
+```
+By choosing these list-names for each of our `Field` objects in `field_list`, we implicitly identify the *type* of data contained in each field. The full list of available names can be found in the [field vocabulary](#field-vocabulary). If you are extracting a field for which there is not an established list-name, you can use any name. Just be sure that the corresponding field object in the output `FieldMap` object uses the same list-name.
+
+We also have to define the units of our fields wherever possible. The `timestamp` field has no units, but both `depth` and `temperature` do. We can update our `FieldMap` to reflect this:
+
+```
+tuff1_input_fieldmap = 
+  FieldMap(
+    # A list of the fields contained within the incoming dataset
+    field_list = 
+      list(
+        TIMESTAMP_FIELD = 
+          Field(
+            name = "timestamp"
+          ),
+        DEPTH_FIELD = 
+          Field(
+            name = "depth",
+            units = "m"
+          ),
+        TEMPERATURE_FIELD = 
+          Field(
+            name = "temperature",
+            units = "°C"
+          )
+      )
+  )
+```
+
+#### **Building the `DataMap`**
+
+We can now use our `tuff1_extract` and `tuff1_input_fieldmap` to construct a `DataMap` for instant sensor data collected by Tuff1 tags:
+
+```
+tuff1_instant_sensor_datamap =
+  DataMap(
+    input_data_field_map = tuff1_input_fieldmap,
+    extract_fn = tuff1_extract
+  )
+```
+
+That's it! Our datamap can now be used to extract instantaneous sensor data from any data directory produced by a Tuff1 tag. We can confirm this is true by extracting from our example directory `d`:
+
+```
+tuff1_inst_dat = 
+  tuff1_instant_sensor_datamap$extract(d)
+  
+head(tuff1_inst_dat)
+```
+
+For the sake of simplicity, we'll assume that Tuff1 tags don't record any summary data. However, if they did, we would simply repeat the steps we followed to create our `tuff1_instant_sensor_datamap` but altering the `extract_` function and the `input_data_field_map` as appropriate. 
+
+### **Building a metadata `DataMap`**
+
+Regardless, we will also need to be able to extract the appropriate tag metadata from each Tuff1 tag. In our simple use-case, the necessary metadata will be limited to the make and model of the tag, but also the tag ID number. Recall, this number was contained in the filename of the sensor data `.csv` file. Whenever we extract from a Tuff1 data directory we will need to be able to get these metadata values. 
+
+To accomplish this, we'll use the `DataMap_TagMetaData` class. This is a special kind of `DataMap` specifically designed for extracting metadata. 
+
+#### **The `get_tag_id` function**
+
+The `extract_` function is already defined for this class, but we have to define a new function; the `get_tag_id` function. This operates identically to the `extract_` function, but rather that returning an entire `data.frame` it just returns the ID of the tag.
+
+```
+tuff1_get_id = 
+  function(d) {
+    # Again, identify the instant sensor data .csv file
+    instant_data_filepath = list.files(d, pattern = "sensor_\\d*\\.csv")[[1]]
+    
+    # Use a second regular expression to extract the tag ID string from the filename
+    tag_id = 
+      stringr::str_extract(
+        instant_data_filepath, 
+        pattern = "sensor_(\\d*)\\.csv",
+        group = 1
+      )
+      
+    # Return the tag id as a string
+    return(tag_id)
+  }
+```
+
+#### **Building the metadata `DataMap`
+
+Now we can define our `DataMap_TagMetaData` object for Tuff1 tags. `DataMap_TagMetaData` objects also define `make` and `model` attributes which we'll supply values for here: 
+
+```
+tuff1_meta_datamap = 
+  DataMap_TagMetaData(
+    get_tag_id = tuff1_get_id,
+    make = "TuffTags",
+    model = "Tuff1"
+  )
+```
+
+Now when we call the `extract()` method on our new object, we'll receive a `data.frame` describing all of the metadata needed for a tag:
+
+```
+tuff1_metadata = tuff1_meta_datamap$extract(d) 
+
+head(tuff1_metadata)
+```
+
+### **Building the `Decoder`**
+
+We're nearly done extending `metl` to support the Tuff1 tag! 
+
+Often, data from multiple makes/models of tags can be stored within the same directory tree. In these cases, if we want the `TagProcessor` to be able to apply the appropriate `Decoder` to each data directory, we will have to provide a method by which it can determine the type of tag which produced a given data directory. This is where the `Identifier` class comes in. [More detail here](#the-identifier-class).
+
+For this simple example however, we'll assume that the we only have Tuff1 tag data to decode. As such, we can now define a `Decoder` object for our Tuff1 tag. Because we are not defining an `Identifier` object for this `Decoder`, it will be instantiated with the default placeholder `Identifier` object, which always yields a positive match to a directory. 
+
+```
+tuff1_decoder = 
+  Decoder(
+    metadata_map =
+      tuff1_meta_datamap,
+    instant_datamap =
+      tuff1_instant_sensor_datamap,
+  )
+```
+This `Decoder` can now be used to extract all of the necessary data from any data directory which has been produced by a Tuff1 tag. However, the `Decoder` object is not designed to be used directly by users. Instead, we plug our new `Decoder` into a `TagProcessor` object. The `TagProcessor` object traverses a directory tree and uses `Decoders` to extract all relevant data from each data directory it finds.
+
+A `TagProcessor` is given a list of `Decoder` objects to use upon instantiation. By default, this list includes all of the tags currently supported by `metl`, but we can override this list to only include our custom Tuff1 `Decoder`.
+
+We'll also assume that we have data from a large number of Tuff1 tags, with each tag's data stored in its own directory within the directory tree. This directory tree will be rooted in the directory specified by `root`.
+
+```
+tuff1_tag_processor = 
+  TagProcessor(
+    d = root,
+    decoders = list(tuff1_decoder)
+  )
+  
+dats = tuff1_tag_processor$process_to_dataframes()
+```
+
+As before, our
+
+```
+
+metadata = dats$meta
+instant_data = dats$instant
+summary_data = dats$summary
+```
+
+
+
+### **The `Identifier` class**
+
+`Identifier` objects are used by `metl` to determine which tag type produced a given data directory. This allows the `TagProcessor` to process a directory tree which contains data from a variety of potential tag types and apply the appropriate `Decoder` object to each data directory. 
 
 # **Uploading duplicate data to a database - UNIQUE constraints**
 
@@ -227,16 +464,9 @@ OUTPUT_METADATA_FIELDS =
       )
   )
 ```
-Notice that the list name of each `Field` object is the same, but the `name` of each `Field` has changed. This second `FieldMap` describes the same three fields, but with different names (`TAG_ID`, `TAG_MAKE`, and `TAG_MODEL`). By defining the fields in this way, `metl` is able to understand which fields in the input data correspond to which fields in the output data.
+Notice that the list name of each `Field` object is the same, but the `name` of each `Field` has changed. This second `FieldMap` describes the same three fields, but with different names (`TAG_ID`, `TAG_MAKE`, and `TAG_MODEL`). `metl` uses an input `FieldMap` and output `FieldMap` to determine how input fields are mapped to output fields, and matches `Field` objects in the input and ouput `FieldMaps` based on their list names.
 
-Within `metl` the input `FieldMap` objects are already defined (for supported tags). We just have to supply the output `FieldMap` objects that detail where each field from the input data should be routed to in the database. 
-
-In order for `metl` to understand which input fields map to the output fields we define, we have to work within a pre-defined vocabulary of `Field` list names, which can be found in the [Field vocabulary](#Field vocabulary) section
-
-
-# **Extending `metl` to unsupported tags**
-`metl` was intentionally structured to make extending its functionality to additional unsupported tags as easy as possible.
-
+Input `FieldMap` objects are already defined and used for all supported tags. A list of the list names for each of the fields can be found in the section on [field vocabulary](#field-vocabulary).
 
 # **Field vocabulary**
 This section lists the standardized names for each type of data produced by the supported tags. Output `FieldMaps` must use these same terms for their `Field` objects in order for the corresponding input fields to be mapped properly.
