@@ -47,14 +47,7 @@ setRefClass(
           t__['name'] =
             t__[['dc']] %>%
             lapply(
-              function(dc) {
-                Filter(
-                  function(c) {
-                    stringr::str_detect(c, 'Decoder')
-                  },
-                  class(dc)
-                )
-              }
+              function(dc) {dc$label}
             ) %>%
             unlist()
 
