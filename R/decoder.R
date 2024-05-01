@@ -34,26 +34,34 @@ setRefClass(
             summary_datamap = summary_datamap
           )
         },
+    # Helper function to throw an error with a pre-appended message to help identify
+    # the source of the error
+    throw_error =
+      function(msg) {
+        stop(
+          paste0(
+            "ERROR - ",
+            class(.self)[[1]],
+            ": ",
+            msg
+          )
+        )
+      },
+
     # Execute all necessary steps to read and transform raw data for one DataMap
     decode_datamap =
-      function(d, dm, op_fm, type) {
+      function(d, dm, op_fm) {
         "Execute all necessary steps to read and transform raw data for one DataMap"
-        try_catch_decorate(
-          expr =
-            {
-              # Perform initial extraction
-              dat =
-                dm$extract(d)
+        # Perform initial extraction
+        dat =
+          dm$extract(d)
 
-              # Transform extracted data
-              dat_t =
-                dm$transform(dat, op_fm)
+        # Transform extracted data
+        dat_t =
+          dm$transform(dat, op_fm)
 
-              # Return transformed data
-              return(dat_t)
-            },
-          data_type = type
-        )
+        # Return transformed data
+        return(dat_t)
       },
 
     decode_metadata_map =
@@ -61,8 +69,7 @@ setRefClass(
         .self$decode_datamap(
           d,
           .self$metadata_map,
-          op_fm,
-          type = "meta"
+          op_fm
         )
       },
 
@@ -71,8 +78,7 @@ setRefClass(
         .self$decode_datamap(
           d,
           .self$instant_datamap,
-          op_fm,
-          type = "instant"
+          op_fm
         )
       },
 
@@ -81,8 +87,7 @@ setRefClass(
         .self$decode_datamap(
           d,
           .self$summary_datamap,
-          op_fm,
-          type = "summary"
+          op_fm
         )
       }
     )

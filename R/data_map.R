@@ -28,9 +28,14 @@ setRefClass(
       # the source of the error
       throw_error =
         function(msg) {
-          # Kind of a placeholder at this point. Just here in case any future
-          # work needs to hook into this point of the error throwing process
-          stop(msg)
+          stop(
+            paste0(
+              "ERROR - ",
+              class(.self)[[1]],
+              ": ",
+              msg
+            )
+          )
         },
 
       get_static =
@@ -124,19 +129,15 @@ setRefClass(
       extract =
         function(d) {
           "Extract data from directory `d`"
-          try_catch_decorate(
-            expr = {return(.self$extract_fn(d))},
-            etl_step = "extract"
-          )
+          .self$extract_fn(d)
         },
 
+      # TODO: This function has become a wrapper function for 'transform_fields.'
+      # Should it just be removed, and the wrapped function renamed?
       transform =
         function(dat, output_data_field_map) {
-          "Transform data as specified by input/output FieldMaps"
-          try_catch_decorate(
-            expr = {return(.self$transform_fields(dat, output_data_field_map))},
-            etl_step = "transform"
-          )
+          # Standardize incoming fields, and save the result to the 'dat_' field
+          return(.self$transform_fields(dat, output_data_field_map))
         }
     )
 )
