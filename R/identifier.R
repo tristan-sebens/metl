@@ -47,7 +47,7 @@ setRefClass(
           t__['name'] =
             t__[['dc']] %>%
             lapply(
-              function(dc) {dc$label}
+              function(dc) {paste(dc$metadata_map$make, '-', dc$metadata_map$model)}
             ) %>%
             unlist()
 
