@@ -432,21 +432,21 @@ TagProcessor =
                 meta =
                   dplyr::tbl(
                     con,
-                    tp__$metadata_fieldmap$table
+                    metadata_fieldmap$table
                   ) %>%
                   data.frame(),
 
                 instant =
                   dplyr::tbl(
                     con,
-                    tp__$instant_fieldmap$table
+                    instant_fieldmap$table
                   ) %>%
                   data.frame(),
 
                 summary =
                   dplyr::tbl(
                     con,
-                    tp__$summary_fieldmap$table
+                    summary_fieldmap$table
                   ) %>%
                   data.frame()
               )
