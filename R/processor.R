@@ -179,7 +179,7 @@ TagProcessor =
           },
 
         add_missing_fields =
-          function(dat1, dat1_op_fm, dat2, dat2_op_fm) {
+          function(dat1, dat1_ip_fm, dat1_op_fm, dat2, dat2_ip_fm, dat2_op_fm) {
             "Add fields from one data frame to a second dataframe, based on their
             respective DataMaps. dat_1/dm_1 refer to the data which may be missing
             fields. dat_2/dm_2 refer to the data from which we MAY take data to
@@ -191,24 +191,56 @@ TagProcessor =
             # If dat1 is emtpy, there's nothing to do.
             if(nrow(dat1) == 0) {return(dat1)}
 
-            # Determine which fields are present in the output FieldMap of dm_1,
-            # but missing from the input FieldMap of dm_1. These are the fields
-            # which must be added from other sources.
-            common_fields =
-              names(dat1_op_fm$common_fields(dat2_op_fm))
+            # First find any fields in dat1 which are present in the output FieldMap
+            # but missing in the input FieldMap
+            missing_fields = names(dat1_op_fm$uncommon_fields(dat1_ip_fm))
 
-            # List of fields which are missing from DM1s output datamap and are present in DM2s output datamap
-            missing_fields_available =
+            # Next determine if any of the missing fields are references to fields in
+            # the output FieldMap of dat2
+
+            # Collect all of the UUIDs of the output FieldMap for dat2
+            dat2_op_uids =
+              dat2_op_fm$field_list %>%
+              lapply(function(f) {f$uid}) %>%
+              unlist(use.names = F)
+
+            matching_fields =
               Filter(
-                function(n) {
-                  !dat1_op_fm$field_list[[n]]$name %in% names(dat1) &&
-                    dat2_op_fm$field_list[[n]]$name %in% names(dat2)
-                },
-                common_fields
+                f =
+                  function(e) {
+                    dat1_op_fm$field_list[[e]]$uid %in% dat2_op_uids
+                  },
+                x =
+                  missing_fields
               )
 
+            # Finally, if there are matching fields, check if those fields are also
+            # present in the input FieldMap of dat2. If they aren't then that means
+            # these fields are the result of a prior completion just like this one.
+            available_fields =
+              Filter(
+                f =
+                  function(e) {
+                    e %in% names(dat2_ip_fm$field_list)
+                  },
+                x =
+                  matching_fields
+              )
+
+            # If such fields exist, this means that there are fields which are missing
+            # from dat1, which it did not originally have access to (as indicated by
+            # those fields being absent from the input FieldMap), but which it is
+            # supposed to have (indicated by the presence of those fields in the
+            # output FieldMap), and which are available from dat2, which dat2 was not
+            # given from another source (as indicated by the presence of the field in
+            # the input FieldMap of dat2).
+
+            # Now we simply iterate through those available fields and add them from
+            # dat2 to dat1. We assume that both datasets have been transformed at this
+            # point, so fieldnames will be taken from the output FieldMaps for both
+
             # For each missing field which is available in the second DataMap, add the appropriate data
-            for(f_ in missing_fields_available) {
+            for(f_ in available_fields) {
               dat1[dat1_op_fm$field_list[[f_]]$name] =
                 dat2[dat2_op_fm$field_list[[f_]]$name]
             }
@@ -216,11 +248,10 @@ TagProcessor =
             return(dat1)
           },
 
-
         # Complete each dataframe with fields it is missing (according to its
         # FieldMap) which are available in the other dataframes
         complete_dataframes =
-          function(dfs, op_fms) {
+          function(dfs, ip_fms, op_fms) {
             # Calculate a comparison grid, identifying all distinct
             # pairings of the incoming datasets
             ix_mx =
@@ -242,8 +273,10 @@ TagProcessor =
               dfs[[dat1_ix]] =
                 add_missing_fields(
                   dat1 = dfs[[dat1_ix]],
+                  dat1_ip_fm = ip_fms[[dat1_ix]],
                   dat1_op_fm = op_fms[[dat1_ix]],
                   dat2 = dfs[[dat2_ix]],
+                  dat2_ip_fm = ip_fms[[dat2_ix]],
                   dat2_op_fm = op_fms[[dat2_ix]]
                 )
             }
@@ -274,31 +307,31 @@ TagProcessor =
                 op_fm = .self$summary_fieldmap
               )
 
-            # Add metadata to instant and summary data
-            instant_data =
-              add_missing_fields(
-                instant_data,
-                .self$instant_fieldmap,
-                metadata,
-                .self$metadata_fieldmap
-              )
-
-            summary_data =
-              add_missing_fields(
-                summary_data,
-                .self$summary_fieldmap,
-                metadata,
-                .self$summary_fieldmap
+            # Complete the dataframes with fields from eachother as necessary
+            cmp_dats =
+              complete_dataframes(
+                dfs =
+                  list(
+                    metadata,
+                    instant_data,
+                    summary_data
+                  ),
+                ip_fms =
+                  list(
+                    dc$metadata_map$input_data_field_map,
+                    dc$instant_datamap$input_data_field_map,
+                    dc$summary_datamap$input_data_field_map
+                  ),
+                op_fms =
+                  list(
+                    .self$metadata_fieldmap,
+                    .self$instant_fieldmap,
+                    .self$summary_fieldmap
+                  )
               )
 
             # Return the decoded data
-            return(
-              list(
-                metadata,
-                instant_data,
-                summary_data
-              )
-            )
+            return(cmp_dats)
           },
 
         #TODO Move this into a separate connection object (or something like that) which can decouple the

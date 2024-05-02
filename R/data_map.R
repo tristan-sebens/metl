@@ -132,12 +132,15 @@ setRefClass(
           .self$extract_fn(d)
         },
 
-      # TODO: This function has become a wrapper function for 'transform_fields.'
-      # Should it just be removed, and the wrapped function renamed?
       transform =
         function(dat, output_data_field_map) {
-          # Standardize incoming fields, and save the result to the 'dat_' field
+          "Transform extracted data, as dictated by the input/output `FieldMap` objects"
           return(.self$transform_fields(dat, output_data_field_map))
+        },
+
+      augment =
+        function(dat, output_data_field_map) {
+          "Augment the transformed dataset with any missing data"
         }
     )
 )
@@ -166,9 +169,9 @@ DataMap_TagMetaData =
       list(
         initialize =
           function(
-    ...,
-    # All of the tag meta DataMaps will produce dataframes of the same format
-    input_data_field_map = DEFAULT_METADATA_FIELDS
+            ...,
+            # All of the tag meta DataMaps will produce dataframes of the same format
+            input_data_field_map = DEFAULT_METADATA_FIELDS
           ) {
             callSuper(
               ...,

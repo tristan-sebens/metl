@@ -112,8 +112,10 @@ test_that(
     dat3 =
       tp__$add_missing_fields(
         dat1 = dat1,
+        dat1_ip_fm = dc$instant_datamap$input_data_field_map,
         dat1_op_fm = tp__$instant_fieldmap,
         dat2 = dat2,
+        dat2_ip_fm = dc$metadata_map$input_data_field_map,
         dat2_op_fm = tp__$metadata_fieldmap
       )
 
@@ -180,6 +182,12 @@ test_that(
             metadata,
             instant_data,
             summary_data
+          ),
+        ip_fms =
+          list(
+            dc$metadata_map$input_data_field_map,
+            dc$instant_datamap$input_data_field_map,
+            dc$summary_datamap$input_data_field_map
           ),
         op_fms =
           list(

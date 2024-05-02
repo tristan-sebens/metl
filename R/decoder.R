@@ -53,15 +53,19 @@ setRefClass(
       function(d, dm, op_fm) {
         "Execute all necessary steps to read and transform raw data for one DataMap"
         # Perform initial extraction
-        dat =
+        dat_e =
           dm$extract(d)
 
         # Transform extracted data
-        dat_t =
-          dm$transform(dat, op_fm)
+        dat_et =
+          dm$transform(dat_e, op_fm)
+
+        # Augment transformed data
+        # dat_eta =
+        #   dm$augment(dat_et, op_fm)
 
         # Return transformed data
-        return(dat_t)
+        return(dat_et)
       },
 
     decode_metadata_map =

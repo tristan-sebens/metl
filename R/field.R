@@ -31,20 +31,22 @@ Field =
         id_field = "logical", # Flag to indicate if this is a field used to identify unique records
         units = "character",
         data_type = "character", # Data type to be used for this field in the DB
-        trans_fn = "function" # Function which will be applied to this field individually. Applied before all other transformations.
+        trans_fn = "function", # Function which will be applied to this field individually. Applied before all other transformations.
+        uid = "character" # UID generated on instantiation
       ),
     methods =
       list(
         initialize =
           function(
-    ...,
-    alternate_names = list(),
-    trans_fn = function(v, ...) {v}
+            ...,
+            alternate_names = list(),
+            trans_fn = function(v, ...) {v}
           ) {
             callSuper(
               ...,
               alternate_names = alternate_names,
-              trans_fn = trans_fn
+              trans_fn = trans_fn,
+              uid = uuid::UUIDgenerate()
             )
           }
       )
