@@ -23,6 +23,21 @@ ABLTAG_METADATA_TABLE_FIELDS =
           Field(
             name = "MODEL",
             data_type = "varchar(32)"
+          ),
+        TAG_DEPLOY_DATE =
+          InputField_Text(
+            name = "DEPLOYED",
+            data_type = "varchar(32)"
+          ),
+        TAG_RECOVERY_DATE =
+          InputField_Text(
+            name = "RECOVERED",
+            data_type = "varchar(32)"
+          ),
+        TAG_SPECIES_ID_FIELD =
+          InputField_Select(
+            name = "SPECIES_ID",
+            data_type = "varchar(32)"
           )
       )
   )

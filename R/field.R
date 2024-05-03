@@ -32,7 +32,8 @@ Field =
         units = "character",
         data_type = "character", # Data type to be used for this field in the DB
         trans_fn = "function", # Function which will be applied to this field individually. Applied before all other transformations.
-        uid = "character" # UID generated on instantiation
+        uid = "character", # UID generated on instantiation
+        user_specified = "logical"
       ),
     methods =
       list(
@@ -40,17 +41,108 @@ Field =
           function(
             ...,
             alternate_names = list(),
-            trans_fn = function(v, ...) {v}
+            trans_fn = function(v, ...) {v},
+            user_specified = F
           ) {
             callSuper(
               ...,
               alternate_names = alternate_names,
               trans_fn = trans_fn,
-              uid = uuid::UUIDgenerate()
+              uid = uuid::UUIDgenerate(),
+              user_specified = user_specified
             )
           }
       )
   )
+
+InputField =
+#' InputField - base class
+#'
+#' Base of all user input fields. Not intended to be directly implemented, use a child class instead
+  setRefClass(
+    "InputField",
+    contains = "Field",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(
+              user_specified = T,
+              ...
+            )
+          },
+
+        build_widget =
+          function(window) {
+            stop(
+              "Inheritence error: 'build_widget' method of FieldInput base
+               class called. Please implement a child class instead"
+            )
+          },
+
+        add_widget =
+          function(window, ...) {
+            "Add the field's widget to the form"
+            # Field label
+            tcltk::tkgrid(tcltk::tklabel(window, text = .self$name))
+            # Field entry widget
+            tcltk::tkgrid(.self$build_widget(window, ...))
+          }
+      )
+  )
+
+InputField_Text =
+#' Text input field
+  setRefClass(
+    "InputField_Text",
+    contains = "InputField",
+    methods =
+      list(
+        build_widget =
+          function(window, ...) {
+            tcltk::tkentry(window, ...)
+          }
+      )
+  )
+
+
+InputField_Select =
+  #' An input field for which the user selects from a list of available options
+  #'
+  #' Useful when we want to restrict the possible inputs a user can provide, for example if they are choosing the species. Rather than asking them to retype the species every time, each time potentially yielding a mispelling or other mistake we provide them with a list of options from which they can choose.
+  #'
+  #' @field table character.
+  #' @field field character.
+  #'
+  #' @return
+  #' @export
+  #'
+  #' @examples
+setRefClass(
+  "InputField_Select",
+  contains = "InputField",
+  fields =
+    list(
+      tbl = "character",
+      tbl_field = "character"
+    ),
+  methods =
+    list(
+      get_options =
+        function() {
+          return(c("Option1", "Option2", "Option3"))
+        },
+
+      build_widget =
+        function(window, ...) {
+          tcltk::ttkcombobox(
+            window,
+            values = get_options(),
+            ...
+          )
+        }
+    )
+)
 
 
 #' FieldMap class. Collection of Field objects, with some added functionality
@@ -135,6 +227,82 @@ FieldMap =
                 }
               ) %>%
               unlist(use.names = F)
+          },
+
+        get_input_fields =
+          function() {
+            "Get any user-input Field objects as named list"
+            Filter(
+              function(field) {field$user_specified},
+              .self$field_list
+            )
+          }
+      )
+  )
+
+
+FieldInputForm =
+  setRefClass(
+    "FieldInputForm",
+    fields =
+      list(),
+    methods =
+      list(
+        build_window =
+          function(fields) {
+            field_names = names(fields)
+
+            # Create main window
+            tt <- tcltk::tktoplevel()
+            tcltk::tkwm.title(tt, "Input Form")
+
+            # Iterate through each field and create input widgets
+            for (field in fields) {
+              field$add_widget(tt, ...)
+            }
+
+            # Button to submit the form with its values
+            closeButton =
+              tcltk::tkbutton(
+                tt,
+                text = "Submit",
+                command = function() {tcltk::tkdestroy(tt)}
+              )
+            tcltk::tkgrid(closeButton)
+
+            return(tt)
+          },
+
+        retrieve_values =
+          function(fields) {
+            # Create a list
+            vals = list()
+            # Iterate through the fields and retrieve them from the form
+            for (field_name in names(fields)) {
+              # Retrieve the submitted value
+              vals[[field_name]] = tcltk::tclvalue(field_name)
+              # Remove the value from the tclvalue object
+              tcltk::`tclvalue<-`(field_name, "")
+            }
+            # Return the extracted values
+            return(vals)
+          },
+
+        get_field_values =
+          function(fields) {
+            # Build the form window
+            window = build_window(fields)
+
+            # Focus on the form window, and wait for user to confirm input
+            tcltk::tkfocus(window)
+            tcltk::tkwait.window(window)
+
+            # Retrieve the user submitted values
+            vals = retrieve_values(fields)
+
+            # TODO: validation step. If values are not valid, respond intelligently
+
+            return(vals)
           }
       )
   )
