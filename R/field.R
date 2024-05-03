@@ -86,7 +86,20 @@ InputField =
             # Field label
             tcltk::tkgrid(tcltk::tklabel(window, text = .self$name))
             # Field entry widget
-            tcltk::tkgrid(.self$build_widget(window, ...))
+            widget = .self$build_widget(window, ...)
+            tcltk::tkgrid(widget)
+            tcltk::tkconfigure(widget, textvariable = .self$name)
+          },
+
+        get_value =
+          function() {
+            "Retrieve the user-inputted value for this field"
+            # Retrieve the submitted value
+            val = tcltk::tclvalue(.self$name)
+            # Remove the value from the tclvalue object
+            tcltk::`tclvalue<-`(.self$name, "")
+            # Return the retrieved value
+            return(val)
           }
       )
   )
@@ -112,19 +125,16 @@ InputField_Select =
   #' Useful when we want to restrict the possible inputs a user can provide, for example if they are choosing the species. Rather than asking them to retype the species every time, each time potentially yielding a mispelling or other mistake we provide them with a list of options from which they can choose.
   #'
   #' @field table character.
-  #' @field field character.
-  #'
-  #' @return
-  #' @export
-  #'
-  #' @examples
+  #' @field label_field character.
+  #' @field pk_field character.
 setRefClass(
   "InputField_Select",
   contains = "InputField",
   fields =
     list(
       tbl = "character",
-      tbl_field = "character"
+      label_field = "character",
+      pk_field = "character"
     ),
   methods =
     list(
@@ -249,7 +259,7 @@ FieldInputForm =
     methods =
       list(
         build_window =
-          function(fields) {
+          function(fields, ...) {
             field_names = names(fields)
 
             # Create main window
@@ -275,17 +285,13 @@ FieldInputForm =
 
         retrieve_values =
           function(fields) {
-            # Create a list
-            vals = list()
-            # Iterate through the fields and retrieve them from the form
-            for (field_name in names(fields)) {
-              # Retrieve the submitted value
-              vals[[field_name]] = tcltk::tclvalue(field_name)
-              # Remove the value from the tclvalue object
-              tcltk::`tclvalue<-`(field_name, "")
-            }
-            # Return the extracted values
-            return(vals)
+            fields %>%
+              lapply(
+                function(field) {
+                  field$get_value()
+                }
+              ) %>%
+              unlist()
           },
 
         get_field_values =
