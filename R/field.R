@@ -133,23 +133,26 @@ setRefClass(
   fields =
     list(
       tbl = "character",
-      label_field = "character",
-      pk_field = "character"
+      labels = "list",
+      values = "list"
     ),
   methods =
     list(
-      get_options =
-        function() {
-          return(c("Option1", "Option2", "Option3"))
-        },
-
       build_widget =
         function(window, ...) {
           tcltk::ttkcombobox(
             window,
-            values = get_options(),
+            values = unlist(labels),
             ...
           )
+        },
+
+      get_value =
+        function(...) {
+          "Retrieve the user-inputted value for this field"
+          val = callSuper(...)
+          # Convert from the lable to the corresponding ID value
+          return(.self$values[which(.self$labels == val)])
         }
     )
 )
