@@ -38,10 +38,9 @@ ABLTAG_METADATA_TABLE_FIELDS =
           InputField_Select(
             name = "SPECIES_ID",
             data_type = "varchar(32)",
-            labels =
-              list("Sablefish", "Spiny Dogfish", "Sleeper Sharks"),
-            values =
-              list(1, 2, 3)
+            table = "SPECIES",
+            pk_field = "CODE",
+            label_field = "SPECIES_NAME"
           )
       )
   )

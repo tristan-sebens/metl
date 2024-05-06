@@ -37,14 +37,19 @@ Field =
               uid = uuid::UUIDgenerate(),
               user_specified = user_specified
             )
+          },
+
+        refresh =
+          function(...) {
+            "Placeholder function that can be used to refresh reference fields"
           }
       )
   )
 
-InputField =
 #' InputField - base class
 #'
 #' Base of all user input fields. Not intended to be directly implemented, use a child class instead
+InputField =
   setRefClass(
     "InputField",
     contains = "Field",
@@ -90,8 +95,8 @@ InputField =
       )
   )
 
-InputField_Text =
 #' Text input field
+InputField_Text =
   setRefClass(
     "InputField_Text",
     contains = "InputField",
@@ -105,7 +110,6 @@ InputField_Text =
   )
 
 
-InputField_Select =
   #' An input field for which the user selects from a list of available options
   #'
   #' Useful when we want to restrict the possible inputs a user can provide, for example if they are choosing the species. Rather than asking them to retype the species every time, each time potentially yielding a mispelling or other mistake we provide them with a list of options from which they can choose.
@@ -113,35 +117,47 @@ InputField_Select =
   #' @field table character.
   #' @field label_field character.
   #' @field pk_field character.
-setRefClass(
-  "InputField_Select",
-  contains = "InputField",
-  fields =
-    list(
-      tbl = "character",
-      labels = "list",
-      values = "list"
-    ),
-  methods =
-    list(
-      build_widget =
-        function(window, ...) {
-          tcltk::ttkcombobox(
-            window,
-            values = unlist(labels),
-            ...
-          )
-        },
+InputField_Select =
+  setRefClass(
+    "InputField_Select",
+    contains = "InputField",
+    fields =
+      list(
+        table = "character",
+        pk_field = "character",
+        label_field = "character",
+        pks = "character",
+        labels = "character"
+      ),
+    methods =
+      list(
+        build_widget =
+          function(window, ...) {
+            tcltk::ttkcombobox(
+              window,
+              values = unlist(labels),
+              ...
+            )
+          },
 
-      get_value =
-        function(...) {
-          "Retrieve the user-inputted value for this field"
-          val = callSuper(...)
-          # Convert from the lable to the corresponding ID value
-          return(.self$values[which(.self$labels == val)])
-        }
-    )
-)
+        get_value =
+          function(...) {
+            "Retrieve the user-inputted value for this field"
+            val = callSuper(...)
+            # Convert from the lable to the corresponding ID value
+            return(.self$pks[which(.self$labels == val)])
+          },
+
+        refresh =
+          function(con, ...) {
+            # Refresh the pk and label values from the DB
+            pks <<-
+              as.character(data.frame(dplyr::tbl(con, table))[[pk_field]])
+            labels <<-
+              as.character(data.frame(dplyr::tbl(con, table))[[label_field]])
+          }
+      )
+  )
 
 
 #' FieldMap class. Collection of Field objects, with some added functionality
@@ -174,6 +190,14 @@ FieldMap =
                     return(l)
                   }
               )
+          },
+
+        refresh =
+          function(...) {
+            "Call the `refresh` function on all internal Field objects. Useful for updating reference Fields"
+            for (field in .self$field_list) {
+              field$refresh(...)
+            }
           },
 
         # Helper function which generates a list of the Fields shared by this

@@ -391,6 +391,7 @@ TagProcessor =
             instant_data = completed_dfs[[2]]
             summary_data = completed_dfs[[3]]
 
+            #TODO: Wrap this in an overall transaction
             # Finally, upload the data using the passed connection
             upsert(con, metadata, .self$metadata_fieldmap)
             upsert(con, instant_data, .self$instant_fieldmap)
@@ -403,6 +404,7 @@ TagProcessor =
         process_node =
           function(node, con, overwrite = T) {
             "Attempt to process directory `d`. TagProcessor will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
+
             node$tag_identifier_results =
               # Instantiate the identifier object based on the list of Decoders held by this TagProcessor
               TagIdentifier(decoders = .self$decoders)$
@@ -433,6 +435,14 @@ TagProcessor =
             }
           },
 
+        refresh_op_fm =
+          function(...) {
+            "Refresh each of the FieldMap objects"
+            .self$metadata_fieldmap$refresh(...)
+            .self$instant_fieldmap$refresh(...)
+            .self$summary_fieldmap$refresh(...)
+          },
+
         # Process all tag data contained within the directory tree
         process_to_db =
           function(con, overwrite = T, silent = F) {
@@ -441,6 +451,9 @@ TagProcessor =
             # Traverse directory tree and process each data directory (leaf node)
             .self$dir_tree__$Do(
               function(node) {
+                # Refresh all output Fields
+                .self$refresh_op_fm(con = con)
+                # If the current node is a leaf node, attempt to extract the data
                 if(!silent) print(node$levelName)
                 if (node$isLeaf) {
                   .self$process_node(node, con, overwrite = overwrite)
