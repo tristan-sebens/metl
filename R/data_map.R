@@ -141,6 +141,27 @@ setRefClass(
       augment =
         function(dat, output_data_field_map) {
           "Augment the transformed dataset with any missing data"
+          # Collect any fields which are flagged as input fields
+          input_fields =
+            output_data_field_map$get_input_fields()
+
+          # If there are no Fields which require input, return the dataframe as is
+          if (length(input_fields) == 0) return(dat)
+
+          # Prompt the user for the necessary field values
+          input_vals =
+            FieldInputForm()$get_field_values(input_fields)
+
+          # Add the input values to the data.frame
+          for (field in names(input_fields)) {
+            op_field_obj = output_data_field_map$field_list[[field]]
+            op_field_name = op_field_obj$name
+            op_field_value = input_vals[[field]]
+            dat[[op_field_name]] = op_field_value
+          }
+
+          # Return the augmented data.frame
+          return(dat)
         }
     )
 )

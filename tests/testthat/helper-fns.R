@@ -24,10 +24,23 @@ build_test_fieldmaps =
 
 build_test_metadata_map =
   function() {
+    # For testing, we can't use input fields, and so will have to remove those fields
+    test_metadata_output_fields =
+      ABLTAG_METADATA_TABLE_FIELDS$copy()
+
+    # Get a list of input fields from the output metadata fieldmap
+    input_field_names =
+      names(test_metadata_output_fields$get_input_fields())
+
+    # Remove each of the input fields from the FieldMap
+    for (input_field_name in input_field_names) {
+      test_metadata_output_fields$field_list[input_field_name] = NULL
+    }
+
     return(
       list(
         METADATA_INPUT_FIELD_MAP = DEFAULT_METADATA_FIELDS,
-        METADATA_OUTPUT_FIELD_MAP = ABLTAG_METADATA_TABLE_FIELDS
+        METADATA_OUTPUT_FIELD_MAP = test_metadata_output_fields
       )
     )
   }
@@ -157,9 +170,9 @@ build_test_tag_processor =
     decoders = build_test_decoder_list(),
     # The following parameters are the output FieldMap objects for the metadata, instant data, and summary tables, respectivey
     #TODO: These tests would ideally not use these objects, as they're technically subject to being changed in the future. However, we need to use FieldMaps which match the input/output structure of our test data, and it would take time to rewrite them in the proper way, time that I think is better spent otherwise at the moment. However, this is worth fixing in the future.
-    metadata_fieldmap = ABLTAG_METADATA_TABLE_FIELDS,
-    instant_fieldmap = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
-    summary_fieldmap = ABLTAG_DATA_SUMMARY_TABLE_FIELDS
+    metadata_fieldmap = build_test_metadata_map()$METADATA_OUTPUT_FIELD_MAP,
+    instant_fieldmap = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
+    summary_fieldmap = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
   ) {
     TagProcessor(
       d = d,

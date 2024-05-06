@@ -436,7 +436,7 @@ test_that(
   "TagProcessor::process_to_db",
   {
     tp__ =
-      TagProcessor(
+      build_test_tag_processor(
         d = test_data_d()
       )
 
@@ -489,7 +489,7 @@ test_that(
   "TagProcessor::process_to_dataframes",
   {
     tp__ =
-      TagProcessor(
+      build_test_tag_processor(
         d = test_data_d()
       )
 
@@ -520,7 +520,7 @@ test_that(
   "TagProcessor::process_to_csv",
   {
     tp__ =
-      TagProcessor(
+      build_test_tag_processor(
         d = test_data_d()
       )
 

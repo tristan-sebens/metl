@@ -61,11 +61,11 @@ setRefClass(
           dm$transform(dat_e, op_fm)
 
         # Augment transformed data
-        # dat_eta =
-        #   dm$augment(dat_et, op_fm)
+        dat_eta =
+          dm$augment(dat_et, op_fm)
 
         # Return transformed data
-        return(dat_et)
+        return(dat_eta)
       },
 
     decode_metadata_map =
