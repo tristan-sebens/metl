@@ -115,7 +115,7 @@ InputField =
           function(var_label, init_value = "") {
             "Register a new tclvar object"
             # Create the new tclVar object
-            tv__ = tclVar(init = init_value)
+            tv__ = tcltk::tclVar(init = init_value)
             # Register it with the internal list of tclVar objects
             l = list()
             l[[var_label]] = tv__
@@ -347,7 +347,7 @@ InputField_Date =
             year_picker =
               tcltk::ttkcombobox(
                 date_picker_frame,
-                values = seq(1950, as.integer(current_year)),
+                values = seq(1950, as.integer(format(Sys.Date(), "%Y"))),
                 textvariable =
                   register_tclvar(
                     var_label = "year",
@@ -387,10 +387,13 @@ InputField_Date =
         get_value =
           function() {
             # Collect all three fields and paste them together as a named list
-            list(
-              "day" = tcltk::tclvalue(tcl_vars$day),
-              "month" = tcltk::tclvalue(tcl_vars$month),
-              "year" = tcltk::tclvalue(tcl_vars$year)
+            paste0(
+              c(
+                tcltk::tclvalue(tcl_vars$day),
+                tcltk::tclvalue(tcl_vars$month),
+                tcltk::tclvalue(tcl_vars$year)
+              ),
+              collapse = "-"
             )
           }
       )
@@ -633,8 +636,8 @@ FieldInputForm =
           },
 
         retrieve_values =
-          function(fields) {
-            fields %>%
+          function(input_fields) {
+            input_fields %>%
               lapply(
                 function(field) {
                   field$get_value()
