@@ -288,23 +288,21 @@ FieldInputForm =
             )
           },
 
-        build_window =
-          function(fields, titles, ...) {
-            field_names = names(fields)
+        build_id_frame =
+          function(window, input_window_titles) {
+            # Create the parent frame for the ID title
+            id_frame = tcltk::ttkframe(window)
 
-            # Create main window
-            window = tcltk::tktoplevel()
-            tcltk::tkwm.title(window, "Input Form")
+            # For each of the ID fields, create two labels: One naming the
+            # Field, the other specifying its value. Place these in a grid
+            for (title_ix in seq_along(input_window_titles)) {
+              key = names(input_window_titles)[[title_ix]]
+              value = input_window_titles[[title_ix]]
 
-            # Add descriptive title
-            bold_font = tcltk::tkfont.create(size = 12, weight = "bold")
-
-            for (title_ix in seq_along(titles)) {
               title_label =
                 tcltk::tklabel(
-                  window,
-                  text=paste0(names(titles)[[title_ix]], ":"),
-                  font=bold_font
+                  id_frame,
+                  text=paste0(key, ":")
                 )
               tcltk::tkgrid(
                 title_label, column = 0, row = title_ix,
@@ -312,9 +310,8 @@ FieldInputForm =
               )
               title_value =
                 tcltk::tklabel(
-                  window,
-                  text=titles[[title_ix]],
-                  font=bold_font
+                  id_frame,
+                  text=input_window_titles[[title_ix]]
                 )
               tcltk::tkgrid(
                 title_value, column = 1, row = title_ix,
@@ -322,32 +319,66 @@ FieldInputForm =
               )
             }
 
+            tcltk::tkgrid.columnconfigure(id_frame, 0, weight = 1)
+            tcltk::tkgrid.columnconfigure(id_frame, 1, weight = 1)
+
+            return(id_frame)
+          },
+
+        build_input_form_frame =
+          function(window, input_fields) {
+            # Create the parent frame for the ID title
+            input_form_frame = tcltk::ttkframe(window)
+
             # Iterate through each field and create input widgets
-            for (ix in seq_along(fields)) {
-              field = fields[[ix]]
+            for (ix in seq_along(input_fields)) {
+              field = input_fields[[ix]]
               # Field label
-              label = field$build_label(window)
+              label = field$build_label(input_form_frame)
               tcltk::tkgrid(
                 label,
                 column = 0,
-                row = ix + length(titles),
+                row = ix,
                 sticky = 'w'
               )
               # Field entry widget
-              widget = field$build_widget(window)
+              widget = field$build_widget(input_form_frame)
               tcltk::tkgrid(
                 widget,
                 column = 1,
-                row = ix + length(titles),
+                row = ix,
                 sticky = 'w'
               )
               tcltk::tkconfigure(widget, textvariable = field$name)
             }
 
-            tcltk::tkgrid.columnconfigure(window, 0, weight = 1)
-            tcltk::tkgrid.columnconfigure(window, 1, weight = 2)
+            tcltk::tkgrid.columnconfigure(input_form_frame, 0, weight = 1)
+            tcltk::tkgrid.columnconfigure(input_form_frame, 1, weight = 1)
 
-            # Buwindowon to submit the form with its values
+            return(input_form_frame)
+          },
+
+
+        build_window =
+          function(fields, input_window_titles, ...) {
+            # Create main window
+            window = tcltk::tktoplevel()
+            tcltk::tkwm.title(window, "Input Form")
+
+            id_label = tcltk::tklabel(window, text = "Current tag: ")
+            id_frame = build_id_frame(window, input_window_titles)
+            input_label = tcltk::tklabel(window, text = "Required input fields: ")
+            input_form_frame = build_input_form_frame(window, fields)
+
+            tcltk::tkgrid(id_label, sticky='ew')
+            tcltk::tkgrid(id_frame)
+            tcltk::tkgrid(input_label, sticky='ew')
+            tcltk::tkgrid(input_form_frame)
+
+
+            tcltk::tkgrid.columnconfigure(window, 0, weight = 1)
+
+            # Button to submit the form with its values
             closeButton =
               tcltk::tkbutton(
                 window,
@@ -371,16 +402,16 @@ FieldInputForm =
           },
 
         get_field_values =
-          function(fields, titles) {
+          function(input_fields, input_window_titles) {
             # Build the form window
-            window = build_window(fields, titles)
+            window = build_window(input_fields, input_window_titles)
 
             # Focus on the form window, and wait for user to confirm input
             tcltk::tkfocus(window)
             tcltk::tkwait.window(window)
 
             # Retrieve the user submitted values
-            vals = retrieve_values(fields)
+            vals = retrieve_values(input_fields)
 
             # TODO: validation step. If values are not valid, respond intelligently
 

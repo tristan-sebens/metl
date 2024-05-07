@@ -163,20 +163,18 @@ setRefClass(
           input_form =
             FieldInputForm()
           # Construct an informative title for the form
-
           input_window_titles = list()
-
           for (field in output_data_field_map$get_non_input_fields()) {
             key = field$name
             value = dat[[key]]
-            input_window_titles[[key]] = value
+            input_window_titles[key] = value
           }
 
           # Prompt the user for the necessary fields, then collect the entered values
           input_vals =
             input_form$get_field_values(
-              titles = input_window_titles,
-              fields = input_fields
+              input_window_titles = input_window_titles,
+              input_fields = input_fields
             )
 
           # Add the input values to the data.frame
