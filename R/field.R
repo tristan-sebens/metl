@@ -46,6 +46,39 @@ Field =
       )
   )
 
+FieldValidator =
+#' Validate user-input fields
+#'
+#' Provides a simple interface for defining validation rules. Each FieldValidator object contains a single function `validate` which accepts a single value `val` and returns a boolean value indicating if that value is valid or not. If not, then the error message will be used to inform the user of the discrepency.
+#'
+#' @field validate function. Accepts a single parameter `val`, returns `TRUE` if `val` is valid for the given field.
+#' @field error_msg character. Message used to inform the user of the invalid value and how it should be changed
+  setRefClass(
+    "FieldValidator",
+    fields =
+      list(
+        validate = "function",
+        error_msg = "character"
+      ),
+    methods =
+      list(
+        initialize =
+          function(
+            validate = function(val) TRUE, # Base instance of class just blindly validates
+            error_msg = "",
+            ...
+          ) {
+            callSuper(
+              validate = validate,
+              error_msg = error_msg,
+              ...
+            )
+          }
+      )
+  )
+
+setOldClass("tclVar")
+
 #' InputField - base class
 #'
 #' Base of all user input fields. Not intended to be directly implemented, use a child class instead
@@ -53,18 +86,47 @@ InputField =
   setRefClass(
     "InputField",
     contains = "Field",
+    fields =
+      list(
+        # A list of Validator objects.
+        validators = "list",
+        # A list of tclVar objects, used to extract values from the input window
+        tcl_vars = "list"
+      ),
     methods =
       list(
         initialize =
-          function(...) {
+          function(
+            # Default to the base Validator, which blindly validates
+            validators = list(FieldValidator()),
+            # Default to a single tclVar object
+            tcl_vars = list(),
+            ...
+          ) {
             callSuper(
+              validators = validators,
+              tcl_vars = tcl_vars,
               user_specified = T,
               ...
             )
           },
 
+        register_tclvar =
+          function(var_label, init_value = "") {
+            "Register a new tclvar object"
+            # Create the new tclVar object
+            tv__ = tclVar(init = init_value)
+            # Register it with the internal list of tclVar objects
+            l = list()
+            l[[var_label]] = tv__
+            tcl_vars <<- append(tcl_vars, l)
+            # Return the tclVar object
+            return(tv__)
+          },
+
         build_widget =
           function(window, ...) {
+            "Return a fully constructed and configured widget for use in the input form"
             stop(
               "Inheritence error: 'build_widget' method of FieldInput base
                class called. Please implement a child class instead"
@@ -73,6 +135,7 @@ InputField =
 
         build_label =
           function(window, ...) {
+            "Build an appropriate label for the input widget"
             tcltk::tklabel(window, text = .self$name, ...)
           },
 
@@ -80,11 +143,39 @@ InputField =
           function() {
             "Retrieve the user-inputted value for this field"
             # Retrieve the submitted value
-            val = tcltk::tclvalue(.self$name)
-            # Remove the value from the tclvalue object
-            tcltk::`tclvalue<-`(.self$name, "")
-            # Return the retrieved value
-            return(val)
+            stop(
+              "Inheritence error: 'get_value' method of FieldInput base
+               class called. Please implement a child class instead"
+            )
+          },
+
+        validate_value =
+          function(val, ...) {
+            "Returns a boolean indicating if `val` is valid or not."
+            all(
+              validators %>%
+              lapply(function(v) v$validate(val)) %>%
+              unlist()
+            )
+          },
+
+        get_validation_errors =
+          function(val, ...) {
+            "Get all of the validation errors triggered by `val`"
+            # Get the list of validators which are not passing
+            Filter(
+              function(v) !v$validate(val),
+              validators
+            ) %>%
+            # Extract their error messages, and return them as a list
+            lapply(function(v) v$error_msg) %>%
+            unlist()
+          },
+
+        register_validator =
+          function(validator) {
+            "Add a validator to this Field object"
+            validators <<- append(validators, validator)
           }
       )
   )
@@ -98,7 +189,16 @@ InputField_Text =
       list(
         build_widget =
           function(window, ...) {
-            tcltk::tkentry(window, ...)
+            tcltk::tkentry(
+              window,
+              text_variable = register_tclvar(var_label = "text"),
+              ...
+            )
+          },
+
+        get_value =
+          function() {
+            return(tcltk::tclvalue(tcl_vars$text))
           }
       )
   )
@@ -130,6 +230,7 @@ InputField_Select =
             tcltk::ttkcombobox(
               window,
               values = unlist(labels),
+              textvariable = register_tclvar(var_label = "selection"),
               ...
             )
           },
@@ -137,7 +238,7 @@ InputField_Select =
         get_value =
           function(...) {
             "Retrieve the user-inputted value for this field"
-            val = callSuper(...)
+            val = tcltk::tclvalue(tcl_vars$selection)
             # Convert from the lable to the corresponding ID value
             return(.self$pks[which(.self$labels == val)])
           },
@@ -149,6 +250,148 @@ InputField_Select =
               as.character(data.frame(dplyr::tbl(con, table))[[pk_field]])
             labels <<-
               as.character(data.frame(dplyr::tbl(con, table))[[label_field]])
+          }
+      )
+  )
+
+InputField_Date =
+  setRefClass(
+    "InputField_Date",
+    contains = "InputField",
+    methods =
+      list(
+        initialize =
+          function(...) {
+            callSuper(...)
+
+            # Checks if a given date existed in the Gregorian calendar (e.g. Feb 31)
+            real_date_validator =
+              FieldValidator(
+                validate =
+                  function(date_list) {
+                    day = date_list$day
+                    month = date_list$month
+                    year = date_list$year
+
+                    suppressWarnings(
+                      {
+                        input_date =
+                          lubridate::dmy(
+                            paste(
+                              c(day, month, year),
+                              collapse = "-"
+                            )
+                          )
+                      }
+                    )
+
+                    return(
+                      if(!is.na(input_date)) {
+                        return(
+                          all(
+                            lubridate::year(input_date) == year,
+                            month.name[[lubridate::month(input_date)]] == month,
+                            lubridate::day(input_date) == day
+                          )
+                        )
+                      } else return(FALSE)
+                    )
+                  },
+                error_msg = "Invalid date"
+              )
+
+            register_validator(real_date_validator)
+          },
+
+        add_labels =
+          function(date_picker_frame) {
+            # Create field labels
+            month_label =
+              tcltk::tklabel(date_picker_frame, text = "Month")
+            day_label =
+              tcltk::tklabel(date_picker_frame, text = "Day")
+            year_label =
+              tcltk::tklabel(date_picker_frame, text = "Year")
+
+            # Add labels to the grid layout
+            tcltk::tkgrid(day_label, row = 0, column = 0, sticky = "nsew")
+            tcltk::tkgrid(month_label, row = 0, column = 1, sticky = "nsew")
+            tcltk::tkgrid(year_label, row = 0, column = 2, sticky = "nsew")
+          },
+
+        add_inputs =
+          function(date_picker_frame) {
+            # Create and link Field objects
+            day_picker =
+              tcltk::ttkcombobox(
+                date_picker_frame,
+                values = seq(1, 31),
+                textvariable =
+                  register_tclvar(
+                    var_label = "day",
+                    init_value = format(Sys.Date(), "%d")
+                  )
+              )
+
+            month_picker =
+              tcltk::ttkcombobox(
+                date_picker_frame,
+                values = month.name,
+                textvariable =
+                  register_tclvar(
+                    var_label = "month",
+                    init_value = format(Sys.Date(), "%B")
+                  )
+              )
+
+            year_picker =
+              tcltk::ttkcombobox(
+                date_picker_frame,
+                values = seq(1950, as.integer(current_year)),
+                textvariable =
+                  register_tclvar(
+                    var_label = "year",
+                    init_value = format(Sys.Date(), "%Y")
+                  )
+              )
+
+            # Add input widgets to the grid layout
+            tcltk::tkgrid(day_picker, row = 1, column = 0, sticky = "nsew")
+            tcltk::tkgrid(month_picker, row = 1, column = 1, sticky = "nsew")
+            tcltk::tkgrid(year_picker, row = 1, column = 2, sticky = "nsew")
+          },
+
+        build_widget =
+          function(window, ...) {
+            # Create a frame for the date picker inputs
+            date_picker_frame = tcltk::tkframe(parent = window)
+
+            add_labels(date_picker_frame)
+            add_inputs(date_picker_frame)
+
+            # Add the main date picker frame to the window
+            tcltk::tkgrid(date_picker_frame, sticky = "nsew")
+
+            # Configure columns to expand within the grid
+            tcltk::tkgrid.columnconfigure(date_picker_frame, 0, weight = 1)
+            tcltk::tkgrid.columnconfigure(date_picker_frame, 1, weight = 1)
+            tcltk::tkgrid.columnconfigure(date_picker_frame, 2, weight = 1)
+
+            # Configure rows to expand within the grid
+            tcltk::tkgrid.rowconfigure(date_picker_frame, 0, weight = 1)
+            tcltk::tkgrid.rowconfigure(date_picker_frame, 1, weight = 1)
+
+            return(date_picker_frame)
+          },
+
+        get_value =
+          function() {
+            # Collect all three fields and paste them together as a named list
+            list(
+              "day" = tcltk::tclvalue(tcl_vars$day),
+              "month" = tcltk::tclvalue(tcl_vars$month),
+              "year" = tcltk::tclvalue(tcl_vars$year)
+            )
           }
       )
   )
@@ -349,7 +592,6 @@ FieldInputForm =
                 row = ix,
                 sticky = 'w'
               )
-              tcltk::tkconfigure(widget, textvariable = field$name)
             }
 
             tcltk::tkgrid.columnconfigure(input_form_frame, 0, weight = 1)

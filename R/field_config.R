@@ -25,12 +25,12 @@ ABLTAG_METADATA_TABLE_FIELDS =
             data_type = "varchar(32)"
           ),
         TAG_DEPLOY_DATE =
-          InputField_Text(
+          InputField_Date(
             name = "DATE_DEPLOYED",
             data_type = "varchar(32)"
           ),
         TAG_RECOVERY_DATE =
-          InputField_Text(
+          InputField_Date(
             name = "DATE_RECOVERED",
             data_type = "varchar(32)"
           ),
