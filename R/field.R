@@ -64,22 +64,16 @@ InputField =
           },
 
         build_widget =
-          function(window) {
+          function(window, ...) {
             stop(
               "Inheritence error: 'build_widget' method of FieldInput base
                class called. Please implement a child class instead"
             )
           },
 
-        add_widget =
+        build_label =
           function(window, ...) {
-            "Add the field's widget to the form"
-            # Field label
-            tcltk::tkgrid(tcltk::tklabel(window, text = .self$name))
-            # Field entry widget
-            widget = .self$build_widget(window, ...)
-            tcltk::tkgrid(widget)
-            tcltk::tkconfigure(widget, textvariable = .self$name)
+            tcltk::tklabel(window, text = .self$name, ...)
           },
 
         get_value =
@@ -259,6 +253,15 @@ FieldMap =
               function(field) {field$user_specified},
               .self$field_list
             )
+          },
+
+        get_non_input_fields =
+          function() {
+            "Get all non-user-input Field objects as named list"
+            Filter(
+              function(field) {!field$user_specified},
+              .self$field_list
+            )
           }
       )
   )
@@ -268,32 +271,92 @@ FieldInputForm =
   setRefClass(
     "FieldInputForm",
     fields =
-      list(),
+      list(
+        id_fields = "character",
+        window_width = "numeric"
+      ),
     methods =
       list(
+        initialize =
+          function(
+            window_width = 20,
+            ...
+          ) {
+            callSuper(
+              window_width = window_width,
+              ...
+            )
+          },
+
         build_window =
-          function(fields, ...) {
+          function(fields, titles, ...) {
             field_names = names(fields)
 
             # Create main window
-            tt <- tcltk::tktoplevel()
-            tcltk::tkwm.title(tt, "Input Form")
+            window = tcltk::tktoplevel()
+            tcltk::tkwm.title(window, "Input Form")
 
-            # Iterate through each field and create input widgets
-            for (field in fields) {
-              field$add_widget(tt, ...)
+            # Add descriptive title
+            bold_font = tcltk::tkfont.create(size = 12, weight = "bold")
+
+            for (title_ix in seq_along(titles)) {
+              title_label =
+                tcltk::tklabel(
+                  window,
+                  text=paste0(names(titles)[[title_ix]], ":"),
+                  font=bold_font
+                )
+              tcltk::tkgrid(
+                title_label, column = 0, row = title_ix,
+                padx = 2, pady=2, sticky="w"
+              )
+              title_value =
+                tcltk::tklabel(
+                  window,
+                  text=titles[[title_ix]],
+                  font=bold_font
+                )
+              tcltk::tkgrid(
+                title_value, column = 1, row = title_ix,
+                padx = 2, pady=2, sticky="w"
+              )
             }
 
-            # Button to submit the form with its values
+            # Iterate through each field and create input widgets
+            for (ix in seq_along(fields)) {
+              field = fields[[ix]]
+              # Field label
+              label = field$build_label(window)
+              tcltk::tkgrid(
+                label,
+                column = 0,
+                row = ix + length(titles),
+                sticky = 'w'
+              )
+              # Field entry widget
+              widget = field$build_widget(window)
+              tcltk::tkgrid(
+                widget,
+                column = 1,
+                row = ix + length(titles),
+                sticky = 'w'
+              )
+              tcltk::tkconfigure(widget, textvariable = field$name)
+            }
+
+            tcltk::tkgrid.columnconfigure(window, 0, weight = 1)
+            tcltk::tkgrid.columnconfigure(window, 1, weight = 2)
+
+            # Buwindowon to submit the form with its values
             closeButton =
               tcltk::tkbutton(
-                tt,
+                window,
                 text = "Submit",
-                command = function() {tcltk::tkdestroy(tt)}
+                command = function() {tcltk::tkdestroy(window)}
               )
             tcltk::tkgrid(closeButton)
 
-            return(tt)
+            return(window)
           },
 
         retrieve_values =
@@ -308,9 +371,9 @@ FieldInputForm =
           },
 
         get_field_values =
-          function(fields) {
+          function(fields, titles) {
             # Build the form window
-            window = build_window(fields)
+            window = build_window(fields, titles)
 
             # Focus on the form window, and wait for user to confirm input
             tcltk::tkfocus(window)

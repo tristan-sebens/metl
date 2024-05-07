@@ -38,6 +38,17 @@ setRefClass(
           )
         },
 
+      build_titles =
+        function(dat, fields, collapse = ";") {
+          fields %>%
+            lapply(
+              function(field) {
+                paste0(field$name, ": ", dat[[field$name]])
+              }
+            ) %>%
+            unlist(use.names = F)
+        },
+
       get_static =
         function(n) {
           return(.self$static[[n]])
@@ -148,9 +159,25 @@ setRefClass(
           # If there are no Fields which require input, return the dataframe as is
           if (length(input_fields) == 0) return(dat)
 
-          # Prompt the user for the necessary field values
+          # Create the input form
+          input_form =
+            FieldInputForm()
+          # Construct an informative title for the form
+
+          input_window_titles = list()
+
+          for (field in output_data_field_map$get_non_input_fields()) {
+            key = field$name
+            value = dat[[key]]
+            input_window_titles[[key]] = value
+          }
+
+          # Prompt the user for the necessary fields, then collect the entered values
           input_vals =
-            FieldInputForm()$get_field_values(input_fields)
+            input_form$get_field_values(
+              titles = input_window_titles,
+              fields = input_fields
+            )
 
           # Add the input values to the data.frame
           for (field in names(input_fields)) {
