@@ -43,11 +43,11 @@ ABLTAG_METADATA_TABLE_FIELDS =
             label_field = "SPECIES_NAME"
           ),
         UPLOAD_TIMESTAMP_FIELD =
-          Field(
+          IndependentField(
             name = "UPLOAD_TIMESTAMP",
             data_type = "integer",
-            trans_fn =
-              function(v, ...) {
+            value_fn =
+              function(dat, ...) {
                 return(
                   as.numeric(as.POSIXct(Sys.time(), tz = ""))
                 )

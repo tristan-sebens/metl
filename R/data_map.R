@@ -185,6 +185,19 @@ setRefClass(
             dat[[op_field_name]] = op_field_value
           }
 
+
+          # Also retrieve any independent fields
+          auto_fields =
+            output_data_field_map$get_independent_fields()
+
+          # Add the input values to the data.frame
+          for (field in names(auto_fields)) {
+            op_field_obj = output_data_field_map$field_list[[field]]
+            op_field_name = op_field_obj$name
+            op_field_value = op_field_obj$value_fn(dat)
+            dat[[op_field_name]] = op_field_value
+          }
+
           # Return the augmented data.frame
           return(dat)
         }
