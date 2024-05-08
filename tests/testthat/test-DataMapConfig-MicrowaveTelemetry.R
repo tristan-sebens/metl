@@ -14,7 +14,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Microwave Telemetry', 'X-Tag')
+        test_data_d('mt', 'xt')
     )
   }
 )
@@ -28,7 +28,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Microwave Telemetry', 'X-Tag')
+        test_data_d('mt', 'xt')
     )
   }
 )
@@ -42,7 +42,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
-        test_data_d('Microwave Telemetry', 'X-Tag')
+        test_data_d('mt', 'xt')
     )
   }
 )

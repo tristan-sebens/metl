@@ -13,7 +13,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Lotek', 'LTD 1000.1100.1250')
+        test_data_d('lt', 'lt_1000_1250')
     )
   }
 )
@@ -27,7 +27,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Lotek', 'LTD 1000.1100.1250')
+        test_data_d('lt', 'lt_1000_1250')
     )
   }
 )
@@ -43,7 +43,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Lotek', 'LTD 1300')
+        test_data_d('lt', 'lt_1300')
     )
   }
 )
@@ -57,7 +57,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Lotek', 'LTD 1300')
+        test_data_d('lt', 'lt_1300')
     )
   }
 )
@@ -73,7 +73,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Lotek', 'LAT 1400.1800')
+        test_data_d('lt', 'lt_1400_1800')
     )
   }
 )
@@ -87,7 +87,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Lotek', 'LAT 1400.1800')
+        test_data_d('lt', 'lt_1400_1800')
     )
   }
 )

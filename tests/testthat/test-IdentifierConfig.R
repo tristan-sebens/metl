@@ -61,63 +61,63 @@ test_identifier(
   identifier_ =
     Identifier_Lotek_1000.1100.1250,
   d =
-    test_data_d("Lotek", "LTD 1000.1100.1250")
+    test_data_d("lt", "lt_1000_1250")
 )
 
 test_identifier(
   identifier_ =
     Identifier_Lotek_1300,
   d =
-    test_data_d("Lotek", "LTD 1300")
+    test_data_d("lt", "lt_1300")
 )
 
 test_identifier(
   identifier_ =
     Identifier_Lotek_1400.1800,
   d =
-    test_data_d("Lotek", "LAT 1400.1800")
+    test_data_d("lt", "lt_1400_1800")
 )
 
 test_identifier(
   identifier_ =
     Identifier_MicrowaveTelemetry_XTag,
   d =
-    test_data_d("Microwave Telemetry", "X-Tag")
+    test_data_d("mt", "xt")
 )
 
 test_identifier(
   identifier_ =
     Identifier_StarOddi_DST,
   d =
-    test_data_d("Star Oddi", "DST")
+    test_data_d("so", "dst")
 )
 
 test_identifier(
   identifier_ =
     Identifier_StarOddi_DST,
   d =
-    test_data_d("Star Oddi", "DST milli-F")
+    test_data_d("so", "dst_mf")
 )
 
 test_identifier(
   identifier_ =
     Identifier_StarOddi_DSTmagnetic,
   d =
-    test_data_d("Star Oddi", "DST magnetic")
+    test_data_d("so", "dst_mag")
 )
 
 test_identifier(
   identifier_ =
     Identifier_WildlifeComputers_BenthicSPAT,
   d =
-    test_data_d("Wildlife Computers", "Benthic sPAT")
+    test_data_d("wc", "b_sp")
 )
 
 test_identifier(
   identifier_ =
     Identifier_WildlifeComputers_MiniPAT,
   d =
-    test_data_d("Wildlife Computers", "MiniPAT")
+    test_data_d("wc", "mp")
 )
 
 

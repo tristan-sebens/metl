@@ -101,7 +101,7 @@ test_that(
       build_test_tag_processor()
 
     d =
-      tp__$dir_tree__$Lotek$`LTD 1300`$`Greenland Turbot`$`3880`$fullPath
+      tp__$dir_tree__$lt$lt_1300$gt$`3880`$fullPath
 
     dc =
       Decoder_Lotek_1300
@@ -146,7 +146,7 @@ test_that(
       build_test_tag_processor()
 
     d =
-      tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$`Rougheye Rockfish`$`118353`$fullPath
+      tp__$dir_tree__$mt$xt$rr$`118353`$fullPath
 
     dc =
       Decoder_MicrowaveTelemetry_XTag
@@ -239,7 +239,7 @@ test_that(
         dc =
           Decoder_MicrowaveTelemetry_XTag,
         node =
-          tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$`Rougheye Rockfish`$`118353`
+          tp__$dir_tree__$mt$xt$rr$`118353`
       )
 
     metadata = node_data[[1]]
@@ -344,7 +344,7 @@ test_that(
       tp__$decode_node(
         con,
         dc,
-        node = tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
+        node = tp__$dir_tree__$mt$xt$lc$`128305`
       )
     )
 
@@ -353,7 +353,7 @@ test_that(
       tp__$decode_node(
         con,
         dc,
-        node = tp__$dir_tree__$`Microwave Telemetry`$`X-Tag`$Lingcod$`128305`
+        node = tp__$dir_tree__$mt$xt$lc$`128305`
       )
     )
 
@@ -416,7 +416,7 @@ test_that(
       )
 
     node =
-      tp__$dir_tree__$Lotek$`LTD 1000.1100.1250`$Sablefish$`4067`
+      tp__$dir_tree__$lt$`lt_1000_1250`$sf$`4067`
 
     con =
       build_temp_db()

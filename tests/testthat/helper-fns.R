@@ -46,15 +46,15 @@ build_test_metadata_map =
   }
 
 test_d =
-  here::here('tests', 'testthat', '_fixtures', '_test_data')
+  here::here('tests', 'testthat', '_fixtures', '_data')
 mt_d =
-  file.path(test_d, 'Microwave Telemetry')
+  file.path(test_d, 'mt')
 mt_x_d =
-  file.path(mt_d, 'X-Tag', 'Lingcod', '128305')
+  file.path(mt_d, 'xt', 'lc', '128305')
 wc_d =
-  file.path(test_d, 'Wildlife Computers')
+  file.path(test_d, 'wc')
 wc_mp_d =
-  file.path(wc_d, 'MiniPAT', 'Sleeper Shark', '174898')
+  file.path(wc_d, 'mp', 'ss', '174898')
 
 build_test_dataset =
   function() {
@@ -186,7 +186,7 @@ build_test_tag_processor =
 # Get the root directory of the test data
 test_data_d =
   function(...) {
-    return(test_path("_fixtures", "_test_data", ...))
+    return(test_path("_fixtures", "_data", ...))
   }
 
 #' Find all data directories

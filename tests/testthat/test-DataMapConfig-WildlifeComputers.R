@@ -13,7 +13,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Wildlife Computers', 'MiniPAT')
+        test_data_d('wc', 'mp')
     )
   }
 )
@@ -27,7 +27,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Wildlife Computers', 'MiniPAT')
+        test_data_d('wc', 'mp')
     )
   }
 )
@@ -42,7 +42,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
-        test_data_d('Wildlife Computers', 'MiniPAT')
+        test_data_d('wc', 'mp')
     )
   }
 )
@@ -59,7 +59,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Wildlife Computers', 'Benthic sPAT')
+        test_data_d('wc', 'b_sp')
     )
   }
 )
@@ -73,7 +73,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Wildlife Computers', 'Benthic sPAT')
+        test_data_d('wc', 'b_sp')
     )
   }
 )
@@ -87,7 +87,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
-        test_data_d('Wildlife Computers', 'Benthic sPAT')
+        test_data_d('wc', 'b_sp')
     )
   }
 )

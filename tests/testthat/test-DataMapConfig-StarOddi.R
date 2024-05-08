@@ -13,7 +13,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Star Oddi', 'DST')
+        test_data_d('so', 'dst')
     )
   }
 )
@@ -27,7 +27,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Star Oddi', 'DST')
+        test_data_d('so', 'dst')
     )
   }
 )
@@ -44,7 +44,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Star Oddi', 'DST milli-F')
+        test_data_d('so', 'dst_mf')
     )
   }
 )
@@ -58,7 +58,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Star Oddi', 'DST milli-F')
+        test_data_d('so', 'dst_mf')
     )
   }
 )
@@ -75,7 +75,7 @@ test_that(
       od_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
-        test_data_d('Star Oddi', 'DST magnetic')
+        test_data_d('so', 'dst_mag')
     )
   }
 )
@@ -89,7 +89,7 @@ test_that(
       od_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
-        test_data_d('Star Oddi', 'DST magnetic')
+        test_data_d('so', 'dst_mag')
     )
   }
 )
