@@ -39,14 +39,14 @@ setRefClass(
         },
 
       build_titles =
-        function(dat, fields, collapse = ";") {
-          fields %>%
-            lapply(
-              function(field) {
-                paste0(field$name, ": ", dat[[field$name]])
-              }
-            ) %>%
-            unlist(use.names = F)
+        function(dat, fields) {
+          # Construct an informative title for the form
+          input_window_titles = list()
+          for (field in fields) {
+            key = field$name
+            value = dat[[key]]
+            input_window_titles[key] = value
+          }
         },
 
       get_static =
@@ -162,13 +162,12 @@ setRefClass(
           # Create the input form
           input_form =
             FieldInputForm()
-          # Construct an informative title for the form
-          input_window_titles = list()
-          for (field in output_data_field_map$get_non_input_fields()) {
-            key = field$name
-            value = dat[[key]]
-            input_window_titles[key] = value
-          }
+
+          input_window_titles =
+            build_titles(
+              dat = dat,
+              fields = output_data_field_map$get_non_input_fields()
+            )
 
           # Prompt the user for the necessary fields, then collect the entered values
           input_vals =

@@ -121,14 +121,13 @@ InputField =
         register_tclvar =
           function(var_label, init_value = "") {
             "Register a new tclvar object"
-            # Create the new tclVar object
-            tv__ = tcltk::tclVar(init = init_value)
-            # Register it with the internal list of tclVar objects
+            if(var_label %in% names(tcl_vars)) return(.self$tcl_vars[[var_label]])
+            # Create the new tclVar object and register it with the internal list of tclVar objects
             l = list()
-            l[[var_label]] = tv__
+            l[[var_label]] = tcltk::tclVar(init = init_value)
             tcl_vars <<- append(tcl_vars, l)
             # Return the tclVar object
-            return(tv__)
+            return(tcl_vars[[var_label]])
           },
 
         build_widget =
@@ -242,8 +241,7 @@ InputField_Select =
             tcltk::ttkcombobox(
               window,
               values = unlist(labels),
-              textvariable = register_tclvar(var_label = "selection"),
-              ...
+              textvariable = register_tclvar(var_label = "selection", init_value = "")
             )
           },
 
