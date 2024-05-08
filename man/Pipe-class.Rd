@@ -51,12 +51,12 @@ are missing from dat_1 but are present in dat_2 will be added to dat_1.}
 data_directory = here::here() # Root data directory
 
 # Initialize the object
-tp__ = Pipe(d = data_directory)
+p__ = Pipe(d = data_directory)
 
 # Process the directory
-tp__$process(con = con, overwrite = F)
+p__$process(con = con, overwrite = F)
 
 # Build the processing report
-report = tp__$build_report()
+report = p__$build_report()
 print(report)
 }

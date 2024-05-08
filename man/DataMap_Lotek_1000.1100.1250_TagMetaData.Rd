@@ -11,6 +11,6 @@ An object of class \code{DataMap_TagMetaData} of length 1.
 DataMap_Lotek_1000.1100.1250_TagMetaData
 }
 \description{
-Implementes the \code{get_tag_id} function for Lotek 1000/1100/1250 models
+DataMap - Lotek 1000/1100/1250 tag metadata
 }
 \keyword{datasets}
