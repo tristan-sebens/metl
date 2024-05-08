@@ -10,17 +10,19 @@
 #' @field decoders A list of Decoder objects which can be use to extract and load the data produced by different tags
 #' @field overwrite Boolean flag. If set to TRUE, the Pipe will check if a tag is already present in the tag metadata table, and will not process the tag if it is.
 #'
+#' @export
+#'
 #' @examples
 #' data_directory = here::here() # Root data directory
 #'
 #' # Initialize the object
-#' tp__ = Pipe(d = data_directory)
+#' p__ = Pipe(d = data_directory)
 #'
 #' # Process the directory
-#' tp__$process(con = con, overwrite = F)
+#' p__$process(con = con, overwrite = F)
 #'
 #' # Build the processing report
-#' report = tp__$build_report()
+#' report = p__$build_report()
 #' print(report)
 Pipe =
   #----

@@ -28,10 +28,6 @@ find_line_in_file =
   }
 
 #' DataMap - Lotek 1000/1100/1250 tag metadata
-#'
-#' Implementes the `get_tag_id` function for Lotek 1000/1100/1250 models
-#'
-#' @export
 DataMap_Lotek_1000.1100.1250_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
@@ -54,7 +50,6 @@ DataMap_Lotek_1000.1100.1250_TagMetaData =
   )
 
 #' DataMap for the Lotek 1000/1100/1250 tags
-#' @export
 DataMap_Lotek_1000.1100.1250_InstantSensorData =
   DataMap(
     input_data_field_map = LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS,
@@ -138,7 +133,6 @@ DataMap_Lotek_1000.1100.1250_InstantSensorData =
   )
 
 #' DataMap - Tag metadata from Lotek 1300 tags
-#' @export
 DataMap_Lotek_1300_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
@@ -151,7 +145,6 @@ DataMap_Lotek_1300_TagMetaData =
   )
 
 #' DataMap - Instant sensor data from Lotek 1300 tags
-#' @export
 DataMap_Lotek_1300_InstantSensorData =
   DataMap(
     input_data_field_map = LOTEK_1300_INSTANT_DATA_FIELDS,
@@ -179,7 +172,6 @@ DataMap_Lotek_1300_InstantSensorData =
   )
 
 #' DataMap - Tag metadata from Lotek 1400/1800 tags
-#' @export
 DataMap_Lotek_1400.1800_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
@@ -209,7 +201,6 @@ DataMap_Lotek_1400.1800_TagMetaData =
   )
 
 #' Datamap - Lotek 1400/1800 instant sensor data
-#' @export
 DataMap_Lotek_1400.1800_InstantSensorData =
   DataMap(
     input_data_field_map = LOTEK_1400.1800_INSTANT_DATA_FIELDS,
@@ -254,7 +245,6 @@ DataMap_Lotek_1400.1800_InstantSensorData =
   )
 
 #' DataMap - Microwave Telemetry X-Tag metadata
-#' @export
 DataMap_MicrowaveTelemetry_XTag_TagMetaData =
   DataMap_TagMetaData(
     make = "Microwave Telemetry",
@@ -313,7 +303,6 @@ read_data_sheet =
   }
 
 #' Datamap - Microwave Telemetry X-tag instant sensor data
-#' @export
 DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   DataMap(
     input_data_field_map = MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS,
@@ -370,7 +359,6 @@ DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
   )
 
 #' Datamap - Microwave Telemetry X-tag summary sensor data
-#' @export
 DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
   DataMap(
     input_data_field_map = MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS,
@@ -395,7 +383,6 @@ DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
   )
 
 #' DataMap - StarOddi tag metadata - base class
-#' @export
 DataMap_StarOddi_DST_TagMetaData =
   DataMap_TagMetaData(
     make = "Star Oddi",
@@ -410,7 +397,6 @@ DataMap_StarOddi_DST_TagMetaData =
   )
 
 #' DataMap - StarOddi DST instant sensor data
-#' @export
 DataMap_StarOddi_DST_InstantSensorData =
   DataMap(
     input_data_field_map = STAR_ODDI_DST_FIELDS,
@@ -441,7 +427,6 @@ DataMap_StarOddi_DST_InstantSensorData =
 
 
 #' DataMap - StarOddi DST magnetic tag metadata
-#' @export
 DataMap_StarOddi_DSTmagnetic_TagMetaData =
   DataMap_TagMetaData(
     make = "Star Oddi",
@@ -456,7 +441,6 @@ DataMap_StarOddi_DSTmagnetic_TagMetaData =
   )
 
 #' DataMap - StarOddi DST magnetic instant sensor data
-#' @export
 DataMap_StarOddi_DSTmagnetic_InstantSensorData =
   DataMap(
     input_data_field_map = STAR_ODDI_DST_MAGNETIC_FIELDS,
@@ -483,7 +467,6 @@ DataMap_StarOddi_DSTmagnetic_InstantSensorData =
   )
 
 #' DataMap - Wildlife Computers tag metadata - base class
-#' @export
 DataMap_WildlifeComputers_MiniPAT_TagMetaData =
   DataMap_TagMetaData(
     make = "Wildlife Computers",
@@ -514,7 +497,6 @@ DataMap_WildlifeComputers_MiniPAT_TagMetaData =
   )
 
 #' DataMap - Wildlife Computers MiniPAT instant sensor data
-#' @export
 DataMap_WildlifeComputers_MiniPAT_InstantSensorData =
   DataMap(
     input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS,
@@ -532,7 +514,6 @@ DataMap_WildlifeComputers_MiniPAT_InstantSensorData =
   )
 
 #' DataMap - Wildlife Computers MiniPAT summary sensor
-#' @export
 DataMap_WildlifeComputers_MiniPAT_SummarySensorData =
   DataMap(
     input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS,
@@ -553,7 +534,6 @@ DataMap_WildlifeComputers_MiniPAT_SummarySensorData =
   )
 
 #' DataMap - Wildlife Computers Benthic sPAT tag metadata
-#' @export
 DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
   DataMap_TagMetaData(
     make = "Wildlife Computers",
@@ -585,7 +565,6 @@ DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
 
 
 #' DataMap - Wildlife Computers Benthic sPAT instant sensor data
-#' @export
 DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData =
   DataMap(
     input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS,
@@ -608,7 +587,6 @@ DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData =
   )
 
 #' DataMap - Wildlife Computers Benthic sPAT summary sensor data
-#' @export
 DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData =
   DataMap(
     input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS,
@@ -843,7 +821,6 @@ DataMap_DesertStar_SeaTagMOD_TagMetaData =
   )
 
 #' DataMap - Desert Star SeaTag MOD instant sensor data
-#' @export
 DataMap_DesertStar_SeaTagMOD_InstantSensorData =
   DataMap(
     input_data_field_map = DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS,
