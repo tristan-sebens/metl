@@ -35,31 +35,31 @@ devtools::install_github("https://github.com/tristan-sebens/metl")
 
 We will start with the simplest example: extracting the tag data as data.frames. We will also cover [extracting to csv files](#use-case-2-extract-data-to-.csv-files), and [loading to a database](#use-case-3-load-data-directly-into-database).
 
-### **Instantiate the TagProcessor object**
+### **Instantiate the Pipe object**
 
-The `TagProcessor` object is the workhorse of the `metl` package, and coordinates processing the tag data from its raw format on disk to its final standardized format.
+The `Pipe` object is the workhorse of the `metl` package, and coordinates processing the tag data from its raw format on disk to its final standardized format.
 
 ```
 # Set this variable to the root of your tag data directory
 tag_data_directory = here::here() 
 
-# Instantiate the TagProcessor object
+# Instantiate the Pipe object
 tag_processor = 
-  TagProcessor(
+  Pipe(
     d = tag_data_directory, # Root directory of tag data
   ) 
 ```
 ### **Initiate extraction**
 
-Once instantiated, we can use the `TagProcessor` object to extract tag data. 
+Once instantiated, we can use the `Pipe` object to extract tag data. 
 ```
 res = tag_processor$process_to_dataframes(con = db_conn)
 ```
-The `TagProcessor` will now traverse the entire directory tree rooted in `d`, and will attempt to extract all data within.
+The `Pipe` will now traverse the entire directory tree rooted in `d`, and will attempt to extract all data within.
 
 ### **View report**
 
-`TagProcessor` can produce a detailed report which specifies which directories `metl` was able to successfully extract from, as well as an error report for those directories for which extraction failed.
+`Pipe` can produce a detailed report which specifies which directories `metl` was able to successfully extract from, as well as an error report for those directories for which extraction failed.
 ```
 report = tag_processor$build_report()
 print(report)
@@ -75,7 +75,7 @@ The `metl` package categorizes all data produced by eTags into one of three cate
 - **Instantaneous data** - *data which describe individual instants in time*
 - **Summary data** - *data which describe blocks of time*
 
-Following this, whenever the `TagProcessor` object extracts data from a tag data directory, it produces that data as three separate collections of data, one for each category. `process_to_dataframes` returns one data.frame, for each category.
+Following this, whenever the `Pipe` object extracts data from a tag data directory, it produces that data as three separate collections of data, one for each category. `process_to_dataframes` returns one data.frame, for each category.
 
 ```
 metadata = res$meta
@@ -85,7 +85,7 @@ summary_data = res$summary
 
 ## **Use case 2: Extract data to `.csv` files**
 
-The `TagProcessor` can also output the data as three `.csv` files written to disk. To do this, we call `process_to_csv`, and specify a directory into which the files should be written:
+The `Pipe` can also output the data as three `.csv` files written to disk. To do this, we call `process_to_csv`, and specify a directory into which the files should be written:
 ```
 
 csv_directory = here::here() # Specify the directory into which the csv files should be written
@@ -95,7 +95,7 @@ tag_processor$process_to_csv(out_d = csv_directory)
 
 ## **Use case 3: Load data directly into database**
 
-`TagProcessor` is capable of loading the data extracted from the tag directories directly into a suitably formatted database. `TagProcessor` is, by default, configured with an output data structure matching that of the AFSC ABLTAG database. If you are not loading into this database, you will either need to ensure that your database conforms to the same data structure as ABLTAG, or you will need to [adjust the configuration of `TagProcessor` to your database's structure](#configuring-tagprocessor-object).
+`Pipe` is capable of loading the data extracted from the tag directories directly into a suitably formatted database. `Pipe` is, by default, configured with an output data structure matching that of the AFSC ABLTAG database. If you are not loading into this database, you will either need to ensure that your database conforms to the same data structure as ABLTAG, or you will need to [adjust the configuration of `Pipe` to your database's structure](#configuring-Pipe-object).
 
 ### **Establish a connection to the output database**
 
@@ -129,7 +129,7 @@ Once we have connected to the database, we call the `process_to_db` method, pass
 tag_processor$process_to_db(con = db_conn)
 ```
 
-As before, the `TagProcessor` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
+As before, the `Pipe` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
 
 # **Proprietary post-processing software**
 
@@ -358,7 +358,7 @@ head(tuff1_metadata)
 
 We're nearly done extending `metl` to support the Tuff1 tag! 
 
-Often, data from multiple makes/models of tags can be stored within the same directory tree. In these cases, if we want the `TagProcessor` to be able to apply the appropriate `Decoder` to each data directory, we will have to provide a method by which it can determine the type of tag which produced a given data directory. This is where the `Identifier` class comes in. [More detail here](#the-identifier-class).
+Often, data from multiple makes/models of tags can be stored within the same directory tree. In these cases, if we want the `Pipe` to be able to apply the appropriate `Decoder` to each data directory, we will have to provide a method by which it can determine the type of tag which produced a given data directory. This is where the `Identifier` class comes in. [More detail here](#the-identifier-class).
 
 For this simple example however, we'll assume that the we only have Tuff1 tag data to decode. As such, we can now define a `Decoder` object for our Tuff1 tag. Because we are not defining an `Identifier` object for this `Decoder`, it will be instantiated with the default placeholder `Identifier` object, which always yields a positive match to a directory. 
 
@@ -371,15 +371,15 @@ tuff1_decoder =
       tuff1_instant_sensor_datamap,
   )
 ```
-This `Decoder` can now be used to extract all of the necessary data from any data directory which has been produced by a Tuff1 tag. However, the `Decoder` object is not designed to be used directly by users. Instead, we plug our new `Decoder` into a `TagProcessor` object. The `TagProcessor` object traverses a directory tree and uses `Decoders` to extract all relevant data from each data directory it finds.
+This `Decoder` can now be used to extract all of the necessary data from any data directory which has been produced by a Tuff1 tag. However, the `Decoder` object is not designed to be used directly by users. Instead, we plug our new `Decoder` into a `Pipe` object. The `Pipe` object traverses a directory tree and uses `Decoders` to extract all relevant data from each data directory it finds.
 
-A `TagProcessor` is given a list of `Decoder` objects to use upon instantiation. By default, this list includes all of the tags currently supported by `metl`, but we can override this list to only include our custom Tuff1 `Decoder`.
+A `Pipe` is given a list of `Decoder` objects to use upon instantiation. By default, this list includes all of the tags currently supported by `metl`, but we can override this list to only include our custom Tuff1 `Decoder`.
 
 We'll also assume that we have data from a large number of Tuff1 tags, with each tag's data stored in its own directory within the directory tree. This directory tree will be rooted in the directory specified by `root`.
 
 ```
 tuff1_tag_processor = 
-  TagProcessor(
+  Pipe(
     d = root,
     decoders = list(tuff1_decoder)
   )
@@ -400,13 +400,13 @@ summary_data = dats$summary
 
 ### **The `Identifier` class**
 
-`Identifier` objects are used by `metl` to determine which tag type produced a given data directory. This allows the `TagProcessor` to process a directory tree which contains data from a variety of potential tag types and apply the appropriate `Decoder` object to each data directory. 
+`Identifier` objects are used by `metl` to determine which tag type produced a given data directory. This allows the `Pipe` to process a directory tree which contains data from a variety of potential tag types and apply the appropriate `Decoder` object to each data directory. 
 
 # **Uploading duplicate data to a database - UNIQUE constraints**
 
-When writing to a database, it is expected that we may be attempting to insert data which is already present. This could occur because we are reprocessing a directory in which some of the tags have already been loaded, or because additional data became after a tag was physically recovered, or some other reason. To prevent duplicate data from being inserted into the database, `TagProcessor` performs an **upsert** operation when writing to the database. It first loads the data into a temporary table in the database (this table is automatically deleted afterwards), and then performs a merge operation between the temporary table and the target table. This ensures that any records in the target table which are also present in the temporary table are overwritten with the new data.
+When writing to a database, it is expected that we may be attempting to insert data which is already present. This could occur because we are reprocessing a directory in which some of the tags have already been loaded, or because additional data became after a tag was physically recovered, or some other reason. To prevent duplicate data from being inserted into the database, `Pipe` performs an **upsert** operation when writing to the database. It first loads the data into a temporary table in the database (this table is automatically deleted afterwards), and then performs a merge operation between the temporary table and the target table. This ensures that any records in the target table which are also present in the temporary table are overwritten with the new data.
 
-In order to do this, we must have a method of identifying whether or not two records refer to the same data point. `metl` accomplishes this by looking for **UNIQUE** constraints in the database table. As such, each table into which `TagProcessor` loads its data must have at least one UNIQUE constraint defined.
+In order to do this, we must have a method of identifying whether or not two records refer to the same data point. `metl` accomplishes this by looking for **UNIQUE** constraints in the database table. As such, each table into which `Pipe` loads its data must have at least one UNIQUE constraint defined.
 
 ABLTAG uses the following constraints, and we recommend following the same pattern:
 
@@ -414,9 +414,9 @@ ABLTAG uses the following constraints, and we recommend following the same patte
  - instant data table - UNIQUE constraint on the combination of the 'tag_id' and 'timestamp' fields
  - summary data table - UNIQUE constraint on the combination of the 'tag_id', 'start_time', and 'end_time' fields
 
-### **Configuring `TagProcessor` object**
+### **Configuring `Pipe` object**
 
-Configuring the `TagProcessor` object means specifying where each type of data retrieved from the tags should be loaded in the database.
+Configuring the `Pipe` object means specifying where each type of data retrieved from the tags should be loaded in the database.
 
 To do this, we use `FieldMap` objects. `FieldMap` objects describe the fields of a particular data source. They are made up of a list of `Field` objects, which describe individual fields: name, type, units, etc. We can define how one data source is mapped to another data source by defining two `FieldMap` objects, one for the input data source, and one for the output data source.
 

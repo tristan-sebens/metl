@@ -174,7 +174,7 @@ build_test_tag_processor =
     instant_fieldmap = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
     summary_fieldmap = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
   ) {
-    TagProcessor(
+    Pipe(
       d = d,
       decoders = decoders,
       metadata_fieldmap = metadata_fieldmap,

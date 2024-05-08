@@ -21,7 +21,7 @@ Identifier =
 
 #' Tag Identifier
 #'
-#' Maps raw tag data to the appropriate Decoder based on structure of the raw data. Used internally by the [TagProcessor] class.
+#' Maps raw tag data to the appropriate Decoder based on structure of the raw data. Used internally by the [Pipe] class.
 #'
 #' @details The logic implemented by this class makes decisions based on some pretty nitty-gritty details, like naming conventions, file-types present, number of files present, etc. As such, it's crucial that the data has not been altered by the user in any way since being extracted from the tag and/or run through any post-processing software, as even a very small change (by human standards) can result in a directory becoming un-identifiable.
 #' @export

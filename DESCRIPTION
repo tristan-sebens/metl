@@ -29,14 +29,14 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Config/testthat/start-first: TagProcessor, DataMapConfig
+Config/testthat/start-first: Pipe, DataMapConfig, DataMap_Base
 Collate:
     'util.R'
     'field.R'
     'data_map.R'
     'identifier.R'
     'decoder.R'
-    'processor.R'
+    'pipe.R'
     'const_config.R'
     'field_config.R'
     'datamap_config.r'

@@ -7,7 +7,7 @@
 # TODO This probably doesn't belong here, but at the moment there really isn't a better place to put it
 `%>%` = magrittr::"%>%"
 
-# The TagProcessor class uses the data.tree data structure as an attribute, which
+# The Pipe class uses the data.tree data structure as an attribute, which
 # has class 'Node'. Define it here so the constructor knows what we're talking about
 setOldClass("Node")
 
