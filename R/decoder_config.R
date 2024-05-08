@@ -1,6 +1,5 @@
-# source(here::here('R', 'datamap_config.R'))
-# source(here::here('R', 'identifier_config.R'))
 
+#' @export Decoder_Lotek_1000.1100.1250
 Decoder_Lotek_1000.1100.1250 =
   Decoder(
     identifier =
@@ -11,6 +10,7 @@ Decoder_Lotek_1000.1100.1250 =
       DataMap_Lotek_1000.1100.1250_InstantSensorData
   )
 
+#' @export Decoder_Lotek_1300
 Decoder_Lotek_1300 =
   Decoder(
     identifier =
@@ -21,6 +21,7 @@ Decoder_Lotek_1300 =
         DataMap_Lotek_1300_InstantSensorData
   )
 
+#' @export Decoder_Lotek_1400.1800
 Decoder_Lotek_1400.1800 =
   Decoder(
     identifier =
@@ -31,6 +32,7 @@ Decoder_Lotek_1400.1800 =
       DataMap_Lotek_1400.1800_InstantSensorData
   )
 
+#' @export Decoder_MicrowaveTelemetry_XTag
 Decoder_MicrowaveTelemetry_XTag =
   Decoder(
     identifier =
@@ -43,6 +45,7 @@ Decoder_MicrowaveTelemetry_XTag =
         DataMap_MicrowaveTelemetry_XTag_SummarySensorData
   )
 
+#' @export Decoder_StarOddi_DST
 Decoder_StarOddi_DST =
   Decoder(
     identifier =
@@ -53,6 +56,7 @@ Decoder_StarOddi_DST =
       DataMap_StarOddi_DST_InstantSensorData
   )
 
+#' @export Decoder_StarOddi_DSTmagnetic
 Decoder_StarOddi_DSTmagnetic =
   Decoder(
     identifier =
@@ -64,6 +68,7 @@ Decoder_StarOddi_DSTmagnetic =
         DataMap_StarOddi_DSTmagnetic_InstantSensorData
   )
 
+#' @export Decoder_WildlifeComputers_MiniPAT
 Decoder_WildlifeComputers_MiniPAT =
   Decoder(
     identifier =
@@ -76,6 +81,7 @@ Decoder_WildlifeComputers_MiniPAT =
         DataMap_WildlifeComputers_MiniPAT_SummarySensorData
   )
 
+#' @export Decoder_WildlifeComputers_BenthicSPAT
 Decoder_WildlifeComputers_BenthicSPAT =
   Decoder(
     identifier =
@@ -88,6 +94,7 @@ Decoder_WildlifeComputers_BenthicSPAT =
         DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData
   )
 
+#' @export Decoder_DesertStar_SeaTagMOD
 Decoder_DesertStar_SeaTagMOD =
   Decoder(
     identifier =

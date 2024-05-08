@@ -23,6 +23,7 @@ check_for_files =
   }
 
 #' Identifier - Lotek 1000/1100/1250 tags
+#' @export Identifier_Lotek_1000.1100.1250
 Identifier_Lotek_1000.1100.1250 =
   Identifier(
     identify_ =
@@ -37,6 +38,7 @@ Identifier_Lotek_1000.1100.1250 =
   )
 
 #' Identifier - Lotek 1300 tags
+#' @export Identifier_Lotek_1300
 Identifier_Lotek_1300 =
   Identifier(
     identify_ =
@@ -49,6 +51,7 @@ Identifier_Lotek_1300 =
   )
 
 #' Identifier - Lotek 1400/1800 tags
+#' @export Identifier_Lotek_1400.1800
 Identifier_Lotek_1400.1800 =
   Identifier(
     identify_ =
@@ -60,6 +63,7 @@ Identifier_Lotek_1400.1800 =
   )
 
 #' Identifier - Microwave Telemetry X-tags
+#' @export Identifier_MicrowaveTelemetry_XTag
 Identifier_MicrowaveTelemetry_XTag =
   Identifier(
     identify_ =
@@ -99,6 +103,7 @@ check_for_fields =
   }
 
 #' Identifier - StarOddi DST tags
+#' @export Identifier_StarOddi_DST
 Identifier_StarOddi_DST =
   Identifier(
     identify_ =
@@ -133,6 +138,7 @@ Identifier_StarOddi_DST =
   )
 
 #' Identifier - StarOddi DST magnetic tags
+#' @export Identifier_StarOddi_DSTmagnetic
 Identifier_StarOddi_DSTmagnetic =
   Identifier(
     identify_ =
@@ -168,6 +174,7 @@ check_for_wc_data_file =
   }
 
 #' Identifier - Wildlife Computer Benthic sPAT tags
+#' @export Identifier_WildlifeComputers_BenthicSPAT
 Identifier_WildlifeComputers_BenthicSPAT =
   Identifier(
     identify_ =
@@ -192,6 +199,7 @@ Identifier_WildlifeComputers_BenthicSPAT =
   )
 
 #' Identifier - Wildlife Computer MiniPAT tags
+#' @export Identifier_WildlifeComputers_MiniPAT
 Identifier_WildlifeComputers_MiniPAT =
   Identifier(
     identify_ =
@@ -218,6 +226,7 @@ Identifier_WildlifeComputers_MiniPAT =
   )
 
 #' Identifier - Desert Star SeaTag MOD tags
+#' @export Identifier_DesertStar_SeaTagMOD
 Identifier_DesertStar_SeaTagMOD =
   Identifier(
     identify_ =
