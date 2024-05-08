@@ -42,3 +42,4 @@ Collate:
     'datamap_config.r'
     'identifier_config.R'
     'decoder_config.R'
+License: GPL (>= 3)
