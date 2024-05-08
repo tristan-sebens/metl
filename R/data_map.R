@@ -11,7 +11,7 @@
 #'
 #' @return An instance of the DataMap class
 #'
-#' @export
+#' @export DataMap
 DataMap =
   #----
 setRefClass(
@@ -213,7 +213,8 @@ setRefClass(
 #' @field make character. Tag manufacturer/brand
 #' @field model character. Tag model
 #' @field get_tag_id function(d). Function which returns the ID string of a tag based on the data-directory path `d`
-#' @export
+#'
+#' @export DataMap_TagMetaData
 DataMap_TagMetaData =
   setRefClass(
     "DataMap_TagMetaData",

@@ -784,7 +784,6 @@ extract_packet_type_from_dir =
   }
 
 #' DataMap - Desert Star SeaTag MOD tag metadata
-#' @export
 DataMap_DesertStar_SeaTagMOD_TagMetaData =
   DataMap_TagMetaData(
     make = "Desert Star",

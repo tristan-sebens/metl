@@ -4,13 +4,9 @@
 \name{FieldMap-class}
 \alias{FieldMap-class}
 \alias{FieldMap}
-\title{FieldMap class. Collection of Field objects, with some added functionality
-to facilitate the convenient use of said Field objects both within the package
-and when interfacing with a DB}
+\title{FieldMap class.}
 \description{
-FieldMap class. Collection of Field objects, with some added functionality
-to facilitate the convenient use of said Field objects both within the package
-and when interfacing with a DB
+Collection of Field objects, with some added functionality to facilitate the convenient use of said Field objects both within the package and when interfacing with a DB
 }
 \section{Fields}{
 
