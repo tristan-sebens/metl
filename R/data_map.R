@@ -181,7 +181,9 @@ setRefClass(
             op_field_obj = output_data_field_map$field_list[[field]]
             op_field_name = op_field_obj$name
             op_field_value = input_vals[[field]]
-            dat[[op_field_name]] = op_field_value
+            # Perform any field-specific transformation
+            op_field_value_trans = op_field_obj$trans_fn(op_field_value, dat)
+            dat[[op_field_name]] = op_field_value_trans
           }
 
 
