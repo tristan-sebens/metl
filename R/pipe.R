@@ -351,13 +351,22 @@ Pipe =
                 stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
               )
 
-            # Copy data to temporary table
-            dbplyr::db_copy_to(
-              con = con,
-              table = dbplyr::ident(temp_table_name),
-              values = dat,
-              in_transaction = F,
-              temporary = T # Means that the table is only visible from this connection, and will be deleted when this connection is severed
+            # There's an odd message that keeps cropping up here. It seems to occur the first time that anything is loaded into the DB, and it occurs within this function call. The message says: Note: method with signature ‘Oracle#character’ chosen for function ‘odbcConnectionColumns_’, target signature ‘Oracle#SQL’.  "OdbcConnection#SQL" would also be valid. Some quick research indicates that this is a known issue buried somewhere within the dbplyr package (https://forum.posit.co/t/what-does-this-dbwritetable-message-mean/10690/1), and that, most importantly, it's probably not my fault, or the fault of my code. For now, I'm just wrapping the call in this suppression clause to prevent the message from messing up the package output.
+            suppressMessages(
+              {
+                # Copy data to temporary table
+                dbplyr::db_copy_to(
+                  con = con,
+                  table = dbplyr::ident(temp_table_name),
+                  # All of these calls also produce the message, so it's unclear what to do to stop it
+                  # table = dbplyr::sql(temp_table_name),
+                  # table = I(temp_table_name),
+                  # table = temp_table_name,
+                  values = dat,
+                  in_transaction = F,
+                  temporary = T # Means that the table is only visible from this connection, and will be deleted when this connection is severed
+                )
+              }
             )
 
             # Determine fields used to identify individual records
@@ -377,7 +386,6 @@ Pipe =
                   by = id_fs,
                   # Fields to be updated (non-id fields)
                   update_cols = names(dat)[!names(dat) %in% id_fs]
-
                 )
             )
           },
