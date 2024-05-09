@@ -22,7 +22,7 @@ output:
 `metl` can be installed with `devtools`
 
 ```
-devtools::install_github("https://github.com/tristan-sebens/metl")
+devtools::install_github("https://github.com/tristan-sebens/metl", upgrade="never")
 ```
 
 # **Use**
@@ -44,7 +44,7 @@ The `Pipe` object is the workhorse of the `metl` package, and coordinates proces
 tag_data_directory = here::here() 
 
 # Instantiate the Pipe object
-tag_processor = 
+metl_pipe = 
   Pipe(
     d = tag_data_directory, # Root directory of tag data
   ) 
@@ -53,7 +53,7 @@ tag_processor =
 
 Once instantiated, we can use the `Pipe` object to extract tag data. 
 ```
-res = tag_processor$process_to_dataframes(con = db_conn)
+res = metl_pipe$process_to_dataframes(con = db_conn)
 ```
 The `Pipe` will now traverse the entire directory tree rooted in `d`, and will attempt to extract all data within.
 
@@ -61,7 +61,7 @@ The `Pipe` will now traverse the entire directory tree rooted in `d`, and will a
 
 `Pipe` can produce a detailed report which specifies which directories `metl` was able to successfully extract from, as well as an error report for those directories for which extraction failed.
 ```
-report = tag_processor$build_report()
+report = metl_pipe$build_report()
 print(report)
 ```
 
@@ -90,7 +90,7 @@ The `Pipe` can also output the data as three `.csv` files written to disk. To do
 
 csv_directory = here::here() # Specify the directory into which the csv files should be written
 
-tag_processor$process_to_csv(out_d = csv_directory) 
+metl_pipe$process_to_csv(out_d = csv_directory) 
 ```
 
 ## **Use case 3: Load data directly into database**
@@ -126,7 +126,7 @@ db_conn =
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
 
 ```
-tag_processor$process_to_db(con = db_conn)
+metl_pipe$process_to_db(con = db_conn)
 ```
 
 As before, the `Pipe` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
@@ -378,13 +378,13 @@ A `Pipe` is given a list of `Decoder` objects to use upon instantiation. By defa
 We'll also assume that we have data from a large number of Tuff1 tags, with each tag's data stored in its own directory within the directory tree. This directory tree will be rooted in the directory specified by `root`.
 
 ```
-tuff1_tag_processor = 
+tuff1_metl_pipe= 
   Pipe(
     d = root,
     decoders = list(tuff1_decoder)
   )
   
-dats = tuff1_tag_processor$process_to_dataframes()
+dats = tuff1_metl_pipe$process_to_dataframes()
 ```
 
 As before, our
