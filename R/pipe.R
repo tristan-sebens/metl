@@ -363,8 +363,19 @@ Pipe =
                   # table = I(temp_table_name),
                   # table = temp_table_name,
                   values = dat,
+                  # Already in a transaction, so this should not start its own transaction
                   in_transaction = F,
-                  temporary = T # Means that the table is only visible from this connection, and will be deleted when this connection is severed
+                  # Typically this function writes to a temporary table which
+                  # should then be automatically dropped when the connection is
+                  # severed. However, at least in Oracle, this doesn't happen.
+                  # Additionally, when a table has the TEMPORARY token
+                  # it sort of locks it into appearing to be 'in use' so long
+                  # as the original connection is still open. This problem
+                  # isn't shared by standard tables, so I've elected to just
+                  # use a standard table in a temporary manner, and that seems
+                  # to solve the issue. All this really means is that we have to
+                  # EXPLICITLY delete the table when we're done with it.
+                  temporary = F
                 )
               }
             )
@@ -374,8 +385,7 @@ Pipe =
 
             # UPSERT the new data into the target table
             DBI::dbExecute(
-              con =
-                con,
+              con = con,
               statement =
                 # Build the upsert sql statement
                 dbplyr::sql_query_upsert(
@@ -389,9 +399,8 @@ Pipe =
                 )
             )
 
-            # At least in Oracle, severing the connection object does not delete
-            # the temporary tables in the way it should, so we'll come back
-            # around and delete the temporary tables manually
+            # Delete the temporary table
+            # See above note in db_copy_to function call on why this is done
             DBI::dbRemoveTable(con, temp_table_name)
           },
 
@@ -406,11 +415,17 @@ Pipe =
             instant_data = completed_dfs[[2]]
             summary_data = completed_dfs[[3]]
 
-            #TODO: Wrap this in an overall transaction
             # Finally, upload the data using the passed connection
-            upsert(con, metadata, .self$metadata_fieldmap)
-            upsert(con, instant_data, .self$instant_fieldmap)
-            upsert(con, summary_data, .self$summary_fieldmap)
+            # Wrap all of the upserts in a single transaction, so that if
+            # one of them fails we don't end up with hanging data
+            DBI::dbWithTransaction(
+              conn = con,
+              {
+                upsert(con, metadata, .self$metadata_fieldmap)
+                upsert(con, instant_data, .self$instant_fieldmap)
+                upsert(con, summary_data, .self$summary_fieldmap)
+              }
+            )
 
             # Indicate that the decoding was a success
             return(TRUE)
