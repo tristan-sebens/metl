@@ -265,6 +265,16 @@ test_that(
     con =
       build_temp_db()
 
+    init_tbls =
+      DBI::dbListTables(con) %>%
+      # Remove any of the sqlite admin tables
+      Filter(
+        function(t) {
+          !stringr::str_detect(t, "sqlite_")
+        },
+        .
+      )
+
     op_fm =
       build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
 
@@ -292,6 +302,18 @@ test_that(
       dat = head(dat, round(nrow(dat)*.1)),
       output_data_field_map = op_fm
     )
+
+    # Check that any temporary tables have been deleted
+    post_upsert_tbls =
+      DBI::dbListTables(con) %>%
+      # Remove any of the sqlite admin tables
+      Filter(
+        function(t) {
+          !stringr::str_detect(t, "sqlite_")
+        },
+        .
+      )
+    expect_contains(init_tbls, post_upsert_tbls)
 
     out_tbl =
       data.frame(

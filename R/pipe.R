@@ -388,6 +388,11 @@ Pipe =
                   update_cols = names(dat)[!names(dat) %in% id_fs]
                 )
             )
+
+            # At least in Oracle, severing the connection object does not delete
+            # the temporary tables in the way it should, so we'll come back
+            # around and delete the temporary tables manually
+            DBI::dbRemoveTable(con, temp_table_name)
           },
 
         # Decode all datamaps associated with a given decoder
