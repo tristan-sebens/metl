@@ -597,6 +597,18 @@ FieldInputForm =
             )
           },
 
+        build_titles =
+          function(fields, dat) {
+            # Construct an informative title for the form
+            input_window_titles = list()
+            for (field in fields) {
+              key = field$name
+              value = dat[[key]]
+              input_window_titles[key] = value
+            }
+            return(input_window_titles)
+          },
+
         build_id_frame =
           function(window, input_window_titles) {
             # Create the parent frame for the ID title
@@ -668,10 +680,12 @@ FieldInputForm =
 
 
         build_window =
-          function(input_fields, input_window_titles, ...) {
+          function(input_fields, title_fields, dat) {
             # Create main window
             window = tcltk::tktoplevel()
             tcltk::tkwm.title(window, "Input Form")
+
+            input_window_titles = build_titles(title_fields, dat)
 
             id_label = tcltk::tklabel(window, text = "Current tag: ")
             id_frame = build_id_frame(window, input_window_titles)
@@ -712,9 +726,9 @@ FieldInputForm =
           },
 
         get_field_values =
-          function(input_fields, input_window_titles) {
+          function(input_fields, title_fields, dat) {
             # Build the form window
-            window = build_window(input_fields, input_window_titles)
+            window = build_window(input_fields, title_fields, dat)
 
             # Focus on the form window, and wait for user to confirm input
             tcltk::tkfocus(window)

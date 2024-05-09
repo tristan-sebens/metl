@@ -38,17 +38,6 @@ setRefClass(
           )
         },
 
-      build_titles =
-        function(dat, fields) {
-          # Construct an informative title for the form
-          input_window_titles = list()
-          for (field in fields) {
-            key = field$name
-            value = dat[[key]]
-            input_window_titles[key] = value
-          }
-        },
-
       get_static =
         function(n) {
           return(.self$static[[n]])
@@ -153,8 +142,8 @@ setRefClass(
         function(dat, output_data_field_map) {
           "Augment the transformed dataset with any missing data"
           # Collect any fields which are flagged as input fields
-          input_fields =
-            output_data_field_map$get_input_fields()
+          input_fields = output_data_field_map$get_input_fields()
+          title_fields = output_data_field_map$get_non_input_fields()
 
           # If there are no Fields which require input, return the dataframe as is
           if (length(input_fields) == 0) return(dat)
@@ -163,17 +152,12 @@ setRefClass(
           input_form =
             FieldInputForm()
 
-          input_window_titles =
-            build_titles(
-              dat = dat,
-              fields = output_data_field_map$get_non_input_fields()
-            )
-
           # Prompt the user for the necessary fields, then collect the entered values
           input_vals =
             input_form$get_field_values(
-              input_window_titles = input_window_titles,
-              input_fields = input_fields
+              title_fields = title_fields,
+              input_fields = input_fields,
+              dat = dat
             )
 
           # Add the input values to the data.frame
