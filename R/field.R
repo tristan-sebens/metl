@@ -342,7 +342,7 @@ InputField_Date =
                 textvariable =
                   register_tclvar(
                     var_label = "day",
-                    init_value = format(Sys.Date(), "%d")
+                    init_value = ""
                   )
               )
 
@@ -353,7 +353,7 @@ InputField_Date =
                 textvariable =
                   register_tclvar(
                     var_label = "month",
-                    init_value = format(Sys.Date(), "%B")
+                    init_value = ""
                   )
               )
 
@@ -364,7 +364,7 @@ InputField_Date =
                 textvariable =
                   register_tclvar(
                     var_label = "year",
-                    init_value = format(Sys.Date(), "%Y")
+                    init_value = ""
                   )
               )
 
@@ -412,6 +412,127 @@ InputField_Date =
 
             if(as_string) return(str)
             return(as.numeric(as.POSIXct(lubridate::dmy(str))))
+          }
+      )
+  )
+
+InputField_DateTime =
+  setRefClass(
+    "InputField_DateTime",
+    contains = "InputField_Date",
+    methods =
+      list(
+        add_labels =
+          function(date_picker_frame) {
+            # First add in the Date labels
+            callSuper(date_picker_frame)
+
+            # Create time field labels
+            hour_label =
+              tcltk::tklabel(date_picker_frame, text = "Hour")
+            minute_label =
+              tcltk::tklabel(date_picker_frame, text = "Minute")
+            timezone_label =
+              tcltk::tklabel(date_picker_frame, text = "Timezone")
+
+            # Add labels to the grid layout
+            tcltk::tkgrid(hour_label, row = 0, column = 4, sticky = "nsew")
+            tcltk::tkgrid(minute_label, row = 0, column = 5, sticky = "nsew")
+            tcltk::tkgrid(timezone_label, row = 0, column = 6, sticky = "nsew")
+          },
+
+        add_inputs =
+          function(date_picker_frame) {
+            # First add in the Date picker fields
+            callSuper(date_picker_frame)
+
+            # Create and link Field objects
+            hour_picker =
+              tcltk::ttkcombobox(
+                date_picker_frame,
+                values = seq(0, 23),
+                textvariable =
+                  register_tclvar(
+                    var_label = "hour",
+                    init_value = ""
+                  )
+              )
+
+            minute_picker =
+              tcltk::ttkcombobox(
+                date_picker_frame,
+                values = seq(0, 45, 15),
+                textvariable =
+                  register_tclvar(
+                    var_label = "minute",
+                    init_value = ""
+                  )
+              )
+
+            timezone_picker =
+              tcltk::ttkcombobox(
+                date_picker_frame,
+                values =
+                  c(
+                    Sys.timezone(),
+                    "UTC",
+                    OlsonNames()[
+                      -c(
+                        which(OlsonNames() == "UTC"),
+                        which(OlsonNames()==Sys.timezone())
+                      )
+                    ]
+                  ),
+                textvariable =
+                  register_tclvar(
+                    var_label = "timezone",
+                    init_value = Sys.timezone()
+                  )
+              )
+
+            # Add input widgets to the grid layout
+            tcltk::tkgrid(hour_picker, row = 1, column = 4, sticky = "nsew")
+            tcltk::tkgrid(minute_picker, row = 1, column = 5, sticky = "nsew")
+            tcltk::tkgrid(timezone_picker, row = 1, column = 6, sticky = "nsew")
+          },
+
+        get_value =
+          function(as_string = F) {
+            # Collect all five fields and paste them together as string
+            str =
+              paste0(
+                c(
+                  paste0(
+                    c(
+                      tcltk::tclvalue(tcl_vars$day),
+                      tcltk::tclvalue(tcl_vars$month),
+                      tcltk::tclvalue(tcl_vars$year)
+                    ),
+                    collapse = "-"
+                  ),
+                  paste0(
+                    c(
+                      tcltk::tclvalue(tcl_vars$hour),
+                      tcltk::tclvalue(tcl_vars$minute)
+                    ),
+                    collapse = ":"
+                  ),
+                  tcltk::tclvalue(tcl_vars$timezone)
+                ),
+                collapse = " "
+              )
+
+            if(as_string) return(str)
+            return(
+              as.numeric(
+                as.POSIXct(
+                  lubridate::dmy_hm(
+                    str,
+                    tz = tcltk::tclvalue(tcl_vars$timezone)
+                  )
+                )
+              )
+            )
           }
       )
   )
