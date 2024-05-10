@@ -25,6 +25,22 @@ ABLTAG_METADATA_TABLE_FIELDS =
             name = "MODEL",
             data_type = "varchar(32)"
           ),
+        TAG_DATA_OWNER_PK_FIELD =
+          InputField_SelectAdd(
+            name = "DATA_OWNER_ID",
+            data_type = "varchar(32)",
+            table = "DATA_OWNER",
+            pk_field = "OWNER_ID",
+            label_field = "NAME"
+          ),
+        TAG_SPECIES_ID_FIELD =
+          InputField_Select(
+            name = "SPECIES_ID",
+            data_type = "varchar(32)",
+            table = "SPECIES",
+            pk_field = "CODE",
+            label_field = "SPECIES_NAME"
+          ),
         TAG_DEPLOY_DATE =
           InputField_DateTime(
             name = "DATE_DEPLOYED",
@@ -34,14 +50,6 @@ ABLTAG_METADATA_TABLE_FIELDS =
           InputField_DateTime(
             name = "DATE_RECOVERED",
             data_type = "varchar(32)"
-          ),
-        TAG_SPECIES_ID_FIELD =
-          InputField_Select(
-            name = "SPECIES_ID",
-            data_type = "varchar(32)",
-            table = "SPECIES",
-            pk_field = "CODE",
-            label_field = "SPECIES_NAME"
           ),
         UPLOAD_TIMESTAMP_FIELD =
           IndependentField(

@@ -264,6 +264,83 @@ InputField_Select =
       )
   )
 
+InputField_SelectAdd =
+  setRefClass(
+    "InputField_SelectAdd",
+    contains = "InputField_Select",
+    fields =
+      list(
+        update_fn_ = "function"
+      ),
+    methods =
+      list(
+        initialize =
+          function(update_fn_, ...) {
+            callSuper(
+              # Enforce that no update function can be specified upon instantiation
+              update_fn_ = function(...) {},
+              ...
+            )
+          },
+
+        cache_update_fn =
+          function(con) {
+            update_fn_ <<-
+              function(val) {
+                # Create a data.frame to insert
+                dat = data.frame(placeholder = 1)
+                dat[[label_field]] = val
+                dat = dplyr::select(dat, -placeholder)
+
+                DBI::dbAppendTable(
+                  conn = con,
+                  name = table,
+                  value = dat
+                )
+
+                # Retrieve the table pk value for the inserted value
+                pk =
+                  dplyr::tbl(con, table) %>%
+                  dplyr::filter(
+                    across(
+                      !!rlang::sym(label_field),
+                      ~ .x == !!val
+                    )
+                  ) %>%
+                  dplyr::pull(!!pk_field)
+
+                return(pk)
+              }
+          },
+
+        get_value =
+          function(...) {
+            "Retrieve the user-inputted value for this field"
+            val = tcltk::tclvalue(tcl_vars$selection)
+
+            # If the selected value is not in the list of labels present in
+            # the DB, then we need to insert the new value first
+            if(!val %in% labels) {
+              #TODO: There should be some sort of prompt here to check with the
+              # user if they are intending to insert a new value into the DB
+
+              # Insert the new value into the DB and get the PK for that new value
+              pk = update_fn_(val)
+              # Return the new PK
+              return(pk)
+            }
+            # Convert from the lable to the corresponding ID value
+            return(pks[which(labels == val)])
+          },
+
+        refresh =
+          function(con, ...) {
+            callSuper(con, ...)
+            cache_update_fn(con)
+          }
+      )
+  )
+
 InputField_Date =
 #' InputField object for selecting dates
 #'
