@@ -98,7 +98,9 @@ InputField =
         # A list of Validator objects.
         validators = "list",
         # A list of tclVar objects, used to extract values from the input window
-        tcl_vars = "list"
+        tcl_vars = "list",
+        # Boolean flag which indicates if the Fields value should not be reset between input prompts
+        persistant = "logical"
       ),
     methods =
       list(
@@ -108,12 +110,15 @@ InputField =
             validators = list(FieldValidator()),
             # Default to a single tclVar object
             tcl_vars = list(),
+            # Default to clearing input values between input forms
+            persistant = F,
             ...
           ) {
             callSuper(
               validators = validators,
               tcl_vars = tcl_vars,
               user_specified = T,
+              persistant = persistant,
               ...
             )
           },
@@ -153,6 +158,24 @@ InputField =
               "Inheritence error: 'get_value' method of FieldInput base
                class called. Please implement a child class instead"
             )
+          },
+
+        clear_value =
+          function() {
+            "Clear the value(s) registered to this Field object"
+              tcl_vars %>%
+              lapply(
+                function(tvar) {
+                  tcltk::tclvalue(tvar) = ""
+                }
+              ) %>%
+              unlist()
+          },
+
+        reset_field =
+          function() {
+            "Clean up function for resetting the field after an input prompt is complete"
+            if(!persistant) clear_value()
           },
 
         validate_value =
@@ -795,6 +818,13 @@ FieldInputForm =
             )
           },
 
+        reset_fields =
+          function(input_fields) {
+            for (field in input_fields) {
+              field$reset_field()
+            }
+          },
+
         build_titles =
           function(fields, dat) {
             # Construct an informative title for the form
@@ -936,6 +966,10 @@ FieldInputForm =
             vals = retrieve_values(input_fields)
 
             # TODO: validation step. If values are not valid, respond intelligently
+
+
+            # Clear field values
+            reset_fields(input_fields)
 
             return(vals)
           }
