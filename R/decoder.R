@@ -34,6 +34,13 @@ setRefClass(
             summary_datamap = summary_datamap
           )
         },
+
+    label =
+      function() {
+        return(metadata_map$label())
+      },
+
+
     # Helper function to throw an error with a pre-appended message to help identify
     # the source of the error
     throw_error =

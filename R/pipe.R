@@ -138,21 +138,15 @@ Pipe =
                 # fullPath: the full file path to the directory
                 node$fullPath =
                   file.path(dirname(.self$d), node$pathString)
-              }
-            )
-
-            dt$Do(
-              function(node) {
                 # decoded: flag indicating if the directory was successfully uploaded
                 node$decoded =
                   FALSE
-
                 # decode error: placeholder for any error which occurs when processing a node
                 node$decode_error =
                   ""
-
-                node$identified_decoder =
-                  ""
+                # placeholder for the Decoder object which gets associated with this node
+                node$decoder =
+                  NULL
               },
               filterFun = function(node) {return(node$isLeaf)}
             )
@@ -169,15 +163,21 @@ Pipe =
               .self$dir_tree__,
               n_tags = .self$num_leaves,
               n_decoded = .self$num_decoded,
+              decoder = function(self) {if(!is.null(self$decoder)) self$decoder$label()},
               "decoded",
-              "identified_decoder",
               "decode_error"
             ) %>%
               dplyr::mutate(
                 pct_decoded = round(100 * n_decoded / n_tags, 1),
                 pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
               ) %>%
-              dplyr::select(dir=levelName, pct_decoded, decoded, identified_decoder, decode_error)
+              dplyr::select(
+                dir=levelName,
+                pct_decoded,
+                decoded,
+                decoder,
+                decode_error
+              )
           },
 
         add_missing_fields =
@@ -431,10 +431,9 @@ Pipe =
             return(TRUE)
           },
 
-        process_node =
-          function(node, con, overwrite = T) {
-            "Attempt to process directory `d`. Pipe will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
-
+        pre_process_node =
+          function(node) {
+            "Perform any necessary pre-processing on a directory"
             node$tag_identifier_results =
               # Instantiate the identifier object based on the list of Decoders held by this Pipe
               TagIdentifier(decoders = .self$decoders)$
@@ -449,19 +448,38 @@ Pipe =
             # If there is exactly one decoder which matches the data directory, use that
             # decoder to upload the tag data to the DB
             if(nrow(pos_id) == 1) {
-              dc = pos_id$dc[[1]]
+              node$decoder = pos_id$dc[[1]]
+            } else {
+              node$decode_error = paste0("Matching decoders: ", nrow(pos_id))
+            }
+          },
+
+        pre_process_nodes =
+          function() {
+            "Perform any necessary pre-processing on the nodes of the directory tree"
+            .self$dir_tree__$Do(
+              # Invoke the pre-processing function
+              function(node) pre_process_node(node),
+              # Only process nodes which are data directories
+              filterFun = function(node) {node$isLeaf}
+            )
+          },
+
+        process_node =
+          function(node, con, overwrite = T) {
+            "Attempt to process directory `d`. Pipe will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
+            # Filter to those decoders which matched the data directory
+            if(!is.null(node$decoder)) {
               tryCatch(
                 {
-                  node$decoded = .self$decode_node(con, dc, node)
-                  node$identified_decoder = pos_id$name
+                  node$decoded = .self$decode_node(con, node$decoder, node)
                 },
+
                 error =
                   function(cond) {
                     node$decode_error = cond
                   }
               )
-            } else {
-              node$decode_error = paste0("Matching decoders: ", nrow(pos_id))
             }
           },
 
@@ -478,6 +496,7 @@ Pipe =
           function(con, overwrite = T, silent = F) {
           "Recursively process a directory tree, attempting to process each directory."
             if(!silent) print("Processing directory.")
+            .self$pre_process_nodes()
             # Traverse directory tree and process each data directory (leaf node)
             .self$dir_tree__$Do(
               function(node) {

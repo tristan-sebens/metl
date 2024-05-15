@@ -411,6 +411,7 @@ test_all_data_dirs(
           expect_null(node$tag_identifier_results)
           expect_null(node$pos_id)
 
+          tp__$pre_process_node(node)
           tp__$process_node(node, con)
 
           expect_true(node$decoded)
@@ -447,7 +448,7 @@ test_that(
     tp__$process_node(node = node, con = con)
 
     expect_false(node$decoded)
-    expect_equal(node$identified_decoder, "")
+    expect_equal(node$decoder, NULL)
     expect_snapshot(node$decode_error)
 
     DBI::dbDisconnect(con)
