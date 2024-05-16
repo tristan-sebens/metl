@@ -5,8 +5,9 @@ test_that(
 
     # Check that the data is returned as expected
     metadata =
-      dc$decode_metadata_map(
+      dc$decode_datamap(
         d = "placeholder",
+        dm = dc$data_maps[["meta"]],
         op_fm = build_test_metadata_map()$METADATA_OUTPUT_FIELD_MAP
       )
 
@@ -14,8 +15,9 @@ test_that(
     expect_gt(nrow(metadata), 0, label = "# rows in decoded metadata")
 
     instant_data =
-      dc$decode_instant_datamap(
+      dc$decode_datamap(
         d = "placeholder",
+        dm = dc$data_maps[["instant"]],
         op_fm = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
       )
 
@@ -23,8 +25,9 @@ test_that(
     expect_gt(nrow(instant_data), 0, label = "# rows in decoded instant data")
 
     summary_data =
-      dc$decode_summary_datamap(
+      dc$decode_datamap(
         d = "placeholder",
+        dm = dc$data_maps[["instant"]],
         op_fm = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
       )
 

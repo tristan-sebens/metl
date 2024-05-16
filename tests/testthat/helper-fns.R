@@ -39,8 +39,8 @@ build_test_metadata_map =
 
     return(
       list(
-        METADATA_INPUT_FIELD_MAP = DEFAULT_METADATA_FIELDS,
-        METADATA_OUTPUT_FIELD_MAP = test_metadata_output_fields
+        "METADATA_INPUT_FIELD_MAP" = DEFAULT_METADATA_FIELDS,
+        "METADATA_OUTPUT_FIELD_MAP" = test_metadata_output_fields
       )
     )
   }
@@ -153,12 +153,12 @@ build_test_decoder =
     # Instantate the Decoder
     dc =
       Decoder(
-        instant_datamap =
-          instant_sensor_data_map,
-        summary_datamap =
-          summary_sensor_data_map,
-        metadata_map =
-          metadata_map
+        data_maps =
+          list(
+            "meta" = metadata_map,
+            "instant" = instant_sensor_data_map,
+            "summary" = summary_sensor_data_map
+          )
       )
 
     return(dc)
@@ -169,17 +169,17 @@ build_test_tag_processor =
     d = test_data_d(), # Root at the base of the test data directory
     decoders = build_test_decoder_list(),
     # The following parameters are the output FieldMap objects for the metadata, instant data, and summary tables, respectivey
-    #TODO: These tests would ideally not use these objects, as they're technically subject to being changed in the future. However, we need to use FieldMaps which match the input/output structure of our test data, and it would take time to rewrite them in the proper way, time that I think is better spent otherwise at the moment. However, this is worth fixing in the future.
-    metadata_fieldmap = build_test_metadata_map()$METADATA_OUTPUT_FIELD_MAP,
-    instant_fieldmap = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
-    summary_fieldmap = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
+    output_fieldmaps =
+      list(
+        "meta" = build_test_metadata_map()$METADATA_OUTPUT_FIELD_MAP,
+        "instant" = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
+        "summary" = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
+      )
   ) {
     Pipe(
       d = d,
       decoders = decoders,
-      metadata_fieldmap = metadata_fieldmap,
-      instant_fieldmap = instant_fieldmap,
-      summary_fieldmap = summary_fieldmap
+      output_fieldmaps = output_fieldmaps
     )
   }
 

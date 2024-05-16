@@ -33,10 +33,8 @@ Pipe =
         d = "character", # The directory to process
         decoders = "list", # The list of decoders to use for processing data directories
         dir_tree__ = "Node", # The directory tree object. Private attribute, not intended to be set
-        # The following parameters are the output FieldMap objects for the metadata, instant data, and summary tables, respectivey
-        metadata_fieldmap = "FieldMap",
-        instant_fieldmap = "FieldMap",
-        summary_fieldmap = "FieldMap"
+        # List of FieldMap objects for all data which might come out of the underlying decoders
+        output_fieldmaps = "list"
       ),
 
     methods =
@@ -45,9 +43,12 @@ Pipe =
           function(
             ...,
             d,
-            metadata_fieldmap = ABLTAG_METADATA_TABLE_FIELDS,
-            instant_fieldmap = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
-            summary_fieldmap = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
+            output_fieldmaps =
+              list(
+                "meta" = ABLTAG_METADATA_TABLE_FIELDS,
+                "instant" = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
+                "summary" = ABLTAG_DATA_SUMMARY_TABLE_FIELDS
+              ),
             decoders =
               list(
                 Decoder_Lotek_1000.1100.1250,
@@ -65,9 +66,7 @@ Pipe =
               ...,
               d = d,
               decoders = decoders,
-              metadata_fieldmap = metadata_fieldmap,
-              instant_fieldmap = instant_fieldmap,
-              summary_fieldmap = summary_fieldmap
+              output_fieldmaps = output_fieldmaps
             )
             # Build datatree object from directory
             dir_tree__ <<- .self$build_datatree(d)
@@ -163,7 +162,7 @@ Pipe =
               .self$dir_tree__,
               n_tags = .self$num_leaves,
               n_decoded = .self$num_decoded,
-              decoder = function(self) {if(!is.null(self$decoder)) self$decoder$label()},
+              decoder = function(self) {if(!is.null(self$decoder)) self$decoder$label},
               "decoded",
               "decode_error"
             ) %>%
@@ -288,52 +287,38 @@ Pipe =
 
         get_node_data =
           function(dc, node) {
-            # Decode metadata
-            metadata =
-              dc$decode_metadata_map(
-                d = node$fullPath,
-                op_fm = .self$metadata_fieldmap
-              )
+            # Initialize an empty list to hold data
+            decoded_data_list = list()
 
-            # Decode instant data
-            instant_data =
-              dc$decode_instant_datamap(
-                d = node$fullPath,
-                op_fm = .self$instant_fieldmap
-              )
+            # Iterate over each data map in the decoder's data_maps list
+            for (data_type in names(dc$data_maps)) {
+              # Decode data according to the map type (metadata, instant, summary)
+              decoded_data =
+                dc$decode_datamap(
+                  dm = dc$data_maps[[data_type]],
+                  d = node$fullPath,
+                  op_fm = .self$output_fieldmaps[[data_type]]
+                )
 
-            # Decode summary data
-            summary_data =
-              dc$decode_summary_datamap(
-                d = node$fullPath,
-                op_fm = .self$summary_fieldmap
-              )
+              # Add the decoded data to the list
+              decoded_data_list[[data_type]] = decoded_data
+            }
 
-            # Complete the dataframes with fields from eachother as necessary
-            cmp_dats =
-              complete_dataframes(
+            # Complete the dataframes with fields from each other as necessary
+            completed_data =
+              .self$complete_dataframes(
                 dfs =
-                  list(
-                    metadata,
-                    instant_data,
-                    summary_data
-                  ),
+                  decoded_data_list,
                 ip_fms =
-                  list(
-                    dc$metadata_map$input_data_field_map,
-                    dc$instant_datamap$input_data_field_map,
-                    dc$summary_datamap$input_data_field_map
-                  ),
+                  lapply(dc$data_maps[names(dc$data_maps)], function(dm) dm$input_data_field_map),
                 op_fms =
-                  list(
-                    .self$metadata_fieldmap,
-                    .self$instant_fieldmap,
-                    .self$summary_fieldmap
-                  )
+                  .self$output_fieldmaps[names(dc$data_maps)]
               )
 
-            # Return the decoded data
-            return(cmp_dats)
+            names(completed_data) = names(decoded_data_list)
+
+            # Return the completed data
+            return(completed_data)
           },
 
         #TODO Move this into a separate connection object (or something like that) which can decouple the
@@ -409,21 +394,19 @@ Pipe =
           function(con, dc, node) {
             completed_dfs = get_node_data(dc, node)
 
-            # Reassign the data.frame variables
-            # The data.frames come out in the same order they went in
-            metadata = completed_dfs[[1]]
-            instant_data = completed_dfs[[2]]
-            summary_data = completed_dfs[[3]]
-
             # Finally, upload the data using the passed connection
             # Wrap all of the upserts in a single transaction, so that if
             # one of them fails we don't end up with hanging data
             DBI::dbWithTransaction(
               conn = con,
               {
-                upsert(con, metadata, .self$metadata_fieldmap)
-                upsert(con, instant_data, .self$instant_fieldmap)
-                upsert(con, summary_data, .self$summary_fieldmap)
+                for (data_type in names(completed_dfs)) {
+                  .self$upsert(
+                    con = con,
+                    dat = completed_dfs[[data_type]],
+                    output_data_field_map = .self$output_fieldmaps[[data_type]]
+                  )
+                }
               }
             )
 
@@ -486,9 +469,8 @@ Pipe =
         refresh_op_fm =
           function(...) {
             "Refresh each of the FieldMap objects"
-            .self$metadata_fieldmap$refresh(...)
-            .self$instant_fieldmap$refresh(...)
-            .self$summary_fieldmap$refresh(...)
+            for(fieldmap in .self$output_fieldmaps)
+              fieldmap$refresh(...)
           },
 
         # Process all tag data contained within the directory tree
@@ -521,74 +503,43 @@ Pipe =
             # Populate the temporary DB with the tag data as normal
             process_to_db(con, ...)
 
-            # Extract the three data types out of the temp DB
-            ret =
-              list(
-                meta =
-                  dplyr::tbl(
-                    con,
-                    metadata_fieldmap$table
-                  ) %>%
-                  data.frame(),
+            dat = list()
 
-                instant =
-                  dplyr::tbl(
-                    con,
-                    instant_fieldmap$table
-                  ) %>%
-                  data.frame(),
-
-                summary =
-                  dplyr::tbl(
-                    con,
-                    summary_fieldmap$table
-                  ) %>%
-                  data.frame()
-              )
+            # Extract all data types out of the temp DB
+            for (data_type in names(.self$output_fieldmaps)) {
+              dat[[data_type]] =
+                dplyr::tbl(
+                  con,
+                  .self$output_fieldmaps[[data_type]]$table
+                ) %>%
+                data.frame()
+            }
 
             # Sever the connection to the temp DB
             DBI::dbDisconnect(con)
 
-            return(ret)
+            return(dat)
           },
 
         process_to_csv =
           function(out_d, ...) {
             "Extract tag data and write it to csv files in `out_d`"
             # Generate the three output data.frames from the tag data
-            res = process_to_dataframes(...)
+            dat = process_to_dataframes(...)
 
-            # Write the metadata to a csv file
-            write.csv(
-              x = res$meta,
-              file =
-                file.path(
-                  out_d,
-                  paste0(metadata_fieldmap$table, '.csv')
-                ),
-              row.names = F
-            )
-            # Write the instant data to a csv file
-            write.csv(
-              x = res$instant,
-              file =
-                file.path(
-                  out_d,
-                  paste0(instant_fieldmap$table, '.csv')
-                ),
-              row.names = F
-            )
-            # Write the summary data to a csv file
-            write.csv(
-              x = res$summary,
-              file =
-                file.path(
-                  out_d,
-                  paste0(summary_fieldmap$table, '.csv')
-                ),
-              row.names = F
-            )
 
+            # Write each datatype to a csv file
+            for (data_type in names(dat)) {
+              write.csv(
+                x = dat[[data_type]],
+                file =
+                  file.path(
+                    out_d,
+                    paste0(data_type, '.csv')
+                  ),
+                row.names = F
+              )
+            }
           }
       )
   )

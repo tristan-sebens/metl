@@ -106,17 +106,17 @@ test_that(
     dc =
       Decoder_Lotek_1300
 
-    dat1 = dc$decode_instant_datamap(d, tp__$instant_fieldmap)
-    dat2 = dc$decode_metadata_map(d, tp__$metadata_fieldmap)
+    dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = tp__$output_fieldmaps[["instant"]])
+    dat2 = dc$decode_datamap(d, dm = dc$data_maps[["meta"]], op_fm = tp__$output_fieldmaps[["meta"]])
 
     dat3 =
       tp__$add_missing_fields(
         dat1 = dat1,
-        dat1_ip_fm = dc$instant_datamap$input_data_field_map,
-        dat1_op_fm = tp__$instant_fieldmap,
+        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
+        dat1_op_fm = tp__$output_fieldmaps[["instant"]],
         dat2 = dat2,
-        dat2_ip_fm = dc$metadata_map$input_data_field_map,
-        dat2_op_fm = tp__$metadata_fieldmap
+        dat2_ip_fm = dc$data_maps[["meta"]]$input_data_field_map,
+        dat2_op_fm = tp__$output_fieldmaps[["meta"]]
       )
 
     # Ensure that the output data.frame is as expected# Ensure that the output data.frame is as expected# Ensure that the output data.frame is as expected
@@ -154,23 +154,26 @@ test_that(
 
     # Decode metadata
     metadata =
-      dc$decode_metadata_map(
+      dc$decode_datamap(
         d = d,
-        op_fm = tp__$metadata_fieldmap
+        dm = dc$data_maps[["meta"]],
+        op_fm = tp__$output_fieldmaps[["meta"]]
       )
 
     # Decode instant data
     instant_data =
-      dc$decode_instant_datamap(
+      dc$decode_datamap(
         d = d,
-        op_fm = tp__$instant_fieldmap
+        dc$data_maps[["instant"]],
+        op_fm = tp__$output_fieldmaps[["instant"]]
       )
 
     # Decode summary data
     summary_data =
-      dc$decode_summary_datamap(
+      dc$decode_datamap(
         d = d,
-        op_fm = tp__$summary_fieldmap
+        dc$data_maps[["summary"]],
+        op_fm = tp__$output_fieldmaps[["summary"]]
       )
 
     # Now that we have all of the necessary data, complete
@@ -185,15 +188,15 @@ test_that(
           ),
         ip_fms =
           list(
-            dc$metadata_map$input_data_field_map,
-            dc$instant_datamap$input_data_field_map,
-            dc$summary_datamap$input_data_field_map
+            dc$data_maps[["meta"]]$input_data_field_map,
+            dc$data_maps[["instant"]]$input_data_field_map,
+            dc$data_maps[["summary"]]$input_data_field_map
           ),
         op_fms =
           list(
-            tp__$metadata_fieldmap,
-            tp__$instant_fieldmap,
-            tp__$summary_fieldmap
+            tp__$output_fieldmaps[["meta"]],
+            tp__$output_fieldmaps[["instant"]],
+            tp__$output_fieldmaps[["summary"]]
           )
       )
 
@@ -218,12 +221,12 @@ test_that(
     # Check that the two
     expect_contains(
       names(instant_data_c),
-      tp__$metadata_fieldmap$field_list$TAG_ID_FIELD$name
+      tp__$output_fieldmaps[["meta"]]$field_list$TAG_ID_FIELD$name
     )
 
     expect_contains(
       names(summary_data_c),
-      tp__$metadata_fieldmap$field_list$TAG_ID_FIELD$name
+      tp__$output_fieldmaps[["meta"]]$field_list$TAG_ID_FIELD$name
     )
   }
 )
@@ -292,7 +295,7 @@ test_that(
       build_test_decoder()
 
     dat =
-      dc$decode_instant_datamap(op_fm = op_fm)
+      dc$decode_datamap(d = "", dm = dc$data_maps[["instant"]], op_fm = op_fm)
 
     dat$tag_id = 1
 
@@ -477,7 +480,7 @@ test_that(
       data.frame(
         dplyr::tbl(
           con,
-          tp__$metadata_fieldmap$table
+          tp__$output_fieldmaps[["meta"]]$table
         )
       )
     expect_gt(nrow(meta_dat), 0)
@@ -487,7 +490,7 @@ test_that(
       data.frame(
         dplyr::tbl(
           con,
-          tp__$instant_fieldmap$table
+          tp__$output_fieldmaps[["instant"]]$table
         )
       )
     expect_gt(nrow(instant_dat), 0)
@@ -497,7 +500,7 @@ test_that(
       data.frame(
         dplyr::tbl(
           con,
-          tp__$summary_fieldmap$table
+          tp__$output_fieldmaps[["summary"]]$table
         )
       )
     expect_gt(nrow(summary_dat), 0)
@@ -557,35 +560,23 @@ test_that(
 
     expect_equal(report$pct_decoded[[1]], 100)
 
-    meta_dat =
-      read.csv(
-        file.path(
-          test_d,
-          paste0(tp__$metadata_fieldmap$table, '.csv')
-        )
-      )
-    expect_gt(nrow(meta_dat), 0)
-    expect_snapshot(meta_dat)
+    for (data_type in names(tp__$output_fieldmaps)) {
+      test_that(
+        paste0("Pipe::process_to_csv - ", data_type),
+        {
+          dat =
+            read.csv(
+              file.path(
+                test_d,
+                paste0(data_type, '.csv')
+              )
+            )
 
-    instant_dat =
-      read.csv(
-        file.path(
-          test_d,
-          paste0(tp__$instant_fieldmap$table, '.csv')
-        )
+          expect_gt(nrow(dat), 0)
+          expect_snapshot(dat)
+        }
       )
-    expect_gt(nrow(instant_dat), 0)
-    expect_snapshot(instant_dat)
-
-    summary_dat =
-      read.csv(
-        file.path(
-          test_d,
-          paste0(tp__$summary_fieldmap$table, '.csv')
-        )
-      )
-    expect_gt(nrow(summary_dat), 0)
-    expect_snapshot(summary_dat)
+    }
   }
 )
 
