@@ -146,6 +146,9 @@ Pipe =
                 # placeholder for the Decoder object which gets associated with this node
                 node$decoder =
                   NULL
+                # placeholder attribute. Named list which can be used to store retrieved data prior to load
+                node$data =
+                  list()
               },
               filterFun = function(node) {return(node$isLeaf)}
             )
@@ -292,13 +295,20 @@ Pipe =
 
             # Iterate over each data map in the decoder's data_maps list
             for (data_type in names(dc$data_maps)) {
-              # Decode data according to the map type (metadata, instant, summary)
-              decoded_data =
-                dc$decode_datamap(
-                  dm = dc$data_maps[[data_type]],
-                  d = node$fullPath,
-                  op_fm = .self$output_fieldmaps[[data_type]]
-                )
+              if(data_type %in% names(node$data)) {
+                # If the data attribute of the current node already has an
+                # element whose name matches that of the current data_type,
+                # default to that value instead
+                decoded_data = node$data[[data_type]]
+              } else {
+                # Decode data according to the map type (metadata, instant, summary)
+                decoded_data =
+                  dc$decode_datamap(
+                    dm = dc$data_maps[[data_type]],
+                    d = node$fullPath,
+                    op_fm = .self$output_fieldmaps[[data_type]]
+                  )
+              }
 
               # Add the decoded data to the list
               decoded_data_list[[data_type]] = decoded_data
@@ -392,11 +402,13 @@ Pipe =
         # Decode all datamaps associated with a given decoder
         decode_node =
           function(con, dc, node) {
-            completed_dfs = get_node_data(dc, node)
+            # Extract, transform, augment, and complete all data from the current node
+            completed_dfs =
+              get_node_data(dc, node)
 
-            # Finally, upload the data using the passed connection
-            # Wrap all of the upserts in a single transaction, so that if
-            # one of them fails we don't end up with hanging data
+            # Upload the data using the passed connection
+            # Wrap all of the upserts in a single transaction, so that if one
+            # of them fails they all fail and we don't end up with hanging data
             DBI::dbWithTransaction(
               conn = con,
               {
