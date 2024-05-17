@@ -26,13 +26,12 @@ ABLTAG_METADATA_TABLE_FIELDS =
             data_type = "varchar(32)"
           ),
         TAG_DATA_OWNER_PK_FIELD =
-          InputField_SelectAdd(
+          InputField_Select(
             name = "DATA_OWNER_ID",
             data_type = "varchar(32)",
             table = "DATA_OWNER",
             pk_field = "OWNER_ID",
-            label_field = "NAME",
-            persistant = T
+            label_field = "NAME"
           ),
         TAG_SPECIES_ID_FIELD =
           InputField_Select(
@@ -40,8 +39,7 @@ ABLTAG_METADATA_TABLE_FIELDS =
             data_type = "varchar(32)",
             table = "SPECIES",
             pk_field = "CODE",
-            label_field = "SPECIES_NAME",
-            persistant = T
+            label_field = "SPECIES_NAME"
           ),
         TAG_DEPLOY_DATE =
           InputField_DateTime(

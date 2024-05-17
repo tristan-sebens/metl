@@ -33,6 +33,8 @@ Config/testthat/start-first: Pipe, DataMapConfig, DataMap_Base
 Collate:
     'util.R'
     'field.R'
+    'field_widgets.R'
+    'validators.R'
     'data_map.R'
     'identifier.R'
     'decoder.R'
