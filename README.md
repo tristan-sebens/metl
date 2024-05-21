@@ -46,14 +46,14 @@ tag_data_directory = here::here()
 # Instantiate the Pipe object
 metl_pipe = 
   Pipe(
-    d = tag_data_directory, # Root directory of tag data
+    d = tag_data_directory # Root directory of tag data
   ) 
 ```
 ### **Initiate extraction**
 
 Once instantiated, we can use the `Pipe` object to extract tag data. 
 ```
-res = metl_pipe$process_to_dataframes(con = db_conn)
+res = metl_pipe$process_to_dataframes()
 ```
 The `Pipe` will now traverse the entire directory tree rooted in `d`, and will attempt to extract all data within.
 
