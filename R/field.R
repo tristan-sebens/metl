@@ -287,6 +287,66 @@ InputField_Select =
       )
   )
 
+InputField_FilteredSelect =
+   setRefClass(
+     "InputField_FilteredSelect",
+     contains = "InputField_Select",
+     fields =
+       list(
+         filter_field = "character",
+         input_filter_field = "Field",
+         refresh_labels_fn_ = "function"
+       ),
+     methods =
+       list(
+
+         cache_filter_fn_ =
+           function(con) {
+             refresh_labels_fn_ <<-
+               function(val) {
+                 # Retrieve the values of the target table based on the filter value
+                 dat__ =
+                   dplyr::tbl(con, table) %>%
+                   dplyr::filter(
+                     across(
+                       !!rlang::sym(filter_field),
+                       ~ .x == !!val
+                     )
+                   ) %>%
+                   data.frame()
+
+                 pks <<- as.character(dat__[[pk_field]])
+                 labels <<- as.character(dat__[[label_field]])
+               }
+           },
+
+         refresh_choices =
+           function(val) {
+             refresh_labels_fn_(val)
+           },
+
+         refresh =
+           function(con, ...) {
+             # Cache the function which this Field can later use to update its choices
+             cache_filter_fn_(con)
+           },
+
+         build_widget =
+           function(window, dat, ...) {
+             refresh_choices(dat[[input_filter_field$name]])
+             return(
+               callSuper(
+                 window=window,
+                 dat=dat,
+                 ...
+               )
+             )
+           }
+       )
+   )
+
+
+
 InputField_SelectAdd =
   setRefClass(
     "InputField_SelectAdd",
@@ -297,15 +357,6 @@ InputField_SelectAdd =
       ),
     methods =
       list(
-        initialize =
-          function(update_fn_, ...) {
-            callSuper(
-              # Enforce that no update function can be specified upon instantiation
-              update_fn_ = function(...) {},
-              ...
-            )
-          },
-
         cache_update_fn =
           function(con) {
             update_fn_ <<-
@@ -868,16 +919,16 @@ FieldInputForm =
               )
             }
 
-            tcltk::tkgrid.columnconfigure(id_frame, 0, weight = 1)
+            tcltk::tkgrid.columnconfigure(id_frame, 1, weight = 0)
             tcltk::tkgrid.columnconfigure(id_frame, 1, weight = 1)
 
             return(id_frame)
           },
 
         build_input_form_frame =
-          function(window, input_fields) {
+          function(window, input_fields, dat) {
             # Create the parent frame for the ID title
-            input_form_frame = tcltk::ttkframe(window)
+            input_form_frame = tcltk::ttkframe(window, borderwidth = 2, relief = "groove")
 
             # Iterate through each field and create input widgets
             for (ix in seq_along(input_fields)) {
@@ -891,16 +942,18 @@ FieldInputForm =
                 sticky = 'w'
               )
               # Field entry widget
-              widget = field$build_widget(input_form_frame)
+              widget = field$build_widget(input_form_frame, dat)
               tcltk::tkgrid(
                 widget,
                 column = 1,
                 row = ix,
-                sticky = 'w'
+                sticky = 'ew'
               )
             }
 
-            tcltk::tkgrid.columnconfigure(input_form_frame, 0, weight = 1)
+            # Give the label column 0 weight so that it doesn't expand with the window
+            tcltk::tkgrid.columnconfigure(input_form_frame, 1, weight = 0)
+            # Give the input column 1 weight so that it absorbs all of the expansion
             tcltk::tkgrid.columnconfigure(input_form_frame, 1, weight = 1)
 
             return(input_form_frame)
@@ -918,14 +971,15 @@ FieldInputForm =
             id_label = tcltk::tklabel(window, text = "Current tag: ")
             id_frame = build_id_frame(window, input_window_titles)
             input_label = tcltk::tklabel(window, text = "Required input fields: ")
-            input_form_frame = build_input_form_frame(window, input_fields)
+            input_form_frame = build_input_form_frame(window, input_fields, dat)
 
-            tcltk::tkgrid(id_label, sticky='ew')
-            tcltk::tkgrid(id_frame)
-            tcltk::tkgrid(input_label, sticky='ew')
-            tcltk::tkgrid(input_form_frame)
+            tcltk::tkgrid(id_label, column = 0, sticky='nsew')
+            tcltk::tkgrid(id_frame, column = 0, sticky='nsew')
+            tcltk::tkgrid(input_label, column = 0, sticky='nsew')
+            tcltk::tkgrid(input_form_frame, column = 0, sticky='nsew')
 
 
+            # tcltk::tkgrid.rowconfigure(window, 0, weight = 1)
             tcltk::tkgrid.columnconfigure(window, 0, weight = 1)
 
             # Button to submit the form with its values

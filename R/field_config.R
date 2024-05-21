@@ -24,48 +24,57 @@ ABLTAG_METADATA_TABLE_FIELDS =
           Field(
             name = "MODEL",
             data_type = "varchar(32)"
-          ),
-        TAG_DATA_OWNER_PK_FIELD =
-          InputField_SelectAdd(
-            name = "DATA_OWNER_ID",
-            data_type = "varchar(32)",
-            table = "DATA_OWNER",
-            pk_field = "OWNER_ID",
-            label_field = "NAME",
-            persistant = T
-          ),
-        TAG_SPECIES_ID_FIELD =
-          InputField_Select(
-            name = "SPECIES_ID",
-            data_type = "varchar(32)",
-            table = "SPECIES",
-            pk_field = "CODE",
-            label_field = "SPECIES_NAME",
-            persistant = T
-          ),
-        TAG_DEPLOY_DATE =
-          InputField_DateTime(
-            name = "DATE_DEPLOYED",
-            data_type = "varchar(32)"
-          ),
-        TAG_RECOVERY_DATE =
-          InputField_DateTime(
-            name = "DATE_RECOVERED",
-            data_type = "varchar(32)"
-          ),
-        UPLOAD_TIMESTAMP_FIELD =
-          IndependentField(
-            name = "UPLOAD_TIMESTAMP",
-            data_type = "integer",
-            value_fn =
-              function(dat, ...) {
-                return(
-                  as.numeric(as.POSIXct(Sys.time(), tz = ""))
-                )
-              }
           )
       )
   )
+
+# Append input fields
+ABLTAG_METADATA_TABLE_FIELDS$field_list =
+  append(
+    ABLTAG_METADATA_TABLE_FIELDS$field_list,
+    list(
+      TAG_DATA_OWNER_PK_FIELD =
+        InputField_SelectAdd(
+          name = "DATA_OWNER_ID",
+          data_type = "varchar(32)",
+          table = "DATA_OWNER",
+          pk_field = "OWNER_ID",
+          label_field = "NAME",
+          persistant = T
+        ),
+      TAG_DEPLOYMENT_ID_FIELD =
+        InputField_FilteredSelect(
+          name = "DEPLOYMENT_ID",
+          table = "TAG_DEPLOYMENT",
+          pk_field = "DEPLOYMENT_ID",
+          label_field = "LABEL",
+          filter_field = "TAG_NUM",
+          input_filter_field = ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD
+        ),
+      # TAG_DEPLOY_DATE =
+      #   InputField_DateTime(
+      #     name = "DATE_DEPLOYED",
+      #     data_type = "varchar(32)"
+      #   ),
+      # TAG_RECOVERY_DATE =
+      #   InputField_DateTime(
+      #     name = "DATE_RECOVERED",
+      #     data_type = "varchar(32)"
+      #   ),
+      UPLOAD_TIMESTAMP_FIELD =
+        IndependentField(
+          name = "UPLOAD_TIMESTAMP",
+          data_type = "integer",
+          value_fn =
+            function(dat, ...) {
+              return(
+                as.numeric(as.POSIXct(Sys.time(), tz = ""))
+              )
+            }
+        )
+    )
+  )
+
 
 #----------------
 # INSTANT TAG DATA TABLE FIELDS
