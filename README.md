@@ -31,9 +31,7 @@ devtools::install_github("https://github.com/tristan-sebens/metl", upgrade="neve
 
 `metl` currently supports [13 models](#list-of-supported-tags) of tags, but users can extend `metl` to support additional tags.
 
-## **Use case 1: Extracting data to data.frames**
-
-We will start with the simplest example: extracting the tag data as data.frames. We will also cover [extracting to csv files](#use-case-2-extract-data-to-.csv-files), and [loading to a database](#use-case-3-load-data-directly-into-database).
+## **Use case 1: Load data directly into database**
 
 ### **Instantiate the Pipe object**
 
@@ -49,53 +47,10 @@ metl_pipe =
     d = tag_data_directory # Root directory of tag data
   ) 
 ```
-### **Initiate extraction**
 
-Once instantiated, we can use the `Pipe` object to extract tag data. 
-```
-res = metl_pipe$process_to_dataframes()
-```
-The `Pipe` will now traverse the entire directory tree rooted in `d`, and will attempt to extract all data within.
+The primary function of the `Pipe` object is loading data extracted from the tag directories directly into a suitably formatted database, however it is also capable of [extracting to data.frames](#use-case-2-extracting-data-to-data.frames) and [extracting to csv files](#use-case-3-extract-data-to-.csv-files).
 
-### **View report**
-
-`Pipe` can produce a detailed report which specifies which directories `metl` was able to successfully extract from, as well as an error report for those directories for which extraction failed.
-```
-report = metl_pipe$build_report()
-print(report)
-```
-
-### **Retrieve results**
-
-Finally, we can retrieve the raw data which have been extracted from our tags.
-
-The `metl` package categorizes all data produced by eTags into one of three categories: 
-
-- **Metadata** - *data describing the tag itself*
-- **Instantaneous data** - *data which describe individual instants in time*
-- **Summary data** - *data which describe blocks of time*
-
-Following this, whenever the `Pipe` object extracts data from a tag data directory, it produces that data as three separate collections of data, one for each category. `process_to_dataframes` returns one data.frame, for each category.
-
-```
-metadata = res$meta
-instant_data = res$instant
-summary_data = res$summary
-```
-
-## **Use case 2: Extract data to `.csv` files**
-
-The `Pipe` can also output the data as three `.csv` files written to disk. To do this, we call `process_to_csv`, and specify a directory into which the files should be written:
-```
-
-csv_directory = here::here() # Specify the directory into which the csv files should be written
-
-metl_pipe$process_to_csv(out_d = csv_directory) 
-```
-
-## **Use case 3: Load data directly into database**
-
-`Pipe` is capable of loading the data extracted from the tag directories directly into a suitably formatted database. `Pipe` is, by default, configured with an output data structure matching that of the AFSC ABLTAG database. If you are not loading into this database, you will either need to ensure that your database conforms to the same data structure as ABLTAG, or you will need to [adjust the configuration of `Pipe` to your database's structure](#configuring-Pipe-object).
+`Pipe` is, by default, configured with an output data structure matching that of the AFSC ABLTAG database. If you are not loading into this database, you will either need to ensure that your database conforms to the same data structure as ABLTAG, or you will need to [adjust the configuration of `Pipe` to your database's structure](#configuring-Pipe-object).
 
 ### **Establish a connection to the output database**
 
@@ -121,7 +76,7 @@ db_conn =
   )
 ```
 
-### **Call `process_to_db`**
+### **Initiate extraction**
 
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
 
@@ -129,7 +84,73 @@ Once we have connected to the database, we call the `process_to_db` method, pass
 metl_pipe$process_to_db(con = db_conn)
 ```
 
-As before, the `Pipe` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
+The `Pipe` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
+
+### **View report**
+
+`Pipe` can produce a detailed report which specifies which directories `metl` was able to successfully extract from, as well as an error report for those directories for which extraction failed.
+
+```
+report = metl_pipe$build_report()
+print(report)
+```
+
+## **Use case 2: Extracting data to data.frames**
+
+Next we'll cover extracting the tag data as data.frames. 
+
+### **Instantiate the Pipe object**
+
+As before, we must instantiate a `Pipe` object.
+```
+# Set this variable to the root of your tag data directory
+tag_data_directory = here::here() 
+
+# Instantiate the Pipe object
+metl_pipe = 
+  Pipe(
+    d = tag_data_directory # Root directory of tag data
+  ) 
+```
+
+### **Initiate extraction**
+
+Once instantiated, we can use the `Pipe` object to extract tag data. 
+
+```
+res = metl_pipe$process_to_dataframes()
+```
+
+As before, the `Pipe` will now traverse the entire directory tree rooted in `d`, attempting to extract all data within. However in this case, the data will be output as a collection of data.frames.
+
+### **Retrieve results**
+
+We can now retrieve the raw data which have been extracted from our tags.
+
+The `metl` package categorizes all data produced by eTags into one of three categories: 
+
+- **Metadata** - *data describing the tag itself*
+- **Instantaneous data** - *data which describe individual instants in time*
+- **Summary data** - *data which describe blocks of time*
+
+Following this, whenever the `Pipe` object extracts data from a tag data directory, it produces that data as three separate collections of data, one for each category. `process_to_dataframes` returns one data.frame, for each category.
+
+```
+metadata = res$meta
+instant_data = res$instant
+summary_data = res$summary
+```
+
+## **Use case 3: Extract data to `.csv` files**
+
+The `Pipe` can also output the data as `.csv` files written to disk. To do this, we call `process_to_csv`, and specify a directory into which the files should be written:
+```
+
+csv_directory = here::here() # Specify the directory into which the csv files should be written
+
+metl_pipe$process_to_csv(out_d = csv_directory) 
+```
+
 
 # **Proprietary post-processing software**
 
