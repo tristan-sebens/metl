@@ -37,7 +37,7 @@ ABLTAG_METADATA_TABLE_FIELDS =
       TAG_DEPLOYMENT_ID_FIELD =
         InputField_FilteredSelect(
           name = "DEPLOYMENT_ID",
-          table = "TAG_DEPLOYMENT",
+          table = "TAG_RECOVERED_DEPLOYMENTS",
           pk_field = "DEPLOYMENT_ID",
           choice_field = "LABEL",
           filter_db_field = "TAG_NUM",
