@@ -241,9 +241,9 @@ InputField_Select =
 #'
 #' Useful when we want to restrict the possible inputs a user can provide, for example if they are choosing the species. Rather than asking them to retype the species every time, each time potentially yielding a mispelling or other mistake we provide them with a list of options from which they can choose.
 #'
-#' @field table character.
-#' @field label_field character.
-#' @field pk_field character.
+#' @field table character. Name of DB table from which the choices will be collected
+#' @field choice_field character. Field in `table` which contains the choices to offer
+#' @field pk_field character. Field in `table` which contains the primary keys of the choices
 #'
 #' @export InputField_Select
   setRefClass(
@@ -253,9 +253,9 @@ InputField_Select =
       list(
         table = "character",
         pk_field = "character",
-        label_field = "character",
+        choice_field = "character",
         pks = "character",
-        labels = "character"
+        choices = "character"
       ),
     methods =
       list(
@@ -263,7 +263,7 @@ InputField_Select =
           function(window, ...) {
             tcltk::ttkcombobox(
               window,
-              values = unlist(labels),
+              values = unlist(choices),
               textvariable = register_tclvar(var_label = "selection", init_value = "")
             )
           },
@@ -273,56 +273,65 @@ InputField_Select =
             "Retrieve the user-inputted value for this field"
             val = tcltk::tclvalue(tcl_vars$selection)
             # Convert from the lable to the corresponding ID value
-            return(.self$pks[which(.self$labels == val)])
+            return(.self$pks[which(.self$choices == val)])
+
           },
 
         refresh =
           function(con, ...) {
-            # Refresh the pk and label values from the DB
+            # Refresh the pk and choice values from the DB
             pks <<-
               as.character(data.frame(dplyr::tbl(con, table))[[pk_field]])
-            labels <<-
-              as.character(data.frame(dplyr::tbl(con, table))[[label_field]])
+            choices <<-
+              as.character(data.frame(dplyr::tbl(con, table))[[choice_field]])
           }
       )
   )
 
 InputField_FilteredSelect =
+#' Expanded version of `InputField_Select` which offers filtering functionality
+#'
+#' Operates identically to `InputField_Select`, except that when the list of choices is retrieved from `table`, a filter is applied to reduce the number of options available to the user. `table` is first filtered to only include records for which `filter_db_field` values are equal to the value contained in the `filter_input_field` in the incoming data. `choices` and `pks` are then populated from this filtered set of records in the normal way.
+#'
+#' @field filter_db_field character. Name of field in `table` which will be used to filter options
+#' @field filter_input_field character. Name of field in incoming data which will contain the value used to filter `table` (i.e. incoming_data[[filter_input_field]] == table[[filter_db_field]])
+#'
+#' @export
    setRefClass(
      "InputField_FilteredSelect",
      contains = "InputField_Select",
      fields =
        list(
-         filter_field = "character",
-         input_filter_field = "Field",
-         refresh_labels_fn_ = "function"
+         filter_db_field = "character",
+         filter_input_field = "character",
+         refresh_choices_fn_ = "function"
        ),
      methods =
        list(
 
          cache_filter_fn_ =
            function(con) {
-             refresh_labels_fn_ <<-
+             refresh_choices_fn_ <<-
                function(val) {
                  # Retrieve the values of the target table based on the filter value
                  dat__ =
                    dplyr::tbl(con, table) %>%
                    dplyr::filter(
                      across(
-                       !!rlang::sym(filter_field),
+                       !!rlang::sym(filter_db_field),
                        ~ .x == !!val
                      )
                    ) %>%
                    data.frame()
 
                  pks <<- as.character(dat__[[pk_field]])
-                 labels <<- as.character(dat__[[label_field]])
+                 choices <<- as.character(dat__[[choice_field]])
                }
            },
 
          refresh_choices =
            function(val) {
-             refresh_labels_fn_(val)
+             refresh_choices_fn_(val)
            },
 
          refresh =
@@ -333,7 +342,7 @@ InputField_FilteredSelect =
 
          build_widget =
            function(window, dat, ...) {
-             refresh_choices(dat[[input_filter_field$name]])
+             refresh_choices(dat[[filter_input_field]])
              return(
                callSuper(
                  window=window,
@@ -348,6 +357,10 @@ InputField_FilteredSelect =
 
 
 InputField_SelectAdd =
+#' A selection input field capable of adding new entries
+#'
+#' An expanded version of the InputField_Select class. Functions identically, except that when a value not currently present in the table is supplied by the user, automatically tries to insert the new value into `choice_field` of `table`. Assumes that `table` is capable of auto-generating primary key values for new entries. If this is not setup, behavior is undefined.
+#' @export
   setRefClass(
     "InputField_SelectAdd",
     contains = "InputField_Select",
@@ -392,9 +405,9 @@ InputField_SelectAdd =
             "Retrieve the user-inputted value for this field"
             val = tcltk::tclvalue(tcl_vars$selection)
 
-            # If the selected value is not in the list of labels present in
+            # If the selected value is not in the list of choices present in
             # the DB, then we need to insert the new value first
-            if(!val %in% labels) {
+            if(!val %in% choices) {
               #TODO: There should be some sort of prompt here to check with the
               # user if they are intending to insert a new value into the DB
 
@@ -404,7 +417,7 @@ InputField_SelectAdd =
               return(pk)
             }
             # Convert from the lable to the corresponding ID value
-            return(pks[which(labels == val)])
+            return(pks[which(choices == val)])
           },
 
         refresh =
@@ -973,9 +986,9 @@ FieldInputForm =
             input_label = tcltk::tklabel(window, text = "Required input fields: ")
             input_form_frame = build_input_form_frame(window, input_fields, dat)
 
-            tcltk::tkgrid(id_label, column = 0, sticky='nsew')
+            tcltk::tkgrid(id_label, column = 0, sticky='w')
             tcltk::tkgrid(id_frame, column = 0, sticky='nsew')
-            tcltk::tkgrid(input_label, column = 0, sticky='nsew')
+            tcltk::tkgrid(input_label, column = 0, sticky='w')
             tcltk::tkgrid(input_form_frame, column = 0, sticky='nsew')
 
 

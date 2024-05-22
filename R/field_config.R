@@ -24,22 +24,14 @@ ABLTAG_METADATA_TABLE_FIELDS =
           Field(
             name = "MODEL",
             data_type = "varchar(32)"
-          )
-      )
-  )
-
-# Append input fields
-ABLTAG_METADATA_TABLE_FIELDS$field_list =
-  append(
-    ABLTAG_METADATA_TABLE_FIELDS$field_list,
-    list(
+          ),
       TAG_DATA_OWNER_PK_FIELD =
         InputField_SelectAdd(
           name = "DATA_OWNER_ID",
           data_type = "varchar(32)",
           table = "DATA_OWNER",
           pk_field = "OWNER_ID",
-          label_field = "NAME",
+          choice_field = "NAME",
           persistant = T
         ),
       TAG_DEPLOYMENT_ID_FIELD =
@@ -47,9 +39,9 @@ ABLTAG_METADATA_TABLE_FIELDS$field_list =
           name = "DEPLOYMENT_ID",
           table = "TAG_DEPLOYMENT",
           pk_field = "DEPLOYMENT_ID",
-          label_field = "LABEL",
-          filter_field = "TAG_NUM",
-          input_filter_field = ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD
+          choice_field = "LABEL",
+          filter_db_field = "TAG_NUM",
+          filter_input_field = "TAG_ID"
         ),
       # TAG_DEPLOY_DATE =
       #   InputField_DateTime(
