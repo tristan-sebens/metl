@@ -43,10 +43,14 @@ test_identifier =
                     stringr::str_replace(d, test_data_d(), ""),
                     " matches ", sum(id_res$result)," Identifier objects: \n\t - ",
                     paste0(
-                      id_res %>%
-                        dplyr::filter(result == T) %>%
-                        dplyr::pull(name) %>%
-                        paste0(collapse = " \n\t - ")
+                        lapply(
+                          # Collect the list of Decoder objects which positively matched to this directory
+                          dplyr::filter(id_res, result == T)$dc,
+                          function(dc) {
+                            dc$label
+                          }
+                        ) %>%
+                        unlist
                     ),
                     " \nNumber of possible IDs"
                   )

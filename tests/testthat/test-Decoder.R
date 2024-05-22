@@ -27,7 +27,7 @@ test_that(
     summary_data =
       dc$decode_datamap(
         d = "placeholder",
-        dm = dc$data_maps[["instant"]],
+        dm = dc$data_maps[["summary"]],
         op_fm = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
       )
 
