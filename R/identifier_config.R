@@ -217,9 +217,7 @@ Identifier_WildlifeComputers_MiniPAT =
             check_for_wc_data_file(d, "Status.csv"),
             check_for_wc_data_file(d, "PDTs.csv"),
             check_for_wc_data_file(d, "SST.csv"),
-            check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
-            # Files that should not be present
-            check_for_wc_data_file(d, "Orientation.csv", n=0)
+            check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv")
           )
         )
       }
