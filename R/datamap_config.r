@@ -254,19 +254,17 @@ DataMap_Lotek_1400.1800_InstantSensorData =
       }
   )
 
+read_xl_file =
+  function(path, ...) {
+    # Determine which type of xl file we're attempting to read
+    format = stringr::str_extract(path, "^.*(\\..*)$", group = 1)
 
-#' DataMap - Microwave Telemetry X-Tag metadata
-#' @export DataMap_MicrowaveTelemetry_XTag_TagMetaData
-DataMap_MicrowaveTelemetry_XTag_TagMetaData =
-  DataMap_TagMetaData(
-    make = "Microwave Telemetry",
-    model = "X-Tag",
-    get_tag_id =
-      function(d) {
-        list.files(path = d, pattern = "^\\d*\\.xls") %>%
-          stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
-      }
-  )
+    switch(
+      format,
+      ".xls" = {readxl::read_xls(path = path, ...)},
+      ".xlsm" = {readxl::read_xlsx(path = path, ...)}
+    )
+  }
 
 # Calculate the cell range string the desired data is in
 calc_range =
@@ -274,7 +272,7 @@ calc_range =
     row_max =
       # Read in the full, unfiltered sheet to count the number of rows of data in the file
       nrow(
-        readxl::read_xls(
+        read_xl_file(
           path = fp,
           sheet = sheet,
           skip=1
@@ -294,31 +292,48 @@ calc_range =
 
 # Helper function to extract data from excel sheet
 read_data_sheet =
-  function(fp, sheet, col_range) {
-    suppressMessages(
-      {
+  function(fp, sheet, col_range, type = "xls") {
+        # While the logic of reading the underlying sheet doesn't change,
+        # the initial function call does change depending on the filetype
         return(
-          # Read the data from the pressure data sheet in the xls file
-          readxl::read_xls(
-            path = fp,
-            sheet = sheet,
-            # Calculate the range of data to include
-            range =
-              calc_range(
-                fp, sheet, col_range
-              ),
-            col_names = T
+          suppressMessages(
+            {
+              # Read the data from the pressure data sheet in the xls file
+              read_xl_file(
+                path = fp,
+                sheet = sheet,
+                # Calculate the range of data to include
+                range =
+                  calc_range(
+                    fp, sheet, col_range
+                  ),
+                col_names = T
+              )
+            }
           )
         )
-      }
-    )
   }
 
-#' Datamap - Microwave Telemetry X-tag instant sensor data
-#' @export DataMap_MicrowaveTelemetry_XTag_InstantSensorData
- DataMap_MicrowaveTelemetry_XTag_InstantSensorData =
+
+
+#' DataMap - Microwave Telemetry X-Tag metadata (transmitted via satellite)
+#' @export DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData
+DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData =
+  DataMap_TagMetaData(
+    make = "Microwave Telemetry",
+    model = "X-Tag",
+    get_tag_id =
+      function(d) {
+        list.files(path = d, pattern = "^\\d*\\.xls") %>%
+          stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
+      }
+  )
+
+#' Datamap - Microwave Telemetry X-tag instant sensor data (transmitted via Satellite)
+#' @export DataMap_MicrowaveTelemetry_XTag_Transmitted_InstantSensorData
+ DataMap_MicrowaveTelemetry_XTag_Transmitted_InstantSensorData =
   DataMap(
-    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS,
+    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS,
     extract_fn =
       function(d) {
         # All of the temperature and pressure data is extracted from the .xls file
@@ -371,16 +386,118 @@ read_data_sheet =
       }
   )
 
-#' Datamap - Microwave Telemetry X-tag summary sensor data
-#' @export DataMap_MicrowaveTelemetry_XTag_SummarySensorData
- DataMap_MicrowaveTelemetry_XTag_SummarySensorData =
+#' Datamap - Microwave Telemetry X-tag summary sensor data (transmitted via satellite)
+#' @export DataMap_MicrowaveTelemetry_XTag_Transmitted_SummarySensorData
+ DataMap_MicrowaveTelemetry_XTag_Transmitted_SummarySensorData =
   DataMap(
-    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS,
+    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS,
     extract_fn =
       function(d) {
         # All of the temperature and pressure data is extracted from the .xls file
         # Find the xls file in the directory
         mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
+
+        # Get location data
+        light_geoloc_dat =
+          read_data_sheet(
+            fp = mt_xt_xl_fp,
+            sheet = "Lat&Long",
+            col_range = c("A", "C")
+          ) %>%
+          # Drop any rows which don't actually have location data
+          tidyr::drop_na()
+
+        return(light_geoloc_dat)
+      }
+  )
+
+
+#' DataMap - Microwave Telemetry X-Tag metadata (physically recovered)
+#' @export DataMap_MicrowaveTelemetry_XTag_Recovered_TagMetaData
+DataMap_MicrowaveTelemetry_XTag_Recovered_TagMetaData =
+  DataMap_TagMetaData(
+    make = "Microwave Telemetry",
+    model = "X-Tag",
+    get_tag_id =
+      function(d) {
+        list.files(path = d, pattern = "^\\d*_Recovered\\.xls") %>%
+          stringr::str_extract(pattern = "^(\\d*)_Recovered\\.xls", group=1)
+      }
+  )
+
+#' Datamap - Microwave Telemetry X-tag instant sensor data (physically recovered)
+#' @export DataMap_MicrowaveTelemetry_XTag_Recovered_InstantSensorData
+DataMap_MicrowaveTelemetry_XTag_Recovered_InstantSensorData =
+  DataMap(
+    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS,
+    extract_fn =
+      function(d) {
+        # Find the xlsm file in the directory
+        mt_xt_xl_fp =
+          list.files(
+            d,
+            pattern = stringr::regex("^\\d*_Recovered.xlsm"),
+            full.names = T
+          )
+
+        # Retrieve all archival data
+        archival_data =
+          lapply(
+            # Collect a list of all of the archival data sheet names
+            Filter(
+              function(name) {stringr::str_detect(name, "Archival Data")},
+              readxl::excel_sheets(mt_xt_xl_fp)
+            ),
+            # Iterate over each archival data sheet and extract the data within
+            function(sheet) {
+              return(
+                read_data_sheet(
+                  fp = mt_xt_xl_fp,
+                  sheet = sheet,
+                  col_range = c("A", "F")
+                )
+              )
+            }
+          ) %>%
+          # Combine into a single dataset
+          dplyr::bind_rows()
+
+        # Collect the ARGOS data from the directory
+        argos_data =
+          read_data_sheet(
+            mt_xt_xl_fp,
+            sheet = "Argos Data",
+            col_range = c("A", "D")
+          )
+
+        # Merge the two datasets into a single data.frame
+        dat =
+          merge(
+            archival_data,
+            argos_data,
+            all = T
+          )
+
+        return(dat)
+      }
+  )
+
+
+#' Datamap - Microwave Telemetry X-tag summary sensor data (physically recovered)
+#' @export DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData
+DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData =
+  DataMap(
+    input_data_field_map = MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS,
+    extract_fn =
+      function(d) {
+        # All of the temperature and pressure data is extracted from the .xls file
+        # Find the xls file in the directory
+        mt_xt_xl_fp =
+          list.files(
+            d,
+            pattern = stringr::regex("^\\d*_Recovered.xlsm"),
+            full.names = T
+          )
 
         # Get location data
         light_geoloc_dat =

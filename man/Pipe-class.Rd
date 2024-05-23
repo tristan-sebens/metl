@@ -34,6 +34,10 @@ are missing from dat_1 but are present in dat_2 will be added to dat_1.}
 
 \item{\code{build_report()}}{Builds a report (data.frame) detailing the current state of the data directory}
 
+\item{\code{pre_process_node(node)}}{Perform any necessary pre-processing on a directory}
+
+\item{\code{pre_process_nodes()}}{Perform any necessary pre-processing on the nodes of the directory tree}
+
 \item{\code{process_node(node, con, overwrite = T)}}{Attempt to process directory `d`. Pipe will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data.}
 
 \item{\code{process_to_csv(out_d, ...)}}{Extract tag data and write it to csv files in `out_d`}

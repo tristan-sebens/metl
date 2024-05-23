@@ -84,9 +84,16 @@ test_identifier(
 
 test_identifier(
   identifier_ =
-    Identifier_MicrowaveTelemetry_XTag,
+    Identifier_MicrowaveTelemetry_XTag_Transmitted,
   d =
-    test_data_d("mt", "xt")
+    test_data_d("mt", "xt_trans")
+)
+
+test_identifier(
+  identifier_ =
+    Identifier_MicrowaveTelemetry_XTag_Recovered,
+  d =
+    test_data_d("mt", "xt_recov")
 )
 
 test_identifier(

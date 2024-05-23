@@ -146,10 +146,10 @@ test_that(
       build_test_tag_processor()
 
     d =
-      tp__$dir_tree__$mt$xt$rr$`118353`$fullPath
+      tp__$dir_tree__$mt$xt_trans$rr$`118353`$fullPath
 
     dc =
-      Decoder_MicrowaveTelemetry_XTag
+      Decoder_MicrowaveTelemetry_XTag_Transmitted
 
 
     # Decode metadata
@@ -240,9 +240,9 @@ test_that(
     node_data =
       tp__$get_node_data(
         dc =
-          Decoder_MicrowaveTelemetry_XTag,
+          Decoder_MicrowaveTelemetry_XTag_Transmitted,
         node =
-          tp__$dir_tree__$mt$xt$rr$`118353`
+          tp__$dir_tree__$mt$xt_trans$rr$`118353`
       )
 
     metadata = node_data[[1]]
@@ -359,7 +359,7 @@ test_that(
       build_test_tag_processor()
 
     dc =
-      Decoder_MicrowaveTelemetry_XTag
+      Decoder_MicrowaveTelemetry_XTag_Transmitted
 
     con =
       build_temp_db()
@@ -369,7 +369,7 @@ test_that(
       tp__$decode_node(
         con,
         dc,
-        node = tp__$dir_tree__$mt$xt$lc$`128305`
+        node = tp__$dir_tree__$mt$xt_trans$lc$`128305`
       )
     )
 
@@ -378,7 +378,7 @@ test_that(
       tp__$decode_node(
         con,
         dc,
-        node = tp__$dir_tree__$mt$xt$lc$`128305`
+        node = tp__$dir_tree__$mt$xt_trans$lc$`128305`
       )
     )
 

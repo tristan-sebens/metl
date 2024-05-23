@@ -34,15 +34,27 @@ Decoder_Lotek_1400.1800 =
     )
   )
 
-#' @export Decoder_MicrowaveTelemetry_XTag
-Decoder_MicrowaveTelemetry_XTag =
+#' @export Decoder_MicrowaveTelemetry_XTag_Transmitted
+Decoder_MicrowaveTelemetry_XTag_Transmitted =
   Decoder(
     label = "Microwave Telemetry XTag",
-    identifier = Identifier_MicrowaveTelemetry_XTag,
+    identifier = Identifier_MicrowaveTelemetry_XTag_Transmitted,
     data_maps = list(
-      "meta" = DataMap_MicrowaveTelemetry_XTag_TagMetaData,
-      "instant" = DataMap_MicrowaveTelemetry_XTag_InstantSensorData,
-      "summary" = DataMap_MicrowaveTelemetry_XTag_SummarySensorData
+      "meta" = DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData,
+      "instant" = DataMap_MicrowaveTelemetry_XTag_Transmitted_InstantSensorData,
+      "summary" = DataMap_MicrowaveTelemetry_XTag_Transmitted_SummarySensorData
+    )
+  )
+
+#' @export Decoder_MicrowaveTelemetry_XTag_Recovered
+Decoder_MicrowaveTelemetry_XTag_Recovered =
+  Decoder(
+    label = "Microwave Telemetry XTag",
+    identifier = Identifier_MicrowaveTelemetry_XTag_Recovered,
+    data_maps = list(
+      "meta" = DataMap_MicrowaveTelemetry_XTag_Recovered_TagMetaData,
+      "instant" = DataMap_MicrowaveTelemetry_XTag_Recovered_InstantSensorData,
+      "summary" = DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData
     )
   )
 

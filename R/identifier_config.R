@@ -62,16 +62,36 @@ Identifier_Lotek_1400.1800 =
       }
   )
 
-#' Identifier - Microwave Telemetry X-tags
-#' @export Identifier_MicrowaveTelemetry_XTag
-Identifier_MicrowaveTelemetry_XTag =
+#' Identifier - Microwave Telemetry X-tags (transmitted via satellite)
+#' @export Identifier_MicrowaveTelemetry_XTag_Transmitted
+Identifier_MicrowaveTelemetry_XTag_Transmitted =
   Identifier(
     identify_ =
       function(d) {
         all(
           check_for_files(d, "^\\d*.xls"),
-          # Check that all files present in the directory fit the given pattern
+          # Check that all files present in the directory are of expected formats
           check_for_files(d, "^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
+        )
+      }
+  )
+
+#' Identifier - Microwave Telemetry X-tags (physically recovered)
+#' @export Identifier_MicrowaveTelemetry_XTag_Recovered
+Identifier_MicrowaveTelemetry_XTag_Recovered =
+  Identifier(
+    identify_ =
+      function(d) {
+        all(
+          check_for_files(d, "^\\d+_Recovered.xlsm"),
+          # Check that all files present in the directory are of expected formats
+          {
+            length(list.files(d, pattern="^\\d+_Recovered.xlsm")) +
+            length(list.files(d, pattern="^\\d+_RecoveredData_\\d\\.txt")) +
+            length(list.files(d, pattern="^~$\\d+_RecoveredData_\\d\\.txt")) +
+            length(list.files(d, pattern="^\\d+(a|e|o|p|rp|rt|t)\\.txt")) ==
+              length(list.files(d))
+          }
         )
       }
   )

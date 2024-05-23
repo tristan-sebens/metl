@@ -449,8 +449,8 @@ LOTEK_1400.1800_INSTANT_DATA_FIELDS =
 #----------------
 # MICROWAVE TELEMETRY TAGS
 #----------------
-#' @export MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS
-MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
+#' @export MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -506,8 +506,45 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
       )
   )
 
-#' @export MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS
-MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
+#' @export MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "Date/Time"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "Depth (m)",
+            units = "m",
+            # Initially recorded as negative depth. Invert the values
+            trans_fn = function(v, ...) {return(v * -1)}
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "Temp (ºC)",
+            units = "°C"
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "Location Type",
+            trans_fn = function(v, ...) {return(LOCATION_TYPE__SATELLITE)}
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Latitude"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Longitude"
+          )
+      )
+  )
+
+#' @export MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -538,6 +575,42 @@ MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
         LONGITUDE_FIELD =
           Field(
             name = "Long (W)"
+          )
+      )
+  )
+
+#' @export MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
+          Field(
+            name = "Date"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End",
+            trans_fn =
+              function(v, dat, ...) {
+                timechange::time_add(
+                  dat[['Date']],
+                  hour = 23, minute = 59, second = 59
+                )
+              }
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "Location Type",
+            trans_fn = function(v, ...) {return(LOCATION_TYPE__LIGHT_BASED_GEOLOCATION)}
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Lat."
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Long."
           )
       )
   )

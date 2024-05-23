@@ -105,7 +105,8 @@ build_test_decoder_list =
         Decoder_Lotek_1000.1100.1250,
         Decoder_Lotek_1300,
         Decoder_Lotek_1400.1800,
-        Decoder_MicrowaveTelemetry_XTag,
+        Decoder_MicrowaveTelemetry_XTag_Transmitted,
+        Decoder_MicrowaveTelemetry_XTag_Recovered,
         Decoder_StarOddi_DST,
         Decoder_StarOddi_DSTmagnetic,
         Decoder_WildlifeComputers_MiniPAT,
@@ -288,7 +289,7 @@ test_for_empty_fields =
 #' @param dm DataMap to test
 #' @param d Data directory
 test_datamap_directory =
-  function(dm, od_fm, d) {
+  function(dm, op_fm, d) {
     # Extract data from the directory
     dat_ =
       dm$extract(d)
@@ -299,7 +300,7 @@ test_datamap_directory =
 
     # Perform transformation
     dat_t_ =
-      dm$transform(dat_, od_fm)
+      dm$transform(dat_, op_fm)
 
 
     # Test that none of the transformed fields are completely empty

@@ -11,11 +11,11 @@ Useful when we want to restrict the possible inputs a user can provide, for exam
 \section{Fields}{
 
 \describe{
-\item{\code{table}}{character.}
+\item{\code{table}}{character. Name of DB table from which the choices will be collected}
 
-\item{\code{label_field}}{character.}
+\item{\code{choice_field}}{character. Field in \code{table} which contains the choices to offer}
 
-\item{\code{pk_field}}{character.}
+\item{\code{pk_field}}{character. Field in \code{table} which contains the primary keys of the choices}
 }}
 
 \section{Methods}{
