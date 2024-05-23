@@ -25,15 +25,16 @@ ABLTAG_METADATA_TABLE_FIELDS =
             name = "MODEL",
             data_type = "varchar(32)"
           ),
-      TAG_DEPLOYMENT_ID_FIELD =
-        InputField_FilteredSelect(
-          name = "DEPLOYMENT_ID",
-          table = "TAG_RECOVERED_DEPLOYMENTS",
-          pk_field = "DEPLOYMENT_ID",
-          choice_field = "LABEL",
-          filter_db_field = "TAG_NUM",
-          filter_input_field = "TAG_ID"
-        ),
+      # TAG_DEPLOYMENT_ID_FIELD =
+      #   InputField_FilteredSelect(
+      #     name = "DEPLOYMENT_ID",
+      #     label = "Deployment,
+      #     table = "TAG_RECOVERED_DEPLOYMENTS",
+      #     pk_field = "DEPLOYMENT_ID",
+      #     choice_field = "LABEL",
+      #     filter_db_field = "TAG_NUM",
+      #     filter_input_field = "TAG_ID"
+      #   ),
       # TAG_DEPLOY_DATE =
       #   InputField_DateTime(
       #     name = "DATE_DEPLOYED",
@@ -78,7 +79,8 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                as.numeric(v)
+                # Make sure that all incoming timestamps are unique, to satisfy the UNIQUE constraint on the table
+                bump_timestamps(v = as.numeric(v), incr = 1e-1)
               }
           ),
         LATITUDE_FIELD =
