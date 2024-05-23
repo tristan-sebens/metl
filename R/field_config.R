@@ -25,15 +25,6 @@ ABLTAG_METADATA_TABLE_FIELDS =
             name = "MODEL",
             data_type = "varchar(32)"
           ),
-      TAG_DATA_OWNER_PK_FIELD =
-        InputField_SelectAdd(
-          name = "DATA_OWNER_ID",
-          data_type = "varchar(32)",
-          table = "DATA_OWNER",
-          pk_field = "OWNER_ID",
-          choice_field = "NAME",
-          persistant = T
-        ),
       TAG_DEPLOYMENT_ID_FIELD =
         InputField_FilteredSelect(
           name = "DEPLOYMENT_ID",
