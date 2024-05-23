@@ -353,6 +353,70 @@ test_that(
 )
 
 test_that(
+  "Pipe::upsert - Failure mid-function",
+  {
+    tp__ =
+      build_test_tag_processor()
+
+    con =
+      build_temp_db()
+
+    init_tbls =
+      DBI::dbListTables(con) %>%
+      # Remove any of the sqlite admin tables
+      Filter(
+        function(t) {
+          !stringr::str_detect(t, "sqlite_")
+        },
+        .
+      )
+
+    op_fm =
+      build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+
+    expect_equal(nrow(out_tbl), 0)
+
+    # Change the target table to a non-existent table, forcing the function to fail
+    op_fm$table = "NON_EXTANT_TABLE"
+
+    dc =
+      build_test_decoder()
+
+    dat =
+      dc$decode_datamap(d = "", dm = dc$data_maps[["instant"]], op_fm = op_fm)
+
+    dat$tag_id = 1
+
+    expect_error(
+      # This should fail on account of trying to insert into a non-existent table
+      tp__$upsert(
+        con,
+        # Insert a subset of the data (~10%)
+        dat = head(dat, round(nrow(dat)*.1)),
+        output_data_field_map = op_fm
+      )
+      ,
+      regexp = ".*",
+      info = "Checking if an error is caught"
+    )
+
+    # Check that any temporary tables have been deleted
+    post_upsert_tbls =
+      DBI::dbListTables(con) %>%
+      # Remove any of the sqlite admin tables
+      Filter(
+        function(t) {
+          !stringr::str_detect(t, "sqlite_")
+        },
+        .
+      )
+    # Only tables which were originally in the DB should still be in there.
+    expect_contains(init_tbls, post_upsert_tbls)
+  }
+)
+
+
+test_that(
   "Pipe::decode_node",
   {
     tp__ =
