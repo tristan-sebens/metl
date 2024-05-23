@@ -144,9 +144,18 @@ setRefClass(
           # Collect any fields which are flagged as input fields
           input_fields = output_data_field_map$get_input_fields()
           title_fields = output_data_field_map$get_non_input_fields()
+          # Collect any fields flagged as auto-generating fields
+          auto_fields = output_data_field_map$get_independent_fields()
+          # Generate values for any independent fields in the dataframe
+          for (field in names(auto_fields)) {
+            op_field_obj = output_data_field_map$field_list[[field]]
+            op_field_name = op_field_obj$name
+            op_field_value = op_field_obj$value_fn(dat)
+            dat[[op_field_name]] = op_field_value
+          }
 
           # If there are no Fields which require input, return the dataframe as is
-          if (length(input_fields) == 0) return(dat)
+          if (length(input_fields) == 0 ) return(dat)
 
           # Create the input form
           input_form =
@@ -168,19 +177,6 @@ setRefClass(
             # Perform any field-specific transformation
             op_field_value_trans = op_field_obj$trans_fn(op_field_value, dat)
             dat[[op_field_name]] = op_field_value_trans
-          }
-
-
-          # Also retrieve any independent fields
-          auto_fields =
-            output_data_field_map$get_independent_fields()
-
-          # Add the input values to the data.frame
-          for (field in names(auto_fields)) {
-            op_field_obj = output_data_field_map$field_list[[field]]
-            op_field_name = op_field_obj$name
-            op_field_value = op_field_obj$value_fn(dat)
-            dat[[op_field_name]] = op_field_value
           }
 
           # Return the augmented data.frame
