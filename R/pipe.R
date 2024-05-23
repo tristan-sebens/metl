@@ -507,9 +507,10 @@ Pipe =
           },
 
         process_to_dataframes =
-          function(...) {
+          function(con, ...) {
             "Extract tag data and return it as a list of dataframes"
             # Build a temporary DB
+            # Overwrite any value passed to the initial function call
             con =
               build_temp_db()
 
@@ -535,7 +536,7 @@ Pipe =
           },
 
         process_to_csv =
-          function(out_d, ...) {
+          function(out_d) {
             "Extract tag data and write it to csv files in `out_d`"
             # Generate the three output data.frames from the tag data
             dat = process_to_dataframes(...)
