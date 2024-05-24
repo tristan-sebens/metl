@@ -12,7 +12,19 @@ test_that(
           tp__$dir_tree__$mt$xt_trans$rr$`118353`
       )
 
-    metadata = node_data[[1]]
+    # Independent fields might change between snapshots (i.e. UPLOAD TIMESTAMP field)
+    meta_ind_fields =
+      tp__$output_fieldmaps[['meta']]$get_independent_fields() %>%
+      lapply(
+        function(field) {
+          return(field$name)
+        }
+      ) %>%
+      unlist()
+
+    metadata =
+      node_data[[1]] %>%
+      dplyr::select(-all_of(meta_ind_fields))
     instant_data = node_data[[2]]
     summary_data = node_data[[3]]
 
@@ -139,7 +151,7 @@ test_that(
       )
 
     op_fm =
-      build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+      build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP$copy()
 
     # Change the target table to a non-existent table, forcing the function to fail
     op_fm$table = "NON_EXTANT_TABLE"

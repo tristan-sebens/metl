@@ -296,20 +296,12 @@ Pipe =
 
             # Iterate over each data map in the decoder's data_maps list
             for (data_type in names(dc$data_maps)) {
-              if(data_type %in% names(node$data)) {
-                # If the data attribute of the current node already has an
-                # element whose name matches that of the current data_type,
-                # default to that value instead
-                decoded_data = node$data[[data_type]]
-              } else {
-                # Decode data according to the map type (metadata, instant, summary)
-                decoded_data =
-                  dc$decode_datamap(
-                    dm = dc$data_maps[[data_type]],
-                    d = node$fullPath,
-                    op_fm = .self$output_fieldmaps[[data_type]]
-                  )
-              }
+              decoded_data =
+                dc$decode_datamap(
+                  dm = dc$data_maps[[data_type]],
+                  d = node$fullPath,
+                  op_fm = .self$output_fieldmaps[[data_type]]
+                )
 
               # Add the decoded data to the list
               decoded_data_list[[data_type]] = decoded_data

@@ -24,7 +24,7 @@ ABLTAG_METADATA_TABLE_FIELDS =
           Field(
             name = "MODEL",
             data_type = "varchar(32)"
-          ),
+          )
       # TAG_DEPLOYMENT_ID_FIELD =
       #   InputField_FilteredSelect(
       #     name = "DEPLOYMENT_ID",
@@ -45,17 +45,17 @@ ABLTAG_METADATA_TABLE_FIELDS =
       #     name = "DATE_RECOVERED",
       #     data_type = "varchar(32)"
       #   ),
-      UPLOAD_TIMESTAMP_FIELD =
-        IndependentField(
-          name = "UPLOAD_TIMESTAMP",
-          data_type = "integer",
-          value_fn =
-            function(dat, ...) {
-              return(
-                as.numeric(as.POSIXct(Sys.time(), tz = ""))
-              )
-            }
-        )
+      # UPLOAD_TIMESTAMP_FIELD =
+      #   IndependentField(
+      #     name = "UPLOAD_TIMESTAMP",
+      #     data_type = "integer",
+      #     value_fn =
+      #       function(dat, ...) {
+      #         return(
+      #           as.numeric(as.POSIXct(Sys.time(), tz = ""))
+      #         )
+      #       }
+      #   )
     )
   )
 
