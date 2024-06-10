@@ -32,22 +32,7 @@ find_line_in_file =
  DataMap_Lotek_1000.1100.1250_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
-    model = "1000/1100/1250",
-    get_tag_id =
-      function(d) {
-        tag_id_from_filename =
-          function(fp) {
-            stringr::str_match(fp, pattern = "^(\\d\\d\\d\\d)*")[2]
-          }
-
-        tag_id_from_filename(
-          list.files(
-            d,
-            pattern = "^.*csv$",
-            ignore.case = T
-          )[[1]]
-        )
-      }
+    model = "1000/1100/1250"
   )
 
 #' DataMap for the Lotek 1000/1100/1250 tags
@@ -140,12 +125,7 @@ find_line_in_file =
 DataMap_Lotek_1300_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
-    model = "1300",
-    get_tag_id =
-      function(d) {
-        list.files(d, pattern = ".*[R|r]egular.*")[1] %>%
-        stringr::str_extract("^.*LTD1300.*(\\d\\d\\d\\d)\\D.*[R|r]egular.*[C|c][S|s][V|v]", group=1)
-      }
+    model = "1300"
   )
 
 
@@ -183,29 +163,7 @@ DataMap_Lotek_1300_InstantSensorData =
 DataMap_Lotek_1400.1800_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
-    model = "1400/1800",
-    get_tag_id =
-      function(d) {
-        tag_id_from_filename =
-          function(fp) {
-            stringr::str_extract(
-              fp,
-              pattern =
-                stringr::regex(
-                  "^LAT\\d\\d\\d_(\\d\\d\\d\\d).*\\.csv",
-                  ignore_case = T
-                ),
-              group = 1
-            )
-          }
-
-        tag_id_from_filename(
-          list.files(
-            d,
-            pattern = stringr::regex("csv$", ignore_case = T)
-          )[[1]]
-        )
-      }
+    model = "1400/1800"
   )
 
 
@@ -321,12 +279,7 @@ read_data_sheet =
 DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData =
   DataMap_TagMetaData(
     make = "Microwave Telemetry",
-    model = "X-Tag",
-    get_tag_id =
-      function(d) {
-        list.files(path = d, pattern = "^\\d*\\.xls") %>%
-          stringr::str_extract(pattern = "^(\\d*)\\.xls", group=1)
-      }
+    model = "X-Tag"
   )
 
 #' Datamap - Microwave Telemetry X-tag instant sensor data (transmitted via Satellite)
@@ -417,12 +370,7 @@ DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData =
 DataMap_MicrowaveTelemetry_XTag_Recovered_TagMetaData =
   DataMap_TagMetaData(
     make = "Microwave Telemetry",
-    model = "X-Tag",
-    get_tag_id =
-      function(d) {
-        list.files(path = d, pattern = "^\\d*_Recovered\\.xls") %>%
-          stringr::str_extract(pattern = "^(\\d*)_Recovered\\.xls", group=1)
-      }
+    model = "X-Tag"
   )
 
 #' Datamap - Microwave Telemetry X-tag instant sensor data (physically recovered)
@@ -518,14 +466,7 @@ DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData =
  DataMap_StarOddi_DST_TagMetaData =
   DataMap_TagMetaData(
     make = "Star Oddi",
-    model = "DST (centi/milli)-(TD/F)",
-    get_tag_id =
-      function(d) {
-        # Read in xlsx file(s) (There should only be one)
-        fs = list.files(d, pattern = "^[^~]*\\.xlsx")
-        # Extract the tag id from the filenames
-        stringr::str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
-      }
+    model = "DST (centi/milli)-(TD/F)"
   )
 
 #' DataMap - StarOddi DST instant sensor data
@@ -564,14 +505,7 @@ DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData =
  DataMap_StarOddi_DSTmagnetic_TagMetaData =
   DataMap_TagMetaData(
     make = "Star Oddi",
-    model = "DST magnetic",
-    get_tag_id =
-      function(d) {
-        # Read in xlsx file(s) (There should only be one)
-        fs = list.files(d, pattern = "^[^~]*\\.xlsx")
-        # Extract the tag id from the filenames
-        stringr::str_extract(fs[[1]], pattern = "^([^~]*)\\.xlsx", group=1)
-      }
+    model = "DST magnetic"
   )
 
 #' DataMap - StarOddi DST magnetic instant sensor data
@@ -606,30 +540,7 @@ DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData =
  DataMap_WildlifeComputers_MiniPAT_TagMetaData =
   DataMap_TagMetaData(
     make = "Wildlife Computers",
-    model = "MiniPAT",
-    get_tag_id =
-      function(d) {
-        # Find the unique ID string in all present files
-        id =
-          # Strings which do not match the given pattern at all return an NA value
-          # Filter those values out here
-          Filter(
-            Negate(is.na),
-            list.files(d) %>%
-              stringr::str_extract(
-                pattern=
-                  stringr::regex("(\\d*)-.*\\.csv", ignore_case = T),
-                group=1
-              ) %>%
-              unique()
-          )
-
-        if(length(id) > 1) {
-          throw_error("Tag ID identification: too many IDs present in directory")
-        }
-
-        return(id)
-      }
+    model = "MiniPAT"
   )
 
 #' DataMap - Wildlife Computers MiniPAT instant sensor data
@@ -676,30 +587,7 @@ DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData =
  DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
   DataMap_TagMetaData(
     make = "Wildlife Computers",
-    model = "Benthic sPAT",
-    get_tag_id =
-      function(d) {
-        # Find the unique ID string in all present files
-        id =
-          # Strings which do not match the given pattern at all return an NA value
-          # Filter those values out here
-          Filter(
-            Negate(is.na),
-            list.files(d) %>%
-              stringr::str_extract(
-                pattern=
-                  stringr::regex("(\\d*)-.*\\.csv", ignore_case = T),
-                group=1
-              ) %>%
-              unique()
-          )
-
-        if(length(id) > 1) {
-          throw_error("Tag ID identification: too many IDs present in directory")
-        }
-
-        return(id)
-      }
+    model = "Benthic sPAT"
   )
 
 
@@ -929,36 +817,7 @@ extract_packet_type_from_dir =
  DataMap_DesertStar_SeaTagMOD_TagMetaData =
   DataMap_TagMetaData(
     make = "Desert Star",
-    model = "SeaTag MOD",
-    get_tag_id =
-      function(d) {
-        # We'll have to look through a couple of packets
-        packet.tag_id.map =
-          list(
-            "SDPT_MODSN2" = "Tag SN"
-            # "SDPT_MODDAILY" = "tag serial number",
-            # "SDPT_MODENG" = "tag serial number"
-          )
-
-        ids =
-          packet.tag_id.map %>%
-          names %>%
-          lapply(
-            function(p) {
-              df = extract_packet_type_from_dir(d, p)
-
-              return(df[[packet.tag_id.map[[p]]]])
-            }
-          ) %>%
-          unlist() %>%
-          unique() %>%
-          Filter(
-            function(id) {!id == ""},
-            .
-          )
-
-        return(ids)
-      }
+    model = "SeaTag MOD"
   )
 
 #' DataMap - Desert Star SeaTag MOD instant sensor data

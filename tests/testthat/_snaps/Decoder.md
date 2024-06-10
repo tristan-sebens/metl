@@ -3,8 +3,8 @@
     Code
       metadata
     Output
-        TAG_ID               MAKE   MODEL
-      1 174898 Wildlife Computers MiniPAT
+                      MAKE   MODEL
+      1 Wildlife Computers MiniPAT
 
 ---
 

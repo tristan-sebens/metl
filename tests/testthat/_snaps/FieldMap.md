@@ -6,6 +6,9 @@
       $TAG_ID
       [1] "integer"
       
+      $TAG_TYPE
+      [1] "varchar(32)"
+      
       $TIMESTAMP
       [1] "integer"
       
@@ -99,27 +102,28 @@
       names(fm2_fm1_ucf)
     Output
        [1] "TAG_ID_FIELD"                             
-       [2] "LATITUDE_FIELD"                           
-       [3] "LONGITUDE_FIELD"                          
-       [4] "LOCATION_TYPE_FIELD"                      
-       [5] "LATITUDE_N_ERROR_FIELD"                   
-       [6] "LATITUDE_S_ERROR_FIELD"                   
-       [7] "LATITUDE_U_FIELD"                         
-       [8] "LONGITUDE_ERROR_FIELD"                    
-       [9] "LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD" 
-      [10] "LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD"     
-      [11] "LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD"     
-      [12] "LOCATION_ERROR_RADIUS"                    
-      [13] "PRESSURE_FIELD"                           
-      [14] "DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD"      
-      [15] "DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD"      
-      [16] "TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD"
-      [17] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
-      [18] "TILT_X_FIELD"                             
-      [19] "TILT_Y_FIELD"                             
-      [20] "TILT_Z_FIELD"                             
-      [21] "INCLINATION_FIELD"                        
-      [22] "MAGNETIC_STRENGTH_FIELD"                  
+       [2] "TAG_TYPE_FIELD"                           
+       [3] "LATITUDE_FIELD"                           
+       [4] "LONGITUDE_FIELD"                          
+       [5] "LOCATION_TYPE_FIELD"                      
+       [6] "LATITUDE_N_ERROR_FIELD"                   
+       [7] "LATITUDE_S_ERROR_FIELD"                   
+       [8] "LATITUDE_U_FIELD"                         
+       [9] "LONGITUDE_ERROR_FIELD"                    
+      [10] "LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD" 
+      [11] "LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD"     
+      [12] "LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD"     
+      [13] "LOCATION_ERROR_RADIUS"                    
+      [14] "PRESSURE_FIELD"                           
+      [15] "DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD"      
+      [16] "DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD"      
+      [17] "TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD"
+      [18] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
+      [19] "TILT_X_FIELD"                             
+      [20] "TILT_Y_FIELD"                             
+      [21] "TILT_Z_FIELD"                             
+      [22] "INCLINATION_FIELD"                        
+      [23] "MAGNETIC_STRENGTH_FIELD"                  
 
 ---
 
@@ -133,12 +137,12 @@
     Code
       names(t_fm1$get_id_fields())
     Output
-      [1] "TAG_ID_FIELD"    "TIMESTAMP_FIELD"
+      [1] "TAG_ID_FIELD"    "TAG_TYPE_FIELD"  "TIMESTAMP_FIELD"
 
 # FieldMap::get_id_field_names
 
     Code
       t_fm1$get_id_field_names()
     Output
-      [1] "TAG_ID"    "TIMESTAMP"
+      [1] "TAG_ID"    "TAG_TYPE"  "TIMESTAMP"
 

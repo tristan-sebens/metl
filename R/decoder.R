@@ -13,11 +13,29 @@ setRefClass(
     list(
       label = "character",
       identifier = "Identifier",
-      data_maps = "list"
+      data_maps = "list",
+      output_fieldmaps = "list"
     ),
 
   methods =
     list(
+      initialize =
+        function(
+          output_fieldmaps =
+            list(
+              "meta" = ABLTAG_METADATA_TABLE_FIELDS,
+              "instant" = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
+              "summary" = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
+              "input" = ABLTAG_USER_INPUT_FIELDS
+            ),
+          ...
+        ) {
+          callSuper(
+            output_fieldmaps = output_fieldmaps,
+            ...
+          )
+        },
+
       # Helper function to throw an error with a pre-appended message to help identify
       # the source of the error
       throw_error =
@@ -50,6 +68,278 @@ setRefClass(
 
           # Return transformed data
           return(dat_eta)
+        },
+
+      add_missing_fields =
+        function(dat1, dat1_ip_fm, dat1_op_fm, dat2, dat2_ip_fm, dat2_op_fm) {
+          "Add fields from one data frame to a second dataframe, based on their
+            respective DataMaps. dat_1/dm_1 refer to the data which may be missing
+            fields. dat_2/dm_2 refer to the data from which we MAY take data to
+            put into dat_1. Any fields defined by dm_1$output_data_field_map which
+            are missing from dat_1 but are present in dat_2 will be added to dat_1."
+          # DM 1 is the DataMap which we are working on
+          # DM 2 is the DataMap which we MAY take data from to put into the data for DM 1
+
+          # If dat1 is emtpy, there's nothing to do.
+          if(nrow(dat1) == 0) {return(dat1)}
+
+          # First find any fields in dat1 which are present in the output FieldMap
+          # but missing in the input FieldMap
+          missing_fields = names(dat1_op_fm$uncommon_fields(dat1_ip_fm))
+
+          # Next determine if any of the missing fields are references to fields in
+          # the output FieldMap of dat2
+
+          # Collect all of the UUIDs of the output FieldMap for dat2
+          dat2_op_uids =
+            dat2_op_fm$field_list %>%
+            lapply(function(f) {f$uid}) %>%
+            unlist(use.names = F)
+
+          matching_fields =
+            Filter(
+              f =
+                function(e) {
+                  dat1_op_fm$field_list[[e]]$uid %in% dat2_op_uids
+                },
+              x =
+                missing_fields
+            )
+
+          # Finally, if there are matching fields, check if those fields are also
+          # present in the input FieldMap of dat2. If they aren't then that means
+          # these fields are the result of a prior completion just like this one.
+          available_fields =
+            Filter(
+              f =
+                function(e) {
+                  e %in% names(dat2_ip_fm$field_list)
+                },
+              x =
+                matching_fields
+            )
+
+          # If such fields exist, this means that there are fields which are missing
+          # from dat1, which it did not originally have access to (as indicated by
+          # those fields being absent from the input FieldMap), but which it is
+          # supposed to have (indicated by the presence of those fields in the
+          # output FieldMap), and which are available from dat2, which dat2 was not
+          # given from another source (as indicated by the presence of the field in
+          # the input FieldMap of dat2).
+
+          # Now we simply iterate through those available fields and add them from
+          # dat2 to dat1. We assume that both datasets have been transformed at this
+          # point, so fieldnames will be taken from the output FieldMaps for both
+
+          # For each missing field which is available in the second DataMap, add the appropriate data
+          for(f_ in available_fields) {
+            dat1[dat1_op_fm$field_list[[f_]]$name] =
+              dat2[dat2_op_fm$field_list[[f_]]$name]
+          }
+
+          return(dat1)
+        },
+
+      # Complete each dataframe with fields it is missing (according to its
+      # FieldMap) which are available in the other dataframes
+      complete_dataframes =
+        function(dfs, ip_fms, op_fms) {
+          # Calculate a comparison grid, identifying all distinct
+          # pairings of the incoming datasets
+          ix_mx =
+            expand.grid(
+              d1 = seq(1, length(dfs)),
+              d2 = seq(1, length(dfs))
+            ) %>%
+            dplyr::filter(d1 != d2) %>%
+            plyr::arrange(d1, d2) %>%
+            as.matrix
+
+          # For each pairing, execute the 'add_missing_fields'
+          # method, completing the datasets
+          for (i in seq(1, nrow(ix_mx))) {
+            dat1_ix = ix_mx[[i, 1]]
+            dat2_ix = ix_mx[[i, 2]]
+
+
+            dfs[[dat1_ix]] =
+              add_missing_fields(
+                dat1 = dfs[[dat1_ix]],
+                dat1_ip_fm = ip_fms[[dat1_ix]],
+                dat1_op_fm = op_fms[[dat1_ix]],
+                dat2 = dfs[[dat2_ix]],
+                dat2_ip_fm = ip_fms[[dat2_ix]],
+                dat2_op_fm = op_fms[[dat2_ix]]
+              )
+          }
+
+          return(dfs)
+        },
+
+      upsert =
+        function(con, dat, output_data_field_map) {
+          # If the incoming data.frame is empty, there is nothing to upsert
+          if(nrow(dat) == 0) return()
+          # Generate a temporary table name
+          temp_table_name =
+            paste0(
+              output_data_field_map$table,
+              "_temp_",
+              stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
+            )
+
+          # Execute the upsert in a try/catch statment so that even if an
+          # error is encountered, we can ensure the tempoary table gets dropped.
+          tryCatch(
+            expr =
+              {
+                # There's an odd message that keeps cropping up here. It seems to occur the first time that anything is loaded into the DB, and it occurs within this function call. The message says: Note: method with signature ‘Oracle#character’ chosen for function ‘odbcConnectionColumns_’, target signature ‘Oracle#SQL’.  "OdbcConnection#SQL" would also be valid. Some quick research indicates that this is a known issue buried somewhere within the dbplyr package (https://forum.posit.co/t/what-does-this-dbwritetable-message-mean/10690/1), and that, most importantly, it's probably not my fault, or the fault of my code. For now, I'm just wrapping the call in this suppression clause to prevent the message from messing up the package output.
+                suppressMessages(
+                  {
+                    # Copy data to temporary table
+                    dbplyr::db_copy_to(
+                      con = con,
+                      table = dbplyr::ident(temp_table_name),
+                      # All of these calls also produce the message, so it's unclear what to do to stop it
+                      # table = dbplyr::sql(temp_table_name),
+                      # table = I(temp_table_name),
+                      # table = temp_table_name,
+                      values = dat,
+                      # Already in a transaction, so this should not start its own transaction
+                      in_transaction = F,
+                      # Typically this function writes to a temporary table which
+                      # should then be automatically dropped when the connection is
+                      # severed. However, at least in Oracle, this doesn't happen.
+                      # Additionally, when a table has the TEMPORARY token
+                      # it sort of locks it into appearing to be 'in use' so long
+                      # as the original connection is still open. This problem
+                      # isn't shared by standard tables, so I've elected to just
+                      # use a standard table in a temporary manner, and that seems
+                      # to solve the issue. All this really means is that we have to
+                      # EXPLICITLY delete the table when we're done with it.
+                      temporary = F
+                    )
+                  }
+                )
+
+                # Determine fields used to identify individual records
+                id_fs = output_data_field_map$get_id_field_names()
+
+                # UPSERT the new data into the target table
+                DBI::dbExecute(
+                  con = con,
+                  statement =
+                    # Build the upsert sql statement
+                    dbplyr::sql_query_upsert(
+                      con = con,
+                      table = dplyr::ident(output_data_field_map$table),
+                      from = dplyr::ident(temp_table_name),
+                      # Fields used to find unique records
+                      by = id_fs,
+                      # Fields to be updated (non-id fields)
+                      update_cols = names(dat)[!names(dat) %in% id_fs]
+                    )
+                )
+              },
+            # If an error is thrown, pass it back up the call stack
+            error =
+              function(cond) {
+                stop(cond)
+              },
+            # Ensure that the temporary table is deleted.
+            finally =
+              {
+                # Delete the temporary table
+                # See above note in db_copy_to function call on why this is done
+                DBI::dbRemoveTable(con, temp_table_name)
+              }
+          )
+        },
+
+      decode =
+        function(d, meta) {
+
+          # Create an empty DataMap to return the user-inputted data
+          DataMap_UserInput =
+            DataMap(
+              input_data_field_map = USER_INPUT_FIELDS,
+              extract_fn =
+                function(d) {
+                  return(meta)
+                }
+            )
+
+          data_maps_expanded =
+            append(data_maps, list("input" = DataMap_UserInput))
+
+          # Initialize an empty list to hold data
+          decoded_data_list = list()
+
+          # Iterate over each data map in the decoder's data_maps list
+          for (data_type in names(data_maps_expanded)) {
+            decoded_data =
+              decode_datamap(
+                dm = data_maps_expanded[[data_type]],
+                d = d,
+                op_fm = output_fieldmaps[[data_type]]
+              )
+
+            # Add the decoded data to the list
+            decoded_data_list[[data_type]] = decoded_data
+          }
+
+          # Complete the dataframes with fields from each other as necessary
+          completed_data =
+            complete_dataframes(
+              dfs =
+                decoded_data_list,
+              ip_fms =
+                lapply(data_maps_expanded[names(data_maps_expanded)], function(dm) dm$input_data_field_map),
+              op_fms =
+                output_fieldmaps[names(data_maps_expanded)]
+            )
+
+          names(completed_data) = names(decoded_data_list)
+
+          # Remove the user-input data from the list of decoded data.frames
+          completed_data = completed_data[!names(completed_data) %in% c("input")]
+
+          # Return the completed data
+          return(completed_data)
+        },
+
+      decode_to_dataframes =
+        function(...) {
+          return(decode(...))
+        },
+
+      decode_to_csv =
+        function(..., op_d) {
+          decoded_data =
+            decode_to_dataframes(...)
+
+          for (data_type in names(decoded_data)) {
+            o_fp = file.path(op_d, paste0(data_type, '.csv'))
+            dat = decoded_data[[data_type]]
+            write.csv(x = dat, file = o_fp, row.names = F)
+          }
+        },
+
+      decode_to_db =
+        function(..., con) {
+          decoded_data =
+            decode_to_dataframes(...)
+
+          for (data_type in names(decoded_data)) {
+            output_data_field_map = output_fieldmaps[[data_type]]
+            dat = decoded_data[[data_type]]
+            upsert(
+              con=con,
+              dat=dat,
+              output_data_field_map=output_data_field_map
+            )
+          }
+
         }
     )
 )

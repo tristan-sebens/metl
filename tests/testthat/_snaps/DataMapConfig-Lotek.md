@@ -3,96 +3,96 @@
     Code
       dat_
     Output
-        tag_id  make          model
-      1   4071 Lotek 1000/1100/1250
+         make          model
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE          MODEL
-      1   4071 Lotek 1000/1100/1250
+         MAKE          MODEL
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make          model
-      1   5295 Lotek 1000/1100/1250
+         make          model
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE          MODEL
-      1   5295 Lotek 1000/1100/1250
+         MAKE          MODEL
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make          model
-      1   1484 Lotek 1000/1100/1250
+         make          model
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE          MODEL
-      1   1484 Lotek 1000/1100/1250
+         MAKE          MODEL
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make          model
-      1   1486 Lotek 1000/1100/1250
+         make          model
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE          MODEL
-      1   1486 Lotek 1000/1100/1250
+         MAKE          MODEL
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make          model
-      1   4066 Lotek 1000/1100/1250
+         make          model
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE          MODEL
-      1   4066 Lotek 1000/1100/1250
+         MAKE          MODEL
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make          model
-      1   4067 Lotek 1000/1100/1250
+         make          model
+      1 Lotek 1000/1100/1250
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE          MODEL
-      1   4067 Lotek 1000/1100/1250
+         MAKE          MODEL
+      1 Lotek 1000/1100/1250
 
 # DataMap_Lotek_1000.1100.1250_InstantSensorData
 
@@ -1371,48 +1371,48 @@
     Code
       dat_
     Output
-        tag_id  make model
-      1   2466 Lotek  1300
+         make model
+      1 Lotek  1300
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE MODEL
-      1   2466 Lotek  1300
+         MAKE MODEL
+      1 Lotek  1300
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make model
-      1   3880 Lotek  1300
+         make model
+      1 Lotek  1300
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE MODEL
-      1   3880 Lotek  1300
+         MAKE MODEL
+      1 Lotek  1300
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make model
-      1   3788 Lotek  1300
+         make model
+      1 Lotek  1300
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE MODEL
-      1   3788 Lotek  1300
+         MAKE MODEL
+      1 Lotek  1300
 
 # DataMap_Lotek_1300_InstantSensorData
 
@@ -2055,32 +2055,32 @@
     Code
       dat_
     Output
-        tag_id  make     model
-      1   0383 Lotek 1400/1800
+         make     model
+      1 Lotek 1400/1800
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE     MODEL
-      1   0383 Lotek 1400/1800
+         MAKE     MODEL
+      1 Lotek 1400/1800
 
 ---
 
     Code
       dat_
     Output
-        tag_id  make     model
-      1   1546 Lotek 1400/1800
+         make     model
+      1 Lotek 1400/1800
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID  MAKE     MODEL
-      1   1546 Lotek 1400/1800
+         MAKE     MODEL
+      1 Lotek 1400/1800
 
 # DataMap_Lotek_1400.1800_InstantSensorData
 
