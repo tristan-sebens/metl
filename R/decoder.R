@@ -258,7 +258,6 @@ setRefClass(
 
       decode =
         function(d, meta) {
-
           # Create an empty DataMap to return the user-inputted data
           DataMap_UserInput =
             DataMap(
