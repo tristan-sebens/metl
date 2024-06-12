@@ -32,19 +32,21 @@ This section will guide you through the basic steps of using `metl` to extract d
 `metl` currently supports [13 models](#list-of-supported-tags) of tags, but users can extend `metl` to support additional tags.
 
 ### **The Decoder object**
-The primary work object of the `metl` package is the `Decoder` object, which is responsible for extracting all data from a single tag data directory, transforming it into its output format, and loading it into its final destination.
+The primary work object of the `metl` package is the `Decoder` object, which is responsible for extracting all data from a single tag data directory, transforming it into its output format, and loading it into its final destination. The `Decoder` objects can load the data to a database, write data to `.csv` files, or return the data as `data.frame` objects.
 
 `metl` ships with a number of pre-configured `Decoder` objects, one for each supported tag type. These objects are stored in the `decoders` list, and can be accessed by name. For example, to access the `Decoder` object for the StarOddi DST magnetic tag, we would use the following code:
 
 ```r
 decoder = metl::decoders$Decoder_StarOddi_DST
-
-d = here::here() # Update to point to your data directory
 ```
 
-The `decoder` objects can now load the data to a database, write data to `.csv` files, or return the data as `data.frame` objects.
+A full list of the pre-configured `Decoder` objects shipped with `metl` can be seen by running the following code:
 
-Sensor data and some metadata can be read directly from the target directory, but additional metadata must be supplied in the function call via a `data.frame` object passed in to the function call.
+```r
+names(metl::decoders)
+```
+
+Sensor data and some metadata can be read directly from the target directory, but additional metadata must be supplied in the function call via a `data.frame` object passed in to the `meta` parameter of the function call. We'll prepare this object here:
 
 ```r
 meta = 
@@ -86,6 +88,8 @@ db_conn =
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
 
 ```r
+d = here::here() # Update to point to your data directory
+
 decoder$process_to_db(d = d, con = db_conn, meta = meta)
 ```
 
