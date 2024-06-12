@@ -15,6 +15,8 @@ Base of all user input fields. Not intended to be directly implemented, use a ch
 
 \item{\code{build_widget(window, ...)}}{Return a fully constructed and configured widget for use in the input form}
 
+\item{\code{clear_value()}}{Clear the value(s) registered to this Field object}
+
 \item{\code{get_validation_errors(val, ...)}}{Get all of the validation errors triggered by `val`}
 
 \item{\code{get_value()}}{Retrieve the user-inputted value for this field}
@@ -22,6 +24,8 @@ Base of all user input fields. Not intended to be directly implemented, use a ch
 \item{\code{register_tclvar(var_label, init_value = "")}}{Register a new tclvar object}
 
 \item{\code{register_validator(validator)}}{Add a validator to this Field object}
+
+\item{\code{reset_field()}}{Clean up function for resetting the field after an input prompt is complete}
 
 \item{\code{validate_value(val, ...)}}{Returns a boolean indicating if `val` is valid or not.}
 }}

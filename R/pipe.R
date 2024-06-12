@@ -33,10 +33,8 @@ Pipe =
         d = "character", # The directory to process
         decoders = "list", # The list of decoders to use for processing data directories
         dir_tree__ = "Node", # The directory tree object. Private attribute, not intended to be set
-        # The following parameters are the output FieldMap objects for the metadata, instant data, and summary tables, respectivey
-        metadata_fieldmap = "FieldMap",
-        instant_fieldmap = "FieldMap",
-        summary_fieldmap = "FieldMap"
+        # List of FieldMap objects for all data which might come out of the underlying decoders
+        output_fieldmaps = "list"
       ),
 
     methods =
@@ -45,15 +43,19 @@ Pipe =
           function(
             ...,
             d,
-            metadata_fieldmap = ABLTAG_METADATA_TABLE_FIELDS,
-            instant_fieldmap = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
-            summary_fieldmap = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
+            output_fieldmaps =
+              list(
+                "meta" = ABLTAG_METADATA_TABLE_FIELDS,
+                "instant" = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
+                "summary" = ABLTAG_DATA_SUMMARY_TABLE_FIELDS
+              ),
             decoders =
               list(
                 Decoder_Lotek_1000.1100.1250,
                 Decoder_Lotek_1300,
                 Decoder_Lotek_1400.1800,
-                Decoder_MicrowaveTelemetry_XTag,
+                Decoder_MicrowaveTelemetry_XTag_Transmitted,
+                Decoder_MicrowaveTelemetry_XTag_Recovered,
                 Decoder_StarOddi_DST,
                 Decoder_StarOddi_DSTmagnetic,
                 Decoder_WildlifeComputers_MiniPAT,
@@ -65,9 +67,7 @@ Pipe =
               ...,
               d = d,
               decoders = decoders,
-              metadata_fieldmap = metadata_fieldmap,
-              instant_fieldmap = instant_fieldmap,
-              summary_fieldmap = summary_fieldmap
+              output_fieldmaps = output_fieldmaps
             )
             # Build datatree object from directory
             dir_tree__ <<- .self$build_datatree(d)
@@ -138,21 +138,18 @@ Pipe =
                 # fullPath: the full file path to the directory
                 node$fullPath =
                   file.path(dirname(.self$d), node$pathString)
-              }
-            )
-
-            dt$Do(
-              function(node) {
                 # decoded: flag indicating if the directory was successfully uploaded
                 node$decoded =
                   FALSE
-
                 # decode error: placeholder for any error which occurs when processing a node
                 node$decode_error =
                   ""
-
-                node$identified_decoder =
-                  ""
+                # placeholder for the Decoder object which gets associated with this node
+                node$decoder =
+                  NULL
+                # placeholder attribute. Named list which can be used to store retrieved data prior to load
+                node$data =
+                  list()
               },
               filterFun = function(node) {return(node$isLeaf)}
             )
@@ -169,15 +166,21 @@ Pipe =
               .self$dir_tree__,
               n_tags = .self$num_leaves,
               n_decoded = .self$num_decoded,
+              decoder = function(self) {if(!is.null(self$decoder)) self$decoder$label},
               "decoded",
-              "identified_decoder",
               "decode_error"
             ) %>%
               dplyr::mutate(
                 pct_decoded = round(100 * n_decoded / n_tags, 1),
                 pct_decoded = ifelse(!is.na(decoded), NA, pct_decoded)
               ) %>%
-              dplyr::select(dir=levelName, pct_decoded, decoded, identified_decoder, decode_error)
+              dplyr::select(
+                dir=levelName,
+                pct_decoded,
+                decoded,
+                decoder,
+                decode_error
+              )
           },
 
         add_missing_fields =
@@ -288,52 +291,37 @@ Pipe =
 
         get_node_data =
           function(dc, node) {
-            # Decode metadata
-            metadata =
-              dc$decode_metadata_map(
-                d = node$fullPath,
-                op_fm = .self$metadata_fieldmap
-              )
+            # Initialize an empty list to hold data
+            decoded_data_list = list()
 
-            # Decode instant data
-            instant_data =
-              dc$decode_instant_datamap(
-                d = node$fullPath,
-                op_fm = .self$instant_fieldmap
-              )
+            # Iterate over each data map in the decoder's data_maps list
+            for (data_type in names(dc$data_maps)) {
+              decoded_data =
+                dc$decode_datamap(
+                  dm = dc$data_maps[[data_type]],
+                  d = node$fullPath,
+                  op_fm = .self$output_fieldmaps[[data_type]]
+                )
 
-            # Decode summary data
-            summary_data =
-              dc$decode_summary_datamap(
-                d = node$fullPath,
-                op_fm = .self$summary_fieldmap
-              )
+              # Add the decoded data to the list
+              decoded_data_list[[data_type]] = decoded_data
+            }
 
-            # Complete the dataframes with fields from eachother as necessary
-            cmp_dats =
-              complete_dataframes(
+            # Complete the dataframes with fields from each other as necessary
+            completed_data =
+              .self$complete_dataframes(
                 dfs =
-                  list(
-                    metadata,
-                    instant_data,
-                    summary_data
-                  ),
+                  decoded_data_list,
                 ip_fms =
-                  list(
-                    dc$metadata_map$input_data_field_map,
-                    dc$instant_datamap$input_data_field_map,
-                    dc$summary_datamap$input_data_field_map
-                  ),
+                  lapply(dc$data_maps[names(dc$data_maps)], function(dm) dm$input_data_field_map),
                 op_fms =
-                  list(
-                    .self$metadata_fieldmap,
-                    .self$instant_fieldmap,
-                    .self$summary_fieldmap
-                  )
+                  .self$output_fieldmaps[names(dc$data_maps)]
               )
 
-            # Return the decoded data
-            return(cmp_dats)
+            names(completed_data) = names(decoded_data_list)
+
+            # Return the completed data
+            return(completed_data)
           },
 
         #TODO Move this into a separate connection object (or something like that) which can decouple the
@@ -351,79 +339,94 @@ Pipe =
                 stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
               )
 
-            # There's an odd message that keeps cropping up here. It seems to occur the first time that anything is loaded into the DB, and it occurs within this function call. The message says: Note: method with signature ‘Oracle#character’ chosen for function ‘odbcConnectionColumns_’, target signature ‘Oracle#SQL’.  "OdbcConnection#SQL" would also be valid. Some quick research indicates that this is a known issue buried somewhere within the dbplyr package (https://forum.posit.co/t/what-does-this-dbwritetable-message-mean/10690/1), and that, most importantly, it's probably not my fault, or the fault of my code. For now, I'm just wrapping the call in this suppression clause to prevent the message from messing up the package output.
-            suppressMessages(
-              {
-                # Copy data to temporary table
-                dbplyr::db_copy_to(
-                  con = con,
-                  table = dbplyr::ident(temp_table_name),
-                  # All of these calls also produce the message, so it's unclear what to do to stop it
-                  # table = dbplyr::sql(temp_table_name),
-                  # table = I(temp_table_name),
-                  # table = temp_table_name,
-                  values = dat,
-                  # Already in a transaction, so this should not start its own transaction
-                  in_transaction = F,
-                  # Typically this function writes to a temporary table which
-                  # should then be automatically dropped when the connection is
-                  # severed. However, at least in Oracle, this doesn't happen.
-                  # Additionally, when a table has the TEMPORARY token
-                  # it sort of locks it into appearing to be 'in use' so long
-                  # as the original connection is still open. This problem
-                  # isn't shared by standard tables, so I've elected to just
-                  # use a standard table in a temporary manner, and that seems
-                  # to solve the issue. All this really means is that we have to
-                  # EXPLICITLY delete the table when we're done with it.
-                  temporary = F
-                )
-              }
+            # Execute the upsert in a try/catch statment so that even if an
+            # error is encountered, we can ensure the tempoary table gets dropped.
+            tryCatch(
+              expr =
+                {
+                  # There's an odd message that keeps cropping up here. It seems to occur the first time that anything is loaded into the DB, and it occurs within this function call. The message says: Note: method with signature ‘Oracle#character’ chosen for function ‘odbcConnectionColumns_’, target signature ‘Oracle#SQL’.  "OdbcConnection#SQL" would also be valid. Some quick research indicates that this is a known issue buried somewhere within the dbplyr package (https://forum.posit.co/t/what-does-this-dbwritetable-message-mean/10690/1), and that, most importantly, it's probably not my fault, or the fault of my code. For now, I'm just wrapping the call in this suppression clause to prevent the message from messing up the package output.
+                  suppressMessages(
+                    {
+                      # Copy data to temporary table
+                      dbplyr::db_copy_to(
+                        con = con,
+                        table = dbplyr::ident(temp_table_name),
+                        # All of these calls also produce the message, so it's unclear what to do to stop it
+                        # table = dbplyr::sql(temp_table_name),
+                        # table = I(temp_table_name),
+                        # table = temp_table_name,
+                        values = dat,
+                        # Already in a transaction, so this should not start its own transaction
+                        in_transaction = F,
+                        # Typically this function writes to a temporary table which
+                        # should then be automatically dropped when the connection is
+                        # severed. However, at least in Oracle, this doesn't happen.
+                        # Additionally, when a table has the TEMPORARY token
+                        # it sort of locks it into appearing to be 'in use' so long
+                        # as the original connection is still open. This problem
+                        # isn't shared by standard tables, so I've elected to just
+                        # use a standard table in a temporary manner, and that seems
+                        # to solve the issue. All this really means is that we have to
+                        # EXPLICITLY delete the table when we're done with it.
+                        temporary = F
+                      )
+                    }
+                  )
+
+                  # Determine fields used to identify individual records
+                  id_fs = output_data_field_map$get_id_field_names()
+
+                  # UPSERT the new data into the target table
+                  DBI::dbExecute(
+                    con = con,
+                    statement =
+                      # Build the upsert sql statement
+                      dbplyr::sql_query_upsert(
+                        con = con,
+                        table = dplyr::ident(output_data_field_map$table),
+                        from = dplyr::ident(temp_table_name),
+                        # Fields used to find unique records
+                        by = id_fs,
+                        # Fields to be updated (non-id fields)
+                        update_cols = names(dat)[!names(dat) %in% id_fs]
+                      )
+                  )
+                },
+              # If an error is thrown, pass it back up the call stack
+              error =
+                function(cond) {
+                  stop(cond)
+                },
+              # Ensure that the temporary table is deleted.
+              finally =
+                {
+                  # Delete the temporary table
+                  # See above note in db_copy_to function call on why this is done
+                  DBI::dbRemoveTable(con, temp_table_name)
+                }
             )
-
-            # Determine fields used to identify individual records
-            id_fs = output_data_field_map$get_id_field_names()
-
-            # UPSERT the new data into the target table
-            DBI::dbExecute(
-              con = con,
-              statement =
-                # Build the upsert sql statement
-                dbplyr::sql_query_upsert(
-                  con = con,
-                  table = dplyr::ident(output_data_field_map$table),
-                  from = dplyr::ident(temp_table_name),
-                  # Fields used to find unique records
-                  by = id_fs,
-                  # Fields to be updated (non-id fields)
-                  update_cols = names(dat)[!names(dat) %in% id_fs]
-                )
-            )
-
-            # Delete the temporary table
-            # See above note in db_copy_to function call on why this is done
-            DBI::dbRemoveTable(con, temp_table_name)
           },
 
         # Decode all datamaps associated with a given decoder
         decode_node =
           function(con, dc, node) {
-            completed_dfs = get_node_data(dc, node)
+            # Extract, transform, augment, and complete all data from the current node
+            completed_dfs =
+              get_node_data(dc, node)
 
-            # Reassign the data.frame variables
-            # The data.frames come out in the same order they went in
-            metadata = completed_dfs[[1]]
-            instant_data = completed_dfs[[2]]
-            summary_data = completed_dfs[[3]]
-
-            # Finally, upload the data using the passed connection
-            # Wrap all of the upserts in a single transaction, so that if
-            # one of them fails we don't end up with hanging data
+            # Upload the data using the passed connection
+            # Wrap all of the upserts in a single transaction, so that if one
+            # of them fails they all fail and we don't end up with hanging data
             DBI::dbWithTransaction(
               conn = con,
               {
-                upsert(con, metadata, .self$metadata_fieldmap)
-                upsert(con, instant_data, .self$instant_fieldmap)
-                upsert(con, summary_data, .self$summary_fieldmap)
+                for (data_type in names(completed_dfs)) {
+                  .self$upsert(
+                    con = con,
+                    dat = completed_dfs[[data_type]],
+                    output_data_field_map = .self$output_fieldmaps[[data_type]]
+                  )
+                }
               }
             )
 
@@ -431,10 +434,9 @@ Pipe =
             return(TRUE)
           },
 
-        process_node =
-          function(node, con, overwrite = T) {
-            "Attempt to process directory `d`. Pipe will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
-
+        pre_process_node =
+          function(node) {
+            "Perform any necessary pre-processing on a directory"
             node$tag_identifier_results =
               # Instantiate the identifier object based on the list of Decoders held by this Pipe
               TagIdentifier(decoders = .self$decoders)$
@@ -449,28 +451,46 @@ Pipe =
             # If there is exactly one decoder which matches the data directory, use that
             # decoder to upload the tag data to the DB
             if(nrow(pos_id) == 1) {
-              dc = pos_id$dc[[1]]
+              node$decoder = pos_id$dc[[1]]
+            } else {
+              node$decode_error = paste0("Matching decoders: ", nrow(pos_id))
+            }
+          },
+
+        pre_process_nodes =
+          function() {
+            "Perform any necessary pre-processing on the nodes of the directory tree"
+            .self$dir_tree__$Do(
+              # Invoke the pre-processing function
+              function(node) pre_process_node(node),
+              # Only process nodes which are data directories
+              filterFun = function(node) {node$isLeaf}
+            )
+          },
+
+        process_node =
+          function(node, con, overwrite = T) {
+            "Attempt to process directory `d`. Pipe will first attempt to identify the make/model of the source tag, and if one is found will apply the corresponding decoder to the directory to extract, transform, and load the data."
+            # Filter to those decoders which matched the data directory
+            if(!is.null(node$decoder)) {
               tryCatch(
                 {
-                  node$decoded = .self$decode_node(con, dc, node)
-                  node$identified_decoder = pos_id$name
+                  node$decoded = .self$decode_node(con, node$decoder, node)
                 },
+
                 error =
                   function(cond) {
                     node$decode_error = cond
                   }
               )
-            } else {
-              node$decode_error = paste0("Matching decoders: ", nrow(pos_id))
             }
           },
 
         refresh_op_fm =
           function(...) {
             "Refresh each of the FieldMap objects"
-            .self$metadata_fieldmap$refresh(...)
-            .self$instant_fieldmap$refresh(...)
-            .self$summary_fieldmap$refresh(...)
+            for(fieldmap in .self$output_fieldmaps)
+              fieldmap$refresh(...)
           },
 
         # Process all tag data contained within the directory tree
@@ -478,6 +498,7 @@ Pipe =
           function(con, overwrite = T, silent = F) {
           "Recursively process a directory tree, attempting to process each directory."
             if(!silent) print("Processing directory.")
+            .self$pre_process_nodes()
             # Traverse directory tree and process each data directory (leaf node)
             .self$dir_tree__$Do(
               function(node) {
@@ -493,83 +514,53 @@ Pipe =
           },
 
         process_to_dataframes =
-          function(...) {
+          function(con, ...) {
             "Extract tag data and return it as a list of dataframes"
             # Build a temporary DB
+            # Overwrite any value passed to the initial function call
             con =
               build_temp_db()
 
             # Populate the temporary DB with the tag data as normal
             process_to_db(con, ...)
 
-            # Extract the three data types out of the temp DB
-            ret =
-              list(
-                meta =
-                  dplyr::tbl(
-                    con,
-                    metadata_fieldmap$table
-                  ) %>%
-                  data.frame(),
+            dat = list()
 
-                instant =
-                  dplyr::tbl(
-                    con,
-                    instant_fieldmap$table
-                  ) %>%
-                  data.frame(),
-
-                summary =
-                  dplyr::tbl(
-                    con,
-                    summary_fieldmap$table
-                  ) %>%
-                  data.frame()
-              )
+            # Extract all data types out of the temp DB
+            for (data_type in names(.self$output_fieldmaps)) {
+              dat[[data_type]] =
+                dplyr::tbl(
+                  con,
+                  .self$output_fieldmaps[[data_type]]$table
+                ) %>%
+                data.frame()
+            }
 
             # Sever the connection to the temp DB
             DBI::dbDisconnect(con)
 
-            return(ret)
+            return(dat)
           },
 
         process_to_csv =
           function(out_d, ...) {
             "Extract tag data and write it to csv files in `out_d`"
             # Generate the three output data.frames from the tag data
-            res = process_to_dataframes(...)
+            dat = process_to_dataframes(...)
 
-            # Write the metadata to a csv file
-            write.csv(
-              x = res$meta,
-              file =
-                file.path(
-                  out_d,
-                  paste0(metadata_fieldmap$table, '.csv')
-                ),
-              row.names = F
-            )
-            # Write the instant data to a csv file
-            write.csv(
-              x = res$instant,
-              file =
-                file.path(
-                  out_d,
-                  paste0(instant_fieldmap$table, '.csv')
-                ),
-              row.names = F
-            )
-            # Write the summary data to a csv file
-            write.csv(
-              x = res$summary,
-              file =
-                file.path(
-                  out_d,
-                  paste0(summary_fieldmap$table, '.csv')
-                ),
-              row.names = F
-            )
 
+            # Write each datatype to a csv file
+            for (data_type in names(dat)) {
+              write.csv(
+                x = dat[[data_type]],
+                file =
+                  file.path(
+                    out_d,
+                    paste0(data_type, '.csv')
+                  ),
+                row.names = F
+              )
+            }
           }
       )
   )

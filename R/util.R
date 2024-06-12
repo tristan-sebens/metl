@@ -66,3 +66,42 @@ build_temp_db =
 
     return(con)
   }
+
+
+#' Make timestamps unique
+#'
+#' Helper function for making timestamps unique. This is accomplished by looking for groups of identical timestamps within `v`, and if any are found each member of the group is incremented by `incr` so as to become a unique value. By default, `incr` is 1e-6 s, the smallest possible value which a POSIXct timestamp can record, and so the smallest differential by which two timestamps can be considered to be unique to one another.
+#'
+#' @param v The vector of timestamps (as integers)
+#'
+#' @return The same vectpr of timestamps as `v`, in the same order, but with any identical timestamps having been bumped to unique values.
+bump_timestamps =
+  function(v, incr = 1e-6) {
+    data.frame(
+      # Record the original order of the vector
+      ix = seq(1, length(v)),
+      # Add the timestamp vector as a column
+      timestamp = v
+    ) %>%
+    # Group by timestamps to find any records with identical timestamps
+    dplyr::group_by(timestamp) %>%
+    # Add a field which describes each records position within its timestamp group
+    # For most records, this will be 0, as they are the only record in their group
+    # For any records which share a timestamp value, one will be given the value
+    # of 0, the rest will be given sequentially increasing values (1, 2, 3, ...)
+    dplyr::mutate(seq_n = seq(1,dplyr::n())) %>%
+    dplyr::ungroup() %>%
+    # Now we use the sequence value of each record to add a tiny amount of time
+    # to the timestamp of each record. Testing suggests that the smallest
+    # unit of time which can distinguish two timestamps is 1e-6s, so that's the
+    # amount by which we'll increment the timestamps.
+    # Again, for most records this will do nothing, as the sequence value will be
+    # 0, but any records which share a timestamp will be 'bumped' off of their
+    # original values to (hopefully) unique values.
+    # NOTE: This method DOES ASSUME that a single round of bumping will be enough
+    # to make all timestamps unique. This should be a reasonable expectation as
+    # long as the timestamps are not being recorded at a rate exceeding 1000000/s
+    dplyr::mutate(timestamp = timestamp + (incr)*(seq_n - 1)) %>%
+    dplyr::arrange(ix) %>%
+    dplyr::pull(timestamp)
+  }

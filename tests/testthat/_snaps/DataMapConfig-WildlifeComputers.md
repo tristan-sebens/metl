@@ -3,32 +3,32 @@
     Code
       dat_
     Output
-        tag_id               make   model
-      1 174898 Wildlife Computers MiniPAT
+                      make   model
+      1 Wildlife Computers MiniPAT
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID               MAKE   MODEL
-      1 174898 Wildlife Computers MiniPAT
+                      MAKE   MODEL
+      1 Wildlife Computers MiniPAT
 
 ---
 
     Code
       dat_
     Output
-        tag_id               make   model
-      1 174900 Wildlife Computers MiniPAT
+                      make   model
+      1 Wildlife Computers MiniPAT
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID               MAKE   MODEL
-      1 174900 Wildlife Computers MiniPAT
+                      MAKE   MODEL
+      1 Wildlife Computers MiniPAT
 
 # DataMap_WildlifeComputers_MiniPAT_InstantSensorData
 
@@ -6401,64 +6401,64 @@
     Code
       dat_
     Output
-        tag_id               make        model
-      1 175146 Wildlife Computers Benthic sPAT
+                      make        model
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID               MAKE        MODEL
-      1 175146 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_
     Output
-        tag_id               make        model
-      1 175147 Wildlife Computers Benthic sPAT
+                      make        model
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID               MAKE        MODEL
-      1 175147 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_
     Output
-        tag_id               make        model
-      1 175157 Wildlife Computers Benthic sPAT
+                      make        model
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID               MAKE        MODEL
-      1 175157 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_
     Output
-        tag_id               make        model
-      1 175158 Wildlife Computers Benthic sPAT
+                      make        model
+      1 Wildlife Computers Benthic sPAT
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID               MAKE        MODEL
-      1 175158 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL
+      1 Wildlife Computers Benthic sPAT
 
 # DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData
 

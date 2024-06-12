@@ -45,14 +45,6 @@ setRefClass(
             # First field 'dc' is a list of all possible decoders
             tibble::tibble(dc = .self$decoders)
 
-          # Update the tibble to include the name associated with each decoder
-          t__['name'] =
-            t__[['dc']] %>%
-            lapply(
-              function(dc) {paste(dc$metadata_map$make, '-', dc$metadata_map$model)}
-            ) %>%
-            unlist()
-
           # Apply the identifier of each decoder in the tibble to the directory in question
           # and record the results
           t__ =

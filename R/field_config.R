@@ -1,5 +1,30 @@
 # source(here::here('R', 'class.R'))
 
+
+#----------------
+# USER DEFINED FIELDS
+#----------------
+#' @export ABLTAG_USER_INPUT_FIELDS
+ABLTAG_USER_INPUT_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TAG_ID_FIELD =
+          Field(
+            name = "TAG_ID",
+            data_type = "integer",
+            id_field = T
+          ),
+        TAG_TYPE_FIELD =
+          Field(
+            name = "TAG_TYPE",
+            data_type = "varchar(32)",
+            id_field = T
+          )
+      )
+  )
+
+
 #----------------
 # TAG TABLE FIELDS
 #----------------
@@ -10,11 +35,9 @@ ABLTAG_METADATA_TABLE_FIELDS =
     field_list =
       list(
         TAG_ID_FIELD =
-          Field(
-            name = "TAG_ID",
-            data_type = "integer",
-            id_field = T
-          ),
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
+        TAG_TYPE_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         TAG_MAKE_FIELD =
           Field(
             name = "MAKE",
@@ -24,48 +47,41 @@ ABLTAG_METADATA_TABLE_FIELDS =
           Field(
             name = "MODEL",
             data_type = "varchar(32)"
-          ),
-        TAG_DATA_OWNER_PK_FIELD =
-          InputField_SelectAdd(
-            name = "DATA_OWNER_ID",
-            data_type = "varchar(32)",
-            table = "DATA_OWNER",
-            pk_field = "OWNER_ID",
-            label_field = "NAME",
-            persistant = T
-          ),
-        TAG_SPECIES_ID_FIELD =
-          InputField_Select(
-            name = "SPECIES_ID",
-            data_type = "varchar(32)",
-            table = "SPECIES",
-            pk_field = "CODE",
-            label_field = "SPECIES_NAME",
-            persistant = T
-          ),
-        TAG_DEPLOY_DATE =
-          InputField_DateTime(
-            name = "DATE_DEPLOYED",
-            data_type = "varchar(32)"
-          ),
-        TAG_RECOVERY_DATE =
-          InputField_DateTime(
-            name = "DATE_RECOVERED",
-            data_type = "varchar(32)"
-          ),
-        UPLOAD_TIMESTAMP_FIELD =
-          IndependentField(
-            name = "UPLOAD_TIMESTAMP",
-            data_type = "integer",
-            value_fn =
-              function(dat, ...) {
-                return(
-                  as.numeric(as.POSIXct(Sys.time(), tz = ""))
-                )
-              }
           )
-      )
+      # TAG_DEPLOYMENT_ID_FIELD =
+      #   InputField_FilteredSelect(
+      #     name = "DEPLOYMENT_ID",
+      #     label = "Deployment,
+      #     table = "TAG_RECOVERED_DEPLOYMENTS",
+      #     pk_field = "DEPLOYMENT_ID",
+      #     choice_field = "LABEL",
+      #     filter_db_field = "TAG_NUM",
+      #     filter_input_field = "TAG_ID"
+      #   ),
+      # TAG_DEPLOY_DATE =
+      #   InputField_DateTime(
+      #     name = "DATE_DEPLOYED",
+      #     data_type = "varchar(32)"
+      #   ),
+      # TAG_RECOVERY_DATE =
+      #   InputField_DateTime(
+      #     name = "DATE_RECOVERED",
+      #     data_type = "varchar(32)"
+      #   ),
+      # UPLOAD_TIMESTAMP_FIELD =
+      #   IndependentField(
+      #     name = "UPLOAD_TIMESTAMP",
+      #     data_type = "integer",
+      #     value_fn =
+      #       function(dat, ...) {
+      #         return(
+      #           as.numeric(as.POSIXct(Sys.time(), tz = ""))
+      #         )
+      #       }
+      #   )
+    )
   )
+
 
 #----------------
 # INSTANT TAG DATA TABLE FIELDS
@@ -78,7 +94,9 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
       list(
         # Link tag id field to TAG table primary key field
         TAG_ID_FIELD =
-          ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
+        TAG_TYPE_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         TIMESTAMP_FIELD =
           Field(
             name = "TIMESTAMP",
@@ -86,7 +104,8 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                as.numeric(v)
+                # Make sure that all incoming timestamps are unique, to satisfy the UNIQUE constraint on the table
+                bump_timestamps(v = as.numeric(v), incr = 1e-1)
               }
           ),
         LATITUDE_FIELD =
@@ -226,7 +245,9 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
       list(
         # Link tag id field to TAG table primary key field
         TAG_ID_FIELD =
-          ABLTAG_METADATA_TABLE_FIELDS$field_list$TAG_ID_FIELD,
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
+        TAG_TYPE_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         START_TIME_FIELD =
           Field(
             name = "START_TIME",
@@ -314,17 +335,15 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
   )
 
 #----------------
-# METADATA DEFAULT MAP
+# METADATA INPUT MAPS
 #----------------
+
+#' Fields automatically provided by the metadata DataMap
 #' @export DEFAULT_METADATA_FIELDS
-DEFAULT_METADATA_FIELDS =
+AUTOGENERATED_METADATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TAG_ID_FIELD =
-          Field(
-            name = "tag_id"
-          ),
         TAG_MAKE_FIELD =
           Field(
             name = "make"
@@ -332,6 +351,23 @@ DEFAULT_METADATA_FIELDS =
         TAG_MODEL_FIELD =
           Field(
             name = "model"
+          )
+      )
+  )
+
+#' Fields provided by the user
+#' @export USER_INPUT_METADATA_FIELDS
+USER_INPUT_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TAG_ID_FIELD =
+          Field(
+            name = "tag_id"
+          ),
+        TAG_TYPE_FIELD =
+          Field(
+            name = "tag_type"
           )
       )
   )
@@ -448,8 +484,8 @@ LOTEK_1400.1800_INSTANT_DATA_FIELDS =
 #----------------
 # MICROWAVE TELEMETRY TAGS
 #----------------
-#' @export MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS
-MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
+#' @export MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -505,8 +541,45 @@ MICROWAVE_TELEMETRY_XTAG_INSTANT_DATA_FIELDS =
       )
   )
 
-#' @export MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS
-MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
+#' @export MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "Date/Time"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "Depth (m)",
+            units = "m",
+            # Initially recorded as negative depth. Invert the values
+            trans_fn = function(v, ...) {return(v * -1)}
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "Temp (ºC)",
+            units = "°C"
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "Location Type",
+            trans_fn = function(v, ...) {return(LOCATION_TYPE__SATELLITE)}
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Latitude"
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Longitude"
+          )
+      )
+  )
+
+#' @export MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
@@ -537,6 +610,42 @@ MICROWAVE_TELEMETRY_XTAG_SUMMARY_DATA_FIELDS =
         LONGITUDE_FIELD =
           Field(
             name = "Long (W)"
+          )
+      )
+  )
+
+#' @export MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS
+MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
+          Field(
+            name = "Date"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End",
+            trans_fn =
+              function(v, dat, ...) {
+                timechange::time_add(
+                  dat[['Date']],
+                  hour = 23, minute = 59, second = 59
+                )
+              }
+          ),
+        LOCATION_TYPE_FIELD =
+          Field(
+            name = "Location Type",
+            trans_fn = function(v, ...) {return(LOCATION_TYPE__LIGHT_BASED_GEOLOCATION)}
+          ),
+        LATITUDE_FIELD =
+          Field(
+            name = "Lat."
+          ),
+        LONGITUDE_FIELD =
+          Field(
+            name = "Long."
           )
       )
   )
@@ -871,55 +980,3 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
       )
   )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#

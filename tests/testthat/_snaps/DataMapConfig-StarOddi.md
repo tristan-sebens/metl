@@ -3,16 +3,16 @@
     Code
       dat_
     Output
-        tag_id      make                    model
-      1 JS7977 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model
+      1 Star Oddi DST (centi/milli)-(TD/F)
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID      MAKE                    MODEL
-      1 JS7977 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL
+      1 Star Oddi DST (centi/milli)-(TD/F)
 
 # DataMap_StarOddi_DST_InstantSensorData
 
@@ -59,32 +59,32 @@
     Code
       dat_
     Output
-        tag_id      make                    model
-      1 JS1229 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model
+      1 Star Oddi DST (centi/milli)-(TD/F)
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID      MAKE                    MODEL
-      1 JS1229 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL
+      1 Star Oddi DST (centi/milli)-(TD/F)
 
 ---
 
     Code
       dat_
     Output
-        tag_id      make                    model
-      1  JS142 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model
+      1 Star Oddi DST (centi/milli)-(TD/F)
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID      MAKE                    MODEL
-      1  JS142 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL
+      1 Star Oddi DST (centi/milli)-(TD/F)
 
 # DataMap_StarOddi_DSTmilliF_InstantSensorData
 
@@ -171,32 +171,32 @@
     Code
       dat_
     Output
-        tag_id      make        model
-      1  JS923 Star Oddi DST magnetic
+             make        model
+      1 Star Oddi DST magnetic
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID      MAKE        MODEL
-      1  JS923 Star Oddi DST magnetic
+             MAKE        MODEL
+      1 Star Oddi DST magnetic
 
 ---
 
     Code
       dat_
     Output
-        tag_id      make        model
-      1  JS927 Star Oddi DST magnetic
+             make        model
+      1 Star Oddi DST magnetic
 
 ---
 
     Code
       dat_t_
     Output
-        TAG_ID      MAKE        MODEL
-      1  JS927 Star Oddi DST magnetic
+             MAKE        MODEL
+      1 Star Oddi DST magnetic
 
 # DataMap_StarOddi_DSTmagnetic_InstantSensorData
 

@@ -11,8 +11,6 @@ Logical representation of a single tag, which contains all necessary logic to pa
 \section{Fields}{
 
 \describe{
-\item{\code{metadata_map}}{DataMap. The \link{DataMap} used to extract the tag metadata}
-
 \item{\code{data_maps}}{list. The list of data maps used to map the data for this tag to the output tables in the DB}
 }}
 
