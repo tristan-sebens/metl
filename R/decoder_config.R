@@ -1,5 +1,3 @@
-
-#' @export Decoder_Lotek_1000.1100.1250
 Decoder_Lotek_1000.1100.1250 =
   Decoder(
     label = "Lotek 1000/1100/1250",
@@ -12,7 +10,6 @@ Decoder_Lotek_1000.1100.1250 =
       )
   )
 
-#' @export Decoder_Lotek_1300
 Decoder_Lotek_1300 =
   Decoder(
     label = "Lotek 1300",
@@ -23,7 +20,6 @@ Decoder_Lotek_1300 =
     )
   )
 
-#' @export Decoder_Lotek_1400.1800
 Decoder_Lotek_1400.1800 =
   Decoder(
     label = "Lotek 1400/1800",
@@ -34,7 +30,6 @@ Decoder_Lotek_1400.1800 =
     )
   )
 
-#' @export Decoder_MicrowaveTelemetry_XTag_Transmitted
 Decoder_MicrowaveTelemetry_XTag_Transmitted =
   Decoder(
     label = "Microwave Telemetry XTag",
@@ -46,7 +41,6 @@ Decoder_MicrowaveTelemetry_XTag_Transmitted =
     )
   )
 
-#' @export Decoder_MicrowaveTelemetry_XTag_Recovered
 Decoder_MicrowaveTelemetry_XTag_Recovered =
   Decoder(
     label = "Microwave Telemetry XTag",
@@ -58,7 +52,6 @@ Decoder_MicrowaveTelemetry_XTag_Recovered =
     )
   )
 
-#' @export Decoder_StarOddi_DST
 Decoder_StarOddi_DST =
   Decoder(
     label = "StarOddi DST",
@@ -69,7 +62,6 @@ Decoder_StarOddi_DST =
     )
   )
 
-#' @export Decoder_StarOddi_DSTmagnetic
 Decoder_StarOddi_DSTmagnetic =
   Decoder(
     label = "StarOddi DST Magnetic",
@@ -80,7 +72,6 @@ Decoder_StarOddi_DSTmagnetic =
     )
   )
 
-#' @export Decoder_WildlifeComputers_MiniPAT
 Decoder_WildlifeComputers_MiniPAT =
   Decoder(
     label = "Wildlife Computers MiniPAT",
@@ -92,7 +83,6 @@ Decoder_WildlifeComputers_MiniPAT =
     )
   )
 
-#' @export Decoder_WildlifeComputers_BenthicSPAT
 Decoder_WildlifeComputers_BenthicSPAT =
   Decoder(
     label = "Wildlife Computers Benthic SPAT",
@@ -104,7 +94,6 @@ Decoder_WildlifeComputers_BenthicSPAT =
     )
   )
 
-#' @export Decoder_DesertStar_SeaTagMOD
 Decoder_DesertStar_SeaTagMOD =
   Decoder(
     label = "DesertStar SeaTagMOD",
@@ -114,3 +103,18 @@ Decoder_DesertStar_SeaTagMOD =
       "instant" = DataMap_DesertStar_SeaTagMOD_InstantSensorData
     )
   )
+
+# Aggregate all of the above configured Decoder objects into a named list, then export that list
+#' @export decoders
+decoders = list(
+  "Decoder_Lotek_1000.1100.1250" = Decoder_Lotek_1000.1100.1250,
+  "Decoder_Lotek_1300" = Decoder_Lotek_1300,
+  "Decoder_Lotek_1400.1800" = Decoder_Lotek_1400.1800,
+  "Decoder_MicrowaveTelemetry_XTag_Transmitted" = Decoder_MicrowaveTelemetry_XTag_Transmitted,
+  "Decoder_MicrowaveTelemetry_XTag_Recovered" = Decoder_MicrowaveTelemetry_XTag_Recovered,
+  "Decoder_StarOddi_DST" = Decoder_StarOddi_DST,
+  "Decoder_StarOddi_DSTmagnetic" = Decoder_StarOddi_DSTmagnetic,
+  "Decoder_WildlifeComputers_MiniPAT" = Decoder_WildlifeComputers_MiniPAT,
+  "Decoder_WildlifeComputers_BenthicSPAT" = Decoder_WildlifeComputers_BenthicSPAT,
+  "Decoder_DesertStar_SeaTagMOD" = Decoder_DesertStar_SeaTagMOD
+)
