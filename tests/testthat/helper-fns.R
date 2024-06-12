@@ -165,25 +165,6 @@ build_test_decoder =
     return(dc)
   }
 
-build_test_tag_processor =
-  function(
-    d = test_data_d(), # Root at the base of the test data directory
-    decoders = build_test_decoder_list(),
-    # The following parameters are the output FieldMap objects for the metadata, instant data, and summary tables, respectivey
-    output_fieldmaps =
-      list(
-        "meta" = build_test_metadata_map()$METADATA_OUTPUT_FIELD_MAP,
-        "instant" = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP,
-        "summary" = build_test_fieldmaps()$SUMMARY_DATA_OUTPUT_FIELD_MAP
-      )
-  ) {
-    Pipe(
-      d = d,
-      decoders = decoders,
-      output_fieldmaps = output_fieldmaps
-    )
-  }
-
 # Get the root directory of the test data
 test_data_d =
   function(...) {
