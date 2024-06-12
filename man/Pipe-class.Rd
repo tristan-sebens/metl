@@ -42,7 +42,7 @@ are missing from dat_1 but are present in dat_2 will be added to dat_1.}
 
 \item{\code{process_to_csv(out_d, ...)}}{Extract tag data and write it to csv files in `out_d`}
 
-\item{\code{process_to_dataframes(...)}}{Extract tag data and return it as a list of dataframes}
+\item{\code{process_to_dataframes(con, ...)}}{Extract tag data and return it as a list of dataframes}
 
 \item{\code{process_to_db(con, overwrite = T, silent = F)}}{Recursively process a directory tree, attempting to process each directory.}
 

@@ -14,8 +14,6 @@ Base class for tag metadata DataMaps.
 \item{\code{make}}{character. Tag manufacturer/brand}
 
 \item{\code{model}}{character. Tag model}
-
-\item{\code{get_tag_id}}{function(d). Function which returns the ID string of a tag based on the data-directory path \code{d}}
 }}
 
 \section{Methods}{
