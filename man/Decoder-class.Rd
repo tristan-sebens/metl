@@ -17,6 +17,12 @@ Logical representation of a single tag, which contains all necessary logic to pa
 \section{Methods}{
 
 \describe{
+\item{\code{add_missing_fields(dat1, dat1_ip_fm, dat1_op_fm, dat2, dat2_ip_fm, dat2_op_fm)}}{Add fields from one data frame to a second dataframe, based on their
+respective DataMaps. dat_1/dm_1 refer to the data which may be missing
+fields. dat_2/dm_2 refer to the data from which we MAY take data to
+put into dat_1. Any fields defined by dm_1$output_data_field_map which
+are missing from dat_1 but are present in dat_2 will be added to dat_1.}
+
 \item{\code{decode_datamap(d, dm, op_fm)}}{Execute all necessary steps to read and transform raw data for one DataMap}
 }}
 
