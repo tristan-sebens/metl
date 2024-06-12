@@ -37,7 +37,9 @@ The primary work object of the `metl` package is the `Decoder` object, which is 
 `metl` ships with a number of pre-configured `Decoder` objects, one for each supported tag type. These objects are stored in the `decoders` list, and can be accessed by name. For example, to access the `Decoder` object for the StarOddi DST magnetic tag, we would use the following code:
 
 ```r
-decoder = metl::decoders$StarOddi_DST_magnetic
+decoder = metl::decoders$Decoder_StarOddi_DST
+
+d = here::here() # Update to point to your data directory
 ```
 
 The `decoder` objects can now load the data to a database, write data to `.csv` files, or return the data as `data.frame` objects.
@@ -84,7 +86,7 @@ db_conn =
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
 
 ```r
-decoder$process_to_db(con = db_conn, meta = meta)
+decoder$process_to_db(d = d, con = db_conn, meta = meta)
 ```
 
 The `Decoder` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
@@ -94,7 +96,7 @@ The `Decoder` object will now extract all possible data from the data directory,
 The `Decoder` can produce the extracted data as a collection of `data.frames`. These are provided as the elements of a named list, with the names corresponding to the type of data extracted.
 
 ```r
-res = metl_pipe$process_to_dataframes(meta=meta)
+res = decoder$decode_to_dataframes(d = d, meta=meta)
 
 metadata = res[['meta']]
 instant_data = res[['instant']]
@@ -107,7 +109,7 @@ Finally, the `Decoder` object can write the extracted data to a collection of `.
 ```r
 csv_directory = here::here() # Specify the directory into which the csv files should be written
 
-decoder$process_to_csv(out_d = csv_directory, meta = meta) 
+decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta) 
 ```
 
 
