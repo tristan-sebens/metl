@@ -90,7 +90,7 @@ Once we have connected to the database, we call the `process_to_db` method, pass
 ```r
 d = here::here() # Update to point to your data directory
 
-decoder$process_to_db(d = d, con = db_conn, meta = meta)
+decoder$decode_to_db(d = d, con = db_conn, meta = meta)
 ```
 
 The `Decoder` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
