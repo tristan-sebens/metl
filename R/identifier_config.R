@@ -26,74 +26,84 @@ check_for_files =
 #' @export Identifier_Lotek_1000.1100.1250
 Identifier_Lotek_1000.1100.1250 =
   Identifier(
-    identify_ =
-      function(d) {
-        return(
-          all(
-            check_for_files(d, "^\\d*pressure\\.csv"),
-            check_for_files(d, "^\\d*temperature\\.csv")
-          )
+    conditions =
+      list(
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d*pressure\\.csv"),
+          message = "Pressure file missing or mislabeled. Should match pattern: ^\\d*pressure.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d*temperature\\.csv"),
+          message = "Temperature file missing or mislabeled. Should match pattern ^\\d*temperature.csv"
         )
-      }
+      )
   )
 
 #' Identifier - Lotek 1300 tags
 #' @export Identifier_Lotek_1300
 Identifier_Lotek_1300 =
   Identifier(
-    identify_ =
-      function(d) {
-        all(
-          check_for_files(d, "LTD1300.\\d\\d\\d\\d_day log.csv"),
-          check_for_files(d, "LTD1300.\\d\\d\\d\\d_regular log.csv")
+    conditions =
+      list (
+        Condition(
+          condition = function(d) check_for_files(d, "LTD1300.\\d\\d\\d\\d_day log.csv"),
+          message = "Day log file missing",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "LTD1300.\\d\\d\\d\\d_regular log.csv"),
+          message = "Regular log file missing"
         )
-      }
+      )
   )
+
+
 
 #' Identifier - Lotek 1400/1800 tags
 #' @export Identifier_Lotek_1400.1800
 Identifier_Lotek_1400.1800 =
   Identifier(
-    identify_ =
-      function(d) {
-        all(
-          check_for_files(d, "LAT(180|140)_(\\d|_)*_\\d\\d\\.csv")
+    conditions =
+      list(
+        Condition(
+          condition = function(d) check_for_files(d, "LAT(180|140)_(\\d|_)*_\\d\\d\\.csv"),
+          message = "Data file missing or mislabeled. Should match pattern: LAT(180|140)_\\d\\d\\d\\d_\\d\\d_\\d\\d.csv"
         )
-      }
+      )
   )
 
 #' Identifier - Microwave Telemetry X-tags (transmitted via satellite)
 #' @export Identifier_MicrowaveTelemetry_XTag_Transmitted
 Identifier_MicrowaveTelemetry_XTag_Transmitted =
   Identifier(
-    identify_ =
-      function(d) {
-        all(
-          check_for_files(d, "^\\d*.xls"),
-          # Check that all files present in the directory are of expected formats
-          check_for_files(d, "^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d)))
+    conditions =
+      list(
+        # Check that the data file is present and correctly labeled
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d*.xls"),
+          message = "Data file missing or mislabeled. Should match pattern: ^\\d*.xls"
+        ),
+        # Check that all files present in the directory are of expected formats
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)", length(list.files(d))),
+          message = "Unexpected files in directory. All files should match pattern: ^\\d+(a|e|o|p|rp|rt|t)?\\.(xls|txt)",
+          optional = T
         )
-      }
+      )
   )
 
 #' Identifier - Microwave Telemetry X-tags (physically recovered)
 #' @export Identifier_MicrowaveTelemetry_XTag_Recovered
 Identifier_MicrowaveTelemetry_XTag_Recovered =
   Identifier(
-    identify_ =
-      function(d) {
-        all(
-          check_for_files(d, "^\\d+_Recovered.xlsm"),
-          # Check that all files present in the directory are of expected formats
-          {
-            length(list.files(d, pattern="^\\d+_Recovered.xlsm")) +
-            length(list.files(d, pattern="^\\d+_RecoveredData_\\d\\.txt")) +
-            length(list.files(d, pattern="^~$\\d+_RecoveredData_\\d\\.txt")) +
-            length(list.files(d, pattern="^\\d+(a|e|o|p|rp|rt|t)\\.txt")) ==
-              length(list.files(d))
-          }
+    conditions =
+      list(
+        # Check that the data file is present and correctly labeled
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d+_Recovered\\.xls"),
+          message = "Data file missing or mislabeled. Should match pattern: ^\\d+_Recovered.xls"
         )
-      }
+      )
   )
 
 check_for_fields =
@@ -105,7 +115,6 @@ check_for_fields =
           names(readxl::read_xlsx(fp, n_max = 1))
       }
     )
-
     res_ =
       fields %>%
       lapply(
@@ -126,61 +135,73 @@ check_for_fields =
 #' @export Identifier_StarOddi_DST
 Identifier_StarOddi_DST =
   Identifier(
-    identify_ =
-      function(d) {
-        fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
-        return(
-          all(
-            check_for_files(
-              d,
-              "^JS\\d+\\.xlsx"
-            ),
-            # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-            check_for_files(
-              d,
-              "(~$)*JS\\d+\\.xlsx",
-              n=length(list.files(d))
-            ),
-            check_for_fields(
-              fp =
-                fp,
-              fields =
-                c(
-                  "Comp.Head(°)",
-                  "Comp.4p(°)",
-                  "Mag.vec(nT)"
-                ),
-              present = F
-            )
-          )
+    conditions =
+      list(
+        Condition(
+          condition =
+            function(d) {
+              fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
+              return(
+                all(
+                  check_for_files(
+                    d,
+                    "^JS\\d+\\.xlsx"
+                  ),
+                  # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+                  check_for_files(
+                    d,
+                    "(~$)*JS\\d+\\.xlsx",
+                    n=length(list.files(d))
+                  ),
+                  check_for_fields(
+                    fp =
+                      fp,
+                    fields =
+                      c(
+                        "Comp.Head(°)",
+                        "Comp.4p(°)",
+                        "Mag.vec(nT)"
+                      ),
+                    present = F
+                  )
+                )
+              )
+            },
+          message = "Data file missing or mislabeled. Should match pattern: ^JS\\d+\\.xlsx and contain fields: Comp.Head(°), Comp.4p(°), Mag.vec(nT)"
         )
-      }
+      )
   )
 
 #' Identifier - StarOddi DST magnetic tags
 #' @export Identifier_StarOddi_DSTmagnetic
 Identifier_StarOddi_DSTmagnetic =
   Identifier(
-    identify_ =
-      function(d) {
-        fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
-        return(
-          all(
-            check_for_files(d, "^JS\\d+\\.xlsx"),
-            # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-            check_for_fields(
-              fp =
-                fp,
-              fields =
-                c(
-                  "Comp.Head(°)",
-                  "Comp.4p(°)",
-                  "Mag.vec(nT)"
+    conditions =
+      list(
+        Condition(
+          condition =
+            function(d) {
+              fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
+              return(
+                all(
+                  check_for_files(d, "^JS\\d+\\.xlsx"),
+                  # Check that all files in the directory are either the datafile, or Excel's temporary lock file
+                  check_for_fields(
+                    fp =
+                      fp,
+                    fields =
+                      c(
+                        "Comp.Head(°)",
+                        "Comp.4p(°)",
+                        "Mag.vec(nT)"
+                      )
+                  )
                 )
-            )
-          )
+              )
+            },
+          message = "Data file missing or mislabeled. Should match pattern: ^JS\\d+\\.xlsx and contain fields: Comp.Head(°), Comp.4p(°), Mag.vec(nT)"
         )
-      }
+      )
   )
 
 
@@ -197,63 +218,114 @@ check_for_wc_data_file =
 #' @export Identifier_WildlifeComputers_BenthicSPAT
 Identifier_WildlifeComputers_BenthicSPAT =
   Identifier(
-    identify_ =
-      function(d) {
-        return(
-          all(
-            # Files that should be present
-            check_for_wc_data_file(d, "All.csv"),
-            check_for_wc_data_file(d, "Argos.csv"),
-            check_for_wc_data_file(d, "Corrupt.csv"),
-            check_for_wc_data_file(d, "Orientation.csv"),
-            check_for_wc_data_file(d, "RawArgos.csv"),
-            check_for_wc_data_file(d, "RTC.csv"),
-            check_for_wc_data_file(d, "Status.csv"),
-            check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
-            # Files that should not be present
-            check_for_wc_data_file(d, "PDTs.csv", n=0),
-            check_for_wc_data_file(d, "SSTs.csv", n=0)
-          )
+    conditions =
+      list(
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?All.csv"),
+          message = "All.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?All.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Argos.csv"),
+          message = "Argos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Argos.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"),
+          message = "Corrupt.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Orientation.csv"),
+          message = "Orientation.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Orientation.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"),
+          message = "RawArgos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RTC.csv"),
+          message = "RTC.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RTC.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Status.csv"),
+          message = "Status.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Status.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+          message = "PRV file missing or mislabeled. Should match pattern: \\d\\d\\d\\d\\d\\d\\.prv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?PDTs.csv", n=0),
+          message = "PDTs.csv file present. Should not be present."
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?SSTs.csv", n=0),
+          message = "SSTs.csv file present. Should not be present."
         )
-      }
+      )
   )
 
 #' Identifier - Wildlife Computer MiniPAT tags
 #' @export Identifier_WildlifeComputers_MiniPAT
 Identifier_WildlifeComputers_MiniPAT =
   Identifier(
-    identify_ =
-      function(d) {
-        return(
-          all(
-            # Files that should be present
-            check_for_wc_data_file(d, "All.csv"),
-            check_for_wc_data_file(d, "Argos.csv"),
-            check_for_wc_data_file(d, "Corrupt.csv"),
-            check_for_wc_data_file(d, "Histos.csv"),
-            check_for_wc_data_file(d, "LightLoc.csv"),
-            check_for_wc_data_file(d, "RawArgos.csv"),
-            check_for_wc_data_file(d, "RTC.csv"),
-            check_for_wc_data_file(d, "Status.csv"),
-            check_for_wc_data_file(d, "PDTs.csv"),
-            check_for_wc_data_file(d, "SST.csv"),
-            check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv")
-          )
+    conditions =
+      list(
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?All.csv"),
+          message = "All.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?All.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Argos.csv"),
+          message = "Argos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Argos.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"),
+          message = "Corrupt.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Histos.csv"),
+          message = "Histos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Histos.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?LightLoc.csv"),
+          message = "LightLoc.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?LightLoc.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"),
+          message = "RawArgos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RTC.csv"),
+          message = "RTC.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RTC.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Status.csv"),
+          message = "Status.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Status.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?PDTs.csv"),
+          message = "PDTs.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?PDTs.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?SST.csv"),
+          message = "SST.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?SST.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
+          message = "PRV file missing or mislabeled. Should match pattern: \\d\\d\\d\\d\\d\\d\\.prv"
         )
-      }
+      )
   )
 
 #' Identifier - Desert Star SeaTag MOD tags
 #' @export Identifier_DesertStar_SeaTagMOD
 Identifier_DesertStar_SeaTagMOD =
   Identifier(
-    identify_ =
-      function(d) {
-        check_for_files(
-          d,
-          "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv",
-          n = length(list.files(d))
+    conditions =
+      list(
+        Condition(
+          condition = function(d) check_for_files(d, "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv"),
+          message = ".csv data file missing or mislabeled. Should match pattern: \\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv"
         )
-      }
+      )
   )
 

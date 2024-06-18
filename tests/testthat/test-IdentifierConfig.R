@@ -1,3 +1,94 @@
+test_that(
+  "Condition::check",
+  {
+    cond =
+      Condition(
+        condition = function(d) {
+          TRUE
+        },
+        message = "Always true"
+      )
+
+    expect_true(cond$check(""))
+
+    cond =
+      Condition(
+        condition = function(d) {
+          FALSE
+        },
+        message = "Always false"
+      )
+
+    expect_false(cond$check(""))
+
+    cond =
+      Condition(
+        condition = function(d) {
+          d == "test"
+        },
+        message = "Directory must be named 'test'"
+      )
+
+    expect_true(cond$check("test"))
+  }
+)
+
+test_that(
+  "Identifier::identify",
+  {
+    cond1 =
+      Condition(
+        condition = function(d) {
+          TRUE
+        },
+        message = "Always true"
+      )
+
+    cond2 =
+      Condition(
+        condition = function(d) {
+          FALSE
+        },
+        message = "Always false"
+      )
+
+    id =
+      Identifier(
+        conditions = c(cond1, cond2)
+      )
+
+    expect_false(id$identify(""))
+
+    expect_snapshot(id$failed_conditions(""))
+    expect_equal(length(id$failed_conditions("")), 1)
+
+    expect_snapshot(id$failed_condition_messages(""))
+    expect_equal(length(id$failed_condition_messages("")), 1)
+
+    id =
+      Identifier(
+        conditions = list(cond1)
+      )
+
+    expect_true(id$identify(""))
+
+    cond3 =
+      Condition(
+        condition =
+          function(d) {
+            d == "test"
+          }
+      )
+
+    id =
+      Identifier(
+        conditions = list(cond1, cond3)
+      )
+
+    expect_true(id$identify("test"))
+  }
+)
+
 #' Test Identifier object
 #'
 #' Custom test for Identifier objects. Accepts an Identifier object constructor, and a root directory. Applies the Identifier to every data directory in the directory tree. For each such directory `d`, the test ensures that the passed Identifier object gives a positive match to `d`, and that only a single known Identifier gives a positive match for `d`

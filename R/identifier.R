@@ -1,3 +1,38 @@
+Condition =
+#' Condition class.
+#'
+#' Used to define a condition the conditions which a directory must satisfy to be considered a valid tag directory.#'
+#'
+#' @field condition function. Function which returns TRUE if the directory satisfies the condition, FALSE otherwise.
+#' @field message character. Message to be displayed if the condition is not satisfied.
+  setRefClass(
+    "Condition",
+    fields = list(
+      condition = "function",
+      message = "character",
+      optional = "logical"
+    ),
+    methods =
+      list(
+        initialize =
+          function(
+            # By default, conditions should not be optional
+            optional = F,
+            ...
+          ) {
+            callSuper(
+              optional = optional,
+              ...
+            )
+          },
+        check =
+          function(d) {
+            condition(d)
+          }
+      )
+  )
+
+
 #' Identifier class. Used to identify if a given directory belongs to a particular make/model of tag, based on available metadata
 #'
 #' Base class. Not intended to be implemented directly.
@@ -8,14 +43,53 @@ Identifier =
     "Identifier",
     fields =
       list(
-        identify_ = "function"
+        conditions = "list"
       ),
     methods =
       list(
-        # Returns TRUE/FALSE indicating if the metadata in the passed directory matches the patterns expected of the tag type with which this Identifier child class is associated
+
         identify =
           function(d) {
-            identify_(d)
+            "Returns TRUE if all Conditions pass, otherwise returns FALSE"
+            lapply(
+              conditions,
+              function(c) c$check(d)
+            ) %>%
+            unlist %>%
+            all()
+          },
+
+        failed_conditions =
+          function(d) {
+            "Returns a list of all conditions which failed"
+            Filter(
+              function(c) !c$check(d),
+              conditions
+            )
+          },
+
+        failed_condition_messages =
+          function(d) {
+            "Returns a list of all messages from conditions which failed"
+            failed_conditions(d) %>%
+            lapply(
+              function(c) c$message
+            ) %>%
+            unlist()
+          },
+
+        valid =
+          function(d) {
+            "Returns TRUE if all non-optional Conditions pass"
+            Filter(
+              function(c) !c$optional,
+              conditions
+            ) %>%
+            lapply(
+              function(c) c$check(d)
+            ) %>%
+            unlist %>%
+            all()
           }
       )
   )

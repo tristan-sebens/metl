@@ -258,6 +258,28 @@ setRefClass(
 
       decode =
         function(d, meta) {
+          # Check if the directory positively identifies with this Decoder's Identifier
+          # If not, it is still possible that the Decoder will be able to
+          # import from the directory, but the user should be warned that the
+          # directory does not match the expected structure.
+          if(!identifier$identify(d))
+            warning(
+              writeLines(
+                paste0(
+                  c(
+                    "The selected directory does not show the structure expected by the selected Decoder:",
+                    "",
+                    identifier$failed_condition_messages(d)
+                  ),
+                  collapse = "\n"
+                )
+              )
+            )
+
+          if(!identifier$valid(d)) {
+            stop("The selected directory does not contain the necessary data to proceed.")
+          }
+
           # Create an empty DataMap to return the user-inputted data
           DataMap_UserInput =
             DataMap(
