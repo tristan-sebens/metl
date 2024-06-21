@@ -188,70 +188,105 @@ setRefClass(
               stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
             )
 
-          # Execute the upsert in a try/catch statment so that even if an
+          # Execute the whole upsert in a try/catch statment so that even if an
           # error is encountered, we can ensure the tempoary table gets dropped.
           tryCatch(
             expr =
               {
-                # There's an odd message that keeps cropping up here. It seems to occur the first time that anything is loaded into the DB, and it occurs within this function call. The message says: Note: method with signature ‘Oracle#character’ chosen for function ‘odbcConnectionColumns_’, target signature ‘Oracle#SQL’.  "OdbcConnection#SQL" would also be valid. Some quick research indicates that this is a known issue buried somewhere within the dbplyr package (https://forum.posit.co/t/what-does-this-dbwritetable-message-mean/10690/1), and that, most importantly, it's probably not my fault, or the fault of my code. For now, I'm just wrapping the call in this suppression clause to prevent the message from messing up the package output.
-                suppressMessages(
+                # Try to create the temporary table
+                tryCatch(
                   {
-                    # Copy data to temporary table
-                    dbplyr::db_copy_to(
-                      con = con,
-                      table = dbplyr::ident(temp_table_name),
-                      # All of these calls also produce the message, so it's unclear what to do to stop it
-                      # table = dbplyr::sql(temp_table_name),
-                      # table = I(temp_table_name),
-                      # table = temp_table_name,
-                      values = dat,
-                      # Already in a transaction, so this should not start its own transaction
-                      in_transaction = F,
-                      # Typically this function writes to a temporary table which
-                      # should then be automatically dropped when the connection is
-                      # severed. However, at least in Oracle, this doesn't happen.
-                      # Additionally, when a table has the TEMPORARY token
-                      # it sort of locks it into appearing to be 'in use' so long
-                      # as the original connection is still open. This problem
-                      # isn't shared by standard tables, so I've elected to just
-                      # use a standard table in a temporary manner, and that seems
-                      # to solve the issue. All this really means is that we have to
-                      # EXPLICITLY delete the table when we're done with it.
-                      temporary = F
+                    # There's an odd message that keeps cropping up here. It seems to
+                    # occur the first time that anything is loaded into the DB, and it
+                    # occurs within this function call. The message says:
+                    #  Note: method with signature ‘Oracle#character’ chosen for
+                    #  function ‘odbcConnectionColumns_’, target signature ‘Oracle#SQL’.
+                    #  "OdbcConnection#SQL" would also be valid.
+                    #
+                    # Some quick research indicates that this is a known issue buried
+                    # somewhere within the dbplyr package (https://forum.posit.co/t/what-does-this-dbwritetable-message-mean/10690/1),
+                    # and that, most importantly, it's probably not the fault of me or
+                    # my code. For now, I'm just wrapping the call in this
+                    # suppression clause to prevent the message from messing up the
+                    # package output.
+                    suppressMessages(
+                      {
+                        # Copy data to temporary table
+                        dbplyr::db_copy_to(
+                          con = con,
+                          table = dbplyr::ident(temp_table_name),
+                          # All of these calls also produce the message, so it's unclear what to do to stop it
+                          # table = dbplyr::sql(temp_table_name),
+                          # table = I(temp_table_name),
+                          # table = temp_table_name,
+                          values = dat,
+                          # Already in a transaction, so this should not start its own transaction
+                          in_transaction = F,
+                          # Typically this function writes to a temporary table which
+                          # should then be automatically dropped when the connection is
+                          # severed. However, at least in Oracle, this doesn't happen.
+                          # Additionally, when a table has the TEMPORARY token
+                          # it sort of locks it into appearing to be 'in use' so long
+                          # as the original connection is still open. This problem
+                          # isn't shared by standard tables, so I've elected to just
+                          # use a standard table in a temporary manner, and that seems
+                          # to solve the issue. All this really means is that we have to
+                          # EXPLICITLY delete the table when we're done with it.
+                          temporary = F
+                        )
+                      }
                     )
-                  }
+                  },
+
+                  error =
+                    function(cond) {
+                      # Raise the error which caused the problem
+                      stop(paste0("Error creating temporary table ", temp_table_name, ": ", cond$message))
+                    }
                 )
 
                 # Determine fields used to identify individual records
                 id_fs = output_data_field_map$get_id_field_names()
 
-                # UPSERT the new data into the target table
-                DBI::dbExecute(
-                  con = con,
-                  statement =
-                    # Build the upsert sql statement
-                    dbplyr::sql_query_upsert(
-                      con = con,
-                      table = dplyr::ident(output_data_field_map$table),
-                      from = dplyr::ident(temp_table_name),
-                      # Fields used to find unique records
-                      by = id_fs,
-                      # Fields to be updated (non-id fields)
-                      update_cols = names(dat)[!names(dat) %in% id_fs]
-                    )
+                # Try to merge the new data into the target table
+                tryCatch(
+                  expr =
+                    {
+                      # UPSERT the new data into the target table
+                      DBI::dbExecute(
+                        con = con,
+                        statement =
+                          # Build the upsert sql statement
+                          dbplyr::sql_query_upsert(
+                            con = con,
+                            table = dplyr::ident(output_data_field_map$table),
+                            from = dplyr::ident(temp_table_name),
+                            # Fields used to find unique records
+                            by = id_fs,
+                            # Fields to be updated (non-id fields)
+                            update_cols = names(dat)[!names(dat) %in% id_fs]
+                          )
+                      )
+                    },
+                  error =
+                    function(cond) {
+                      stop(
+                        paste0(
+                          "Error updating ",
+                          output_data_field_map$table,
+                          " from temporary table"
+                        )
+                      )
+                    }
                 )
-              },
-            # If an error is thrown, pass it back up the call stack
-            error =
-              function(cond) {
-                stop(cond)
               },
             # Ensure that the temporary table is deleted.
             finally =
               {
-                # Delete the temporary table
-                # See above note in db_copy_to function call on why this is done
-                DBI::dbRemoveTable(con, temp_table_name)
+                # Check if the table was created in the DB. If it was, drop it.
+                if(DBI::dbExistsTable(con, temp_table_name)) {
+                  DBI::dbRemoveTable(con, temp_table_name)
+                }
               }
           )
         },
@@ -348,19 +383,31 @@ setRefClass(
 
       decode_to_db =
         function(..., con) {
+          # Extract the data from the directory
           decoded_data =
             decode_to_dataframes(...)
 
-          for (data_type in names(decoded_data)) {
-            output_data_field_map = output_fieldmaps[[data_type]]
-            dat = decoded_data[[data_type]]
-            upsert(
-              con=con,
-              dat=dat,
-              output_data_field_map=output_data_field_map
-            )
-          }
-
+          # Start a DB transaction within which each data.frame will be upserted
+          # This way, if for some reason one data.frame fails to upsert, the
+          # transaction will be rolled back and no data will be saved.
+          DBI::dbWithTransaction(
+            conn = con,
+            code = {
+              # Iterate over each data.frame in the decoded data
+              for (data_type in names(decoded_data)) {
+                # Get the output FieldMap for the current data type
+                output_data_field_map = output_fieldmaps[[data_type]]
+                # Get the data.frame for the current data type
+                dat = decoded_data[[data_type]]
+                # Perform the upsert
+                upsert(
+                  con=con,
+                  dat=dat,
+                  output_data_field_map=output_data_field_map
+                )
+              }
+            }
+          )
         }
     )
 )
