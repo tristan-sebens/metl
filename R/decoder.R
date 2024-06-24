@@ -193,6 +193,13 @@ setRefClass(
               )
             )
 
+          # Generate a properly formatted identifier of the output table
+          output_table_name =
+            DBI::dbQuoteIdentifier(
+              con,
+              output_data_field_map$table
+            )
+
           # Execute the whole upsert in a try/catch statment so that even if an
           # error is encountered, we can ensure the tempoary table gets dropped.
           tryCatch(
@@ -264,7 +271,7 @@ setRefClass(
                           # Build the upsert sql statement
                           dbplyr::sql_query_upsert(
                             con = con,
-                            table = dplyr::ident(output_data_field_map$table),
+                            table = dplyr::ident(output_table_name),
                             from = dplyr::ident(temp_table_name),
                             # Fields used to find unique records
                             by = id_fs,
