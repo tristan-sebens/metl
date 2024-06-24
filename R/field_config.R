@@ -11,14 +11,26 @@ ABLTAG_USER_INPUT_FIELDS =
       list(
         TAG_ID_FIELD =
           Field(
-            name = "TAG_ID",
+            name = "TAG_NUM",
             data_type = "integer",
             id_field = T
           ),
         TAG_TYPE_FIELD =
           Field(
             name = "TAG_TYPE",
-            data_type = "varchar(32)",
+            data_type = "varchar(2)",
+            id_field = T
+          ),
+        TAG_SEQ_NUM_FIELD =
+          Field(
+            name = "REL_SEQ",
+            data_type  = "integer",
+            id_field = T
+          ),
+        TAG_SPECIES_CODE_FIELD =
+          Field(
+            name = "SPECIES_CODE",
+            data_type = "integer",
             id_field = T
           )
       )
