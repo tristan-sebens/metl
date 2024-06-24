@@ -136,7 +136,7 @@ DataMap_Lotek_1300_InstantSensorData =
     input_data_field_map = LOTEK_1300_INSTANT_DATA_FIELDS,
     extract_fn =
       function(d) {
-        fps = list.files(d, pattern = "Regular Log")
+        fps = list.files(d, pattern = "Regular Log", ignore.case = T)
 
         # Check that the data files in the directory match expectations
         if(lengths(fps) > 1) {

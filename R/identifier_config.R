@@ -46,13 +46,13 @@ Identifier_Lotek_1300 =
     conditions =
       list (
         Condition(
-          condition = function(d) check_for_files(d, "LTD1300.\\d\\d\\d\\d_day log.csv"),
-          message = "Day log file missing",
+          condition = function(d) check_for_files(d, "LTD1300.\\d\\d\\d\\d_Day Log.csv"),
+          message = "Day log file missing or mislabeled. Should match pattern: LTD1300.\\d\\d\\d\\d_Day Log.csv",
           optional = T
         ),
         Condition(
-          condition = function(d) check_for_files(d, "LTD1300.\\d\\d\\d\\d_regular log.csv"),
-          message = "Regular log file missing"
+          condition = function(d) check_for_files(d, "LTD1300.\\d\\d\\d\\d_Regular Log.csv"),
+          message = "Regular log file missing or mislabeled. Should match pattern: LTD1300.\\d\\d\\d\\d_Regular Log.csv",
         )
       )
   )
