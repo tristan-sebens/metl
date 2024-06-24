@@ -182,10 +182,15 @@ setRefClass(
           if(nrow(dat) == 0) return()
           # Generate a temporary table name
           temp_table_name =
-            paste0(
-              output_data_field_map$table,
-              "_temp_",
-              stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
+            # Ensure that the table name is properly quoted
+            DBI::dbQuoteIdentifier(
+              con,
+              # Generate a name for the temporary table by appending a random string
+              paste0(
+                output_data_field_map$table,
+                "_temp_",
+                stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
+              )
             )
 
           # Execute the whole upsert in a try/catch statment so that even if an
