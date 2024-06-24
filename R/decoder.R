@@ -305,6 +305,11 @@ setRefClass(
 
       decode =
         function(d, meta) {
+          # Check if the given directory exists. If not, throw an appropriate error
+          if(!dir.exists(d)) {
+            stop("The selected directory does not exist.")
+          }
+
           # Check if the directory positively identifies with this Decoder's Identifier
           # If not, it is still possible that the Decoder will be able to
           # import from the directory, but the user should be warned that the
