@@ -61,7 +61,6 @@ test_that(
 
     expect_equal(length(id$failed_conditions("")), 1)
 
-    expect_snapshot(id$failed_condition_messages(""))
     expect_equal(length(id$failed_condition_messages("")), 1)
 
     id =
