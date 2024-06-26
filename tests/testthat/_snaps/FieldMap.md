@@ -3,11 +3,11 @@
     Code
       test_fm_1$generate_data_type_list()
     Output
-      $TAG_ID
+      $TAG_NUM
       [1] "integer"
       
       $TAG_TYPE
-      [1] "varchar(32)"
+      [1] "varchar(2)"
       
       $TIMESTAMP
       [1] "integer"
@@ -144,5 +144,5 @@
     Code
       t_fm1$get_id_field_names()
     Output
-      [1] "TAG_ID"    "TAG_TYPE"  "TIMESTAMP"
+      [1] "TAG_NUM"   "TAG_TYPE"  "TIMESTAMP"
 

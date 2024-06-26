@@ -10,8 +10,8 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_ID TAG_TYPE
-      1 Wildlife Computers Benthic sPAT   1234 SuperTag
+                      MAKE        MODEL TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT    1234 SuperTag
 
 ---
 
@@ -720,437 +720,437 @@
       348                            783                             48
       349                           1123                            389
       350                          75579                           1570
-          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_ID TAG_TYPE
-      1                                  156   1234 SuperTag
-      2                                  110   1234 SuperTag
-      3                                    4   1234 SuperTag
-      4                                   90   1234 SuperTag
-      5                                  104   1234 SuperTag
-      6                                   74   1234 SuperTag
-      7                                   77   1234 SuperTag
-      8                                  123   1234 SuperTag
-      9                                   90   1234 SuperTag
-      10                                  66   1234 SuperTag
-      11                                  51   1234 SuperTag
-      12                                 106   1234 SuperTag
-      13                                 118   1234 SuperTag
-      14                                 112   1234 SuperTag
-      15                                  80   1234 SuperTag
-      16                                  77   1234 SuperTag
-      17                                  95   1234 SuperTag
-      18                                 113   1234 SuperTag
-      19                                  65   1234 SuperTag
-      20                                  68   1234 SuperTag
-      21                                  69   1234 SuperTag
-      22                                  65   1234 SuperTag
-      23                                  82   1234 SuperTag
-      24                                  90   1234 SuperTag
-      25                                 101   1234 SuperTag
-      26                                 174   1234 SuperTag
-      27                                  96   1234 SuperTag
-      28                                 160   1234 SuperTag
-      29                                  81   1234 SuperTag
-      30                                 123   1234 SuperTag
-      31                                  86   1234 SuperTag
-      32                                  94   1234 SuperTag
-      33                                 102   1234 SuperTag
-      34                                  94   1234 SuperTag
-      35                                 104   1234 SuperTag
-      36                                  86   1234 SuperTag
-      37                                  98   1234 SuperTag
-      38                                 100   1234 SuperTag
-      39                                  10   1234 SuperTag
-      40                                  96   1234 SuperTag
-      41                                  NA   1234 SuperTag
-      42                                  NA   1234 SuperTag
-      43                                  NA   1234 SuperTag
-      44                                  NA   1234 SuperTag
-      45                                  NA   1234 SuperTag
-      46                                  NA   1234 SuperTag
-      47                                  68   1234 SuperTag
-      48                                  73   1234 SuperTag
-      49                                  16   1234 SuperTag
-      50                                 100   1234 SuperTag
-      51                                 102   1234 SuperTag
-      52                                  94   1234 SuperTag
-      53                                 112   1234 SuperTag
-      54                                  78   1234 SuperTag
-      55                                  59   1234 SuperTag
-      56                                  95   1234 SuperTag
-      57                                  87   1234 SuperTag
-      58                                  81   1234 SuperTag
-      59                                  99   1234 SuperTag
-      60                                  81   1234 SuperTag
-      61                                 108   1234 SuperTag
-      62                                  85   1234 SuperTag
-      63                                  79   1234 SuperTag
-      64                                 103   1234 SuperTag
-      65                                  76   1234 SuperTag
-      66                                 101   1234 SuperTag
-      67                                  59   1234 SuperTag
-      68                                  57   1234 SuperTag
-      69                                  99   1234 SuperTag
-      70                                  85   1234 SuperTag
-      71                                  83   1234 SuperTag
-      72                                  97   1234 SuperTag
-      73                                  86   1234 SuperTag
-      74                                  71   1234 SuperTag
-      75                                  77   1234 SuperTag
-      76                                 127   1234 SuperTag
-      77                                  85   1234 SuperTag
-      78                                  83   1234 SuperTag
-      79                                  83   1234 SuperTag
-      80                                  71   1234 SuperTag
-      81                                  99   1234 SuperTag
-      82                                 132   1234 SuperTag
-      83                                  96   1234 SuperTag
-      84                                  71   1234 SuperTag
-      85                                  97   1234 SuperTag
-      86                                  88   1234 SuperTag
-      87                                  68   1234 SuperTag
-      88                                  78   1234 SuperTag
-      89                                  66   1234 SuperTag
-      90                                 120   1234 SuperTag
-      91                                  91   1234 SuperTag
-      92                                  95   1234 SuperTag
-      93                                   1   1234 SuperTag
-      94                                 109   1234 SuperTag
-      95                                  99   1234 SuperTag
-      96                                  91   1234 SuperTag
-      97                                 102   1234 SuperTag
-      98                                  13   1234 SuperTag
-      99                                  97   1234 SuperTag
-      100                                 85   1234 SuperTag
-      101                                101   1234 SuperTag
-      102                                102   1234 SuperTag
-      103                                126   1234 SuperTag
-      104                                 74   1234 SuperTag
-      105                                 64   1234 SuperTag
-      106                                 47   1234 SuperTag
-      107                                 27   1234 SuperTag
-      108                                 93   1234 SuperTag
-      109                                 39   1234 SuperTag
-      110                                 93   1234 SuperTag
-      111                                 83   1234 SuperTag
-      112                                 83   1234 SuperTag
-      113                                146   1234 SuperTag
-      114                                 90   1234 SuperTag
-      115                                 66   1234 SuperTag
-      116                                 73   1234 SuperTag
-      117                                108   1234 SuperTag
-      118                                 67   1234 SuperTag
-      119                                 65   1234 SuperTag
-      120                                 79   1234 SuperTag
-      121                                 81   1234 SuperTag
-      122                                 96   1234 SuperTag
-      123                                120   1234 SuperTag
-      124                                 83   1234 SuperTag
-      125                                 52   1234 SuperTag
-      126                                 76   1234 SuperTag
-      127                                102   1234 SuperTag
-      128                                 98   1234 SuperTag
-      129                                 83   1234 SuperTag
-      130                                135   1234 SuperTag
-      131                                 47   1234 SuperTag
-      132                                138   1234 SuperTag
-      133                                 99   1234 SuperTag
-      134                                 98   1234 SuperTag
-      135                                 87   1234 SuperTag
-      136                                 89   1234 SuperTag
-      137                                100   1234 SuperTag
-      138                                 85   1234 SuperTag
-      139                                 99   1234 SuperTag
-      140                                 85   1234 SuperTag
-      141                                 89   1234 SuperTag
-      142                                 84   1234 SuperTag
-      143                                135   1234 SuperTag
-      144                                 65   1234 SuperTag
-      145                                110   1234 SuperTag
-      146                                168   1234 SuperTag
-      147                                 75   1234 SuperTag
-      148                                 44   1234 SuperTag
-      149                                 31   1234 SuperTag
-      150                                 50   1234 SuperTag
-      151                                 96   1234 SuperTag
-      152                                 81   1234 SuperTag
-      153                                115   1234 SuperTag
-      154                                 59   1234 SuperTag
-      155                                 77   1234 SuperTag
-      156                                 90   1234 SuperTag
-      157                                 63   1234 SuperTag
-      158                                100   1234 SuperTag
-      159                                 72   1234 SuperTag
-      160                                 68   1234 SuperTag
-      161                                 98   1234 SuperTag
-      162                                 76   1234 SuperTag
-      163                                 77   1234 SuperTag
-      164                                 88   1234 SuperTag
-      165                                 99   1234 SuperTag
-      166                                 27   1234 SuperTag
-      167                                105   1234 SuperTag
-      168                                116   1234 SuperTag
-      169                                 78   1234 SuperTag
-      170                                 95   1234 SuperTag
-      171                                 94   1234 SuperTag
-      172                                112   1234 SuperTag
-      173                                 84   1234 SuperTag
-      174                                134   1234 SuperTag
-      175                                104   1234 SuperTag
-      176                                 87   1234 SuperTag
-      177                                178   1234 SuperTag
-      178                                 94   1234 SuperTag
-      179                                125   1234 SuperTag
-      180                                 97   1234 SuperTag
-      181                                100   1234 SuperTag
-      182                                123   1234 SuperTag
-      183                                 98   1234 SuperTag
-      184                                124   1234 SuperTag
-      185                                 62   1234 SuperTag
-      186                                109   1234 SuperTag
-      187                                 88   1234 SuperTag
-      188                                107   1234 SuperTag
-      189                                125   1234 SuperTag
-      190                                 69   1234 SuperTag
-      191                                123   1234 SuperTag
-      192                                 37   1234 SuperTag
-      193                                 83   1234 SuperTag
-      194                                 91   1234 SuperTag
-      195                                108   1234 SuperTag
-      196                                 80   1234 SuperTag
-      197                                123   1234 SuperTag
-      198                                 99   1234 SuperTag
-      199                                 94   1234 SuperTag
-      200                                 82   1234 SuperTag
-      201                                 75   1234 SuperTag
-      202                                 87   1234 SuperTag
-      203                                 75   1234 SuperTag
-      204                                 72   1234 SuperTag
-      205                                 62   1234 SuperTag
-      206                                 79   1234 SuperTag
-      207                                 92   1234 SuperTag
-      208                                 93   1234 SuperTag
-      209                                 94   1234 SuperTag
-      210                                120   1234 SuperTag
-      211                                 98   1234 SuperTag
-      212                                 76   1234 SuperTag
-      213                                 74   1234 SuperTag
-      214                                117   1234 SuperTag
-      215                                 99   1234 SuperTag
-      216                                103   1234 SuperTag
-      217                                 72   1234 SuperTag
-      218                                  8   1234 SuperTag
-      219                                140   1234 SuperTag
-      220                                132   1234 SuperTag
-      221                                106   1234 SuperTag
-      222                                 97   1234 SuperTag
-      223                                 95   1234 SuperTag
-      224                                100   1234 SuperTag
-      225                                105   1234 SuperTag
-      226                                102   1234 SuperTag
-      227                                107   1234 SuperTag
-      228                                169   1234 SuperTag
-      229                                100   1234 SuperTag
-      230                                113   1234 SuperTag
-      231                                102   1234 SuperTag
-      232                                122   1234 SuperTag
-      233                                102   1234 SuperTag
-      234                                 99   1234 SuperTag
-      235                                124   1234 SuperTag
-      236                                157   1234 SuperTag
-      237                                 93   1234 SuperTag
-      238                                109   1234 SuperTag
-      239                                142   1234 SuperTag
-      240                                 62   1234 SuperTag
-      241                                 84   1234 SuperTag
-      242                                119   1234 SuperTag
-      243                                 88   1234 SuperTag
-      244                                 78   1234 SuperTag
-      245                                 87   1234 SuperTag
-      246                                 87   1234 SuperTag
-      247                                 93   1234 SuperTag
-      248                                 78   1234 SuperTag
-      249                                118   1234 SuperTag
-      250                                 13   1234 SuperTag
-      251                                104   1234 SuperTag
-      252                                 82   1234 SuperTag
-      253                                128   1234 SuperTag
-      254                                 81   1234 SuperTag
-      255                                 99   1234 SuperTag
-      256                                 78   1234 SuperTag
-      257                                 82   1234 SuperTag
-      258                                 83   1234 SuperTag
-      259                                130   1234 SuperTag
-      260                                 74   1234 SuperTag
-      261                                113   1234 SuperTag
-      262                                 89   1234 SuperTag
-      263                                 92   1234 SuperTag
-      264                                154   1234 SuperTag
-      265                                153   1234 SuperTag
-      266                                102   1234 SuperTag
-      267                                105   1234 SuperTag
-      268                                107   1234 SuperTag
-      269                                131   1234 SuperTag
-      270                                 79   1234 SuperTag
-      271                                 58   1234 SuperTag
-      272                                108   1234 SuperTag
-      273                                 76   1234 SuperTag
-      274                                108   1234 SuperTag
-      275                                173   1234 SuperTag
-      276                                 55   1234 SuperTag
-      277                                102   1234 SuperTag
-      278                                121   1234 SuperTag
-      279                                 82   1234 SuperTag
-      280                                117   1234 SuperTag
-      281                                 94   1234 SuperTag
-      282                                100   1234 SuperTag
-      283                                108   1234 SuperTag
-      284                                 81   1234 SuperTag
-      285                                110   1234 SuperTag
-      286                                 69   1234 SuperTag
-      287                                 75   1234 SuperTag
-      288                                104   1234 SuperTag
-      289                                108   1234 SuperTag
-      290                                 78   1234 SuperTag
-      291                                 82   1234 SuperTag
-      292                                 82   1234 SuperTag
-      293                                 50   1234 SuperTag
-      294                                 82   1234 SuperTag
-      295                                 70   1234 SuperTag
-      296                                 49   1234 SuperTag
-      297                                 97   1234 SuperTag
-      298                                 92   1234 SuperTag
-      299                                 40   1234 SuperTag
-      300                                 48   1234 SuperTag
-      301                                 81   1234 SuperTag
-      302                                 78   1234 SuperTag
-      303                                 89   1234 SuperTag
-      304                                103   1234 SuperTag
-      305                                 94   1234 SuperTag
-      306                                 81   1234 SuperTag
-      307                                101   1234 SuperTag
-      308                                120   1234 SuperTag
-      309                                101   1234 SuperTag
-      310                                 50   1234 SuperTag
-      311                                101   1234 SuperTag
-      312                                 87   1234 SuperTag
-      313                                 93   1234 SuperTag
-      314                                105   1234 SuperTag
-      315                                100   1234 SuperTag
-      316                                100   1234 SuperTag
-      317                                 25   1234 SuperTag
-      318                                107   1234 SuperTag
-      319                                 84   1234 SuperTag
-      320                                 84   1234 SuperTag
-      321                                 86   1234 SuperTag
-      322                                  2   1234 SuperTag
-      323                                138   1234 SuperTag
-      324                                140   1234 SuperTag
-      325                                 47   1234 SuperTag
-      326                                 82   1234 SuperTag
-      327                                 90   1234 SuperTag
-      328                                 81   1234 SuperTag
-      329                                 38   1234 SuperTag
-      330                                 47   1234 SuperTag
-      331                                116   1234 SuperTag
-      332                                 86   1234 SuperTag
-      333                                113   1234 SuperTag
-      334                                 65   1234 SuperTag
-      335                                107   1234 SuperTag
-      336                                 98   1234 SuperTag
-      337                                 55   1234 SuperTag
-      338                                 91   1234 SuperTag
-      339                                 81   1234 SuperTag
-      340                                 82   1234 SuperTag
-      341                                 94   1234 SuperTag
-      342                                 80   1234 SuperTag
-      343                                 76   1234 SuperTag
-      344                                108   1234 SuperTag
-      345                                106   1234 SuperTag
-      346                                 92   1234 SuperTag
-      347                                107   1234 SuperTag
-      348                                 77   1234 SuperTag
-      349                                 93   1234 SuperTag
-      350                                123   1234 SuperTag
+          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_NUM TAG_TYPE
+      1                                  156    1234 SuperTag
+      2                                  110    1234 SuperTag
+      3                                    4    1234 SuperTag
+      4                                   90    1234 SuperTag
+      5                                  104    1234 SuperTag
+      6                                   74    1234 SuperTag
+      7                                   77    1234 SuperTag
+      8                                  123    1234 SuperTag
+      9                                   90    1234 SuperTag
+      10                                  66    1234 SuperTag
+      11                                  51    1234 SuperTag
+      12                                 106    1234 SuperTag
+      13                                 118    1234 SuperTag
+      14                                 112    1234 SuperTag
+      15                                  80    1234 SuperTag
+      16                                  77    1234 SuperTag
+      17                                  95    1234 SuperTag
+      18                                 113    1234 SuperTag
+      19                                  65    1234 SuperTag
+      20                                  68    1234 SuperTag
+      21                                  69    1234 SuperTag
+      22                                  65    1234 SuperTag
+      23                                  82    1234 SuperTag
+      24                                  90    1234 SuperTag
+      25                                 101    1234 SuperTag
+      26                                 174    1234 SuperTag
+      27                                  96    1234 SuperTag
+      28                                 160    1234 SuperTag
+      29                                  81    1234 SuperTag
+      30                                 123    1234 SuperTag
+      31                                  86    1234 SuperTag
+      32                                  94    1234 SuperTag
+      33                                 102    1234 SuperTag
+      34                                  94    1234 SuperTag
+      35                                 104    1234 SuperTag
+      36                                  86    1234 SuperTag
+      37                                  98    1234 SuperTag
+      38                                 100    1234 SuperTag
+      39                                  10    1234 SuperTag
+      40                                  96    1234 SuperTag
+      41                                  NA    1234 SuperTag
+      42                                  NA    1234 SuperTag
+      43                                  NA    1234 SuperTag
+      44                                  NA    1234 SuperTag
+      45                                  NA    1234 SuperTag
+      46                                  NA    1234 SuperTag
+      47                                  68    1234 SuperTag
+      48                                  73    1234 SuperTag
+      49                                  16    1234 SuperTag
+      50                                 100    1234 SuperTag
+      51                                 102    1234 SuperTag
+      52                                  94    1234 SuperTag
+      53                                 112    1234 SuperTag
+      54                                  78    1234 SuperTag
+      55                                  59    1234 SuperTag
+      56                                  95    1234 SuperTag
+      57                                  87    1234 SuperTag
+      58                                  81    1234 SuperTag
+      59                                  99    1234 SuperTag
+      60                                  81    1234 SuperTag
+      61                                 108    1234 SuperTag
+      62                                  85    1234 SuperTag
+      63                                  79    1234 SuperTag
+      64                                 103    1234 SuperTag
+      65                                  76    1234 SuperTag
+      66                                 101    1234 SuperTag
+      67                                  59    1234 SuperTag
+      68                                  57    1234 SuperTag
+      69                                  99    1234 SuperTag
+      70                                  85    1234 SuperTag
+      71                                  83    1234 SuperTag
+      72                                  97    1234 SuperTag
+      73                                  86    1234 SuperTag
+      74                                  71    1234 SuperTag
+      75                                  77    1234 SuperTag
+      76                                 127    1234 SuperTag
+      77                                  85    1234 SuperTag
+      78                                  83    1234 SuperTag
+      79                                  83    1234 SuperTag
+      80                                  71    1234 SuperTag
+      81                                  99    1234 SuperTag
+      82                                 132    1234 SuperTag
+      83                                  96    1234 SuperTag
+      84                                  71    1234 SuperTag
+      85                                  97    1234 SuperTag
+      86                                  88    1234 SuperTag
+      87                                  68    1234 SuperTag
+      88                                  78    1234 SuperTag
+      89                                  66    1234 SuperTag
+      90                                 120    1234 SuperTag
+      91                                  91    1234 SuperTag
+      92                                  95    1234 SuperTag
+      93                                   1    1234 SuperTag
+      94                                 109    1234 SuperTag
+      95                                  99    1234 SuperTag
+      96                                  91    1234 SuperTag
+      97                                 102    1234 SuperTag
+      98                                  13    1234 SuperTag
+      99                                  97    1234 SuperTag
+      100                                 85    1234 SuperTag
+      101                                101    1234 SuperTag
+      102                                102    1234 SuperTag
+      103                                126    1234 SuperTag
+      104                                 74    1234 SuperTag
+      105                                 64    1234 SuperTag
+      106                                 47    1234 SuperTag
+      107                                 27    1234 SuperTag
+      108                                 93    1234 SuperTag
+      109                                 39    1234 SuperTag
+      110                                 93    1234 SuperTag
+      111                                 83    1234 SuperTag
+      112                                 83    1234 SuperTag
+      113                                146    1234 SuperTag
+      114                                 90    1234 SuperTag
+      115                                 66    1234 SuperTag
+      116                                 73    1234 SuperTag
+      117                                108    1234 SuperTag
+      118                                 67    1234 SuperTag
+      119                                 65    1234 SuperTag
+      120                                 79    1234 SuperTag
+      121                                 81    1234 SuperTag
+      122                                 96    1234 SuperTag
+      123                                120    1234 SuperTag
+      124                                 83    1234 SuperTag
+      125                                 52    1234 SuperTag
+      126                                 76    1234 SuperTag
+      127                                102    1234 SuperTag
+      128                                 98    1234 SuperTag
+      129                                 83    1234 SuperTag
+      130                                135    1234 SuperTag
+      131                                 47    1234 SuperTag
+      132                                138    1234 SuperTag
+      133                                 99    1234 SuperTag
+      134                                 98    1234 SuperTag
+      135                                 87    1234 SuperTag
+      136                                 89    1234 SuperTag
+      137                                100    1234 SuperTag
+      138                                 85    1234 SuperTag
+      139                                 99    1234 SuperTag
+      140                                 85    1234 SuperTag
+      141                                 89    1234 SuperTag
+      142                                 84    1234 SuperTag
+      143                                135    1234 SuperTag
+      144                                 65    1234 SuperTag
+      145                                110    1234 SuperTag
+      146                                168    1234 SuperTag
+      147                                 75    1234 SuperTag
+      148                                 44    1234 SuperTag
+      149                                 31    1234 SuperTag
+      150                                 50    1234 SuperTag
+      151                                 96    1234 SuperTag
+      152                                 81    1234 SuperTag
+      153                                115    1234 SuperTag
+      154                                 59    1234 SuperTag
+      155                                 77    1234 SuperTag
+      156                                 90    1234 SuperTag
+      157                                 63    1234 SuperTag
+      158                                100    1234 SuperTag
+      159                                 72    1234 SuperTag
+      160                                 68    1234 SuperTag
+      161                                 98    1234 SuperTag
+      162                                 76    1234 SuperTag
+      163                                 77    1234 SuperTag
+      164                                 88    1234 SuperTag
+      165                                 99    1234 SuperTag
+      166                                 27    1234 SuperTag
+      167                                105    1234 SuperTag
+      168                                116    1234 SuperTag
+      169                                 78    1234 SuperTag
+      170                                 95    1234 SuperTag
+      171                                 94    1234 SuperTag
+      172                                112    1234 SuperTag
+      173                                 84    1234 SuperTag
+      174                                134    1234 SuperTag
+      175                                104    1234 SuperTag
+      176                                 87    1234 SuperTag
+      177                                178    1234 SuperTag
+      178                                 94    1234 SuperTag
+      179                                125    1234 SuperTag
+      180                                 97    1234 SuperTag
+      181                                100    1234 SuperTag
+      182                                123    1234 SuperTag
+      183                                 98    1234 SuperTag
+      184                                124    1234 SuperTag
+      185                                 62    1234 SuperTag
+      186                                109    1234 SuperTag
+      187                                 88    1234 SuperTag
+      188                                107    1234 SuperTag
+      189                                125    1234 SuperTag
+      190                                 69    1234 SuperTag
+      191                                123    1234 SuperTag
+      192                                 37    1234 SuperTag
+      193                                 83    1234 SuperTag
+      194                                 91    1234 SuperTag
+      195                                108    1234 SuperTag
+      196                                 80    1234 SuperTag
+      197                                123    1234 SuperTag
+      198                                 99    1234 SuperTag
+      199                                 94    1234 SuperTag
+      200                                 82    1234 SuperTag
+      201                                 75    1234 SuperTag
+      202                                 87    1234 SuperTag
+      203                                 75    1234 SuperTag
+      204                                 72    1234 SuperTag
+      205                                 62    1234 SuperTag
+      206                                 79    1234 SuperTag
+      207                                 92    1234 SuperTag
+      208                                 93    1234 SuperTag
+      209                                 94    1234 SuperTag
+      210                                120    1234 SuperTag
+      211                                 98    1234 SuperTag
+      212                                 76    1234 SuperTag
+      213                                 74    1234 SuperTag
+      214                                117    1234 SuperTag
+      215                                 99    1234 SuperTag
+      216                                103    1234 SuperTag
+      217                                 72    1234 SuperTag
+      218                                  8    1234 SuperTag
+      219                                140    1234 SuperTag
+      220                                132    1234 SuperTag
+      221                                106    1234 SuperTag
+      222                                 97    1234 SuperTag
+      223                                 95    1234 SuperTag
+      224                                100    1234 SuperTag
+      225                                105    1234 SuperTag
+      226                                102    1234 SuperTag
+      227                                107    1234 SuperTag
+      228                                169    1234 SuperTag
+      229                                100    1234 SuperTag
+      230                                113    1234 SuperTag
+      231                                102    1234 SuperTag
+      232                                122    1234 SuperTag
+      233                                102    1234 SuperTag
+      234                                 99    1234 SuperTag
+      235                                124    1234 SuperTag
+      236                                157    1234 SuperTag
+      237                                 93    1234 SuperTag
+      238                                109    1234 SuperTag
+      239                                142    1234 SuperTag
+      240                                 62    1234 SuperTag
+      241                                 84    1234 SuperTag
+      242                                119    1234 SuperTag
+      243                                 88    1234 SuperTag
+      244                                 78    1234 SuperTag
+      245                                 87    1234 SuperTag
+      246                                 87    1234 SuperTag
+      247                                 93    1234 SuperTag
+      248                                 78    1234 SuperTag
+      249                                118    1234 SuperTag
+      250                                 13    1234 SuperTag
+      251                                104    1234 SuperTag
+      252                                 82    1234 SuperTag
+      253                                128    1234 SuperTag
+      254                                 81    1234 SuperTag
+      255                                 99    1234 SuperTag
+      256                                 78    1234 SuperTag
+      257                                 82    1234 SuperTag
+      258                                 83    1234 SuperTag
+      259                                130    1234 SuperTag
+      260                                 74    1234 SuperTag
+      261                                113    1234 SuperTag
+      262                                 89    1234 SuperTag
+      263                                 92    1234 SuperTag
+      264                                154    1234 SuperTag
+      265                                153    1234 SuperTag
+      266                                102    1234 SuperTag
+      267                                105    1234 SuperTag
+      268                                107    1234 SuperTag
+      269                                131    1234 SuperTag
+      270                                 79    1234 SuperTag
+      271                                 58    1234 SuperTag
+      272                                108    1234 SuperTag
+      273                                 76    1234 SuperTag
+      274                                108    1234 SuperTag
+      275                                173    1234 SuperTag
+      276                                 55    1234 SuperTag
+      277                                102    1234 SuperTag
+      278                                121    1234 SuperTag
+      279                                 82    1234 SuperTag
+      280                                117    1234 SuperTag
+      281                                 94    1234 SuperTag
+      282                                100    1234 SuperTag
+      283                                108    1234 SuperTag
+      284                                 81    1234 SuperTag
+      285                                110    1234 SuperTag
+      286                                 69    1234 SuperTag
+      287                                 75    1234 SuperTag
+      288                                104    1234 SuperTag
+      289                                108    1234 SuperTag
+      290                                 78    1234 SuperTag
+      291                                 82    1234 SuperTag
+      292                                 82    1234 SuperTag
+      293                                 50    1234 SuperTag
+      294                                 82    1234 SuperTag
+      295                                 70    1234 SuperTag
+      296                                 49    1234 SuperTag
+      297                                 97    1234 SuperTag
+      298                                 92    1234 SuperTag
+      299                                 40    1234 SuperTag
+      300                                 48    1234 SuperTag
+      301                                 81    1234 SuperTag
+      302                                 78    1234 SuperTag
+      303                                 89    1234 SuperTag
+      304                                103    1234 SuperTag
+      305                                 94    1234 SuperTag
+      306                                 81    1234 SuperTag
+      307                                101    1234 SuperTag
+      308                                120    1234 SuperTag
+      309                                101    1234 SuperTag
+      310                                 50    1234 SuperTag
+      311                                101    1234 SuperTag
+      312                                 87    1234 SuperTag
+      313                                 93    1234 SuperTag
+      314                                105    1234 SuperTag
+      315                                100    1234 SuperTag
+      316                                100    1234 SuperTag
+      317                                 25    1234 SuperTag
+      318                                107    1234 SuperTag
+      319                                 84    1234 SuperTag
+      320                                 84    1234 SuperTag
+      321                                 86    1234 SuperTag
+      322                                  2    1234 SuperTag
+      323                                138    1234 SuperTag
+      324                                140    1234 SuperTag
+      325                                 47    1234 SuperTag
+      326                                 82    1234 SuperTag
+      327                                 90    1234 SuperTag
+      328                                 81    1234 SuperTag
+      329                                 38    1234 SuperTag
+      330                                 47    1234 SuperTag
+      331                                116    1234 SuperTag
+      332                                 86    1234 SuperTag
+      333                                113    1234 SuperTag
+      334                                 65    1234 SuperTag
+      335                                107    1234 SuperTag
+      336                                 98    1234 SuperTag
+      337                                 55    1234 SuperTag
+      338                                 91    1234 SuperTag
+      339                                 81    1234 SuperTag
+      340                                 82    1234 SuperTag
+      341                                 94    1234 SuperTag
+      342                                 80    1234 SuperTag
+      343                                 76    1234 SuperTag
+      344                                108    1234 SuperTag
+      345                                106    1234 SuperTag
+      346                                 92    1234 SuperTag
+      347                                107    1234 SuperTag
+      348                                 77    1234 SuperTag
+      349                                 93    1234 SuperTag
+      350                                123    1234 SuperTag
 
 ---
 
     Code
       decode_op[["summary"]]
     Output
-         START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_ID TAG_TYPE
-      1  1566972000 1566979200          99 [%]      1 [1]   1234 SuperTag
-      2  1566979200 1566986400         100 [%]      0 [1]   1234 SuperTag
-      3  1566986400 1566993600          97 [%]     15 [1]   1234 SuperTag
-      4  1566993600 1567000800          95 [%]     44 [1]   1234 SuperTag
-      5  1567000800 1567008000          88 [%]     27 [1]   1234 SuperTag
-      6  1567008000 1567015200          97 [%]     34 [1]   1234 SuperTag
-      7  1567015200 1567022400          97 [%]     24 [1]   1234 SuperTag
-      8  1567022400 1567029600          95 [%]     26 [1]   1234 SuperTag
-      9  1567029600 1567036800          96 [%]     17 [1]   1234 SuperTag
-      10 1567036800 1567044000          86 [%]     43 [1]   1234 SuperTag
-      11 1567044000 1567051200          82 [%]     20 [1]   1234 SuperTag
-      12 1567051200 1567058400          97 [%]     25 [1]   1234 SuperTag
-      13 1567058400 1567065600          94 [%]     33 [1]   1234 SuperTag
-      14 1567065600 1567072800          94 [%]     27 [1]   1234 SuperTag
-      15 1567072800 1567080000          94 [%]     48 [1]   1234 SuperTag
-      16 1567080000 1567087200          82 [%]    127 [1]   1234 SuperTag
-      17 1567087200 1567094400          95 [%]     22 [1]   1234 SuperTag
-      18 1567094400 1567101600          51 [%]      0 [1]   1234 SuperTag
-      19 1567101600 1567108800           0 [%]      0 [1]   1234 SuperTag
-      20 1567108800 1567116000           7 [%]      1 [1]   1234 SuperTag
-      21 1567116000 1567123200           0 [%]      0 [1]   1234 SuperTag
-      22 1567123200 1567130400           0 [%]      3 [1]   1234 SuperTag
-      23 1567130400 1567137600           0 [%]      5 [1]   1234 SuperTag
-      24 1567137600 1567144800           0 [%]      1 [1]   1234 SuperTag
-      25 1567144800 1567152000           0 [%]      0 [1]   1234 SuperTag
-      26 1567152000 1567159200           0 [%]      1 [1]   1234 SuperTag
-      27 1567159200 1567166400           0 [%]      0 [1]   1234 SuperTag
-      28 1567166400 1567173600           0 [%]      1 [1]   1234 SuperTag
-      29 1567173600 1567180800          29 [%]     47 [1]   1234 SuperTag
-      30 1567180800 1567188000           0 [%]      2 [1]   1234 SuperTag
-      31 1567188000 1567195200          74 [%]    127 [1]   1234 SuperTag
-      32 1567195200 1567202400          92 [%]    127 [1]   1234 SuperTag
-      33 1567202400 1567209600          80 [%]    127 [1]   1234 SuperTag
-      34 1567209600 1567216800          81 [%]    127 [1]   1234 SuperTag
-      35 1567216800 1567224000          79 [%]    127 [1]   1234 SuperTag
-      36 1567224000 1567231200          73 [%]    127 [1]   1234 SuperTag
-      37 1567231200 1567238400          74 [%]    127 [1]   1234 SuperTag
-      38 1567238400 1567245600          80 [%]    127 [1]   1234 SuperTag
-      39 1567245600 1567252800          80 [%]    127 [1]   1234 SuperTag
-      40 1567252800 1567260000          80 [%]    127 [1]   1234 SuperTag
-      41 1567260000 1567267200          79 [%]    127 [1]   1234 SuperTag
-      42 1567267200 1567274400          78 [%]    127 [1]   1234 SuperTag
-      43 1567274400 1567281600          79 [%]    127 [1]   1234 SuperTag
-      44 1567281600 1567288800          77 [%]    127 [1]   1234 SuperTag
-      45 1567288800 1567296000          74 [%]    127 [1]   1234 SuperTag
-      46 1567296000 1567303200          73 [%]    127 [1]   1234 SuperTag
-      47 1567303200 1567310400          72 [%]    127 [1]   1234 SuperTag
-      48 1567310400 1567317600          71 [%]    127 [1]   1234 SuperTag
-      49 1567317600 1567324800          73 [%]    127 [1]   1234 SuperTag
-      50 1567324800 1567332000          76 [%]    127 [1]   1234 SuperTag
-      51 1567332000 1567339200          78 [%]    127 [1]   1234 SuperTag
-      52 1567339200 1567346400          81 [%]    127 [1]   1234 SuperTag
-      53 1567346400 1567353600          83 [%]    127 [1]   1234 SuperTag
-      54 1567353600 1567360800          85 [%]    127 [1]   1234 SuperTag
-      55 1567360800 1567368000          85 [%]    127 [1]   1234 SuperTag
-      56 1567368000 1567375200          83 [%]    127 [1]   1234 SuperTag
-      57 1567375200 1567382400          79 [%]    127 [1]   1234 SuperTag
-      58 1567382400 1567389600          78 [%]    127 [1]   1234 SuperTag
-      59 1567389600 1567396800          78 [%]    127 [1]   1234 SuperTag
-      60 1567396800 1567404000          77 [%]    127 [1]   1234 SuperTag
-      61 1567404000 1567411200          77 [%]    127 [1]   1234 SuperTag
-      62 1567411200 1567418400           0 [%]      0 [1]   1234 SuperTag
-      63 1567418400 1567425600           0 [%]      0 [1]   1234 SuperTag
-      64 1567425600 1567432800           0 [%]      0 [1]   1234 SuperTag
-      65 1567432800 1567440000           0 [%]      0 [1]   1234 SuperTag
-      66 1567440000 1567447200           0 [%]      0 [1]   1234 SuperTag
-      67 1567447200 1567454400           0 [%]      0 [1]   1234 SuperTag
-      68 1567454400 1567461600           0 [%]      0 [1]   1234 SuperTag
-      69 1567461600 1567468800           0 [%]      0 [1]   1234 SuperTag
-      70 1567468800 1567476000           0 [%]      0 [1]   1234 SuperTag
-      71 1567476000 1567483200           0 [%]      0 [1]   1234 SuperTag
-      72 1567483200 1567490400           0 [%]      0 [1]   1234 SuperTag
-      73 1567490400 1567497600           0 [%]      0 [1]   1234 SuperTag
+         START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_NUM TAG_TYPE
+      1  1566972000 1566979200          99 [%]      1 [1]    1234 SuperTag
+      2  1566979200 1566986400         100 [%]      0 [1]    1234 SuperTag
+      3  1566986400 1566993600          97 [%]     15 [1]    1234 SuperTag
+      4  1566993600 1567000800          95 [%]     44 [1]    1234 SuperTag
+      5  1567000800 1567008000          88 [%]     27 [1]    1234 SuperTag
+      6  1567008000 1567015200          97 [%]     34 [1]    1234 SuperTag
+      7  1567015200 1567022400          97 [%]     24 [1]    1234 SuperTag
+      8  1567022400 1567029600          95 [%]     26 [1]    1234 SuperTag
+      9  1567029600 1567036800          96 [%]     17 [1]    1234 SuperTag
+      10 1567036800 1567044000          86 [%]     43 [1]    1234 SuperTag
+      11 1567044000 1567051200          82 [%]     20 [1]    1234 SuperTag
+      12 1567051200 1567058400          97 [%]     25 [1]    1234 SuperTag
+      13 1567058400 1567065600          94 [%]     33 [1]    1234 SuperTag
+      14 1567065600 1567072800          94 [%]     27 [1]    1234 SuperTag
+      15 1567072800 1567080000          94 [%]     48 [1]    1234 SuperTag
+      16 1567080000 1567087200          82 [%]    127 [1]    1234 SuperTag
+      17 1567087200 1567094400          95 [%]     22 [1]    1234 SuperTag
+      18 1567094400 1567101600          51 [%]      0 [1]    1234 SuperTag
+      19 1567101600 1567108800           0 [%]      0 [1]    1234 SuperTag
+      20 1567108800 1567116000           7 [%]      1 [1]    1234 SuperTag
+      21 1567116000 1567123200           0 [%]      0 [1]    1234 SuperTag
+      22 1567123200 1567130400           0 [%]      3 [1]    1234 SuperTag
+      23 1567130400 1567137600           0 [%]      5 [1]    1234 SuperTag
+      24 1567137600 1567144800           0 [%]      1 [1]    1234 SuperTag
+      25 1567144800 1567152000           0 [%]      0 [1]    1234 SuperTag
+      26 1567152000 1567159200           0 [%]      1 [1]    1234 SuperTag
+      27 1567159200 1567166400           0 [%]      0 [1]    1234 SuperTag
+      28 1567166400 1567173600           0 [%]      1 [1]    1234 SuperTag
+      29 1567173600 1567180800          29 [%]     47 [1]    1234 SuperTag
+      30 1567180800 1567188000           0 [%]      2 [1]    1234 SuperTag
+      31 1567188000 1567195200          74 [%]    127 [1]    1234 SuperTag
+      32 1567195200 1567202400          92 [%]    127 [1]    1234 SuperTag
+      33 1567202400 1567209600          80 [%]    127 [1]    1234 SuperTag
+      34 1567209600 1567216800          81 [%]    127 [1]    1234 SuperTag
+      35 1567216800 1567224000          79 [%]    127 [1]    1234 SuperTag
+      36 1567224000 1567231200          73 [%]    127 [1]    1234 SuperTag
+      37 1567231200 1567238400          74 [%]    127 [1]    1234 SuperTag
+      38 1567238400 1567245600          80 [%]    127 [1]    1234 SuperTag
+      39 1567245600 1567252800          80 [%]    127 [1]    1234 SuperTag
+      40 1567252800 1567260000          80 [%]    127 [1]    1234 SuperTag
+      41 1567260000 1567267200          79 [%]    127 [1]    1234 SuperTag
+      42 1567267200 1567274400          78 [%]    127 [1]    1234 SuperTag
+      43 1567274400 1567281600          79 [%]    127 [1]    1234 SuperTag
+      44 1567281600 1567288800          77 [%]    127 [1]    1234 SuperTag
+      45 1567288800 1567296000          74 [%]    127 [1]    1234 SuperTag
+      46 1567296000 1567303200          73 [%]    127 [1]    1234 SuperTag
+      47 1567303200 1567310400          72 [%]    127 [1]    1234 SuperTag
+      48 1567310400 1567317600          71 [%]    127 [1]    1234 SuperTag
+      49 1567317600 1567324800          73 [%]    127 [1]    1234 SuperTag
+      50 1567324800 1567332000          76 [%]    127 [1]    1234 SuperTag
+      51 1567332000 1567339200          78 [%]    127 [1]    1234 SuperTag
+      52 1567339200 1567346400          81 [%]    127 [1]    1234 SuperTag
+      53 1567346400 1567353600          83 [%]    127 [1]    1234 SuperTag
+      54 1567353600 1567360800          85 [%]    127 [1]    1234 SuperTag
+      55 1567360800 1567368000          85 [%]    127 [1]    1234 SuperTag
+      56 1567368000 1567375200          83 [%]    127 [1]    1234 SuperTag
+      57 1567375200 1567382400          79 [%]    127 [1]    1234 SuperTag
+      58 1567382400 1567389600          78 [%]    127 [1]    1234 SuperTag
+      59 1567389600 1567396800          78 [%]    127 [1]    1234 SuperTag
+      60 1567396800 1567404000          77 [%]    127 [1]    1234 SuperTag
+      61 1567404000 1567411200          77 [%]    127 [1]    1234 SuperTag
+      62 1567411200 1567418400           0 [%]      0 [1]    1234 SuperTag
+      63 1567418400 1567425600           0 [%]      0 [1]    1234 SuperTag
+      64 1567425600 1567432800           0 [%]      0 [1]    1234 SuperTag
+      65 1567432800 1567440000           0 [%]      0 [1]    1234 SuperTag
+      66 1567440000 1567447200           0 [%]      0 [1]    1234 SuperTag
+      67 1567447200 1567454400           0 [%]      0 [1]    1234 SuperTag
+      68 1567454400 1567461600           0 [%]      0 [1]    1234 SuperTag
+      69 1567461600 1567468800           0 [%]      0 [1]    1234 SuperTag
+      70 1567468800 1567476000           0 [%]      0 [1]    1234 SuperTag
+      71 1567476000 1567483200           0 [%]      0 [1]    1234 SuperTag
+      72 1567483200 1567490400           0 [%]      0 [1]    1234 SuperTag
+      73 1567490400 1567497600           0 [%]      0 [1]    1234 SuperTag
 
 # Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175147
 
@@ -1164,8 +1164,8 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_ID TAG_TYPE
-      1 Wildlife Computers Benthic sPAT   1234 SuperTag
+                      MAKE        MODEL TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT    1234 SuperTag
 
 ---
 
@@ -1952,578 +1952,578 @@
       387                           1675                            145
       388                            893                            401
       389                          48369                            104
-          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_ID TAG_TYPE
-      1                                  102   1234 SuperTag
-      2                                   83   1234 SuperTag
-      3                                  101   1234 SuperTag
-      4                                   72   1234 SuperTag
-      5                                  124   1234 SuperTag
-      6                                   95   1234 SuperTag
-      7                                  109   1234 SuperTag
-      8                                  148   1234 SuperTag
-      9                                  106   1234 SuperTag
-      10                                  86   1234 SuperTag
-      11                                 104   1234 SuperTag
-      12                                 112   1234 SuperTag
-      13                                  69   1234 SuperTag
-      14                                  85   1234 SuperTag
-      15                                  95   1234 SuperTag
-      16                                  24   1234 SuperTag
-      17                                  67   1234 SuperTag
-      18                                  77   1234 SuperTag
-      19                                  85   1234 SuperTag
-      20                                  72   1234 SuperTag
-      21                                 103   1234 SuperTag
-      22                                  79   1234 SuperTag
-      23                                  88   1234 SuperTag
-      24                                 154   1234 SuperTag
-      25                                  38   1234 SuperTag
-      26                                 120   1234 SuperTag
-      27                                  95   1234 SuperTag
-      28                                 116   1234 SuperTag
-      29                                  86   1234 SuperTag
-      30                                  46   1234 SuperTag
-      31                                 121   1234 SuperTag
-      32                                  83   1234 SuperTag
-      33                                  96   1234 SuperTag
-      34                                 129   1234 SuperTag
-      35                                 109   1234 SuperTag
-      36                                 117   1234 SuperTag
-      37                                 127   1234 SuperTag
-      38                                  98   1234 SuperTag
-      39                                 135   1234 SuperTag
-      40                                 102   1234 SuperTag
-      41                                 116   1234 SuperTag
-      42                                  98   1234 SuperTag
-      43                                  97   1234 SuperTag
-      44                                 101   1234 SuperTag
-      45                                  89   1234 SuperTag
-      46                                 115   1234 SuperTag
-      47                                 117   1234 SuperTag
-      48                                  89   1234 SuperTag
-      49                                  79   1234 SuperTag
-      50                                 173   1234 SuperTag
-      51                                 161   1234 SuperTag
-      52                                 110   1234 SuperTag
-      53                                  37   1234 SuperTag
-      54                                 160   1234 SuperTag
-      55                                 172   1234 SuperTag
-      56                                  61   1234 SuperTag
-      57                                 161   1234 SuperTag
-      58                                  37   1234 SuperTag
-      59                                  84   1234 SuperTag
-      60                                  62   1234 SuperTag
-      61                                  76   1234 SuperTag
-      62                                  84   1234 SuperTag
-      63                                  78   1234 SuperTag
-      64                                  97   1234 SuperTag
-      65                                  97   1234 SuperTag
-      66                                  92   1234 SuperTag
-      67                                  94   1234 SuperTag
-      68                                  76   1234 SuperTag
-      69                                  35   1234 SuperTag
-      70                                  78   1234 SuperTag
-      71                                  80   1234 SuperTag
-      72                                  74   1234 SuperTag
-      73                                  83   1234 SuperTag
-      74                                  84   1234 SuperTag
-      75                                  87   1234 SuperTag
-      76                                 129   1234 SuperTag
-      77                                 134   1234 SuperTag
-      78                                 177   1234 SuperTag
-      79                                  12   1234 SuperTag
-      80                                  95   1234 SuperTag
-      81                                  79   1234 SuperTag
-      82                                 136   1234 SuperTag
-      83                                 102   1234 SuperTag
-      84                                  93   1234 SuperTag
-      85                                  79   1234 SuperTag
-      86                                 103   1234 SuperTag
-      87                                  90   1234 SuperTag
-      88                                 103   1234 SuperTag
-      89                                  66   1234 SuperTag
-      90                                  81   1234 SuperTag
-      91                                  96   1234 SuperTag
-      92                                 111   1234 SuperTag
-      93                                  86   1234 SuperTag
-      94                                  97   1234 SuperTag
-      95                                 102   1234 SuperTag
-      96                                 100   1234 SuperTag
-      97                                 100   1234 SuperTag
-      98                                  51   1234 SuperTag
-      99                                  91   1234 SuperTag
-      100                                109   1234 SuperTag
-      101                                 68   1234 SuperTag
-      102                                 93   1234 SuperTag
-      103                                 96   1234 SuperTag
-      104                                 30   1234 SuperTag
-      105                                105   1234 SuperTag
-      106                                116   1234 SuperTag
-      107                                 81   1234 SuperTag
-      108                                 53   1234 SuperTag
-      109                                 93   1234 SuperTag
-      110                                 12   1234 SuperTag
-      111                                 81   1234 SuperTag
-      112                                  6   1234 SuperTag
-      113                                101   1234 SuperTag
-      114                                114   1234 SuperTag
-      115                                119   1234 SuperTag
-      116                                 52   1234 SuperTag
-      117                                 78   1234 SuperTag
-      118                                 91   1234 SuperTag
-      119                                 92   1234 SuperTag
-      120                                 82   1234 SuperTag
-      121                                 67   1234 SuperTag
-      122                                107   1234 SuperTag
-      123                                 82   1234 SuperTag
-      124                                 99   1234 SuperTag
-      125                                 80   1234 SuperTag
-      126                                 77   1234 SuperTag
-      127                                 84   1234 SuperTag
-      128                                 85   1234 SuperTag
-      129                                 33   1234 SuperTag
-      130                                113   1234 SuperTag
-      131                                 68   1234 SuperTag
-      132                                 57   1234 SuperTag
-      133                                175   1234 SuperTag
-      134                                 95   1234 SuperTag
-      135                                 80   1234 SuperTag
-      136                                 88   1234 SuperTag
-      137                                 91   1234 SuperTag
-      138                                 89   1234 SuperTag
-      139                                102   1234 SuperTag
-      140                                112   1234 SuperTag
-      141                                110   1234 SuperTag
-      142                                 99   1234 SuperTag
-      143                                138   1234 SuperTag
-      144                                 96   1234 SuperTag
-      145                                 40   1234 SuperTag
-      146                                100   1234 SuperTag
-      147                                 87   1234 SuperTag
-      148                                104   1234 SuperTag
-      149                                104   1234 SuperTag
-      150                                101   1234 SuperTag
-      151                                100   1234 SuperTag
-      152                                106   1234 SuperTag
-      153                                101   1234 SuperTag
-      154                                  8   1234 SuperTag
-      155                                 97   1234 SuperTag
-      156                                 78   1234 SuperTag
-      157                                 75   1234 SuperTag
-      158                                 90   1234 SuperTag
-      159                                 98   1234 SuperTag
-      160                                 80   1234 SuperTag
-      161                                110   1234 SuperTag
-      162                                 80   1234 SuperTag
-      163                                 35   1234 SuperTag
-      164                                 94   1234 SuperTag
-      165                                125   1234 SuperTag
-      166                                 79   1234 SuperTag
-      167                                116   1234 SuperTag
-      168                                 98   1234 SuperTag
-      169                                 78   1234 SuperTag
-      170                                146   1234 SuperTag
-      171                                 97   1234 SuperTag
-      172                                112   1234 SuperTag
-      173                                 96   1234 SuperTag
-      174                                 90   1234 SuperTag
-      175                                109   1234 SuperTag
-      176                                 83   1234 SuperTag
-      177                                108   1234 SuperTag
-      178                                 79   1234 SuperTag
-      179                                 78   1234 SuperTag
-      180                                 81   1234 SuperTag
-      181                                 83   1234 SuperTag
-      182                                152   1234 SuperTag
-      183                                 93   1234 SuperTag
-      184                                 91   1234 SuperTag
-      185                                 70   1234 SuperTag
-      186                                 37   1234 SuperTag
-      187                                102   1234 SuperTag
-      188                                 93   1234 SuperTag
-      189                                 97   1234 SuperTag
-      190                                 82   1234 SuperTag
-      191                                105   1234 SuperTag
-      192                                103   1234 SuperTag
-      193                                134   1234 SuperTag
-      194                                102   1234 SuperTag
-      195                                102   1234 SuperTag
-      196                                170   1234 SuperTag
-      197                                100   1234 SuperTag
-      198                                  6   1234 SuperTag
-      199                                139   1234 SuperTag
-      200                                145   1234 SuperTag
-      201                                 78   1234 SuperTag
-      202                                103   1234 SuperTag
-      203                                102   1234 SuperTag
-      204                                102   1234 SuperTag
-      205                                 71   1234 SuperTag
-      206                                 90   1234 SuperTag
-      207                                 78   1234 SuperTag
-      208                                 32   1234 SuperTag
-      209                                 86   1234 SuperTag
-      210                                103   1234 SuperTag
-      211                                 74   1234 SuperTag
-      212                                 65   1234 SuperTag
-      213                                 57   1234 SuperTag
-      214                                 44   1234 SuperTag
-      215                                 79   1234 SuperTag
-      216                                 NA   1234 SuperTag
-      217                                 81   1234 SuperTag
-      218                                 99   1234 SuperTag
-      219                                 33   1234 SuperTag
-      220                                 96   1234 SuperTag
-      221                                131   1234 SuperTag
-      222                                144   1234 SuperTag
-      223                                 97   1234 SuperTag
-      224                                 81   1234 SuperTag
-      225                                 91   1234 SuperTag
-      226                                 85   1234 SuperTag
-      227                                 86   1234 SuperTag
-      228                                100   1234 SuperTag
-      229                                 89   1234 SuperTag
-      230                                110   1234 SuperTag
-      231                                 75   1234 SuperTag
-      232                                 99   1234 SuperTag
-      233                                 99   1234 SuperTag
-      234                                 96   1234 SuperTag
-      235                                 93   1234 SuperTag
-      236                                120   1234 SuperTag
-      237                                 92   1234 SuperTag
-      238                                106   1234 SuperTag
-      239                                133   1234 SuperTag
-      240                                 95   1234 SuperTag
-      241                                141   1234 SuperTag
-      242                                 37   1234 SuperTag
-      243                                 98   1234 SuperTag
-      244                                 24   1234 SuperTag
-      245                                 76   1234 SuperTag
-      246                                113   1234 SuperTag
-      247                                 51   1234 SuperTag
-      248                                 80   1234 SuperTag
-      249                                 42   1234 SuperTag
-      250                                 98   1234 SuperTag
-      251                                100   1234 SuperTag
-      252                                 99   1234 SuperTag
-      253                                 88   1234 SuperTag
-      254                                 92   1234 SuperTag
-      255                                 77   1234 SuperTag
-      256                                 76   1234 SuperTag
-      257                                 76   1234 SuperTag
-      258                                108   1234 SuperTag
-      259                                 77   1234 SuperTag
-      260                                 98   1234 SuperTag
-      261                                 90   1234 SuperTag
-      262                                 51   1234 SuperTag
-      263                                117   1234 SuperTag
-      264                                 90   1234 SuperTag
-      265                                 94   1234 SuperTag
-      266                                 89   1234 SuperTag
-      267                                107   1234 SuperTag
-      268                                 55   1234 SuperTag
-      269                                102   1234 SuperTag
-      270                                 96   1234 SuperTag
-      271                                 89   1234 SuperTag
-      272                                 97   1234 SuperTag
-      273                                 98   1234 SuperTag
-      274                                 92   1234 SuperTag
-      275                                 96   1234 SuperTag
-      276                                179   1234 SuperTag
-      277                                 NA   1234 SuperTag
-      278                                109   1234 SuperTag
-      279                                 94   1234 SuperTag
-      280                                 94   1234 SuperTag
-      281                                108   1234 SuperTag
-      282                                102   1234 SuperTag
-      283                                149   1234 SuperTag
-      284                                 99   1234 SuperTag
-      285                                 91   1234 SuperTag
-      286                                158   1234 SuperTag
-      287                                104   1234 SuperTag
-      288                                159   1234 SuperTag
-      289                                 78   1234 SuperTag
-      290                                103   1234 SuperTag
-      291                                 93   1234 SuperTag
-      292                                 96   1234 SuperTag
-      293                                 88   1234 SuperTag
-      294                                136   1234 SuperTag
-      295                                111   1234 SuperTag
-      296                                 80   1234 SuperTag
-      297                                 94   1234 SuperTag
-      298                                 71   1234 SuperTag
-      299                                 67   1234 SuperTag
-      300                                 98   1234 SuperTag
-      301                                 74   1234 SuperTag
-      302                                108   1234 SuperTag
-      303                                 91   1234 SuperTag
-      304                                 95   1234 SuperTag
-      305                                 79   1234 SuperTag
-      306                                 89   1234 SuperTag
-      307                                 89   1234 SuperTag
-      308                                 90   1234 SuperTag
-      309                                 63   1234 SuperTag
-      310                                 83   1234 SuperTag
-      311                                 80   1234 SuperTag
-      312                                 24   1234 SuperTag
-      313                                 92   1234 SuperTag
-      314                                104   1234 SuperTag
-      315                                110   1234 SuperTag
-      316                                100   1234 SuperTag
-      317                                 97   1234 SuperTag
-      318                                 95   1234 SuperTag
-      319                                100   1234 SuperTag
-      320                                 91   1234 SuperTag
-      321                                 89   1234 SuperTag
-      322                                 38   1234 SuperTag
-      323                                 96   1234 SuperTag
-      324                                132   1234 SuperTag
-      325                                 70   1234 SuperTag
-      326                                 33   1234 SuperTag
-      327                                 92   1234 SuperTag
-      328                                 56   1234 SuperTag
-      329                                107   1234 SuperTag
-      330                                 72   1234 SuperTag
-      331                                 86   1234 SuperTag
-      332                                 73   1234 SuperTag
-      333                                 73   1234 SuperTag
-      334                                101   1234 SuperTag
-      335                                 75   1234 SuperTag
-      336                                 71   1234 SuperTag
-      337                                101   1234 SuperTag
-      338                                 82   1234 SuperTag
-      339                                 81   1234 SuperTag
-      340                                 89   1234 SuperTag
-      341                                 71   1234 SuperTag
-      342                                 89   1234 SuperTag
-      343                                 70   1234 SuperTag
-      344                                 82   1234 SuperTag
-      345                                103   1234 SuperTag
-      346                                 20   1234 SuperTag
-      347                                112   1234 SuperTag
-      348                                107   1234 SuperTag
-      349                                 84   1234 SuperTag
-      350                                107   1234 SuperTag
-      351                                162   1234 SuperTag
-      352                                 44   1234 SuperTag
-      353                                100   1234 SuperTag
-      354                                114   1234 SuperTag
-      355                                 90   1234 SuperTag
-      356                                118   1234 SuperTag
-      357                                 99   1234 SuperTag
-      358                                 94   1234 SuperTag
-      359                                 53   1234 SuperTag
-      360                                114   1234 SuperTag
-      361                                 99   1234 SuperTag
-      362                                 60   1234 SuperTag
-      363                                121   1234 SuperTag
-      364                                142   1234 SuperTag
-      365                                179   1234 SuperTag
-      366                                 74   1234 SuperTag
-      367                                108   1234 SuperTag
-      368                                 63   1234 SuperTag
-      369                                 85   1234 SuperTag
-      370                                163   1234 SuperTag
-      371                                 99   1234 SuperTag
-      372                                 71   1234 SuperTag
-      373                                105   1234 SuperTag
-      374                                103   1234 SuperTag
-      375                                 99   1234 SuperTag
-      376                                126   1234 SuperTag
-      377                                 85   1234 SuperTag
-      378                                 64   1234 SuperTag
-      379                                 75   1234 SuperTag
-      380                                 74   1234 SuperTag
-      381                                 65   1234 SuperTag
-      382                                145   1234 SuperTag
-      383                                 82   1234 SuperTag
-      384                                 85   1234 SuperTag
-      385                                 92   1234 SuperTag
-      386                                 83   1234 SuperTag
-      387                                128   1234 SuperTag
-      388                                 46   1234 SuperTag
-      389                                 81   1234 SuperTag
+          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_NUM TAG_TYPE
+      1                                  102    1234 SuperTag
+      2                                   83    1234 SuperTag
+      3                                  101    1234 SuperTag
+      4                                   72    1234 SuperTag
+      5                                  124    1234 SuperTag
+      6                                   95    1234 SuperTag
+      7                                  109    1234 SuperTag
+      8                                  148    1234 SuperTag
+      9                                  106    1234 SuperTag
+      10                                  86    1234 SuperTag
+      11                                 104    1234 SuperTag
+      12                                 112    1234 SuperTag
+      13                                  69    1234 SuperTag
+      14                                  85    1234 SuperTag
+      15                                  95    1234 SuperTag
+      16                                  24    1234 SuperTag
+      17                                  67    1234 SuperTag
+      18                                  77    1234 SuperTag
+      19                                  85    1234 SuperTag
+      20                                  72    1234 SuperTag
+      21                                 103    1234 SuperTag
+      22                                  79    1234 SuperTag
+      23                                  88    1234 SuperTag
+      24                                 154    1234 SuperTag
+      25                                  38    1234 SuperTag
+      26                                 120    1234 SuperTag
+      27                                  95    1234 SuperTag
+      28                                 116    1234 SuperTag
+      29                                  86    1234 SuperTag
+      30                                  46    1234 SuperTag
+      31                                 121    1234 SuperTag
+      32                                  83    1234 SuperTag
+      33                                  96    1234 SuperTag
+      34                                 129    1234 SuperTag
+      35                                 109    1234 SuperTag
+      36                                 117    1234 SuperTag
+      37                                 127    1234 SuperTag
+      38                                  98    1234 SuperTag
+      39                                 135    1234 SuperTag
+      40                                 102    1234 SuperTag
+      41                                 116    1234 SuperTag
+      42                                  98    1234 SuperTag
+      43                                  97    1234 SuperTag
+      44                                 101    1234 SuperTag
+      45                                  89    1234 SuperTag
+      46                                 115    1234 SuperTag
+      47                                 117    1234 SuperTag
+      48                                  89    1234 SuperTag
+      49                                  79    1234 SuperTag
+      50                                 173    1234 SuperTag
+      51                                 161    1234 SuperTag
+      52                                 110    1234 SuperTag
+      53                                  37    1234 SuperTag
+      54                                 160    1234 SuperTag
+      55                                 172    1234 SuperTag
+      56                                  61    1234 SuperTag
+      57                                 161    1234 SuperTag
+      58                                  37    1234 SuperTag
+      59                                  84    1234 SuperTag
+      60                                  62    1234 SuperTag
+      61                                  76    1234 SuperTag
+      62                                  84    1234 SuperTag
+      63                                  78    1234 SuperTag
+      64                                  97    1234 SuperTag
+      65                                  97    1234 SuperTag
+      66                                  92    1234 SuperTag
+      67                                  94    1234 SuperTag
+      68                                  76    1234 SuperTag
+      69                                  35    1234 SuperTag
+      70                                  78    1234 SuperTag
+      71                                  80    1234 SuperTag
+      72                                  74    1234 SuperTag
+      73                                  83    1234 SuperTag
+      74                                  84    1234 SuperTag
+      75                                  87    1234 SuperTag
+      76                                 129    1234 SuperTag
+      77                                 134    1234 SuperTag
+      78                                 177    1234 SuperTag
+      79                                  12    1234 SuperTag
+      80                                  95    1234 SuperTag
+      81                                  79    1234 SuperTag
+      82                                 136    1234 SuperTag
+      83                                 102    1234 SuperTag
+      84                                  93    1234 SuperTag
+      85                                  79    1234 SuperTag
+      86                                 103    1234 SuperTag
+      87                                  90    1234 SuperTag
+      88                                 103    1234 SuperTag
+      89                                  66    1234 SuperTag
+      90                                  81    1234 SuperTag
+      91                                  96    1234 SuperTag
+      92                                 111    1234 SuperTag
+      93                                  86    1234 SuperTag
+      94                                  97    1234 SuperTag
+      95                                 102    1234 SuperTag
+      96                                 100    1234 SuperTag
+      97                                 100    1234 SuperTag
+      98                                  51    1234 SuperTag
+      99                                  91    1234 SuperTag
+      100                                109    1234 SuperTag
+      101                                 68    1234 SuperTag
+      102                                 93    1234 SuperTag
+      103                                 96    1234 SuperTag
+      104                                 30    1234 SuperTag
+      105                                105    1234 SuperTag
+      106                                116    1234 SuperTag
+      107                                 81    1234 SuperTag
+      108                                 53    1234 SuperTag
+      109                                 93    1234 SuperTag
+      110                                 12    1234 SuperTag
+      111                                 81    1234 SuperTag
+      112                                  6    1234 SuperTag
+      113                                101    1234 SuperTag
+      114                                114    1234 SuperTag
+      115                                119    1234 SuperTag
+      116                                 52    1234 SuperTag
+      117                                 78    1234 SuperTag
+      118                                 91    1234 SuperTag
+      119                                 92    1234 SuperTag
+      120                                 82    1234 SuperTag
+      121                                 67    1234 SuperTag
+      122                                107    1234 SuperTag
+      123                                 82    1234 SuperTag
+      124                                 99    1234 SuperTag
+      125                                 80    1234 SuperTag
+      126                                 77    1234 SuperTag
+      127                                 84    1234 SuperTag
+      128                                 85    1234 SuperTag
+      129                                 33    1234 SuperTag
+      130                                113    1234 SuperTag
+      131                                 68    1234 SuperTag
+      132                                 57    1234 SuperTag
+      133                                175    1234 SuperTag
+      134                                 95    1234 SuperTag
+      135                                 80    1234 SuperTag
+      136                                 88    1234 SuperTag
+      137                                 91    1234 SuperTag
+      138                                 89    1234 SuperTag
+      139                                102    1234 SuperTag
+      140                                112    1234 SuperTag
+      141                                110    1234 SuperTag
+      142                                 99    1234 SuperTag
+      143                                138    1234 SuperTag
+      144                                 96    1234 SuperTag
+      145                                 40    1234 SuperTag
+      146                                100    1234 SuperTag
+      147                                 87    1234 SuperTag
+      148                                104    1234 SuperTag
+      149                                104    1234 SuperTag
+      150                                101    1234 SuperTag
+      151                                100    1234 SuperTag
+      152                                106    1234 SuperTag
+      153                                101    1234 SuperTag
+      154                                  8    1234 SuperTag
+      155                                 97    1234 SuperTag
+      156                                 78    1234 SuperTag
+      157                                 75    1234 SuperTag
+      158                                 90    1234 SuperTag
+      159                                 98    1234 SuperTag
+      160                                 80    1234 SuperTag
+      161                                110    1234 SuperTag
+      162                                 80    1234 SuperTag
+      163                                 35    1234 SuperTag
+      164                                 94    1234 SuperTag
+      165                                125    1234 SuperTag
+      166                                 79    1234 SuperTag
+      167                                116    1234 SuperTag
+      168                                 98    1234 SuperTag
+      169                                 78    1234 SuperTag
+      170                                146    1234 SuperTag
+      171                                 97    1234 SuperTag
+      172                                112    1234 SuperTag
+      173                                 96    1234 SuperTag
+      174                                 90    1234 SuperTag
+      175                                109    1234 SuperTag
+      176                                 83    1234 SuperTag
+      177                                108    1234 SuperTag
+      178                                 79    1234 SuperTag
+      179                                 78    1234 SuperTag
+      180                                 81    1234 SuperTag
+      181                                 83    1234 SuperTag
+      182                                152    1234 SuperTag
+      183                                 93    1234 SuperTag
+      184                                 91    1234 SuperTag
+      185                                 70    1234 SuperTag
+      186                                 37    1234 SuperTag
+      187                                102    1234 SuperTag
+      188                                 93    1234 SuperTag
+      189                                 97    1234 SuperTag
+      190                                 82    1234 SuperTag
+      191                                105    1234 SuperTag
+      192                                103    1234 SuperTag
+      193                                134    1234 SuperTag
+      194                                102    1234 SuperTag
+      195                                102    1234 SuperTag
+      196                                170    1234 SuperTag
+      197                                100    1234 SuperTag
+      198                                  6    1234 SuperTag
+      199                                139    1234 SuperTag
+      200                                145    1234 SuperTag
+      201                                 78    1234 SuperTag
+      202                                103    1234 SuperTag
+      203                                102    1234 SuperTag
+      204                                102    1234 SuperTag
+      205                                 71    1234 SuperTag
+      206                                 90    1234 SuperTag
+      207                                 78    1234 SuperTag
+      208                                 32    1234 SuperTag
+      209                                 86    1234 SuperTag
+      210                                103    1234 SuperTag
+      211                                 74    1234 SuperTag
+      212                                 65    1234 SuperTag
+      213                                 57    1234 SuperTag
+      214                                 44    1234 SuperTag
+      215                                 79    1234 SuperTag
+      216                                 NA    1234 SuperTag
+      217                                 81    1234 SuperTag
+      218                                 99    1234 SuperTag
+      219                                 33    1234 SuperTag
+      220                                 96    1234 SuperTag
+      221                                131    1234 SuperTag
+      222                                144    1234 SuperTag
+      223                                 97    1234 SuperTag
+      224                                 81    1234 SuperTag
+      225                                 91    1234 SuperTag
+      226                                 85    1234 SuperTag
+      227                                 86    1234 SuperTag
+      228                                100    1234 SuperTag
+      229                                 89    1234 SuperTag
+      230                                110    1234 SuperTag
+      231                                 75    1234 SuperTag
+      232                                 99    1234 SuperTag
+      233                                 99    1234 SuperTag
+      234                                 96    1234 SuperTag
+      235                                 93    1234 SuperTag
+      236                                120    1234 SuperTag
+      237                                 92    1234 SuperTag
+      238                                106    1234 SuperTag
+      239                                133    1234 SuperTag
+      240                                 95    1234 SuperTag
+      241                                141    1234 SuperTag
+      242                                 37    1234 SuperTag
+      243                                 98    1234 SuperTag
+      244                                 24    1234 SuperTag
+      245                                 76    1234 SuperTag
+      246                                113    1234 SuperTag
+      247                                 51    1234 SuperTag
+      248                                 80    1234 SuperTag
+      249                                 42    1234 SuperTag
+      250                                 98    1234 SuperTag
+      251                                100    1234 SuperTag
+      252                                 99    1234 SuperTag
+      253                                 88    1234 SuperTag
+      254                                 92    1234 SuperTag
+      255                                 77    1234 SuperTag
+      256                                 76    1234 SuperTag
+      257                                 76    1234 SuperTag
+      258                                108    1234 SuperTag
+      259                                 77    1234 SuperTag
+      260                                 98    1234 SuperTag
+      261                                 90    1234 SuperTag
+      262                                 51    1234 SuperTag
+      263                                117    1234 SuperTag
+      264                                 90    1234 SuperTag
+      265                                 94    1234 SuperTag
+      266                                 89    1234 SuperTag
+      267                                107    1234 SuperTag
+      268                                 55    1234 SuperTag
+      269                                102    1234 SuperTag
+      270                                 96    1234 SuperTag
+      271                                 89    1234 SuperTag
+      272                                 97    1234 SuperTag
+      273                                 98    1234 SuperTag
+      274                                 92    1234 SuperTag
+      275                                 96    1234 SuperTag
+      276                                179    1234 SuperTag
+      277                                 NA    1234 SuperTag
+      278                                109    1234 SuperTag
+      279                                 94    1234 SuperTag
+      280                                 94    1234 SuperTag
+      281                                108    1234 SuperTag
+      282                                102    1234 SuperTag
+      283                                149    1234 SuperTag
+      284                                 99    1234 SuperTag
+      285                                 91    1234 SuperTag
+      286                                158    1234 SuperTag
+      287                                104    1234 SuperTag
+      288                                159    1234 SuperTag
+      289                                 78    1234 SuperTag
+      290                                103    1234 SuperTag
+      291                                 93    1234 SuperTag
+      292                                 96    1234 SuperTag
+      293                                 88    1234 SuperTag
+      294                                136    1234 SuperTag
+      295                                111    1234 SuperTag
+      296                                 80    1234 SuperTag
+      297                                 94    1234 SuperTag
+      298                                 71    1234 SuperTag
+      299                                 67    1234 SuperTag
+      300                                 98    1234 SuperTag
+      301                                 74    1234 SuperTag
+      302                                108    1234 SuperTag
+      303                                 91    1234 SuperTag
+      304                                 95    1234 SuperTag
+      305                                 79    1234 SuperTag
+      306                                 89    1234 SuperTag
+      307                                 89    1234 SuperTag
+      308                                 90    1234 SuperTag
+      309                                 63    1234 SuperTag
+      310                                 83    1234 SuperTag
+      311                                 80    1234 SuperTag
+      312                                 24    1234 SuperTag
+      313                                 92    1234 SuperTag
+      314                                104    1234 SuperTag
+      315                                110    1234 SuperTag
+      316                                100    1234 SuperTag
+      317                                 97    1234 SuperTag
+      318                                 95    1234 SuperTag
+      319                                100    1234 SuperTag
+      320                                 91    1234 SuperTag
+      321                                 89    1234 SuperTag
+      322                                 38    1234 SuperTag
+      323                                 96    1234 SuperTag
+      324                                132    1234 SuperTag
+      325                                 70    1234 SuperTag
+      326                                 33    1234 SuperTag
+      327                                 92    1234 SuperTag
+      328                                 56    1234 SuperTag
+      329                                107    1234 SuperTag
+      330                                 72    1234 SuperTag
+      331                                 86    1234 SuperTag
+      332                                 73    1234 SuperTag
+      333                                 73    1234 SuperTag
+      334                                101    1234 SuperTag
+      335                                 75    1234 SuperTag
+      336                                 71    1234 SuperTag
+      337                                101    1234 SuperTag
+      338                                 82    1234 SuperTag
+      339                                 81    1234 SuperTag
+      340                                 89    1234 SuperTag
+      341                                 71    1234 SuperTag
+      342                                 89    1234 SuperTag
+      343                                 70    1234 SuperTag
+      344                                 82    1234 SuperTag
+      345                                103    1234 SuperTag
+      346                                 20    1234 SuperTag
+      347                                112    1234 SuperTag
+      348                                107    1234 SuperTag
+      349                                 84    1234 SuperTag
+      350                                107    1234 SuperTag
+      351                                162    1234 SuperTag
+      352                                 44    1234 SuperTag
+      353                                100    1234 SuperTag
+      354                                114    1234 SuperTag
+      355                                 90    1234 SuperTag
+      356                                118    1234 SuperTag
+      357                                 99    1234 SuperTag
+      358                                 94    1234 SuperTag
+      359                                 53    1234 SuperTag
+      360                                114    1234 SuperTag
+      361                                 99    1234 SuperTag
+      362                                 60    1234 SuperTag
+      363                                121    1234 SuperTag
+      364                                142    1234 SuperTag
+      365                                179    1234 SuperTag
+      366                                 74    1234 SuperTag
+      367                                108    1234 SuperTag
+      368                                 63    1234 SuperTag
+      369                                 85    1234 SuperTag
+      370                                163    1234 SuperTag
+      371                                 99    1234 SuperTag
+      372                                 71    1234 SuperTag
+      373                                105    1234 SuperTag
+      374                                103    1234 SuperTag
+      375                                 99    1234 SuperTag
+      376                                126    1234 SuperTag
+      377                                 85    1234 SuperTag
+      378                                 64    1234 SuperTag
+      379                                 75    1234 SuperTag
+      380                                 74    1234 SuperTag
+      381                                 65    1234 SuperTag
+      382                                145    1234 SuperTag
+      383                                 82    1234 SuperTag
+      384                                 85    1234 SuperTag
+      385                                 92    1234 SuperTag
+      386                                 83    1234 SuperTag
+      387                                128    1234 SuperTag
+      388                                 46    1234 SuperTag
+      389                                 81    1234 SuperTag
 
 ---
 
     Code
       decode_op[["summary"]]
     Output
-          START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_ID TAG_TYPE
-      1   1567274400 1567281600          59 [%]    124 [1]   1234 SuperTag
-      2   1567281600 1567288800          37 [%]    127 [1]   1234 SuperTag
-      3   1567288800 1567296000          53 [%]    127 [1]   1234 SuperTag
-      4   1567296000 1567303200          45 [%]    127 [1]   1234 SuperTag
-      5   1567303200 1567310400          49 [%]    127 [1]   1234 SuperTag
-      6   1567310400 1567317600          72 [%]    127 [1]   1234 SuperTag
-      7   1567317600 1567324800         100 [%]      0 [1]   1234 SuperTag
-      8   1567324800 1567332000         100 [%]      0 [1]   1234 SuperTag
-      9   1567332000 1567339200         100 [%]      0 [1]   1234 SuperTag
-      10  1567339200 1567346400         100 [%]      0 [1]   1234 SuperTag
-      11  1567346400 1567353600         100 [%]      0 [1]   1234 SuperTag
-      12  1567353600 1567360800          99 [%]      0 [1]   1234 SuperTag
-      13  1567360800 1567368000          86 [%]     65 [1]   1234 SuperTag
-      14  1567368000 1567375200           4 [%]     34 [1]   1234 SuperTag
-      15  1567375200 1567382400          45 [%]      0 [1]   1234 SuperTag
-      16  1567382400 1567389600         100 [%]      0 [1]   1234 SuperTag
-      17  1567389600 1567396800         100 [%]      0 [1]   1234 SuperTag
-      18  1567396800 1567404000          99 [%]      0 [1]   1234 SuperTag
-      19  1567404000 1567411200         100 [%]      0 [1]   1234 SuperTag
-      20  1567411200 1567418400          99 [%]      0 [1]   1234 SuperTag
-      21  1567418400 1567425600         100 [%]      0 [1]   1234 SuperTag
-      22  1567425600 1567432800         100 [%]      0 [1]   1234 SuperTag
-      23  1567432800 1567440000         100 [%]      0 [1]   1234 SuperTag
-      24  1567440000 1567447200         100 [%]      0 [1]   1234 SuperTag
-      25  1567447200 1567454400          99 [%]      0 [1]   1234 SuperTag
-      26  1567454400 1567461600         100 [%]      0 [1]   1234 SuperTag
-      27  1567461600 1567468800         100 [%]      0 [1]   1234 SuperTag
-      28  1567468800 1567476000         100 [%]      0 [1]   1234 SuperTag
-      29  1567476000 1567483200         100 [%]      0 [1]   1234 SuperTag
-      30  1567483200 1567490400         100 [%]      0 [1]   1234 SuperTag
-      31  1567490400 1567497600         100 [%]      0 [1]   1234 SuperTag
-      32  1567497600 1567504800          99 [%]      0 [1]   1234 SuperTag
-      33  1567504800 1567512000         100 [%]      0 [1]   1234 SuperTag
-      34  1567512000 1567519200         100 [%]      0 [1]   1234 SuperTag
-      35  1567519200 1567526400         100 [%]      0 [1]   1234 SuperTag
-      36  1567526400 1567533600         100 [%]      0 [1]   1234 SuperTag
-      37  1567533600 1567540800         100 [%]      0 [1]   1234 SuperTag
-      38  1567540800 1567548000         100 [%]      0 [1]   1234 SuperTag
-      39  1567548000 1567555200         100 [%]      0 [1]   1234 SuperTag
-      40  1567555200 1567562400         100 [%]      0 [1]   1234 SuperTag
-      41  1567562400 1567569600         100 [%]      0 [1]   1234 SuperTag
-      42  1567569600 1567576800         100 [%]      0 [1]   1234 SuperTag
-      43  1567576800 1567584000          99 [%]      0 [1]   1234 SuperTag
-      44  1567584000 1567591200          99 [%]      0 [1]   1234 SuperTag
-      45  1567591200 1567598400         100 [%]      0 [1]   1234 SuperTag
-      46  1567598400 1567605600         100 [%]      0 [1]   1234 SuperTag
-      47  1567605600 1567612800         100 [%]      0 [1]   1234 SuperTag
-      48  1567612800 1567620000         100 [%]      0 [1]   1234 SuperTag
-      49  1567620000 1567627200         100 [%]      0 [1]   1234 SuperTag
-      50  1567627200 1567634400          99 [%]      0 [1]   1234 SuperTag
-      51  1567634400 1567641600         100 [%]      0 [1]   1234 SuperTag
-      52  1567641600 1567648800         100 [%]      0 [1]   1234 SuperTag
-      53  1567648800 1567656000         100 [%]      0 [1]   1234 SuperTag
-      54  1567656000 1567663200         100 [%]      0 [1]   1234 SuperTag
-      55  1567663200 1567670400         100 [%]      0 [1]   1234 SuperTag
-      56  1567670400 1567677600          99 [%]      0 [1]   1234 SuperTag
-      57  1567677600 1567684800          99 [%]      0 [1]   1234 SuperTag
-      58  1567684800 1567692000         100 [%]      0 [1]   1234 SuperTag
-      59  1567692000 1567699200         100 [%]      0 [1]   1234 SuperTag
-      60  1567699200 1567706400         100 [%]      0 [1]   1234 SuperTag
-      61  1567706400 1567713600          98 [%]      1 [1]   1234 SuperTag
-      62  1567713600 1567720800          99 [%]      0 [1]   1234 SuperTag
-      63  1567720800 1567728000         100 [%]      0 [1]   1234 SuperTag
-      64  1567728000 1567735200          99 [%]      0 [1]   1234 SuperTag
-      65  1567735200 1567742400         100 [%]      0 [1]   1234 SuperTag
-      66  1567742400 1567749600         100 [%]      0 [1]   1234 SuperTag
-      67  1567749600 1567756800         100 [%]      0 [1]   1234 SuperTag
-      68  1567756800 1567764000         100 [%]      0 [1]   1234 SuperTag
-      69  1567764000 1567771200          99 [%]      0 [1]   1234 SuperTag
-      70  1567771200 1567778400          99 [%]      0 [1]   1234 SuperTag
-      71  1567778400 1567785600         100 [%]      0 [1]   1234 SuperTag
-      72  1567785600 1567792800         100 [%]      0 [1]   1234 SuperTag
-      73  1567792800 1567800000         100 [%]      0 [1]   1234 SuperTag
-      74  1567800000 1567807200         100 [%]      0 [1]   1234 SuperTag
-      75  1567807200 1567814400         100 [%]      0 [1]   1234 SuperTag
-      76  1567814400 1567821600         100 [%]      0 [1]   1234 SuperTag
-      77  1567821600 1567828800         100 [%]      0 [1]   1234 SuperTag
-      78  1567828800 1567836000         100 [%]      0 [1]   1234 SuperTag
-      79  1567836000 1567843200         100 [%]      0 [1]   1234 SuperTag
-      80  1567843200 1567850400         100 [%]      0 [1]   1234 SuperTag
-      81  1567850400 1567857600          99 [%]      0 [1]   1234 SuperTag
-      82  1567857600 1567864800         100 [%]      0 [1]   1234 SuperTag
-      83  1567864800 1567872000         100 [%]      0 [1]   1234 SuperTag
-      84  1567872000 1567879200         100 [%]      0 [1]   1234 SuperTag
-      85  1567879200 1567886400         100 [%]      0 [1]   1234 SuperTag
-      86  1567886400 1567893600         100 [%]      0 [1]   1234 SuperTag
-      87  1567893600 1567900800         100 [%]      0 [1]   1234 SuperTag
-      88  1567900800 1567908000         100 [%]      0 [1]   1234 SuperTag
-      89  1567908000 1567915200         100 [%]      0 [1]   1234 SuperTag
-      90  1567915200 1567922400         100 [%]      0 [1]   1234 SuperTag
-      91  1567922400 1567929600          99 [%]      0 [1]   1234 SuperTag
-      92  1567929600 1567936800         100 [%]      0 [1]   1234 SuperTag
-      93  1567936800 1567944000         100 [%]      0 [1]   1234 SuperTag
-      94  1567944000 1567951200          99 [%]      0 [1]   1234 SuperTag
-      95  1567951200 1567958400          99 [%]      0 [1]   1234 SuperTag
-      96  1567958400 1567965600         100 [%]      0 [1]   1234 SuperTag
-      97  1567965600 1567972800         100 [%]      0 [1]   1234 SuperTag
-      98  1567972800 1567980000         100 [%]      0 [1]   1234 SuperTag
-      99  1567980000 1567987200         100 [%]      0 [1]   1234 SuperTag
-      100 1567987200 1567994400         100 [%]      0 [1]   1234 SuperTag
-      101 1567994400 1568001600         100 [%]      0 [1]   1234 SuperTag
-      102 1568001600 1568008800         100 [%]      0 [1]   1234 SuperTag
-      103 1568008800 1568016000         100 [%]      0 [1]   1234 SuperTag
-      104 1568016000 1568023200         100 [%]      0 [1]   1234 SuperTag
-      105 1568023200 1568030400         100 [%]      0 [1]   1234 SuperTag
-      106 1568030400 1568037600         100 [%]      0 [1]   1234 SuperTag
-      107 1568037600 1568044800         100 [%]      0 [1]   1234 SuperTag
-      108 1568044800 1568052000         100 [%]      0 [1]   1234 SuperTag
-      109 1568052000 1568059200         100 [%]      0 [1]   1234 SuperTag
-      110 1568059200 1568066400          99 [%]      0 [1]   1234 SuperTag
-      111 1568066400 1568073600         100 [%]      0 [1]   1234 SuperTag
-      112 1568073600 1568080800         100 [%]      0 [1]   1234 SuperTag
-      113 1568080800 1568088000         100 [%]      0 [1]   1234 SuperTag
-      114 1568088000 1568095200         100 [%]      0 [1]   1234 SuperTag
-      115 1568095200 1568102400         100 [%]      0 [1]   1234 SuperTag
-      116 1568102400 1568109600         100 [%]      0 [1]   1234 SuperTag
-      117 1568109600 1568116800         100 [%]      0 [1]   1234 SuperTag
-      118 1568116800 1568124000         100 [%]      0 [1]   1234 SuperTag
-      119 1568124000 1568131200         100 [%]      0 [1]   1234 SuperTag
-      120 1568131200 1568138400         100 [%]      0 [1]   1234 SuperTag
-      121 1568138400 1568145600         100 [%]      0 [1]   1234 SuperTag
-      122 1568145600 1568152800         100 [%]      0 [1]   1234 SuperTag
-      123 1568152800 1568160000         100 [%]      0 [1]   1234 SuperTag
-      124 1568160000 1568167200         100 [%]      0 [1]   1234 SuperTag
-      125 1568167200 1568174400         100 [%]      0 [1]   1234 SuperTag
-      126 1568174400 1568181600         100 [%]      0 [1]   1234 SuperTag
-      127 1568181600 1568188800         100 [%]      0 [1]   1234 SuperTag
-      128 1568188800 1568196000         100 [%]      0 [1]   1234 SuperTag
-      129 1568196000 1568203200         100 [%]      0 [1]   1234 SuperTag
-      130 1568203200 1568210400         100 [%]      0 [1]   1234 SuperTag
-      131 1568210400 1568217600         100 [%]      0 [1]   1234 SuperTag
-      132 1568217600 1568224800          99 [%]      0 [1]   1234 SuperTag
-      133 1568224800 1568232000         100 [%]      0 [1]   1234 SuperTag
-      134 1568232000 1568239200          99 [%]      0 [1]   1234 SuperTag
-      135 1568239200 1568246400         100 [%]      0 [1]   1234 SuperTag
-      136 1568246400 1568253600         100 [%]      0 [1]   1234 SuperTag
-      137 1568253600 1568260800         100 [%]      0 [1]   1234 SuperTag
-      138 1568260800 1568268000         100 [%]      0 [1]   1234 SuperTag
-      139 1568268000 1568275200         100 [%]      0 [1]   1234 SuperTag
-      140 1568275200 1568282400         100 [%]      0 [1]   1234 SuperTag
-      141 1568282400 1568289600         100 [%]      0 [1]   1234 SuperTag
-      142 1568289600 1568296800         100 [%]      0 [1]   1234 SuperTag
-      143 1568296800 1568304000         100 [%]      0 [1]   1234 SuperTag
-      144 1568304000 1568311200         100 [%]      0 [1]   1234 SuperTag
-      145 1568311200 1568318400         100 [%]      0 [1]   1234 SuperTag
-      146 1568318400 1568325600         100 [%]      0 [1]   1234 SuperTag
-      147 1568325600 1568332800         100 [%]      0 [1]   1234 SuperTag
-      148 1568332800 1568340000         100 [%]      0 [1]   1234 SuperTag
-      149 1568340000 1568347200         100 [%]      0 [1]   1234 SuperTag
-      150 1568347200 1568354400         100 [%]      0 [1]   1234 SuperTag
-      151 1568354400 1568361600         100 [%]      0 [1]   1234 SuperTag
-      152 1568361600 1568368800          80 [%]    127 [1]   1234 SuperTag
-      153 1568368800 1568376000          68 [%]    127 [1]   1234 SuperTag
-      154 1568376000 1568383200          68 [%]    127 [1]   1234 SuperTag
-      155 1568383200 1568390400          69 [%]    127 [1]   1234 SuperTag
-      156 1568390400 1568397600          71 [%]    127 [1]   1234 SuperTag
-      157 1568397600 1568404800          70 [%]    127 [1]   1234 SuperTag
-      158 1568404800 1568412000          71 [%]    127 [1]   1234 SuperTag
-      159 1568412000 1568419200          71 [%]    127 [1]   1234 SuperTag
-      160 1568419200 1568426400          70 [%]    127 [1]   1234 SuperTag
-      161 1568426400 1568433600          71 [%]    127 [1]   1234 SuperTag
-      162 1568433600 1568440800          71 [%]    127 [1]   1234 SuperTag
-      163 1568440800 1568448000          71 [%]    127 [1]   1234 SuperTag
-      164 1568448000 1568455200           0 [%]      0 [1]   1234 SuperTag
-      165 1568455200 1568462400           0 [%]      0 [1]   1234 SuperTag
-      166 1568462400 1568469600           0 [%]      0 [1]   1234 SuperTag
-      167 1568469600 1568476800           0 [%]      0 [1]   1234 SuperTag
-      168 1568476800 1568484000           0 [%]      0 [1]   1234 SuperTag
-      169 1568484000 1568491200           0 [%]      0 [1]   1234 SuperTag
-      170 1568491200 1568498400           0 [%]      0 [1]   1234 SuperTag
-      171 1568498400 1568505600           0 [%]      0 [1]   1234 SuperTag
-      172 1568505600 1568512800           0 [%]      0 [1]   1234 SuperTag
-      173 1568512800 1568520000           0 [%]      0 [1]   1234 SuperTag
-      174 1568520000 1568527200           0 [%]      0 [1]   1234 SuperTag
-      175 1568527200 1568534400           0 [%]      0 [1]   1234 SuperTag
+          START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_NUM TAG_TYPE
+      1   1567274400 1567281600          59 [%]    124 [1]    1234 SuperTag
+      2   1567281600 1567288800          37 [%]    127 [1]    1234 SuperTag
+      3   1567288800 1567296000          53 [%]    127 [1]    1234 SuperTag
+      4   1567296000 1567303200          45 [%]    127 [1]    1234 SuperTag
+      5   1567303200 1567310400          49 [%]    127 [1]    1234 SuperTag
+      6   1567310400 1567317600          72 [%]    127 [1]    1234 SuperTag
+      7   1567317600 1567324800         100 [%]      0 [1]    1234 SuperTag
+      8   1567324800 1567332000         100 [%]      0 [1]    1234 SuperTag
+      9   1567332000 1567339200         100 [%]      0 [1]    1234 SuperTag
+      10  1567339200 1567346400         100 [%]      0 [1]    1234 SuperTag
+      11  1567346400 1567353600         100 [%]      0 [1]    1234 SuperTag
+      12  1567353600 1567360800          99 [%]      0 [1]    1234 SuperTag
+      13  1567360800 1567368000          86 [%]     65 [1]    1234 SuperTag
+      14  1567368000 1567375200           4 [%]     34 [1]    1234 SuperTag
+      15  1567375200 1567382400          45 [%]      0 [1]    1234 SuperTag
+      16  1567382400 1567389600         100 [%]      0 [1]    1234 SuperTag
+      17  1567389600 1567396800         100 [%]      0 [1]    1234 SuperTag
+      18  1567396800 1567404000          99 [%]      0 [1]    1234 SuperTag
+      19  1567404000 1567411200         100 [%]      0 [1]    1234 SuperTag
+      20  1567411200 1567418400          99 [%]      0 [1]    1234 SuperTag
+      21  1567418400 1567425600         100 [%]      0 [1]    1234 SuperTag
+      22  1567425600 1567432800         100 [%]      0 [1]    1234 SuperTag
+      23  1567432800 1567440000         100 [%]      0 [1]    1234 SuperTag
+      24  1567440000 1567447200         100 [%]      0 [1]    1234 SuperTag
+      25  1567447200 1567454400          99 [%]      0 [1]    1234 SuperTag
+      26  1567454400 1567461600         100 [%]      0 [1]    1234 SuperTag
+      27  1567461600 1567468800         100 [%]      0 [1]    1234 SuperTag
+      28  1567468800 1567476000         100 [%]      0 [1]    1234 SuperTag
+      29  1567476000 1567483200         100 [%]      0 [1]    1234 SuperTag
+      30  1567483200 1567490400         100 [%]      0 [1]    1234 SuperTag
+      31  1567490400 1567497600         100 [%]      0 [1]    1234 SuperTag
+      32  1567497600 1567504800          99 [%]      0 [1]    1234 SuperTag
+      33  1567504800 1567512000         100 [%]      0 [1]    1234 SuperTag
+      34  1567512000 1567519200         100 [%]      0 [1]    1234 SuperTag
+      35  1567519200 1567526400         100 [%]      0 [1]    1234 SuperTag
+      36  1567526400 1567533600         100 [%]      0 [1]    1234 SuperTag
+      37  1567533600 1567540800         100 [%]      0 [1]    1234 SuperTag
+      38  1567540800 1567548000         100 [%]      0 [1]    1234 SuperTag
+      39  1567548000 1567555200         100 [%]      0 [1]    1234 SuperTag
+      40  1567555200 1567562400         100 [%]      0 [1]    1234 SuperTag
+      41  1567562400 1567569600         100 [%]      0 [1]    1234 SuperTag
+      42  1567569600 1567576800         100 [%]      0 [1]    1234 SuperTag
+      43  1567576800 1567584000          99 [%]      0 [1]    1234 SuperTag
+      44  1567584000 1567591200          99 [%]      0 [1]    1234 SuperTag
+      45  1567591200 1567598400         100 [%]      0 [1]    1234 SuperTag
+      46  1567598400 1567605600         100 [%]      0 [1]    1234 SuperTag
+      47  1567605600 1567612800         100 [%]      0 [1]    1234 SuperTag
+      48  1567612800 1567620000         100 [%]      0 [1]    1234 SuperTag
+      49  1567620000 1567627200         100 [%]      0 [1]    1234 SuperTag
+      50  1567627200 1567634400          99 [%]      0 [1]    1234 SuperTag
+      51  1567634400 1567641600         100 [%]      0 [1]    1234 SuperTag
+      52  1567641600 1567648800         100 [%]      0 [1]    1234 SuperTag
+      53  1567648800 1567656000         100 [%]      0 [1]    1234 SuperTag
+      54  1567656000 1567663200         100 [%]      0 [1]    1234 SuperTag
+      55  1567663200 1567670400         100 [%]      0 [1]    1234 SuperTag
+      56  1567670400 1567677600          99 [%]      0 [1]    1234 SuperTag
+      57  1567677600 1567684800          99 [%]      0 [1]    1234 SuperTag
+      58  1567684800 1567692000         100 [%]      0 [1]    1234 SuperTag
+      59  1567692000 1567699200         100 [%]      0 [1]    1234 SuperTag
+      60  1567699200 1567706400         100 [%]      0 [1]    1234 SuperTag
+      61  1567706400 1567713600          98 [%]      1 [1]    1234 SuperTag
+      62  1567713600 1567720800          99 [%]      0 [1]    1234 SuperTag
+      63  1567720800 1567728000         100 [%]      0 [1]    1234 SuperTag
+      64  1567728000 1567735200          99 [%]      0 [1]    1234 SuperTag
+      65  1567735200 1567742400         100 [%]      0 [1]    1234 SuperTag
+      66  1567742400 1567749600         100 [%]      0 [1]    1234 SuperTag
+      67  1567749600 1567756800         100 [%]      0 [1]    1234 SuperTag
+      68  1567756800 1567764000         100 [%]      0 [1]    1234 SuperTag
+      69  1567764000 1567771200          99 [%]      0 [1]    1234 SuperTag
+      70  1567771200 1567778400          99 [%]      0 [1]    1234 SuperTag
+      71  1567778400 1567785600         100 [%]      0 [1]    1234 SuperTag
+      72  1567785600 1567792800         100 [%]      0 [1]    1234 SuperTag
+      73  1567792800 1567800000         100 [%]      0 [1]    1234 SuperTag
+      74  1567800000 1567807200         100 [%]      0 [1]    1234 SuperTag
+      75  1567807200 1567814400         100 [%]      0 [1]    1234 SuperTag
+      76  1567814400 1567821600         100 [%]      0 [1]    1234 SuperTag
+      77  1567821600 1567828800         100 [%]      0 [1]    1234 SuperTag
+      78  1567828800 1567836000         100 [%]      0 [1]    1234 SuperTag
+      79  1567836000 1567843200         100 [%]      0 [1]    1234 SuperTag
+      80  1567843200 1567850400         100 [%]      0 [1]    1234 SuperTag
+      81  1567850400 1567857600          99 [%]      0 [1]    1234 SuperTag
+      82  1567857600 1567864800         100 [%]      0 [1]    1234 SuperTag
+      83  1567864800 1567872000         100 [%]      0 [1]    1234 SuperTag
+      84  1567872000 1567879200         100 [%]      0 [1]    1234 SuperTag
+      85  1567879200 1567886400         100 [%]      0 [1]    1234 SuperTag
+      86  1567886400 1567893600         100 [%]      0 [1]    1234 SuperTag
+      87  1567893600 1567900800         100 [%]      0 [1]    1234 SuperTag
+      88  1567900800 1567908000         100 [%]      0 [1]    1234 SuperTag
+      89  1567908000 1567915200         100 [%]      0 [1]    1234 SuperTag
+      90  1567915200 1567922400         100 [%]      0 [1]    1234 SuperTag
+      91  1567922400 1567929600          99 [%]      0 [1]    1234 SuperTag
+      92  1567929600 1567936800         100 [%]      0 [1]    1234 SuperTag
+      93  1567936800 1567944000         100 [%]      0 [1]    1234 SuperTag
+      94  1567944000 1567951200          99 [%]      0 [1]    1234 SuperTag
+      95  1567951200 1567958400          99 [%]      0 [1]    1234 SuperTag
+      96  1567958400 1567965600         100 [%]      0 [1]    1234 SuperTag
+      97  1567965600 1567972800         100 [%]      0 [1]    1234 SuperTag
+      98  1567972800 1567980000         100 [%]      0 [1]    1234 SuperTag
+      99  1567980000 1567987200         100 [%]      0 [1]    1234 SuperTag
+      100 1567987200 1567994400         100 [%]      0 [1]    1234 SuperTag
+      101 1567994400 1568001600         100 [%]      0 [1]    1234 SuperTag
+      102 1568001600 1568008800         100 [%]      0 [1]    1234 SuperTag
+      103 1568008800 1568016000         100 [%]      0 [1]    1234 SuperTag
+      104 1568016000 1568023200         100 [%]      0 [1]    1234 SuperTag
+      105 1568023200 1568030400         100 [%]      0 [1]    1234 SuperTag
+      106 1568030400 1568037600         100 [%]      0 [1]    1234 SuperTag
+      107 1568037600 1568044800         100 [%]      0 [1]    1234 SuperTag
+      108 1568044800 1568052000         100 [%]      0 [1]    1234 SuperTag
+      109 1568052000 1568059200         100 [%]      0 [1]    1234 SuperTag
+      110 1568059200 1568066400          99 [%]      0 [1]    1234 SuperTag
+      111 1568066400 1568073600         100 [%]      0 [1]    1234 SuperTag
+      112 1568073600 1568080800         100 [%]      0 [1]    1234 SuperTag
+      113 1568080800 1568088000         100 [%]      0 [1]    1234 SuperTag
+      114 1568088000 1568095200         100 [%]      0 [1]    1234 SuperTag
+      115 1568095200 1568102400         100 [%]      0 [1]    1234 SuperTag
+      116 1568102400 1568109600         100 [%]      0 [1]    1234 SuperTag
+      117 1568109600 1568116800         100 [%]      0 [1]    1234 SuperTag
+      118 1568116800 1568124000         100 [%]      0 [1]    1234 SuperTag
+      119 1568124000 1568131200         100 [%]      0 [1]    1234 SuperTag
+      120 1568131200 1568138400         100 [%]      0 [1]    1234 SuperTag
+      121 1568138400 1568145600         100 [%]      0 [1]    1234 SuperTag
+      122 1568145600 1568152800         100 [%]      0 [1]    1234 SuperTag
+      123 1568152800 1568160000         100 [%]      0 [1]    1234 SuperTag
+      124 1568160000 1568167200         100 [%]      0 [1]    1234 SuperTag
+      125 1568167200 1568174400         100 [%]      0 [1]    1234 SuperTag
+      126 1568174400 1568181600         100 [%]      0 [1]    1234 SuperTag
+      127 1568181600 1568188800         100 [%]      0 [1]    1234 SuperTag
+      128 1568188800 1568196000         100 [%]      0 [1]    1234 SuperTag
+      129 1568196000 1568203200         100 [%]      0 [1]    1234 SuperTag
+      130 1568203200 1568210400         100 [%]      0 [1]    1234 SuperTag
+      131 1568210400 1568217600         100 [%]      0 [1]    1234 SuperTag
+      132 1568217600 1568224800          99 [%]      0 [1]    1234 SuperTag
+      133 1568224800 1568232000         100 [%]      0 [1]    1234 SuperTag
+      134 1568232000 1568239200          99 [%]      0 [1]    1234 SuperTag
+      135 1568239200 1568246400         100 [%]      0 [1]    1234 SuperTag
+      136 1568246400 1568253600         100 [%]      0 [1]    1234 SuperTag
+      137 1568253600 1568260800         100 [%]      0 [1]    1234 SuperTag
+      138 1568260800 1568268000         100 [%]      0 [1]    1234 SuperTag
+      139 1568268000 1568275200         100 [%]      0 [1]    1234 SuperTag
+      140 1568275200 1568282400         100 [%]      0 [1]    1234 SuperTag
+      141 1568282400 1568289600         100 [%]      0 [1]    1234 SuperTag
+      142 1568289600 1568296800         100 [%]      0 [1]    1234 SuperTag
+      143 1568296800 1568304000         100 [%]      0 [1]    1234 SuperTag
+      144 1568304000 1568311200         100 [%]      0 [1]    1234 SuperTag
+      145 1568311200 1568318400         100 [%]      0 [1]    1234 SuperTag
+      146 1568318400 1568325600         100 [%]      0 [1]    1234 SuperTag
+      147 1568325600 1568332800         100 [%]      0 [1]    1234 SuperTag
+      148 1568332800 1568340000         100 [%]      0 [1]    1234 SuperTag
+      149 1568340000 1568347200         100 [%]      0 [1]    1234 SuperTag
+      150 1568347200 1568354400         100 [%]      0 [1]    1234 SuperTag
+      151 1568354400 1568361600         100 [%]      0 [1]    1234 SuperTag
+      152 1568361600 1568368800          80 [%]    127 [1]    1234 SuperTag
+      153 1568368800 1568376000          68 [%]    127 [1]    1234 SuperTag
+      154 1568376000 1568383200          68 [%]    127 [1]    1234 SuperTag
+      155 1568383200 1568390400          69 [%]    127 [1]    1234 SuperTag
+      156 1568390400 1568397600          71 [%]    127 [1]    1234 SuperTag
+      157 1568397600 1568404800          70 [%]    127 [1]    1234 SuperTag
+      158 1568404800 1568412000          71 [%]    127 [1]    1234 SuperTag
+      159 1568412000 1568419200          71 [%]    127 [1]    1234 SuperTag
+      160 1568419200 1568426400          70 [%]    127 [1]    1234 SuperTag
+      161 1568426400 1568433600          71 [%]    127 [1]    1234 SuperTag
+      162 1568433600 1568440800          71 [%]    127 [1]    1234 SuperTag
+      163 1568440800 1568448000          71 [%]    127 [1]    1234 SuperTag
+      164 1568448000 1568455200           0 [%]      0 [1]    1234 SuperTag
+      165 1568455200 1568462400           0 [%]      0 [1]    1234 SuperTag
+      166 1568462400 1568469600           0 [%]      0 [1]    1234 SuperTag
+      167 1568469600 1568476800           0 [%]      0 [1]    1234 SuperTag
+      168 1568476800 1568484000           0 [%]      0 [1]    1234 SuperTag
+      169 1568484000 1568491200           0 [%]      0 [1]    1234 SuperTag
+      170 1568491200 1568498400           0 [%]      0 [1]    1234 SuperTag
+      171 1568498400 1568505600           0 [%]      0 [1]    1234 SuperTag
+      172 1568505600 1568512800           0 [%]      0 [1]    1234 SuperTag
+      173 1568512800 1568520000           0 [%]      0 [1]    1234 SuperTag
+      174 1568520000 1568527200           0 [%]      0 [1]    1234 SuperTag
+      175 1568527200 1568534400           0 [%]      0 [1]    1234 SuperTag
 
 # Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175157
 
@@ -2537,8 +2537,8 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_ID TAG_TYPE
-      1 Wildlife Computers Benthic sPAT   1234 SuperTag
+                      MAKE        MODEL TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT    1234 SuperTag
 
 ---
 
@@ -4213,990 +4213,990 @@
       831                           1248                             76
       832                            507                            179
       833                           1098                             73
-          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_ID TAG_TYPE
-      1                                   81   1234 SuperTag
-      2                                   81   1234 SuperTag
-      3                                   91   1234 SuperTag
-      4                                  120   1234 SuperTag
-      5                                   NA   1234 SuperTag
-      6                                   86   1234 SuperTag
-      7                                   94   1234 SuperTag
-      8                                   96   1234 SuperTag
-      9                                   88   1234 SuperTag
-      10                                  83   1234 SuperTag
-      11                                 148   1234 SuperTag
-      12                                 162   1234 SuperTag
-      13                                 101   1234 SuperTag
-      14                                 113   1234 SuperTag
-      15                                  74   1234 SuperTag
-      16                                 162   1234 SuperTag
-      17                                  92   1234 SuperTag
-      18                                  92   1234 SuperTag
-      19                                  90   1234 SuperTag
-      20                                  93   1234 SuperTag
-      21                                 136   1234 SuperTag
-      22                                 120   1234 SuperTag
-      23                                  66   1234 SuperTag
-      24                                 129   1234 SuperTag
-      25                                 100   1234 SuperTag
-      26                                 104   1234 SuperTag
-      27                                  82   1234 SuperTag
-      28                                  91   1234 SuperTag
-      29                                  98   1234 SuperTag
-      30                                  93   1234 SuperTag
-      31                                  88   1234 SuperTag
-      32                                  99   1234 SuperTag
-      33                                 164   1234 SuperTag
-      34                                  98   1234 SuperTag
-      35                                 102   1234 SuperTag
-      36                                  97   1234 SuperTag
-      37                                  66   1234 SuperTag
-      38                                 115   1234 SuperTag
-      39                                  79   1234 SuperTag
-      40                                  93   1234 SuperTag
-      41                                  84   1234 SuperTag
-      42                                 102   1234 SuperTag
-      43                                 158   1234 SuperTag
-      44                                 175   1234 SuperTag
-      45                                 113   1234 SuperTag
-      46                                  76   1234 SuperTag
-      47                                  16   1234 SuperTag
-      48                                 106   1234 SuperTag
-      49                                 164   1234 SuperTag
-      50                                  87   1234 SuperTag
-      51                                  88   1234 SuperTag
-      52                                 110   1234 SuperTag
-      53                                 111   1234 SuperTag
-      54                                  92   1234 SuperTag
-      55                                 110   1234 SuperTag
-      56                                  80   1234 SuperTag
-      57                                  96   1234 SuperTag
-      58                                 141   1234 SuperTag
-      59                                  79   1234 SuperTag
-      60                                  64   1234 SuperTag
-      61                                 102   1234 SuperTag
-      62                                  78   1234 SuperTag
-      63                                 104   1234 SuperTag
-      64                                  76   1234 SuperTag
-      65                                  83   1234 SuperTag
-      66                                  97   1234 SuperTag
-      67                                  84   1234 SuperTag
-      68                                  86   1234 SuperTag
-      69                                  93   1234 SuperTag
-      70                                 120   1234 SuperTag
-      71                                 158   1234 SuperTag
-      72                                 156   1234 SuperTag
-      73                                  58   1234 SuperTag
-      74                                 134   1234 SuperTag
-      75                                  85   1234 SuperTag
-      76                                  80   1234 SuperTag
-      77                                  94   1234 SuperTag
-      78                                 100   1234 SuperTag
-      79                                 117   1234 SuperTag
-      80                                 102   1234 SuperTag
-      81                                 146   1234 SuperTag
-      82                                 136   1234 SuperTag
-      83                                 133   1234 SuperTag
-      84                                 100   1234 SuperTag
-      85                                  87   1234 SuperTag
-      86                                  84   1234 SuperTag
-      87                                  89   1234 SuperTag
-      88                                  95   1234 SuperTag
-      89                                 140   1234 SuperTag
-      90                                  83   1234 SuperTag
-      91                                  95   1234 SuperTag
-      92                                 101   1234 SuperTag
-      93                                  98   1234 SuperTag
-      94                                 104   1234 SuperTag
-      95                                  91   1234 SuperTag
-      96                                  22   1234 SuperTag
-      97                                  78   1234 SuperTag
-      98                                  78   1234 SuperTag
-      99                                  84   1234 SuperTag
-      100                                104   1234 SuperTag
-      101                                140   1234 SuperTag
-      102                                 92   1234 SuperTag
-      103                                125   1234 SuperTag
-      104                                 79   1234 SuperTag
-      105                                 26   1234 SuperTag
-      106                                104   1234 SuperTag
-      107                                 84   1234 SuperTag
-      108                                 95   1234 SuperTag
-      109                                102   1234 SuperTag
-      110                                 82   1234 SuperTag
-      111                                113   1234 SuperTag
-      112                                 78   1234 SuperTag
-      113                                 83   1234 SuperTag
-      114                                157   1234 SuperTag
-      115                                 75   1234 SuperTag
-      116                                100   1234 SuperTag
-      117                                 90   1234 SuperTag
-      118                                101   1234 SuperTag
-      119                                 76   1234 SuperTag
-      120                                 79   1234 SuperTag
-      121                                 85   1234 SuperTag
-      122                                 82   1234 SuperTag
-      123                                 82   1234 SuperTag
-      124                                 66   1234 SuperTag
-      125                                117   1234 SuperTag
-      126                                174   1234 SuperTag
-      127                                 67   1234 SuperTag
-      128                                 81   1234 SuperTag
-      129                                138   1234 SuperTag
-      130                                143   1234 SuperTag
-      131                                 79   1234 SuperTag
-      132                                 90   1234 SuperTag
-      133                                123   1234 SuperTag
-      134                                 91   1234 SuperTag
-      135                                 96   1234 SuperTag
-      136                                156   1234 SuperTag
-      137                                101   1234 SuperTag
-      138                                 87   1234 SuperTag
-      139                                 87   1234 SuperTag
-      140                                 91   1234 SuperTag
-      141                                 94   1234 SuperTag
-      142                                100   1234 SuperTag
-      143                                 83   1234 SuperTag
-      144                                100   1234 SuperTag
-      145                                 99   1234 SuperTag
-      146                                101   1234 SuperTag
-      147                                162   1234 SuperTag
-      148                                103   1234 SuperTag
-      149                                 87   1234 SuperTag
-      150                                  8   1234 SuperTag
-      151                                 68   1234 SuperTag
-      152                                 76   1234 SuperTag
-      153                                150   1234 SuperTag
-      154                                141   1234 SuperTag
-      155                                157   1234 SuperTag
-      156                                 80   1234 SuperTag
-      157                                108   1234 SuperTag
-      158                                121   1234 SuperTag
-      159                                 78   1234 SuperTag
-      160                                104   1234 SuperTag
-      161                                141   1234 SuperTag
-      162                                111   1234 SuperTag
-      163                                 82   1234 SuperTag
-      164                                 91   1234 SuperTag
-      165                                142   1234 SuperTag
-      166                                 97   1234 SuperTag
-      167                                 72   1234 SuperTag
-      168                                 85   1234 SuperTag
-      169                                 84   1234 SuperTag
-      170                                152   1234 SuperTag
-      171                                 76   1234 SuperTag
-      172                                 96   1234 SuperTag
-      173                                 82   1234 SuperTag
-      174                                 78   1234 SuperTag
-      175                                 45   1234 SuperTag
-      176                                 85   1234 SuperTag
-      177                                 97   1234 SuperTag
-      178                                 83   1234 SuperTag
-      179                                147   1234 SuperTag
-      180                                108   1234 SuperTag
-      181                                 78   1234 SuperTag
-      182                                 93   1234 SuperTag
-      183                                132   1234 SuperTag
-      184                                 89   1234 SuperTag
-      185                                102   1234 SuperTag
-      186                                 74   1234 SuperTag
-      187                                 97   1234 SuperTag
-      188                                 90   1234 SuperTag
-      189                                 90   1234 SuperTag
-      190                                 83   1234 SuperTag
-      191                                 89   1234 SuperTag
-      192                                102   1234 SuperTag
-      193                                 97   1234 SuperTag
-      194                                 86   1234 SuperTag
-      195                                 98   1234 SuperTag
-      196                                100   1234 SuperTag
-      197                                100   1234 SuperTag
-      198                                100   1234 SuperTag
-      199                                108   1234 SuperTag
-      200                                104   1234 SuperTag
-      201                                 82   1234 SuperTag
-      202                                 27   1234 SuperTag
-      203                                 75   1234 SuperTag
-      204                                 88   1234 SuperTag
-      205                                111   1234 SuperTag
-      206                                106   1234 SuperTag
-      207                                 85   1234 SuperTag
-      208                                 73   1234 SuperTag
-      209                                112   1234 SuperTag
-      210                                 96   1234 SuperTag
-      211                                146   1234 SuperTag
-      212                                 82   1234 SuperTag
-      213                                 99   1234 SuperTag
-      214                                106   1234 SuperTag
-      215                                 79   1234 SuperTag
-      216                                 99   1234 SuperTag
-      217                                 98   1234 SuperTag
-      218                                125   1234 SuperTag
-      219                                108   1234 SuperTag
-      220                                 82   1234 SuperTag
-      221                                 79   1234 SuperTag
-      222                                 45   1234 SuperTag
-      223                                 84   1234 SuperTag
-      224                                 99   1234 SuperTag
-      225                                 77   1234 SuperTag
-      226                                 83   1234 SuperTag
-      227                                143   1234 SuperTag
-      228                                 80   1234 SuperTag
-      229                                 88   1234 SuperTag
-      230                                 79   1234 SuperTag
-      231                                 94   1234 SuperTag
-      232                                 52   1234 SuperTag
-      233                                 63   1234 SuperTag
-      234                                168   1234 SuperTag
-      235                                106   1234 SuperTag
-      236                                 71   1234 SuperTag
-      237                                 88   1234 SuperTag
-      238                                 93   1234 SuperTag
-      239                                 82   1234 SuperTag
-      240                                 81   1234 SuperTag
-      241                                101   1234 SuperTag
-      242                                 87   1234 SuperTag
-      243                                 75   1234 SuperTag
-      244                                107   1234 SuperTag
-      245                                123   1234 SuperTag
-      246                                 47   1234 SuperTag
-      247                                110   1234 SuperTag
-      248                                100   1234 SuperTag
-      249                                104   1234 SuperTag
-      250                                 79   1234 SuperTag
-      251                                 94   1234 SuperTag
-      252                                 97   1234 SuperTag
-      253                                 98   1234 SuperTag
-      254                                  8   1234 SuperTag
-      255                                117   1234 SuperTag
-      256                                103   1234 SuperTag
-      257                                 99   1234 SuperTag
-      258                                107   1234 SuperTag
-      259                                156   1234 SuperTag
-      260                                 96   1234 SuperTag
-      261                                 90   1234 SuperTag
-      262                                 92   1234 SuperTag
-      263                                 91   1234 SuperTag
-      264                                 89   1234 SuperTag
-      265                                 92   1234 SuperTag
-      266                                 66   1234 SuperTag
-      267                                 53   1234 SuperTag
-      268                                105   1234 SuperTag
-      269                                 80   1234 SuperTag
-      270                                 90   1234 SuperTag
-      271                                 86   1234 SuperTag
-      272                                107   1234 SuperTag
-      273                                 86   1234 SuperTag
-      274                                104   1234 SuperTag
-      275                                 73   1234 SuperTag
-      276                                 80   1234 SuperTag
-      277                                134   1234 SuperTag
-      278                                 92   1234 SuperTag
-      279                                 67   1234 SuperTag
-      280                                101   1234 SuperTag
-      281                                 77   1234 SuperTag
-      282                                 72   1234 SuperTag
-      283                                 93   1234 SuperTag
-      284                                 79   1234 SuperTag
-      285                                 74   1234 SuperTag
-      286                                 98   1234 SuperTag
-      287                                 84   1234 SuperTag
-      288                                 89   1234 SuperTag
-      289                                 72   1234 SuperTag
-      290                                 65   1234 SuperTag
-      291                                144   1234 SuperTag
-      292                                 30   1234 SuperTag
-      293                                 68   1234 SuperTag
-      294                                102   1234 SuperTag
-      295                                 79   1234 SuperTag
-      296                                101   1234 SuperTag
-      297                                 79   1234 SuperTag
-      298                                 86   1234 SuperTag
-      299                                142   1234 SuperTag
-      300                                 97   1234 SuperTag
-      301                                 67   1234 SuperTag
-      302                                 77   1234 SuperTag
-      303                                 90   1234 SuperTag
-      304                                 92   1234 SuperTag
-      305                                100   1234 SuperTag
-      306                                 88   1234 SuperTag
-      307                                 98   1234 SuperTag
-      308                                102   1234 SuperTag
-      309                                 99   1234 SuperTag
-      310                                 99   1234 SuperTag
-      311                                170   1234 SuperTag
-      312                                 94   1234 SuperTag
-      313                                 82   1234 SuperTag
-      314                                 93   1234 SuperTag
-      315                                 68   1234 SuperTag
-      316                                108   1234 SuperTag
-      317                                 89   1234 SuperTag
-      318                                 92   1234 SuperTag
-      319                                163   1234 SuperTag
-      320                                100   1234 SuperTag
-      321                                149   1234 SuperTag
-      322                                 79   1234 SuperTag
-      323                                123   1234 SuperTag
-      324                                107   1234 SuperTag
-      325                                112   1234 SuperTag
-      326                                 75   1234 SuperTag
-      327                                100   1234 SuperTag
-      328                                 14   1234 SuperTag
-      329                                115   1234 SuperTag
-      330                                 98   1234 SuperTag
-      331                                 79   1234 SuperTag
-      332                                 98   1234 SuperTag
-      333                                 89   1234 SuperTag
-      334                                 NA   1234 SuperTag
-      335                                 88   1234 SuperTag
-      336                                 88   1234 SuperTag
-      337                                 87   1234 SuperTag
-      338                                 19   1234 SuperTag
-      339                                 71   1234 SuperTag
-      340                                130   1234 SuperTag
-      341                                139   1234 SuperTag
-      342                                 18   1234 SuperTag
-      343                                105   1234 SuperTag
-      344                                 93   1234 SuperTag
-      345                                 66   1234 SuperTag
-      346                                101   1234 SuperTag
-      347                                101   1234 SuperTag
-      348                                 87   1234 SuperTag
-      349                                156   1234 SuperTag
-      350                                 96   1234 SuperTag
-      351                                 80   1234 SuperTag
-      352                                 91   1234 SuperTag
-      353                                 70   1234 SuperTag
-      354                                 93   1234 SuperTag
-      355                                 84   1234 SuperTag
-      356                                147   1234 SuperTag
-      357                                 91   1234 SuperTag
-      358                                 95   1234 SuperTag
-      359                                103   1234 SuperTag
-      360                                  2   1234 SuperTag
-      361                                102   1234 SuperTag
-      362                                 85   1234 SuperTag
-      363                                 90   1234 SuperTag
-      364                                 94   1234 SuperTag
-      365                                 58   1234 SuperTag
-      366                                 93   1234 SuperTag
-      367                                115   1234 SuperTag
-      368                                 76   1234 SuperTag
-      369                                 46   1234 SuperTag
-      370                                  0   1234 SuperTag
-      371                                104   1234 SuperTag
-      372                                 73   1234 SuperTag
-      373                                113   1234 SuperTag
-      374                                 90   1234 SuperTag
-      375                                 85   1234 SuperTag
-      376                                 96   1234 SuperTag
-      377                                 79   1234 SuperTag
-      378                                 91   1234 SuperTag
-      379                                 80   1234 SuperTag
-      380                                 77   1234 SuperTag
-      381                                 82   1234 SuperTag
-      382                                114   1234 SuperTag
-      383                                 80   1234 SuperTag
-      384                                 64   1234 SuperTag
-      385                                 85   1234 SuperTag
-      386                                117   1234 SuperTag
-      387                                111   1234 SuperTag
-      388                                109   1234 SuperTag
-      389                                 75   1234 SuperTag
-      390                                 63   1234 SuperTag
-      391                                148   1234 SuperTag
-      392                                 82   1234 SuperTag
-      393                                 98   1234 SuperTag
-      394                                 92   1234 SuperTag
-      395                                 83   1234 SuperTag
-      396                                 94   1234 SuperTag
-      397                                101   1234 SuperTag
-      398                                 80   1234 SuperTag
-      399                                105   1234 SuperTag
-      400                                 82   1234 SuperTag
-      401                                161   1234 SuperTag
-      402                                 99   1234 SuperTag
-      403                                 66   1234 SuperTag
-      404                                 NA   1234 SuperTag
-      405                                154   1234 SuperTag
-      406                                101   1234 SuperTag
-      407                                 88   1234 SuperTag
-      408                                 88   1234 SuperTag
-      409                                 85   1234 SuperTag
-      410                                139   1234 SuperTag
-      411                                140   1234 SuperTag
-      412                                 88   1234 SuperTag
-      413                                143   1234 SuperTag
-      414                                102   1234 SuperTag
-      415                                 13   1234 SuperTag
-      416                                 76   1234 SuperTag
-      417                                 79   1234 SuperTag
-      418                                 47   1234 SuperTag
-      419                                 85   1234 SuperTag
-      420                                 93   1234 SuperTag
-      421                                 98   1234 SuperTag
-      422                                 90   1234 SuperTag
-      423                                126   1234 SuperTag
-      424                                100   1234 SuperTag
-      425                                 84   1234 SuperTag
-      426                                 92   1234 SuperTag
-      427                                104   1234 SuperTag
-      428                                 77   1234 SuperTag
-      429                                 79   1234 SuperTag
-      430                                 77   1234 SuperTag
-      431                                126   1234 SuperTag
-      432                                 84   1234 SuperTag
-      433                                 87   1234 SuperTag
-      434                                 67   1234 SuperTag
-      435                                 85   1234 SuperTag
-      436                                101   1234 SuperTag
-      437                                 91   1234 SuperTag
-      438                                 92   1234 SuperTag
-      439                                 44   1234 SuperTag
-      440                                 68   1234 SuperTag
-      441                                136   1234 SuperTag
-      442                                 96   1234 SuperTag
-      443                                106   1234 SuperTag
-      444                                 87   1234 SuperTag
-      445                                104   1234 SuperTag
-      446                                 74   1234 SuperTag
-      447                                 89   1234 SuperTag
-      448                                100   1234 SuperTag
-      449                                 83   1234 SuperTag
-      450                                101   1234 SuperTag
-      451                                 77   1234 SuperTag
-      452                                 99   1234 SuperTag
-      453                                 97   1234 SuperTag
-      454                                 88   1234 SuperTag
-      455                                100   1234 SuperTag
-      456                                101   1234 SuperTag
-      457                                100   1234 SuperTag
-      458                                 85   1234 SuperTag
-      459                                 82   1234 SuperTag
-      460                                 98   1234 SuperTag
-      461                                176   1234 SuperTag
-      462                                106   1234 SuperTag
-      463                                100   1234 SuperTag
-      464                                177   1234 SuperTag
-      465                                140   1234 SuperTag
-      466                                 78   1234 SuperTag
-      467                                 83   1234 SuperTag
-      468                                 24   1234 SuperTag
-      469                                 77   1234 SuperTag
-      470                                 96   1234 SuperTag
-      471                                 77   1234 SuperTag
-      472                                 90   1234 SuperTag
-      473                                123   1234 SuperTag
-      474                                 94   1234 SuperTag
-      475                                 79   1234 SuperTag
-      476                                111   1234 SuperTag
-      477                                 99   1234 SuperTag
-      478                                109   1234 SuperTag
-      479                                 76   1234 SuperTag
-      480                                 79   1234 SuperTag
-      481                                  4   1234 SuperTag
-      482                                 75   1234 SuperTag
-      483                                 83   1234 SuperTag
-      484                                 80   1234 SuperTag
-      485                                 87   1234 SuperTag
-      486                                 96   1234 SuperTag
-      487                                 97   1234 SuperTag
-      488                                105   1234 SuperTag
-      489                                129   1234 SuperTag
-      490                                 76   1234 SuperTag
-      491                                 97   1234 SuperTag
-      492                                 93   1234 SuperTag
-      493                                 85   1234 SuperTag
-      494                                107   1234 SuperTag
-      495                                134   1234 SuperTag
-      496                                 37   1234 SuperTag
-      497                                 49   1234 SuperTag
-      498                                 92   1234 SuperTag
-      499                                 87   1234 SuperTag
-      500                                 95   1234 SuperTag
-      501                                 95   1234 SuperTag
-      502                                 90   1234 SuperTag
-      503                                 99   1234 SuperTag
-      504                                101   1234 SuperTag
-      505                                 87   1234 SuperTag
-      506                                 98   1234 SuperTag
-      507                                100   1234 SuperTag
-      508                                102   1234 SuperTag
-      509                                 99   1234 SuperTag
-      510                                168   1234 SuperTag
-      511                                100   1234 SuperTag
-      512                                 52   1234 SuperTag
-      513                                 79   1234 SuperTag
-      514                                 35   1234 SuperTag
-      515                                 40   1234 SuperTag
-      516                                114   1234 SuperTag
-      517                                123   1234 SuperTag
-      518                                141   1234 SuperTag
-      519                                108   1234 SuperTag
-      520                                140   1234 SuperTag
-      521                                100   1234 SuperTag
-      522                                 77   1234 SuperTag
-      523                                 79   1234 SuperTag
-      524                                 98   1234 SuperTag
-      525                                 86   1234 SuperTag
-      526                                 27   1234 SuperTag
-      527                                 73   1234 SuperTag
-      528                                101   1234 SuperTag
-      529                                101   1234 SuperTag
-      530                                 80   1234 SuperTag
-      531                                105   1234 SuperTag
-      532                                 77   1234 SuperTag
-      533                                 99   1234 SuperTag
-      534                                 86   1234 SuperTag
-      535                                 90   1234 SuperTag
-      536                                121   1234 SuperTag
-      537                                 67   1234 SuperTag
-      538                                 98   1234 SuperTag
-      539                                153   1234 SuperTag
-      540                                 84   1234 SuperTag
-      541                                 95   1234 SuperTag
-      542                                 86   1234 SuperTag
-      543                                150   1234 SuperTag
-      544                                 93   1234 SuperTag
-      545                                 23   1234 SuperTag
-      546                                142   1234 SuperTag
-      547                                 85   1234 SuperTag
-      548                                 97   1234 SuperTag
-      549                                141   1234 SuperTag
-      550                                 70   1234 SuperTag
-      551                                 96   1234 SuperTag
-      552                                 95   1234 SuperTag
-      553                                 87   1234 SuperTag
-      554                                101   1234 SuperTag
-      555                                 95   1234 SuperTag
-      556                                104   1234 SuperTag
-      557                                 98   1234 SuperTag
-      558                                152   1234 SuperTag
-      559                                106   1234 SuperTag
-      560                                150   1234 SuperTag
-      561                                 86   1234 SuperTag
-      562                                 99   1234 SuperTag
-      563                                124   1234 SuperTag
-      564                                100   1234 SuperTag
-      565                                 76   1234 SuperTag
-      566                                 35   1234 SuperTag
-      567                                106   1234 SuperTag
-      568                                145   1234 SuperTag
-      569                                 85   1234 SuperTag
-      570                                105   1234 SuperTag
-      571                                115   1234 SuperTag
-      572                                 61   1234 SuperTag
-      573                                 92   1234 SuperTag
-      574                                106   1234 SuperTag
-      575                                 69   1234 SuperTag
-      576                                116   1234 SuperTag
-      577                                 87   1234 SuperTag
-      578                                 76   1234 SuperTag
-      579                                 90   1234 SuperTag
-      580                                102   1234 SuperTag
-      581                                 86   1234 SuperTag
-      582                                 86   1234 SuperTag
-      583                                 77   1234 SuperTag
-      584                                 87   1234 SuperTag
-      585                                132   1234 SuperTag
-      586                                 70   1234 SuperTag
-      587                                 84   1234 SuperTag
-      588                                 14   1234 SuperTag
-      589                                139   1234 SuperTag
-      590                                117   1234 SuperTag
-      591                                 81   1234 SuperTag
-      592                                 77   1234 SuperTag
-      593                                 83   1234 SuperTag
-      594                                100   1234 SuperTag
-      595                                 80   1234 SuperTag
-      596                                116   1234 SuperTag
-      597                                 97   1234 SuperTag
-      598                                108   1234 SuperTag
-      599                                 21   1234 SuperTag
-      600                                 91   1234 SuperTag
-      601                                172   1234 SuperTag
-      602                                 71   1234 SuperTag
-      603                                 92   1234 SuperTag
-      604                                101   1234 SuperTag
-      605                                 89   1234 SuperTag
-      606                                 91   1234 SuperTag
-      607                                 92   1234 SuperTag
-      608                                  3   1234 SuperTag
-      609                                 98   1234 SuperTag
-      610                                104   1234 SuperTag
-      611                                101   1234 SuperTag
-      612                                136   1234 SuperTag
-      613                                 19   1234 SuperTag
-      614                                 77   1234 SuperTag
-      615                                 70   1234 SuperTag
-      616                                142   1234 SuperTag
-      617                                158   1234 SuperTag
-      618                                148   1234 SuperTag
-      619                                 78   1234 SuperTag
-      620                                109   1234 SuperTag
-      621                                 81   1234 SuperTag
-      622                                105   1234 SuperTag
-      623                                 84   1234 SuperTag
-      624                                 96   1234 SuperTag
-      625                                 80   1234 SuperTag
-      626                                100   1234 SuperTag
-      627                                 94   1234 SuperTag
-      628                                 84   1234 SuperTag
-      629                                 87   1234 SuperTag
-      630                                 87   1234 SuperTag
-      631                                 72   1234 SuperTag
-      632                                110   1234 SuperTag
-      633                                 85   1234 SuperTag
-      634                                 94   1234 SuperTag
-      635                                 81   1234 SuperTag
-      636                                 59   1234 SuperTag
-      637                                 90   1234 SuperTag
-      638                                110   1234 SuperTag
-      639                                105   1234 SuperTag
-      640                                108   1234 SuperTag
-      641                                 67   1234 SuperTag
-      642                                 72   1234 SuperTag
-      643                                 84   1234 SuperTag
-      644                                 98   1234 SuperTag
-      645                                102   1234 SuperTag
-      646                                 96   1234 SuperTag
-      647                                 73   1234 SuperTag
-      648                                 12   1234 SuperTag
-      649                                117   1234 SuperTag
-      650                                 87   1234 SuperTag
-      651                                 80   1234 SuperTag
-      652                                 68   1234 SuperTag
-      653                                101   1234 SuperTag
-      654                                101   1234 SuperTag
-      655                                159   1234 SuperTag
-      656                                 76   1234 SuperTag
-      657                                 89   1234 SuperTag
-      658                                111   1234 SuperTag
-      659                                 91   1234 SuperTag
-      660                                 95   1234 SuperTag
-      661                                 65   1234 SuperTag
-      662                                101   1234 SuperTag
-      663                                 80   1234 SuperTag
-      664                                106   1234 SuperTag
-      665                                 76   1234 SuperTag
-      666                                113   1234 SuperTag
-      667                                117   1234 SuperTag
-      668                                105   1234 SuperTag
-      669                                120   1234 SuperTag
-      670                                 97   1234 SuperTag
-      671                                 95   1234 SuperTag
-      672                                 89   1234 SuperTag
-      673                                 83   1234 SuperTag
-      674                                 28   1234 SuperTag
-      675                                 76   1234 SuperTag
-      676                                102   1234 SuperTag
-      677                                102   1234 SuperTag
-      678                                 81   1234 SuperTag
-      679                                 78   1234 SuperTag
-      680                                 83   1234 SuperTag
-      681                                105   1234 SuperTag
-      682                                 73   1234 SuperTag
-      683                                 91   1234 SuperTag
-      684                                 77   1234 SuperTag
-      685                                102   1234 SuperTag
-      686                                 75   1234 SuperTag
-      687                                 73   1234 SuperTag
-      688                                 86   1234 SuperTag
-      689                                 84   1234 SuperTag
-      690                                 79   1234 SuperTag
-      691                                102   1234 SuperTag
-      692                                100   1234 SuperTag
-      693                                 90   1234 SuperTag
-      694                                 98   1234 SuperTag
-      695                                 68   1234 SuperTag
-      696                                 69   1234 SuperTag
-      697                                 97   1234 SuperTag
-      698                                 93   1234 SuperTag
-      699                                101   1234 SuperTag
-      700                                 98   1234 SuperTag
-      701                                 99   1234 SuperTag
-      702                                 96   1234 SuperTag
-      703                                 74   1234 SuperTag
-      704                                103   1234 SuperTag
-      705                                 46   1234 SuperTag
-      706                                149   1234 SuperTag
-      707                                105   1234 SuperTag
-      708                                140   1234 SuperTag
-      709                                 NA   1234 SuperTag
-      710                                 45   1234 SuperTag
-      711                                 79   1234 SuperTag
-      712                                172   1234 SuperTag
-      713                                 87   1234 SuperTag
-      714                                101   1234 SuperTag
-      715                                110   1234 SuperTag
-      716                                130   1234 SuperTag
-      717                                 56   1234 SuperTag
-      718                                 96   1234 SuperTag
-      719                                 74   1234 SuperTag
-      720                                 98   1234 SuperTag
-      721                                 NA   1234 SuperTag
-      722                                 79   1234 SuperTag
-      723                                176   1234 SuperTag
-      724                                 84   1234 SuperTag
-      725                                 62   1234 SuperTag
-      726                                108   1234 SuperTag
-      727                                 86   1234 SuperTag
-      728                                 83   1234 SuperTag
-      729                                 83   1234 SuperTag
-      730                                 80   1234 SuperTag
-      731                                144   1234 SuperTag
-      732                                100   1234 SuperTag
-      733                                117   1234 SuperTag
-      734                                 16   1234 SuperTag
-      735                                 94   1234 SuperTag
-      736                                 86   1234 SuperTag
-      737                                 93   1234 SuperTag
-      738                                133   1234 SuperTag
-      739                                 69   1234 SuperTag
-      740                                108   1234 SuperTag
-      741                                 87   1234 SuperTag
-      742                                 94   1234 SuperTag
-      743                                101   1234 SuperTag
-      744                                100   1234 SuperTag
-      745                                 13   1234 SuperTag
-      746                                 88   1234 SuperTag
-      747                                171   1234 SuperTag
-      748                                140   1234 SuperTag
-      749                                 95   1234 SuperTag
-      750                                104   1234 SuperTag
-      751                                 78   1234 SuperTag
-      752                                107   1234 SuperTag
-      753                                 58   1234 SuperTag
-      754                                 29   1234 SuperTag
-      755                                 99   1234 SuperTag
-      756                                141   1234 SuperTag
-      757                                146   1234 SuperTag
-      758                                100   1234 SuperTag
-      759                                 95   1234 SuperTag
-      760                                 76   1234 SuperTag
-      761                                 78   1234 SuperTag
-      762                                 75   1234 SuperTag
-      763                                 73   1234 SuperTag
-      764                                 66   1234 SuperTag
-      765                                 84   1234 SuperTag
-      766                                 90   1234 SuperTag
-      767                                 68   1234 SuperTag
-      768                                159   1234 SuperTag
-      769                                104   1234 SuperTag
-      770                                 67   1234 SuperTag
-      771                                 76   1234 SuperTag
-      772                                 84   1234 SuperTag
-      773                                 99   1234 SuperTag
-      774                                106   1234 SuperTag
-      775                                 92   1234 SuperTag
-      776                                 89   1234 SuperTag
-      777                                 31   1234 SuperTag
-      778                                 62   1234 SuperTag
-      779                                 64   1234 SuperTag
-      780                                 91   1234 SuperTag
-      781                                 91   1234 SuperTag
-      782                                175   1234 SuperTag
-      783                                 88   1234 SuperTag
-      784                                100   1234 SuperTag
-      785                                104   1234 SuperTag
-      786                                103   1234 SuperTag
-      787                                100   1234 SuperTag
-      788                                 98   1234 SuperTag
-      789                                106   1234 SuperTag
-      790                                105   1234 SuperTag
-      791                                100   1234 SuperTag
-      792                                 23   1234 SuperTag
-      793                                 76   1234 SuperTag
-      794                                 57   1234 SuperTag
-      795                                 84   1234 SuperTag
-      796                                103   1234 SuperTag
-      797                                 94   1234 SuperTag
-      798                                107   1234 SuperTag
-      799                                 96   1234 SuperTag
-      800                                 80   1234 SuperTag
-      801                                 81   1234 SuperTag
-      802                                 81   1234 SuperTag
-      803                                 76   1234 SuperTag
-      804                                 87   1234 SuperTag
-      805                                 96   1234 SuperTag
-      806                                119   1234 SuperTag
-      807                                 82   1234 SuperTag
-      808                                 89   1234 SuperTag
-      809                                 95   1234 SuperTag
-      810                                128   1234 SuperTag
-      811                                111   1234 SuperTag
-      812                                105   1234 SuperTag
-      813                                100   1234 SuperTag
-      814                                 73   1234 SuperTag
-      815                                 97   1234 SuperTag
-      816                                 90   1234 SuperTag
-      817                                 87   1234 SuperTag
-      818                                 90   1234 SuperTag
-      819                                 84   1234 SuperTag
-      820                                151   1234 SuperTag
-      821                                 90   1234 SuperTag
-      822                                101   1234 SuperTag
-      823                                 83   1234 SuperTag
-      824                                102   1234 SuperTag
-      825                                 91   1234 SuperTag
-      826                                 97   1234 SuperTag
-      827                                 76   1234 SuperTag
-      828                                106   1234 SuperTag
-      829                                100   1234 SuperTag
-      830                                175   1234 SuperTag
-      831                                102   1234 SuperTag
-      832                                 95   1234 SuperTag
-      833                                 89   1234 SuperTag
+          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_NUM TAG_TYPE
+      1                                   81    1234 SuperTag
+      2                                   81    1234 SuperTag
+      3                                   91    1234 SuperTag
+      4                                  120    1234 SuperTag
+      5                                   NA    1234 SuperTag
+      6                                   86    1234 SuperTag
+      7                                   94    1234 SuperTag
+      8                                   96    1234 SuperTag
+      9                                   88    1234 SuperTag
+      10                                  83    1234 SuperTag
+      11                                 148    1234 SuperTag
+      12                                 162    1234 SuperTag
+      13                                 101    1234 SuperTag
+      14                                 113    1234 SuperTag
+      15                                  74    1234 SuperTag
+      16                                 162    1234 SuperTag
+      17                                  92    1234 SuperTag
+      18                                  92    1234 SuperTag
+      19                                  90    1234 SuperTag
+      20                                  93    1234 SuperTag
+      21                                 136    1234 SuperTag
+      22                                 120    1234 SuperTag
+      23                                  66    1234 SuperTag
+      24                                 129    1234 SuperTag
+      25                                 100    1234 SuperTag
+      26                                 104    1234 SuperTag
+      27                                  82    1234 SuperTag
+      28                                  91    1234 SuperTag
+      29                                  98    1234 SuperTag
+      30                                  93    1234 SuperTag
+      31                                  88    1234 SuperTag
+      32                                  99    1234 SuperTag
+      33                                 164    1234 SuperTag
+      34                                  98    1234 SuperTag
+      35                                 102    1234 SuperTag
+      36                                  97    1234 SuperTag
+      37                                  66    1234 SuperTag
+      38                                 115    1234 SuperTag
+      39                                  79    1234 SuperTag
+      40                                  93    1234 SuperTag
+      41                                  84    1234 SuperTag
+      42                                 102    1234 SuperTag
+      43                                 158    1234 SuperTag
+      44                                 175    1234 SuperTag
+      45                                 113    1234 SuperTag
+      46                                  76    1234 SuperTag
+      47                                  16    1234 SuperTag
+      48                                 106    1234 SuperTag
+      49                                 164    1234 SuperTag
+      50                                  87    1234 SuperTag
+      51                                  88    1234 SuperTag
+      52                                 110    1234 SuperTag
+      53                                 111    1234 SuperTag
+      54                                  92    1234 SuperTag
+      55                                 110    1234 SuperTag
+      56                                  80    1234 SuperTag
+      57                                  96    1234 SuperTag
+      58                                 141    1234 SuperTag
+      59                                  79    1234 SuperTag
+      60                                  64    1234 SuperTag
+      61                                 102    1234 SuperTag
+      62                                  78    1234 SuperTag
+      63                                 104    1234 SuperTag
+      64                                  76    1234 SuperTag
+      65                                  83    1234 SuperTag
+      66                                  97    1234 SuperTag
+      67                                  84    1234 SuperTag
+      68                                  86    1234 SuperTag
+      69                                  93    1234 SuperTag
+      70                                 120    1234 SuperTag
+      71                                 158    1234 SuperTag
+      72                                 156    1234 SuperTag
+      73                                  58    1234 SuperTag
+      74                                 134    1234 SuperTag
+      75                                  85    1234 SuperTag
+      76                                  80    1234 SuperTag
+      77                                  94    1234 SuperTag
+      78                                 100    1234 SuperTag
+      79                                 117    1234 SuperTag
+      80                                 102    1234 SuperTag
+      81                                 146    1234 SuperTag
+      82                                 136    1234 SuperTag
+      83                                 133    1234 SuperTag
+      84                                 100    1234 SuperTag
+      85                                  87    1234 SuperTag
+      86                                  84    1234 SuperTag
+      87                                  89    1234 SuperTag
+      88                                  95    1234 SuperTag
+      89                                 140    1234 SuperTag
+      90                                  83    1234 SuperTag
+      91                                  95    1234 SuperTag
+      92                                 101    1234 SuperTag
+      93                                  98    1234 SuperTag
+      94                                 104    1234 SuperTag
+      95                                  91    1234 SuperTag
+      96                                  22    1234 SuperTag
+      97                                  78    1234 SuperTag
+      98                                  78    1234 SuperTag
+      99                                  84    1234 SuperTag
+      100                                104    1234 SuperTag
+      101                                140    1234 SuperTag
+      102                                 92    1234 SuperTag
+      103                                125    1234 SuperTag
+      104                                 79    1234 SuperTag
+      105                                 26    1234 SuperTag
+      106                                104    1234 SuperTag
+      107                                 84    1234 SuperTag
+      108                                 95    1234 SuperTag
+      109                                102    1234 SuperTag
+      110                                 82    1234 SuperTag
+      111                                113    1234 SuperTag
+      112                                 78    1234 SuperTag
+      113                                 83    1234 SuperTag
+      114                                157    1234 SuperTag
+      115                                 75    1234 SuperTag
+      116                                100    1234 SuperTag
+      117                                 90    1234 SuperTag
+      118                                101    1234 SuperTag
+      119                                 76    1234 SuperTag
+      120                                 79    1234 SuperTag
+      121                                 85    1234 SuperTag
+      122                                 82    1234 SuperTag
+      123                                 82    1234 SuperTag
+      124                                 66    1234 SuperTag
+      125                                117    1234 SuperTag
+      126                                174    1234 SuperTag
+      127                                 67    1234 SuperTag
+      128                                 81    1234 SuperTag
+      129                                138    1234 SuperTag
+      130                                143    1234 SuperTag
+      131                                 79    1234 SuperTag
+      132                                 90    1234 SuperTag
+      133                                123    1234 SuperTag
+      134                                 91    1234 SuperTag
+      135                                 96    1234 SuperTag
+      136                                156    1234 SuperTag
+      137                                101    1234 SuperTag
+      138                                 87    1234 SuperTag
+      139                                 87    1234 SuperTag
+      140                                 91    1234 SuperTag
+      141                                 94    1234 SuperTag
+      142                                100    1234 SuperTag
+      143                                 83    1234 SuperTag
+      144                                100    1234 SuperTag
+      145                                 99    1234 SuperTag
+      146                                101    1234 SuperTag
+      147                                162    1234 SuperTag
+      148                                103    1234 SuperTag
+      149                                 87    1234 SuperTag
+      150                                  8    1234 SuperTag
+      151                                 68    1234 SuperTag
+      152                                 76    1234 SuperTag
+      153                                150    1234 SuperTag
+      154                                141    1234 SuperTag
+      155                                157    1234 SuperTag
+      156                                 80    1234 SuperTag
+      157                                108    1234 SuperTag
+      158                                121    1234 SuperTag
+      159                                 78    1234 SuperTag
+      160                                104    1234 SuperTag
+      161                                141    1234 SuperTag
+      162                                111    1234 SuperTag
+      163                                 82    1234 SuperTag
+      164                                 91    1234 SuperTag
+      165                                142    1234 SuperTag
+      166                                 97    1234 SuperTag
+      167                                 72    1234 SuperTag
+      168                                 85    1234 SuperTag
+      169                                 84    1234 SuperTag
+      170                                152    1234 SuperTag
+      171                                 76    1234 SuperTag
+      172                                 96    1234 SuperTag
+      173                                 82    1234 SuperTag
+      174                                 78    1234 SuperTag
+      175                                 45    1234 SuperTag
+      176                                 85    1234 SuperTag
+      177                                 97    1234 SuperTag
+      178                                 83    1234 SuperTag
+      179                                147    1234 SuperTag
+      180                                108    1234 SuperTag
+      181                                 78    1234 SuperTag
+      182                                 93    1234 SuperTag
+      183                                132    1234 SuperTag
+      184                                 89    1234 SuperTag
+      185                                102    1234 SuperTag
+      186                                 74    1234 SuperTag
+      187                                 97    1234 SuperTag
+      188                                 90    1234 SuperTag
+      189                                 90    1234 SuperTag
+      190                                 83    1234 SuperTag
+      191                                 89    1234 SuperTag
+      192                                102    1234 SuperTag
+      193                                 97    1234 SuperTag
+      194                                 86    1234 SuperTag
+      195                                 98    1234 SuperTag
+      196                                100    1234 SuperTag
+      197                                100    1234 SuperTag
+      198                                100    1234 SuperTag
+      199                                108    1234 SuperTag
+      200                                104    1234 SuperTag
+      201                                 82    1234 SuperTag
+      202                                 27    1234 SuperTag
+      203                                 75    1234 SuperTag
+      204                                 88    1234 SuperTag
+      205                                111    1234 SuperTag
+      206                                106    1234 SuperTag
+      207                                 85    1234 SuperTag
+      208                                 73    1234 SuperTag
+      209                                112    1234 SuperTag
+      210                                 96    1234 SuperTag
+      211                                146    1234 SuperTag
+      212                                 82    1234 SuperTag
+      213                                 99    1234 SuperTag
+      214                                106    1234 SuperTag
+      215                                 79    1234 SuperTag
+      216                                 99    1234 SuperTag
+      217                                 98    1234 SuperTag
+      218                                125    1234 SuperTag
+      219                                108    1234 SuperTag
+      220                                 82    1234 SuperTag
+      221                                 79    1234 SuperTag
+      222                                 45    1234 SuperTag
+      223                                 84    1234 SuperTag
+      224                                 99    1234 SuperTag
+      225                                 77    1234 SuperTag
+      226                                 83    1234 SuperTag
+      227                                143    1234 SuperTag
+      228                                 80    1234 SuperTag
+      229                                 88    1234 SuperTag
+      230                                 79    1234 SuperTag
+      231                                 94    1234 SuperTag
+      232                                 52    1234 SuperTag
+      233                                 63    1234 SuperTag
+      234                                168    1234 SuperTag
+      235                                106    1234 SuperTag
+      236                                 71    1234 SuperTag
+      237                                 88    1234 SuperTag
+      238                                 93    1234 SuperTag
+      239                                 82    1234 SuperTag
+      240                                 81    1234 SuperTag
+      241                                101    1234 SuperTag
+      242                                 87    1234 SuperTag
+      243                                 75    1234 SuperTag
+      244                                107    1234 SuperTag
+      245                                123    1234 SuperTag
+      246                                 47    1234 SuperTag
+      247                                110    1234 SuperTag
+      248                                100    1234 SuperTag
+      249                                104    1234 SuperTag
+      250                                 79    1234 SuperTag
+      251                                 94    1234 SuperTag
+      252                                 97    1234 SuperTag
+      253                                 98    1234 SuperTag
+      254                                  8    1234 SuperTag
+      255                                117    1234 SuperTag
+      256                                103    1234 SuperTag
+      257                                 99    1234 SuperTag
+      258                                107    1234 SuperTag
+      259                                156    1234 SuperTag
+      260                                 96    1234 SuperTag
+      261                                 90    1234 SuperTag
+      262                                 92    1234 SuperTag
+      263                                 91    1234 SuperTag
+      264                                 89    1234 SuperTag
+      265                                 92    1234 SuperTag
+      266                                 66    1234 SuperTag
+      267                                 53    1234 SuperTag
+      268                                105    1234 SuperTag
+      269                                 80    1234 SuperTag
+      270                                 90    1234 SuperTag
+      271                                 86    1234 SuperTag
+      272                                107    1234 SuperTag
+      273                                 86    1234 SuperTag
+      274                                104    1234 SuperTag
+      275                                 73    1234 SuperTag
+      276                                 80    1234 SuperTag
+      277                                134    1234 SuperTag
+      278                                 92    1234 SuperTag
+      279                                 67    1234 SuperTag
+      280                                101    1234 SuperTag
+      281                                 77    1234 SuperTag
+      282                                 72    1234 SuperTag
+      283                                 93    1234 SuperTag
+      284                                 79    1234 SuperTag
+      285                                 74    1234 SuperTag
+      286                                 98    1234 SuperTag
+      287                                 84    1234 SuperTag
+      288                                 89    1234 SuperTag
+      289                                 72    1234 SuperTag
+      290                                 65    1234 SuperTag
+      291                                144    1234 SuperTag
+      292                                 30    1234 SuperTag
+      293                                 68    1234 SuperTag
+      294                                102    1234 SuperTag
+      295                                 79    1234 SuperTag
+      296                                101    1234 SuperTag
+      297                                 79    1234 SuperTag
+      298                                 86    1234 SuperTag
+      299                                142    1234 SuperTag
+      300                                 97    1234 SuperTag
+      301                                 67    1234 SuperTag
+      302                                 77    1234 SuperTag
+      303                                 90    1234 SuperTag
+      304                                 92    1234 SuperTag
+      305                                100    1234 SuperTag
+      306                                 88    1234 SuperTag
+      307                                 98    1234 SuperTag
+      308                                102    1234 SuperTag
+      309                                 99    1234 SuperTag
+      310                                 99    1234 SuperTag
+      311                                170    1234 SuperTag
+      312                                 94    1234 SuperTag
+      313                                 82    1234 SuperTag
+      314                                 93    1234 SuperTag
+      315                                 68    1234 SuperTag
+      316                                108    1234 SuperTag
+      317                                 89    1234 SuperTag
+      318                                 92    1234 SuperTag
+      319                                163    1234 SuperTag
+      320                                100    1234 SuperTag
+      321                                149    1234 SuperTag
+      322                                 79    1234 SuperTag
+      323                                123    1234 SuperTag
+      324                                107    1234 SuperTag
+      325                                112    1234 SuperTag
+      326                                 75    1234 SuperTag
+      327                                100    1234 SuperTag
+      328                                 14    1234 SuperTag
+      329                                115    1234 SuperTag
+      330                                 98    1234 SuperTag
+      331                                 79    1234 SuperTag
+      332                                 98    1234 SuperTag
+      333                                 89    1234 SuperTag
+      334                                 NA    1234 SuperTag
+      335                                 88    1234 SuperTag
+      336                                 88    1234 SuperTag
+      337                                 87    1234 SuperTag
+      338                                 19    1234 SuperTag
+      339                                 71    1234 SuperTag
+      340                                130    1234 SuperTag
+      341                                139    1234 SuperTag
+      342                                 18    1234 SuperTag
+      343                                105    1234 SuperTag
+      344                                 93    1234 SuperTag
+      345                                 66    1234 SuperTag
+      346                                101    1234 SuperTag
+      347                                101    1234 SuperTag
+      348                                 87    1234 SuperTag
+      349                                156    1234 SuperTag
+      350                                 96    1234 SuperTag
+      351                                 80    1234 SuperTag
+      352                                 91    1234 SuperTag
+      353                                 70    1234 SuperTag
+      354                                 93    1234 SuperTag
+      355                                 84    1234 SuperTag
+      356                                147    1234 SuperTag
+      357                                 91    1234 SuperTag
+      358                                 95    1234 SuperTag
+      359                                103    1234 SuperTag
+      360                                  2    1234 SuperTag
+      361                                102    1234 SuperTag
+      362                                 85    1234 SuperTag
+      363                                 90    1234 SuperTag
+      364                                 94    1234 SuperTag
+      365                                 58    1234 SuperTag
+      366                                 93    1234 SuperTag
+      367                                115    1234 SuperTag
+      368                                 76    1234 SuperTag
+      369                                 46    1234 SuperTag
+      370                                  0    1234 SuperTag
+      371                                104    1234 SuperTag
+      372                                 73    1234 SuperTag
+      373                                113    1234 SuperTag
+      374                                 90    1234 SuperTag
+      375                                 85    1234 SuperTag
+      376                                 96    1234 SuperTag
+      377                                 79    1234 SuperTag
+      378                                 91    1234 SuperTag
+      379                                 80    1234 SuperTag
+      380                                 77    1234 SuperTag
+      381                                 82    1234 SuperTag
+      382                                114    1234 SuperTag
+      383                                 80    1234 SuperTag
+      384                                 64    1234 SuperTag
+      385                                 85    1234 SuperTag
+      386                                117    1234 SuperTag
+      387                                111    1234 SuperTag
+      388                                109    1234 SuperTag
+      389                                 75    1234 SuperTag
+      390                                 63    1234 SuperTag
+      391                                148    1234 SuperTag
+      392                                 82    1234 SuperTag
+      393                                 98    1234 SuperTag
+      394                                 92    1234 SuperTag
+      395                                 83    1234 SuperTag
+      396                                 94    1234 SuperTag
+      397                                101    1234 SuperTag
+      398                                 80    1234 SuperTag
+      399                                105    1234 SuperTag
+      400                                 82    1234 SuperTag
+      401                                161    1234 SuperTag
+      402                                 99    1234 SuperTag
+      403                                 66    1234 SuperTag
+      404                                 NA    1234 SuperTag
+      405                                154    1234 SuperTag
+      406                                101    1234 SuperTag
+      407                                 88    1234 SuperTag
+      408                                 88    1234 SuperTag
+      409                                 85    1234 SuperTag
+      410                                139    1234 SuperTag
+      411                                140    1234 SuperTag
+      412                                 88    1234 SuperTag
+      413                                143    1234 SuperTag
+      414                                102    1234 SuperTag
+      415                                 13    1234 SuperTag
+      416                                 76    1234 SuperTag
+      417                                 79    1234 SuperTag
+      418                                 47    1234 SuperTag
+      419                                 85    1234 SuperTag
+      420                                 93    1234 SuperTag
+      421                                 98    1234 SuperTag
+      422                                 90    1234 SuperTag
+      423                                126    1234 SuperTag
+      424                                100    1234 SuperTag
+      425                                 84    1234 SuperTag
+      426                                 92    1234 SuperTag
+      427                                104    1234 SuperTag
+      428                                 77    1234 SuperTag
+      429                                 79    1234 SuperTag
+      430                                 77    1234 SuperTag
+      431                                126    1234 SuperTag
+      432                                 84    1234 SuperTag
+      433                                 87    1234 SuperTag
+      434                                 67    1234 SuperTag
+      435                                 85    1234 SuperTag
+      436                                101    1234 SuperTag
+      437                                 91    1234 SuperTag
+      438                                 92    1234 SuperTag
+      439                                 44    1234 SuperTag
+      440                                 68    1234 SuperTag
+      441                                136    1234 SuperTag
+      442                                 96    1234 SuperTag
+      443                                106    1234 SuperTag
+      444                                 87    1234 SuperTag
+      445                                104    1234 SuperTag
+      446                                 74    1234 SuperTag
+      447                                 89    1234 SuperTag
+      448                                100    1234 SuperTag
+      449                                 83    1234 SuperTag
+      450                                101    1234 SuperTag
+      451                                 77    1234 SuperTag
+      452                                 99    1234 SuperTag
+      453                                 97    1234 SuperTag
+      454                                 88    1234 SuperTag
+      455                                100    1234 SuperTag
+      456                                101    1234 SuperTag
+      457                                100    1234 SuperTag
+      458                                 85    1234 SuperTag
+      459                                 82    1234 SuperTag
+      460                                 98    1234 SuperTag
+      461                                176    1234 SuperTag
+      462                                106    1234 SuperTag
+      463                                100    1234 SuperTag
+      464                                177    1234 SuperTag
+      465                                140    1234 SuperTag
+      466                                 78    1234 SuperTag
+      467                                 83    1234 SuperTag
+      468                                 24    1234 SuperTag
+      469                                 77    1234 SuperTag
+      470                                 96    1234 SuperTag
+      471                                 77    1234 SuperTag
+      472                                 90    1234 SuperTag
+      473                                123    1234 SuperTag
+      474                                 94    1234 SuperTag
+      475                                 79    1234 SuperTag
+      476                                111    1234 SuperTag
+      477                                 99    1234 SuperTag
+      478                                109    1234 SuperTag
+      479                                 76    1234 SuperTag
+      480                                 79    1234 SuperTag
+      481                                  4    1234 SuperTag
+      482                                 75    1234 SuperTag
+      483                                 83    1234 SuperTag
+      484                                 80    1234 SuperTag
+      485                                 87    1234 SuperTag
+      486                                 96    1234 SuperTag
+      487                                 97    1234 SuperTag
+      488                                105    1234 SuperTag
+      489                                129    1234 SuperTag
+      490                                 76    1234 SuperTag
+      491                                 97    1234 SuperTag
+      492                                 93    1234 SuperTag
+      493                                 85    1234 SuperTag
+      494                                107    1234 SuperTag
+      495                                134    1234 SuperTag
+      496                                 37    1234 SuperTag
+      497                                 49    1234 SuperTag
+      498                                 92    1234 SuperTag
+      499                                 87    1234 SuperTag
+      500                                 95    1234 SuperTag
+      501                                 95    1234 SuperTag
+      502                                 90    1234 SuperTag
+      503                                 99    1234 SuperTag
+      504                                101    1234 SuperTag
+      505                                 87    1234 SuperTag
+      506                                 98    1234 SuperTag
+      507                                100    1234 SuperTag
+      508                                102    1234 SuperTag
+      509                                 99    1234 SuperTag
+      510                                168    1234 SuperTag
+      511                                100    1234 SuperTag
+      512                                 52    1234 SuperTag
+      513                                 79    1234 SuperTag
+      514                                 35    1234 SuperTag
+      515                                 40    1234 SuperTag
+      516                                114    1234 SuperTag
+      517                                123    1234 SuperTag
+      518                                141    1234 SuperTag
+      519                                108    1234 SuperTag
+      520                                140    1234 SuperTag
+      521                                100    1234 SuperTag
+      522                                 77    1234 SuperTag
+      523                                 79    1234 SuperTag
+      524                                 98    1234 SuperTag
+      525                                 86    1234 SuperTag
+      526                                 27    1234 SuperTag
+      527                                 73    1234 SuperTag
+      528                                101    1234 SuperTag
+      529                                101    1234 SuperTag
+      530                                 80    1234 SuperTag
+      531                                105    1234 SuperTag
+      532                                 77    1234 SuperTag
+      533                                 99    1234 SuperTag
+      534                                 86    1234 SuperTag
+      535                                 90    1234 SuperTag
+      536                                121    1234 SuperTag
+      537                                 67    1234 SuperTag
+      538                                 98    1234 SuperTag
+      539                                153    1234 SuperTag
+      540                                 84    1234 SuperTag
+      541                                 95    1234 SuperTag
+      542                                 86    1234 SuperTag
+      543                                150    1234 SuperTag
+      544                                 93    1234 SuperTag
+      545                                 23    1234 SuperTag
+      546                                142    1234 SuperTag
+      547                                 85    1234 SuperTag
+      548                                 97    1234 SuperTag
+      549                                141    1234 SuperTag
+      550                                 70    1234 SuperTag
+      551                                 96    1234 SuperTag
+      552                                 95    1234 SuperTag
+      553                                 87    1234 SuperTag
+      554                                101    1234 SuperTag
+      555                                 95    1234 SuperTag
+      556                                104    1234 SuperTag
+      557                                 98    1234 SuperTag
+      558                                152    1234 SuperTag
+      559                                106    1234 SuperTag
+      560                                150    1234 SuperTag
+      561                                 86    1234 SuperTag
+      562                                 99    1234 SuperTag
+      563                                124    1234 SuperTag
+      564                                100    1234 SuperTag
+      565                                 76    1234 SuperTag
+      566                                 35    1234 SuperTag
+      567                                106    1234 SuperTag
+      568                                145    1234 SuperTag
+      569                                 85    1234 SuperTag
+      570                                105    1234 SuperTag
+      571                                115    1234 SuperTag
+      572                                 61    1234 SuperTag
+      573                                 92    1234 SuperTag
+      574                                106    1234 SuperTag
+      575                                 69    1234 SuperTag
+      576                                116    1234 SuperTag
+      577                                 87    1234 SuperTag
+      578                                 76    1234 SuperTag
+      579                                 90    1234 SuperTag
+      580                                102    1234 SuperTag
+      581                                 86    1234 SuperTag
+      582                                 86    1234 SuperTag
+      583                                 77    1234 SuperTag
+      584                                 87    1234 SuperTag
+      585                                132    1234 SuperTag
+      586                                 70    1234 SuperTag
+      587                                 84    1234 SuperTag
+      588                                 14    1234 SuperTag
+      589                                139    1234 SuperTag
+      590                                117    1234 SuperTag
+      591                                 81    1234 SuperTag
+      592                                 77    1234 SuperTag
+      593                                 83    1234 SuperTag
+      594                                100    1234 SuperTag
+      595                                 80    1234 SuperTag
+      596                                116    1234 SuperTag
+      597                                 97    1234 SuperTag
+      598                                108    1234 SuperTag
+      599                                 21    1234 SuperTag
+      600                                 91    1234 SuperTag
+      601                                172    1234 SuperTag
+      602                                 71    1234 SuperTag
+      603                                 92    1234 SuperTag
+      604                                101    1234 SuperTag
+      605                                 89    1234 SuperTag
+      606                                 91    1234 SuperTag
+      607                                 92    1234 SuperTag
+      608                                  3    1234 SuperTag
+      609                                 98    1234 SuperTag
+      610                                104    1234 SuperTag
+      611                                101    1234 SuperTag
+      612                                136    1234 SuperTag
+      613                                 19    1234 SuperTag
+      614                                 77    1234 SuperTag
+      615                                 70    1234 SuperTag
+      616                                142    1234 SuperTag
+      617                                158    1234 SuperTag
+      618                                148    1234 SuperTag
+      619                                 78    1234 SuperTag
+      620                                109    1234 SuperTag
+      621                                 81    1234 SuperTag
+      622                                105    1234 SuperTag
+      623                                 84    1234 SuperTag
+      624                                 96    1234 SuperTag
+      625                                 80    1234 SuperTag
+      626                                100    1234 SuperTag
+      627                                 94    1234 SuperTag
+      628                                 84    1234 SuperTag
+      629                                 87    1234 SuperTag
+      630                                 87    1234 SuperTag
+      631                                 72    1234 SuperTag
+      632                                110    1234 SuperTag
+      633                                 85    1234 SuperTag
+      634                                 94    1234 SuperTag
+      635                                 81    1234 SuperTag
+      636                                 59    1234 SuperTag
+      637                                 90    1234 SuperTag
+      638                                110    1234 SuperTag
+      639                                105    1234 SuperTag
+      640                                108    1234 SuperTag
+      641                                 67    1234 SuperTag
+      642                                 72    1234 SuperTag
+      643                                 84    1234 SuperTag
+      644                                 98    1234 SuperTag
+      645                                102    1234 SuperTag
+      646                                 96    1234 SuperTag
+      647                                 73    1234 SuperTag
+      648                                 12    1234 SuperTag
+      649                                117    1234 SuperTag
+      650                                 87    1234 SuperTag
+      651                                 80    1234 SuperTag
+      652                                 68    1234 SuperTag
+      653                                101    1234 SuperTag
+      654                                101    1234 SuperTag
+      655                                159    1234 SuperTag
+      656                                 76    1234 SuperTag
+      657                                 89    1234 SuperTag
+      658                                111    1234 SuperTag
+      659                                 91    1234 SuperTag
+      660                                 95    1234 SuperTag
+      661                                 65    1234 SuperTag
+      662                                101    1234 SuperTag
+      663                                 80    1234 SuperTag
+      664                                106    1234 SuperTag
+      665                                 76    1234 SuperTag
+      666                                113    1234 SuperTag
+      667                                117    1234 SuperTag
+      668                                105    1234 SuperTag
+      669                                120    1234 SuperTag
+      670                                 97    1234 SuperTag
+      671                                 95    1234 SuperTag
+      672                                 89    1234 SuperTag
+      673                                 83    1234 SuperTag
+      674                                 28    1234 SuperTag
+      675                                 76    1234 SuperTag
+      676                                102    1234 SuperTag
+      677                                102    1234 SuperTag
+      678                                 81    1234 SuperTag
+      679                                 78    1234 SuperTag
+      680                                 83    1234 SuperTag
+      681                                105    1234 SuperTag
+      682                                 73    1234 SuperTag
+      683                                 91    1234 SuperTag
+      684                                 77    1234 SuperTag
+      685                                102    1234 SuperTag
+      686                                 75    1234 SuperTag
+      687                                 73    1234 SuperTag
+      688                                 86    1234 SuperTag
+      689                                 84    1234 SuperTag
+      690                                 79    1234 SuperTag
+      691                                102    1234 SuperTag
+      692                                100    1234 SuperTag
+      693                                 90    1234 SuperTag
+      694                                 98    1234 SuperTag
+      695                                 68    1234 SuperTag
+      696                                 69    1234 SuperTag
+      697                                 97    1234 SuperTag
+      698                                 93    1234 SuperTag
+      699                                101    1234 SuperTag
+      700                                 98    1234 SuperTag
+      701                                 99    1234 SuperTag
+      702                                 96    1234 SuperTag
+      703                                 74    1234 SuperTag
+      704                                103    1234 SuperTag
+      705                                 46    1234 SuperTag
+      706                                149    1234 SuperTag
+      707                                105    1234 SuperTag
+      708                                140    1234 SuperTag
+      709                                 NA    1234 SuperTag
+      710                                 45    1234 SuperTag
+      711                                 79    1234 SuperTag
+      712                                172    1234 SuperTag
+      713                                 87    1234 SuperTag
+      714                                101    1234 SuperTag
+      715                                110    1234 SuperTag
+      716                                130    1234 SuperTag
+      717                                 56    1234 SuperTag
+      718                                 96    1234 SuperTag
+      719                                 74    1234 SuperTag
+      720                                 98    1234 SuperTag
+      721                                 NA    1234 SuperTag
+      722                                 79    1234 SuperTag
+      723                                176    1234 SuperTag
+      724                                 84    1234 SuperTag
+      725                                 62    1234 SuperTag
+      726                                108    1234 SuperTag
+      727                                 86    1234 SuperTag
+      728                                 83    1234 SuperTag
+      729                                 83    1234 SuperTag
+      730                                 80    1234 SuperTag
+      731                                144    1234 SuperTag
+      732                                100    1234 SuperTag
+      733                                117    1234 SuperTag
+      734                                 16    1234 SuperTag
+      735                                 94    1234 SuperTag
+      736                                 86    1234 SuperTag
+      737                                 93    1234 SuperTag
+      738                                133    1234 SuperTag
+      739                                 69    1234 SuperTag
+      740                                108    1234 SuperTag
+      741                                 87    1234 SuperTag
+      742                                 94    1234 SuperTag
+      743                                101    1234 SuperTag
+      744                                100    1234 SuperTag
+      745                                 13    1234 SuperTag
+      746                                 88    1234 SuperTag
+      747                                171    1234 SuperTag
+      748                                140    1234 SuperTag
+      749                                 95    1234 SuperTag
+      750                                104    1234 SuperTag
+      751                                 78    1234 SuperTag
+      752                                107    1234 SuperTag
+      753                                 58    1234 SuperTag
+      754                                 29    1234 SuperTag
+      755                                 99    1234 SuperTag
+      756                                141    1234 SuperTag
+      757                                146    1234 SuperTag
+      758                                100    1234 SuperTag
+      759                                 95    1234 SuperTag
+      760                                 76    1234 SuperTag
+      761                                 78    1234 SuperTag
+      762                                 75    1234 SuperTag
+      763                                 73    1234 SuperTag
+      764                                 66    1234 SuperTag
+      765                                 84    1234 SuperTag
+      766                                 90    1234 SuperTag
+      767                                 68    1234 SuperTag
+      768                                159    1234 SuperTag
+      769                                104    1234 SuperTag
+      770                                 67    1234 SuperTag
+      771                                 76    1234 SuperTag
+      772                                 84    1234 SuperTag
+      773                                 99    1234 SuperTag
+      774                                106    1234 SuperTag
+      775                                 92    1234 SuperTag
+      776                                 89    1234 SuperTag
+      777                                 31    1234 SuperTag
+      778                                 62    1234 SuperTag
+      779                                 64    1234 SuperTag
+      780                                 91    1234 SuperTag
+      781                                 91    1234 SuperTag
+      782                                175    1234 SuperTag
+      783                                 88    1234 SuperTag
+      784                                100    1234 SuperTag
+      785                                104    1234 SuperTag
+      786                                103    1234 SuperTag
+      787                                100    1234 SuperTag
+      788                                 98    1234 SuperTag
+      789                                106    1234 SuperTag
+      790                                105    1234 SuperTag
+      791                                100    1234 SuperTag
+      792                                 23    1234 SuperTag
+      793                                 76    1234 SuperTag
+      794                                 57    1234 SuperTag
+      795                                 84    1234 SuperTag
+      796                                103    1234 SuperTag
+      797                                 94    1234 SuperTag
+      798                                107    1234 SuperTag
+      799                                 96    1234 SuperTag
+      800                                 80    1234 SuperTag
+      801                                 81    1234 SuperTag
+      802                                 81    1234 SuperTag
+      803                                 76    1234 SuperTag
+      804                                 87    1234 SuperTag
+      805                                 96    1234 SuperTag
+      806                                119    1234 SuperTag
+      807                                 82    1234 SuperTag
+      808                                 89    1234 SuperTag
+      809                                 95    1234 SuperTag
+      810                                128    1234 SuperTag
+      811                                111    1234 SuperTag
+      812                                105    1234 SuperTag
+      813                                100    1234 SuperTag
+      814                                 73    1234 SuperTag
+      815                                 97    1234 SuperTag
+      816                                 90    1234 SuperTag
+      817                                 87    1234 SuperTag
+      818                                 90    1234 SuperTag
+      819                                 84    1234 SuperTag
+      820                                151    1234 SuperTag
+      821                                 90    1234 SuperTag
+      822                                101    1234 SuperTag
+      823                                 83    1234 SuperTag
+      824                                102    1234 SuperTag
+      825                                 91    1234 SuperTag
+      826                                 97    1234 SuperTag
+      827                                 76    1234 SuperTag
+      828                                106    1234 SuperTag
+      829                                100    1234 SuperTag
+      830                                175    1234 SuperTag
+      831                                102    1234 SuperTag
+      832                                 95    1234 SuperTag
+      833                                 89    1234 SuperTag
 
 ---
 
     Code
       decode_op[["summary"]]
     Output
-          START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_ID TAG_TYPE
-      1   1565258400 1565265600          99 [%]      2 [1]   1234 SuperTag
-      2   1565265600 1565272800         100 [%]      0 [1]   1234 SuperTag
-      3   1565272800 1565280000          99 [%]      1 [1]   1234 SuperTag
-      4   1565280000 1565287200         100 [%]      0 [1]   1234 SuperTag
-      5   1565287200 1565294400         100 [%]      0 [1]   1234 SuperTag
-      6   1565294400 1565301600         100 [%]      0 [1]   1234 SuperTag
-      7   1565301600 1565308800         100 [%]      0 [1]   1234 SuperTag
-      8   1565308800 1565316000          99 [%]      0 [1]   1234 SuperTag
-      9   1565316000 1565323200          99 [%]      0 [1]   1234 SuperTag
-      10  1565323200 1565330400         100 [%]      0 [1]   1234 SuperTag
-      11  1565330400 1565337600         100 [%]      0 [1]   1234 SuperTag
-      12  1565337600 1565344800         100 [%]      0 [1]   1234 SuperTag
-      13  1565344800 1565352000         100 [%]      0 [1]   1234 SuperTag
-      14  1565352000 1565359200         100 [%]      0 [1]   1234 SuperTag
-      15  1565359200 1565366400         100 [%]      0 [1]   1234 SuperTag
-      16  1565366400 1565373600         100 [%]      0 [1]   1234 SuperTag
-      17  1565373600 1565380800         100 [%]      0 [1]   1234 SuperTag
-      18  1565380800 1565388000         100 [%]      0 [1]   1234 SuperTag
-      19  1565388000 1565395200          99 [%]      0 [1]   1234 SuperTag
-      20  1565395200 1565402400          98 [%]      0 [1]   1234 SuperTag
-      21  1565402400 1565409600         100 [%]      0 [1]   1234 SuperTag
-      22  1565409600 1565416800         100 [%]      0 [1]   1234 SuperTag
-      23  1565416800 1565424000         100 [%]      0 [1]   1234 SuperTag
-      24  1565424000 1565431200         100 [%]      0 [1]   1234 SuperTag
-      25  1565431200 1565438400         100 [%]      0 [1]   1234 SuperTag
-      26  1565438400 1565445600         100 [%]      0 [1]   1234 SuperTag
-      27  1565445600 1565452800         100 [%]      0 [1]   1234 SuperTag
-      28  1565452800 1565460000          99 [%]      0 [1]   1234 SuperTag
-      29  1565460000 1565467200          99 [%]      0 [1]   1234 SuperTag
-      30  1565467200 1565474400         100 [%]      0 [1]   1234 SuperTag
-      31  1565474400 1565481600         100 [%]      0 [1]   1234 SuperTag
-      32  1565481600 1565488800         100 [%]      0 [1]   1234 SuperTag
-      33  1565488800 1565496000         100 [%]      0 [1]   1234 SuperTag
-      34  1565496000 1565503200         100 [%]      0 [1]   1234 SuperTag
-      35  1565503200 1565510400          99 [%]      0 [1]   1234 SuperTag
-      36  1565510400 1565517600         100 [%]      0 [1]   1234 SuperTag
-      37  1565517600 1565524800         100 [%]      0 [1]   1234 SuperTag
-      38  1565524800 1565532000         100 [%]      0 [1]   1234 SuperTag
-      39  1565532000 1565539200         100 [%]      0 [1]   1234 SuperTag
-      40  1565539200 1565546400         100 [%]      0 [1]   1234 SuperTag
-      41  1565546400 1565553600         100 [%]      0 [1]   1234 SuperTag
-      42  1565553600 1565560800          99 [%]      0 [1]   1234 SuperTag
-      43  1565560800 1565568000          99 [%]      0 [1]   1234 SuperTag
-      44  1565568000 1565575200         100 [%]      0 [1]   1234 SuperTag
-      45  1565575200 1565582400         100 [%]      0 [1]   1234 SuperTag
-      46  1565582400 1565589600          99 [%]      0 [1]   1234 SuperTag
-      47  1565589600 1565596800         100 [%]      0 [1]   1234 SuperTag
-      48  1565596800 1565604000         100 [%]      0 [1]   1234 SuperTag
-      49  1565604000 1565611200          99 [%]      0 [1]   1234 SuperTag
-      50  1565611200 1565618400         100 [%]      0 [1]   1234 SuperTag
-      51  1565618400 1565625600         100 [%]      0 [1]   1234 SuperTag
-      52  1565625600 1565632800         100 [%]      0 [1]   1234 SuperTag
-      53  1565632800 1565640000         100 [%]      0 [1]   1234 SuperTag
-      54  1565640000 1565647200          99 [%]      1 [1]   1234 SuperTag
-      55  1565647200 1565654400         100 [%]      0 [1]   1234 SuperTag
-      56  1565654400 1565661600         100 [%]      0 [1]   1234 SuperTag
-      57  1565661600 1565668800         100 [%]      0 [1]   1234 SuperTag
-      58  1565668800 1565676000         100 [%]      0 [1]   1234 SuperTag
-      59  1565676000 1565683200         100 [%]      0 [1]   1234 SuperTag
-      60  1565683200 1565690400         100 [%]      0 [1]   1234 SuperTag
-      61  1565690400 1565697600         100 [%]      0 [1]   1234 SuperTag
-      62  1565697600 1565704800         100 [%]      0 [1]   1234 SuperTag
-      63  1565704800 1565712000         100 [%]      0 [1]   1234 SuperTag
-      64  1565712000 1565719200          97 [%]      9 [1]   1234 SuperTag
-      65  1565719200 1565726400          99 [%]      1 [1]   1234 SuperTag
-      66  1565726400 1565733600          99 [%]      5 [1]   1234 SuperTag
-      67  1565733600 1565740800          96 [%]     29 [1]   1234 SuperTag
-      68  1565740800 1565748000         100 [%]      0 [1]   1234 SuperTag
-      69  1565748000 1565755200         100 [%]      0 [1]   1234 SuperTag
-      70  1565755200 1565762400         100 [%]      0 [1]   1234 SuperTag
-      71  1565762400 1565769600         100 [%]      0 [1]   1234 SuperTag
-      72  1565769600 1565776800          99 [%]      1 [1]   1234 SuperTag
-      73  1565776800 1565784000          99 [%]      0 [1]   1234 SuperTag
-      74  1565784000 1565791200          99 [%]      0 [1]   1234 SuperTag
-      75  1565791200 1565798400         100 [%]      0 [1]   1234 SuperTag
-      76  1565798400 1565805600          99 [%]      1 [1]   1234 SuperTag
-      77  1565805600 1565812800          99 [%]      1 [1]   1234 SuperTag
-      78  1565812800 1565820000          98 [%]     10 [1]   1234 SuperTag
-      79  1565820000 1565827200          99 [%]      3 [1]   1234 SuperTag
-      80  1565827200 1565834400          91 [%]     72 [1]   1234 SuperTag
-      81  1565834400 1565841600         100 [%]      0 [1]   1234 SuperTag
-      82  1565841600 1565848800         100 [%]      0 [1]   1234 SuperTag
-      83  1565848800 1565856000         100 [%]      0 [1]   1234 SuperTag
-      84  1565856000 1565863200         100 [%]      0 [1]   1234 SuperTag
-      85  1565863200 1565870400          92 [%]      0 [1]   1234 SuperTag
-      86  1565870400 1565877600          95 [%]      0 [1]   1234 SuperTag
-      87  1565877600 1565884800         100 [%]      0 [1]   1234 SuperTag
-      88  1565884800 1565892000         100 [%]      0 [1]   1234 SuperTag
-      89  1565892000 1565899200         100 [%]      0 [1]   1234 SuperTag
-      90  1565899200 1565906400          99 [%]      0 [1]   1234 SuperTag
-      91  1565906400 1565913600          99 [%]      1 [1]   1234 SuperTag
-      92  1565913600 1565920800         100 [%]      0 [1]   1234 SuperTag
-      93  1565920800 1565928000          99 [%]      0 [1]   1234 SuperTag
-      94  1565928000 1565935200         100 [%]      0 [1]   1234 SuperTag
-      95  1565935200 1565942400         100 [%]      0 [1]   1234 SuperTag
-      96  1565942400 1565949600         100 [%]      0 [1]   1234 SuperTag
-      97  1565949600 1565956800          99 [%]      0 [1]   1234 SuperTag
-      98  1565956800 1565964000          98 [%]      2 [1]   1234 SuperTag
-      99  1565964000 1565971200         100 [%]      0 [1]   1234 SuperTag
-      100 1565971200 1565978400         100 [%]      0 [1]   1234 SuperTag
-      101 1565978400 1565985600          99 [%]      1 [1]   1234 SuperTag
-      102 1565985600 1565992800         100 [%]      0 [1]   1234 SuperTag
-      103 1565992800 1566000000          99 [%]      0 [1]   1234 SuperTag
-      104 1566000000 1566007200         100 [%]      0 [1]   1234 SuperTag
-      105 1566007200 1566014400          64 [%]    127 [1]   1234 SuperTag
-      106 1566014400 1566021600          80 [%]      0 [1]   1234 SuperTag
-      107 1566021600 1566028800          74 [%]      0 [1]   1234 SuperTag
-      108 1566028800 1566036000          57 [%]    112 [1]   1234 SuperTag
-      109 1566036000 1566043200          40 [%]      7 [1]   1234 SuperTag
-      110 1566043200 1566050400          95 [%]      3 [1]   1234 SuperTag
-      111 1566050400 1566057600          58 [%]      0 [1]   1234 SuperTag
-      112 1566057600 1566064800          73 [%]      0 [1]   1234 SuperTag
-      113 1566064800 1566072000          73 [%]      0 [1]   1234 SuperTag
-      114 1566072000 1566079200          47 [%]      0 [1]   1234 SuperTag
-      115 1566079200 1566086400          81 [%]      0 [1]   1234 SuperTag
-      116 1566086400 1566093600          97 [%]      0 [1]   1234 SuperTag
-      117 1566093600 1566100800          32 [%]      0 [1]   1234 SuperTag
-      118 1566100800 1566108000           4 [%]      0 [1]   1234 SuperTag
-      119 1566108000 1566115200          13 [%]      0 [1]   1234 SuperTag
-      120 1566115200 1566122400          11 [%]      0 [1]   1234 SuperTag
-      121 1566122400 1566129600          20 [%]      0 [1]   1234 SuperTag
-      122 1566129600 1566136800          79 [%]    117 [1]   1234 SuperTag
-      123 1566136800 1566144000          88 [%]    127 [1]   1234 SuperTag
-      124 1566144000 1566151200          87 [%]    127 [1]   1234 SuperTag
-      125 1566151200 1566158400          86 [%]    127 [1]   1234 SuperTag
-      126 1566158400 1566165600          87 [%]    127 [1]   1234 SuperTag
-      127 1566165600 1566172800          88 [%]    127 [1]   1234 SuperTag
-      128 1566172800 1566180000          89 [%]    127 [1]   1234 SuperTag
-      129 1566180000 1566187200          90 [%]    127 [1]   1234 SuperTag
-      130 1566187200 1566194400          90 [%]    127 [1]   1234 SuperTag
-      131 1566194400 1566201600          89 [%]    127 [1]   1234 SuperTag
-      132 1566201600 1566208800          89 [%]    127 [1]   1234 SuperTag
-      133 1566208800 1566216000          88 [%]    127 [1]   1234 SuperTag
-      134 1566216000 1566223200          86 [%]    127 [1]   1234 SuperTag
-      135 1566223200 1566230400           0 [%]      0 [1]   1234 SuperTag
-      136 1566230400 1566237600           0 [%]      0 [1]   1234 SuperTag
-      137 1566237600 1566244800           0 [%]      0 [1]   1234 SuperTag
-      138 1566244800 1566252000           0 [%]      0 [1]   1234 SuperTag
-      139 1566252000 1566259200           0 [%]      0 [1]   1234 SuperTag
-      140 1566259200 1566266400           0 [%]      0 [1]   1234 SuperTag
-      141 1566266400 1566273600           0 [%]      0 [1]   1234 SuperTag
-      142 1566273600 1566280800           0 [%]      0 [1]   1234 SuperTag
-      143 1566280800 1566288000           0 [%]      0 [1]   1234 SuperTag
+          START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_NUM TAG_TYPE
+      1   1565258400 1565265600          99 [%]      2 [1]    1234 SuperTag
+      2   1565265600 1565272800         100 [%]      0 [1]    1234 SuperTag
+      3   1565272800 1565280000          99 [%]      1 [1]    1234 SuperTag
+      4   1565280000 1565287200         100 [%]      0 [1]    1234 SuperTag
+      5   1565287200 1565294400         100 [%]      0 [1]    1234 SuperTag
+      6   1565294400 1565301600         100 [%]      0 [1]    1234 SuperTag
+      7   1565301600 1565308800         100 [%]      0 [1]    1234 SuperTag
+      8   1565308800 1565316000          99 [%]      0 [1]    1234 SuperTag
+      9   1565316000 1565323200          99 [%]      0 [1]    1234 SuperTag
+      10  1565323200 1565330400         100 [%]      0 [1]    1234 SuperTag
+      11  1565330400 1565337600         100 [%]      0 [1]    1234 SuperTag
+      12  1565337600 1565344800         100 [%]      0 [1]    1234 SuperTag
+      13  1565344800 1565352000         100 [%]      0 [1]    1234 SuperTag
+      14  1565352000 1565359200         100 [%]      0 [1]    1234 SuperTag
+      15  1565359200 1565366400         100 [%]      0 [1]    1234 SuperTag
+      16  1565366400 1565373600         100 [%]      0 [1]    1234 SuperTag
+      17  1565373600 1565380800         100 [%]      0 [1]    1234 SuperTag
+      18  1565380800 1565388000         100 [%]      0 [1]    1234 SuperTag
+      19  1565388000 1565395200          99 [%]      0 [1]    1234 SuperTag
+      20  1565395200 1565402400          98 [%]      0 [1]    1234 SuperTag
+      21  1565402400 1565409600         100 [%]      0 [1]    1234 SuperTag
+      22  1565409600 1565416800         100 [%]      0 [1]    1234 SuperTag
+      23  1565416800 1565424000         100 [%]      0 [1]    1234 SuperTag
+      24  1565424000 1565431200         100 [%]      0 [1]    1234 SuperTag
+      25  1565431200 1565438400         100 [%]      0 [1]    1234 SuperTag
+      26  1565438400 1565445600         100 [%]      0 [1]    1234 SuperTag
+      27  1565445600 1565452800         100 [%]      0 [1]    1234 SuperTag
+      28  1565452800 1565460000          99 [%]      0 [1]    1234 SuperTag
+      29  1565460000 1565467200          99 [%]      0 [1]    1234 SuperTag
+      30  1565467200 1565474400         100 [%]      0 [1]    1234 SuperTag
+      31  1565474400 1565481600         100 [%]      0 [1]    1234 SuperTag
+      32  1565481600 1565488800         100 [%]      0 [1]    1234 SuperTag
+      33  1565488800 1565496000         100 [%]      0 [1]    1234 SuperTag
+      34  1565496000 1565503200         100 [%]      0 [1]    1234 SuperTag
+      35  1565503200 1565510400          99 [%]      0 [1]    1234 SuperTag
+      36  1565510400 1565517600         100 [%]      0 [1]    1234 SuperTag
+      37  1565517600 1565524800         100 [%]      0 [1]    1234 SuperTag
+      38  1565524800 1565532000         100 [%]      0 [1]    1234 SuperTag
+      39  1565532000 1565539200         100 [%]      0 [1]    1234 SuperTag
+      40  1565539200 1565546400         100 [%]      0 [1]    1234 SuperTag
+      41  1565546400 1565553600         100 [%]      0 [1]    1234 SuperTag
+      42  1565553600 1565560800          99 [%]      0 [1]    1234 SuperTag
+      43  1565560800 1565568000          99 [%]      0 [1]    1234 SuperTag
+      44  1565568000 1565575200         100 [%]      0 [1]    1234 SuperTag
+      45  1565575200 1565582400         100 [%]      0 [1]    1234 SuperTag
+      46  1565582400 1565589600          99 [%]      0 [1]    1234 SuperTag
+      47  1565589600 1565596800         100 [%]      0 [1]    1234 SuperTag
+      48  1565596800 1565604000         100 [%]      0 [1]    1234 SuperTag
+      49  1565604000 1565611200          99 [%]      0 [1]    1234 SuperTag
+      50  1565611200 1565618400         100 [%]      0 [1]    1234 SuperTag
+      51  1565618400 1565625600         100 [%]      0 [1]    1234 SuperTag
+      52  1565625600 1565632800         100 [%]      0 [1]    1234 SuperTag
+      53  1565632800 1565640000         100 [%]      0 [1]    1234 SuperTag
+      54  1565640000 1565647200          99 [%]      1 [1]    1234 SuperTag
+      55  1565647200 1565654400         100 [%]      0 [1]    1234 SuperTag
+      56  1565654400 1565661600         100 [%]      0 [1]    1234 SuperTag
+      57  1565661600 1565668800         100 [%]      0 [1]    1234 SuperTag
+      58  1565668800 1565676000         100 [%]      0 [1]    1234 SuperTag
+      59  1565676000 1565683200         100 [%]      0 [1]    1234 SuperTag
+      60  1565683200 1565690400         100 [%]      0 [1]    1234 SuperTag
+      61  1565690400 1565697600         100 [%]      0 [1]    1234 SuperTag
+      62  1565697600 1565704800         100 [%]      0 [1]    1234 SuperTag
+      63  1565704800 1565712000         100 [%]      0 [1]    1234 SuperTag
+      64  1565712000 1565719200          97 [%]      9 [1]    1234 SuperTag
+      65  1565719200 1565726400          99 [%]      1 [1]    1234 SuperTag
+      66  1565726400 1565733600          99 [%]      5 [1]    1234 SuperTag
+      67  1565733600 1565740800          96 [%]     29 [1]    1234 SuperTag
+      68  1565740800 1565748000         100 [%]      0 [1]    1234 SuperTag
+      69  1565748000 1565755200         100 [%]      0 [1]    1234 SuperTag
+      70  1565755200 1565762400         100 [%]      0 [1]    1234 SuperTag
+      71  1565762400 1565769600         100 [%]      0 [1]    1234 SuperTag
+      72  1565769600 1565776800          99 [%]      1 [1]    1234 SuperTag
+      73  1565776800 1565784000          99 [%]      0 [1]    1234 SuperTag
+      74  1565784000 1565791200          99 [%]      0 [1]    1234 SuperTag
+      75  1565791200 1565798400         100 [%]      0 [1]    1234 SuperTag
+      76  1565798400 1565805600          99 [%]      1 [1]    1234 SuperTag
+      77  1565805600 1565812800          99 [%]      1 [1]    1234 SuperTag
+      78  1565812800 1565820000          98 [%]     10 [1]    1234 SuperTag
+      79  1565820000 1565827200          99 [%]      3 [1]    1234 SuperTag
+      80  1565827200 1565834400          91 [%]     72 [1]    1234 SuperTag
+      81  1565834400 1565841600         100 [%]      0 [1]    1234 SuperTag
+      82  1565841600 1565848800         100 [%]      0 [1]    1234 SuperTag
+      83  1565848800 1565856000         100 [%]      0 [1]    1234 SuperTag
+      84  1565856000 1565863200         100 [%]      0 [1]    1234 SuperTag
+      85  1565863200 1565870400          92 [%]      0 [1]    1234 SuperTag
+      86  1565870400 1565877600          95 [%]      0 [1]    1234 SuperTag
+      87  1565877600 1565884800         100 [%]      0 [1]    1234 SuperTag
+      88  1565884800 1565892000         100 [%]      0 [1]    1234 SuperTag
+      89  1565892000 1565899200         100 [%]      0 [1]    1234 SuperTag
+      90  1565899200 1565906400          99 [%]      0 [1]    1234 SuperTag
+      91  1565906400 1565913600          99 [%]      1 [1]    1234 SuperTag
+      92  1565913600 1565920800         100 [%]      0 [1]    1234 SuperTag
+      93  1565920800 1565928000          99 [%]      0 [1]    1234 SuperTag
+      94  1565928000 1565935200         100 [%]      0 [1]    1234 SuperTag
+      95  1565935200 1565942400         100 [%]      0 [1]    1234 SuperTag
+      96  1565942400 1565949600         100 [%]      0 [1]    1234 SuperTag
+      97  1565949600 1565956800          99 [%]      0 [1]    1234 SuperTag
+      98  1565956800 1565964000          98 [%]      2 [1]    1234 SuperTag
+      99  1565964000 1565971200         100 [%]      0 [1]    1234 SuperTag
+      100 1565971200 1565978400         100 [%]      0 [1]    1234 SuperTag
+      101 1565978400 1565985600          99 [%]      1 [1]    1234 SuperTag
+      102 1565985600 1565992800         100 [%]      0 [1]    1234 SuperTag
+      103 1565992800 1566000000          99 [%]      0 [1]    1234 SuperTag
+      104 1566000000 1566007200         100 [%]      0 [1]    1234 SuperTag
+      105 1566007200 1566014400          64 [%]    127 [1]    1234 SuperTag
+      106 1566014400 1566021600          80 [%]      0 [1]    1234 SuperTag
+      107 1566021600 1566028800          74 [%]      0 [1]    1234 SuperTag
+      108 1566028800 1566036000          57 [%]    112 [1]    1234 SuperTag
+      109 1566036000 1566043200          40 [%]      7 [1]    1234 SuperTag
+      110 1566043200 1566050400          95 [%]      3 [1]    1234 SuperTag
+      111 1566050400 1566057600          58 [%]      0 [1]    1234 SuperTag
+      112 1566057600 1566064800          73 [%]      0 [1]    1234 SuperTag
+      113 1566064800 1566072000          73 [%]      0 [1]    1234 SuperTag
+      114 1566072000 1566079200          47 [%]      0 [1]    1234 SuperTag
+      115 1566079200 1566086400          81 [%]      0 [1]    1234 SuperTag
+      116 1566086400 1566093600          97 [%]      0 [1]    1234 SuperTag
+      117 1566093600 1566100800          32 [%]      0 [1]    1234 SuperTag
+      118 1566100800 1566108000           4 [%]      0 [1]    1234 SuperTag
+      119 1566108000 1566115200          13 [%]      0 [1]    1234 SuperTag
+      120 1566115200 1566122400          11 [%]      0 [1]    1234 SuperTag
+      121 1566122400 1566129600          20 [%]      0 [1]    1234 SuperTag
+      122 1566129600 1566136800          79 [%]    117 [1]    1234 SuperTag
+      123 1566136800 1566144000          88 [%]    127 [1]    1234 SuperTag
+      124 1566144000 1566151200          87 [%]    127 [1]    1234 SuperTag
+      125 1566151200 1566158400          86 [%]    127 [1]    1234 SuperTag
+      126 1566158400 1566165600          87 [%]    127 [1]    1234 SuperTag
+      127 1566165600 1566172800          88 [%]    127 [1]    1234 SuperTag
+      128 1566172800 1566180000          89 [%]    127 [1]    1234 SuperTag
+      129 1566180000 1566187200          90 [%]    127 [1]    1234 SuperTag
+      130 1566187200 1566194400          90 [%]    127 [1]    1234 SuperTag
+      131 1566194400 1566201600          89 [%]    127 [1]    1234 SuperTag
+      132 1566201600 1566208800          89 [%]    127 [1]    1234 SuperTag
+      133 1566208800 1566216000          88 [%]    127 [1]    1234 SuperTag
+      134 1566216000 1566223200          86 [%]    127 [1]    1234 SuperTag
+      135 1566223200 1566230400           0 [%]      0 [1]    1234 SuperTag
+      136 1566230400 1566237600           0 [%]      0 [1]    1234 SuperTag
+      137 1566237600 1566244800           0 [%]      0 [1]    1234 SuperTag
+      138 1566244800 1566252000           0 [%]      0 [1]    1234 SuperTag
+      139 1566252000 1566259200           0 [%]      0 [1]    1234 SuperTag
+      140 1566259200 1566266400           0 [%]      0 [1]    1234 SuperTag
+      141 1566266400 1566273600           0 [%]      0 [1]    1234 SuperTag
+      142 1566273600 1566280800           0 [%]      0 [1]    1234 SuperTag
+      143 1566280800 1566288000           0 [%]      0 [1]    1234 SuperTag
 
 # Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175158
 
@@ -5210,8 +5210,8 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_ID TAG_TYPE
-      1 Wildlife Computers Benthic sPAT   1234 SuperTag
+                      MAKE        MODEL TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT    1234 SuperTag
 
 ---
 
@@ -6688,945 +6688,945 @@
       732                            614                            199
       733                           5734                            866
       734                            629                            154
-          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_ID TAG_TYPE
-      1                                  122   1234 SuperTag
-      2                                  103   1234 SuperTag
-      3                                   77   1234 SuperTag
-      4                                  103   1234 SuperTag
-      5                                   85   1234 SuperTag
-      6                                  104   1234 SuperTag
-      7                                   95   1234 SuperTag
-      8                                   74   1234 SuperTag
-      9                                  105   1234 SuperTag
-      10                                  98   1234 SuperTag
-      11                                  11   1234 SuperTag
-      12                                  86   1234 SuperTag
-      13                                 114   1234 SuperTag
-      14                                  88   1234 SuperTag
-      15                                  82   1234 SuperTag
-      16                                  91   1234 SuperTag
-      17                                 142   1234 SuperTag
-      18                                 159   1234 SuperTag
-      19                                 111   1234 SuperTag
-      20                                  73   1234 SuperTag
-      21                                 114   1234 SuperTag
-      22                                 126   1234 SuperTag
-      23                                  96   1234 SuperTag
-      24                                  93   1234 SuperTag
-      25                                  88   1234 SuperTag
-      26                                 102   1234 SuperTag
-      27                                 106   1234 SuperTag
-      28                                  93   1234 SuperTag
-      29                                 107   1234 SuperTag
-      30                                  80   1234 SuperTag
-      31                                  97   1234 SuperTag
-      32                                 173   1234 SuperTag
-      33                                  79   1234 SuperTag
-      34                                  77   1234 SuperTag
-      35                                 103   1234 SuperTag
-      36                                  78   1234 SuperTag
-      37                                  83   1234 SuperTag
-      38                                  77   1234 SuperTag
-      39                                 169   1234 SuperTag
-      40                                  88   1234 SuperTag
-      41                                  74   1234 SuperTag
-      42                                  87   1234 SuperTag
-      43                                  97   1234 SuperTag
-      44                                 143   1234 SuperTag
-      45                                  90   1234 SuperTag
-      46                                 140   1234 SuperTag
-      47                                 157   1234 SuperTag
-      48                                 146   1234 SuperTag
-      49                                  86   1234 SuperTag
-      50                                  82   1234 SuperTag
-      51                                  95   1234 SuperTag
-      52                                  90   1234 SuperTag
-      53                                 126   1234 SuperTag
-      54                                 101   1234 SuperTag
-      55                                 151   1234 SuperTag
-      56                                  39   1234 SuperTag
-      57                                 131   1234 SuperTag
-      58                                 102   1234 SuperTag
-      59                                  40   1234 SuperTag
-      60                                  89   1234 SuperTag
-      61                                  92   1234 SuperTag
-      62                                  95   1234 SuperTag
-      63                                  98   1234 SuperTag
-      64                                  88   1234 SuperTag
-      65                                  99   1234 SuperTag
-      66                                   0   1234 SuperTag
-      67                                  98   1234 SuperTag
-      68                                 102   1234 SuperTag
-      69                                 102   1234 SuperTag
-      70                                  96   1234 SuperTag
-      71                                 110   1234 SuperTag
-      72                                  75   1234 SuperTag
-      73                                  82   1234 SuperTag
-      74                                  77   1234 SuperTag
-      75                                 110   1234 SuperTag
-      76                                  75   1234 SuperTag
-      77                                 101   1234 SuperTag
-      78                                  89   1234 SuperTag
-      79                                 105   1234 SuperTag
-      80                                 101   1234 SuperTag
-      81                                  94   1234 SuperTag
-      82                                 107   1234 SuperTag
-      83                                  76   1234 SuperTag
-      84                                  98   1234 SuperTag
-      85                                  26   1234 SuperTag
-      86                                  81   1234 SuperTag
-      87                                 101   1234 SuperTag
-      88                                  89   1234 SuperTag
-      89                                 102   1234 SuperTag
-      90                                  68   1234 SuperTag
-      91                                  80   1234 SuperTag
-      92                                  86   1234 SuperTag
-      93                                  80   1234 SuperTag
-      94                                  83   1234 SuperTag
-      95                                  60   1234 SuperTag
-      96                                 132   1234 SuperTag
-      97                                  93   1234 SuperTag
-      98                                  86   1234 SuperTag
-      99                                  99   1234 SuperTag
-      100                                100   1234 SuperTag
-      101                                124   1234 SuperTag
-      102                                 79   1234 SuperTag
-      103                                 93   1234 SuperTag
-      104                                149   1234 SuperTag
-      105                                 93   1234 SuperTag
-      106                                102   1234 SuperTag
-      107                                126   1234 SuperTag
-      108                                 77   1234 SuperTag
-      109                                 95   1234 SuperTag
-      110                                 89   1234 SuperTag
-      111                                 88   1234 SuperTag
-      112                                 94   1234 SuperTag
-      113                                 90   1234 SuperTag
-      114                                 94   1234 SuperTag
-      115                                 95   1234 SuperTag
-      116                                102   1234 SuperTag
-      117                                100   1234 SuperTag
-      118                                107   1234 SuperTag
-      119                                102   1234 SuperTag
-      120                                 86   1234 SuperTag
-      121                                 23   1234 SuperTag
-      122                                103   1234 SuperTag
-      123                                 83   1234 SuperTag
-      124                                 89   1234 SuperTag
-      125                                112   1234 SuperTag
-      126                                171   1234 SuperTag
-      127                                138   1234 SuperTag
-      128                                 79   1234 SuperTag
-      129                                112   1234 SuperTag
-      130                                108   1234 SuperTag
-      131                                 84   1234 SuperTag
-      132                                 22   1234 SuperTag
-      133                                121   1234 SuperTag
-      134                                122   1234 SuperTag
-      135                                 74   1234 SuperTag
-      136                                100   1234 SuperTag
-      137                                143   1234 SuperTag
-      138                                 97   1234 SuperTag
-      139                                 87   1234 SuperTag
-      140                                 92   1234 SuperTag
-      141                                 85   1234 SuperTag
-      142                                 86   1234 SuperTag
-      143                                 78   1234 SuperTag
-      144                                 97   1234 SuperTag
-      145                                 86   1234 SuperTag
-      146                                 NA   1234 SuperTag
-      147                                113   1234 SuperTag
-      148                                 95   1234 SuperTag
-      149                                156   1234 SuperTag
-      150                                110   1234 SuperTag
-      151                                116   1234 SuperTag
-      152                                 25   1234 SuperTag
-      153                                 97   1234 SuperTag
-      154                                 78   1234 SuperTag
-      155                                 79   1234 SuperTag
-      156                                 91   1234 SuperTag
-      157                                141   1234 SuperTag
-      158                                 95   1234 SuperTag
-      159                                103   1234 SuperTag
-      160                                134   1234 SuperTag
-      161                                 90   1234 SuperTag
-      162                                104   1234 SuperTag
-      163                                 89   1234 SuperTag
-      164                                 96   1234 SuperTag
-      165                                 94   1234 SuperTag
-      166                                 99   1234 SuperTag
-      167                                 83   1234 SuperTag
-      168                                 99   1234 SuperTag
-      169                                169   1234 SuperTag
-      170                                 95   1234 SuperTag
-      171                                100   1234 SuperTag
-      172                                104   1234 SuperTag
-      173                                102   1234 SuperTag
-      174                                 94   1234 SuperTag
-      175                                105   1234 SuperTag
-      176                                 85   1234 SuperTag
-      177                                 91   1234 SuperTag
-      178                                165   1234 SuperTag
-      179                                123   1234 SuperTag
-      180                                 89   1234 SuperTag
-      181                                104   1234 SuperTag
-      182                                 73   1234 SuperTag
-      183                                117   1234 SuperTag
-      184                                110   1234 SuperTag
-      185                                133   1234 SuperTag
-      186                                 82   1234 SuperTag
-      187                                104   1234 SuperTag
-      188                                102   1234 SuperTag
-      189                                 76   1234 SuperTag
-      190                                104   1234 SuperTag
-      191                                100   1234 SuperTag
-      192                                 70   1234 SuperTag
-      193                                109   1234 SuperTag
-      194                                 87   1234 SuperTag
-      195                                 83   1234 SuperTag
-      196                                 69   1234 SuperTag
-      197                                 75   1234 SuperTag
-      198                                 97   1234 SuperTag
-      199                                 77   1234 SuperTag
-      200                                 83   1234 SuperTag
-      201                                148   1234 SuperTag
-      202                                 81   1234 SuperTag
-      203                                 94   1234 SuperTag
-      204                                 72   1234 SuperTag
-      205                                 90   1234 SuperTag
-      206                                 39   1234 SuperTag
-      207                                  5   1234 SuperTag
-      208                                123   1234 SuperTag
-      209                                 82   1234 SuperTag
-      210                                 92   1234 SuperTag
-      211                                152   1234 SuperTag
-      212                                 83   1234 SuperTag
-      213                                103   1234 SuperTag
-      214                                 98   1234 SuperTag
-      215                                 71   1234 SuperTag
-      216                                 40   1234 SuperTag
-      217                                115   1234 SuperTag
-      218                                 80   1234 SuperTag
-      219                                 75   1234 SuperTag
-      220                                103   1234 SuperTag
-      221                                 93   1234 SuperTag
-      222                                 62   1234 SuperTag
-      223                                 96   1234 SuperTag
-      224                                169   1234 SuperTag
-      225                                 98   1234 SuperTag
-      226                                 77   1234 SuperTag
-      227                                102   1234 SuperTag
-      228                                 89   1234 SuperTag
-      229                                103   1234 SuperTag
-      230                                 17   1234 SuperTag
-      231                                 96   1234 SuperTag
-      232                                 75   1234 SuperTag
-      233                                120   1234 SuperTag
-      234                                 69   1234 SuperTag
-      235                                110   1234 SuperTag
-      236                                 59   1234 SuperTag
-      237                                 74   1234 SuperTag
-      238                                 80   1234 SuperTag
-      239                                 69   1234 SuperTag
-      240                                100   1234 SuperTag
-      241                                118   1234 SuperTag
-      242                                 84   1234 SuperTag
-      243                                 99   1234 SuperTag
-      244                                100   1234 SuperTag
-      245                                 83   1234 SuperTag
-      246                                163   1234 SuperTag
-      247                                129   1234 SuperTag
-      248                                 86   1234 SuperTag
-      249                                104   1234 SuperTag
-      250                                 77   1234 SuperTag
-      251                                 84   1234 SuperTag
-      252                                 84   1234 SuperTag
-      253                                 80   1234 SuperTag
-      254                                 77   1234 SuperTag
-      255                                 78   1234 SuperTag
-      256                                 85   1234 SuperTag
-      257                                 94   1234 SuperTag
-      258                                 92   1234 SuperTag
-      259                                138   1234 SuperTag
-      260                                 89   1234 SuperTag
-      261                                 94   1234 SuperTag
-      262                                103   1234 SuperTag
-      263                                100   1234 SuperTag
-      264                                 79   1234 SuperTag
-      265                                102   1234 SuperTag
-      266                                 88   1234 SuperTag
-      267                                109   1234 SuperTag
-      268                                 11   1234 SuperTag
-      269                                 89   1234 SuperTag
-      270                                114   1234 SuperTag
-      271                                100   1234 SuperTag
-      272                                 97   1234 SuperTag
-      273                                 67   1234 SuperTag
-      274                                 93   1234 SuperTag
-      275                                160   1234 SuperTag
-      276                                172   1234 SuperTag
-      277                                108   1234 SuperTag
-      278                                103   1234 SuperTag
-      279                                 97   1234 SuperTag
-      280                                 98   1234 SuperTag
-      281                                163   1234 SuperTag
-      282                                 97   1234 SuperTag
-      283                                 89   1234 SuperTag
-      284                                 91   1234 SuperTag
-      285                                 66   1234 SuperTag
-      286                                108   1234 SuperTag
-      287                                 83   1234 SuperTag
-      288                                  2   1234 SuperTag
-      289                                 78   1234 SuperTag
-      290                                107   1234 SuperTag
-      291                                106   1234 SuperTag
-      292                                 11   1234 SuperTag
-      293                                112   1234 SuperTag
-      294                                 77   1234 SuperTag
-      295                                 98   1234 SuperTag
-      296                                 12   1234 SuperTag
-      297                                 85   1234 SuperTag
-      298                                 98   1234 SuperTag
-      299                                 89   1234 SuperTag
-      300                                 93   1234 SuperTag
-      301                                 72   1234 SuperTag
-      302                                 65   1234 SuperTag
-      303                                 84   1234 SuperTag
-      304                                 82   1234 SuperTag
-      305                                 84   1234 SuperTag
-      306                                 91   1234 SuperTag
-      307                                121   1234 SuperTag
-      308                                151   1234 SuperTag
-      309                                120   1234 SuperTag
-      310                                117   1234 SuperTag
-      311                                 30   1234 SuperTag
-      312                                107   1234 SuperTag
-      313                                 85   1234 SuperTag
-      314                                 76   1234 SuperTag
-      315                                 58   1234 SuperTag
-      316                                101   1234 SuperTag
-      317                                 93   1234 SuperTag
-      318                                 98   1234 SuperTag
-      319                                 92   1234 SuperTag
-      320                                 89   1234 SuperTag
-      321                                 72   1234 SuperTag
-      322                                150   1234 SuperTag
-      323                                101   1234 SuperTag
-      324                                145   1234 SuperTag
-      325                                101   1234 SuperTag
-      326                                 98   1234 SuperTag
-      327                                 90   1234 SuperTag
-      328                                102   1234 SuperTag
-      329                                162   1234 SuperTag
-      330                                105   1234 SuperTag
-      331                                 91   1234 SuperTag
-      332                                 97   1234 SuperTag
-      333                                 55   1234 SuperTag
-      334                                102   1234 SuperTag
-      335                                 81   1234 SuperTag
-      336                                111   1234 SuperTag
-      337                                116   1234 SuperTag
-      338                                 80   1234 SuperTag
-      339                                 50   1234 SuperTag
-      340                                177   1234 SuperTag
-      341                                114   1234 SuperTag
-      342                                 70   1234 SuperTag
-      343                                126   1234 SuperTag
-      344                                102   1234 SuperTag
-      345                                107   1234 SuperTag
-      346                                 91   1234 SuperTag
-      347                                 97   1234 SuperTag
-      348                                104   1234 SuperTag
-      349                                 95   1234 SuperTag
-      350                                 75   1234 SuperTag
-      351                                131   1234 SuperTag
-      352                                101   1234 SuperTag
-      353                                 98   1234 SuperTag
-      354                                 81   1234 SuperTag
-      355                                 69   1234 SuperTag
-      356                                141   1234 SuperTag
-      357                                 77   1234 SuperTag
-      358                                106   1234 SuperTag
-      359                                103   1234 SuperTag
-      360                                101   1234 SuperTag
-      361                                 76   1234 SuperTag
-      362                                 69   1234 SuperTag
-      363                                139   1234 SuperTag
-      364                                 78   1234 SuperTag
-      365                                 98   1234 SuperTag
-      366                                 90   1234 SuperTag
-      367                                124   1234 SuperTag
-      368                                116   1234 SuperTag
-      369                                 98   1234 SuperTag
-      370                                101   1234 SuperTag
-      371                                 92   1234 SuperTag
-      372                                 96   1234 SuperTag
-      373                                 99   1234 SuperTag
-      374                                100   1234 SuperTag
-      375                                102   1234 SuperTag
-      376                                 98   1234 SuperTag
-      377                                111   1234 SuperTag
-      378                                 81   1234 SuperTag
-      379                                 53   1234 SuperTag
-      380                                 99   1234 SuperTag
-      381                                139   1234 SuperTag
-      382                                105   1234 SuperTag
-      383                                157   1234 SuperTag
-      384                                 75   1234 SuperTag
-      385                                118   1234 SuperTag
-      386                                117   1234 SuperTag
-      387                                 68   1234 SuperTag
-      388                                 43   1234 SuperTag
-      389                                 94   1234 SuperTag
-      390                                 92   1234 SuperTag
-      391                                104   1234 SuperTag
-      392                                102   1234 SuperTag
-      393                                 85   1234 SuperTag
-      394                                 61   1234 SuperTag
-      395                                 98   1234 SuperTag
-      396                                 44   1234 SuperTag
-      397                                 77   1234 SuperTag
-      398                                 76   1234 SuperTag
-      399                                129   1234 SuperTag
-      400                                 78   1234 SuperTag
-      401                                 85   1234 SuperTag
-      402                                 81   1234 SuperTag
-      403                                 97   1234 SuperTag
-      404                                 99   1234 SuperTag
-      405                                 94   1234 SuperTag
-      406                                 18   1234 SuperTag
-      407                                 98   1234 SuperTag
-      408                                101   1234 SuperTag
-      409                                 79   1234 SuperTag
-      410                                 75   1234 SuperTag
-      411                                 96   1234 SuperTag
-      412                                 99   1234 SuperTag
-      413                                 87   1234 SuperTag
-      414                                 93   1234 SuperTag
-      415                                 39   1234 SuperTag
-      416                                 71   1234 SuperTag
-      417                                102   1234 SuperTag
-      418                                 93   1234 SuperTag
-      419                                 98   1234 SuperTag
-      420                                 64   1234 SuperTag
-      421                                 99   1234 SuperTag
-      422                                 98   1234 SuperTag
-      423                                 90   1234 SuperTag
-      424                                 99   1234 SuperTag
-      425                                103   1234 SuperTag
-      426                                122   1234 SuperTag
-      427                                 96   1234 SuperTag
-      428                                171   1234 SuperTag
-      429                                 89   1234 SuperTag
-      430                                112   1234 SuperTag
-      431                                109   1234 SuperTag
-      432                                153   1234 SuperTag
-      433                                155   1234 SuperTag
-      434                                121   1234 SuperTag
-      435                                134   1234 SuperTag
-      436                                 72   1234 SuperTag
-      437                                 34   1234 SuperTag
-      438                                 96   1234 SuperTag
-      439                                 76   1234 SuperTag
-      440                                 90   1234 SuperTag
-      441                                102   1234 SuperTag
-      442                                104   1234 SuperTag
-      443                                 NA   1234 SuperTag
-      444                                132   1234 SuperTag
-      445                                 99   1234 SuperTag
-      446                                 87   1234 SuperTag
-      447                                129   1234 SuperTag
-      448                                 75   1234 SuperTag
-      449                                 73   1234 SuperTag
-      450                                111   1234 SuperTag
-      451                                 62   1234 SuperTag
-      452                                 98   1234 SuperTag
-      453                                 79   1234 SuperTag
-      454                                116   1234 SuperTag
-      455                                 85   1234 SuperTag
-      456                                102   1234 SuperTag
-      457                                 89   1234 SuperTag
-      458                                154   1234 SuperTag
-      459                                 84   1234 SuperTag
-      460                                 91   1234 SuperTag
-      461                                 73   1234 SuperTag
-      462                                 84   1234 SuperTag
-      463                                 98   1234 SuperTag
-      464                                 48   1234 SuperTag
-      465                                100   1234 SuperTag
-      466                                113   1234 SuperTag
-      467                                 95   1234 SuperTag
-      468                                 96   1234 SuperTag
-      469                                 84   1234 SuperTag
-      470                                 97   1234 SuperTag
-      471                                100   1234 SuperTag
-      472                                100   1234 SuperTag
-      473                                105   1234 SuperTag
-      474                                 96   1234 SuperTag
-      475                                 82   1234 SuperTag
-      476                                149   1234 SuperTag
-      477                                135   1234 SuperTag
-      478                                 76   1234 SuperTag
-      479                                109   1234 SuperTag
-      480                                121   1234 SuperTag
-      481                                 93   1234 SuperTag
-      482                                104   1234 SuperTag
-      483                                107   1234 SuperTag
-      484                                 97   1234 SuperTag
-      485                                 77   1234 SuperTag
-      486                                104   1234 SuperTag
-      487                                 93   1234 SuperTag
-      488                                 80   1234 SuperTag
-      489                                 78   1234 SuperTag
-      490                                 98   1234 SuperTag
-      491                                 81   1234 SuperTag
-      492                                 90   1234 SuperTag
-      493                                 84   1234 SuperTag
-      494                                 93   1234 SuperTag
-      495                                116   1234 SuperTag
-      496                                133   1234 SuperTag
-      497                                 74   1234 SuperTag
-      498                                 89   1234 SuperTag
-      499                                 85   1234 SuperTag
-      500                                 51   1234 SuperTag
-      501                                 99   1234 SuperTag
-      502                                 85   1234 SuperTag
-      503                                 87   1234 SuperTag
-      504                                168   1234 SuperTag
-      505                                 97   1234 SuperTag
-      506                                 77   1234 SuperTag
-      507                                 79   1234 SuperTag
-      508                                162   1234 SuperTag
-      509                                 92   1234 SuperTag
-      510                                 94   1234 SuperTag
-      511                                119   1234 SuperTag
-      512                                 93   1234 SuperTag
-      513                                 99   1234 SuperTag
-      514                                102   1234 SuperTag
-      515                                 96   1234 SuperTag
-      516                                102   1234 SuperTag
-      517                                111   1234 SuperTag
-      518                                 88   1234 SuperTag
-      519                                 87   1234 SuperTag
-      520                                152   1234 SuperTag
-      521                                 81   1234 SuperTag
-      522                                121   1234 SuperTag
-      523                                 83   1234 SuperTag
-      524                                147   1234 SuperTag
-      525                                 86   1234 SuperTag
-      526                                106   1234 SuperTag
-      527                                117   1234 SuperTag
-      528                                 77   1234 SuperTag
-      529                                 86   1234 SuperTag
-      530                                128   1234 SuperTag
-      531                                 75   1234 SuperTag
-      532                                 81   1234 SuperTag
-      533                                 83   1234 SuperTag
-      534                                 91   1234 SuperTag
-      535                                104   1234 SuperTag
-      536                                 72   1234 SuperTag
-      537                                 80   1234 SuperTag
-      538                                 80   1234 SuperTag
-      539                                 90   1234 SuperTag
-      540                                130   1234 SuperTag
-      541                                124   1234 SuperTag
-      542                                 87   1234 SuperTag
-      543                                 83   1234 SuperTag
-      544                                111   1234 SuperTag
-      545                                121   1234 SuperTag
-      546                                139   1234 SuperTag
-      547                                 95   1234 SuperTag
-      548                                 96   1234 SuperTag
-      549                                 83   1234 SuperTag
-      550                                139   1234 SuperTag
-      551                                104   1234 SuperTag
-      552                                110   1234 SuperTag
-      553                                130   1234 SuperTag
-      554                                 93   1234 SuperTag
-      555                                 77   1234 SuperTag
-      556                                 87   1234 SuperTag
-      557                                 92   1234 SuperTag
-      558                                110   1234 SuperTag
-      559                                 90   1234 SuperTag
-      560                                 80   1234 SuperTag
-      561                                102   1234 SuperTag
-      562                                114   1234 SuperTag
-      563                                107   1234 SuperTag
-      564                                100   1234 SuperTag
-      565                                 68   1234 SuperTag
-      566                                101   1234 SuperTag
-      567                                 79   1234 SuperTag
-      568                                 91   1234 SuperTag
-      569                                142   1234 SuperTag
-      570                                142   1234 SuperTag
-      571                                 59   1234 SuperTag
-      572                                138   1234 SuperTag
-      573                                 85   1234 SuperTag
-      574                                120   1234 SuperTag
-      575                                 84   1234 SuperTag
-      576                                131   1234 SuperTag
-      577                                 77   1234 SuperTag
-      578                                106   1234 SuperTag
-      579                                125   1234 SuperTag
-      580                                 93   1234 SuperTag
-      581                                 86   1234 SuperTag
-      582                                 84   1234 SuperTag
-      583                                 91   1234 SuperTag
-      584                                 68   1234 SuperTag
-      585                                 78   1234 SuperTag
-      586                                 60   1234 SuperTag
-      587                                 85   1234 SuperTag
-      588                                 99   1234 SuperTag
-      589                                 80   1234 SuperTag
-      590                                111   1234 SuperTag
-      591                                106   1234 SuperTag
-      592                                 83   1234 SuperTag
-      593                                125   1234 SuperTag
-      594                                 93   1234 SuperTag
-      595                                 80   1234 SuperTag
-      596                                 95   1234 SuperTag
-      597                                 93   1234 SuperTag
-      598                                105   1234 SuperTag
-      599                                 94   1234 SuperTag
-      600                                 75   1234 SuperTag
-      601                                 97   1234 SuperTag
-      602                                 88   1234 SuperTag
-      603                                 82   1234 SuperTag
-      604                                 59   1234 SuperTag
-      605                                 NA   1234 SuperTag
-      606                                 78   1234 SuperTag
-      607                                 94   1234 SuperTag
-      608                                102   1234 SuperTag
-      609                                110   1234 SuperTag
-      610                                 86   1234 SuperTag
-      611                                165   1234 SuperTag
-      612                                 71   1234 SuperTag
-      613                                110   1234 SuperTag
-      614                                152   1234 SuperTag
-      615                                156   1234 SuperTag
-      616                                 78   1234 SuperTag
-      617                                110   1234 SuperTag
-      618                                 80   1234 SuperTag
-      619                                 98   1234 SuperTag
-      620                                 94   1234 SuperTag
-      621                                112   1234 SuperTag
-      622                                 99   1234 SuperTag
-      623                                 98   1234 SuperTag
-      624                                 98   1234 SuperTag
-      625                                 79   1234 SuperTag
-      626                                 79   1234 SuperTag
-      627                                 98   1234 SuperTag
-      628                                 86   1234 SuperTag
-      629                                131   1234 SuperTag
-      630                                 74   1234 SuperTag
-      631                                 76   1234 SuperTag
-      632                                 98   1234 SuperTag
-      633                                 98   1234 SuperTag
-      634                                 81   1234 SuperTag
-      635                                 78   1234 SuperTag
-      636                                 83   1234 SuperTag
-      637                                 97   1234 SuperTag
-      638                                 82   1234 SuperTag
-      639                                 90   1234 SuperTag
-      640                                 92   1234 SuperTag
-      641                                 76   1234 SuperTag
-      642                                 89   1234 SuperTag
-      643                                 86   1234 SuperTag
-      644                                 49   1234 SuperTag
-      645                                100   1234 SuperTag
-      646                                 90   1234 SuperTag
-      647                                100   1234 SuperTag
-      648                                 76   1234 SuperTag
-      649                                111   1234 SuperTag
-      650                                 59   1234 SuperTag
-      651                                 80   1234 SuperTag
-      652                                 96   1234 SuperTag
-      653                                 89   1234 SuperTag
-      654                                102   1234 SuperTag
-      655                                100   1234 SuperTag
-      656                                108   1234 SuperTag
-      657                                 90   1234 SuperTag
-      658                                100   1234 SuperTag
-      659                                 63   1234 SuperTag
-      660                                137   1234 SuperTag
-      661                                 78   1234 SuperTag
-      662                                111   1234 SuperTag
-      663                                 78   1234 SuperTag
-      664                                 78   1234 SuperTag
-      665                                119   1234 SuperTag
-      666                                 88   1234 SuperTag
-      667                                  0   1234 SuperTag
-      668                                 90   1234 SuperTag
-      669                                158   1234 SuperTag
-      670                                 66   1234 SuperTag
-      671                                 97   1234 SuperTag
-      672                                 95   1234 SuperTag
-      673                                 NA   1234 SuperTag
-      674                                 73   1234 SuperTag
-      675                                 78   1234 SuperTag
-      676                                 94   1234 SuperTag
-      677                                 93   1234 SuperTag
-      678                                 97   1234 SuperTag
-      679                                 70   1234 SuperTag
-      680                                 44   1234 SuperTag
-      681                                104   1234 SuperTag
-      682                                 74   1234 SuperTag
-      683                                 80   1234 SuperTag
-      684                                 67   1234 SuperTag
-      685                                 NA   1234 SuperTag
-      686                                114   1234 SuperTag
-      687                                100   1234 SuperTag
-      688                                149   1234 SuperTag
-      689                                 86   1234 SuperTag
-      690                                 83   1234 SuperTag
-      691                                 82   1234 SuperTag
-      692                                 83   1234 SuperTag
-      693                                 60   1234 SuperTag
-      694                                 91   1234 SuperTag
-      695                                101   1234 SuperTag
-      696                                 94   1234 SuperTag
-      697                                101   1234 SuperTag
-      698                                 91   1234 SuperTag
-      699                                 56   1234 SuperTag
-      700                                132   1234 SuperTag
-      701                                109   1234 SuperTag
-      702                                122   1234 SuperTag
-      703                                151   1234 SuperTag
-      704                                 99   1234 SuperTag
-      705                                103   1234 SuperTag
-      706                                 78   1234 SuperTag
-      707                                 79   1234 SuperTag
-      708                                 61   1234 SuperTag
-      709                                129   1234 SuperTag
-      710                                 95   1234 SuperTag
-      711                                108   1234 SuperTag
-      712                                110   1234 SuperTag
-      713                                101   1234 SuperTag
-      714                                 81   1234 SuperTag
-      715                                 83   1234 SuperTag
-      716                                 77   1234 SuperTag
-      717                                 74   1234 SuperTag
-      718                                 79   1234 SuperTag
-      719                                 89   1234 SuperTag
-      720                                 87   1234 SuperTag
-      721                                111   1234 SuperTag
-      722                                 81   1234 SuperTag
-      723                                121   1234 SuperTag
-      724                                145   1234 SuperTag
-      725                                 79   1234 SuperTag
-      726                                 72   1234 SuperTag
-      727                                 33   1234 SuperTag
-      728                                 99   1234 SuperTag
-      729                                102   1234 SuperTag
-      730                                 90   1234 SuperTag
-      731                                 12   1234 SuperTag
-      732                                 90   1234 SuperTag
-      733                                129   1234 SuperTag
-      734                                112   1234 SuperTag
+          LOCATION_ERROR_ELLIPSE_ORIENTATION TAG_NUM TAG_TYPE
+      1                                  122    1234 SuperTag
+      2                                  103    1234 SuperTag
+      3                                   77    1234 SuperTag
+      4                                  103    1234 SuperTag
+      5                                   85    1234 SuperTag
+      6                                  104    1234 SuperTag
+      7                                   95    1234 SuperTag
+      8                                   74    1234 SuperTag
+      9                                  105    1234 SuperTag
+      10                                  98    1234 SuperTag
+      11                                  11    1234 SuperTag
+      12                                  86    1234 SuperTag
+      13                                 114    1234 SuperTag
+      14                                  88    1234 SuperTag
+      15                                  82    1234 SuperTag
+      16                                  91    1234 SuperTag
+      17                                 142    1234 SuperTag
+      18                                 159    1234 SuperTag
+      19                                 111    1234 SuperTag
+      20                                  73    1234 SuperTag
+      21                                 114    1234 SuperTag
+      22                                 126    1234 SuperTag
+      23                                  96    1234 SuperTag
+      24                                  93    1234 SuperTag
+      25                                  88    1234 SuperTag
+      26                                 102    1234 SuperTag
+      27                                 106    1234 SuperTag
+      28                                  93    1234 SuperTag
+      29                                 107    1234 SuperTag
+      30                                  80    1234 SuperTag
+      31                                  97    1234 SuperTag
+      32                                 173    1234 SuperTag
+      33                                  79    1234 SuperTag
+      34                                  77    1234 SuperTag
+      35                                 103    1234 SuperTag
+      36                                  78    1234 SuperTag
+      37                                  83    1234 SuperTag
+      38                                  77    1234 SuperTag
+      39                                 169    1234 SuperTag
+      40                                  88    1234 SuperTag
+      41                                  74    1234 SuperTag
+      42                                  87    1234 SuperTag
+      43                                  97    1234 SuperTag
+      44                                 143    1234 SuperTag
+      45                                  90    1234 SuperTag
+      46                                 140    1234 SuperTag
+      47                                 157    1234 SuperTag
+      48                                 146    1234 SuperTag
+      49                                  86    1234 SuperTag
+      50                                  82    1234 SuperTag
+      51                                  95    1234 SuperTag
+      52                                  90    1234 SuperTag
+      53                                 126    1234 SuperTag
+      54                                 101    1234 SuperTag
+      55                                 151    1234 SuperTag
+      56                                  39    1234 SuperTag
+      57                                 131    1234 SuperTag
+      58                                 102    1234 SuperTag
+      59                                  40    1234 SuperTag
+      60                                  89    1234 SuperTag
+      61                                  92    1234 SuperTag
+      62                                  95    1234 SuperTag
+      63                                  98    1234 SuperTag
+      64                                  88    1234 SuperTag
+      65                                  99    1234 SuperTag
+      66                                   0    1234 SuperTag
+      67                                  98    1234 SuperTag
+      68                                 102    1234 SuperTag
+      69                                 102    1234 SuperTag
+      70                                  96    1234 SuperTag
+      71                                 110    1234 SuperTag
+      72                                  75    1234 SuperTag
+      73                                  82    1234 SuperTag
+      74                                  77    1234 SuperTag
+      75                                 110    1234 SuperTag
+      76                                  75    1234 SuperTag
+      77                                 101    1234 SuperTag
+      78                                  89    1234 SuperTag
+      79                                 105    1234 SuperTag
+      80                                 101    1234 SuperTag
+      81                                  94    1234 SuperTag
+      82                                 107    1234 SuperTag
+      83                                  76    1234 SuperTag
+      84                                  98    1234 SuperTag
+      85                                  26    1234 SuperTag
+      86                                  81    1234 SuperTag
+      87                                 101    1234 SuperTag
+      88                                  89    1234 SuperTag
+      89                                 102    1234 SuperTag
+      90                                  68    1234 SuperTag
+      91                                  80    1234 SuperTag
+      92                                  86    1234 SuperTag
+      93                                  80    1234 SuperTag
+      94                                  83    1234 SuperTag
+      95                                  60    1234 SuperTag
+      96                                 132    1234 SuperTag
+      97                                  93    1234 SuperTag
+      98                                  86    1234 SuperTag
+      99                                  99    1234 SuperTag
+      100                                100    1234 SuperTag
+      101                                124    1234 SuperTag
+      102                                 79    1234 SuperTag
+      103                                 93    1234 SuperTag
+      104                                149    1234 SuperTag
+      105                                 93    1234 SuperTag
+      106                                102    1234 SuperTag
+      107                                126    1234 SuperTag
+      108                                 77    1234 SuperTag
+      109                                 95    1234 SuperTag
+      110                                 89    1234 SuperTag
+      111                                 88    1234 SuperTag
+      112                                 94    1234 SuperTag
+      113                                 90    1234 SuperTag
+      114                                 94    1234 SuperTag
+      115                                 95    1234 SuperTag
+      116                                102    1234 SuperTag
+      117                                100    1234 SuperTag
+      118                                107    1234 SuperTag
+      119                                102    1234 SuperTag
+      120                                 86    1234 SuperTag
+      121                                 23    1234 SuperTag
+      122                                103    1234 SuperTag
+      123                                 83    1234 SuperTag
+      124                                 89    1234 SuperTag
+      125                                112    1234 SuperTag
+      126                                171    1234 SuperTag
+      127                                138    1234 SuperTag
+      128                                 79    1234 SuperTag
+      129                                112    1234 SuperTag
+      130                                108    1234 SuperTag
+      131                                 84    1234 SuperTag
+      132                                 22    1234 SuperTag
+      133                                121    1234 SuperTag
+      134                                122    1234 SuperTag
+      135                                 74    1234 SuperTag
+      136                                100    1234 SuperTag
+      137                                143    1234 SuperTag
+      138                                 97    1234 SuperTag
+      139                                 87    1234 SuperTag
+      140                                 92    1234 SuperTag
+      141                                 85    1234 SuperTag
+      142                                 86    1234 SuperTag
+      143                                 78    1234 SuperTag
+      144                                 97    1234 SuperTag
+      145                                 86    1234 SuperTag
+      146                                 NA    1234 SuperTag
+      147                                113    1234 SuperTag
+      148                                 95    1234 SuperTag
+      149                                156    1234 SuperTag
+      150                                110    1234 SuperTag
+      151                                116    1234 SuperTag
+      152                                 25    1234 SuperTag
+      153                                 97    1234 SuperTag
+      154                                 78    1234 SuperTag
+      155                                 79    1234 SuperTag
+      156                                 91    1234 SuperTag
+      157                                141    1234 SuperTag
+      158                                 95    1234 SuperTag
+      159                                103    1234 SuperTag
+      160                                134    1234 SuperTag
+      161                                 90    1234 SuperTag
+      162                                104    1234 SuperTag
+      163                                 89    1234 SuperTag
+      164                                 96    1234 SuperTag
+      165                                 94    1234 SuperTag
+      166                                 99    1234 SuperTag
+      167                                 83    1234 SuperTag
+      168                                 99    1234 SuperTag
+      169                                169    1234 SuperTag
+      170                                 95    1234 SuperTag
+      171                                100    1234 SuperTag
+      172                                104    1234 SuperTag
+      173                                102    1234 SuperTag
+      174                                 94    1234 SuperTag
+      175                                105    1234 SuperTag
+      176                                 85    1234 SuperTag
+      177                                 91    1234 SuperTag
+      178                                165    1234 SuperTag
+      179                                123    1234 SuperTag
+      180                                 89    1234 SuperTag
+      181                                104    1234 SuperTag
+      182                                 73    1234 SuperTag
+      183                                117    1234 SuperTag
+      184                                110    1234 SuperTag
+      185                                133    1234 SuperTag
+      186                                 82    1234 SuperTag
+      187                                104    1234 SuperTag
+      188                                102    1234 SuperTag
+      189                                 76    1234 SuperTag
+      190                                104    1234 SuperTag
+      191                                100    1234 SuperTag
+      192                                 70    1234 SuperTag
+      193                                109    1234 SuperTag
+      194                                 87    1234 SuperTag
+      195                                 83    1234 SuperTag
+      196                                 69    1234 SuperTag
+      197                                 75    1234 SuperTag
+      198                                 97    1234 SuperTag
+      199                                 77    1234 SuperTag
+      200                                 83    1234 SuperTag
+      201                                148    1234 SuperTag
+      202                                 81    1234 SuperTag
+      203                                 94    1234 SuperTag
+      204                                 72    1234 SuperTag
+      205                                 90    1234 SuperTag
+      206                                 39    1234 SuperTag
+      207                                  5    1234 SuperTag
+      208                                123    1234 SuperTag
+      209                                 82    1234 SuperTag
+      210                                 92    1234 SuperTag
+      211                                152    1234 SuperTag
+      212                                 83    1234 SuperTag
+      213                                103    1234 SuperTag
+      214                                 98    1234 SuperTag
+      215                                 71    1234 SuperTag
+      216                                 40    1234 SuperTag
+      217                                115    1234 SuperTag
+      218                                 80    1234 SuperTag
+      219                                 75    1234 SuperTag
+      220                                103    1234 SuperTag
+      221                                 93    1234 SuperTag
+      222                                 62    1234 SuperTag
+      223                                 96    1234 SuperTag
+      224                                169    1234 SuperTag
+      225                                 98    1234 SuperTag
+      226                                 77    1234 SuperTag
+      227                                102    1234 SuperTag
+      228                                 89    1234 SuperTag
+      229                                103    1234 SuperTag
+      230                                 17    1234 SuperTag
+      231                                 96    1234 SuperTag
+      232                                 75    1234 SuperTag
+      233                                120    1234 SuperTag
+      234                                 69    1234 SuperTag
+      235                                110    1234 SuperTag
+      236                                 59    1234 SuperTag
+      237                                 74    1234 SuperTag
+      238                                 80    1234 SuperTag
+      239                                 69    1234 SuperTag
+      240                                100    1234 SuperTag
+      241                                118    1234 SuperTag
+      242                                 84    1234 SuperTag
+      243                                 99    1234 SuperTag
+      244                                100    1234 SuperTag
+      245                                 83    1234 SuperTag
+      246                                163    1234 SuperTag
+      247                                129    1234 SuperTag
+      248                                 86    1234 SuperTag
+      249                                104    1234 SuperTag
+      250                                 77    1234 SuperTag
+      251                                 84    1234 SuperTag
+      252                                 84    1234 SuperTag
+      253                                 80    1234 SuperTag
+      254                                 77    1234 SuperTag
+      255                                 78    1234 SuperTag
+      256                                 85    1234 SuperTag
+      257                                 94    1234 SuperTag
+      258                                 92    1234 SuperTag
+      259                                138    1234 SuperTag
+      260                                 89    1234 SuperTag
+      261                                 94    1234 SuperTag
+      262                                103    1234 SuperTag
+      263                                100    1234 SuperTag
+      264                                 79    1234 SuperTag
+      265                                102    1234 SuperTag
+      266                                 88    1234 SuperTag
+      267                                109    1234 SuperTag
+      268                                 11    1234 SuperTag
+      269                                 89    1234 SuperTag
+      270                                114    1234 SuperTag
+      271                                100    1234 SuperTag
+      272                                 97    1234 SuperTag
+      273                                 67    1234 SuperTag
+      274                                 93    1234 SuperTag
+      275                                160    1234 SuperTag
+      276                                172    1234 SuperTag
+      277                                108    1234 SuperTag
+      278                                103    1234 SuperTag
+      279                                 97    1234 SuperTag
+      280                                 98    1234 SuperTag
+      281                                163    1234 SuperTag
+      282                                 97    1234 SuperTag
+      283                                 89    1234 SuperTag
+      284                                 91    1234 SuperTag
+      285                                 66    1234 SuperTag
+      286                                108    1234 SuperTag
+      287                                 83    1234 SuperTag
+      288                                  2    1234 SuperTag
+      289                                 78    1234 SuperTag
+      290                                107    1234 SuperTag
+      291                                106    1234 SuperTag
+      292                                 11    1234 SuperTag
+      293                                112    1234 SuperTag
+      294                                 77    1234 SuperTag
+      295                                 98    1234 SuperTag
+      296                                 12    1234 SuperTag
+      297                                 85    1234 SuperTag
+      298                                 98    1234 SuperTag
+      299                                 89    1234 SuperTag
+      300                                 93    1234 SuperTag
+      301                                 72    1234 SuperTag
+      302                                 65    1234 SuperTag
+      303                                 84    1234 SuperTag
+      304                                 82    1234 SuperTag
+      305                                 84    1234 SuperTag
+      306                                 91    1234 SuperTag
+      307                                121    1234 SuperTag
+      308                                151    1234 SuperTag
+      309                                120    1234 SuperTag
+      310                                117    1234 SuperTag
+      311                                 30    1234 SuperTag
+      312                                107    1234 SuperTag
+      313                                 85    1234 SuperTag
+      314                                 76    1234 SuperTag
+      315                                 58    1234 SuperTag
+      316                                101    1234 SuperTag
+      317                                 93    1234 SuperTag
+      318                                 98    1234 SuperTag
+      319                                 92    1234 SuperTag
+      320                                 89    1234 SuperTag
+      321                                 72    1234 SuperTag
+      322                                150    1234 SuperTag
+      323                                101    1234 SuperTag
+      324                                145    1234 SuperTag
+      325                                101    1234 SuperTag
+      326                                 98    1234 SuperTag
+      327                                 90    1234 SuperTag
+      328                                102    1234 SuperTag
+      329                                162    1234 SuperTag
+      330                                105    1234 SuperTag
+      331                                 91    1234 SuperTag
+      332                                 97    1234 SuperTag
+      333                                 55    1234 SuperTag
+      334                                102    1234 SuperTag
+      335                                 81    1234 SuperTag
+      336                                111    1234 SuperTag
+      337                                116    1234 SuperTag
+      338                                 80    1234 SuperTag
+      339                                 50    1234 SuperTag
+      340                                177    1234 SuperTag
+      341                                114    1234 SuperTag
+      342                                 70    1234 SuperTag
+      343                                126    1234 SuperTag
+      344                                102    1234 SuperTag
+      345                                107    1234 SuperTag
+      346                                 91    1234 SuperTag
+      347                                 97    1234 SuperTag
+      348                                104    1234 SuperTag
+      349                                 95    1234 SuperTag
+      350                                 75    1234 SuperTag
+      351                                131    1234 SuperTag
+      352                                101    1234 SuperTag
+      353                                 98    1234 SuperTag
+      354                                 81    1234 SuperTag
+      355                                 69    1234 SuperTag
+      356                                141    1234 SuperTag
+      357                                 77    1234 SuperTag
+      358                                106    1234 SuperTag
+      359                                103    1234 SuperTag
+      360                                101    1234 SuperTag
+      361                                 76    1234 SuperTag
+      362                                 69    1234 SuperTag
+      363                                139    1234 SuperTag
+      364                                 78    1234 SuperTag
+      365                                 98    1234 SuperTag
+      366                                 90    1234 SuperTag
+      367                                124    1234 SuperTag
+      368                                116    1234 SuperTag
+      369                                 98    1234 SuperTag
+      370                                101    1234 SuperTag
+      371                                 92    1234 SuperTag
+      372                                 96    1234 SuperTag
+      373                                 99    1234 SuperTag
+      374                                100    1234 SuperTag
+      375                                102    1234 SuperTag
+      376                                 98    1234 SuperTag
+      377                                111    1234 SuperTag
+      378                                 81    1234 SuperTag
+      379                                 53    1234 SuperTag
+      380                                 99    1234 SuperTag
+      381                                139    1234 SuperTag
+      382                                105    1234 SuperTag
+      383                                157    1234 SuperTag
+      384                                 75    1234 SuperTag
+      385                                118    1234 SuperTag
+      386                                117    1234 SuperTag
+      387                                 68    1234 SuperTag
+      388                                 43    1234 SuperTag
+      389                                 94    1234 SuperTag
+      390                                 92    1234 SuperTag
+      391                                104    1234 SuperTag
+      392                                102    1234 SuperTag
+      393                                 85    1234 SuperTag
+      394                                 61    1234 SuperTag
+      395                                 98    1234 SuperTag
+      396                                 44    1234 SuperTag
+      397                                 77    1234 SuperTag
+      398                                 76    1234 SuperTag
+      399                                129    1234 SuperTag
+      400                                 78    1234 SuperTag
+      401                                 85    1234 SuperTag
+      402                                 81    1234 SuperTag
+      403                                 97    1234 SuperTag
+      404                                 99    1234 SuperTag
+      405                                 94    1234 SuperTag
+      406                                 18    1234 SuperTag
+      407                                 98    1234 SuperTag
+      408                                101    1234 SuperTag
+      409                                 79    1234 SuperTag
+      410                                 75    1234 SuperTag
+      411                                 96    1234 SuperTag
+      412                                 99    1234 SuperTag
+      413                                 87    1234 SuperTag
+      414                                 93    1234 SuperTag
+      415                                 39    1234 SuperTag
+      416                                 71    1234 SuperTag
+      417                                102    1234 SuperTag
+      418                                 93    1234 SuperTag
+      419                                 98    1234 SuperTag
+      420                                 64    1234 SuperTag
+      421                                 99    1234 SuperTag
+      422                                 98    1234 SuperTag
+      423                                 90    1234 SuperTag
+      424                                 99    1234 SuperTag
+      425                                103    1234 SuperTag
+      426                                122    1234 SuperTag
+      427                                 96    1234 SuperTag
+      428                                171    1234 SuperTag
+      429                                 89    1234 SuperTag
+      430                                112    1234 SuperTag
+      431                                109    1234 SuperTag
+      432                                153    1234 SuperTag
+      433                                155    1234 SuperTag
+      434                                121    1234 SuperTag
+      435                                134    1234 SuperTag
+      436                                 72    1234 SuperTag
+      437                                 34    1234 SuperTag
+      438                                 96    1234 SuperTag
+      439                                 76    1234 SuperTag
+      440                                 90    1234 SuperTag
+      441                                102    1234 SuperTag
+      442                                104    1234 SuperTag
+      443                                 NA    1234 SuperTag
+      444                                132    1234 SuperTag
+      445                                 99    1234 SuperTag
+      446                                 87    1234 SuperTag
+      447                                129    1234 SuperTag
+      448                                 75    1234 SuperTag
+      449                                 73    1234 SuperTag
+      450                                111    1234 SuperTag
+      451                                 62    1234 SuperTag
+      452                                 98    1234 SuperTag
+      453                                 79    1234 SuperTag
+      454                                116    1234 SuperTag
+      455                                 85    1234 SuperTag
+      456                                102    1234 SuperTag
+      457                                 89    1234 SuperTag
+      458                                154    1234 SuperTag
+      459                                 84    1234 SuperTag
+      460                                 91    1234 SuperTag
+      461                                 73    1234 SuperTag
+      462                                 84    1234 SuperTag
+      463                                 98    1234 SuperTag
+      464                                 48    1234 SuperTag
+      465                                100    1234 SuperTag
+      466                                113    1234 SuperTag
+      467                                 95    1234 SuperTag
+      468                                 96    1234 SuperTag
+      469                                 84    1234 SuperTag
+      470                                 97    1234 SuperTag
+      471                                100    1234 SuperTag
+      472                                100    1234 SuperTag
+      473                                105    1234 SuperTag
+      474                                 96    1234 SuperTag
+      475                                 82    1234 SuperTag
+      476                                149    1234 SuperTag
+      477                                135    1234 SuperTag
+      478                                 76    1234 SuperTag
+      479                                109    1234 SuperTag
+      480                                121    1234 SuperTag
+      481                                 93    1234 SuperTag
+      482                                104    1234 SuperTag
+      483                                107    1234 SuperTag
+      484                                 97    1234 SuperTag
+      485                                 77    1234 SuperTag
+      486                                104    1234 SuperTag
+      487                                 93    1234 SuperTag
+      488                                 80    1234 SuperTag
+      489                                 78    1234 SuperTag
+      490                                 98    1234 SuperTag
+      491                                 81    1234 SuperTag
+      492                                 90    1234 SuperTag
+      493                                 84    1234 SuperTag
+      494                                 93    1234 SuperTag
+      495                                116    1234 SuperTag
+      496                                133    1234 SuperTag
+      497                                 74    1234 SuperTag
+      498                                 89    1234 SuperTag
+      499                                 85    1234 SuperTag
+      500                                 51    1234 SuperTag
+      501                                 99    1234 SuperTag
+      502                                 85    1234 SuperTag
+      503                                 87    1234 SuperTag
+      504                                168    1234 SuperTag
+      505                                 97    1234 SuperTag
+      506                                 77    1234 SuperTag
+      507                                 79    1234 SuperTag
+      508                                162    1234 SuperTag
+      509                                 92    1234 SuperTag
+      510                                 94    1234 SuperTag
+      511                                119    1234 SuperTag
+      512                                 93    1234 SuperTag
+      513                                 99    1234 SuperTag
+      514                                102    1234 SuperTag
+      515                                 96    1234 SuperTag
+      516                                102    1234 SuperTag
+      517                                111    1234 SuperTag
+      518                                 88    1234 SuperTag
+      519                                 87    1234 SuperTag
+      520                                152    1234 SuperTag
+      521                                 81    1234 SuperTag
+      522                                121    1234 SuperTag
+      523                                 83    1234 SuperTag
+      524                                147    1234 SuperTag
+      525                                 86    1234 SuperTag
+      526                                106    1234 SuperTag
+      527                                117    1234 SuperTag
+      528                                 77    1234 SuperTag
+      529                                 86    1234 SuperTag
+      530                                128    1234 SuperTag
+      531                                 75    1234 SuperTag
+      532                                 81    1234 SuperTag
+      533                                 83    1234 SuperTag
+      534                                 91    1234 SuperTag
+      535                                104    1234 SuperTag
+      536                                 72    1234 SuperTag
+      537                                 80    1234 SuperTag
+      538                                 80    1234 SuperTag
+      539                                 90    1234 SuperTag
+      540                                130    1234 SuperTag
+      541                                124    1234 SuperTag
+      542                                 87    1234 SuperTag
+      543                                 83    1234 SuperTag
+      544                                111    1234 SuperTag
+      545                                121    1234 SuperTag
+      546                                139    1234 SuperTag
+      547                                 95    1234 SuperTag
+      548                                 96    1234 SuperTag
+      549                                 83    1234 SuperTag
+      550                                139    1234 SuperTag
+      551                                104    1234 SuperTag
+      552                                110    1234 SuperTag
+      553                                130    1234 SuperTag
+      554                                 93    1234 SuperTag
+      555                                 77    1234 SuperTag
+      556                                 87    1234 SuperTag
+      557                                 92    1234 SuperTag
+      558                                110    1234 SuperTag
+      559                                 90    1234 SuperTag
+      560                                 80    1234 SuperTag
+      561                                102    1234 SuperTag
+      562                                114    1234 SuperTag
+      563                                107    1234 SuperTag
+      564                                100    1234 SuperTag
+      565                                 68    1234 SuperTag
+      566                                101    1234 SuperTag
+      567                                 79    1234 SuperTag
+      568                                 91    1234 SuperTag
+      569                                142    1234 SuperTag
+      570                                142    1234 SuperTag
+      571                                 59    1234 SuperTag
+      572                                138    1234 SuperTag
+      573                                 85    1234 SuperTag
+      574                                120    1234 SuperTag
+      575                                 84    1234 SuperTag
+      576                                131    1234 SuperTag
+      577                                 77    1234 SuperTag
+      578                                106    1234 SuperTag
+      579                                125    1234 SuperTag
+      580                                 93    1234 SuperTag
+      581                                 86    1234 SuperTag
+      582                                 84    1234 SuperTag
+      583                                 91    1234 SuperTag
+      584                                 68    1234 SuperTag
+      585                                 78    1234 SuperTag
+      586                                 60    1234 SuperTag
+      587                                 85    1234 SuperTag
+      588                                 99    1234 SuperTag
+      589                                 80    1234 SuperTag
+      590                                111    1234 SuperTag
+      591                                106    1234 SuperTag
+      592                                 83    1234 SuperTag
+      593                                125    1234 SuperTag
+      594                                 93    1234 SuperTag
+      595                                 80    1234 SuperTag
+      596                                 95    1234 SuperTag
+      597                                 93    1234 SuperTag
+      598                                105    1234 SuperTag
+      599                                 94    1234 SuperTag
+      600                                 75    1234 SuperTag
+      601                                 97    1234 SuperTag
+      602                                 88    1234 SuperTag
+      603                                 82    1234 SuperTag
+      604                                 59    1234 SuperTag
+      605                                 NA    1234 SuperTag
+      606                                 78    1234 SuperTag
+      607                                 94    1234 SuperTag
+      608                                102    1234 SuperTag
+      609                                110    1234 SuperTag
+      610                                 86    1234 SuperTag
+      611                                165    1234 SuperTag
+      612                                 71    1234 SuperTag
+      613                                110    1234 SuperTag
+      614                                152    1234 SuperTag
+      615                                156    1234 SuperTag
+      616                                 78    1234 SuperTag
+      617                                110    1234 SuperTag
+      618                                 80    1234 SuperTag
+      619                                 98    1234 SuperTag
+      620                                 94    1234 SuperTag
+      621                                112    1234 SuperTag
+      622                                 99    1234 SuperTag
+      623                                 98    1234 SuperTag
+      624                                 98    1234 SuperTag
+      625                                 79    1234 SuperTag
+      626                                 79    1234 SuperTag
+      627                                 98    1234 SuperTag
+      628                                 86    1234 SuperTag
+      629                                131    1234 SuperTag
+      630                                 74    1234 SuperTag
+      631                                 76    1234 SuperTag
+      632                                 98    1234 SuperTag
+      633                                 98    1234 SuperTag
+      634                                 81    1234 SuperTag
+      635                                 78    1234 SuperTag
+      636                                 83    1234 SuperTag
+      637                                 97    1234 SuperTag
+      638                                 82    1234 SuperTag
+      639                                 90    1234 SuperTag
+      640                                 92    1234 SuperTag
+      641                                 76    1234 SuperTag
+      642                                 89    1234 SuperTag
+      643                                 86    1234 SuperTag
+      644                                 49    1234 SuperTag
+      645                                100    1234 SuperTag
+      646                                 90    1234 SuperTag
+      647                                100    1234 SuperTag
+      648                                 76    1234 SuperTag
+      649                                111    1234 SuperTag
+      650                                 59    1234 SuperTag
+      651                                 80    1234 SuperTag
+      652                                 96    1234 SuperTag
+      653                                 89    1234 SuperTag
+      654                                102    1234 SuperTag
+      655                                100    1234 SuperTag
+      656                                108    1234 SuperTag
+      657                                 90    1234 SuperTag
+      658                                100    1234 SuperTag
+      659                                 63    1234 SuperTag
+      660                                137    1234 SuperTag
+      661                                 78    1234 SuperTag
+      662                                111    1234 SuperTag
+      663                                 78    1234 SuperTag
+      664                                 78    1234 SuperTag
+      665                                119    1234 SuperTag
+      666                                 88    1234 SuperTag
+      667                                  0    1234 SuperTag
+      668                                 90    1234 SuperTag
+      669                                158    1234 SuperTag
+      670                                 66    1234 SuperTag
+      671                                 97    1234 SuperTag
+      672                                 95    1234 SuperTag
+      673                                 NA    1234 SuperTag
+      674                                 73    1234 SuperTag
+      675                                 78    1234 SuperTag
+      676                                 94    1234 SuperTag
+      677                                 93    1234 SuperTag
+      678                                 97    1234 SuperTag
+      679                                 70    1234 SuperTag
+      680                                 44    1234 SuperTag
+      681                                104    1234 SuperTag
+      682                                 74    1234 SuperTag
+      683                                 80    1234 SuperTag
+      684                                 67    1234 SuperTag
+      685                                 NA    1234 SuperTag
+      686                                114    1234 SuperTag
+      687                                100    1234 SuperTag
+      688                                149    1234 SuperTag
+      689                                 86    1234 SuperTag
+      690                                 83    1234 SuperTag
+      691                                 82    1234 SuperTag
+      692                                 83    1234 SuperTag
+      693                                 60    1234 SuperTag
+      694                                 91    1234 SuperTag
+      695                                101    1234 SuperTag
+      696                                 94    1234 SuperTag
+      697                                101    1234 SuperTag
+      698                                 91    1234 SuperTag
+      699                                 56    1234 SuperTag
+      700                                132    1234 SuperTag
+      701                                109    1234 SuperTag
+      702                                122    1234 SuperTag
+      703                                151    1234 SuperTag
+      704                                 99    1234 SuperTag
+      705                                103    1234 SuperTag
+      706                                 78    1234 SuperTag
+      707                                 79    1234 SuperTag
+      708                                 61    1234 SuperTag
+      709                                129    1234 SuperTag
+      710                                 95    1234 SuperTag
+      711                                108    1234 SuperTag
+      712                                110    1234 SuperTag
+      713                                101    1234 SuperTag
+      714                                 81    1234 SuperTag
+      715                                 83    1234 SuperTag
+      716                                 77    1234 SuperTag
+      717                                 74    1234 SuperTag
+      718                                 79    1234 SuperTag
+      719                                 89    1234 SuperTag
+      720                                 87    1234 SuperTag
+      721                                111    1234 SuperTag
+      722                                 81    1234 SuperTag
+      723                                121    1234 SuperTag
+      724                                145    1234 SuperTag
+      725                                 79    1234 SuperTag
+      726                                 72    1234 SuperTag
+      727                                 33    1234 SuperTag
+      728                                 99    1234 SuperTag
+      729                                102    1234 SuperTag
+      730                                 90    1234 SuperTag
+      731                                 12    1234 SuperTag
+      732                                 90    1234 SuperTag
+      733                                129    1234 SuperTag
+      734                                112    1234 SuperTag
 
 ---
 
     Code
       decode_op[["summary"]]
     Output
-          START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_ID TAG_TYPE
-      1   1564869600 1564876800          98 [%]      3 [1]   1234 SuperTag
-      2   1564876800 1564884000         100 [%]      0 [1]   1234 SuperTag
-      3   1564884000 1564891200         100 [%]      0 [1]   1234 SuperTag
-      4   1564891200 1564898400         100 [%]      0 [1]   1234 SuperTag
-      5   1564898400 1564905600         100 [%]      0 [1]   1234 SuperTag
-      6   1564905600 1564912800         100 [%]      0 [1]   1234 SuperTag
-      7   1564912800 1564920000         100 [%]      0 [1]   1234 SuperTag
-      8   1564920000 1564927200         100 [%]      0 [1]   1234 SuperTag
-      9   1564927200 1564934400         100 [%]      0 [1]   1234 SuperTag
-      10  1564934400 1564941600         100 [%]      0 [1]   1234 SuperTag
-      11  1564941600 1564948800         100 [%]      0 [1]   1234 SuperTag
-      12  1564948800 1564956000         100 [%]      0 [1]   1234 SuperTag
-      13  1564956000 1564963200         100 [%]      0 [1]   1234 SuperTag
-      14  1564963200 1564970400         100 [%]      0 [1]   1234 SuperTag
-      15  1564970400 1564977600         100 [%]      0 [1]   1234 SuperTag
-      16  1564977600 1564984800         100 [%]      0 [1]   1234 SuperTag
-      17  1564984800 1564992000         100 [%]      0 [1]   1234 SuperTag
-      18  1564992000 1564999200         100 [%]      0 [1]   1234 SuperTag
-      19  1564999200 1565006400         100 [%]      0 [1]   1234 SuperTag
-      20  1565006400 1565013600         100 [%]      0 [1]   1234 SuperTag
-      21  1565013600 1565020800          76 [%]      0 [1]   1234 SuperTag
-      22  1565020800 1565028000          21 [%]      0 [1]   1234 SuperTag
-      23  1565028000 1565035200           0 [%]      0 [1]   1234 SuperTag
-      24  1565035200 1565042400           0 [%]      0 [1]   1234 SuperTag
-      25  1565042400 1565049600           0 [%]      0 [1]   1234 SuperTag
-      26  1565049600 1565056800           1 [%]      0 [1]   1234 SuperTag
-      27  1565056800 1565064000          35 [%]      0 [1]   1234 SuperTag
-      28  1565064000 1565071200           0 [%]      0 [1]   1234 SuperTag
-      29  1565071200 1565078400           0 [%]      0 [1]   1234 SuperTag
-      30  1565078400 1565085600           0 [%]      0 [1]   1234 SuperTag
-      31  1565085600 1565092800          26 [%]      0 [1]   1234 SuperTag
-      32  1565092800 1565100000          99 [%]      0 [1]   1234 SuperTag
-      33  1565100000 1565107200         100 [%]      0 [1]   1234 SuperTag
-      34  1565107200 1565114400          99 [%]      0 [1]   1234 SuperTag
-      35  1565114400 1565121600           4 [%]      0 [1]   1234 SuperTag
-      36  1565121600 1565128800          88 [%]      0 [1]   1234 SuperTag
-      37  1565128800 1565136000          99 [%]      0 [1]   1234 SuperTag
-      38  1565136000 1565143200          53 [%]      0 [1]   1234 SuperTag
-      39  1565143200 1565150400          98 [%]      0 [1]   1234 SuperTag
-      40  1565150400 1565157600          99 [%]      0 [1]   1234 SuperTag
-      41  1565157600 1565164800          99 [%]      0 [1]   1234 SuperTag
-      42  1565164800 1565172000         100 [%]      0 [1]   1234 SuperTag
-      43  1565172000 1565179200         100 [%]      0 [1]   1234 SuperTag
-      44  1565179200 1565186400          89 [%]      0 [1]   1234 SuperTag
-      45  1565186400 1565193600          27 [%]      0 [1]   1234 SuperTag
-      46  1565193600 1565200800          91 [%]      0 [1]   1234 SuperTag
-      47  1565200800 1565208000          99 [%]      0 [1]   1234 SuperTag
-      48  1565208000 1565215200         100 [%]      0 [1]   1234 SuperTag
-      49  1565215200 1565222400         100 [%]      0 [1]   1234 SuperTag
-      50  1565222400 1565229600         100 [%]      0 [1]   1234 SuperTag
-      51  1565229600 1565236800         100 [%]      0 [1]   1234 SuperTag
-      52  1565236800 1565244000         100 [%]      0 [1]   1234 SuperTag
-      53  1565244000 1565251200         100 [%]      0 [1]   1234 SuperTag
-      54  1565251200 1565258400         100 [%]      0 [1]   1234 SuperTag
-      55  1565258400 1565265600         100 [%]      0 [1]   1234 SuperTag
-      56  1565265600 1565272800         100 [%]      0 [1]   1234 SuperTag
-      57  1565272800 1565280000         100 [%]      0 [1]   1234 SuperTag
-      58  1565280000 1565287200         100 [%]      0 [1]   1234 SuperTag
-      59  1565287200 1565294400         100 [%]      0 [1]   1234 SuperTag
-      60  1565294400 1565301600         100 [%]      0 [1]   1234 SuperTag
-      61  1565301600 1565308800         100 [%]      0 [1]   1234 SuperTag
-      62  1565308800 1565316000         100 [%]      0 [1]   1234 SuperTag
-      63  1565316000 1565323200         100 [%]      0 [1]   1234 SuperTag
-      64  1565323200 1565330400         100 [%]      0 [1]   1234 SuperTag
-      65  1565330400 1565337600         100 [%]      0 [1]   1234 SuperTag
-      66  1565337600 1565344800         100 [%]      0 [1]   1234 SuperTag
-      67  1565344800 1565352000         100 [%]      0 [1]   1234 SuperTag
-      68  1565352000 1565359200         100 [%]      0 [1]   1234 SuperTag
-      69  1565359200 1565366400          99 [%]      0 [1]   1234 SuperTag
-      70  1565366400 1565373600         100 [%]      0 [1]   1234 SuperTag
-      71  1565373600 1565380800         100 [%]      0 [1]   1234 SuperTag
-      72  1565380800 1565388000         100 [%]      0 [1]   1234 SuperTag
-      73  1565388000 1565395200         100 [%]      0 [1]   1234 SuperTag
-      74  1565395200 1565402400         100 [%]      0 [1]   1234 SuperTag
-      75  1565402400 1565409600         100 [%]      0 [1]   1234 SuperTag
-      76  1565409600 1565416800         100 [%]      0 [1]   1234 SuperTag
-      77  1565416800 1565424000         100 [%]      0 [1]   1234 SuperTag
-      78  1565424000 1565431200         100 [%]      0 [1]   1234 SuperTag
-      79  1565431200 1565438400         100 [%]      0 [1]   1234 SuperTag
-      80  1565438400 1565445600         100 [%]      0 [1]   1234 SuperTag
-      81  1565445600 1565452800         100 [%]      0 [1]   1234 SuperTag
-      82  1565452800 1565460000         100 [%]      0 [1]   1234 SuperTag
-      83  1565460000 1565467200         100 [%]      0 [1]   1234 SuperTag
-      84  1565467200 1565474400          98 [%]      0 [1]   1234 SuperTag
-      85  1565474400 1565481600         100 [%]      0 [1]   1234 SuperTag
-      86  1565481600 1565488800         100 [%]      0 [1]   1234 SuperTag
-      87  1565488800 1565496000         100 [%]      0 [1]   1234 SuperTag
-      88  1565496000 1565503200         100 [%]      0 [1]   1234 SuperTag
-      89  1565503200 1565510400          99 [%]      0 [1]   1234 SuperTag
-      90  1565510400 1565517600          99 [%]      0 [1]   1234 SuperTag
-      91  1565517600 1565524800         100 [%]      0 [1]   1234 SuperTag
-      92  1565524800 1565532000         100 [%]      0 [1]   1234 SuperTag
-      93  1565532000 1565539200         100 [%]      0 [1]   1234 SuperTag
-      94  1565539200 1565546400         100 [%]      0 [1]   1234 SuperTag
-      95  1565546400 1565553600         100 [%]      0 [1]   1234 SuperTag
-      96  1565553600 1565560800         100 [%]      0 [1]   1234 SuperTag
-      97  1565560800 1565568000         100 [%]      0 [1]   1234 SuperTag
-      98  1565568000 1565575200         100 [%]      0 [1]   1234 SuperTag
-      99  1565575200 1565582400         100 [%]      0 [1]   1234 SuperTag
-      100 1565582400 1565589600         100 [%]      0 [1]   1234 SuperTag
-      101 1565589600 1565596800         100 [%]      0 [1]   1234 SuperTag
-      102 1565596800 1565604000          99 [%]      0 [1]   1234 SuperTag
-      103 1565604000 1565611200         100 [%]      0 [1]   1234 SuperTag
-      104 1565611200 1565618400         100 [%]      0 [1]   1234 SuperTag
-      105 1565618400 1565625600         100 [%]      0 [1]   1234 SuperTag
-      106 1565625600 1565632800         100 [%]      0 [1]   1234 SuperTag
-      107 1565632800 1565640000         100 [%]      0 [1]   1234 SuperTag
-      108 1565640000 1565647200         100 [%]      0 [1]   1234 SuperTag
-      109 1565647200 1565654400         100 [%]      0 [1]   1234 SuperTag
-      110 1565654400 1565661600         100 [%]      0 [1]   1234 SuperTag
-      111 1565661600 1565668800         100 [%]      0 [1]   1234 SuperTag
-      112 1565668800 1565676000         100 [%]      0 [1]   1234 SuperTag
-      113 1565676000 1565683200         100 [%]      0 [1]   1234 SuperTag
-      114 1565683200 1565690400         100 [%]      0 [1]   1234 SuperTag
-      115 1565690400 1565697600         100 [%]      0 [1]   1234 SuperTag
-      116 1565697600 1565704800         100 [%]      0 [1]   1234 SuperTag
-      117 1565704800 1565712000         100 [%]      0 [1]   1234 SuperTag
-      118 1565712000 1565719200         100 [%]      0 [1]   1234 SuperTag
-      119 1565719200 1565726400         100 [%]      0 [1]   1234 SuperTag
-      120 1565726400 1565733600         100 [%]      0 [1]   1234 SuperTag
-      121 1565733600 1565740800          99 [%]      0 [1]   1234 SuperTag
-      122 1565740800 1565748000         100 [%]      0 [1]   1234 SuperTag
-      123 1565748000 1565755200         100 [%]      0 [1]   1234 SuperTag
-      124 1565755200 1565762400          99 [%]      0 [1]   1234 SuperTag
-      125 1565762400 1565769600          99 [%]      0 [1]   1234 SuperTag
-      126 1565769600 1565776800         100 [%]      0 [1]   1234 SuperTag
-      127 1565776800 1565784000          99 [%]      0 [1]   1234 SuperTag
-      128 1565784000 1565791200          99 [%]      0 [1]   1234 SuperTag
-      129 1565791200 1565798400         100 [%]      0 [1]   1234 SuperTag
-      130 1565798400 1565805600          99 [%]      0 [1]   1234 SuperTag
-      131 1565805600 1565812800         100 [%]      0 [1]   1234 SuperTag
-      132 1565812800 1565820000         100 [%]      0 [1]   1234 SuperTag
-      133 1565820000 1565827200         100 [%]      0 [1]   1234 SuperTag
-      134 1565827200 1565834400         100 [%]      0 [1]   1234 SuperTag
-      135 1565834400 1565841600         100 [%]      0 [1]   1234 SuperTag
-      136 1565841600 1565848800         100 [%]      0 [1]   1234 SuperTag
-      137 1565848800 1565856000         100 [%]      0 [1]   1234 SuperTag
-      138 1565856000 1565863200          99 [%]      0 [1]   1234 SuperTag
-      139 1565863200 1565870400          99 [%]      0 [1]   1234 SuperTag
-      140 1565870400 1565877600          99 [%]      0 [1]   1234 SuperTag
-      141 1565877600 1565884800          99 [%]      0 [1]   1234 SuperTag
-      142 1565884800 1565892000         100 [%]      0 [1]   1234 SuperTag
-      143 1565892000 1565899200          99 [%]      0 [1]   1234 SuperTag
-      144 1565899200 1565906400         100 [%]      0 [1]   1234 SuperTag
-      145 1565906400 1565913600          99 [%]      0 [1]   1234 SuperTag
-      146 1565913600 1565920800          99 [%]      0 [1]   1234 SuperTag
-      147 1565920800 1565928000         100 [%]      0 [1]   1234 SuperTag
-      148 1565928000 1565935200         100 [%]      0 [1]   1234 SuperTag
-      149 1565935200 1565942400         100 [%]      0 [1]   1234 SuperTag
-      150 1565942400 1565949600          98 [%]      0 [1]   1234 SuperTag
-      151 1565949600 1565956800          87 [%]      0 [1]   1234 SuperTag
-      152 1565956800 1565964000          88 [%]      0 [1]   1234 SuperTag
-      153 1565964000 1565971200         100 [%]      0 [1]   1234 SuperTag
-      154 1565971200 1565978400         100 [%]      0 [1]   1234 SuperTag
-      155 1565978400 1565985600         100 [%]      0 [1]   1234 SuperTag
-      156 1565985600 1565992800         100 [%]      0 [1]   1234 SuperTag
-      157 1565992800 1566000000          99 [%]      0 [1]   1234 SuperTag
-      158 1566000000 1566007200         100 [%]      0 [1]   1234 SuperTag
-      159 1566007200 1566014400         100 [%]      0 [1]   1234 SuperTag
-      160 1566014400 1566021600          99 [%]      0 [1]   1234 SuperTag
-      161 1566021600 1566028800         100 [%]      0 [1]   1234 SuperTag
-      162 1566028800 1566036000          99 [%]      0 [1]   1234 SuperTag
-      163 1566036000 1566043200          69 [%]      0 [1]   1234 SuperTag
-      164 1566043200 1566050400          91 [%]      0 [1]   1234 SuperTag
-      165 1566050400 1566057600          99 [%]      0 [1]   1234 SuperTag
-      166 1566057600 1566064800          99 [%]      0 [1]   1234 SuperTag
-      167 1566064800 1566072000         100 [%]      0 [1]   1234 SuperTag
-      168 1566072000 1566079200          99 [%]      0 [1]   1234 SuperTag
-      169 1566079200 1566086400         100 [%]      0 [1]   1234 SuperTag
-      170 1566086400 1566093600         100 [%]      0 [1]   1234 SuperTag
-      171 1566093600 1566100800         100 [%]      0 [1]   1234 SuperTag
-      172 1566100800 1566108000         100 [%]      0 [1]   1234 SuperTag
-      173 1566108000 1566115200         100 [%]      0 [1]   1234 SuperTag
-      174 1566115200 1566122400         100 [%]      0 [1]   1234 SuperTag
-      175 1566122400 1566129600         100 [%]      0 [1]   1234 SuperTag
-      176 1566129600 1566136800         100 [%]      0 [1]   1234 SuperTag
-      177 1566136800 1566144000         100 [%]      0 [1]   1234 SuperTag
-      178 1566144000 1566151200         100 [%]      0 [1]   1234 SuperTag
-      179 1566151200 1566158400         100 [%]      0 [1]   1234 SuperTag
-      180 1566158400 1566165600         100 [%]      0 [1]   1234 SuperTag
-      181 1566165600 1566172800         100 [%]      0 [1]   1234 SuperTag
-      182 1566172800 1566180000         100 [%]      0 [1]   1234 SuperTag
-      183 1566180000 1566187200          94 [%]    127 [1]   1234 SuperTag
-      184 1566187200 1566194400          91 [%]    127 [1]   1234 SuperTag
-      185 1566194400 1566201600          90 [%]    127 [1]   1234 SuperTag
-      186 1566201600 1566208800          91 [%]    127 [1]   1234 SuperTag
-      187 1566208800 1566216000          94 [%]    127 [1]   1234 SuperTag
-      188 1566216000 1566223200          95 [%]    127 [1]   1234 SuperTag
-      189 1566223200 1566230400          93 [%]    127 [1]   1234 SuperTag
-      190 1566230400 1566237600          92 [%]    127 [1]   1234 SuperTag
-      191 1566237600 1566244800          92 [%]    127 [1]   1234 SuperTag
-      192 1566244800 1566252000          93 [%]    127 [1]   1234 SuperTag
-      193 1566252000 1566259200          94 [%]    127 [1]   1234 SuperTag
-      194 1566259200 1566266400          97 [%]     98 [1]   1234 SuperTag
-      195 1566266400 1566273600           0 [%]      0 [1]   1234 SuperTag
-      196 1566273600 1566280800           0 [%]      0 [1]   1234 SuperTag
-      197 1566280800 1566288000           0 [%]      0 [1]   1234 SuperTag
+          START_TIME   END_TIME PERCENT_UPRIGHT KNOCKDOWNS TAG_NUM TAG_TYPE
+      1   1564869600 1564876800          98 [%]      3 [1]    1234 SuperTag
+      2   1564876800 1564884000         100 [%]      0 [1]    1234 SuperTag
+      3   1564884000 1564891200         100 [%]      0 [1]    1234 SuperTag
+      4   1564891200 1564898400         100 [%]      0 [1]    1234 SuperTag
+      5   1564898400 1564905600         100 [%]      0 [1]    1234 SuperTag
+      6   1564905600 1564912800         100 [%]      0 [1]    1234 SuperTag
+      7   1564912800 1564920000         100 [%]      0 [1]    1234 SuperTag
+      8   1564920000 1564927200         100 [%]      0 [1]    1234 SuperTag
+      9   1564927200 1564934400         100 [%]      0 [1]    1234 SuperTag
+      10  1564934400 1564941600         100 [%]      0 [1]    1234 SuperTag
+      11  1564941600 1564948800         100 [%]      0 [1]    1234 SuperTag
+      12  1564948800 1564956000         100 [%]      0 [1]    1234 SuperTag
+      13  1564956000 1564963200         100 [%]      0 [1]    1234 SuperTag
+      14  1564963200 1564970400         100 [%]      0 [1]    1234 SuperTag
+      15  1564970400 1564977600         100 [%]      0 [1]    1234 SuperTag
+      16  1564977600 1564984800         100 [%]      0 [1]    1234 SuperTag
+      17  1564984800 1564992000         100 [%]      0 [1]    1234 SuperTag
+      18  1564992000 1564999200         100 [%]      0 [1]    1234 SuperTag
+      19  1564999200 1565006400         100 [%]      0 [1]    1234 SuperTag
+      20  1565006400 1565013600         100 [%]      0 [1]    1234 SuperTag
+      21  1565013600 1565020800          76 [%]      0 [1]    1234 SuperTag
+      22  1565020800 1565028000          21 [%]      0 [1]    1234 SuperTag
+      23  1565028000 1565035200           0 [%]      0 [1]    1234 SuperTag
+      24  1565035200 1565042400           0 [%]      0 [1]    1234 SuperTag
+      25  1565042400 1565049600           0 [%]      0 [1]    1234 SuperTag
+      26  1565049600 1565056800           1 [%]      0 [1]    1234 SuperTag
+      27  1565056800 1565064000          35 [%]      0 [1]    1234 SuperTag
+      28  1565064000 1565071200           0 [%]      0 [1]    1234 SuperTag
+      29  1565071200 1565078400           0 [%]      0 [1]    1234 SuperTag
+      30  1565078400 1565085600           0 [%]      0 [1]    1234 SuperTag
+      31  1565085600 1565092800          26 [%]      0 [1]    1234 SuperTag
+      32  1565092800 1565100000          99 [%]      0 [1]    1234 SuperTag
+      33  1565100000 1565107200         100 [%]      0 [1]    1234 SuperTag
+      34  1565107200 1565114400          99 [%]      0 [1]    1234 SuperTag
+      35  1565114400 1565121600           4 [%]      0 [1]    1234 SuperTag
+      36  1565121600 1565128800          88 [%]      0 [1]    1234 SuperTag
+      37  1565128800 1565136000          99 [%]      0 [1]    1234 SuperTag
+      38  1565136000 1565143200          53 [%]      0 [1]    1234 SuperTag
+      39  1565143200 1565150400          98 [%]      0 [1]    1234 SuperTag
+      40  1565150400 1565157600          99 [%]      0 [1]    1234 SuperTag
+      41  1565157600 1565164800          99 [%]      0 [1]    1234 SuperTag
+      42  1565164800 1565172000         100 [%]      0 [1]    1234 SuperTag
+      43  1565172000 1565179200         100 [%]      0 [1]    1234 SuperTag
+      44  1565179200 1565186400          89 [%]      0 [1]    1234 SuperTag
+      45  1565186400 1565193600          27 [%]      0 [1]    1234 SuperTag
+      46  1565193600 1565200800          91 [%]      0 [1]    1234 SuperTag
+      47  1565200800 1565208000          99 [%]      0 [1]    1234 SuperTag
+      48  1565208000 1565215200         100 [%]      0 [1]    1234 SuperTag
+      49  1565215200 1565222400         100 [%]      0 [1]    1234 SuperTag
+      50  1565222400 1565229600         100 [%]      0 [1]    1234 SuperTag
+      51  1565229600 1565236800         100 [%]      0 [1]    1234 SuperTag
+      52  1565236800 1565244000         100 [%]      0 [1]    1234 SuperTag
+      53  1565244000 1565251200         100 [%]      0 [1]    1234 SuperTag
+      54  1565251200 1565258400         100 [%]      0 [1]    1234 SuperTag
+      55  1565258400 1565265600         100 [%]      0 [1]    1234 SuperTag
+      56  1565265600 1565272800         100 [%]      0 [1]    1234 SuperTag
+      57  1565272800 1565280000         100 [%]      0 [1]    1234 SuperTag
+      58  1565280000 1565287200         100 [%]      0 [1]    1234 SuperTag
+      59  1565287200 1565294400         100 [%]      0 [1]    1234 SuperTag
+      60  1565294400 1565301600         100 [%]      0 [1]    1234 SuperTag
+      61  1565301600 1565308800         100 [%]      0 [1]    1234 SuperTag
+      62  1565308800 1565316000         100 [%]      0 [1]    1234 SuperTag
+      63  1565316000 1565323200         100 [%]      0 [1]    1234 SuperTag
+      64  1565323200 1565330400         100 [%]      0 [1]    1234 SuperTag
+      65  1565330400 1565337600         100 [%]      0 [1]    1234 SuperTag
+      66  1565337600 1565344800         100 [%]      0 [1]    1234 SuperTag
+      67  1565344800 1565352000         100 [%]      0 [1]    1234 SuperTag
+      68  1565352000 1565359200         100 [%]      0 [1]    1234 SuperTag
+      69  1565359200 1565366400          99 [%]      0 [1]    1234 SuperTag
+      70  1565366400 1565373600         100 [%]      0 [1]    1234 SuperTag
+      71  1565373600 1565380800         100 [%]      0 [1]    1234 SuperTag
+      72  1565380800 1565388000         100 [%]      0 [1]    1234 SuperTag
+      73  1565388000 1565395200         100 [%]      0 [1]    1234 SuperTag
+      74  1565395200 1565402400         100 [%]      0 [1]    1234 SuperTag
+      75  1565402400 1565409600         100 [%]      0 [1]    1234 SuperTag
+      76  1565409600 1565416800         100 [%]      0 [1]    1234 SuperTag
+      77  1565416800 1565424000         100 [%]      0 [1]    1234 SuperTag
+      78  1565424000 1565431200         100 [%]      0 [1]    1234 SuperTag
+      79  1565431200 1565438400         100 [%]      0 [1]    1234 SuperTag
+      80  1565438400 1565445600         100 [%]      0 [1]    1234 SuperTag
+      81  1565445600 1565452800         100 [%]      0 [1]    1234 SuperTag
+      82  1565452800 1565460000         100 [%]      0 [1]    1234 SuperTag
+      83  1565460000 1565467200         100 [%]      0 [1]    1234 SuperTag
+      84  1565467200 1565474400          98 [%]      0 [1]    1234 SuperTag
+      85  1565474400 1565481600         100 [%]      0 [1]    1234 SuperTag
+      86  1565481600 1565488800         100 [%]      0 [1]    1234 SuperTag
+      87  1565488800 1565496000         100 [%]      0 [1]    1234 SuperTag
+      88  1565496000 1565503200         100 [%]      0 [1]    1234 SuperTag
+      89  1565503200 1565510400          99 [%]      0 [1]    1234 SuperTag
+      90  1565510400 1565517600          99 [%]      0 [1]    1234 SuperTag
+      91  1565517600 1565524800         100 [%]      0 [1]    1234 SuperTag
+      92  1565524800 1565532000         100 [%]      0 [1]    1234 SuperTag
+      93  1565532000 1565539200         100 [%]      0 [1]    1234 SuperTag
+      94  1565539200 1565546400         100 [%]      0 [1]    1234 SuperTag
+      95  1565546400 1565553600         100 [%]      0 [1]    1234 SuperTag
+      96  1565553600 1565560800         100 [%]      0 [1]    1234 SuperTag
+      97  1565560800 1565568000         100 [%]      0 [1]    1234 SuperTag
+      98  1565568000 1565575200         100 [%]      0 [1]    1234 SuperTag
+      99  1565575200 1565582400         100 [%]      0 [1]    1234 SuperTag
+      100 1565582400 1565589600         100 [%]      0 [1]    1234 SuperTag
+      101 1565589600 1565596800         100 [%]      0 [1]    1234 SuperTag
+      102 1565596800 1565604000          99 [%]      0 [1]    1234 SuperTag
+      103 1565604000 1565611200         100 [%]      0 [1]    1234 SuperTag
+      104 1565611200 1565618400         100 [%]      0 [1]    1234 SuperTag
+      105 1565618400 1565625600         100 [%]      0 [1]    1234 SuperTag
+      106 1565625600 1565632800         100 [%]      0 [1]    1234 SuperTag
+      107 1565632800 1565640000         100 [%]      0 [1]    1234 SuperTag
+      108 1565640000 1565647200         100 [%]      0 [1]    1234 SuperTag
+      109 1565647200 1565654400         100 [%]      0 [1]    1234 SuperTag
+      110 1565654400 1565661600         100 [%]      0 [1]    1234 SuperTag
+      111 1565661600 1565668800         100 [%]      0 [1]    1234 SuperTag
+      112 1565668800 1565676000         100 [%]      0 [1]    1234 SuperTag
+      113 1565676000 1565683200         100 [%]      0 [1]    1234 SuperTag
+      114 1565683200 1565690400         100 [%]      0 [1]    1234 SuperTag
+      115 1565690400 1565697600         100 [%]      0 [1]    1234 SuperTag
+      116 1565697600 1565704800         100 [%]      0 [1]    1234 SuperTag
+      117 1565704800 1565712000         100 [%]      0 [1]    1234 SuperTag
+      118 1565712000 1565719200         100 [%]      0 [1]    1234 SuperTag
+      119 1565719200 1565726400         100 [%]      0 [1]    1234 SuperTag
+      120 1565726400 1565733600         100 [%]      0 [1]    1234 SuperTag
+      121 1565733600 1565740800          99 [%]      0 [1]    1234 SuperTag
+      122 1565740800 1565748000         100 [%]      0 [1]    1234 SuperTag
+      123 1565748000 1565755200         100 [%]      0 [1]    1234 SuperTag
+      124 1565755200 1565762400          99 [%]      0 [1]    1234 SuperTag
+      125 1565762400 1565769600          99 [%]      0 [1]    1234 SuperTag
+      126 1565769600 1565776800         100 [%]      0 [1]    1234 SuperTag
+      127 1565776800 1565784000          99 [%]      0 [1]    1234 SuperTag
+      128 1565784000 1565791200          99 [%]      0 [1]    1234 SuperTag
+      129 1565791200 1565798400         100 [%]      0 [1]    1234 SuperTag
+      130 1565798400 1565805600          99 [%]      0 [1]    1234 SuperTag
+      131 1565805600 1565812800         100 [%]      0 [1]    1234 SuperTag
+      132 1565812800 1565820000         100 [%]      0 [1]    1234 SuperTag
+      133 1565820000 1565827200         100 [%]      0 [1]    1234 SuperTag
+      134 1565827200 1565834400         100 [%]      0 [1]    1234 SuperTag
+      135 1565834400 1565841600         100 [%]      0 [1]    1234 SuperTag
+      136 1565841600 1565848800         100 [%]      0 [1]    1234 SuperTag
+      137 1565848800 1565856000         100 [%]      0 [1]    1234 SuperTag
+      138 1565856000 1565863200          99 [%]      0 [1]    1234 SuperTag
+      139 1565863200 1565870400          99 [%]      0 [1]    1234 SuperTag
+      140 1565870400 1565877600          99 [%]      0 [1]    1234 SuperTag
+      141 1565877600 1565884800          99 [%]      0 [1]    1234 SuperTag
+      142 1565884800 1565892000         100 [%]      0 [1]    1234 SuperTag
+      143 1565892000 1565899200          99 [%]      0 [1]    1234 SuperTag
+      144 1565899200 1565906400         100 [%]      0 [1]    1234 SuperTag
+      145 1565906400 1565913600          99 [%]      0 [1]    1234 SuperTag
+      146 1565913600 1565920800          99 [%]      0 [1]    1234 SuperTag
+      147 1565920800 1565928000         100 [%]      0 [1]    1234 SuperTag
+      148 1565928000 1565935200         100 [%]      0 [1]    1234 SuperTag
+      149 1565935200 1565942400         100 [%]      0 [1]    1234 SuperTag
+      150 1565942400 1565949600          98 [%]      0 [1]    1234 SuperTag
+      151 1565949600 1565956800          87 [%]      0 [1]    1234 SuperTag
+      152 1565956800 1565964000          88 [%]      0 [1]    1234 SuperTag
+      153 1565964000 1565971200         100 [%]      0 [1]    1234 SuperTag
+      154 1565971200 1565978400         100 [%]      0 [1]    1234 SuperTag
+      155 1565978400 1565985600         100 [%]      0 [1]    1234 SuperTag
+      156 1565985600 1565992800         100 [%]      0 [1]    1234 SuperTag
+      157 1565992800 1566000000          99 [%]      0 [1]    1234 SuperTag
+      158 1566000000 1566007200         100 [%]      0 [1]    1234 SuperTag
+      159 1566007200 1566014400         100 [%]      0 [1]    1234 SuperTag
+      160 1566014400 1566021600          99 [%]      0 [1]    1234 SuperTag
+      161 1566021600 1566028800         100 [%]      0 [1]    1234 SuperTag
+      162 1566028800 1566036000          99 [%]      0 [1]    1234 SuperTag
+      163 1566036000 1566043200          69 [%]      0 [1]    1234 SuperTag
+      164 1566043200 1566050400          91 [%]      0 [1]    1234 SuperTag
+      165 1566050400 1566057600          99 [%]      0 [1]    1234 SuperTag
+      166 1566057600 1566064800          99 [%]      0 [1]    1234 SuperTag
+      167 1566064800 1566072000         100 [%]      0 [1]    1234 SuperTag
+      168 1566072000 1566079200          99 [%]      0 [1]    1234 SuperTag
+      169 1566079200 1566086400         100 [%]      0 [1]    1234 SuperTag
+      170 1566086400 1566093600         100 [%]      0 [1]    1234 SuperTag
+      171 1566093600 1566100800         100 [%]      0 [1]    1234 SuperTag
+      172 1566100800 1566108000         100 [%]      0 [1]    1234 SuperTag
+      173 1566108000 1566115200         100 [%]      0 [1]    1234 SuperTag
+      174 1566115200 1566122400         100 [%]      0 [1]    1234 SuperTag
+      175 1566122400 1566129600         100 [%]      0 [1]    1234 SuperTag
+      176 1566129600 1566136800         100 [%]      0 [1]    1234 SuperTag
+      177 1566136800 1566144000         100 [%]      0 [1]    1234 SuperTag
+      178 1566144000 1566151200         100 [%]      0 [1]    1234 SuperTag
+      179 1566151200 1566158400         100 [%]      0 [1]    1234 SuperTag
+      180 1566158400 1566165600         100 [%]      0 [1]    1234 SuperTag
+      181 1566165600 1566172800         100 [%]      0 [1]    1234 SuperTag
+      182 1566172800 1566180000         100 [%]      0 [1]    1234 SuperTag
+      183 1566180000 1566187200          94 [%]    127 [1]    1234 SuperTag
+      184 1566187200 1566194400          91 [%]    127 [1]    1234 SuperTag
+      185 1566194400 1566201600          90 [%]    127 [1]    1234 SuperTag
+      186 1566201600 1566208800          91 [%]    127 [1]    1234 SuperTag
+      187 1566208800 1566216000          94 [%]    127 [1]    1234 SuperTag
+      188 1566216000 1566223200          95 [%]    127 [1]    1234 SuperTag
+      189 1566223200 1566230400          93 [%]    127 [1]    1234 SuperTag
+      190 1566230400 1566237600          92 [%]    127 [1]    1234 SuperTag
+      191 1566237600 1566244800          92 [%]    127 [1]    1234 SuperTag
+      192 1566244800 1566252000          93 [%]    127 [1]    1234 SuperTag
+      193 1566252000 1566259200          94 [%]    127 [1]    1234 SuperTag
+      194 1566259200 1566266400          97 [%]     98 [1]    1234 SuperTag
+      195 1566266400 1566273600           0 [%]      0 [1]    1234 SuperTag
+      196 1566273600 1566280800           0 [%]      0 [1]    1234 SuperTag
+      197 1566280800 1566288000           0 [%]      0 [1]    1234 SuperTag
 
 # Decoder | Wildlife Computers MiniPAT -> /wc/mp/ss/174898
 
@@ -7640,1246 +7640,1246 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE   MODEL TAG_ID TAG_TYPE
-      1 Wildlife Computers MiniPAT   1234 SuperTag
+                      MAKE   MODEL TAG_NUM TAG_TYPE
+      1 Wildlife Computers MiniPAT    1234 SuperTag
 
 ---
 
     Code
       decode_op[["instant"]]
     Output
-            TIMESTAMP     DEPTH TEMPERATURE TAG_ID TAG_TYPE
-      1    1659283200    NA [m]    5.4 [°C]   1234 SuperTag
-      2    1659283800    NA [m]    5.4 [°C]   1234 SuperTag
-      3    1659284400    NA [m]    5.4 [°C]   1234 SuperTag
-      4    1659285000    NA [m]    5.4 [°C]   1234 SuperTag
-      5    1659285600    NA [m]    5.4 [°C]   1234 SuperTag
-      6    1659286200    NA [m]    5.4 [°C]   1234 SuperTag
-      7    1659286800    NA [m]    5.5 [°C]   1234 SuperTag
-      8    1659287400    NA [m]    5.7 [°C]   1234 SuperTag
-      9    1659288000    NA [m]    5.7 [°C]   1234 SuperTag
-      10   1659288600    NA [m]    5.7 [°C]   1234 SuperTag
-      11   1659289200    NA [m]    5.7 [°C]   1234 SuperTag
-      12   1659289800    NA [m]    5.7 [°C]   1234 SuperTag
-      13   1659290400    NA [m]    5.7 [°C]   1234 SuperTag
-      14   1659291000    NA [m]    5.7 [°C]   1234 SuperTag
-      15   1659291600    NA [m]    5.7 [°C]   1234 SuperTag
-      16   1659292200    NA [m]    5.7 [°C]   1234 SuperTag
-      17   1659292800    NA [m]    5.7 [°C]   1234 SuperTag
-      18   1659293400    NA [m]    5.7 [°C]   1234 SuperTag
-      19   1659294000    NA [m]    6.1 [°C]   1234 SuperTag
-      20   1659294600    NA [m]    5.7 [°C]   1234 SuperTag
-      21   1659295200    NA [m]    5.4 [°C]   1234 SuperTag
-      22   1659295800    NA [m]    5.7 [°C]   1234 SuperTag
-      23   1659296400    NA [m]    5.7 [°C]   1234 SuperTag
-      24   1659297000    NA [m]    5.7 [°C]   1234 SuperTag
-      25   1659297600    NA [m]    5.7 [°C]   1234 SuperTag
-      26   1659298200    NA [m]    5.7 [°C]   1234 SuperTag
-      27   1659298800    NA [m]    5.7 [°C]   1234 SuperTag
-      28   1659299400    NA [m]    5.7 [°C]   1234 SuperTag
-      29   1659300000    NA [m]    5.7 [°C]   1234 SuperTag
-      30   1659300600    NA [m]    5.4 [°C]   1234 SuperTag
-      31   1659301200    NA [m]    6.8 [°C]   1234 SuperTag
-      32   1659301800    NA [m]    5.8 [°C]   1234 SuperTag
-      33   1659302400    NA [m]    5.7 [°C]   1234 SuperTag
-      34   1659303000    NA [m]    5.4 [°C]   1234 SuperTag
-      35   1659303600    NA [m]    5.7 [°C]   1234 SuperTag
-      36   1659304200    NA [m]    5.7 [°C]   1234 SuperTag
-      37   1659304800    NA [m]    5.4 [°C]   1234 SuperTag
-      38   1659305400    NA [m]    5.4 [°C]   1234 SuperTag
-      39   1659306000    NA [m]    5.7 [°C]   1234 SuperTag
-      40   1659306600    NA [m]    5.5 [°C]   1234 SuperTag
-      41   1659307200    NA [m]    5.7 [°C]   1234 SuperTag
-      42   1659307800    NA [m]    5.4 [°C]   1234 SuperTag
-      43   1659308400    NA [m]    5.7 [°C]   1234 SuperTag
-      44   1659309000    NA [m]    5.4 [°C]   1234 SuperTag
-      45   1659309600    NA [m]    5.4 [°C]   1234 SuperTag
-      46   1659310200    NA [m]    5.4 [°C]   1234 SuperTag
-      47   1659310800    NA [m]    5.7 [°C]   1234 SuperTag
-      48   1659311400    NA [m]    5.5 [°C]   1234 SuperTag
-      49   1659312000 228.5 [m]    5.3 [°C]   1234 SuperTag
-      50   1659312600 241.0 [m]    5.3 [°C]   1234 SuperTag
-      51   1659313200 228.5 [m]    5.3 [°C]   1234 SuperTag
-      52   1659313800 213.5 [m]    5.3 [°C]   1234 SuperTag
-      53   1659314400 219.5 [m]    5.3 [°C]   1234 SuperTag
-      54   1659315000 241.0 [m]    5.3 [°C]   1234 SuperTag
-      55   1659315600 241.0 [m]    5.3 [°C]   1234 SuperTag
-      56   1659316200 241.0 [m]    5.3 [°C]   1234 SuperTag
-      57   1659316800 241.0 [m]    5.3 [°C]   1234 SuperTag
-      58   1659317400 228.5 [m]    5.3 [°C]   1234 SuperTag
-      59   1659318000 228.5 [m]    5.3 [°C]   1234 SuperTag
-      60   1659318600 241.0 [m]    5.3 [°C]   1234 SuperTag
-      61   1659319200 241.0 [m]    5.3 [°C]   1234 SuperTag
-      62   1659319800 253.0 [m]    5.3 [°C]   1234 SuperTag
-      63   1659320400 253.0 [m]    5.3 [°C]   1234 SuperTag
-      64   1659321000 253.0 [m]    5.3 [°C]   1234 SuperTag
-      65   1659321600 253.0 [m]    5.3 [°C]   1234 SuperTag
-      66   1659322200 253.0 [m]    5.3 [°C]   1234 SuperTag
-      67   1659322800 253.0 [m]    5.3 [°C]   1234 SuperTag
-      68   1659323400 253.0 [m]    5.3 [°C]   1234 SuperTag
-      69   1659324000 253.0 [m]    5.3 [°C]   1234 SuperTag
-      70   1659324600 253.0 [m]    5.3 [°C]   1234 SuperTag
-      71   1659325200 253.0 [m]    5.3 [°C]   1234 SuperTag
-      72   1659325800 266.0 [m]    5.3 [°C]   1234 SuperTag
-      73   1659326400 266.0 [m]    5.3 [°C]   1234 SuperTag
-      74   1659327000 266.0 [m]    5.3 [°C]   1234 SuperTag
-      75   1659327600 266.0 [m]    5.3 [°C]   1234 SuperTag
-      76   1659328200 266.0 [m]    5.3 [°C]   1234 SuperTag
-      77   1659328800 266.0 [m]    5.3 [°C]   1234 SuperTag
-      78   1659329400 266.0 [m]    5.3 [°C]   1234 SuperTag
-      79   1659330000 266.0 [m]    5.3 [°C]   1234 SuperTag
-      80   1659330600 266.0 [m]    5.3 [°C]   1234 SuperTag
-      81   1659331200 266.0 [m]    5.3 [°C]   1234 SuperTag
-      82   1659331800 253.0 [m]    5.3 [°C]   1234 SuperTag
-      83   1659332400 266.0 [m]    5.3 [°C]   1234 SuperTag
-      84   1659333000 266.0 [m]    5.3 [°C]   1234 SuperTag
-      85   1659333600 266.0 [m]    5.3 [°C]   1234 SuperTag
-      86   1659334200 266.0 [m]    5.3 [°C]   1234 SuperTag
-      87   1659334800 266.0 [m]    5.2 [°C]   1234 SuperTag
-      88   1659335400 266.0 [m]    5.3 [°C]   1234 SuperTag
-      89   1659336000 266.0 [m]    5.3 [°C]   1234 SuperTag
-      90   1659336600 266.0 [m]    5.3 [°C]   1234 SuperTag
-      91   1659337200 266.0 [m]    5.3 [°C]   1234 SuperTag
-      92   1659337800 266.0 [m]    5.3 [°C]   1234 SuperTag
-      93   1659338400 266.0 [m]    5.3 [°C]   1234 SuperTag
-      94   1659339000 241.0 [m]    5.3 [°C]   1234 SuperTag
-      95   1659339600 253.0 [m]    5.3 [°C]   1234 SuperTag
-      96   1659340200 241.0 [m]    5.3 [°C]   1234 SuperTag
-      97   1659340800 261.0 [m]    5.2 [°C]   1234 SuperTag
-      98   1659341400 261.0 [m]    5.3 [°C]   1234 SuperTag
-      99   1659342000 261.0 [m]    5.3 [°C]   1234 SuperTag
-      100  1659342600 261.0 [m]    5.2 [°C]   1234 SuperTag
-      101  1659343200 261.0 [m]    5.2 [°C]   1234 SuperTag
-      102  1659343800 261.0 [m]    5.2 [°C]   1234 SuperTag
-      103  1659344400 261.0 [m]    5.2 [°C]   1234 SuperTag
-      104  1659345000 261.0 [m]    5.3 [°C]   1234 SuperTag
-      105  1659345600 261.0 [m]    5.2 [°C]   1234 SuperTag
-      106  1659346200 261.0 [m]    5.3 [°C]   1234 SuperTag
-      107  1659346800 261.0 [m]    5.3 [°C]   1234 SuperTag
-      108  1659347400 261.0 [m]    5.3 [°C]   1234 SuperTag
-      109  1659348000 261.0 [m]    5.3 [°C]   1234 SuperTag
-      110  1659348600 261.0 [m]    5.3 [°C]   1234 SuperTag
-      111  1659349200 261.0 [m]    5.3 [°C]   1234 SuperTag
-      112  1659349800 261.0 [m]    5.3 [°C]   1234 SuperTag
-      113  1659350400 261.0 [m]    5.3 [°C]   1234 SuperTag
-      114  1659351000 261.0 [m]    5.3 [°C]   1234 SuperTag
-      115  1659351600 261.0 [m]    5.3 [°C]   1234 SuperTag
-      116  1659352200 261.0 [m]    5.3 [°C]   1234 SuperTag
-      117  1659352800 214.0 [m]    5.3 [°C]   1234 SuperTag
-      118  1659353400 261.0 [m]    5.3 [°C]   1234 SuperTag
-      119  1659354000 237.5 [m]    5.3 [°C]   1234 SuperTag
-      120  1659354600 237.5 [m]    5.3 [°C]   1234 SuperTag
-      121  1659355200 237.5 [m]    5.3 [°C]   1234 SuperTag
-      122  1659355800 237.5 [m]    5.3 [°C]   1234 SuperTag
-      123  1659356400 237.5 [m]    5.3 [°C]   1234 SuperTag
-      124  1659357000 237.5 [m]    5.3 [°C]   1234 SuperTag
-      125  1659357600 237.5 [m]    5.2 [°C]   1234 SuperTag
-      126  1659358200 237.5 [m]    5.2 [°C]   1234 SuperTag
-      127  1659358800 237.5 [m]    5.2 [°C]   1234 SuperTag
-      128  1659359400 237.5 [m]    5.2 [°C]   1234 SuperTag
-      129  1659360000 237.5 [m]    5.2 [°C]   1234 SuperTag
-      130  1659360600 237.5 [m]    5.2 [°C]   1234 SuperTag
-      131  1659361200 237.5 [m]    5.2 [°C]   1234 SuperTag
-      132  1659361800 237.5 [m]    5.2 [°C]   1234 SuperTag
-      133  1659362400 237.5 [m]    5.2 [°C]   1234 SuperTag
-      134  1659363000 172.5 [m]    5.5 [°C]   1234 SuperTag
-      135  1659363600 214.0 [m]    5.3 [°C]   1234 SuperTag
-      136  1659364200 237.5 [m]    5.2 [°C]   1234 SuperTag
-      137  1659364800 237.5 [m]    5.2 [°C]   1234 SuperTag
-      138  1659365400 237.5 [m]    5.2 [°C]   1234 SuperTag
-      139  1659366000 137.0 [m]    5.7 [°C]   1234 SuperTag
-      140  1659366600 161.0 [m]    5.7 [°C]   1234 SuperTag
-      141  1659367200 106.0 [m]    5.7 [°C]   1234 SuperTag
-      142  1659367800 137.0 [m]    5.7 [°C]   1234 SuperTag
-      143  1659368400 149.0 [m]    5.7 [°C]   1234 SuperTag
-      144  1659369000 161.0 [m]    5.7 [°C]   1234 SuperTag
-      145  1659369600 137.5 [m]    5.7 [°C]   1234 SuperTag
-      146  1659370200 127.0 [m]    5.7 [°C]   1234 SuperTag
-      147  1659370800 119.0 [m]    5.7 [°C]   1234 SuperTag
-      148  1659371400 137.5 [m]    5.7 [°C]   1234 SuperTag
-      149  1659372000 148.0 [m]    5.7 [°C]   1234 SuperTag
-      150  1659372600 137.5 [m]    5.7 [°C]   1234 SuperTag
-      151  1659373200 119.0 [m]    5.7 [°C]   1234 SuperTag
-      152  1659373800 127.0 [m]    5.7 [°C]   1234 SuperTag
-      153  1659374400 113.5 [m]    5.7 [°C]   1234 SuperTag
-      154  1659375000 127.0 [m]    5.7 [°C]   1234 SuperTag
-      155  1659375600 217.0 [m]    5.5 [°C]   1234 SuperTag
-      156  1659376200 238.5 [m]    5.3 [°C]   1234 SuperTag
-      157  1659376800 238.5 [m]    5.3 [°C]   1234 SuperTag
-      158  1659377400 238.5 [m]    5.3 [°C]   1234 SuperTag
-      159  1659378000 238.5 [m]    5.3 [°C]   1234 SuperTag
-      160  1659378600 238.5 [m]    5.3 [°C]   1234 SuperTag
-      161  1659379200 238.5 [m]    5.3 [°C]   1234 SuperTag
-      162  1659379800 238.5 [m]    5.5 [°C]   1234 SuperTag
-      163  1659380400 238.5 [m]    5.5 [°C]   1234 SuperTag
-      164  1659381000 238.5 [m]    5.5 [°C]   1234 SuperTag
-      165  1659381600 238.5 [m]    5.5 [°C]   1234 SuperTag
-      166  1659382200 238.5 [m]    5.5 [°C]   1234 SuperTag
-      167  1659382800 238.5 [m]    5.5 [°C]   1234 SuperTag
-      168  1659383400 238.5 [m]    5.5 [°C]   1234 SuperTag
-      169  1659384000 238.5 [m]    5.5 [°C]   1234 SuperTag
-      170  1659384600 238.5 [m]    5.5 [°C]   1234 SuperTag
-      171  1659385200 238.5 [m]    5.5 [°C]   1234 SuperTag
-      172  1659385800 217.0 [m]    5.5 [°C]   1234 SuperTag
-      173  1659386400 174.5 [m]    5.7 [°C]   1234 SuperTag
-      174  1659387000 174.5 [m]    5.5 [°C]   1234 SuperTag
-      175  1659387600 217.0 [m]    5.5 [°C]   1234 SuperTag
-      176  1659388200 217.0 [m]    5.5 [°C]   1234 SuperTag
-      177  1659388800 174.5 [m]    5.5 [°C]   1234 SuperTag
-      178  1659389400 217.0 [m]    5.5 [°C]   1234 SuperTag
-      179  1659390000 238.5 [m]    5.5 [°C]   1234 SuperTag
-      180  1659390600 174.5 [m]    5.5 [°C]   1234 SuperTag
-      181  1659391200 196.0 [m]    5.5 [°C]   1234 SuperTag
-      182  1659391800 238.5 [m]    5.5 [°C]   1234 SuperTag
-      183  1659392400 217.0 [m]    5.5 [°C]   1234 SuperTag
-      184  1659393000 238.5 [m]    5.5 [°C]   1234 SuperTag
-      185  1659393600 238.5 [m]    5.5 [°C]   1234 SuperTag
-      186  1659394200 238.5 [m]    5.5 [°C]   1234 SuperTag
-      187  1659394800 238.5 [m]    5.5 [°C]   1234 SuperTag
-      188  1659395400 238.5 [m]    5.5 [°C]   1234 SuperTag
-      189  1659396000 238.5 [m]    5.5 [°C]   1234 SuperTag
-      190  1659396600 238.5 [m]    5.5 [°C]   1234 SuperTag
-      191  1659397200 238.5 [m]    5.3 [°C]   1234 SuperTag
-      192  1659397800 238.5 [m]    5.3 [°C]   1234 SuperTag
-      193  1659398400 223.5 [m]    5.5 [°C]   1234 SuperTag
-      194  1659399000 246.5 [m]    5.3 [°C]   1234 SuperTag
-      195  1659399600 246.5 [m]    5.5 [°C]   1234 SuperTag
-      196  1659400200 233.5 [m]    5.5 [°C]   1234 SuperTag
-      197  1659400800 233.5 [m]    5.5 [°C]   1234 SuperTag
-      198  1659401400 233.5 [m]    5.5 [°C]   1234 SuperTag
-      199  1659402000 233.5 [m]    5.5 [°C]   1234 SuperTag
-      200  1659402600 233.5 [m]    5.3 [°C]   1234 SuperTag
-      201  1659403200 233.5 [m]    5.5 [°C]   1234 SuperTag
-      202  1659403800 233.5 [m]    5.5 [°C]   1234 SuperTag
-      203  1659404400 233.5 [m]    5.5 [°C]   1234 SuperTag
-      204  1659405000 223.5 [m]    5.5 [°C]   1234 SuperTag
-      205  1659405600 233.5 [m]    5.3 [°C]   1234 SuperTag
-      206  1659406200 233.5 [m]    5.3 [°C]   1234 SuperTag
-      207  1659406800 233.5 [m]    5.3 [°C]   1234 SuperTag
-      208  1659407400 246.5 [m]    5.3 [°C]   1234 SuperTag
-      209  1659408000 246.5 [m]    5.3 [°C]   1234 SuperTag
-      210  1659408600 260.0 [m]    5.3 [°C]   1234 SuperTag
-      211  1659409200 246.5 [m]    5.3 [°C]   1234 SuperTag
-      212  1659409800 260.0 [m]    5.3 [°C]   1234 SuperTag
-      213  1659410400 216.5 [m]    5.5 [°C]   1234 SuperTag
-      214  1659411000 273.5 [m]    5.3 [°C]   1234 SuperTag
-      215  1659411600 273.5 [m]    5.3 [°C]   1234 SuperTag
-      216  1659412200 273.5 [m]    5.3 [°C]   1234 SuperTag
-      217  1659412800 246.5 [m]    5.3 [°C]   1234 SuperTag
-      218  1659413400 273.5 [m]    5.3 [°C]   1234 SuperTag
-      219  1659414000 273.5 [m]    5.3 [°C]   1234 SuperTag
-      220  1659414600 246.5 [m]    5.3 [°C]   1234 SuperTag
-      221  1659415200 260.0 [m]    5.3 [°C]   1234 SuperTag
-      222  1659415800 260.0 [m]    5.3 [°C]   1234 SuperTag
-      223  1659416400 260.0 [m]    5.3 [°C]   1234 SuperTag
-      224  1659417000 191.5 [m]    5.6 [°C]   1234 SuperTag
-      225  1659417600 203.0 [m]    5.6 [°C]   1234 SuperTag
-      226  1659418200 260.0 [m]    5.3 [°C]   1234 SuperTag
-      227  1659418800 216.5 [m]    5.5 [°C]   1234 SuperTag
-      228  1659419400 260.0 [m]    5.3 [°C]   1234 SuperTag
-      229  1659420000 260.0 [m]    5.3 [°C]   1234 SuperTag
-      230  1659420600 203.0 [m]    5.6 [°C]   1234 SuperTag
-      231  1659421200 246.5 [m]    5.3 [°C]   1234 SuperTag
-      232  1659421800 260.0 [m]    5.5 [°C]   1234 SuperTag
-      233  1659422400 233.5 [m]    5.5 [°C]   1234 SuperTag
-      234  1659423000 246.5 [m]    5.5 [°C]   1234 SuperTag
-      235  1659423600 210.0 [m]    5.5 [°C]   1234 SuperTag
-      236  1659424200 210.0 [m]    5.5 [°C]   1234 SuperTag
-      237  1659424800 246.5 [m]    5.3 [°C]   1234 SuperTag
-      238  1659425400 210.0 [m]    5.5 [°C]   1234 SuperTag
-      239  1659426000 246.5 [m]    5.3 [°C]   1234 SuperTag
-      240  1659426600 246.5 [m]    5.5 [°C]   1234 SuperTag
-      241  1659427200 245.0 [m]    5.5 [°C]   1234 SuperTag
-      242  1659427800 220.5 [m]    5.5 [°C]   1234 SuperTag
-      243  1659428400 171.5 [m]    5.7 [°C]   1234 SuperTag
-      244  1659429000 220.5 [m]    5.5 [°C]   1234 SuperTag
-      245  1659429600 245.0 [m]    5.5 [°C]   1234 SuperTag
-      246  1659430200 245.0 [m]    5.5 [°C]   1234 SuperTag
-      247  1659430800 245.0 [m]    5.5 [°C]   1234 SuperTag
-      248  1659431400 245.0 [m]    5.5 [°C]   1234 SuperTag
-      249  1659432000 245.0 [m]    5.5 [°C]   1234 SuperTag
-      250  1659432600 245.0 [m]    5.5 [°C]   1234 SuperTag
-      251  1659433200 245.0 [m]    5.5 [°C]   1234 SuperTag
-      252  1659433800 245.0 [m]    5.5 [°C]   1234 SuperTag
-      253  1659434400 245.0 [m]    5.5 [°C]   1234 SuperTag
-      254  1659435000 196.0 [m]    5.5 [°C]   1234 SuperTag
-      255  1659435600 245.0 [m]    5.5 [°C]   1234 SuperTag
-      256  1659436200 245.0 [m]    5.5 [°C]   1234 SuperTag
-      257  1659436800 245.0 [m]    5.5 [°C]   1234 SuperTag
-      258  1659437400 245.0 [m]    5.5 [°C]   1234 SuperTag
-      259  1659438000 245.0 [m]    5.5 [°C]   1234 SuperTag
-      260  1659438600 220.5 [m]    5.5 [°C]   1234 SuperTag
-      261  1659439200 245.0 [m]    5.5 [°C]   1234 SuperTag
-      262  1659439800 245.0 [m]    5.5 [°C]   1234 SuperTag
-      263  1659440400 245.0 [m]    5.5 [°C]   1234 SuperTag
-      264  1659441000 245.0 [m]    5.5 [°C]   1234 SuperTag
-      265  1659441600 171.5 [m]    5.7 [°C]   1234 SuperTag
-      266  1659442200 245.0 [m]    5.5 [°C]   1234 SuperTag
-      267  1659442800 245.0 [m]    5.5 [°C]   1234 SuperTag
-      268  1659443400 153.0 [m]    5.7 [°C]   1234 SuperTag
-      269  1659444000  89.0 [m]    5.7 [°C]   1234 SuperTag
-      270  1659444600 171.5 [m]    5.7 [°C]   1234 SuperTag
-      271  1659445200 220.5 [m]    5.5 [°C]   1234 SuperTag
-      272  1659445800 245.0 [m]    5.5 [°C]   1234 SuperTag
-      273  1659446400 245.0 [m]    5.5 [°C]   1234 SuperTag
-      274  1659447000 245.0 [m]    5.5 [°C]   1234 SuperTag
-      275  1659447600 245.0 [m]    5.5 [°C]   1234 SuperTag
-      276  1659448200 196.0 [m]    5.7 [°C]   1234 SuperTag
-      277  1659448800 220.5 [m]    5.5 [°C]   1234 SuperTag
-      278  1659449400 196.0 [m]    5.7 [°C]   1234 SuperTag
-      279  1659450000 196.0 [m]    5.7 [°C]   1234 SuperTag
-      280  1659450600 196.0 [m]    5.7 [°C]   1234 SuperTag
-      281  1659451200 196.0 [m]    5.7 [°C]   1234 SuperTag
-      282  1659451800 171.5 [m]    5.7 [°C]   1234 SuperTag
-      283  1659452400 171.5 [m]    5.7 [°C]   1234 SuperTag
-      284  1659453000 129.0 [m]    5.7 [°C]   1234 SuperTag
-      285  1659453600 116.5 [m]    5.8 [°C]   1234 SuperTag
-      286  1659454200 107.5 [m]    5.8 [°C]   1234 SuperTag
-      287  1659454800 107.5 [m]    6.0 [°C]   1234 SuperTag
-      288  1659455400 107.5 [m]    5.8 [°C]   1234 SuperTag
-      289  1659456000 143.0 [m]    5.9 [°C]   1234 SuperTag
-      290  1659456600  85.0 [m]    6.1 [°C]   1234 SuperTag
-      291  1659457200 123.5 [m]    5.9 [°C]   1234 SuperTag
-      292  1659457800  98.0 [m]    6.1 [°C]   1234 SuperTag
-      293  1659458400  98.0 [m]    6.1 [°C]   1234 SuperTag
-      294  1659459000 123.5 [m]    5.9 [°C]   1234 SuperTag
-      295  1659459600 143.0 [m]    5.7 [°C]   1234 SuperTag
-      296  1659460200  75.5 [m]    6.4 [°C]   1234 SuperTag
-      297  1659460800 143.0 [m]    5.9 [°C]   1234 SuperTag
-      298  1659461400  85.0 [m]    6.2 [°C]   1234 SuperTag
-      299  1659462000  75.5 [m]    6.4 [°C]   1234 SuperTag
-      300  1659462600  51.0 [m]    6.8 [°C]   1234 SuperTag
-      301  1659463200  85.0 [m]    6.4 [°C]   1234 SuperTag
-      302  1659463800 143.0 [m]    6.1 [°C]   1234 SuperTag
-      303  1659464400 143.0 [m]    5.9 [°C]   1234 SuperTag
-      304  1659465000  69.0 [m]    6.6 [°C]   1234 SuperTag
-      305  1659465600  56.0 [m]    7.0 [°C]   1234 SuperTag
-      306  1659466200  62.5 [m]    6.8 [°C]   1234 SuperTag
-      307  1659466800  62.5 [m]    6.8 [°C]   1234 SuperTag
-      308  1659467400  85.0 [m]    6.6 [°C]   1234 SuperTag
-      309  1659468000  85.0 [m]    6.2 [°C]   1234 SuperTag
-      310  1659468600  51.0 [m]    7.1 [°C]   1234 SuperTag
-      311  1659469200  75.5 [m]    6.4 [°C]   1234 SuperTag
-      312  1659469800  98.0 [m]    5.9 [°C]   1234 SuperTag
-      313  1659470400  62.5 [m]    7.1 [°C]   1234 SuperTag
-      314  1659471000 220.5 [m]    5.6 [°C]   1234 SuperTag
-      315  1659471600 220.5 [m]    5.6 [°C]   1234 SuperTag
-      316  1659472200 143.0 [m]    5.7 [°C]   1234 SuperTag
-      317  1659472800  56.0 [m]    7.3 [°C]   1234 SuperTag
-      318  1659473400 111.0 [m]    6.2 [°C]   1234 SuperTag
-      319  1659474000 220.5 [m]    5.6 [°C]   1234 SuperTag
-      320  1659474600 143.0 [m]    5.7 [°C]   1234 SuperTag
-      321  1659475200  69.0 [m]    6.8 [°C]   1234 SuperTag
-      322  1659475800  75.5 [m]    6.8 [°C]   1234 SuperTag
-      323  1659476400  85.0 [m]    6.4 [°C]   1234 SuperTag
-      324  1659477000 194.5 [m]    5.7 [°C]   1234 SuperTag
-      325  1659477600 169.0 [m]    5.7 [°C]   1234 SuperTag
-      326  1659478200 169.0 [m]    5.7 [°C]   1234 SuperTag
-      327  1659478800 194.5 [m]    5.6 [°C]   1234 SuperTag
-      328  1659479400 169.0 [m]    5.7 [°C]   1234 SuperTag
-      329  1659480000 220.5 [m]    5.6 [°C]   1234 SuperTag
-      330  1659480600 220.5 [m]    5.6 [°C]   1234 SuperTag
-      331  1659481200 220.5 [m]    5.6 [°C]   1234 SuperTag
-      332  1659481800 220.5 [m]    5.6 [°C]   1234 SuperTag
-      333  1659482400 220.5 [m]    5.6 [°C]   1234 SuperTag
-      334  1659483000 220.5 [m]    5.6 [°C]   1234 SuperTag
-      335  1659483600 220.5 [m]    5.6 [°C]   1234 SuperTag
-      336  1659484200 220.5 [m]    5.6 [°C]   1234 SuperTag
-      337  1659484800 217.0 [m]    5.7 [°C]   1234 SuperTag
-      338  1659485400 217.0 [m]    5.7 [°C]   1234 SuperTag
-      339  1659486000 211.0 [m]    5.7 [°C]   1234 SuperTag
-      340  1659486600 217.0 [m]    5.7 [°C]   1234 SuperTag
-      341  1659487200 217.0 [m]    5.7 [°C]   1234 SuperTag
-      342  1659487800 211.0 [m]    5.7 [°C]   1234 SuperTag
-      343  1659488400 217.0 [m]    5.7 [°C]   1234 SuperTag
-      344  1659489000 205.5 [m]    5.7 [°C]   1234 SuperTag
-      345  1659489600 211.0 [m]    5.7 [°C]   1234 SuperTag
-      346  1659490200 205.5 [m]    5.7 [°C]   1234 SuperTag
-      347  1659490800 211.0 [m]    5.7 [°C]   1234 SuperTag
-      348  1659491400 211.0 [m]    5.7 [°C]   1234 SuperTag
-      349  1659492000 205.5 [m]    5.7 [°C]   1234 SuperTag
-      350  1659492600 211.0 [m]    5.7 [°C]   1234 SuperTag
-      351  1659493200 211.0 [m]    5.7 [°C]   1234 SuperTag
-      352  1659493800 182.0 [m]    5.7 [°C]   1234 SuperTag
-      353  1659494400 211.0 [m]    5.7 [°C]   1234 SuperTag
-      354  1659495000 200.5 [m]    5.7 [°C]   1234 SuperTag
-      355  1659495600 211.0 [m]    5.7 [°C]   1234 SuperTag
-      356  1659496200 211.0 [m]    5.7 [°C]   1234 SuperTag
-      357  1659496800 211.0 [m]    5.7 [°C]   1234 SuperTag
-      358  1659497400 205.5 [m]    5.7 [°C]   1234 SuperTag
-      359  1659498000 205.5 [m]    5.7 [°C]   1234 SuperTag
-      360  1659498600 211.0 [m]    5.7 [°C]   1234 SuperTag
-      361  1659499200 205.5 [m]    5.7 [°C]   1234 SuperTag
-      362  1659499800 205.5 [m]    5.7 [°C]   1234 SuperTag
-      363  1659500400 205.5 [m]    5.7 [°C]   1234 SuperTag
-      364  1659501000 211.0 [m]    5.7 [°C]   1234 SuperTag
-      365  1659501600 211.0 [m]    5.7 [°C]   1234 SuperTag
-      366  1659502200 211.0 [m]    5.7 [°C]   1234 SuperTag
-      367  1659502800 211.0 [m]    5.7 [°C]   1234 SuperTag
-      368  1659503400 205.5 [m]    5.7 [°C]   1234 SuperTag
-      369  1659504000 211.0 [m]    5.7 [°C]   1234 SuperTag
-      370  1659504600 217.0 [m]    5.7 [°C]   1234 SuperTag
-      371  1659505200 205.5 [m]    5.7 [°C]   1234 SuperTag
-      372  1659505800 211.0 [m]    5.7 [°C]   1234 SuperTag
-      373  1659506400 217.0 [m]    5.7 [°C]   1234 SuperTag
-      374  1659507000 217.0 [m]    5.7 [°C]   1234 SuperTag
-      375  1659507600 217.0 [m]    5.7 [°C]   1234 SuperTag
-      376  1659508200 217.0 [m]    5.7 [°C]   1234 SuperTag
-      377  1659508800 217.0 [m]    5.7 [°C]   1234 SuperTag
-      378  1659509400 217.0 [m]    5.7 [°C]   1234 SuperTag
-      379  1659510000 217.0 [m]    5.7 [°C]   1234 SuperTag
-      380  1659510600 217.0 [m]    5.7 [°C]   1234 SuperTag
-      381  1659511200 217.0 [m]    5.7 [°C]   1234 SuperTag
-      382  1659511800 217.0 [m]    5.7 [°C]   1234 SuperTag
-      383  1659512400 217.0 [m]    5.7 [°C]   1234 SuperTag
-      384  1659513000 217.0 [m]    5.7 [°C]   1234 SuperTag
-      385  1659513600 224.5 [m]    5.7 [°C]   1234 SuperTag
-      386  1659514200 224.5 [m]    5.7 [°C]   1234 SuperTag
-      387  1659514800 224.5 [m]    5.7 [°C]   1234 SuperTag
-      388  1659515400 224.5 [m]    5.7 [°C]   1234 SuperTag
-      389  1659516000 224.5 [m]    5.7 [°C]   1234 SuperTag
-      390  1659516600 224.5 [m]    5.7 [°C]   1234 SuperTag
-      391  1659517200 224.5 [m]    5.7 [°C]   1234 SuperTag
-      392  1659517800 224.5 [m]    5.7 [°C]   1234 SuperTag
-      393  1659518400 224.5 [m]    5.7 [°C]   1234 SuperTag
-      394  1659519000 224.5 [m]    5.7 [°C]   1234 SuperTag
-      395  1659519600 224.5 [m]    5.7 [°C]   1234 SuperTag
-      396  1659520200 224.5 [m]    5.7 [°C]   1234 SuperTag
-      397  1659520800 224.5 [m]    5.7 [°C]   1234 SuperTag
-      398  1659521400 224.5 [m]    5.7 [°C]   1234 SuperTag
-      399  1659522000 171.0 [m]    5.8 [°C]   1234 SuperTag
-      400  1659522600 151.0 [m]    6.0 [°C]   1234 SuperTag
-      401  1659523200 224.5 [m]    5.7 [°C]   1234 SuperTag
-      402  1659523800 224.5 [m]    5.7 [°C]   1234 SuperTag
-      403  1659524400 110.5 [m]    5.2 [°C]   1234 SuperTag
-      404  1659525000  68.5 [m]    5.7 [°C]   1234 SuperTag
-      405  1659525600  87.0 [m]    5.5 [°C]   1234 SuperTag
-      406  1659526200  75.5 [m]    5.7 [°C]   1234 SuperTag
-      407  1659526800  75.5 [m]    5.5 [°C]   1234 SuperTag
-      408  1659527400  80.5 [m]    5.5 [°C]   1234 SuperTag
-      409  1659528000  72.0 [m]    5.7 [°C]   1234 SuperTag
-      410  1659528600  75.5 [m]    5.7 [°C]   1234 SuperTag
-      411  1659529200 198.0 [m]    5.7 [°C]   1234 SuperTag
-      412  1659529800 224.5 [m]    5.5 [°C]   1234 SuperTag
-      413  1659530400 224.5 [m]    5.5 [°C]   1234 SuperTag
-      414  1659531000 251.5 [m]    5.5 [°C]   1234 SuperTag
-      415  1659531600 251.5 [m]    5.5 [°C]   1234 SuperTag
-      416  1659532200 224.5 [m]    5.5 [°C]   1234 SuperTag
-      417  1659532800 251.5 [m]    5.5 [°C]   1234 SuperTag
-      418  1659533400 251.5 [m]    5.5 [°C]   1234 SuperTag
-      419  1659534000 251.5 [m]    5.5 [°C]   1234 SuperTag
-      420  1659534600 251.5 [m]    5.5 [°C]   1234 SuperTag
-      421  1659535200 251.5 [m]    5.5 [°C]   1234 SuperTag
-      422  1659535800 251.5 [m]    5.5 [°C]   1234 SuperTag
-      423  1659536400 251.5 [m]    5.5 [°C]   1234 SuperTag
-      424  1659537000 251.5 [m]    5.5 [°C]   1234 SuperTag
-      425  1659537600 224.5 [m]    5.5 [°C]   1234 SuperTag
-      426  1659538200 251.5 [m]    5.5 [°C]   1234 SuperTag
-      427  1659538800 224.5 [m]    5.5 [°C]   1234 SuperTag
-      428  1659539400 251.5 [m]    5.5 [°C]   1234 SuperTag
-      429  1659540000 171.0 [m]    5.5 [°C]   1234 SuperTag
-      430  1659540600  80.5 [m]    5.2 [°C]   1234 SuperTag
-      431  1659541200 198.0 [m]    5.5 [°C]   1234 SuperTag
-      432  1659541800 251.5 [m]    5.5 [°C]   1234 SuperTag
-      433  1659542400 249.5 [m]    5.5 [°C]   1234 SuperTag
-      434  1659543000 249.5 [m]    5.5 [°C]   1234 SuperTag
-      435  1659543600 157.5 [m]    5.9 [°C]   1234 SuperTag
-      436  1659544200  36.5 [m]    6.7 [°C]   1234 SuperTag
-      437  1659544800 218.5 [m]    5.5 [°C]   1234 SuperTag
-      438  1659545400 249.5 [m]    5.5 [°C]   1234 SuperTag
-      439  1659546000 218.5 [m]    5.5 [°C]   1234 SuperTag
-      440  1659546600 188.0 [m]    5.5 [°C]   1234 SuperTag
-      441  1659547200  61.5 [m]    6.0 [°C]   1234 SuperTag
-      442  1659547800 218.5 [m]    5.5 [°C]   1234 SuperTag
-      443  1659548400 249.5 [m]    5.5 [°C]   1234 SuperTag
-      444  1659549000 249.5 [m]    5.5 [°C]   1234 SuperTag
-      445  1659549600 249.5 [m]    5.5 [°C]   1234 SuperTag
-      446  1659550200 249.5 [m]    5.5 [°C]   1234 SuperTag
-      447  1659550800 249.5 [m]    5.5 [°C]   1234 SuperTag
-      448  1659551400 249.5 [m]    5.5 [°C]   1234 SuperTag
-      449  1659552000 249.5 [m]    5.5 [°C]   1234 SuperTag
-      450  1659552600 249.5 [m]    5.7 [°C]   1234 SuperTag
-      451  1659553200 249.5 [m]    5.7 [°C]   1234 SuperTag
-      452  1659553800 218.5 [m]    5.7 [°C]   1234 SuperTag
-      453  1659554400 218.5 [m]    5.7 [°C]   1234 SuperTag
-      454  1659555000 218.5 [m]    5.7 [°C]   1234 SuperTag
-      455  1659555600 218.5 [m]    5.7 [°C]   1234 SuperTag
-      456  1659556200 218.5 [m]    5.7 [°C]   1234 SuperTag
-      457  1659556800 188.0 [m]    5.7 [°C]   1234 SuperTag
-      458  1659557400 188.0 [m]    5.7 [°C]   1234 SuperTag
-      459  1659558000 188.0 [m]    5.7 [°C]   1234 SuperTag
-      460  1659558600 188.0 [m]    5.7 [°C]   1234 SuperTag
-      461  1659559200 188.0 [m]    5.7 [°C]   1234 SuperTag
-      462  1659559800 157.5 [m]    5.7 [°C]   1234 SuperTag
-      463  1659560400 157.5 [m]    5.7 [°C]   1234 SuperTag
-      464  1659561000 157.5 [m]    5.7 [°C]   1234 SuperTag
-      465  1659561600 157.5 [m]    5.7 [°C]   1234 SuperTag
-      466  1659562200 157.5 [m]    5.7 [°C]   1234 SuperTag
-      467  1659562800 157.5 [m]    5.7 [°C]   1234 SuperTag
-      468  1659563400 157.5 [m]    5.7 [°C]   1234 SuperTag
-      469  1659564000 157.5 [m]    5.7 [°C]   1234 SuperTag
-      470  1659564600 134.5 [m]    5.5 [°C]   1234 SuperTag
-      471  1659565200 104.0 [m]    6.0 [°C]   1234 SuperTag
-      472  1659565800 134.5 [m]    5.7 [°C]   1234 SuperTag
-      473  1659566400 157.5 [m]    5.7 [°C]   1234 SuperTag
-      474  1659567000 157.5 [m]    5.7 [°C]   1234 SuperTag
-      475  1659567600 157.5 [m]    5.7 [°C]   1234 SuperTag
-      476  1659568200 188.0 [m]    5.7 [°C]   1234 SuperTag
-      477  1659568800 157.5 [m]    5.7 [°C]   1234 SuperTag
-      478  1659569400 188.0 [m]    5.7 [°C]   1234 SuperTag
-      479  1659570000 188.0 [m]    5.7 [°C]   1234 SuperTag
-      480  1659570600 188.0 [m]    5.7 [°C]   1234 SuperTag
-      481  1659571200 197.5 [m]    5.7 [°C]   1234 SuperTag
-      482  1659571800 194.0 [m]    5.7 [°C]   1234 SuperTag
-      483  1659572400 188.5 [m]    5.7 [°C]   1234 SuperTag
-      484  1659573000 197.5 [m]    5.7 [°C]   1234 SuperTag
-      485  1659573600 220.5 [m]    5.7 [°C]   1234 SuperTag
-      486  1659574200 231.0 [m]    5.7 [°C]   1234 SuperTag
-      487  1659574800 220.5 [m]    5.7 [°C]   1234 SuperTag
-      488  1659575400 197.5 [m]    5.7 [°C]   1234 SuperTag
-      489  1659576000 231.0 [m]    5.7 [°C]   1234 SuperTag
-      490  1659576600 251.5 [m]    5.7 [°C]   1234 SuperTag
-      491  1659577200 231.0 [m]    5.7 [°C]   1234 SuperTag
-      492  1659577800 220.5 [m]    5.7 [°C]   1234 SuperTag
-      493  1659578400 213.0 [m]    5.7 [°C]   1234 SuperTag
-      494  1659579000 208.0 [m]    5.7 [°C]   1234 SuperTag
-      495  1659579600 213.0 [m]    5.7 [°C]   1234 SuperTag
-      496  1659580200 208.0 [m]    5.7 [°C]   1234 SuperTag
-      497  1659580800 203.0 [m]    5.7 [°C]   1234 SuperTag
-      498  1659581400 208.0 [m]    5.7 [°C]   1234 SuperTag
-      499  1659582000 220.5 [m]    5.7 [°C]   1234 SuperTag
-      500  1659582600 213.0 [m]    5.5 [°C]   1234 SuperTag
-      501  1659583200 208.0 [m]    5.7 [°C]   1234 SuperTag
-      502  1659583800 203.0 [m]    5.5 [°C]   1234 SuperTag
-      503  1659584400 231.0 [m]    5.5 [°C]   1234 SuperTag
-      504  1659585000 220.5 [m]    5.5 [°C]   1234 SuperTag
-      505  1659585600 213.0 [m]    5.5 [°C]   1234 SuperTag
-      506  1659586200 197.5 [m]    5.5 [°C]   1234 SuperTag
-      507  1659586800 231.0 [m]    5.5 [°C]   1234 SuperTag
-      508  1659587400 186.0 [m]    5.3 [°C]   1234 SuperTag
-      509  1659588000 231.0 [m]    5.5 [°C]   1234 SuperTag
-      510  1659588600 231.0 [m]    5.5 [°C]   1234 SuperTag
-      511  1659589200 231.0 [m]    5.5 [°C]   1234 SuperTag
-      512  1659589800 231.0 [m]    5.5 [°C]   1234 SuperTag
-      513  1659590400 231.0 [m]    5.5 [°C]   1234 SuperTag
-      514  1659591000 231.0 [m]    5.5 [°C]   1234 SuperTag
-      515  1659591600 231.0 [m]    5.5 [°C]   1234 SuperTag
-      516  1659592200 231.0 [m]    5.5 [°C]   1234 SuperTag
-      517  1659592800 231.0 [m]    5.5 [°C]   1234 SuperTag
-      518  1659593400 231.0 [m]    5.5 [°C]   1234 SuperTag
-      519  1659594000 231.0 [m]    5.5 [°C]   1234 SuperTag
-      520  1659594600 241.0 [m]    5.5 [°C]   1234 SuperTag
-      521  1659595200 241.0 [m]    5.5 [°C]   1234 SuperTag
-      522  1659595800 231.0 [m]    5.5 [°C]   1234 SuperTag
-      523  1659596400 241.0 [m]    5.5 [°C]   1234 SuperTag
-      524  1659597000 231.0 [m]    5.5 [°C]   1234 SuperTag
-      525  1659597600 231.0 [m]    5.5 [°C]   1234 SuperTag
-      526  1659598200 241.0 [m]    5.5 [°C]   1234 SuperTag
-      527  1659598800 241.0 [m]    5.5 [°C]   1234 SuperTag
-      528  1659599400 241.0 [m]    5.5 [°C]   1234 SuperTag
-      529  1659600000 242.5 [m]    5.5 [°C]   1234 SuperTag
-      530  1659600600 229.0 [m]    5.5 [°C]   1234 SuperTag
-      531  1659601200 242.5 [m]    5.5 [°C]   1234 SuperTag
-      532  1659601800 242.5 [m]    5.5 [°C]   1234 SuperTag
-      533  1659602400 242.5 [m]    5.5 [°C]   1234 SuperTag
-      534  1659603000 242.5 [m]    5.3 [°C]   1234 SuperTag
-      535  1659603600 257.0 [m]    5.5 [°C]   1234 SuperTag
-      536  1659604200 257.0 [m]    5.5 [°C]   1234 SuperTag
-      537  1659604800 257.0 [m]    5.3 [°C]   1234 SuperTag
-      538  1659605400 257.0 [m]    5.5 [°C]   1234 SuperTag
-      539  1659606000 257.0 [m]    5.5 [°C]   1234 SuperTag
-      540  1659606600 257.0 [m]    5.3 [°C]   1234 SuperTag
-      541  1659607200 229.0 [m]    5.3 [°C]   1234 SuperTag
-      542  1659607800 257.0 [m]    5.3 [°C]   1234 SuperTag
-      543  1659608400 257.0 [m]    5.3 [°C]   1234 SuperTag
-      544  1659609000 257.0 [m]    5.5 [°C]   1234 SuperTag
-      545  1659609600 257.0 [m]    5.5 [°C]   1234 SuperTag
-      546  1659610200 257.0 [m]    5.5 [°C]   1234 SuperTag
-      547  1659610800 198.0 [m]    5.2 [°C]   1234 SuperTag
-      548  1659611400 257.0 [m]    5.3 [°C]   1234 SuperTag
-      549  1659612000 242.5 [m]    5.3 [°C]   1234 SuperTag
-      550  1659612600 229.0 [m]    5.3 [°C]   1234 SuperTag
-      551  1659613200 257.0 [m]    5.3 [°C]   1234 SuperTag
-      552  1659613800 242.5 [m]    5.3 [°C]   1234 SuperTag
-      553  1659614400 229.0 [m]    5.3 [°C]   1234 SuperTag
-      554  1659615000 242.5 [m]    5.3 [°C]   1234 SuperTag
-      555  1659615600 257.0 [m]    5.3 [°C]   1234 SuperTag
-      556  1659616200 257.0 [m]    5.3 [°C]   1234 SuperTag
-      557  1659616800 257.0 [m]    5.3 [°C]   1234 SuperTag
-      558  1659617400 257.0 [m]    5.3 [°C]   1234 SuperTag
-      559  1659618000 257.0 [m]    5.3 [°C]   1234 SuperTag
-      560  1659618600 229.0 [m]    5.3 [°C]   1234 SuperTag
-      561  1659619200 257.0 [m]    5.3 [°C]   1234 SuperTag
-      562  1659619800 257.0 [m]    5.3 [°C]   1234 SuperTag
-      563  1659620400 242.5 [m]    5.3 [°C]   1234 SuperTag
-      564  1659621000 242.5 [m]    5.3 [°C]   1234 SuperTag
-      565  1659621600 257.0 [m]    5.3 [°C]   1234 SuperTag
-      566  1659622200 229.0 [m]    5.3 [°C]   1234 SuperTag
-      567  1659622800 242.5 [m]    5.3 [°C]   1234 SuperTag
-      568  1659623400 242.5 [m]    5.3 [°C]   1234 SuperTag
-      569  1659624000 229.0 [m]    5.3 [°C]   1234 SuperTag
-      570  1659624600 184.0 [m]    5.3 [°C]   1234 SuperTag
-      571  1659625200 257.0 [m]    5.5 [°C]   1234 SuperTag
-      572  1659625800 215.0 [m]    5.3 [°C]   1234 SuperTag
-      573  1659626400 257.0 [m]    5.5 [°C]   1234 SuperTag
-      574  1659627000 257.0 [m]    5.5 [°C]   1234 SuperTag
-      575  1659627600 257.0 [m]    5.5 [°C]   1234 SuperTag
-      576  1659628200 257.0 [m]    5.5 [°C]   1234 SuperTag
-      577  1659628800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      578  1659629400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      579  1659630000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      580  1659630600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      581  1659631200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      582  1659631800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      583  1659632400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      584  1659633000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      585  1659633600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      586  1659634200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      587  1659634800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      588  1659635400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      589  1659636000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      590  1659636600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      591  1659637200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      592  1659637800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      593  1659638400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      594  1659639000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      595  1659639600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      596  1659640200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      597  1659640800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      598  1659641400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      599  1659642000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      600  1659642600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      601  1659643200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      602  1659643800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      603  1659644400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      604  1659645000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      605  1659645600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      606  1659646200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      607  1659646800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      608  1659647400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      609  1659648000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      610  1659648600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      611  1659649200 239.5 [m]    5.4 [°C]   1234 SuperTag
-      612  1659649800 239.5 [m]    5.4 [°C]   1234 SuperTag
-      613  1659650400 239.5 [m]    5.4 [°C]   1234 SuperTag
-      614  1659651000 239.5 [m]    5.4 [°C]   1234 SuperTag
-      615  1659651600 239.5 [m]    5.4 [°C]   1234 SuperTag
-      616  1659652200 171.0 [m]    5.9 [°C]   1234 SuperTag
-      617  1659652800 111.5 [m]    5.9 [°C]   1234 SuperTag
-      618  1659653400  39.5 [m]    6.8 [°C]   1234 SuperTag
-      619  1659654000   3.0 [m]   12.2 [°C]   1234 SuperTag
-      620  1659654600   3.0 [m]   12.2 [°C]   1234 SuperTag
-      621  1659655200   3.0 [m]   12.2 [°C]   1234 SuperTag
-      622  1659655800   3.0 [m]   12.2 [°C]   1234 SuperTag
-      623  1659656400   3.0 [m]   12.2 [°C]   1234 SuperTag
-      624  1659657000   3.0 [m]   12.2 [°C]   1234 SuperTag
-      625  1659657600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      626  1659658200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      627  1659658800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      628  1659659400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      629  1659660000   2.5 [m]   12.5 [°C]   1234 SuperTag
-      630  1659660600   2.5 [m]   12.5 [°C]   1234 SuperTag
-      631  1659661200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      632  1659661800   2.5 [m]   12.5 [°C]   1234 SuperTag
-      633  1659662400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      634  1659663000   2.5 [m]   12.5 [°C]   1234 SuperTag
-      635  1659663600   2.0 [m]   12.5 [°C]   1234 SuperTag
-      636  1659664200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      637  1659664800   1.5 [m]   12.5 [°C]   1234 SuperTag
-      638  1659665400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      639  1659666000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      640  1659666600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      641  1659667200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      642  1659667800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      643  1659668400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      644  1659669000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      645  1659669600   2.5 [m]   12.5 [°C]   1234 SuperTag
-      646  1659670200   2.5 [m]   12.5 [°C]   1234 SuperTag
-      647  1659670800   2.5 [m]   12.5 [°C]   1234 SuperTag
-      648  1659671400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      649  1659672000   1.5 [m]   12.5 [°C]   1234 SuperTag
-      650  1659672600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      651  1659673200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      652  1659673800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      653  1659674400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      654  1659675000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      655  1659675600   2.0 [m]   12.6 [°C]   1234 SuperTag
-      656  1659676200   1.5 [m]   12.5 [°C]   1234 SuperTag
-      657  1659676800   1.5 [m]   12.5 [°C]   1234 SuperTag
-      658  1659677400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      659  1659678000   1.5 [m]   12.5 [°C]   1234 SuperTag
-      660  1659678600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      661  1659679200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      662  1659679800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      663  1659680400   2.0 [m]   12.6 [°C]   1234 SuperTag
-      664  1659681000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      665  1659681600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      666  1659682200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      667  1659682800   1.0 [m]   12.6 [°C]   1234 SuperTag
-      668  1659683400   2.0 [m]   12.6 [°C]   1234 SuperTag
-      669  1659684000   1.5 [m]   12.5 [°C]   1234 SuperTag
-      670  1659684600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      671  1659685200   1.0 [m]   12.6 [°C]   1234 SuperTag
-      672  1659685800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      673  1659715200   2.0 [m]   12.6 [°C]   1234 SuperTag
-      674  1659715800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      675  1659716400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      676  1659717000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      677  1659717600   2.0 [m]   12.6 [°C]   1234 SuperTag
-      678  1659718200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      679  1659718800   2.0 [m]   12.6 [°C]   1234 SuperTag
-      680  1659719400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      681  1659720000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      682  1659720600   1.0 [m]   12.6 [°C]   1234 SuperTag
-      683  1659721200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      684  1659721800   1.0 [m]   12.6 [°C]   1234 SuperTag
-      685  1659722400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      686  1659723000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      687  1659723600   2.0 [m]   12.6 [°C]   1234 SuperTag
-      688  1659724200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      689  1659724800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      690  1659725400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      691  1659726000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      692  1659726600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      693  1659727200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      694  1659727800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      695  1659728400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      696  1659729000   1.5 [m]   12.6 [°C]   1234 SuperTag
-      697  1659729600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      698  1659730200   1.0 [m]   12.6 [°C]   1234 SuperTag
-      699  1659730800   2.0 [m]   12.6 [°C]   1234 SuperTag
-      700  1659731400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      701  1659732000   2.0 [m]   12.6 [°C]   1234 SuperTag
-      702  1659732600   1.5 [m]   12.6 [°C]   1234 SuperTag
-      703  1659733200   1.5 [m]   12.6 [°C]   1234 SuperTag
-      704  1659733800   1.5 [m]   12.6 [°C]   1234 SuperTag
-      705  1659734400   1.5 [m]   12.6 [°C]   1234 SuperTag
-      706  1659735000   1.5 [m]   12.5 [°C]   1234 SuperTag
-      707  1659735600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      708  1659736200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      709  1659736800   1.5 [m]   12.5 [°C]   1234 SuperTag
-      710  1659737400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      711  1659738000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      712  1659738600   2.0 [m]   12.5 [°C]   1234 SuperTag
-      713  1659739200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      714  1659739800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      715  1659740400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      716  1659741000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      717  1659741600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      718  1659742200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      719  1659742800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      720  1659743400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      721  1659744000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      722  1659744600   2.0 [m]   12.5 [°C]   1234 SuperTag
-      723  1659745200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      724  1659745800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      725  1659746400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      726  1659747000   1.5 [m]   12.5 [°C]   1234 SuperTag
-      727  1659747600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      728  1659748200   1.5 [m]   12.5 [°C]   1234 SuperTag
-      729  1659748800   1.5 [m]   12.5 [°C]   1234 SuperTag
-      730  1659749400   2.0 [m]   12.5 [°C]   1234 SuperTag
-      731  1659750000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      732  1659750600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      733  1659751200   1.5 [m]   12.5 [°C]   1234 SuperTag
-      734  1659751800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      735  1659752400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      736  1659753000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      737  1659753600   1.5 [m]   12.5 [°C]   1234 SuperTag
-      738  1659754200   2.0 [m]   12.5 [°C]   1234 SuperTag
-      739  1659754800   1.0 [m]   12.5 [°C]   1234 SuperTag
-      740  1659755400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      741  1659756000   1.5 [m]   12.5 [°C]   1234 SuperTag
-      742  1659756600   2.0 [m]   12.5 [°C]   1234 SuperTag
-      743  1659757200   1.5 [m]   12.5 [°C]   1234 SuperTag
-      744  1659757800   2.0 [m]   12.5 [°C]   1234 SuperTag
-      745  1659758400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      746  1659759000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      747  1659759600   1.0 [m]   12.7 [°C]   1234 SuperTag
-      748  1659760200   1.5 [m]   12.7 [°C]   1234 SuperTag
-      749  1659760800   2.0 [m]   12.7 [°C]   1234 SuperTag
-      750  1659761400   1.0 [m]   12.7 [°C]   1234 SuperTag
-      751  1659762000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      752  1659762600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      753  1659763200   2.0 [m]   12.7 [°C]   1234 SuperTag
-      754  1659763800   1.5 [m]   12.7 [°C]   1234 SuperTag
-      755  1659764400   1.0 [m]   12.7 [°C]   1234 SuperTag
-      756  1659765000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      757  1659765600   2.0 [m]   12.8 [°C]   1234 SuperTag
-      758  1659766200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      759  1659766800   2.0 [m]   12.8 [°C]   1234 SuperTag
-      760  1659767400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      761  1659768000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      762  1659768600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      763  1659769200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      764  1659769800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      765  1659770400   1.0 [m]   12.8 [°C]   1234 SuperTag
-      766  1659771000   2.0 [m]   12.8 [°C]   1234 SuperTag
-      767  1659771600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      768  1659772200   2.0 [m]   12.8 [°C]   1234 SuperTag
-      769  1659772800   2.0 [m]   12.8 [°C]   1234 SuperTag
-      770  1659773400   1.5 [m]   13.0 [°C]   1234 SuperTag
-      771  1659774000   1.5 [m]   13.0 [°C]   1234 SuperTag
-      772  1659774600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      773  1659775200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      774  1659775800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      775  1659776400   1.5 [m]   13.0 [°C]   1234 SuperTag
-      776  1659777000   1.5 [m]   13.0 [°C]   1234 SuperTag
-      777  1659777600   1.5 [m]   13.0 [°C]   1234 SuperTag
-      778  1659778200   1.5 [m]   13.0 [°C]   1234 SuperTag
-      779  1659778800   2.0 [m]   13.0 [°C]   1234 SuperTag
-      780  1659779400   1.5 [m]   13.0 [°C]   1234 SuperTag
-      781  1659780000   2.0 [m]   13.0 [°C]   1234 SuperTag
-      782  1659780600   1.5 [m]   13.0 [°C]   1234 SuperTag
-      783  1659781200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      784  1659781800   1.5 [m]   13.0 [°C]   1234 SuperTag
-      785  1659782400   1.5 [m]   13.0 [°C]   1234 SuperTag
-      786  1659783000   2.0 [m]   13.0 [°C]   1234 SuperTag
-      787  1659783600   1.5 [m]   13.0 [°C]   1234 SuperTag
-      788  1659784200   2.0 [m]   13.0 [°C]   1234 SuperTag
-      789  1659784800   2.0 [m]   13.0 [°C]   1234 SuperTag
-      790  1659785400   1.5 [m]   13.0 [°C]   1234 SuperTag
-      791  1659786000   1.0 [m]   13.0 [°C]   1234 SuperTag
-      792  1659786600   1.5 [m]   13.0 [°C]   1234 SuperTag
-      793  1659787200   1.5 [m]   13.0 [°C]   1234 SuperTag
-      794  1659787800   1.5 [m]   13.0 [°C]   1234 SuperTag
-      795  1659788400   1.5 [m]   13.0 [°C]   1234 SuperTag
-      796  1659789000   1.5 [m]   13.0 [°C]   1234 SuperTag
-      797  1659789600   1.5 [m]   13.0 [°C]   1234 SuperTag
-      798  1659790200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      799  1659790800   2.0 [m]   12.8 [°C]   1234 SuperTag
-      800  1659791400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      801  1659792000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      802  1659792600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      803  1659793200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      804  1659793800   2.0 [m]   12.8 [°C]   1234 SuperTag
-      805  1659794400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      806  1659795000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      807  1659795600   2.0 [m]   12.8 [°C]   1234 SuperTag
-      808  1659796200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      809  1659796800   2.0 [m]   12.8 [°C]   1234 SuperTag
-      810  1659797400   2.0 [m]   12.8 [°C]   1234 SuperTag
-      811  1659798000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      812  1659798600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      813  1659799200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      814  1659799800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      815  1659800400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      816  1659801000   1.0 [m]   12.8 [°C]   1234 SuperTag
-      817  1659801600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      818  1659802200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      819  1659802800   1.0 [m]   12.8 [°C]   1234 SuperTag
-      820  1659803400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      821  1659804000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      822  1659804600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      823  1659805200   2.0 [m]   12.8 [°C]   1234 SuperTag
-      824  1659805800   1.0 [m]   12.8 [°C]   1234 SuperTag
-      825  1659806400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      826  1659807000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      827  1659807600   2.0 [m]   12.8 [°C]   1234 SuperTag
-      828  1659808200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      829  1659808800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      830  1659809400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      831  1659810000   2.0 [m]   12.8 [°C]   1234 SuperTag
-      832  1659810600   1.0 [m]   12.8 [°C]   1234 SuperTag
-      833  1659811200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      834  1659811800   1.0 [m]   12.8 [°C]   1234 SuperTag
-      835  1659812400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      836  1659813000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      837  1659813600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      838  1659814200   1.5 [m]   12.7 [°C]   1234 SuperTag
-      839  1659814800   1.5 [m]   12.7 [°C]   1234 SuperTag
-      840  1659815400   1.5 [m]   12.7 [°C]   1234 SuperTag
-      841  1659816000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      842  1659816600   2.0 [m]   12.7 [°C]   1234 SuperTag
-      843  1659817200   1.5 [m]   12.7 [°C]   1234 SuperTag
-      844  1659817800   1.5 [m]   12.7 [°C]   1234 SuperTag
-      845  1659818400   2.0 [m]   12.7 [°C]   1234 SuperTag
-      846  1659819000   1.0 [m]   12.7 [°C]   1234 SuperTag
-      847  1659819600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      848  1659820200   1.0 [m]   12.7 [°C]   1234 SuperTag
-      849  1659820800   1.5 [m]   12.7 [°C]   1234 SuperTag
-      850  1659821400   1.5 [m]   12.7 [°C]   1234 SuperTag
-      851  1659822000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      852  1659822600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      853  1659823200   1.5 [m]   12.7 [°C]   1234 SuperTag
-      854  1659823800   2.0 [m]   12.7 [°C]   1234 SuperTag
-      855  1659824400   1.5 [m]   12.7 [°C]   1234 SuperTag
-      856  1659825000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      857  1659825600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      858  1659826200   1.5 [m]   12.7 [°C]   1234 SuperTag
-      859  1659826800   1.5 [m]   12.7 [°C]   1234 SuperTag
-      860  1659827400   2.0 [m]   12.7 [°C]   1234 SuperTag
-      861  1659828000   2.0 [m]   12.7 [°C]   1234 SuperTag
-      862  1659828600   2.0 [m]   12.7 [°C]   1234 SuperTag
-      863  1659829200   2.0 [m]   12.7 [°C]   1234 SuperTag
-      864  1659829800   1.5 [m]   12.7 [°C]   1234 SuperTag
-      865  1659830400   1.5 [m]   12.7 [°C]   1234 SuperTag
-      866  1659831000   2.0 [m]   12.7 [°C]   1234 SuperTag
-      867  1659831600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      868  1659832200   2.0 [m]   12.7 [°C]   1234 SuperTag
-      869  1659832800   2.0 [m]   12.7 [°C]   1234 SuperTag
-      870  1659833400   1.5 [m]   12.7 [°C]   1234 SuperTag
-      871  1659834000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      872  1659834600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      873  1659835200   1.5 [m]   12.7 [°C]   1234 SuperTag
-      874  1659835800   2.0 [m]   12.7 [°C]   1234 SuperTag
-      875  1659836400   1.5 [m]   12.7 [°C]   1234 SuperTag
-      876  1659837000   1.5 [m]   12.7 [°C]   1234 SuperTag
-      877  1659837600   1.5 [m]   12.7 [°C]   1234 SuperTag
-      878  1659838200   2.0 [m]   12.8 [°C]   1234 SuperTag
-      879  1659838800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      880  1659839400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      881  1659840000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      882  1659840600   2.0 [m]   12.8 [°C]   1234 SuperTag
-      883  1659841200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      884  1659841800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      885  1659842400   2.0 [m]   12.8 [°C]   1234 SuperTag
-      886  1659843000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      887  1659843600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      888  1659844200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      889  1659844800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      890  1659845400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      891  1659846000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      892  1659846600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      893  1659847200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      894  1659847800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      895  1659848400   2.0 [m]   12.8 [°C]   1234 SuperTag
-      896  1659849000   2.0 [m]   12.8 [°C]   1234 SuperTag
-      897  1659849600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      898  1659850200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      899  1659850800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      900  1659851400   2.0 [m]   12.8 [°C]   1234 SuperTag
-      901  1659852000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      902  1659852600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      903  1659853200   2.0 [m]   12.8 [°C]   1234 SuperTag
-      904  1659853800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      905  1659854400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      906  1659855000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      907  1659855600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      908  1659856200   2.0 [m]   12.8 [°C]   1234 SuperTag
-      909  1659856800   2.0 [m]   12.8 [°C]   1234 SuperTag
-      910  1659857400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      911  1659858000   1.0 [m]   12.8 [°C]   1234 SuperTag
-      912  1659858600   2.0 [m]   12.8 [°C]   1234 SuperTag
-      913  1659859200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      914  1659859800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      915  1659860400   1.0 [m]   12.8 [°C]   1234 SuperTag
-      916  1659861000   2.0 [m]   12.8 [°C]   1234 SuperTag
-      917  1659861600   2.0 [m]   12.8 [°C]   1234 SuperTag
-      918  1659862200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      919  1659862800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      920  1659863400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      921  1659864000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      922  1659864600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      923  1659865200   1.5 [m]   12.8 [°C]   1234 SuperTag
-      924  1659865800   1.5 [m]   12.8 [°C]   1234 SuperTag
-      925  1659866400   1.5 [m]   12.8 [°C]   1234 SuperTag
-      926  1659867000   1.5 [m]   12.8 [°C]   1234 SuperTag
-      927  1659867600   1.5 [m]   12.8 [°C]   1234 SuperTag
-      928  1659868200   2.0 [m]   12.7 [°C]   1234 SuperTag
-      929  1659868800   2.0 [m]   12.7 [°C]   1234 SuperTag
-      930  1659869400   1.5 [m]   12.5 [°C]   1234 SuperTag
-      931  1659870000   2.0 [m]   12.5 [°C]   1234 SuperTag
-      932  1659870600   2.0 [m]   12.5 [°C]   1234 SuperTag
-      933  1659871200   2.5 [m]   12.5 [°C]   1234 SuperTag
-      934  1659871800   2.0 [m]   12.3 [°C]   1234 SuperTag
-      935  1659872400   2.5 [m]   12.3 [°C]   1234 SuperTag
-      936  1659873000   2.5 [m]   12.3 [°C]   1234 SuperTag
-      937  1659873600   2.0 [m]   12.3 [°C]   1234 SuperTag
-      938  1659874200   2.0 [m]   12.3 [°C]   1234 SuperTag
-      939  1659874800   2.0 [m]   12.3 [°C]   1234 SuperTag
-      940  1659875400   2.5 [m]   12.3 [°C]   1234 SuperTag
-      941  1659876000   2.0 [m]   12.2 [°C]   1234 SuperTag
-      942  1659876600   2.0 [m]   12.2 [°C]   1234 SuperTag
-      943  1659877200   2.0 [m]   12.2 [°C]   1234 SuperTag
-      944  1659877800   2.0 [m]   12.2 [°C]   1234 SuperTag
-      945  1659878400   2.0 [m]   12.0 [°C]   1234 SuperTag
-      946  1659879000   2.5 [m]   12.0 [°C]   1234 SuperTag
-      947  1659879600   2.0 [m]   12.0 [°C]   1234 SuperTag
-      948  1659880200   2.0 [m]   12.0 [°C]   1234 SuperTag
-      949  1659880800   2.0 [m]   12.0 [°C]   1234 SuperTag
-      950  1659881400   2.0 [m]   12.0 [°C]   1234 SuperTag
-      951  1659882000   2.0 [m]   12.0 [°C]   1234 SuperTag
-      952  1659882600   1.5 [m]   12.2 [°C]   1234 SuperTag
-      953  1659883200   2.5 [m]   12.2 [°C]   1234 SuperTag
-      954  1659883800   2.5 [m]   12.3 [°C]   1234 SuperTag
-      955  1659884400   2.5 [m]   12.3 [°C]   1234 SuperTag
-      956  1659885000   2.5 [m]   12.3 [°C]   1234 SuperTag
-      957  1659885600   2.0 [m]   12.3 [°C]   1234 SuperTag
-      958  1659886200   2.0 [m]   12.3 [°C]   1234 SuperTag
-      959  1659886800   2.0 [m]   12.3 [°C]   1234 SuperTag
-      960  1659887400   2.0 [m]   12.3 [°C]   1234 SuperTag
-      961  1659916800   2.0 [m]   11.5 [°C]   1234 SuperTag
-      962  1659917400   2.0 [m]   11.5 [°C]   1234 SuperTag
-      963  1659918000   2.0 [m]   11.5 [°C]   1234 SuperTag
-      964  1659918600   2.0 [m]   11.5 [°C]   1234 SuperTag
-      965  1659919200   2.0 [m]   11.5 [°C]   1234 SuperTag
-      966  1659919800   2.0 [m]   11.5 [°C]   1234 SuperTag
-      967  1659920400   2.0 [m]   11.5 [°C]   1234 SuperTag
-      968  1659921000   2.0 [m]   11.5 [°C]   1234 SuperTag
-      969  1659921600   2.0 [m]   11.5 [°C]   1234 SuperTag
-      970  1659922200   1.5 [m]   11.5 [°C]   1234 SuperTag
-      971  1659922800   2.0 [m]   11.5 [°C]   1234 SuperTag
-      972  1659923400   1.5 [m]   11.5 [°C]   1234 SuperTag
-      973  1659924000   2.0 [m]   11.5 [°C]   1234 SuperTag
-      974  1659924600   2.0 [m]   11.5 [°C]   1234 SuperTag
-      975  1659925200   1.5 [m]   11.3 [°C]   1234 SuperTag
-      976  1659925800   2.0 [m]   11.3 [°C]   1234 SuperTag
-      977  1659926400   2.0 [m]   11.3 [°C]   1234 SuperTag
-      978  1659927000   2.0 [m]   11.3 [°C]   1234 SuperTag
-      979  1659927600   2.0 [m]   11.3 [°C]   1234 SuperTag
-      980  1659928200   2.0 [m]   11.3 [°C]   1234 SuperTag
-      981  1659928800   2.0 [m]   11.5 [°C]   1234 SuperTag
-      982  1659929400   1.5 [m]   11.5 [°C]   1234 SuperTag
-      983  1659930000   2.0 [m]   11.3 [°C]   1234 SuperTag
-      984  1659930600   2.0 [m]   11.3 [°C]   1234 SuperTag
-      985  1659931200   1.5 [m]   11.3 [°C]   1234 SuperTag
-      986  1659931800   1.5 [m]   11.3 [°C]   1234 SuperTag
-      987  1659932400   2.0 [m]   11.3 [°C]   1234 SuperTag
-      988  1659933000   1.5 [m]   11.3 [°C]   1234 SuperTag
-      989  1659933600   2.0 [m]   11.3 [°C]   1234 SuperTag
-      990  1659934200   2.0 [m]   11.3 [°C]   1234 SuperTag
-      991  1659934800   1.5 [m]   11.2 [°C]   1234 SuperTag
-      992  1659935400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      993  1659936000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      994  1659936600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      995  1659937200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      996  1659937800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      997  1659938400   2.0 [m]   10.8 [°C]   1234 SuperTag
-      998  1659939000   1.5 [m]   10.8 [°C]   1234 SuperTag
-      999  1659939600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1000 1659940200   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1001 1659940800   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1002 1659941400   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1003 1659942000   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1004 1659942600   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1005 1659943200   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1006 1659943800   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1007 1659944400   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1008 1659945000   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1009 1659945600   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1010 1659946200   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1011 1659946800   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1012 1659947400   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1013 1659948000   1.5 [m]   10.5 [°C]   1234 SuperTag
-      1014 1659948600   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1015 1659949200   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1016 1659949800   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1017 1659950400   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1018 1659951000   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1019 1659951600   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1020 1659952200   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1021 1659952800   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1022 1659953400   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1023 1659954000   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1024 1659954600   1.0 [m]   10.8 [°C]   1234 SuperTag
-      1025 1659955200   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1026 1659955800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1027 1659956400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1028 1659957000   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1029 1659957600   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1030 1659958200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1031 1659958800   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1032 1659959400   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1033 1659960000   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1034 1659960600   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1035 1659961200   2.0 [m]   10.7 [°C]   1234 SuperTag
-      1036 1659961800   2.0 [m]   10.5 [°C]   1234 SuperTag
-      1037 1659962400   2.0 [m]   10.5 [°C]   1234 SuperTag
-      1038 1659963000   2.0 [m]   10.5 [°C]   1234 SuperTag
-      1039 1659963600   2.0 [m]   10.5 [°C]   1234 SuperTag
-      1040 1659964200   1.5 [m]   10.7 [°C]   1234 SuperTag
-      1041 1659964800   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1042 1659965400   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1043 1659966000   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1044 1659966600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1045 1659967200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1046 1659967800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1047 1659968400   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1048 1659969000   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1049 1659969600   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1050 1659970200   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1051 1659970800   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1052 1659971400   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1053 1659972000   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1054 1659972600   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1055 1659973200   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1056 1659973800   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1057 1659974400   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1058 1659975000   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1059 1659975600   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1060 1659976200   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1061 1659976800   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1062 1659977400   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1063 1659978000   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1064 1659978600   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1065 1659979200   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1066 1659979800   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1067 1659980400   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1068 1659981000   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1069 1659981600   2.0 [m]   11.2 [°C]   1234 SuperTag
-      1070 1659982200   1.5 [m]   11.2 [°C]   1234 SuperTag
-      1071 1659982800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1072 1659983400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1073 1659984000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1074 1659984600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1075 1659985200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1076 1659985800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1077 1659986400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1078 1659987000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1079 1659987600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1080 1659988200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1081 1659988800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1082 1659989400   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1083 1659990000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1084 1659990600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1085 1659991200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1086 1659991800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1087 1659992400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1088 1659993000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1089 1659993600   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1090 1659994200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1091 1659994800   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1092 1659995400   1.0 [m]   10.8 [°C]   1234 SuperTag
-      1093 1659996000   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1094 1659996600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1095 1659997200   1.0 [m]   10.8 [°C]   1234 SuperTag
-      1096 1659997800   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1097 1659998400   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1098 1659999000   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1099 1659999600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1100 1660000200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1101 1660000800   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1102 1660001400   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1103 1660002000   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1104 1660002600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1105 1660003200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1106 1660003800   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1107 1660004400   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1108 1660005000   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1109 1660005600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1110 1660006200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1111 1660006800   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1112 1660007400   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1113 1660008000   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1114 1660008600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1115 1660009200   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1116 1660009800   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1117 1660010400   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1118 1660011000   1.5 [m]   10.8 [°C]   1234 SuperTag
-      1119 1660011600   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1120 1660012200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1121 1660012800   2.0 [m]   10.8 [°C]   1234 SuperTag
-      1122 1660013400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1123 1660014000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1124 1660014600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1125 1660015200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1126 1660015800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1127 1660016400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1128 1660017000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1129 1660017600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1130 1660018200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1131 1660018800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1132 1660019400   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1133 1660020000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1134 1660020600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1135 1660021200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1136 1660021800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1137 1660022400   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1138 1660023000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1139 1660023600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1140 1660024200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1141 1660024800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1142 1660025400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1143 1660026000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1144 1660026600   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1145 1660027200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1146 1660027800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1147 1660028400   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1148 1660029000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1149 1660029600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1150 1660030200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1151 1660030800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1152 1660031400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1153 1660060800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1154 1660061400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1155 1660062000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1156 1660062600   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1157 1660063200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1158 1660063800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1159 1660064400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1160 1660065000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1161 1660065600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1162 1660066200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1163 1660066800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1164 1660067400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1165 1660068000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1166 1660068600   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1167 1660069200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1168 1660069800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1169 1660070400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1170 1660071000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1171 1660071600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1172 1660072200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1173 1660072800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1174 1660073400   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1175 1660074000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1176 1660074600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1177 1660075200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1178 1660075800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1179 1660076400   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1180 1660077000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1181 1660077600   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1182 1660078200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1183 1660078800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1184 1660079400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1185 1660080000   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1186 1660080600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1187 1660081200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1188 1660081800   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1189 1660082400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1190 1660083000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1191 1660083600   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1192 1660084200   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1193 1660084800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1194 1660085400   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1195 1660086000   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1196 1660086600   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1197 1660087200   2.0 [m]   11.0 [°C]   1234 SuperTag
-      1198 1660087800   1.5 [m]   11.0 [°C]   1234 SuperTag
-      1199 1660088400   1.5 [m]   11.0 [°C]   1234 SuperTag
+            TIMESTAMP     DEPTH TEMPERATURE TAG_NUM TAG_TYPE
+      1    1659283200    NA [m]    5.4 [°C]    1234 SuperTag
+      2    1659283800    NA [m]    5.4 [°C]    1234 SuperTag
+      3    1659284400    NA [m]    5.4 [°C]    1234 SuperTag
+      4    1659285000    NA [m]    5.4 [°C]    1234 SuperTag
+      5    1659285600    NA [m]    5.4 [°C]    1234 SuperTag
+      6    1659286200    NA [m]    5.4 [°C]    1234 SuperTag
+      7    1659286800    NA [m]    5.5 [°C]    1234 SuperTag
+      8    1659287400    NA [m]    5.7 [°C]    1234 SuperTag
+      9    1659288000    NA [m]    5.7 [°C]    1234 SuperTag
+      10   1659288600    NA [m]    5.7 [°C]    1234 SuperTag
+      11   1659289200    NA [m]    5.7 [°C]    1234 SuperTag
+      12   1659289800    NA [m]    5.7 [°C]    1234 SuperTag
+      13   1659290400    NA [m]    5.7 [°C]    1234 SuperTag
+      14   1659291000    NA [m]    5.7 [°C]    1234 SuperTag
+      15   1659291600    NA [m]    5.7 [°C]    1234 SuperTag
+      16   1659292200    NA [m]    5.7 [°C]    1234 SuperTag
+      17   1659292800    NA [m]    5.7 [°C]    1234 SuperTag
+      18   1659293400    NA [m]    5.7 [°C]    1234 SuperTag
+      19   1659294000    NA [m]    6.1 [°C]    1234 SuperTag
+      20   1659294600    NA [m]    5.7 [°C]    1234 SuperTag
+      21   1659295200    NA [m]    5.4 [°C]    1234 SuperTag
+      22   1659295800    NA [m]    5.7 [°C]    1234 SuperTag
+      23   1659296400    NA [m]    5.7 [°C]    1234 SuperTag
+      24   1659297000    NA [m]    5.7 [°C]    1234 SuperTag
+      25   1659297600    NA [m]    5.7 [°C]    1234 SuperTag
+      26   1659298200    NA [m]    5.7 [°C]    1234 SuperTag
+      27   1659298800    NA [m]    5.7 [°C]    1234 SuperTag
+      28   1659299400    NA [m]    5.7 [°C]    1234 SuperTag
+      29   1659300000    NA [m]    5.7 [°C]    1234 SuperTag
+      30   1659300600    NA [m]    5.4 [°C]    1234 SuperTag
+      31   1659301200    NA [m]    6.8 [°C]    1234 SuperTag
+      32   1659301800    NA [m]    5.8 [°C]    1234 SuperTag
+      33   1659302400    NA [m]    5.7 [°C]    1234 SuperTag
+      34   1659303000    NA [m]    5.4 [°C]    1234 SuperTag
+      35   1659303600    NA [m]    5.7 [°C]    1234 SuperTag
+      36   1659304200    NA [m]    5.7 [°C]    1234 SuperTag
+      37   1659304800    NA [m]    5.4 [°C]    1234 SuperTag
+      38   1659305400    NA [m]    5.4 [°C]    1234 SuperTag
+      39   1659306000    NA [m]    5.7 [°C]    1234 SuperTag
+      40   1659306600    NA [m]    5.5 [°C]    1234 SuperTag
+      41   1659307200    NA [m]    5.7 [°C]    1234 SuperTag
+      42   1659307800    NA [m]    5.4 [°C]    1234 SuperTag
+      43   1659308400    NA [m]    5.7 [°C]    1234 SuperTag
+      44   1659309000    NA [m]    5.4 [°C]    1234 SuperTag
+      45   1659309600    NA [m]    5.4 [°C]    1234 SuperTag
+      46   1659310200    NA [m]    5.4 [°C]    1234 SuperTag
+      47   1659310800    NA [m]    5.7 [°C]    1234 SuperTag
+      48   1659311400    NA [m]    5.5 [°C]    1234 SuperTag
+      49   1659312000 228.5 [m]    5.3 [°C]    1234 SuperTag
+      50   1659312600 241.0 [m]    5.3 [°C]    1234 SuperTag
+      51   1659313200 228.5 [m]    5.3 [°C]    1234 SuperTag
+      52   1659313800 213.5 [m]    5.3 [°C]    1234 SuperTag
+      53   1659314400 219.5 [m]    5.3 [°C]    1234 SuperTag
+      54   1659315000 241.0 [m]    5.3 [°C]    1234 SuperTag
+      55   1659315600 241.0 [m]    5.3 [°C]    1234 SuperTag
+      56   1659316200 241.0 [m]    5.3 [°C]    1234 SuperTag
+      57   1659316800 241.0 [m]    5.3 [°C]    1234 SuperTag
+      58   1659317400 228.5 [m]    5.3 [°C]    1234 SuperTag
+      59   1659318000 228.5 [m]    5.3 [°C]    1234 SuperTag
+      60   1659318600 241.0 [m]    5.3 [°C]    1234 SuperTag
+      61   1659319200 241.0 [m]    5.3 [°C]    1234 SuperTag
+      62   1659319800 253.0 [m]    5.3 [°C]    1234 SuperTag
+      63   1659320400 253.0 [m]    5.3 [°C]    1234 SuperTag
+      64   1659321000 253.0 [m]    5.3 [°C]    1234 SuperTag
+      65   1659321600 253.0 [m]    5.3 [°C]    1234 SuperTag
+      66   1659322200 253.0 [m]    5.3 [°C]    1234 SuperTag
+      67   1659322800 253.0 [m]    5.3 [°C]    1234 SuperTag
+      68   1659323400 253.0 [m]    5.3 [°C]    1234 SuperTag
+      69   1659324000 253.0 [m]    5.3 [°C]    1234 SuperTag
+      70   1659324600 253.0 [m]    5.3 [°C]    1234 SuperTag
+      71   1659325200 253.0 [m]    5.3 [°C]    1234 SuperTag
+      72   1659325800 266.0 [m]    5.3 [°C]    1234 SuperTag
+      73   1659326400 266.0 [m]    5.3 [°C]    1234 SuperTag
+      74   1659327000 266.0 [m]    5.3 [°C]    1234 SuperTag
+      75   1659327600 266.0 [m]    5.3 [°C]    1234 SuperTag
+      76   1659328200 266.0 [m]    5.3 [°C]    1234 SuperTag
+      77   1659328800 266.0 [m]    5.3 [°C]    1234 SuperTag
+      78   1659329400 266.0 [m]    5.3 [°C]    1234 SuperTag
+      79   1659330000 266.0 [m]    5.3 [°C]    1234 SuperTag
+      80   1659330600 266.0 [m]    5.3 [°C]    1234 SuperTag
+      81   1659331200 266.0 [m]    5.3 [°C]    1234 SuperTag
+      82   1659331800 253.0 [m]    5.3 [°C]    1234 SuperTag
+      83   1659332400 266.0 [m]    5.3 [°C]    1234 SuperTag
+      84   1659333000 266.0 [m]    5.3 [°C]    1234 SuperTag
+      85   1659333600 266.0 [m]    5.3 [°C]    1234 SuperTag
+      86   1659334200 266.0 [m]    5.3 [°C]    1234 SuperTag
+      87   1659334800 266.0 [m]    5.2 [°C]    1234 SuperTag
+      88   1659335400 266.0 [m]    5.3 [°C]    1234 SuperTag
+      89   1659336000 266.0 [m]    5.3 [°C]    1234 SuperTag
+      90   1659336600 266.0 [m]    5.3 [°C]    1234 SuperTag
+      91   1659337200 266.0 [m]    5.3 [°C]    1234 SuperTag
+      92   1659337800 266.0 [m]    5.3 [°C]    1234 SuperTag
+      93   1659338400 266.0 [m]    5.3 [°C]    1234 SuperTag
+      94   1659339000 241.0 [m]    5.3 [°C]    1234 SuperTag
+      95   1659339600 253.0 [m]    5.3 [°C]    1234 SuperTag
+      96   1659340200 241.0 [m]    5.3 [°C]    1234 SuperTag
+      97   1659340800 261.0 [m]    5.2 [°C]    1234 SuperTag
+      98   1659341400 261.0 [m]    5.3 [°C]    1234 SuperTag
+      99   1659342000 261.0 [m]    5.3 [°C]    1234 SuperTag
+      100  1659342600 261.0 [m]    5.2 [°C]    1234 SuperTag
+      101  1659343200 261.0 [m]    5.2 [°C]    1234 SuperTag
+      102  1659343800 261.0 [m]    5.2 [°C]    1234 SuperTag
+      103  1659344400 261.0 [m]    5.2 [°C]    1234 SuperTag
+      104  1659345000 261.0 [m]    5.3 [°C]    1234 SuperTag
+      105  1659345600 261.0 [m]    5.2 [°C]    1234 SuperTag
+      106  1659346200 261.0 [m]    5.3 [°C]    1234 SuperTag
+      107  1659346800 261.0 [m]    5.3 [°C]    1234 SuperTag
+      108  1659347400 261.0 [m]    5.3 [°C]    1234 SuperTag
+      109  1659348000 261.0 [m]    5.3 [°C]    1234 SuperTag
+      110  1659348600 261.0 [m]    5.3 [°C]    1234 SuperTag
+      111  1659349200 261.0 [m]    5.3 [°C]    1234 SuperTag
+      112  1659349800 261.0 [m]    5.3 [°C]    1234 SuperTag
+      113  1659350400 261.0 [m]    5.3 [°C]    1234 SuperTag
+      114  1659351000 261.0 [m]    5.3 [°C]    1234 SuperTag
+      115  1659351600 261.0 [m]    5.3 [°C]    1234 SuperTag
+      116  1659352200 261.0 [m]    5.3 [°C]    1234 SuperTag
+      117  1659352800 214.0 [m]    5.3 [°C]    1234 SuperTag
+      118  1659353400 261.0 [m]    5.3 [°C]    1234 SuperTag
+      119  1659354000 237.5 [m]    5.3 [°C]    1234 SuperTag
+      120  1659354600 237.5 [m]    5.3 [°C]    1234 SuperTag
+      121  1659355200 237.5 [m]    5.3 [°C]    1234 SuperTag
+      122  1659355800 237.5 [m]    5.3 [°C]    1234 SuperTag
+      123  1659356400 237.5 [m]    5.3 [°C]    1234 SuperTag
+      124  1659357000 237.5 [m]    5.3 [°C]    1234 SuperTag
+      125  1659357600 237.5 [m]    5.2 [°C]    1234 SuperTag
+      126  1659358200 237.5 [m]    5.2 [°C]    1234 SuperTag
+      127  1659358800 237.5 [m]    5.2 [°C]    1234 SuperTag
+      128  1659359400 237.5 [m]    5.2 [°C]    1234 SuperTag
+      129  1659360000 237.5 [m]    5.2 [°C]    1234 SuperTag
+      130  1659360600 237.5 [m]    5.2 [°C]    1234 SuperTag
+      131  1659361200 237.5 [m]    5.2 [°C]    1234 SuperTag
+      132  1659361800 237.5 [m]    5.2 [°C]    1234 SuperTag
+      133  1659362400 237.5 [m]    5.2 [°C]    1234 SuperTag
+      134  1659363000 172.5 [m]    5.5 [°C]    1234 SuperTag
+      135  1659363600 214.0 [m]    5.3 [°C]    1234 SuperTag
+      136  1659364200 237.5 [m]    5.2 [°C]    1234 SuperTag
+      137  1659364800 237.5 [m]    5.2 [°C]    1234 SuperTag
+      138  1659365400 237.5 [m]    5.2 [°C]    1234 SuperTag
+      139  1659366000 137.0 [m]    5.7 [°C]    1234 SuperTag
+      140  1659366600 161.0 [m]    5.7 [°C]    1234 SuperTag
+      141  1659367200 106.0 [m]    5.7 [°C]    1234 SuperTag
+      142  1659367800 137.0 [m]    5.7 [°C]    1234 SuperTag
+      143  1659368400 149.0 [m]    5.7 [°C]    1234 SuperTag
+      144  1659369000 161.0 [m]    5.7 [°C]    1234 SuperTag
+      145  1659369600 137.5 [m]    5.7 [°C]    1234 SuperTag
+      146  1659370200 127.0 [m]    5.7 [°C]    1234 SuperTag
+      147  1659370800 119.0 [m]    5.7 [°C]    1234 SuperTag
+      148  1659371400 137.5 [m]    5.7 [°C]    1234 SuperTag
+      149  1659372000 148.0 [m]    5.7 [°C]    1234 SuperTag
+      150  1659372600 137.5 [m]    5.7 [°C]    1234 SuperTag
+      151  1659373200 119.0 [m]    5.7 [°C]    1234 SuperTag
+      152  1659373800 127.0 [m]    5.7 [°C]    1234 SuperTag
+      153  1659374400 113.5 [m]    5.7 [°C]    1234 SuperTag
+      154  1659375000 127.0 [m]    5.7 [°C]    1234 SuperTag
+      155  1659375600 217.0 [m]    5.5 [°C]    1234 SuperTag
+      156  1659376200 238.5 [m]    5.3 [°C]    1234 SuperTag
+      157  1659376800 238.5 [m]    5.3 [°C]    1234 SuperTag
+      158  1659377400 238.5 [m]    5.3 [°C]    1234 SuperTag
+      159  1659378000 238.5 [m]    5.3 [°C]    1234 SuperTag
+      160  1659378600 238.5 [m]    5.3 [°C]    1234 SuperTag
+      161  1659379200 238.5 [m]    5.3 [°C]    1234 SuperTag
+      162  1659379800 238.5 [m]    5.5 [°C]    1234 SuperTag
+      163  1659380400 238.5 [m]    5.5 [°C]    1234 SuperTag
+      164  1659381000 238.5 [m]    5.5 [°C]    1234 SuperTag
+      165  1659381600 238.5 [m]    5.5 [°C]    1234 SuperTag
+      166  1659382200 238.5 [m]    5.5 [°C]    1234 SuperTag
+      167  1659382800 238.5 [m]    5.5 [°C]    1234 SuperTag
+      168  1659383400 238.5 [m]    5.5 [°C]    1234 SuperTag
+      169  1659384000 238.5 [m]    5.5 [°C]    1234 SuperTag
+      170  1659384600 238.5 [m]    5.5 [°C]    1234 SuperTag
+      171  1659385200 238.5 [m]    5.5 [°C]    1234 SuperTag
+      172  1659385800 217.0 [m]    5.5 [°C]    1234 SuperTag
+      173  1659386400 174.5 [m]    5.7 [°C]    1234 SuperTag
+      174  1659387000 174.5 [m]    5.5 [°C]    1234 SuperTag
+      175  1659387600 217.0 [m]    5.5 [°C]    1234 SuperTag
+      176  1659388200 217.0 [m]    5.5 [°C]    1234 SuperTag
+      177  1659388800 174.5 [m]    5.5 [°C]    1234 SuperTag
+      178  1659389400 217.0 [m]    5.5 [°C]    1234 SuperTag
+      179  1659390000 238.5 [m]    5.5 [°C]    1234 SuperTag
+      180  1659390600 174.5 [m]    5.5 [°C]    1234 SuperTag
+      181  1659391200 196.0 [m]    5.5 [°C]    1234 SuperTag
+      182  1659391800 238.5 [m]    5.5 [°C]    1234 SuperTag
+      183  1659392400 217.0 [m]    5.5 [°C]    1234 SuperTag
+      184  1659393000 238.5 [m]    5.5 [°C]    1234 SuperTag
+      185  1659393600 238.5 [m]    5.5 [°C]    1234 SuperTag
+      186  1659394200 238.5 [m]    5.5 [°C]    1234 SuperTag
+      187  1659394800 238.5 [m]    5.5 [°C]    1234 SuperTag
+      188  1659395400 238.5 [m]    5.5 [°C]    1234 SuperTag
+      189  1659396000 238.5 [m]    5.5 [°C]    1234 SuperTag
+      190  1659396600 238.5 [m]    5.5 [°C]    1234 SuperTag
+      191  1659397200 238.5 [m]    5.3 [°C]    1234 SuperTag
+      192  1659397800 238.5 [m]    5.3 [°C]    1234 SuperTag
+      193  1659398400 223.5 [m]    5.5 [°C]    1234 SuperTag
+      194  1659399000 246.5 [m]    5.3 [°C]    1234 SuperTag
+      195  1659399600 246.5 [m]    5.5 [°C]    1234 SuperTag
+      196  1659400200 233.5 [m]    5.5 [°C]    1234 SuperTag
+      197  1659400800 233.5 [m]    5.5 [°C]    1234 SuperTag
+      198  1659401400 233.5 [m]    5.5 [°C]    1234 SuperTag
+      199  1659402000 233.5 [m]    5.5 [°C]    1234 SuperTag
+      200  1659402600 233.5 [m]    5.3 [°C]    1234 SuperTag
+      201  1659403200 233.5 [m]    5.5 [°C]    1234 SuperTag
+      202  1659403800 233.5 [m]    5.5 [°C]    1234 SuperTag
+      203  1659404400 233.5 [m]    5.5 [°C]    1234 SuperTag
+      204  1659405000 223.5 [m]    5.5 [°C]    1234 SuperTag
+      205  1659405600 233.5 [m]    5.3 [°C]    1234 SuperTag
+      206  1659406200 233.5 [m]    5.3 [°C]    1234 SuperTag
+      207  1659406800 233.5 [m]    5.3 [°C]    1234 SuperTag
+      208  1659407400 246.5 [m]    5.3 [°C]    1234 SuperTag
+      209  1659408000 246.5 [m]    5.3 [°C]    1234 SuperTag
+      210  1659408600 260.0 [m]    5.3 [°C]    1234 SuperTag
+      211  1659409200 246.5 [m]    5.3 [°C]    1234 SuperTag
+      212  1659409800 260.0 [m]    5.3 [°C]    1234 SuperTag
+      213  1659410400 216.5 [m]    5.5 [°C]    1234 SuperTag
+      214  1659411000 273.5 [m]    5.3 [°C]    1234 SuperTag
+      215  1659411600 273.5 [m]    5.3 [°C]    1234 SuperTag
+      216  1659412200 273.5 [m]    5.3 [°C]    1234 SuperTag
+      217  1659412800 246.5 [m]    5.3 [°C]    1234 SuperTag
+      218  1659413400 273.5 [m]    5.3 [°C]    1234 SuperTag
+      219  1659414000 273.5 [m]    5.3 [°C]    1234 SuperTag
+      220  1659414600 246.5 [m]    5.3 [°C]    1234 SuperTag
+      221  1659415200 260.0 [m]    5.3 [°C]    1234 SuperTag
+      222  1659415800 260.0 [m]    5.3 [°C]    1234 SuperTag
+      223  1659416400 260.0 [m]    5.3 [°C]    1234 SuperTag
+      224  1659417000 191.5 [m]    5.6 [°C]    1234 SuperTag
+      225  1659417600 203.0 [m]    5.6 [°C]    1234 SuperTag
+      226  1659418200 260.0 [m]    5.3 [°C]    1234 SuperTag
+      227  1659418800 216.5 [m]    5.5 [°C]    1234 SuperTag
+      228  1659419400 260.0 [m]    5.3 [°C]    1234 SuperTag
+      229  1659420000 260.0 [m]    5.3 [°C]    1234 SuperTag
+      230  1659420600 203.0 [m]    5.6 [°C]    1234 SuperTag
+      231  1659421200 246.5 [m]    5.3 [°C]    1234 SuperTag
+      232  1659421800 260.0 [m]    5.5 [°C]    1234 SuperTag
+      233  1659422400 233.5 [m]    5.5 [°C]    1234 SuperTag
+      234  1659423000 246.5 [m]    5.5 [°C]    1234 SuperTag
+      235  1659423600 210.0 [m]    5.5 [°C]    1234 SuperTag
+      236  1659424200 210.0 [m]    5.5 [°C]    1234 SuperTag
+      237  1659424800 246.5 [m]    5.3 [°C]    1234 SuperTag
+      238  1659425400 210.0 [m]    5.5 [°C]    1234 SuperTag
+      239  1659426000 246.5 [m]    5.3 [°C]    1234 SuperTag
+      240  1659426600 246.5 [m]    5.5 [°C]    1234 SuperTag
+      241  1659427200 245.0 [m]    5.5 [°C]    1234 SuperTag
+      242  1659427800 220.5 [m]    5.5 [°C]    1234 SuperTag
+      243  1659428400 171.5 [m]    5.7 [°C]    1234 SuperTag
+      244  1659429000 220.5 [m]    5.5 [°C]    1234 SuperTag
+      245  1659429600 245.0 [m]    5.5 [°C]    1234 SuperTag
+      246  1659430200 245.0 [m]    5.5 [°C]    1234 SuperTag
+      247  1659430800 245.0 [m]    5.5 [°C]    1234 SuperTag
+      248  1659431400 245.0 [m]    5.5 [°C]    1234 SuperTag
+      249  1659432000 245.0 [m]    5.5 [°C]    1234 SuperTag
+      250  1659432600 245.0 [m]    5.5 [°C]    1234 SuperTag
+      251  1659433200 245.0 [m]    5.5 [°C]    1234 SuperTag
+      252  1659433800 245.0 [m]    5.5 [°C]    1234 SuperTag
+      253  1659434400 245.0 [m]    5.5 [°C]    1234 SuperTag
+      254  1659435000 196.0 [m]    5.5 [°C]    1234 SuperTag
+      255  1659435600 245.0 [m]    5.5 [°C]    1234 SuperTag
+      256  1659436200 245.0 [m]    5.5 [°C]    1234 SuperTag
+      257  1659436800 245.0 [m]    5.5 [°C]    1234 SuperTag
+      258  1659437400 245.0 [m]    5.5 [°C]    1234 SuperTag
+      259  1659438000 245.0 [m]    5.5 [°C]    1234 SuperTag
+      260  1659438600 220.5 [m]    5.5 [°C]    1234 SuperTag
+      261  1659439200 245.0 [m]    5.5 [°C]    1234 SuperTag
+      262  1659439800 245.0 [m]    5.5 [°C]    1234 SuperTag
+      263  1659440400 245.0 [m]    5.5 [°C]    1234 SuperTag
+      264  1659441000 245.0 [m]    5.5 [°C]    1234 SuperTag
+      265  1659441600 171.5 [m]    5.7 [°C]    1234 SuperTag
+      266  1659442200 245.0 [m]    5.5 [°C]    1234 SuperTag
+      267  1659442800 245.0 [m]    5.5 [°C]    1234 SuperTag
+      268  1659443400 153.0 [m]    5.7 [°C]    1234 SuperTag
+      269  1659444000  89.0 [m]    5.7 [°C]    1234 SuperTag
+      270  1659444600 171.5 [m]    5.7 [°C]    1234 SuperTag
+      271  1659445200 220.5 [m]    5.5 [°C]    1234 SuperTag
+      272  1659445800 245.0 [m]    5.5 [°C]    1234 SuperTag
+      273  1659446400 245.0 [m]    5.5 [°C]    1234 SuperTag
+      274  1659447000 245.0 [m]    5.5 [°C]    1234 SuperTag
+      275  1659447600 245.0 [m]    5.5 [°C]    1234 SuperTag
+      276  1659448200 196.0 [m]    5.7 [°C]    1234 SuperTag
+      277  1659448800 220.5 [m]    5.5 [°C]    1234 SuperTag
+      278  1659449400 196.0 [m]    5.7 [°C]    1234 SuperTag
+      279  1659450000 196.0 [m]    5.7 [°C]    1234 SuperTag
+      280  1659450600 196.0 [m]    5.7 [°C]    1234 SuperTag
+      281  1659451200 196.0 [m]    5.7 [°C]    1234 SuperTag
+      282  1659451800 171.5 [m]    5.7 [°C]    1234 SuperTag
+      283  1659452400 171.5 [m]    5.7 [°C]    1234 SuperTag
+      284  1659453000 129.0 [m]    5.7 [°C]    1234 SuperTag
+      285  1659453600 116.5 [m]    5.8 [°C]    1234 SuperTag
+      286  1659454200 107.5 [m]    5.8 [°C]    1234 SuperTag
+      287  1659454800 107.5 [m]    6.0 [°C]    1234 SuperTag
+      288  1659455400 107.5 [m]    5.8 [°C]    1234 SuperTag
+      289  1659456000 143.0 [m]    5.9 [°C]    1234 SuperTag
+      290  1659456600  85.0 [m]    6.1 [°C]    1234 SuperTag
+      291  1659457200 123.5 [m]    5.9 [°C]    1234 SuperTag
+      292  1659457800  98.0 [m]    6.1 [°C]    1234 SuperTag
+      293  1659458400  98.0 [m]    6.1 [°C]    1234 SuperTag
+      294  1659459000 123.5 [m]    5.9 [°C]    1234 SuperTag
+      295  1659459600 143.0 [m]    5.7 [°C]    1234 SuperTag
+      296  1659460200  75.5 [m]    6.4 [°C]    1234 SuperTag
+      297  1659460800 143.0 [m]    5.9 [°C]    1234 SuperTag
+      298  1659461400  85.0 [m]    6.2 [°C]    1234 SuperTag
+      299  1659462000  75.5 [m]    6.4 [°C]    1234 SuperTag
+      300  1659462600  51.0 [m]    6.8 [°C]    1234 SuperTag
+      301  1659463200  85.0 [m]    6.4 [°C]    1234 SuperTag
+      302  1659463800 143.0 [m]    6.1 [°C]    1234 SuperTag
+      303  1659464400 143.0 [m]    5.9 [°C]    1234 SuperTag
+      304  1659465000  69.0 [m]    6.6 [°C]    1234 SuperTag
+      305  1659465600  56.0 [m]    7.0 [°C]    1234 SuperTag
+      306  1659466200  62.5 [m]    6.8 [°C]    1234 SuperTag
+      307  1659466800  62.5 [m]    6.8 [°C]    1234 SuperTag
+      308  1659467400  85.0 [m]    6.6 [°C]    1234 SuperTag
+      309  1659468000  85.0 [m]    6.2 [°C]    1234 SuperTag
+      310  1659468600  51.0 [m]    7.1 [°C]    1234 SuperTag
+      311  1659469200  75.5 [m]    6.4 [°C]    1234 SuperTag
+      312  1659469800  98.0 [m]    5.9 [°C]    1234 SuperTag
+      313  1659470400  62.5 [m]    7.1 [°C]    1234 SuperTag
+      314  1659471000 220.5 [m]    5.6 [°C]    1234 SuperTag
+      315  1659471600 220.5 [m]    5.6 [°C]    1234 SuperTag
+      316  1659472200 143.0 [m]    5.7 [°C]    1234 SuperTag
+      317  1659472800  56.0 [m]    7.3 [°C]    1234 SuperTag
+      318  1659473400 111.0 [m]    6.2 [°C]    1234 SuperTag
+      319  1659474000 220.5 [m]    5.6 [°C]    1234 SuperTag
+      320  1659474600 143.0 [m]    5.7 [°C]    1234 SuperTag
+      321  1659475200  69.0 [m]    6.8 [°C]    1234 SuperTag
+      322  1659475800  75.5 [m]    6.8 [°C]    1234 SuperTag
+      323  1659476400  85.0 [m]    6.4 [°C]    1234 SuperTag
+      324  1659477000 194.5 [m]    5.7 [°C]    1234 SuperTag
+      325  1659477600 169.0 [m]    5.7 [°C]    1234 SuperTag
+      326  1659478200 169.0 [m]    5.7 [°C]    1234 SuperTag
+      327  1659478800 194.5 [m]    5.6 [°C]    1234 SuperTag
+      328  1659479400 169.0 [m]    5.7 [°C]    1234 SuperTag
+      329  1659480000 220.5 [m]    5.6 [°C]    1234 SuperTag
+      330  1659480600 220.5 [m]    5.6 [°C]    1234 SuperTag
+      331  1659481200 220.5 [m]    5.6 [°C]    1234 SuperTag
+      332  1659481800 220.5 [m]    5.6 [°C]    1234 SuperTag
+      333  1659482400 220.5 [m]    5.6 [°C]    1234 SuperTag
+      334  1659483000 220.5 [m]    5.6 [°C]    1234 SuperTag
+      335  1659483600 220.5 [m]    5.6 [°C]    1234 SuperTag
+      336  1659484200 220.5 [m]    5.6 [°C]    1234 SuperTag
+      337  1659484800 217.0 [m]    5.7 [°C]    1234 SuperTag
+      338  1659485400 217.0 [m]    5.7 [°C]    1234 SuperTag
+      339  1659486000 211.0 [m]    5.7 [°C]    1234 SuperTag
+      340  1659486600 217.0 [m]    5.7 [°C]    1234 SuperTag
+      341  1659487200 217.0 [m]    5.7 [°C]    1234 SuperTag
+      342  1659487800 211.0 [m]    5.7 [°C]    1234 SuperTag
+      343  1659488400 217.0 [m]    5.7 [°C]    1234 SuperTag
+      344  1659489000 205.5 [m]    5.7 [°C]    1234 SuperTag
+      345  1659489600 211.0 [m]    5.7 [°C]    1234 SuperTag
+      346  1659490200 205.5 [m]    5.7 [°C]    1234 SuperTag
+      347  1659490800 211.0 [m]    5.7 [°C]    1234 SuperTag
+      348  1659491400 211.0 [m]    5.7 [°C]    1234 SuperTag
+      349  1659492000 205.5 [m]    5.7 [°C]    1234 SuperTag
+      350  1659492600 211.0 [m]    5.7 [°C]    1234 SuperTag
+      351  1659493200 211.0 [m]    5.7 [°C]    1234 SuperTag
+      352  1659493800 182.0 [m]    5.7 [°C]    1234 SuperTag
+      353  1659494400 211.0 [m]    5.7 [°C]    1234 SuperTag
+      354  1659495000 200.5 [m]    5.7 [°C]    1234 SuperTag
+      355  1659495600 211.0 [m]    5.7 [°C]    1234 SuperTag
+      356  1659496200 211.0 [m]    5.7 [°C]    1234 SuperTag
+      357  1659496800 211.0 [m]    5.7 [°C]    1234 SuperTag
+      358  1659497400 205.5 [m]    5.7 [°C]    1234 SuperTag
+      359  1659498000 205.5 [m]    5.7 [°C]    1234 SuperTag
+      360  1659498600 211.0 [m]    5.7 [°C]    1234 SuperTag
+      361  1659499200 205.5 [m]    5.7 [°C]    1234 SuperTag
+      362  1659499800 205.5 [m]    5.7 [°C]    1234 SuperTag
+      363  1659500400 205.5 [m]    5.7 [°C]    1234 SuperTag
+      364  1659501000 211.0 [m]    5.7 [°C]    1234 SuperTag
+      365  1659501600 211.0 [m]    5.7 [°C]    1234 SuperTag
+      366  1659502200 211.0 [m]    5.7 [°C]    1234 SuperTag
+      367  1659502800 211.0 [m]    5.7 [°C]    1234 SuperTag
+      368  1659503400 205.5 [m]    5.7 [°C]    1234 SuperTag
+      369  1659504000 211.0 [m]    5.7 [°C]    1234 SuperTag
+      370  1659504600 217.0 [m]    5.7 [°C]    1234 SuperTag
+      371  1659505200 205.5 [m]    5.7 [°C]    1234 SuperTag
+      372  1659505800 211.0 [m]    5.7 [°C]    1234 SuperTag
+      373  1659506400 217.0 [m]    5.7 [°C]    1234 SuperTag
+      374  1659507000 217.0 [m]    5.7 [°C]    1234 SuperTag
+      375  1659507600 217.0 [m]    5.7 [°C]    1234 SuperTag
+      376  1659508200 217.0 [m]    5.7 [°C]    1234 SuperTag
+      377  1659508800 217.0 [m]    5.7 [°C]    1234 SuperTag
+      378  1659509400 217.0 [m]    5.7 [°C]    1234 SuperTag
+      379  1659510000 217.0 [m]    5.7 [°C]    1234 SuperTag
+      380  1659510600 217.0 [m]    5.7 [°C]    1234 SuperTag
+      381  1659511200 217.0 [m]    5.7 [°C]    1234 SuperTag
+      382  1659511800 217.0 [m]    5.7 [°C]    1234 SuperTag
+      383  1659512400 217.0 [m]    5.7 [°C]    1234 SuperTag
+      384  1659513000 217.0 [m]    5.7 [°C]    1234 SuperTag
+      385  1659513600 224.5 [m]    5.7 [°C]    1234 SuperTag
+      386  1659514200 224.5 [m]    5.7 [°C]    1234 SuperTag
+      387  1659514800 224.5 [m]    5.7 [°C]    1234 SuperTag
+      388  1659515400 224.5 [m]    5.7 [°C]    1234 SuperTag
+      389  1659516000 224.5 [m]    5.7 [°C]    1234 SuperTag
+      390  1659516600 224.5 [m]    5.7 [°C]    1234 SuperTag
+      391  1659517200 224.5 [m]    5.7 [°C]    1234 SuperTag
+      392  1659517800 224.5 [m]    5.7 [°C]    1234 SuperTag
+      393  1659518400 224.5 [m]    5.7 [°C]    1234 SuperTag
+      394  1659519000 224.5 [m]    5.7 [°C]    1234 SuperTag
+      395  1659519600 224.5 [m]    5.7 [°C]    1234 SuperTag
+      396  1659520200 224.5 [m]    5.7 [°C]    1234 SuperTag
+      397  1659520800 224.5 [m]    5.7 [°C]    1234 SuperTag
+      398  1659521400 224.5 [m]    5.7 [°C]    1234 SuperTag
+      399  1659522000 171.0 [m]    5.8 [°C]    1234 SuperTag
+      400  1659522600 151.0 [m]    6.0 [°C]    1234 SuperTag
+      401  1659523200 224.5 [m]    5.7 [°C]    1234 SuperTag
+      402  1659523800 224.5 [m]    5.7 [°C]    1234 SuperTag
+      403  1659524400 110.5 [m]    5.2 [°C]    1234 SuperTag
+      404  1659525000  68.5 [m]    5.7 [°C]    1234 SuperTag
+      405  1659525600  87.0 [m]    5.5 [°C]    1234 SuperTag
+      406  1659526200  75.5 [m]    5.7 [°C]    1234 SuperTag
+      407  1659526800  75.5 [m]    5.5 [°C]    1234 SuperTag
+      408  1659527400  80.5 [m]    5.5 [°C]    1234 SuperTag
+      409  1659528000  72.0 [m]    5.7 [°C]    1234 SuperTag
+      410  1659528600  75.5 [m]    5.7 [°C]    1234 SuperTag
+      411  1659529200 198.0 [m]    5.7 [°C]    1234 SuperTag
+      412  1659529800 224.5 [m]    5.5 [°C]    1234 SuperTag
+      413  1659530400 224.5 [m]    5.5 [°C]    1234 SuperTag
+      414  1659531000 251.5 [m]    5.5 [°C]    1234 SuperTag
+      415  1659531600 251.5 [m]    5.5 [°C]    1234 SuperTag
+      416  1659532200 224.5 [m]    5.5 [°C]    1234 SuperTag
+      417  1659532800 251.5 [m]    5.5 [°C]    1234 SuperTag
+      418  1659533400 251.5 [m]    5.5 [°C]    1234 SuperTag
+      419  1659534000 251.5 [m]    5.5 [°C]    1234 SuperTag
+      420  1659534600 251.5 [m]    5.5 [°C]    1234 SuperTag
+      421  1659535200 251.5 [m]    5.5 [°C]    1234 SuperTag
+      422  1659535800 251.5 [m]    5.5 [°C]    1234 SuperTag
+      423  1659536400 251.5 [m]    5.5 [°C]    1234 SuperTag
+      424  1659537000 251.5 [m]    5.5 [°C]    1234 SuperTag
+      425  1659537600 224.5 [m]    5.5 [°C]    1234 SuperTag
+      426  1659538200 251.5 [m]    5.5 [°C]    1234 SuperTag
+      427  1659538800 224.5 [m]    5.5 [°C]    1234 SuperTag
+      428  1659539400 251.5 [m]    5.5 [°C]    1234 SuperTag
+      429  1659540000 171.0 [m]    5.5 [°C]    1234 SuperTag
+      430  1659540600  80.5 [m]    5.2 [°C]    1234 SuperTag
+      431  1659541200 198.0 [m]    5.5 [°C]    1234 SuperTag
+      432  1659541800 251.5 [m]    5.5 [°C]    1234 SuperTag
+      433  1659542400 249.5 [m]    5.5 [°C]    1234 SuperTag
+      434  1659543000 249.5 [m]    5.5 [°C]    1234 SuperTag
+      435  1659543600 157.5 [m]    5.9 [°C]    1234 SuperTag
+      436  1659544200  36.5 [m]    6.7 [°C]    1234 SuperTag
+      437  1659544800 218.5 [m]    5.5 [°C]    1234 SuperTag
+      438  1659545400 249.5 [m]    5.5 [°C]    1234 SuperTag
+      439  1659546000 218.5 [m]    5.5 [°C]    1234 SuperTag
+      440  1659546600 188.0 [m]    5.5 [°C]    1234 SuperTag
+      441  1659547200  61.5 [m]    6.0 [°C]    1234 SuperTag
+      442  1659547800 218.5 [m]    5.5 [°C]    1234 SuperTag
+      443  1659548400 249.5 [m]    5.5 [°C]    1234 SuperTag
+      444  1659549000 249.5 [m]    5.5 [°C]    1234 SuperTag
+      445  1659549600 249.5 [m]    5.5 [°C]    1234 SuperTag
+      446  1659550200 249.5 [m]    5.5 [°C]    1234 SuperTag
+      447  1659550800 249.5 [m]    5.5 [°C]    1234 SuperTag
+      448  1659551400 249.5 [m]    5.5 [°C]    1234 SuperTag
+      449  1659552000 249.5 [m]    5.5 [°C]    1234 SuperTag
+      450  1659552600 249.5 [m]    5.7 [°C]    1234 SuperTag
+      451  1659553200 249.5 [m]    5.7 [°C]    1234 SuperTag
+      452  1659553800 218.5 [m]    5.7 [°C]    1234 SuperTag
+      453  1659554400 218.5 [m]    5.7 [°C]    1234 SuperTag
+      454  1659555000 218.5 [m]    5.7 [°C]    1234 SuperTag
+      455  1659555600 218.5 [m]    5.7 [°C]    1234 SuperTag
+      456  1659556200 218.5 [m]    5.7 [°C]    1234 SuperTag
+      457  1659556800 188.0 [m]    5.7 [°C]    1234 SuperTag
+      458  1659557400 188.0 [m]    5.7 [°C]    1234 SuperTag
+      459  1659558000 188.0 [m]    5.7 [°C]    1234 SuperTag
+      460  1659558600 188.0 [m]    5.7 [°C]    1234 SuperTag
+      461  1659559200 188.0 [m]    5.7 [°C]    1234 SuperTag
+      462  1659559800 157.5 [m]    5.7 [°C]    1234 SuperTag
+      463  1659560400 157.5 [m]    5.7 [°C]    1234 SuperTag
+      464  1659561000 157.5 [m]    5.7 [°C]    1234 SuperTag
+      465  1659561600 157.5 [m]    5.7 [°C]    1234 SuperTag
+      466  1659562200 157.5 [m]    5.7 [°C]    1234 SuperTag
+      467  1659562800 157.5 [m]    5.7 [°C]    1234 SuperTag
+      468  1659563400 157.5 [m]    5.7 [°C]    1234 SuperTag
+      469  1659564000 157.5 [m]    5.7 [°C]    1234 SuperTag
+      470  1659564600 134.5 [m]    5.5 [°C]    1234 SuperTag
+      471  1659565200 104.0 [m]    6.0 [°C]    1234 SuperTag
+      472  1659565800 134.5 [m]    5.7 [°C]    1234 SuperTag
+      473  1659566400 157.5 [m]    5.7 [°C]    1234 SuperTag
+      474  1659567000 157.5 [m]    5.7 [°C]    1234 SuperTag
+      475  1659567600 157.5 [m]    5.7 [°C]    1234 SuperTag
+      476  1659568200 188.0 [m]    5.7 [°C]    1234 SuperTag
+      477  1659568800 157.5 [m]    5.7 [°C]    1234 SuperTag
+      478  1659569400 188.0 [m]    5.7 [°C]    1234 SuperTag
+      479  1659570000 188.0 [m]    5.7 [°C]    1234 SuperTag
+      480  1659570600 188.0 [m]    5.7 [°C]    1234 SuperTag
+      481  1659571200 197.5 [m]    5.7 [°C]    1234 SuperTag
+      482  1659571800 194.0 [m]    5.7 [°C]    1234 SuperTag
+      483  1659572400 188.5 [m]    5.7 [°C]    1234 SuperTag
+      484  1659573000 197.5 [m]    5.7 [°C]    1234 SuperTag
+      485  1659573600 220.5 [m]    5.7 [°C]    1234 SuperTag
+      486  1659574200 231.0 [m]    5.7 [°C]    1234 SuperTag
+      487  1659574800 220.5 [m]    5.7 [°C]    1234 SuperTag
+      488  1659575400 197.5 [m]    5.7 [°C]    1234 SuperTag
+      489  1659576000 231.0 [m]    5.7 [°C]    1234 SuperTag
+      490  1659576600 251.5 [m]    5.7 [°C]    1234 SuperTag
+      491  1659577200 231.0 [m]    5.7 [°C]    1234 SuperTag
+      492  1659577800 220.5 [m]    5.7 [°C]    1234 SuperTag
+      493  1659578400 213.0 [m]    5.7 [°C]    1234 SuperTag
+      494  1659579000 208.0 [m]    5.7 [°C]    1234 SuperTag
+      495  1659579600 213.0 [m]    5.7 [°C]    1234 SuperTag
+      496  1659580200 208.0 [m]    5.7 [°C]    1234 SuperTag
+      497  1659580800 203.0 [m]    5.7 [°C]    1234 SuperTag
+      498  1659581400 208.0 [m]    5.7 [°C]    1234 SuperTag
+      499  1659582000 220.5 [m]    5.7 [°C]    1234 SuperTag
+      500  1659582600 213.0 [m]    5.5 [°C]    1234 SuperTag
+      501  1659583200 208.0 [m]    5.7 [°C]    1234 SuperTag
+      502  1659583800 203.0 [m]    5.5 [°C]    1234 SuperTag
+      503  1659584400 231.0 [m]    5.5 [°C]    1234 SuperTag
+      504  1659585000 220.5 [m]    5.5 [°C]    1234 SuperTag
+      505  1659585600 213.0 [m]    5.5 [°C]    1234 SuperTag
+      506  1659586200 197.5 [m]    5.5 [°C]    1234 SuperTag
+      507  1659586800 231.0 [m]    5.5 [°C]    1234 SuperTag
+      508  1659587400 186.0 [m]    5.3 [°C]    1234 SuperTag
+      509  1659588000 231.0 [m]    5.5 [°C]    1234 SuperTag
+      510  1659588600 231.0 [m]    5.5 [°C]    1234 SuperTag
+      511  1659589200 231.0 [m]    5.5 [°C]    1234 SuperTag
+      512  1659589800 231.0 [m]    5.5 [°C]    1234 SuperTag
+      513  1659590400 231.0 [m]    5.5 [°C]    1234 SuperTag
+      514  1659591000 231.0 [m]    5.5 [°C]    1234 SuperTag
+      515  1659591600 231.0 [m]    5.5 [°C]    1234 SuperTag
+      516  1659592200 231.0 [m]    5.5 [°C]    1234 SuperTag
+      517  1659592800 231.0 [m]    5.5 [°C]    1234 SuperTag
+      518  1659593400 231.0 [m]    5.5 [°C]    1234 SuperTag
+      519  1659594000 231.0 [m]    5.5 [°C]    1234 SuperTag
+      520  1659594600 241.0 [m]    5.5 [°C]    1234 SuperTag
+      521  1659595200 241.0 [m]    5.5 [°C]    1234 SuperTag
+      522  1659595800 231.0 [m]    5.5 [°C]    1234 SuperTag
+      523  1659596400 241.0 [m]    5.5 [°C]    1234 SuperTag
+      524  1659597000 231.0 [m]    5.5 [°C]    1234 SuperTag
+      525  1659597600 231.0 [m]    5.5 [°C]    1234 SuperTag
+      526  1659598200 241.0 [m]    5.5 [°C]    1234 SuperTag
+      527  1659598800 241.0 [m]    5.5 [°C]    1234 SuperTag
+      528  1659599400 241.0 [m]    5.5 [°C]    1234 SuperTag
+      529  1659600000 242.5 [m]    5.5 [°C]    1234 SuperTag
+      530  1659600600 229.0 [m]    5.5 [°C]    1234 SuperTag
+      531  1659601200 242.5 [m]    5.5 [°C]    1234 SuperTag
+      532  1659601800 242.5 [m]    5.5 [°C]    1234 SuperTag
+      533  1659602400 242.5 [m]    5.5 [°C]    1234 SuperTag
+      534  1659603000 242.5 [m]    5.3 [°C]    1234 SuperTag
+      535  1659603600 257.0 [m]    5.5 [°C]    1234 SuperTag
+      536  1659604200 257.0 [m]    5.5 [°C]    1234 SuperTag
+      537  1659604800 257.0 [m]    5.3 [°C]    1234 SuperTag
+      538  1659605400 257.0 [m]    5.5 [°C]    1234 SuperTag
+      539  1659606000 257.0 [m]    5.5 [°C]    1234 SuperTag
+      540  1659606600 257.0 [m]    5.3 [°C]    1234 SuperTag
+      541  1659607200 229.0 [m]    5.3 [°C]    1234 SuperTag
+      542  1659607800 257.0 [m]    5.3 [°C]    1234 SuperTag
+      543  1659608400 257.0 [m]    5.3 [°C]    1234 SuperTag
+      544  1659609000 257.0 [m]    5.5 [°C]    1234 SuperTag
+      545  1659609600 257.0 [m]    5.5 [°C]    1234 SuperTag
+      546  1659610200 257.0 [m]    5.5 [°C]    1234 SuperTag
+      547  1659610800 198.0 [m]    5.2 [°C]    1234 SuperTag
+      548  1659611400 257.0 [m]    5.3 [°C]    1234 SuperTag
+      549  1659612000 242.5 [m]    5.3 [°C]    1234 SuperTag
+      550  1659612600 229.0 [m]    5.3 [°C]    1234 SuperTag
+      551  1659613200 257.0 [m]    5.3 [°C]    1234 SuperTag
+      552  1659613800 242.5 [m]    5.3 [°C]    1234 SuperTag
+      553  1659614400 229.0 [m]    5.3 [°C]    1234 SuperTag
+      554  1659615000 242.5 [m]    5.3 [°C]    1234 SuperTag
+      555  1659615600 257.0 [m]    5.3 [°C]    1234 SuperTag
+      556  1659616200 257.0 [m]    5.3 [°C]    1234 SuperTag
+      557  1659616800 257.0 [m]    5.3 [°C]    1234 SuperTag
+      558  1659617400 257.0 [m]    5.3 [°C]    1234 SuperTag
+      559  1659618000 257.0 [m]    5.3 [°C]    1234 SuperTag
+      560  1659618600 229.0 [m]    5.3 [°C]    1234 SuperTag
+      561  1659619200 257.0 [m]    5.3 [°C]    1234 SuperTag
+      562  1659619800 257.0 [m]    5.3 [°C]    1234 SuperTag
+      563  1659620400 242.5 [m]    5.3 [°C]    1234 SuperTag
+      564  1659621000 242.5 [m]    5.3 [°C]    1234 SuperTag
+      565  1659621600 257.0 [m]    5.3 [°C]    1234 SuperTag
+      566  1659622200 229.0 [m]    5.3 [°C]    1234 SuperTag
+      567  1659622800 242.5 [m]    5.3 [°C]    1234 SuperTag
+      568  1659623400 242.5 [m]    5.3 [°C]    1234 SuperTag
+      569  1659624000 229.0 [m]    5.3 [°C]    1234 SuperTag
+      570  1659624600 184.0 [m]    5.3 [°C]    1234 SuperTag
+      571  1659625200 257.0 [m]    5.5 [°C]    1234 SuperTag
+      572  1659625800 215.0 [m]    5.3 [°C]    1234 SuperTag
+      573  1659626400 257.0 [m]    5.5 [°C]    1234 SuperTag
+      574  1659627000 257.0 [m]    5.5 [°C]    1234 SuperTag
+      575  1659627600 257.0 [m]    5.5 [°C]    1234 SuperTag
+      576  1659628200 257.0 [m]    5.5 [°C]    1234 SuperTag
+      577  1659628800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      578  1659629400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      579  1659630000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      580  1659630600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      581  1659631200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      582  1659631800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      583  1659632400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      584  1659633000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      585  1659633600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      586  1659634200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      587  1659634800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      588  1659635400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      589  1659636000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      590  1659636600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      591  1659637200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      592  1659637800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      593  1659638400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      594  1659639000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      595  1659639600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      596  1659640200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      597  1659640800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      598  1659641400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      599  1659642000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      600  1659642600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      601  1659643200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      602  1659643800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      603  1659644400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      604  1659645000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      605  1659645600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      606  1659646200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      607  1659646800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      608  1659647400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      609  1659648000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      610  1659648600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      611  1659649200 239.5 [m]    5.4 [°C]    1234 SuperTag
+      612  1659649800 239.5 [m]    5.4 [°C]    1234 SuperTag
+      613  1659650400 239.5 [m]    5.4 [°C]    1234 SuperTag
+      614  1659651000 239.5 [m]    5.4 [°C]    1234 SuperTag
+      615  1659651600 239.5 [m]    5.4 [°C]    1234 SuperTag
+      616  1659652200 171.0 [m]    5.9 [°C]    1234 SuperTag
+      617  1659652800 111.5 [m]    5.9 [°C]    1234 SuperTag
+      618  1659653400  39.5 [m]    6.8 [°C]    1234 SuperTag
+      619  1659654000   3.0 [m]   12.2 [°C]    1234 SuperTag
+      620  1659654600   3.0 [m]   12.2 [°C]    1234 SuperTag
+      621  1659655200   3.0 [m]   12.2 [°C]    1234 SuperTag
+      622  1659655800   3.0 [m]   12.2 [°C]    1234 SuperTag
+      623  1659656400   3.0 [m]   12.2 [°C]    1234 SuperTag
+      624  1659657000   3.0 [m]   12.2 [°C]    1234 SuperTag
+      625  1659657600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      626  1659658200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      627  1659658800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      628  1659659400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      629  1659660000   2.5 [m]   12.5 [°C]    1234 SuperTag
+      630  1659660600   2.5 [m]   12.5 [°C]    1234 SuperTag
+      631  1659661200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      632  1659661800   2.5 [m]   12.5 [°C]    1234 SuperTag
+      633  1659662400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      634  1659663000   2.5 [m]   12.5 [°C]    1234 SuperTag
+      635  1659663600   2.0 [m]   12.5 [°C]    1234 SuperTag
+      636  1659664200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      637  1659664800   1.5 [m]   12.5 [°C]    1234 SuperTag
+      638  1659665400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      639  1659666000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      640  1659666600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      641  1659667200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      642  1659667800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      643  1659668400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      644  1659669000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      645  1659669600   2.5 [m]   12.5 [°C]    1234 SuperTag
+      646  1659670200   2.5 [m]   12.5 [°C]    1234 SuperTag
+      647  1659670800   2.5 [m]   12.5 [°C]    1234 SuperTag
+      648  1659671400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      649  1659672000   1.5 [m]   12.5 [°C]    1234 SuperTag
+      650  1659672600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      651  1659673200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      652  1659673800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      653  1659674400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      654  1659675000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      655  1659675600   2.0 [m]   12.6 [°C]    1234 SuperTag
+      656  1659676200   1.5 [m]   12.5 [°C]    1234 SuperTag
+      657  1659676800   1.5 [m]   12.5 [°C]    1234 SuperTag
+      658  1659677400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      659  1659678000   1.5 [m]   12.5 [°C]    1234 SuperTag
+      660  1659678600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      661  1659679200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      662  1659679800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      663  1659680400   2.0 [m]   12.6 [°C]    1234 SuperTag
+      664  1659681000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      665  1659681600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      666  1659682200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      667  1659682800   1.0 [m]   12.6 [°C]    1234 SuperTag
+      668  1659683400   2.0 [m]   12.6 [°C]    1234 SuperTag
+      669  1659684000   1.5 [m]   12.5 [°C]    1234 SuperTag
+      670  1659684600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      671  1659685200   1.0 [m]   12.6 [°C]    1234 SuperTag
+      672  1659685800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      673  1659715200   2.0 [m]   12.6 [°C]    1234 SuperTag
+      674  1659715800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      675  1659716400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      676  1659717000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      677  1659717600   2.0 [m]   12.6 [°C]    1234 SuperTag
+      678  1659718200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      679  1659718800   2.0 [m]   12.6 [°C]    1234 SuperTag
+      680  1659719400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      681  1659720000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      682  1659720600   1.0 [m]   12.6 [°C]    1234 SuperTag
+      683  1659721200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      684  1659721800   1.0 [m]   12.6 [°C]    1234 SuperTag
+      685  1659722400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      686  1659723000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      687  1659723600   2.0 [m]   12.6 [°C]    1234 SuperTag
+      688  1659724200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      689  1659724800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      690  1659725400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      691  1659726000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      692  1659726600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      693  1659727200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      694  1659727800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      695  1659728400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      696  1659729000   1.5 [m]   12.6 [°C]    1234 SuperTag
+      697  1659729600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      698  1659730200   1.0 [m]   12.6 [°C]    1234 SuperTag
+      699  1659730800   2.0 [m]   12.6 [°C]    1234 SuperTag
+      700  1659731400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      701  1659732000   2.0 [m]   12.6 [°C]    1234 SuperTag
+      702  1659732600   1.5 [m]   12.6 [°C]    1234 SuperTag
+      703  1659733200   1.5 [m]   12.6 [°C]    1234 SuperTag
+      704  1659733800   1.5 [m]   12.6 [°C]    1234 SuperTag
+      705  1659734400   1.5 [m]   12.6 [°C]    1234 SuperTag
+      706  1659735000   1.5 [m]   12.5 [°C]    1234 SuperTag
+      707  1659735600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      708  1659736200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      709  1659736800   1.5 [m]   12.5 [°C]    1234 SuperTag
+      710  1659737400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      711  1659738000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      712  1659738600   2.0 [m]   12.5 [°C]    1234 SuperTag
+      713  1659739200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      714  1659739800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      715  1659740400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      716  1659741000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      717  1659741600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      718  1659742200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      719  1659742800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      720  1659743400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      721  1659744000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      722  1659744600   2.0 [m]   12.5 [°C]    1234 SuperTag
+      723  1659745200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      724  1659745800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      725  1659746400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      726  1659747000   1.5 [m]   12.5 [°C]    1234 SuperTag
+      727  1659747600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      728  1659748200   1.5 [m]   12.5 [°C]    1234 SuperTag
+      729  1659748800   1.5 [m]   12.5 [°C]    1234 SuperTag
+      730  1659749400   2.0 [m]   12.5 [°C]    1234 SuperTag
+      731  1659750000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      732  1659750600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      733  1659751200   1.5 [m]   12.5 [°C]    1234 SuperTag
+      734  1659751800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      735  1659752400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      736  1659753000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      737  1659753600   1.5 [m]   12.5 [°C]    1234 SuperTag
+      738  1659754200   2.0 [m]   12.5 [°C]    1234 SuperTag
+      739  1659754800   1.0 [m]   12.5 [°C]    1234 SuperTag
+      740  1659755400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      741  1659756000   1.5 [m]   12.5 [°C]    1234 SuperTag
+      742  1659756600   2.0 [m]   12.5 [°C]    1234 SuperTag
+      743  1659757200   1.5 [m]   12.5 [°C]    1234 SuperTag
+      744  1659757800   2.0 [m]   12.5 [°C]    1234 SuperTag
+      745  1659758400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      746  1659759000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      747  1659759600   1.0 [m]   12.7 [°C]    1234 SuperTag
+      748  1659760200   1.5 [m]   12.7 [°C]    1234 SuperTag
+      749  1659760800   2.0 [m]   12.7 [°C]    1234 SuperTag
+      750  1659761400   1.0 [m]   12.7 [°C]    1234 SuperTag
+      751  1659762000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      752  1659762600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      753  1659763200   2.0 [m]   12.7 [°C]    1234 SuperTag
+      754  1659763800   1.5 [m]   12.7 [°C]    1234 SuperTag
+      755  1659764400   1.0 [m]   12.7 [°C]    1234 SuperTag
+      756  1659765000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      757  1659765600   2.0 [m]   12.8 [°C]    1234 SuperTag
+      758  1659766200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      759  1659766800   2.0 [m]   12.8 [°C]    1234 SuperTag
+      760  1659767400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      761  1659768000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      762  1659768600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      763  1659769200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      764  1659769800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      765  1659770400   1.0 [m]   12.8 [°C]    1234 SuperTag
+      766  1659771000   2.0 [m]   12.8 [°C]    1234 SuperTag
+      767  1659771600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      768  1659772200   2.0 [m]   12.8 [°C]    1234 SuperTag
+      769  1659772800   2.0 [m]   12.8 [°C]    1234 SuperTag
+      770  1659773400   1.5 [m]   13.0 [°C]    1234 SuperTag
+      771  1659774000   1.5 [m]   13.0 [°C]    1234 SuperTag
+      772  1659774600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      773  1659775200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      774  1659775800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      775  1659776400   1.5 [m]   13.0 [°C]    1234 SuperTag
+      776  1659777000   1.5 [m]   13.0 [°C]    1234 SuperTag
+      777  1659777600   1.5 [m]   13.0 [°C]    1234 SuperTag
+      778  1659778200   1.5 [m]   13.0 [°C]    1234 SuperTag
+      779  1659778800   2.0 [m]   13.0 [°C]    1234 SuperTag
+      780  1659779400   1.5 [m]   13.0 [°C]    1234 SuperTag
+      781  1659780000   2.0 [m]   13.0 [°C]    1234 SuperTag
+      782  1659780600   1.5 [m]   13.0 [°C]    1234 SuperTag
+      783  1659781200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      784  1659781800   1.5 [m]   13.0 [°C]    1234 SuperTag
+      785  1659782400   1.5 [m]   13.0 [°C]    1234 SuperTag
+      786  1659783000   2.0 [m]   13.0 [°C]    1234 SuperTag
+      787  1659783600   1.5 [m]   13.0 [°C]    1234 SuperTag
+      788  1659784200   2.0 [m]   13.0 [°C]    1234 SuperTag
+      789  1659784800   2.0 [m]   13.0 [°C]    1234 SuperTag
+      790  1659785400   1.5 [m]   13.0 [°C]    1234 SuperTag
+      791  1659786000   1.0 [m]   13.0 [°C]    1234 SuperTag
+      792  1659786600   1.5 [m]   13.0 [°C]    1234 SuperTag
+      793  1659787200   1.5 [m]   13.0 [°C]    1234 SuperTag
+      794  1659787800   1.5 [m]   13.0 [°C]    1234 SuperTag
+      795  1659788400   1.5 [m]   13.0 [°C]    1234 SuperTag
+      796  1659789000   1.5 [m]   13.0 [°C]    1234 SuperTag
+      797  1659789600   1.5 [m]   13.0 [°C]    1234 SuperTag
+      798  1659790200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      799  1659790800   2.0 [m]   12.8 [°C]    1234 SuperTag
+      800  1659791400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      801  1659792000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      802  1659792600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      803  1659793200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      804  1659793800   2.0 [m]   12.8 [°C]    1234 SuperTag
+      805  1659794400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      806  1659795000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      807  1659795600   2.0 [m]   12.8 [°C]    1234 SuperTag
+      808  1659796200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      809  1659796800   2.0 [m]   12.8 [°C]    1234 SuperTag
+      810  1659797400   2.0 [m]   12.8 [°C]    1234 SuperTag
+      811  1659798000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      812  1659798600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      813  1659799200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      814  1659799800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      815  1659800400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      816  1659801000   1.0 [m]   12.8 [°C]    1234 SuperTag
+      817  1659801600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      818  1659802200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      819  1659802800   1.0 [m]   12.8 [°C]    1234 SuperTag
+      820  1659803400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      821  1659804000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      822  1659804600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      823  1659805200   2.0 [m]   12.8 [°C]    1234 SuperTag
+      824  1659805800   1.0 [m]   12.8 [°C]    1234 SuperTag
+      825  1659806400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      826  1659807000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      827  1659807600   2.0 [m]   12.8 [°C]    1234 SuperTag
+      828  1659808200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      829  1659808800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      830  1659809400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      831  1659810000   2.0 [m]   12.8 [°C]    1234 SuperTag
+      832  1659810600   1.0 [m]   12.8 [°C]    1234 SuperTag
+      833  1659811200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      834  1659811800   1.0 [m]   12.8 [°C]    1234 SuperTag
+      835  1659812400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      836  1659813000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      837  1659813600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      838  1659814200   1.5 [m]   12.7 [°C]    1234 SuperTag
+      839  1659814800   1.5 [m]   12.7 [°C]    1234 SuperTag
+      840  1659815400   1.5 [m]   12.7 [°C]    1234 SuperTag
+      841  1659816000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      842  1659816600   2.0 [m]   12.7 [°C]    1234 SuperTag
+      843  1659817200   1.5 [m]   12.7 [°C]    1234 SuperTag
+      844  1659817800   1.5 [m]   12.7 [°C]    1234 SuperTag
+      845  1659818400   2.0 [m]   12.7 [°C]    1234 SuperTag
+      846  1659819000   1.0 [m]   12.7 [°C]    1234 SuperTag
+      847  1659819600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      848  1659820200   1.0 [m]   12.7 [°C]    1234 SuperTag
+      849  1659820800   1.5 [m]   12.7 [°C]    1234 SuperTag
+      850  1659821400   1.5 [m]   12.7 [°C]    1234 SuperTag
+      851  1659822000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      852  1659822600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      853  1659823200   1.5 [m]   12.7 [°C]    1234 SuperTag
+      854  1659823800   2.0 [m]   12.7 [°C]    1234 SuperTag
+      855  1659824400   1.5 [m]   12.7 [°C]    1234 SuperTag
+      856  1659825000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      857  1659825600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      858  1659826200   1.5 [m]   12.7 [°C]    1234 SuperTag
+      859  1659826800   1.5 [m]   12.7 [°C]    1234 SuperTag
+      860  1659827400   2.0 [m]   12.7 [°C]    1234 SuperTag
+      861  1659828000   2.0 [m]   12.7 [°C]    1234 SuperTag
+      862  1659828600   2.0 [m]   12.7 [°C]    1234 SuperTag
+      863  1659829200   2.0 [m]   12.7 [°C]    1234 SuperTag
+      864  1659829800   1.5 [m]   12.7 [°C]    1234 SuperTag
+      865  1659830400   1.5 [m]   12.7 [°C]    1234 SuperTag
+      866  1659831000   2.0 [m]   12.7 [°C]    1234 SuperTag
+      867  1659831600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      868  1659832200   2.0 [m]   12.7 [°C]    1234 SuperTag
+      869  1659832800   2.0 [m]   12.7 [°C]    1234 SuperTag
+      870  1659833400   1.5 [m]   12.7 [°C]    1234 SuperTag
+      871  1659834000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      872  1659834600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      873  1659835200   1.5 [m]   12.7 [°C]    1234 SuperTag
+      874  1659835800   2.0 [m]   12.7 [°C]    1234 SuperTag
+      875  1659836400   1.5 [m]   12.7 [°C]    1234 SuperTag
+      876  1659837000   1.5 [m]   12.7 [°C]    1234 SuperTag
+      877  1659837600   1.5 [m]   12.7 [°C]    1234 SuperTag
+      878  1659838200   2.0 [m]   12.8 [°C]    1234 SuperTag
+      879  1659838800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      880  1659839400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      881  1659840000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      882  1659840600   2.0 [m]   12.8 [°C]    1234 SuperTag
+      883  1659841200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      884  1659841800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      885  1659842400   2.0 [m]   12.8 [°C]    1234 SuperTag
+      886  1659843000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      887  1659843600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      888  1659844200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      889  1659844800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      890  1659845400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      891  1659846000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      892  1659846600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      893  1659847200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      894  1659847800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      895  1659848400   2.0 [m]   12.8 [°C]    1234 SuperTag
+      896  1659849000   2.0 [m]   12.8 [°C]    1234 SuperTag
+      897  1659849600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      898  1659850200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      899  1659850800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      900  1659851400   2.0 [m]   12.8 [°C]    1234 SuperTag
+      901  1659852000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      902  1659852600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      903  1659853200   2.0 [m]   12.8 [°C]    1234 SuperTag
+      904  1659853800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      905  1659854400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      906  1659855000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      907  1659855600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      908  1659856200   2.0 [m]   12.8 [°C]    1234 SuperTag
+      909  1659856800   2.0 [m]   12.8 [°C]    1234 SuperTag
+      910  1659857400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      911  1659858000   1.0 [m]   12.8 [°C]    1234 SuperTag
+      912  1659858600   2.0 [m]   12.8 [°C]    1234 SuperTag
+      913  1659859200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      914  1659859800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      915  1659860400   1.0 [m]   12.8 [°C]    1234 SuperTag
+      916  1659861000   2.0 [m]   12.8 [°C]    1234 SuperTag
+      917  1659861600   2.0 [m]   12.8 [°C]    1234 SuperTag
+      918  1659862200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      919  1659862800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      920  1659863400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      921  1659864000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      922  1659864600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      923  1659865200   1.5 [m]   12.8 [°C]    1234 SuperTag
+      924  1659865800   1.5 [m]   12.8 [°C]    1234 SuperTag
+      925  1659866400   1.5 [m]   12.8 [°C]    1234 SuperTag
+      926  1659867000   1.5 [m]   12.8 [°C]    1234 SuperTag
+      927  1659867600   1.5 [m]   12.8 [°C]    1234 SuperTag
+      928  1659868200   2.0 [m]   12.7 [°C]    1234 SuperTag
+      929  1659868800   2.0 [m]   12.7 [°C]    1234 SuperTag
+      930  1659869400   1.5 [m]   12.5 [°C]    1234 SuperTag
+      931  1659870000   2.0 [m]   12.5 [°C]    1234 SuperTag
+      932  1659870600   2.0 [m]   12.5 [°C]    1234 SuperTag
+      933  1659871200   2.5 [m]   12.5 [°C]    1234 SuperTag
+      934  1659871800   2.0 [m]   12.3 [°C]    1234 SuperTag
+      935  1659872400   2.5 [m]   12.3 [°C]    1234 SuperTag
+      936  1659873000   2.5 [m]   12.3 [°C]    1234 SuperTag
+      937  1659873600   2.0 [m]   12.3 [°C]    1234 SuperTag
+      938  1659874200   2.0 [m]   12.3 [°C]    1234 SuperTag
+      939  1659874800   2.0 [m]   12.3 [°C]    1234 SuperTag
+      940  1659875400   2.5 [m]   12.3 [°C]    1234 SuperTag
+      941  1659876000   2.0 [m]   12.2 [°C]    1234 SuperTag
+      942  1659876600   2.0 [m]   12.2 [°C]    1234 SuperTag
+      943  1659877200   2.0 [m]   12.2 [°C]    1234 SuperTag
+      944  1659877800   2.0 [m]   12.2 [°C]    1234 SuperTag
+      945  1659878400   2.0 [m]   12.0 [°C]    1234 SuperTag
+      946  1659879000   2.5 [m]   12.0 [°C]    1234 SuperTag
+      947  1659879600   2.0 [m]   12.0 [°C]    1234 SuperTag
+      948  1659880200   2.0 [m]   12.0 [°C]    1234 SuperTag
+      949  1659880800   2.0 [m]   12.0 [°C]    1234 SuperTag
+      950  1659881400   2.0 [m]   12.0 [°C]    1234 SuperTag
+      951  1659882000   2.0 [m]   12.0 [°C]    1234 SuperTag
+      952  1659882600   1.5 [m]   12.2 [°C]    1234 SuperTag
+      953  1659883200   2.5 [m]   12.2 [°C]    1234 SuperTag
+      954  1659883800   2.5 [m]   12.3 [°C]    1234 SuperTag
+      955  1659884400   2.5 [m]   12.3 [°C]    1234 SuperTag
+      956  1659885000   2.5 [m]   12.3 [°C]    1234 SuperTag
+      957  1659885600   2.0 [m]   12.3 [°C]    1234 SuperTag
+      958  1659886200   2.0 [m]   12.3 [°C]    1234 SuperTag
+      959  1659886800   2.0 [m]   12.3 [°C]    1234 SuperTag
+      960  1659887400   2.0 [m]   12.3 [°C]    1234 SuperTag
+      961  1659916800   2.0 [m]   11.5 [°C]    1234 SuperTag
+      962  1659917400   2.0 [m]   11.5 [°C]    1234 SuperTag
+      963  1659918000   2.0 [m]   11.5 [°C]    1234 SuperTag
+      964  1659918600   2.0 [m]   11.5 [°C]    1234 SuperTag
+      965  1659919200   2.0 [m]   11.5 [°C]    1234 SuperTag
+      966  1659919800   2.0 [m]   11.5 [°C]    1234 SuperTag
+      967  1659920400   2.0 [m]   11.5 [°C]    1234 SuperTag
+      968  1659921000   2.0 [m]   11.5 [°C]    1234 SuperTag
+      969  1659921600   2.0 [m]   11.5 [°C]    1234 SuperTag
+      970  1659922200   1.5 [m]   11.5 [°C]    1234 SuperTag
+      971  1659922800   2.0 [m]   11.5 [°C]    1234 SuperTag
+      972  1659923400   1.5 [m]   11.5 [°C]    1234 SuperTag
+      973  1659924000   2.0 [m]   11.5 [°C]    1234 SuperTag
+      974  1659924600   2.0 [m]   11.5 [°C]    1234 SuperTag
+      975  1659925200   1.5 [m]   11.3 [°C]    1234 SuperTag
+      976  1659925800   2.0 [m]   11.3 [°C]    1234 SuperTag
+      977  1659926400   2.0 [m]   11.3 [°C]    1234 SuperTag
+      978  1659927000   2.0 [m]   11.3 [°C]    1234 SuperTag
+      979  1659927600   2.0 [m]   11.3 [°C]    1234 SuperTag
+      980  1659928200   2.0 [m]   11.3 [°C]    1234 SuperTag
+      981  1659928800   2.0 [m]   11.5 [°C]    1234 SuperTag
+      982  1659929400   1.5 [m]   11.5 [°C]    1234 SuperTag
+      983  1659930000   2.0 [m]   11.3 [°C]    1234 SuperTag
+      984  1659930600   2.0 [m]   11.3 [°C]    1234 SuperTag
+      985  1659931200   1.5 [m]   11.3 [°C]    1234 SuperTag
+      986  1659931800   1.5 [m]   11.3 [°C]    1234 SuperTag
+      987  1659932400   2.0 [m]   11.3 [°C]    1234 SuperTag
+      988  1659933000   1.5 [m]   11.3 [°C]    1234 SuperTag
+      989  1659933600   2.0 [m]   11.3 [°C]    1234 SuperTag
+      990  1659934200   2.0 [m]   11.3 [°C]    1234 SuperTag
+      991  1659934800   1.5 [m]   11.2 [°C]    1234 SuperTag
+      992  1659935400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      993  1659936000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      994  1659936600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      995  1659937200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      996  1659937800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      997  1659938400   2.0 [m]   10.8 [°C]    1234 SuperTag
+      998  1659939000   1.5 [m]   10.8 [°C]    1234 SuperTag
+      999  1659939600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1000 1659940200   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1001 1659940800   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1002 1659941400   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1003 1659942000   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1004 1659942600   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1005 1659943200   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1006 1659943800   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1007 1659944400   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1008 1659945000   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1009 1659945600   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1010 1659946200   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1011 1659946800   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1012 1659947400   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1013 1659948000   1.5 [m]   10.5 [°C]    1234 SuperTag
+      1014 1659948600   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1015 1659949200   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1016 1659949800   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1017 1659950400   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1018 1659951000   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1019 1659951600   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1020 1659952200   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1021 1659952800   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1022 1659953400   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1023 1659954000   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1024 1659954600   1.0 [m]   10.8 [°C]    1234 SuperTag
+      1025 1659955200   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1026 1659955800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1027 1659956400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1028 1659957000   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1029 1659957600   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1030 1659958200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1031 1659958800   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1032 1659959400   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1033 1659960000   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1034 1659960600   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1035 1659961200   2.0 [m]   10.7 [°C]    1234 SuperTag
+      1036 1659961800   2.0 [m]   10.5 [°C]    1234 SuperTag
+      1037 1659962400   2.0 [m]   10.5 [°C]    1234 SuperTag
+      1038 1659963000   2.0 [m]   10.5 [°C]    1234 SuperTag
+      1039 1659963600   2.0 [m]   10.5 [°C]    1234 SuperTag
+      1040 1659964200   1.5 [m]   10.7 [°C]    1234 SuperTag
+      1041 1659964800   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1042 1659965400   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1043 1659966000   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1044 1659966600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1045 1659967200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1046 1659967800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1047 1659968400   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1048 1659969000   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1049 1659969600   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1050 1659970200   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1051 1659970800   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1052 1659971400   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1053 1659972000   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1054 1659972600   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1055 1659973200   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1056 1659973800   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1057 1659974400   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1058 1659975000   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1059 1659975600   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1060 1659976200   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1061 1659976800   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1062 1659977400   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1063 1659978000   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1064 1659978600   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1065 1659979200   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1066 1659979800   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1067 1659980400   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1068 1659981000   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1069 1659981600   2.0 [m]   11.2 [°C]    1234 SuperTag
+      1070 1659982200   1.5 [m]   11.2 [°C]    1234 SuperTag
+      1071 1659982800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1072 1659983400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1073 1659984000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1074 1659984600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1075 1659985200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1076 1659985800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1077 1659986400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1078 1659987000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1079 1659987600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1080 1659988200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1081 1659988800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1082 1659989400   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1083 1659990000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1084 1659990600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1085 1659991200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1086 1659991800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1087 1659992400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1088 1659993000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1089 1659993600   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1090 1659994200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1091 1659994800   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1092 1659995400   1.0 [m]   10.8 [°C]    1234 SuperTag
+      1093 1659996000   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1094 1659996600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1095 1659997200   1.0 [m]   10.8 [°C]    1234 SuperTag
+      1096 1659997800   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1097 1659998400   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1098 1659999000   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1099 1659999600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1100 1660000200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1101 1660000800   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1102 1660001400   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1103 1660002000   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1104 1660002600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1105 1660003200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1106 1660003800   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1107 1660004400   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1108 1660005000   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1109 1660005600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1110 1660006200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1111 1660006800   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1112 1660007400   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1113 1660008000   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1114 1660008600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1115 1660009200   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1116 1660009800   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1117 1660010400   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1118 1660011000   1.5 [m]   10.8 [°C]    1234 SuperTag
+      1119 1660011600   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1120 1660012200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1121 1660012800   2.0 [m]   10.8 [°C]    1234 SuperTag
+      1122 1660013400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1123 1660014000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1124 1660014600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1125 1660015200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1126 1660015800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1127 1660016400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1128 1660017000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1129 1660017600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1130 1660018200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1131 1660018800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1132 1660019400   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1133 1660020000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1134 1660020600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1135 1660021200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1136 1660021800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1137 1660022400   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1138 1660023000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1139 1660023600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1140 1660024200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1141 1660024800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1142 1660025400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1143 1660026000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1144 1660026600   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1145 1660027200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1146 1660027800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1147 1660028400   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1148 1660029000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1149 1660029600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1150 1660030200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1151 1660030800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1152 1660031400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1153 1660060800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1154 1660061400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1155 1660062000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1156 1660062600   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1157 1660063200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1158 1660063800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1159 1660064400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1160 1660065000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1161 1660065600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1162 1660066200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1163 1660066800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1164 1660067400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1165 1660068000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1166 1660068600   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1167 1660069200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1168 1660069800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1169 1660070400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1170 1660071000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1171 1660071600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1172 1660072200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1173 1660072800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1174 1660073400   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1175 1660074000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1176 1660074600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1177 1660075200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1178 1660075800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1179 1660076400   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1180 1660077000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1181 1660077600   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1182 1660078200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1183 1660078800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1184 1660079400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1185 1660080000   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1186 1660080600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1187 1660081200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1188 1660081800   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1189 1660082400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1190 1660083000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1191 1660083600   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1192 1660084200   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1193 1660084800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1194 1660085400   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1195 1660086000   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1196 1660086600   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1197 1660087200   2.0 [m]   11.0 [°C]    1234 SuperTag
+      1198 1660087800   1.5 [m]   11.0 [°C]    1234 SuperTag
+      1199 1660088400   1.5 [m]   11.0 [°C]    1234 SuperTag
 
 ---
 
     Code
       decode_op[["summary"]]
     Output
-         START_TIME   END_TIME MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP TAG_ID
-      1  1659283200 1659312000    NA [m]    NA [m]  5.1 [°C]  7.4 [°C]   1234
-      2  1659312000 1659340800 179.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]   1234
-      3  1659340800 1659369600  95.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]   1234
-      4  1659369600 1659398400  89.5 [m] 249.0 [m]  5.1 [°C]  5.9 [°C]   1234
-      5  1659398400 1659427200 179.5 [m] 280.0 [m]  5.1 [°C]  5.7 [°C]   1234
-      6  1659427200 1659456000  73.5 [m] 256.0 [m]  5.2 [°C]  6.1 [°C]   1234
-      7  1659456000 1659484800  39.5 [m] 232.0 [m]  5.4 [°C]  8.3 [°C]   1234
-      8  1659484800 1659513600 179.5 [m] 220.0 [m]  5.4 [°C]  5.7 [°C]   1234
-      9  1659513600 1659542400  63.5 [m] 264.0 [m]  5.0 [°C]  6.2 [°C]   1234
-      10 1659542400 1659571200  34.5 [m] 264.0 [m]  5.0 [°C]  6.9 [°C]   1234
-      11 1659571200 1659600000 179.5 [m] 256.0 [m]  5.1 [°C]  5.7 [°C]   1234
-      12 1659600000 1659628800 159.5 [m] 264.0 [m]  5.0 [°C]  6.1 [°C]   1234
-      13 1659628800 1659657600   1.0 [m] 256.0 [m]  5.1 [°C] 12.4 [°C]   1234
-      14 1659657600 1659686400   0.0 [m]   3.0 [m] 12.3 [°C] 12.7 [°C]   1234
-      15 1659715200 1659744000   0.5 [m]   2.5 [m] 12.3 [°C] 12.7 [°C]   1234
-      16 1659744000 1659772800   0.0 [m]   2.5 [m] 12.3 [°C] 12.9 [°C]   1234
-      17 1659772800 1659801600   0.0 [m]   2.5 [m] 12.6 [°C] 13.1 [°C]   1234
-      18 1659801600 1659830400   0.0 [m]   2.5 [m] 12.4 [°C] 12.9 [°C]   1234
-      19 1659830400 1659859200   0.5 [m]   2.5 [m] 12.4 [°C] 12.9 [°C]   1234
-      20 1659859200 1659888000   0.5 [m]   3.0 [m] 11.8 [°C] 12.9 [°C]   1234
-      21 1659916800 1659945600   0.5 [m]   2.5 [m] 10.4 [°C] 11.7 [°C]   1234
-      22 1659945600 1659974400   0.5 [m]   2.5 [m] 10.3 [°C] 11.3 [°C]   1234
-      23 1659974400 1660003200   0.5 [m]   2.5 [m] 10.6 [°C] 11.3 [°C]   1234
-      24 1660003200 1660032000   0.5 [m]   2.5 [m] 10.6 [°C] 11.2 [°C]   1234
-      25 1660060800 1660089600   0.5 [m]   2.5 [m] 10.8 [°C] 11.1 [°C]   1234
+         START_TIME   END_TIME MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP TAG_NUM
+      1  1659283200 1659312000    NA [m]    NA [m]  5.1 [°C]  7.4 [°C]    1234
+      2  1659312000 1659340800 179.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]    1234
+      3  1659340800 1659369600  95.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]    1234
+      4  1659369600 1659398400  89.5 [m] 249.0 [m]  5.1 [°C]  5.9 [°C]    1234
+      5  1659398400 1659427200 179.5 [m] 280.0 [m]  5.1 [°C]  5.7 [°C]    1234
+      6  1659427200 1659456000  73.5 [m] 256.0 [m]  5.2 [°C]  6.1 [°C]    1234
+      7  1659456000 1659484800  39.5 [m] 232.0 [m]  5.4 [°C]  8.3 [°C]    1234
+      8  1659484800 1659513600 179.5 [m] 220.0 [m]  5.4 [°C]  5.7 [°C]    1234
+      9  1659513600 1659542400  63.5 [m] 264.0 [m]  5.0 [°C]  6.2 [°C]    1234
+      10 1659542400 1659571200  34.5 [m] 264.0 [m]  5.0 [°C]  6.9 [°C]    1234
+      11 1659571200 1659600000 179.5 [m] 256.0 [m]  5.1 [°C]  5.7 [°C]    1234
+      12 1659600000 1659628800 159.5 [m] 264.0 [m]  5.0 [°C]  6.1 [°C]    1234
+      13 1659628800 1659657600   1.0 [m] 256.0 [m]  5.1 [°C] 12.4 [°C]    1234
+      14 1659657600 1659686400   0.0 [m]   3.0 [m] 12.3 [°C] 12.7 [°C]    1234
+      15 1659715200 1659744000   0.5 [m]   2.5 [m] 12.3 [°C] 12.7 [°C]    1234
+      16 1659744000 1659772800   0.0 [m]   2.5 [m] 12.3 [°C] 12.9 [°C]    1234
+      17 1659772800 1659801600   0.0 [m]   2.5 [m] 12.6 [°C] 13.1 [°C]    1234
+      18 1659801600 1659830400   0.0 [m]   2.5 [m] 12.4 [°C] 12.9 [°C]    1234
+      19 1659830400 1659859200   0.5 [m]   2.5 [m] 12.4 [°C] 12.9 [°C]    1234
+      20 1659859200 1659888000   0.5 [m]   3.0 [m] 11.8 [°C] 12.9 [°C]    1234
+      21 1659916800 1659945600   0.5 [m]   2.5 [m] 10.4 [°C] 11.7 [°C]    1234
+      22 1659945600 1659974400   0.5 [m]   2.5 [m] 10.3 [°C] 11.3 [°C]    1234
+      23 1659974400 1660003200   0.5 [m]   2.5 [m] 10.6 [°C] 11.3 [°C]    1234
+      24 1660003200 1660032000   0.5 [m]   2.5 [m] 10.6 [°C] 11.2 [°C]    1234
+      25 1660060800 1660089600   0.5 [m]   2.5 [m] 10.8 [°C] 11.1 [°C]    1234
          TAG_TYPE
       1  SuperTag
       2  SuperTag
@@ -8919,363 +8919,363 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE   MODEL TAG_ID TAG_TYPE
-      1 Wildlife Computers MiniPAT   1234 SuperTag
+                      MAKE   MODEL TAG_NUM TAG_TYPE
+      1 Wildlife Computers MiniPAT    1234 SuperTag
 
 ---
 
     Code
       decode_op[["instant"]]
     Output
-           TIMESTAMP     DEPTH TEMPERATURE TAG_ID TAG_TYPE
-      1   1689120000    NA [m]    6.1 [°C]   1234 SuperTag
-      2   1689120600    NA [m]    6.1 [°C]   1234 SuperTag
-      3   1689121200    NA [m]    6.1 [°C]   1234 SuperTag
-      4   1689121800    NA [m]    6.1 [°C]   1234 SuperTag
-      5   1689122400    NA [m]    6.1 [°C]   1234 SuperTag
-      6   1689123000    NA [m]    6.1 [°C]   1234 SuperTag
-      7   1689123600    NA [m]    6.1 [°C]   1234 SuperTag
-      8   1689124200    NA [m]    6.1 [°C]   1234 SuperTag
-      9   1689124800    NA [m]    6.1 [°C]   1234 SuperTag
-      10  1689125400    NA [m]    6.1 [°C]   1234 SuperTag
-      11  1689126000    NA [m]    6.1 [°C]   1234 SuperTag
-      12  1689126600    NA [m]    6.1 [°C]   1234 SuperTag
-      13  1689127200    NA [m]    6.1 [°C]   1234 SuperTag
-      14  1689127800    NA [m]    6.1 [°C]   1234 SuperTag
-      15  1689128400    NA [m]    6.1 [°C]   1234 SuperTag
-      16  1689129000    NA [m]    6.1 [°C]   1234 SuperTag
-      17  1689129600    NA [m]    6.1 [°C]   1234 SuperTag
-      18  1689130200    NA [m]    6.1 [°C]   1234 SuperTag
-      19  1689130800    NA [m]    6.1 [°C]   1234 SuperTag
-      20  1689131400    NA [m]    6.1 [°C]   1234 SuperTag
-      21  1689132000    NA [m]    6.1 [°C]   1234 SuperTag
-      22  1689132600    NA [m]    6.1 [°C]   1234 SuperTag
-      23  1689133200    NA [m]    6.1 [°C]   1234 SuperTag
-      24  1689133800    NA [m]    6.1 [°C]   1234 SuperTag
-      25  1689134400    NA [m]    6.1 [°C]   1234 SuperTag
-      26  1689135000    NA [m]    6.1 [°C]   1234 SuperTag
-      27  1689135600    NA [m]    6.1 [°C]   1234 SuperTag
-      28  1689136200    NA [m]    6.1 [°C]   1234 SuperTag
-      29  1689136800    NA [m]    6.1 [°C]   1234 SuperTag
-      30  1689137400    NA [m]    6.1 [°C]   1234 SuperTag
-      31  1689138000    NA [m]    6.1 [°C]   1234 SuperTag
-      32  1689138600    NA [m]    6.1 [°C]   1234 SuperTag
-      33  1689139200    NA [m]    6.1 [°C]   1234 SuperTag
-      34  1689139800    NA [m]    6.1 [°C]   1234 SuperTag
-      35  1689140400    NA [m]    6.1 [°C]   1234 SuperTag
-      36  1689141000    NA [m]    6.1 [°C]   1234 SuperTag
-      37  1689141600    NA [m]    6.1 [°C]   1234 SuperTag
-      38  1689142200    NA [m]    6.1 [°C]   1234 SuperTag
-      39  1689142800    NA [m]    6.1 [°C]   1234 SuperTag
-      40  1689143400    NA [m]    6.1 [°C]   1234 SuperTag
-      41  1689144000    NA [m]    6.1 [°C]   1234 SuperTag
-      42  1689144600    NA [m]    6.1 [°C]   1234 SuperTag
-      43  1689145200    NA [m]    6.1 [°C]   1234 SuperTag
-      44  1689145800    NA [m]    6.1 [°C]   1234 SuperTag
-      45  1689146400    NA [m]    6.1 [°C]   1234 SuperTag
-      46  1689147000    NA [m]    6.1 [°C]   1234 SuperTag
-      47  1689147600    NA [m]    6.1 [°C]   1234 SuperTag
-      48  1689148200    NA [m]    6.1 [°C]   1234 SuperTag
-      49  1689148800 396.5 [m]    6.1 [°C]   1234 SuperTag
-      50  1689149400 396.5 [m]    6.1 [°C]   1234 SuperTag
-      51  1689150000 454.5 [m]    6.1 [°C]   1234 SuperTag
-      52  1689150600 454.5 [m]    6.1 [°C]   1234 SuperTag
-      53  1689151200 425.5 [m]    6.1 [°C]   1234 SuperTag
-      54  1689151800 454.5 [m]    6.1 [°C]   1234 SuperTag
-      55  1689152400 483.0 [m]    6.1 [°C]   1234 SuperTag
-      56  1689153000 425.5 [m]    6.1 [°C]   1234 SuperTag
-      57  1689153600 375.0 [m]    6.1 [°C]   1234 SuperTag
-      58  1689154200 454.5 [m]    6.1 [°C]   1234 SuperTag
-      59  1689154800 526.5 [m]    6.1 [°C]   1234 SuperTag
-      60  1689155400 425.5 [m]    6.1 [°C]   1234 SuperTag
-      61  1689156000 396.5 [m]    6.1 [°C]   1234 SuperTag
-      62  1689156600 396.5 [m]    6.1 [°C]   1234 SuperTag
-      63  1689157200 526.5 [m]    6.1 [°C]   1234 SuperTag
-      64  1689157800 526.5 [m]    6.1 [°C]   1234 SuperTag
-      65  1689158400 526.5 [m]    6.1 [°C]   1234 SuperTag
-      66  1689159000 425.5 [m]    6.1 [°C]   1234 SuperTag
-      67  1689159600 396.5 [m]    6.1 [°C]   1234 SuperTag
-      68  1689160200 396.5 [m]    6.1 [°C]   1234 SuperTag
-      69  1689160800 425.5 [m]    6.1 [°C]   1234 SuperTag
-      70  1689161400 396.5 [m]    6.1 [°C]   1234 SuperTag
-      71  1689162000 454.5 [m]    6.1 [°C]   1234 SuperTag
-      72  1689162600 526.5 [m]    6.1 [°C]   1234 SuperTag
-      73  1689163200 584.0 [m]    6.1 [°C]   1234 SuperTag
-      74  1689163800 584.0 [m]    6.1 [°C]   1234 SuperTag
-      75  1689164400 526.5 [m]    6.1 [°C]   1234 SuperTag
-      76  1689165000 526.5 [m]    6.1 [°C]   1234 SuperTag
-      77  1689165600 526.5 [m]    6.1 [°C]   1234 SuperTag
-      78  1689166200 454.5 [m]    6.1 [°C]   1234 SuperTag
-      79  1689166800 425.5 [m]    6.1 [°C]   1234 SuperTag
-      80  1689167400 360.5 [m]    6.1 [°C]   1234 SuperTag
-      81  1689168000 332.0 [m]    6.1 [°C]   1234 SuperTag
-      82  1689168600 332.0 [m]    6.1 [°C]   1234 SuperTag
-      83  1689169200 360.5 [m]    6.1 [°C]   1234 SuperTag
-      84  1689169800 346.0 [m]    6.1 [°C]   1234 SuperTag
-      85  1689170400 346.0 [m]    6.1 [°C]   1234 SuperTag
-      86  1689171000 396.5 [m]    6.1 [°C]   1234 SuperTag
-      87  1689171600 425.5 [m]    6.1 [°C]   1234 SuperTag
-      88  1689172200 454.5 [m]    6.1 [°C]   1234 SuperTag
-      89  1689172800 454.5 [m]    6.1 [°C]   1234 SuperTag
-      90  1689173400 483.0 [m]    6.1 [°C]   1234 SuperTag
-      91  1689174000 526.5 [m]    6.1 [°C]   1234 SuperTag
-      92  1689174600 526.5 [m]    6.1 [°C]   1234 SuperTag
-      93  1689175200 584.0 [m]    6.1 [°C]   1234 SuperTag
-      94  1689175800 700.0 [m]    6.1 [°C]   1234 SuperTag
-      95  1689176400 700.0 [m]    6.1 [°C]   1234 SuperTag
-      96  1689177000 700.0 [m]    6.1 [°C]   1234 SuperTag
-      97  1689206400 712.5 [m]    6.1 [°C]   1234 SuperTag
-      98  1689207000 766.0 [m]    6.1 [°C]   1234 SuperTag
-      99  1689207600 766.0 [m]    6.1 [°C]   1234 SuperTag
-      100 1689208200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      101 1689208800 766.0 [m]    6.1 [°C]   1234 SuperTag
-      102 1689209400 766.0 [m]    6.1 [°C]   1234 SuperTag
-      103 1689210000 712.5 [m]    6.1 [°C]   1234 SuperTag
-      104 1689210600 766.0 [m]    6.1 [°C]   1234 SuperTag
-      105 1689211200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      106 1689211800 766.0 [m]    6.1 [°C]   1234 SuperTag
-      107 1689212400 766.0 [m]    6.1 [°C]   1234 SuperTag
-      108 1689213000 766.0 [m]    6.1 [°C]   1234 SuperTag
-      109 1689213600 766.0 [m]    6.1 [°C]   1234 SuperTag
-      110 1689214200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      111 1689214800 712.5 [m]    6.1 [°C]   1234 SuperTag
-      112 1689215400 712.5 [m]    6.1 [°C]   1234 SuperTag
-      113 1689216000 712.5 [m]    6.1 [°C]   1234 SuperTag
-      114 1689216600 712.5 [m]    6.1 [°C]   1234 SuperTag
-      115 1689217200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      116 1689217800 766.0 [m]    6.1 [°C]   1234 SuperTag
-      117 1689218400 766.0 [m]    6.1 [°C]   1234 SuperTag
-      118 1689219000 766.0 [m]    6.1 [°C]   1234 SuperTag
-      119 1689219600 766.0 [m]    6.1 [°C]   1234 SuperTag
-      120 1689220200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      121 1689220800 766.0 [m]    6.1 [°C]   1234 SuperTag
-      122 1689221400 712.5 [m]    6.1 [°C]   1234 SuperTag
-      123 1689222000 766.0 [m]    6.1 [°C]   1234 SuperTag
-      124 1689222600 659.0 [m]    6.1 [°C]   1234 SuperTag
-      125 1689223200 565.5 [m]    6.1 [°C]   1234 SuperTag
-      126 1689223800 485.5 [m]    6.1 [°C]   1234 SuperTag
-      127 1689224400 485.5 [m]    6.1 [°C]   1234 SuperTag
-      128 1689225000 465.5 [m]    6.1 [°C]   1234 SuperTag
-      129 1689225600 395.0 [m]    6.1 [°C]   1234 SuperTag
-      130 1689226200 425.0 [m]    6.1 [°C]   1234 SuperTag
-      131 1689226800 512.0 [m]    6.1 [°C]   1234 SuperTag
-      132 1689227400 659.0 [m]    6.1 [°C]   1234 SuperTag
-      133 1689228000 766.0 [m]    6.1 [°C]   1234 SuperTag
-      134 1689228600 766.0 [m]    6.1 [°C]   1234 SuperTag
-      135 1689229200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      136 1689229800 766.0 [m]    6.1 [°C]   1234 SuperTag
-      137 1689230400 766.0 [m]    6.1 [°C]   1234 SuperTag
-      138 1689231000 712.5 [m]    6.1 [°C]   1234 SuperTag
-      139 1689231600 766.0 [m]    6.1 [°C]   1234 SuperTag
-      140 1689232200 766.0 [m]    6.1 [°C]   1234 SuperTag
-      141 1689232800 766.0 [m]    6.1 [°C]   1234 SuperTag
-      142 1689233400 766.0 [m]    6.1 [°C]   1234 SuperTag
-      143 1689234000 712.5 [m]    6.1 [°C]   1234 SuperTag
-      144 1689234600 712.5 [m]    6.1 [°C]   1234 SuperTag
-      145 1689264000 691.0 [m]    6.1 [°C]   1234 SuperTag
-      146 1689264600 691.0 [m]    6.1 [°C]   1234 SuperTag
-      147 1689265200 691.0 [m]    6.1 [°C]   1234 SuperTag
-      148 1689265800 691.0 [m]    6.1 [°C]   1234 SuperTag
-      149 1689266400 691.0 [m]    6.1 [°C]   1234 SuperTag
-      150 1689267000 691.0 [m]    6.1 [°C]   1234 SuperTag
-      151 1689267600 691.0 [m]    6.1 [°C]   1234 SuperTag
-      152 1689268200 691.0 [m]    6.1 [°C]   1234 SuperTag
-      153 1689268800 691.0 [m]    6.1 [°C]   1234 SuperTag
-      154 1689269400 691.0 [m]    6.1 [°C]   1234 SuperTag
-      155 1689270000 691.0 [m]    6.1 [°C]   1234 SuperTag
-      156 1689270600 616.0 [m]    6.1 [°C]   1234 SuperTag
-      157 1689271200 616.0 [m]    6.1 [°C]   1234 SuperTag
-      158 1689271800 616.0 [m]    6.1 [°C]   1234 SuperTag
-      159 1689272400 616.0 [m]    6.1 [°C]   1234 SuperTag
-      160 1689273000 616.0 [m]    6.1 [°C]   1234 SuperTag
-      161 1689273600 616.0 [m]    6.1 [°C]   1234 SuperTag
-      162 1689274200 616.0 [m]    6.1 [°C]   1234 SuperTag
-      163 1689274800 542.0 [m]    6.1 [°C]   1234 SuperTag
-      164 1689275400 542.0 [m]    6.1 [°C]   1234 SuperTag
-      165 1689276000 542.0 [m]    6.1 [°C]   1234 SuperTag
-      166 1689276600 542.0 [m]    6.1 [°C]   1234 SuperTag
-      167 1689277200 542.0 [m]    6.1 [°C]   1234 SuperTag
-      168 1689277800 542.0 [m]    6.1 [°C]   1234 SuperTag
-      169 1689278400 542.0 [m]    6.1 [°C]   1234 SuperTag
-      170 1689279000 542.0 [m]    6.1 [°C]   1234 SuperTag
-      171 1689279600 542.0 [m]    6.1 [°C]   1234 SuperTag
-      172 1689280200 412.5 [m]    6.1 [°C]   1234 SuperTag
-      173 1689280800 273.5 [m]    6.0 [°C]   1234 SuperTag
-      174 1689281400 218.0 [m]    6.1 [°C]   1234 SuperTag
-      175 1689282000 204.0 [m]    6.1 [°C]   1234 SuperTag
-      176 1689282600 301.5 [m]    6.0 [°C]   1234 SuperTag
-      177 1689283200 468.0 [m]    6.1 [°C]   1234 SuperTag
-      178 1689283800 468.0 [m]    6.1 [°C]   1234 SuperTag
-      179 1689284400 412.5 [m]    6.1 [°C]   1234 SuperTag
-      180 1689285000 468.0 [m]    6.1 [°C]   1234 SuperTag
-      181 1689285600 468.0 [m]    6.1 [°C]   1234 SuperTag
-      182 1689286200 542.0 [m]    6.1 [°C]   1234 SuperTag
-      183 1689286800 542.0 [m]    6.1 [°C]   1234 SuperTag
-      184 1689287400 542.0 [m]    6.1 [°C]   1234 SuperTag
-      185 1689288000 542.0 [m]    6.1 [°C]   1234 SuperTag
-      186 1689288600 542.0 [m]    6.1 [°C]   1234 SuperTag
-      187 1689289200 542.0 [m]    6.1 [°C]   1234 SuperTag
-      188 1689289800 542.0 [m]    6.1 [°C]   1234 SuperTag
-      189 1689290400 542.0 [m]    6.1 [°C]   1234 SuperTag
-      190 1689291000 542.0 [m]    6.1 [°C]   1234 SuperTag
-      191 1689291600 542.0 [m]    6.1 [°C]   1234 SuperTag
-      192 1689292200 542.0 [m]    6.1 [°C]   1234 SuperTag
-      193 1689292800 529.0 [m]    6.1 [°C]   1234 SuperTag
-      194 1689293400 529.0 [m]    6.1 [°C]   1234 SuperTag
-      195 1689294000 472.5 [m]    6.1 [°C]   1234 SuperTag
-      196 1689294600 472.5 [m]    6.1 [°C]   1234 SuperTag
-      197 1689295200 529.0 [m]    6.1 [°C]   1234 SuperTag
-      198 1689295800 472.5 [m]    6.1 [°C]   1234 SuperTag
-      199 1689296400 397.0 [m]    6.1 [°C]   1234 SuperTag
-      200 1689297000 359.5 [m]    6.1 [°C]   1234 SuperTag
-      201 1689297600 397.0 [m]    6.1 [°C]   1234 SuperTag
-      202 1689298200 435.0 [m]    6.1 [°C]   1234 SuperTag
-      203 1689298800 529.0 [m]    6.1 [°C]   1234 SuperTag
-      204 1689299400 604.0 [m]    6.1 [°C]   1234 SuperTag
-      205 1689300000 604.0 [m]    6.1 [°C]   1234 SuperTag
-      206 1689300600 604.0 [m]    6.1 [°C]   1234 SuperTag
-      207 1689301200 604.0 [m]    6.1 [°C]   1234 SuperTag
-      208 1689301800 679.5 [m]    6.1 [°C]   1234 SuperTag
-      209 1689302400 679.5 [m]    6.1 [°C]   1234 SuperTag
-      210 1689303000 679.5 [m]    6.1 [°C]   1234 SuperTag
-      211 1689303600 679.5 [m]    6.1 [°C]   1234 SuperTag
-      212 1689304200 679.5 [m]    6.1 [°C]   1234 SuperTag
-      213 1689304800 679.5 [m]    6.1 [°C]   1234 SuperTag
-      214 1689305400 604.0 [m]    6.1 [°C]   1234 SuperTag
-      215 1689306000 397.0 [m]    6.1 [°C]   1234 SuperTag
-      216 1689306600 679.5 [m]    6.1 [°C]   1234 SuperTag
-      217 1689307200 754.5 [m]    6.1 [°C]   1234 SuperTag
-      218 1689307800 754.5 [m]    6.1 [°C]   1234 SuperTag
-      219 1689308400 754.5 [m]    6.1 [°C]   1234 SuperTag
-      220 1689309000 754.5 [m]    6.1 [°C]   1234 SuperTag
-      221 1689309600 754.5 [m]    6.1 [°C]   1234 SuperTag
-      222 1689310200 754.5 [m]    6.1 [°C]   1234 SuperTag
-      223 1689310800 754.5 [m]    6.1 [°C]   1234 SuperTag
-      224 1689311400 754.5 [m]    6.1 [°C]   1234 SuperTag
-      225 1689312000 754.5 [m]    6.1 [°C]   1234 SuperTag
-      226 1689312600 754.5 [m]    6.1 [°C]   1234 SuperTag
-      227 1689313200 529.0 [m]    6.1 [°C]   1234 SuperTag
-      228 1689313800 251.5 [m]    6.0 [°C]   1234 SuperTag
-      229 1689314400 529.0 [m]    6.1 [°C]   1234 SuperTag
-      230 1689315000 754.5 [m]    6.1 [°C]   1234 SuperTag
-      231 1689315600 754.5 [m]    6.1 [°C]   1234 SuperTag
-      232 1689316200 754.5 [m]    6.1 [°C]   1234 SuperTag
-      233 1689316800 754.5 [m]    6.1 [°C]   1234 SuperTag
-      234 1689317400 754.5 [m]    6.1 [°C]   1234 SuperTag
-      235 1689318000 754.5 [m]    6.1 [°C]   1234 SuperTag
-      236 1689318600 754.5 [m]    6.1 [°C]   1234 SuperTag
-      237 1689319200 754.5 [m]    6.1 [°C]   1234 SuperTag
-      238 1689319800 754.5 [m]    6.1 [°C]   1234 SuperTag
-      239 1689320400 754.5 [m]    6.1 [°C]   1234 SuperTag
-      240 1689321000 754.5 [m]    6.1 [°C]   1234 SuperTag
-      241 1689321600 760.5 [m]    6.1 [°C]   1234 SuperTag
-      242 1689322200 760.5 [m]    6.1 [°C]   1234 SuperTag
-      243 1689322800 760.5 [m]    6.1 [°C]   1234 SuperTag
-      244 1689323400 760.5 [m]    6.1 [°C]   1234 SuperTag
-      245 1689324000 760.5 [m]    6.1 [°C]   1234 SuperTag
-      246 1689324600 760.5 [m]    6.1 [°C]   1234 SuperTag
-      247 1689325200 760.5 [m]    6.1 [°C]   1234 SuperTag
-      248 1689325800 760.5 [m]    6.1 [°C]   1234 SuperTag
-      249 1689326400 632.0 [m]    6.1 [°C]   1234 SuperTag
-      250 1689327000 488.0 [m]    6.1 [°C]   1234 SuperTag
-      251 1689327600 456.0 [m]    6.1 [°C]   1234 SuperTag
-      252 1689328200 519.5 [m]    6.1 [°C]   1234 SuperTag
-      253 1689328800 488.0 [m]    6.1 [°C]   1234 SuperTag
-      254 1689329400 456.0 [m]    6.1 [°C]   1234 SuperTag
-      255 1689330000 488.0 [m]    6.1 [°C]   1234 SuperTag
-      256 1689330600 456.0 [m]    6.1 [°C]   1234 SuperTag
-      257 1689331200 456.0 [m]    6.1 [°C]   1234 SuperTag
-      258 1689331800 568.0 [m]    6.1 [°C]   1234 SuperTag
-      259 1689332400 632.0 [m]    6.1 [°C]   1234 SuperTag
-      260 1689333000 760.5 [m]    6.1 [°C]   1234 SuperTag
-      261 1689333600 760.5 [m]    6.1 [°C]   1234 SuperTag
-      262 1689334200 760.5 [m]    6.1 [°C]   1234 SuperTag
-      263 1689334800 696.0 [m]    6.1 [°C]   1234 SuperTag
-      264 1689335400 696.0 [m]    6.1 [°C]   1234 SuperTag
-      265 1689336000 632.0 [m]    6.1 [°C]   1234 SuperTag
-      266 1689336600 568.0 [m]    6.1 [°C]   1234 SuperTag
-      267 1689337200 519.5 [m]    6.1 [°C]   1234 SuperTag
-      268 1689337800 423.5 [m]    6.1 [°C]   1234 SuperTag
-      269 1689338400 456.0 [m]    6.1 [°C]   1234 SuperTag
-      270 1689339000 423.5 [m]    6.1 [°C]   1234 SuperTag
-      271 1689339600 367.5 [m]    6.1 [°C]   1234 SuperTag
-      272 1689340200 331.5 [m]    6.1 [°C]   1234 SuperTag
-      273 1689340800 323.5 [m]    6.0 [°C]   1234 SuperTag
-      274 1689341400 423.5 [m]    6.1 [°C]   1234 SuperTag
-      275 1689342000 568.0 [m]    6.1 [°C]   1234 SuperTag
-      276 1689342600 760.5 [m]    6.1 [°C]   1234 SuperTag
-      277 1689343200 760.5 [m]    6.1 [°C]   1234 SuperTag
-      278 1689343800 760.5 [m]    6.1 [°C]   1234 SuperTag
-      279 1689344400 760.5 [m]    6.1 [°C]   1234 SuperTag
-      280 1689345000 760.5 [m]    6.1 [°C]   1234 SuperTag
-      281 1689345600 760.5 [m]    6.1 [°C]   1234 SuperTag
-      282 1689346200 760.5 [m]    6.1 [°C]   1234 SuperTag
-      283 1689346800 760.5 [m]    6.1 [°C]   1234 SuperTag
-      284 1689347400 760.5 [m]    6.1 [°C]   1234 SuperTag
-      285 1689348000 760.5 [m]    6.1 [°C]   1234 SuperTag
-      286 1689348600 760.5 [m]    6.1 [°C]   1234 SuperTag
-      287 1689349200 760.5 [m]    6.1 [°C]   1234 SuperTag
-      288 1689349800 760.5 [m]    6.1 [°C]   1234 SuperTag
-      289 1689350400 774.5 [m]     NA [°C]   1234 SuperTag
-      290 1689351000 774.5 [m]     NA [°C]   1234 SuperTag
-      291 1689351600 774.5 [m]     NA [°C]   1234 SuperTag
-      292 1689352200 774.5 [m]     NA [°C]   1234 SuperTag
-      293 1689352800 774.5 [m]     NA [°C]   1234 SuperTag
-      294 1689353400 740.0 [m]     NA [°C]   1234 SuperTag
-      295 1689354000 646.5 [m]     NA [°C]   1234 SuperTag
-      296 1689354600 740.0 [m]     NA [°C]   1234 SuperTag
-      297 1689355200 774.5 [m]     NA [°C]   1234 SuperTag
-      298 1689355800 774.5 [m]     NA [°C]   1234 SuperTag
-      299 1689356400 774.5 [m]     NA [°C]   1234 SuperTag
-      300 1689357000 774.5 [m]     NA [°C]   1234 SuperTag
-      301 1689357600 774.5 [m]     NA [°C]   1234 SuperTag
-      302 1689358200 774.5 [m]     NA [°C]   1234 SuperTag
-      303 1689358800 774.5 [m]     NA [°C]   1234 SuperTag
-      304 1689359400 774.5 [m]     NA [°C]   1234 SuperTag
-      305 1689360000 774.5 [m]     NA [°C]   1234 SuperTag
-      306 1689360600 774.5 [m]     NA [°C]   1234 SuperTag
-      307 1689361200 774.5 [m]     NA [°C]   1234 SuperTag
-      308 1689361800 774.5 [m]     NA [°C]   1234 SuperTag
-      309 1689362400 774.5 [m]     NA [°C]   1234 SuperTag
-      310 1689363000 774.5 [m]     NA [°C]   1234 SuperTag
-      311 1689363600 774.5 [m]     NA [°C]   1234 SuperTag
-      312 1689364200 774.5 [m]     NA [°C]   1234 SuperTag
-      313 1689364800 774.5 [m]     NA [°C]   1234 SuperTag
-      314 1689365400 672.0 [m]     NA [°C]   1234 SuperTag
-      315 1689366000 542.0 [m]     NA [°C]   1234 SuperTag
-      316 1689366600 557.0 [m]     NA [°C]   1234 SuperTag
-      317 1689367200 706.0 [m]     NA [°C]   1234 SuperTag
-      318 1689367800 774.5 [m]     NA [°C]   1234 SuperTag
-      319 1689368400 774.5 [m]     NA [°C]   1234 SuperTag
-      320 1689369000 774.5 [m]     NA [°C]   1234 SuperTag
-      321 1689369600 774.5 [m]     NA [°C]   1234 SuperTag
-      322 1689370200 774.5 [m]     NA [°C]   1234 SuperTag
-      323 1689370800 774.5 [m]     NA [°C]   1234 SuperTag
-      324 1689371400 774.5 [m]     NA [°C]   1234 SuperTag
-      325 1689372000 774.5 [m]     NA [°C]   1234 SuperTag
-      326 1689372600 740.0 [m]     NA [°C]   1234 SuperTag
-      327 1689373200 740.0 [m]     NA [°C]   1234 SuperTag
-      328 1689373800 740.0 [m]     NA [°C]   1234 SuperTag
-      329 1689374400 672.0 [m]     NA [°C]   1234 SuperTag
-      330 1689375000 672.0 [m]     NA [°C]   1234 SuperTag
-      331 1689375600 629.5 [m]     NA [°C]   1234 SuperTag
-      332 1689376200 706.0 [m]     NA [°C]   1234 SuperTag
-      333 1689376800 774.5 [m]     NA [°C]   1234 SuperTag
-      334 1689377400 740.0 [m]     NA [°C]   1234 SuperTag
-      335 1689378000 740.0 [m]     NA [°C]   1234 SuperTag
-      336 1689378600 740.0 [m]     NA [°C]   1234 SuperTag
+           TIMESTAMP     DEPTH TEMPERATURE TAG_NUM TAG_TYPE
+      1   1689120000    NA [m]    6.1 [°C]    1234 SuperTag
+      2   1689120600    NA [m]    6.1 [°C]    1234 SuperTag
+      3   1689121200    NA [m]    6.1 [°C]    1234 SuperTag
+      4   1689121800    NA [m]    6.1 [°C]    1234 SuperTag
+      5   1689122400    NA [m]    6.1 [°C]    1234 SuperTag
+      6   1689123000    NA [m]    6.1 [°C]    1234 SuperTag
+      7   1689123600    NA [m]    6.1 [°C]    1234 SuperTag
+      8   1689124200    NA [m]    6.1 [°C]    1234 SuperTag
+      9   1689124800    NA [m]    6.1 [°C]    1234 SuperTag
+      10  1689125400    NA [m]    6.1 [°C]    1234 SuperTag
+      11  1689126000    NA [m]    6.1 [°C]    1234 SuperTag
+      12  1689126600    NA [m]    6.1 [°C]    1234 SuperTag
+      13  1689127200    NA [m]    6.1 [°C]    1234 SuperTag
+      14  1689127800    NA [m]    6.1 [°C]    1234 SuperTag
+      15  1689128400    NA [m]    6.1 [°C]    1234 SuperTag
+      16  1689129000    NA [m]    6.1 [°C]    1234 SuperTag
+      17  1689129600    NA [m]    6.1 [°C]    1234 SuperTag
+      18  1689130200    NA [m]    6.1 [°C]    1234 SuperTag
+      19  1689130800    NA [m]    6.1 [°C]    1234 SuperTag
+      20  1689131400    NA [m]    6.1 [°C]    1234 SuperTag
+      21  1689132000    NA [m]    6.1 [°C]    1234 SuperTag
+      22  1689132600    NA [m]    6.1 [°C]    1234 SuperTag
+      23  1689133200    NA [m]    6.1 [°C]    1234 SuperTag
+      24  1689133800    NA [m]    6.1 [°C]    1234 SuperTag
+      25  1689134400    NA [m]    6.1 [°C]    1234 SuperTag
+      26  1689135000    NA [m]    6.1 [°C]    1234 SuperTag
+      27  1689135600    NA [m]    6.1 [°C]    1234 SuperTag
+      28  1689136200    NA [m]    6.1 [°C]    1234 SuperTag
+      29  1689136800    NA [m]    6.1 [°C]    1234 SuperTag
+      30  1689137400    NA [m]    6.1 [°C]    1234 SuperTag
+      31  1689138000    NA [m]    6.1 [°C]    1234 SuperTag
+      32  1689138600    NA [m]    6.1 [°C]    1234 SuperTag
+      33  1689139200    NA [m]    6.1 [°C]    1234 SuperTag
+      34  1689139800    NA [m]    6.1 [°C]    1234 SuperTag
+      35  1689140400    NA [m]    6.1 [°C]    1234 SuperTag
+      36  1689141000    NA [m]    6.1 [°C]    1234 SuperTag
+      37  1689141600    NA [m]    6.1 [°C]    1234 SuperTag
+      38  1689142200    NA [m]    6.1 [°C]    1234 SuperTag
+      39  1689142800    NA [m]    6.1 [°C]    1234 SuperTag
+      40  1689143400    NA [m]    6.1 [°C]    1234 SuperTag
+      41  1689144000    NA [m]    6.1 [°C]    1234 SuperTag
+      42  1689144600    NA [m]    6.1 [°C]    1234 SuperTag
+      43  1689145200    NA [m]    6.1 [°C]    1234 SuperTag
+      44  1689145800    NA [m]    6.1 [°C]    1234 SuperTag
+      45  1689146400    NA [m]    6.1 [°C]    1234 SuperTag
+      46  1689147000    NA [m]    6.1 [°C]    1234 SuperTag
+      47  1689147600    NA [m]    6.1 [°C]    1234 SuperTag
+      48  1689148200    NA [m]    6.1 [°C]    1234 SuperTag
+      49  1689148800 396.5 [m]    6.1 [°C]    1234 SuperTag
+      50  1689149400 396.5 [m]    6.1 [°C]    1234 SuperTag
+      51  1689150000 454.5 [m]    6.1 [°C]    1234 SuperTag
+      52  1689150600 454.5 [m]    6.1 [°C]    1234 SuperTag
+      53  1689151200 425.5 [m]    6.1 [°C]    1234 SuperTag
+      54  1689151800 454.5 [m]    6.1 [°C]    1234 SuperTag
+      55  1689152400 483.0 [m]    6.1 [°C]    1234 SuperTag
+      56  1689153000 425.5 [m]    6.1 [°C]    1234 SuperTag
+      57  1689153600 375.0 [m]    6.1 [°C]    1234 SuperTag
+      58  1689154200 454.5 [m]    6.1 [°C]    1234 SuperTag
+      59  1689154800 526.5 [m]    6.1 [°C]    1234 SuperTag
+      60  1689155400 425.5 [m]    6.1 [°C]    1234 SuperTag
+      61  1689156000 396.5 [m]    6.1 [°C]    1234 SuperTag
+      62  1689156600 396.5 [m]    6.1 [°C]    1234 SuperTag
+      63  1689157200 526.5 [m]    6.1 [°C]    1234 SuperTag
+      64  1689157800 526.5 [m]    6.1 [°C]    1234 SuperTag
+      65  1689158400 526.5 [m]    6.1 [°C]    1234 SuperTag
+      66  1689159000 425.5 [m]    6.1 [°C]    1234 SuperTag
+      67  1689159600 396.5 [m]    6.1 [°C]    1234 SuperTag
+      68  1689160200 396.5 [m]    6.1 [°C]    1234 SuperTag
+      69  1689160800 425.5 [m]    6.1 [°C]    1234 SuperTag
+      70  1689161400 396.5 [m]    6.1 [°C]    1234 SuperTag
+      71  1689162000 454.5 [m]    6.1 [°C]    1234 SuperTag
+      72  1689162600 526.5 [m]    6.1 [°C]    1234 SuperTag
+      73  1689163200 584.0 [m]    6.1 [°C]    1234 SuperTag
+      74  1689163800 584.0 [m]    6.1 [°C]    1234 SuperTag
+      75  1689164400 526.5 [m]    6.1 [°C]    1234 SuperTag
+      76  1689165000 526.5 [m]    6.1 [°C]    1234 SuperTag
+      77  1689165600 526.5 [m]    6.1 [°C]    1234 SuperTag
+      78  1689166200 454.5 [m]    6.1 [°C]    1234 SuperTag
+      79  1689166800 425.5 [m]    6.1 [°C]    1234 SuperTag
+      80  1689167400 360.5 [m]    6.1 [°C]    1234 SuperTag
+      81  1689168000 332.0 [m]    6.1 [°C]    1234 SuperTag
+      82  1689168600 332.0 [m]    6.1 [°C]    1234 SuperTag
+      83  1689169200 360.5 [m]    6.1 [°C]    1234 SuperTag
+      84  1689169800 346.0 [m]    6.1 [°C]    1234 SuperTag
+      85  1689170400 346.0 [m]    6.1 [°C]    1234 SuperTag
+      86  1689171000 396.5 [m]    6.1 [°C]    1234 SuperTag
+      87  1689171600 425.5 [m]    6.1 [°C]    1234 SuperTag
+      88  1689172200 454.5 [m]    6.1 [°C]    1234 SuperTag
+      89  1689172800 454.5 [m]    6.1 [°C]    1234 SuperTag
+      90  1689173400 483.0 [m]    6.1 [°C]    1234 SuperTag
+      91  1689174000 526.5 [m]    6.1 [°C]    1234 SuperTag
+      92  1689174600 526.5 [m]    6.1 [°C]    1234 SuperTag
+      93  1689175200 584.0 [m]    6.1 [°C]    1234 SuperTag
+      94  1689175800 700.0 [m]    6.1 [°C]    1234 SuperTag
+      95  1689176400 700.0 [m]    6.1 [°C]    1234 SuperTag
+      96  1689177000 700.0 [m]    6.1 [°C]    1234 SuperTag
+      97  1689206400 712.5 [m]    6.1 [°C]    1234 SuperTag
+      98  1689207000 766.0 [m]    6.1 [°C]    1234 SuperTag
+      99  1689207600 766.0 [m]    6.1 [°C]    1234 SuperTag
+      100 1689208200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      101 1689208800 766.0 [m]    6.1 [°C]    1234 SuperTag
+      102 1689209400 766.0 [m]    6.1 [°C]    1234 SuperTag
+      103 1689210000 712.5 [m]    6.1 [°C]    1234 SuperTag
+      104 1689210600 766.0 [m]    6.1 [°C]    1234 SuperTag
+      105 1689211200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      106 1689211800 766.0 [m]    6.1 [°C]    1234 SuperTag
+      107 1689212400 766.0 [m]    6.1 [°C]    1234 SuperTag
+      108 1689213000 766.0 [m]    6.1 [°C]    1234 SuperTag
+      109 1689213600 766.0 [m]    6.1 [°C]    1234 SuperTag
+      110 1689214200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      111 1689214800 712.5 [m]    6.1 [°C]    1234 SuperTag
+      112 1689215400 712.5 [m]    6.1 [°C]    1234 SuperTag
+      113 1689216000 712.5 [m]    6.1 [°C]    1234 SuperTag
+      114 1689216600 712.5 [m]    6.1 [°C]    1234 SuperTag
+      115 1689217200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      116 1689217800 766.0 [m]    6.1 [°C]    1234 SuperTag
+      117 1689218400 766.0 [m]    6.1 [°C]    1234 SuperTag
+      118 1689219000 766.0 [m]    6.1 [°C]    1234 SuperTag
+      119 1689219600 766.0 [m]    6.1 [°C]    1234 SuperTag
+      120 1689220200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      121 1689220800 766.0 [m]    6.1 [°C]    1234 SuperTag
+      122 1689221400 712.5 [m]    6.1 [°C]    1234 SuperTag
+      123 1689222000 766.0 [m]    6.1 [°C]    1234 SuperTag
+      124 1689222600 659.0 [m]    6.1 [°C]    1234 SuperTag
+      125 1689223200 565.5 [m]    6.1 [°C]    1234 SuperTag
+      126 1689223800 485.5 [m]    6.1 [°C]    1234 SuperTag
+      127 1689224400 485.5 [m]    6.1 [°C]    1234 SuperTag
+      128 1689225000 465.5 [m]    6.1 [°C]    1234 SuperTag
+      129 1689225600 395.0 [m]    6.1 [°C]    1234 SuperTag
+      130 1689226200 425.0 [m]    6.1 [°C]    1234 SuperTag
+      131 1689226800 512.0 [m]    6.1 [°C]    1234 SuperTag
+      132 1689227400 659.0 [m]    6.1 [°C]    1234 SuperTag
+      133 1689228000 766.0 [m]    6.1 [°C]    1234 SuperTag
+      134 1689228600 766.0 [m]    6.1 [°C]    1234 SuperTag
+      135 1689229200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      136 1689229800 766.0 [m]    6.1 [°C]    1234 SuperTag
+      137 1689230400 766.0 [m]    6.1 [°C]    1234 SuperTag
+      138 1689231000 712.5 [m]    6.1 [°C]    1234 SuperTag
+      139 1689231600 766.0 [m]    6.1 [°C]    1234 SuperTag
+      140 1689232200 766.0 [m]    6.1 [°C]    1234 SuperTag
+      141 1689232800 766.0 [m]    6.1 [°C]    1234 SuperTag
+      142 1689233400 766.0 [m]    6.1 [°C]    1234 SuperTag
+      143 1689234000 712.5 [m]    6.1 [°C]    1234 SuperTag
+      144 1689234600 712.5 [m]    6.1 [°C]    1234 SuperTag
+      145 1689264000 691.0 [m]    6.1 [°C]    1234 SuperTag
+      146 1689264600 691.0 [m]    6.1 [°C]    1234 SuperTag
+      147 1689265200 691.0 [m]    6.1 [°C]    1234 SuperTag
+      148 1689265800 691.0 [m]    6.1 [°C]    1234 SuperTag
+      149 1689266400 691.0 [m]    6.1 [°C]    1234 SuperTag
+      150 1689267000 691.0 [m]    6.1 [°C]    1234 SuperTag
+      151 1689267600 691.0 [m]    6.1 [°C]    1234 SuperTag
+      152 1689268200 691.0 [m]    6.1 [°C]    1234 SuperTag
+      153 1689268800 691.0 [m]    6.1 [°C]    1234 SuperTag
+      154 1689269400 691.0 [m]    6.1 [°C]    1234 SuperTag
+      155 1689270000 691.0 [m]    6.1 [°C]    1234 SuperTag
+      156 1689270600 616.0 [m]    6.1 [°C]    1234 SuperTag
+      157 1689271200 616.0 [m]    6.1 [°C]    1234 SuperTag
+      158 1689271800 616.0 [m]    6.1 [°C]    1234 SuperTag
+      159 1689272400 616.0 [m]    6.1 [°C]    1234 SuperTag
+      160 1689273000 616.0 [m]    6.1 [°C]    1234 SuperTag
+      161 1689273600 616.0 [m]    6.1 [°C]    1234 SuperTag
+      162 1689274200 616.0 [m]    6.1 [°C]    1234 SuperTag
+      163 1689274800 542.0 [m]    6.1 [°C]    1234 SuperTag
+      164 1689275400 542.0 [m]    6.1 [°C]    1234 SuperTag
+      165 1689276000 542.0 [m]    6.1 [°C]    1234 SuperTag
+      166 1689276600 542.0 [m]    6.1 [°C]    1234 SuperTag
+      167 1689277200 542.0 [m]    6.1 [°C]    1234 SuperTag
+      168 1689277800 542.0 [m]    6.1 [°C]    1234 SuperTag
+      169 1689278400 542.0 [m]    6.1 [°C]    1234 SuperTag
+      170 1689279000 542.0 [m]    6.1 [°C]    1234 SuperTag
+      171 1689279600 542.0 [m]    6.1 [°C]    1234 SuperTag
+      172 1689280200 412.5 [m]    6.1 [°C]    1234 SuperTag
+      173 1689280800 273.5 [m]    6.0 [°C]    1234 SuperTag
+      174 1689281400 218.0 [m]    6.1 [°C]    1234 SuperTag
+      175 1689282000 204.0 [m]    6.1 [°C]    1234 SuperTag
+      176 1689282600 301.5 [m]    6.0 [°C]    1234 SuperTag
+      177 1689283200 468.0 [m]    6.1 [°C]    1234 SuperTag
+      178 1689283800 468.0 [m]    6.1 [°C]    1234 SuperTag
+      179 1689284400 412.5 [m]    6.1 [°C]    1234 SuperTag
+      180 1689285000 468.0 [m]    6.1 [°C]    1234 SuperTag
+      181 1689285600 468.0 [m]    6.1 [°C]    1234 SuperTag
+      182 1689286200 542.0 [m]    6.1 [°C]    1234 SuperTag
+      183 1689286800 542.0 [m]    6.1 [°C]    1234 SuperTag
+      184 1689287400 542.0 [m]    6.1 [°C]    1234 SuperTag
+      185 1689288000 542.0 [m]    6.1 [°C]    1234 SuperTag
+      186 1689288600 542.0 [m]    6.1 [°C]    1234 SuperTag
+      187 1689289200 542.0 [m]    6.1 [°C]    1234 SuperTag
+      188 1689289800 542.0 [m]    6.1 [°C]    1234 SuperTag
+      189 1689290400 542.0 [m]    6.1 [°C]    1234 SuperTag
+      190 1689291000 542.0 [m]    6.1 [°C]    1234 SuperTag
+      191 1689291600 542.0 [m]    6.1 [°C]    1234 SuperTag
+      192 1689292200 542.0 [m]    6.1 [°C]    1234 SuperTag
+      193 1689292800 529.0 [m]    6.1 [°C]    1234 SuperTag
+      194 1689293400 529.0 [m]    6.1 [°C]    1234 SuperTag
+      195 1689294000 472.5 [m]    6.1 [°C]    1234 SuperTag
+      196 1689294600 472.5 [m]    6.1 [°C]    1234 SuperTag
+      197 1689295200 529.0 [m]    6.1 [°C]    1234 SuperTag
+      198 1689295800 472.5 [m]    6.1 [°C]    1234 SuperTag
+      199 1689296400 397.0 [m]    6.1 [°C]    1234 SuperTag
+      200 1689297000 359.5 [m]    6.1 [°C]    1234 SuperTag
+      201 1689297600 397.0 [m]    6.1 [°C]    1234 SuperTag
+      202 1689298200 435.0 [m]    6.1 [°C]    1234 SuperTag
+      203 1689298800 529.0 [m]    6.1 [°C]    1234 SuperTag
+      204 1689299400 604.0 [m]    6.1 [°C]    1234 SuperTag
+      205 1689300000 604.0 [m]    6.1 [°C]    1234 SuperTag
+      206 1689300600 604.0 [m]    6.1 [°C]    1234 SuperTag
+      207 1689301200 604.0 [m]    6.1 [°C]    1234 SuperTag
+      208 1689301800 679.5 [m]    6.1 [°C]    1234 SuperTag
+      209 1689302400 679.5 [m]    6.1 [°C]    1234 SuperTag
+      210 1689303000 679.5 [m]    6.1 [°C]    1234 SuperTag
+      211 1689303600 679.5 [m]    6.1 [°C]    1234 SuperTag
+      212 1689304200 679.5 [m]    6.1 [°C]    1234 SuperTag
+      213 1689304800 679.5 [m]    6.1 [°C]    1234 SuperTag
+      214 1689305400 604.0 [m]    6.1 [°C]    1234 SuperTag
+      215 1689306000 397.0 [m]    6.1 [°C]    1234 SuperTag
+      216 1689306600 679.5 [m]    6.1 [°C]    1234 SuperTag
+      217 1689307200 754.5 [m]    6.1 [°C]    1234 SuperTag
+      218 1689307800 754.5 [m]    6.1 [°C]    1234 SuperTag
+      219 1689308400 754.5 [m]    6.1 [°C]    1234 SuperTag
+      220 1689309000 754.5 [m]    6.1 [°C]    1234 SuperTag
+      221 1689309600 754.5 [m]    6.1 [°C]    1234 SuperTag
+      222 1689310200 754.5 [m]    6.1 [°C]    1234 SuperTag
+      223 1689310800 754.5 [m]    6.1 [°C]    1234 SuperTag
+      224 1689311400 754.5 [m]    6.1 [°C]    1234 SuperTag
+      225 1689312000 754.5 [m]    6.1 [°C]    1234 SuperTag
+      226 1689312600 754.5 [m]    6.1 [°C]    1234 SuperTag
+      227 1689313200 529.0 [m]    6.1 [°C]    1234 SuperTag
+      228 1689313800 251.5 [m]    6.0 [°C]    1234 SuperTag
+      229 1689314400 529.0 [m]    6.1 [°C]    1234 SuperTag
+      230 1689315000 754.5 [m]    6.1 [°C]    1234 SuperTag
+      231 1689315600 754.5 [m]    6.1 [°C]    1234 SuperTag
+      232 1689316200 754.5 [m]    6.1 [°C]    1234 SuperTag
+      233 1689316800 754.5 [m]    6.1 [°C]    1234 SuperTag
+      234 1689317400 754.5 [m]    6.1 [°C]    1234 SuperTag
+      235 1689318000 754.5 [m]    6.1 [°C]    1234 SuperTag
+      236 1689318600 754.5 [m]    6.1 [°C]    1234 SuperTag
+      237 1689319200 754.5 [m]    6.1 [°C]    1234 SuperTag
+      238 1689319800 754.5 [m]    6.1 [°C]    1234 SuperTag
+      239 1689320400 754.5 [m]    6.1 [°C]    1234 SuperTag
+      240 1689321000 754.5 [m]    6.1 [°C]    1234 SuperTag
+      241 1689321600 760.5 [m]    6.1 [°C]    1234 SuperTag
+      242 1689322200 760.5 [m]    6.1 [°C]    1234 SuperTag
+      243 1689322800 760.5 [m]    6.1 [°C]    1234 SuperTag
+      244 1689323400 760.5 [m]    6.1 [°C]    1234 SuperTag
+      245 1689324000 760.5 [m]    6.1 [°C]    1234 SuperTag
+      246 1689324600 760.5 [m]    6.1 [°C]    1234 SuperTag
+      247 1689325200 760.5 [m]    6.1 [°C]    1234 SuperTag
+      248 1689325800 760.5 [m]    6.1 [°C]    1234 SuperTag
+      249 1689326400 632.0 [m]    6.1 [°C]    1234 SuperTag
+      250 1689327000 488.0 [m]    6.1 [°C]    1234 SuperTag
+      251 1689327600 456.0 [m]    6.1 [°C]    1234 SuperTag
+      252 1689328200 519.5 [m]    6.1 [°C]    1234 SuperTag
+      253 1689328800 488.0 [m]    6.1 [°C]    1234 SuperTag
+      254 1689329400 456.0 [m]    6.1 [°C]    1234 SuperTag
+      255 1689330000 488.0 [m]    6.1 [°C]    1234 SuperTag
+      256 1689330600 456.0 [m]    6.1 [°C]    1234 SuperTag
+      257 1689331200 456.0 [m]    6.1 [°C]    1234 SuperTag
+      258 1689331800 568.0 [m]    6.1 [°C]    1234 SuperTag
+      259 1689332400 632.0 [m]    6.1 [°C]    1234 SuperTag
+      260 1689333000 760.5 [m]    6.1 [°C]    1234 SuperTag
+      261 1689333600 760.5 [m]    6.1 [°C]    1234 SuperTag
+      262 1689334200 760.5 [m]    6.1 [°C]    1234 SuperTag
+      263 1689334800 696.0 [m]    6.1 [°C]    1234 SuperTag
+      264 1689335400 696.0 [m]    6.1 [°C]    1234 SuperTag
+      265 1689336000 632.0 [m]    6.1 [°C]    1234 SuperTag
+      266 1689336600 568.0 [m]    6.1 [°C]    1234 SuperTag
+      267 1689337200 519.5 [m]    6.1 [°C]    1234 SuperTag
+      268 1689337800 423.5 [m]    6.1 [°C]    1234 SuperTag
+      269 1689338400 456.0 [m]    6.1 [°C]    1234 SuperTag
+      270 1689339000 423.5 [m]    6.1 [°C]    1234 SuperTag
+      271 1689339600 367.5 [m]    6.1 [°C]    1234 SuperTag
+      272 1689340200 331.5 [m]    6.1 [°C]    1234 SuperTag
+      273 1689340800 323.5 [m]    6.0 [°C]    1234 SuperTag
+      274 1689341400 423.5 [m]    6.1 [°C]    1234 SuperTag
+      275 1689342000 568.0 [m]    6.1 [°C]    1234 SuperTag
+      276 1689342600 760.5 [m]    6.1 [°C]    1234 SuperTag
+      277 1689343200 760.5 [m]    6.1 [°C]    1234 SuperTag
+      278 1689343800 760.5 [m]    6.1 [°C]    1234 SuperTag
+      279 1689344400 760.5 [m]    6.1 [°C]    1234 SuperTag
+      280 1689345000 760.5 [m]    6.1 [°C]    1234 SuperTag
+      281 1689345600 760.5 [m]    6.1 [°C]    1234 SuperTag
+      282 1689346200 760.5 [m]    6.1 [°C]    1234 SuperTag
+      283 1689346800 760.5 [m]    6.1 [°C]    1234 SuperTag
+      284 1689347400 760.5 [m]    6.1 [°C]    1234 SuperTag
+      285 1689348000 760.5 [m]    6.1 [°C]    1234 SuperTag
+      286 1689348600 760.5 [m]    6.1 [°C]    1234 SuperTag
+      287 1689349200 760.5 [m]    6.1 [°C]    1234 SuperTag
+      288 1689349800 760.5 [m]    6.1 [°C]    1234 SuperTag
+      289 1689350400 774.5 [m]     NA [°C]    1234 SuperTag
+      290 1689351000 774.5 [m]     NA [°C]    1234 SuperTag
+      291 1689351600 774.5 [m]     NA [°C]    1234 SuperTag
+      292 1689352200 774.5 [m]     NA [°C]    1234 SuperTag
+      293 1689352800 774.5 [m]     NA [°C]    1234 SuperTag
+      294 1689353400 740.0 [m]     NA [°C]    1234 SuperTag
+      295 1689354000 646.5 [m]     NA [°C]    1234 SuperTag
+      296 1689354600 740.0 [m]     NA [°C]    1234 SuperTag
+      297 1689355200 774.5 [m]     NA [°C]    1234 SuperTag
+      298 1689355800 774.5 [m]     NA [°C]    1234 SuperTag
+      299 1689356400 774.5 [m]     NA [°C]    1234 SuperTag
+      300 1689357000 774.5 [m]     NA [°C]    1234 SuperTag
+      301 1689357600 774.5 [m]     NA [°C]    1234 SuperTag
+      302 1689358200 774.5 [m]     NA [°C]    1234 SuperTag
+      303 1689358800 774.5 [m]     NA [°C]    1234 SuperTag
+      304 1689359400 774.5 [m]     NA [°C]    1234 SuperTag
+      305 1689360000 774.5 [m]     NA [°C]    1234 SuperTag
+      306 1689360600 774.5 [m]     NA [°C]    1234 SuperTag
+      307 1689361200 774.5 [m]     NA [°C]    1234 SuperTag
+      308 1689361800 774.5 [m]     NA [°C]    1234 SuperTag
+      309 1689362400 774.5 [m]     NA [°C]    1234 SuperTag
+      310 1689363000 774.5 [m]     NA [°C]    1234 SuperTag
+      311 1689363600 774.5 [m]     NA [°C]    1234 SuperTag
+      312 1689364200 774.5 [m]     NA [°C]    1234 SuperTag
+      313 1689364800 774.5 [m]     NA [°C]    1234 SuperTag
+      314 1689365400 672.0 [m]     NA [°C]    1234 SuperTag
+      315 1689366000 542.0 [m]     NA [°C]    1234 SuperTag
+      316 1689366600 557.0 [m]     NA [°C]    1234 SuperTag
+      317 1689367200 706.0 [m]     NA [°C]    1234 SuperTag
+      318 1689367800 774.5 [m]     NA [°C]    1234 SuperTag
+      319 1689368400 774.5 [m]     NA [°C]    1234 SuperTag
+      320 1689369000 774.5 [m]     NA [°C]    1234 SuperTag
+      321 1689369600 774.5 [m]     NA [°C]    1234 SuperTag
+      322 1689370200 774.5 [m]     NA [°C]    1234 SuperTag
+      323 1689370800 774.5 [m]     NA [°C]    1234 SuperTag
+      324 1689371400 774.5 [m]     NA [°C]    1234 SuperTag
+      325 1689372000 774.5 [m]     NA [°C]    1234 SuperTag
+      326 1689372600 740.0 [m]     NA [°C]    1234 SuperTag
+      327 1689373200 740.0 [m]     NA [°C]    1234 SuperTag
+      328 1689373800 740.0 [m]     NA [°C]    1234 SuperTag
+      329 1689374400 672.0 [m]     NA [°C]    1234 SuperTag
+      330 1689375000 672.0 [m]     NA [°C]    1234 SuperTag
+      331 1689375600 629.5 [m]     NA [°C]    1234 SuperTag
+      332 1689376200 706.0 [m]     NA [°C]    1234 SuperTag
+      333 1689376800 774.5 [m]     NA [°C]    1234 SuperTag
+      334 1689377400 740.0 [m]     NA [°C]    1234 SuperTag
+      335 1689378000 740.0 [m]     NA [°C]    1234 SuperTag
+      336 1689378600 740.0 [m]     NA [°C]    1234 SuperTag
 
 ---
 
     Code
       decode_op[["summary"]]
     Output
-        START_TIME   END_TIME MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP TAG_ID TAG_TYPE
-      1 1689120000 1689148800    NA [m]    NA [m] 5.9 [°C] 6.2 [°C]   1234 SuperTag
-      2 1689148800 1689177600 295.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]   1234 SuperTag
-      3 1689206400 1689235200 391.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]   1234 SuperTag
-      4 1689264000 1689292800 171.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]   1234 SuperTag
-      5 1689292800 1689321600 227.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]   1234 SuperTag
-      6 1689321600 1689350400 311.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]   1234 SuperTag
-      7 1689350400 1689379200 535.5 [m]   792 [m]  NA [°C]  NA [°C]   1234 SuperTag
+        START_TIME   END_TIME MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP TAG_NUM TAG_TYPE
+      1 1689120000 1689148800    NA [m]    NA [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
+      2 1689148800 1689177600 295.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
+      3 1689206400 1689235200 391.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
+      4 1689264000 1689292800 171.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
+      5 1689292800 1689321600 227.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
+      6 1689321600 1689350400 311.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
+      7 1689350400 1689379200 535.5 [m]   792 [m]  NA [°C]  NA [°C]    1234 SuperTag
 
