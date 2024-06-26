@@ -316,15 +316,32 @@ Identifier_WildlifeComputers_MiniPAT =
       )
   )
 
-#' Identifier - Desert Star SeaTag MOD tags
-#' @export Identifier_DesertStar_SeaTagMOD
-Identifier_DesertStar_SeaTagMOD =
+#' Identifier - Desert Star SeaTag MOD tags - Directory of DesertStar raw datafiles (containing data from many tags)
+#' @export Identifier_DesertStar_SeaTagMOD_DIRECTORY
+Identifier_DesertStar_SeaTagMOD_DIRECTORY =
   Identifier(
     conditions =
       list(
         Condition(
-          condition = function(d) check_for_files(d, "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv"),
+          condition = function(d) check_for_files(d, "\\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv", n = length(list.files(d))),
           message = ".csv data file missing or mislabeled. Should match pattern: \\D*_ADS_\\d\\d\\d\\d_\\d*_\\d*_.*\\.csv"
+        )
+      )
+  )
+
+#' Identifier - Desert Star SeaTag MOD tags - Directory containing data from a single tag
+#' @export Identifier_DesertStar_SeaTagMOD_SINGLETAG
+Identifier_DesertStar_SeaTagMOD_SINGLETAG =
+  Identifier(
+    conditions =
+      list(
+        Condition(
+          condition = function(d) check_for_files(d, "\\d*_\\D*\\.csv"),
+          message = ".csv data file missing or mislabeled. Should match pattern: \\d*_\\D*\\.csv"
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "\\d*_\\D*\\.csv", n=length(list.files(d))),
+          message = "Unexpected files present in directory, should be one .csv file for each data type. Each .csv file should be named according to the pattern: <tag_id>_<data_type>.csv"
         )
       )
   )
