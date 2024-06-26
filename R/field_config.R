@@ -375,7 +375,7 @@ USER_INPUT_FIELDS =
       list(
         TAG_ID_FIELD =
           Field(
-            name = "tag_id"
+            name = "tag_num"
           ),
         TAG_TYPE_FIELD =
           Field(
@@ -928,7 +928,17 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
             name = "date(dd/mm/yyy)/time",
             trans_fn =
               function(v, ...) {
-                as.POSIXct(v, format = "%m/%d/%Y %H:%M")
+                # Because of how the DesertStar data is organized, and how we parse it, the timestamp field ends up getting parsed TWICE, with different formats each time. This will allow the package to read the stamps both times
+                lubridate::parse_date_time(
+                  x =
+                    v,
+                  orders =
+                    c(
+                      "%m/%d/%Y %H:%M",
+                      "%Y-%m-%d %H:%M:%S",
+                      "%Y-%m-%d"
+                    )
+                )
               }
           ),
         TAG_ID_FIELD =
@@ -968,25 +978,25 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
         ACCELERATION_X_FIELD =
           Field(
             name = "accelX(G)",
-            units = "G",
+            units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_Y_FIELD =
           Field(
             name = "accelY(G)",
-            units = "G",
+            units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_Z_FIELD =
           Field(
             name = "accelZ(G)",
-            units = "G",
+            units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_DELTA_MAGNITUDE_FIELD =
           Field(
             name = "accel delta mag(G)",
-            units = "G",
+            units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           )
       )
