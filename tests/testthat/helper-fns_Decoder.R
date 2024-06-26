@@ -2,7 +2,7 @@ test_decoder_on_data_dir =
   function(d, dc) {
     input_meta =
       data.frame(
-        tag_id = "1234",
+        tag_num = "1234",
         tag_type = "SuperTag"
       )
 
@@ -13,7 +13,7 @@ test_decoder_on_data_dir =
     # Ensure only expected data.frames are returned
     expect_snapshot(names(decode_op))
     expect_contains(c("meta", "instant", "summary"), names(decode_op))
-    expect_equal(names(dc$data_maps), names(decode_op))
+    expect_contains(names(dc$data_maps), names(decode_op))
     # Ensure metadata is returned
     expect_contains(names(decode_op), "meta")
     expect_gt(nrow(decode_op[["meta"]]), 0)

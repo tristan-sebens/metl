@@ -91,7 +91,7 @@ test_that(
     # Synthesize the requsite input data
     input =
       data.frame(
-        tag_id = "1234",
+        tag_num = "1234",
         tag_type = "SuperTag"
       )
 
@@ -181,7 +181,7 @@ test_that(
 
     input_meta =
       data.frame(
-        tag_id = "1234",
+        tag_num = "1234",
         tag_type = "SuperTag"
       )
 
