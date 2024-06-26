@@ -133,8 +133,44 @@ setRefClass(
 
           # For each missing field which is available in the second DataMap, add the appropriate data
           for(f_ in available_fields) {
-            dat1[dat1_op_fm$field_list[[f_]]$name] =
-              dat2[dat2_op_fm$field_list[[f_]]$name]
+            dat1_field_name = dat1_op_fm$field_list[[f_]]$name
+            dat2_field_name = dat2_op_fm$field_list[[f_]]$name
+
+            incoming_dat = dat2[[dat2_field_name]]
+
+            if(length(incoming_dat) == 1) {
+              # If there is only a single value being brought in from dat2, we can perform a direct insert
+              dat1[[dat1_field_name]] = incoming_dat
+            } else {
+              # If the incoming data has multiple values, then we need to check if dat1 also has multiple values
+              if(nrow(dat1) == 1) {
+                if(length(unique(incoming_dat)) == 1) {
+                  # If the vector is composed entirely of repeats of a single value, then the expanded dataframe would be meaningless and we can truncate it here
+                  dat1[dat1_field_name] = unique(incoming_dat)
+                } else {
+                  # If there are multiple unique values, then we can perform a full join
+                  dplyr::cross_join(
+                    dat1,
+                    incoming_dat
+                  )
+                }
+              } else {
+                # If both dat1 and incoming_data have multiple rows, then the only case for which behavior is defined is if they have the same number of rows
+                if(nrow(dat1) == length(incoming_dat)) {
+                  dat1[[dat1_field_name]] = incoming_dat
+                } else {
+                  throw_error(
+                    paste0(
+                      "Error while adding data from ",
+                      dat2_field_name,
+                      " to ",
+                      dat1_field_name,
+                      ". Both fields have multiple rows, but not the same number of rows, so behavior is undefined."
+                    )
+                  )
+                }
+              }
+            }
           }
 
           return(dat1)
@@ -182,10 +218,8 @@ setRefClass(
           if(nrow(dat) == 0) return()
           # Generate a temporary table name
           temp_table_name =
-            # Ensure that the table name is properly quoted
-            DBI::dbQuoteIdentifier(
-              con,
-              # Generate a name for the temporary table by appending a random string
+            # Generate a name for the temporary table by appending a random string
+            dbplyr::ident(
               paste0(
                 output_data_field_map$table,
                 "_temp_",
@@ -195,8 +229,7 @@ setRefClass(
 
           # Generate a properly formatted identifier of the output table
           output_table_name =
-            DBI::dbQuoteIdentifier(
-              con,
+            dbplyr::ident(
               output_data_field_map$table
             )
 
@@ -221,12 +254,13 @@ setRefClass(
                     # my code. For now, I'm just wrapping the call in this
                     # suppression clause to prevent the message from messing up the
                     # package output.
-                    suppressMessages(
-                      {
+                    # suppressMessages(
+                    #   {
                         # Copy data to temporary table
                         dbplyr::db_copy_to(
                           con = con,
-                          table = dbplyr::ident(temp_table_name),
+                          # table = dbplyr::ident(temp_table_name),
+                          table = temp_table_name,
                           # All of these calls also produce the message, so it's unclear what to do to stop it
                           # table = dbplyr::sql(temp_table_name),
                           # table = I(temp_table_name),
@@ -246,8 +280,8 @@ setRefClass(
                           # EXPLICITLY delete the table when we're done with it.
                           temporary = F
                         )
-                      }
-                    )
+                    #   }
+                    # )
                   },
 
                   error =
@@ -271,8 +305,8 @@ setRefClass(
                           # Build the upsert sql statement
                           dbplyr::sql_query_upsert(
                             con = con,
-                            table = dplyr::ident(output_table_name),
-                            from = dplyr::ident(temp_table_name),
+                            table = output_table_name,
+                            from = temp_table_name,
                             # Fields used to find unique records
                             by = id_fs,
                             # Fields to be updated (non-id fields)
@@ -342,8 +376,11 @@ setRefClass(
                 }
             )
 
-          data_maps_expanded =
-            append(data_maps, list("input" = DataMap_UserInput))
+          if(!nrow(meta) == 0) {
+            data_maps_expanded = append(data_maps, list("input" = DataMap_UserInput))
+          } else {
+            data_maps_expanded = data_maps
+          }
 
           # Initialize an empty list to hold data
           decoded_data_list = list()
@@ -361,16 +398,20 @@ setRefClass(
             decoded_data_list[[data_type]] = decoded_data
           }
 
-          # Complete the dataframes with fields from each other as necessary
-          completed_data =
-            complete_dataframes(
-              dfs =
-                decoded_data_list,
-              ip_fms =
-                lapply(data_maps_expanded[names(data_maps_expanded)], function(dm) dm$input_data_field_map),
-              op_fms =
-                output_fieldmaps[names(data_maps_expanded)]
-            )
+          if(length(data_maps_expanded) > 1) {
+            # Complete the dataframes with fields from each other as necessary
+            completed_data =
+              complete_dataframes(
+                dfs =
+                  decoded_data_list,
+                ip_fms =
+                  lapply(data_maps_expanded[names(data_maps_expanded)], function(dm) dm$input_data_field_map),
+                op_fms =
+                  output_fieldmaps[names(data_maps_expanded)]
+              )
+          } else {
+            completed_data = decoded_data_list
+          }
 
           names(completed_data) = names(decoded_data_list)
 
