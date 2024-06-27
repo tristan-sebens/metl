@@ -28,7 +28,7 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Config/testthat/parallel: true
+Config/testthat/parallel: false
 Config/testthat/start-first: Decoder, DataMapConfig, DataMap_Base
 Collate:
     'util.R'
@@ -38,7 +38,7 @@ Collate:
     'decoder.R'
     'const_config.R'
     'field_config.R'
-    'datamap_config.r'
+    'datamap_config.R'
     'identifier_config.R'
     'decoder_config.R'
 License: GPL (>= 3)
