@@ -70,6 +70,17 @@ test_that(
 )
 
 
+test_that(
+  "FieldMap::get_field_names",
+  {
+    t_fm1 = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+
+    # Get the names of the fields from fm1
+    expect_snapshot(t_fm1$get_field_names())
+
+  }
+)
+
 
 
 

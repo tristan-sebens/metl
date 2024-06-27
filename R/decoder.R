@@ -62,12 +62,8 @@ setRefClass(
           dat_et =
             dm$transform(dat_e, op_fm)
 
-          # Augment transformed data
-          dat_eta =
-            dm$augment(dat_et, op_fm)
-
           # Return transformed data
-          return(dat_eta)
+          return(dat_et)
         },
 
       add_missing_fields =

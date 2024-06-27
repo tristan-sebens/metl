@@ -20,7 +20,6 @@ Field =
         data_type = "character", # Data type to be used for this field in the DB
         trans_fn = "function", # Function which will be applied to this field individually. Applied before all other transformations.
         uid = "character", # UID generated on instantiation
-        user_specified = "logical", # Indicates that this field must be input by the user
         independent = "logical" # Indicates that this field generates its own value
       ),
     methods =
@@ -30,22 +29,15 @@ Field =
             ...,
             alternate_names = list(),
             trans_fn = function(v, ...) {v},
-            user_specified = F,
             independent = F
           ) {
             callSuper(
               ...,
               alternate_names = alternate_names,
               trans_fn = trans_fn,
-              uid = uuid::UUIDgenerate(),
-              user_specified = user_specified,
               independent = independent
             )
-          },
-
-        refresh =
-          function(...) {
-            "Placeholder function that can be used to refresh reference fields"
+            uid <<- uuid::UUIDgenerate()
           }
       )
   )
@@ -83,14 +75,6 @@ FieldMap =
                     return(l)
                   }
               )
-          },
-
-        refresh =
-          function(...) {
-            "Call the `refresh` function on all internal Field objects. Useful for updating reference Fields"
-            for (field in .self$field_list) {
-              field$refresh(...)
-            }
           },
 
         # Helper function which generates a list of the Fields shared by this
@@ -143,15 +127,6 @@ FieldMap =
                 }
               ) %>%
               unlist(use.names = F)
-          },
-
-        get_input_fields =
-          function() {
-            "Get any user-input Field objects as named list"
-            Filter(
-              function(field) {field$user_specified},
-              .self$field_list
-            )
           },
 
         get_non_input_fields =

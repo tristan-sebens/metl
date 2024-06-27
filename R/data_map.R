@@ -153,51 +153,6 @@ setRefClass(
         function(dat, output_data_field_map) {
           "Transform extracted data, as dictated by the input/output `FieldMap` objects"
           return(.self$transform_fields(dat, output_data_field_map))
-        },
-
-      augment =
-        function(dat, output_data_field_map) {
-          "Augment the transformed dataset with any missing data"
-          # Collect any fields which are flagged as input fields
-          input_fields = output_data_field_map$get_input_fields()
-          title_fields = output_data_field_map$get_non_input_fields()
-          # Collect any fields flagged as auto-generating fields
-          auto_fields = output_data_field_map$get_independent_fields()
-          # Generate values for any independent fields in the dataframe
-          for (field in names(auto_fields)) {
-            op_field_obj = output_data_field_map$field_list[[field]]
-            op_field_name = op_field_obj$name
-            op_field_value = op_field_obj$value_fn(dat)
-            dat[[op_field_name]] = op_field_value
-          }
-
-          # If there are no Fields which require input, return the dataframe as is
-          if (length(input_fields) == 0 ) return(dat)
-
-          # Create the input form
-          input_form =
-            FieldInputForm()
-
-          # Prompt the user for the necessary fields, then collect the entered values
-          input_vals =
-            input_form$get_field_values(
-              title_fields = title_fields,
-              input_fields = input_fields,
-              dat = dat
-            )
-
-          # Add the input values to the data.frame
-          for (field in names(input_fields)) {
-            op_field_obj = output_data_field_map$field_list[[field]]
-            op_field_name = op_field_obj$name
-            op_field_value = input_vals[[field]]
-            # Perform any field-specific transformation
-            op_field_value_trans = op_field_obj$trans_fn(op_field_value, dat)
-            dat[[op_field_name]] = op_field_value_trans
-          }
-
-          # Return the augmented data.frame
-          return(dat)
         }
     )
 )
