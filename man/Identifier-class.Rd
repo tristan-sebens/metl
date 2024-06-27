@@ -8,4 +8,15 @@
 \description{
 Base class. Not intended to be implemented directly.
 }
+\section{Methods}{
+
+\describe{
+\item{\code{failed_condition_messages(d)}}{Returns a list of all messages from conditions which failed}
+
+\item{\code{failed_conditions(d)}}{Returns a list of all conditions which failed}
+
+\item{\code{identify(d)}}{Returns TRUE if all Conditions pass, otherwise returns FALSE}
+
+\item{\code{valid(d)}}{Returns TRUE if all non-optional Conditions pass}
+}}
 
