@@ -49,3 +49,127 @@ Field =
           }
       )
   )
+
+
+#' FieldMap class.
+#'
+#' Collection of Field objects, with some added functionality to facilitate the convenient use of said Field objects both within the package and when interfacing with a DB
+#'
+#' @field fields Field. The Field objects contained within this map/
+#'
+#' @export FieldMap
+FieldMap =
+  setRefClass(
+    "FieldMap",
+    fields =
+      list(
+        # The DB table this FieldMap represents
+        table = "character",
+        # The list of fields
+        field_list = "list"
+      ),
+    methods =
+      list(
+        # Generate a field data type list, in the format expected by the DBI package
+        generate_data_type_list =
+          function() {
+            .self$field_list %>%
+              purrr::reduce(
+                .init =
+                  list(),
+                .f =
+                  function(l, f) {
+                    l[f$name] = f$data_type
+                    return(l)
+                  }
+              )
+          },
+
+        refresh =
+          function(...) {
+            "Call the `refresh` function on all internal Field objects. Useful for updating reference Fields"
+            for (field in .self$field_list) {
+              field$refresh(...)
+            }
+          },
+
+        # Helper function which generates a list of the Fields shared by this
+        # FieldMap and the given FieldMap
+        common_fields =
+          function(fm) {
+            "Generates a list of the Fields shared by this FieldMap and the given FieldMap"
+            .self$field_list[names(.self$field_list) %in% names(fm$field_list)]
+          },
+
+        # Helper function which generates a list of the Fields NOT shared by this
+        # FieldMap and the given FieldMap
+        uncommon_fields =
+          function(fm) {
+            "Generate a list of the Fields NOT shared by this FieldMap and the given FieldMap"
+            .self$field_list[!names(.self$field_list) %in% names(fm$field_list)]
+          },
+
+        # Return the subset of Fields in this FieldMap that are marked as ID fields
+        get_id_fields =
+          function() {
+            "Return the subset of Fields in this FieldMap that are marked as ID fields"
+            Filter(
+              function(f) {f$id_field},
+              .self$field_list
+            )
+          },
+
+        # Get the names of the ID fields in this FieldMap
+        get_id_field_names =
+          function() {
+            "Get the names of the ID fields in this FieldMap"
+            .self$get_id_fields() %>%
+              lapply(
+                function(f) {
+                  f$name
+                }
+              ) %>%
+              unlist(use.names = F)
+          },
+
+        # Get the names of the ID fields in this FieldMap
+        get_field_names =
+          function() {
+            "Get the names of the ID fields in this FieldMap"
+            .self$field_list %>%
+              lapply(
+                function(f) {
+                  f$name
+                }
+              ) %>%
+              unlist(use.names = F)
+          },
+
+        get_input_fields =
+          function() {
+            "Get any user-input Field objects as named list"
+            Filter(
+              function(field) {field$user_specified},
+              .self$field_list
+            )
+          },
+
+        get_non_input_fields =
+          function() {
+            "Get all non-user-input Field objects as named list"
+            Filter(
+              function(field) {!field$user_specified},
+              .self$field_list
+            )
+          },
+
+        get_independent_fields =
+          function() {
+            "Get all independent Field objects as a named list"
+            Filter(
+              function(field) {field$independent},
+              .self$field_list
+            )
+          }
+      )
+  )
