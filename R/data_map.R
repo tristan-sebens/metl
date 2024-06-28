@@ -113,23 +113,6 @@ setRefClass(
             dat__[output_field_obj_$name] = output_field_dat_
           }
 
-          # Check to make sure that all of the expected fields are present in the transformed dataset
-          expected_fields = unlist(lapply(output_data_field_map$field_list[common_fields], function(f) {f$name}), use.names = F)
-          if(any(!expected_fields %in% names(dat__))) {
-            .self$throw_error(
-              msg =
-                paste0(
-                  c(
-                   "Error during transformation. The following fields are missing from the transformed dataset:",
-                   setdiff(expected_fields, names(dat__)),
-                   "Check that the field names are correctly configured for the input data."
-                  ),
-                  collapse = "\n"
-                )
-            )
-          }
-
-
           return(
             dat__[
               lapply(
