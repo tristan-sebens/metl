@@ -64,8 +64,8 @@ FieldMap =
       list(
         # Generate a field data type list, in the format expected by the DBI package
         generate_data_type_list =
-          function() {
-            .self$field_list %>%
+          function(field_list_ = .self$field_list) {
+            field_list_ %>%
               purrr::reduce(
                 .init =
                   list(),
@@ -127,15 +127,6 @@ FieldMap =
                 }
               ) %>%
               unlist(use.names = F)
-          },
-
-        get_non_input_fields =
-          function() {
-            "Get all non-user-input Field objects as named list"
-            Filter(
-              function(field) {!field$user_specified},
-              .self$field_list
-            )
           },
 
         get_independent_fields =
