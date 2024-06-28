@@ -10,7 +10,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_StarOddi_DST_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('so', 'dst')
@@ -24,7 +24,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_StarOddi_DST_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('so', 'dst')
@@ -41,7 +41,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_StarOddi_DST_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('so', 'dst_mf')
@@ -55,7 +55,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_StarOddi_DST_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('so', 'dst_mf')
@@ -72,7 +72,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_StarOddi_DSTmagnetic_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('so', 'dst_mag')
@@ -86,7 +86,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_StarOddi_DSTmagnetic_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('so', 'dst_mag')

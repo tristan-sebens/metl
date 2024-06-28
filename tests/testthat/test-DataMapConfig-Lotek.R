@@ -10,7 +10,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1000.1100.1250_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('lt', 'lt_1000_1250')
@@ -24,7 +24,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1000.1100.1250_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('lt', 'lt_1000_1250')
@@ -40,7 +40,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1300_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('lt', 'lt_1300')
@@ -54,7 +54,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1300_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('lt', 'lt_1300')
@@ -70,7 +70,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1400.1800_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('lt', 'lt_1400_1800')
@@ -84,7 +84,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_Lotek_1400.1800_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('lt', 'lt_1400_1800')

@@ -11,7 +11,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('mt', 'xt_trans')
@@ -25,7 +25,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_MicrowaveTelemetry_XTag_Transmitted_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('mt', 'xt_trans')
@@ -39,7 +39,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_MicrowaveTelemetry_XTag_Transmitted_SummarySensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
         test_data_d('mt', 'xt_trans')
@@ -53,7 +53,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_MicrowaveTelemetry_XTag_Recovered_TagMetaData,
-      od_fm =
+      op_fm =
         ABLTAG_METADATA_TABLE_FIELDS,
       d =
         test_data_d('mt', 'xt_recov')
@@ -67,7 +67,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_MicrowaveTelemetry_XTag_Recovered_InstantSensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_INSTANT_TABLE_FIELDS,
       d =
         test_data_d('mt', 'xt_recov')
@@ -81,7 +81,7 @@ test_that(
     test_datamap(
       dm =
         DataMap_MicrowaveTelemetry_XTag_Recovered_SummarySensorData,
-      od_fm =
+      op_fm =
         ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
       d =
         test_data_d('mt', 'xt_recov')
