@@ -270,11 +270,28 @@ test_datamap_directory =
     dat_t_ =
       dm$transform(dat_, op_fm)
 
+    mismatched_data_types =
+      check_dat_field_types(
+        dat = dat_t_,
+        ip_fm = dm$input_data_field_map,
+        op_fm = op_fm
+      )
 
+    # Check that all of the output data is of the correct type (numeric, character, logical, etc)
+    expect(
+      ok = length(mismatched_data_types) == 0,
+      failure_message =
+        paste0(
+          c(
+            paste0("Problem in ", d),
+            "Data types of these fields does not match expected types:",
+            names(mismatched_data_types)
+          )
+        )
+    )
 
     # Test that none of the transformed fields are completely empty
     test_for_empty_fields(dat_t_, d)
-
     # Test that data is in expected form
     expect_snapshot(dat_)
     # Test that transformed data is in expected form

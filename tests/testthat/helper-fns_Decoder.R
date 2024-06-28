@@ -43,3 +43,58 @@ test_decoder_on_all_data_dirs =
       )
     }
   }
+
+# Map to indicate what function to use to compare the data in a Field based on that Field's data_type attribute
+data_type_check_fn_map =
+  list(
+    "varchar" = is.character,
+    "integer" = is.numeric,
+    "double" = is.numeric,
+    "boolean" = function(v) {is.numeric(v) & all(v %in% c(0, 1))}
+  )
+
+# Test if the data corresponding to Field `f_` matches the expected format based on the 'data_type' attribute of `f_`
+check_field_data_type =
+  function(dat, f_) {
+    check_fn_ix =
+      which(
+        stringr::str_detect(
+          f_$data_type,
+          names(data_type_check_fn_map)
+        )
+      )
+
+    return(
+      data_type_check_fn_map[[check_fn_ix]](dat[[f_$name]])
+    )
+  }
+
+# Test if all of the fields in a given data.frame have the type expected based on their output 'data_type'
+check_dat_field_types =
+  function(dat, ip_fm, op_fm) {
+    # Get the fields common to the input and output FieldMaps
+    # Further subset those fields to fields which are actually present in the data
+    fl =
+      Filter(
+        function(f) {f$name %in% names(dat)},
+        op_fm$common_fields(ip_fm)
+      )
+
+    # Check each field to see if the data in the output frame matches the type expected by the corresponding Field object
+    matches =
+      fl %>%
+      lapply(
+        function(f_) {
+          check_field_data_type(dat, f_)
+        }
+      ) %>%
+      unlist()
+
+    mismatches =
+      Filter(
+        function(m) !m,
+        matches
+      )
+
+    return(mismatches)
+  }
