@@ -12,7 +12,7 @@ ABLTAG_USER_INPUT_FIELDS =
         TAG_ID_FIELD =
           Field(
             name = "TAG_NUM",
-            data_type = "integer",
+            data_type = "varchar(8)",
             id_field = T
           ),
         TAG_TYPE_FIELD =
