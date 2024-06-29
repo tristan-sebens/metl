@@ -14,7 +14,8 @@ setRefClass(
       label = "character",
       identifier = "Identifier",
       data_maps = "list",
-      output_fieldmaps = "list"
+      output_fieldmaps = "list",
+      user_input_fieldmap = "FieldMap"
     ),
 
   methods =
@@ -28,10 +29,12 @@ setRefClass(
               "summary" = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
               "input" = ABLTAG_USER_INPUT_FIELDS
             ),
+          user_input_fieldmap = USER_INPUT_FIELDS,
           ...
         ) {
           callSuper(
             output_fieldmaps = output_fieldmaps,
+            user_input_fieldmap = user_input_fieldmap,
             ...
           )
         },
@@ -47,6 +50,17 @@ setRefClass(
               ": ",
               msg
             )
+          )
+        },
+
+      create_userinput_datamap =
+        function(meta) {
+          DataMap(
+            input_data_field_map = user_input_fieldmap,
+            extract_fn =
+              function(d) {
+                return(meta)
+              }
           )
         },
 
@@ -219,7 +233,7 @@ setRefClass(
               paste0(
                 output_data_field_map$table,
                 "_temp_",
-                stringi::stri_rand_strings(1, 12) # Random alphanumeric to avoid clobbering
+                stringi::stri_rand_strings(1, 12, pattern="[A-Za-z]") # Random alphanumeric to avoid clobbering
               )
             )
 
@@ -333,8 +347,8 @@ setRefClass(
           )
         },
 
-      decode =
-        function(d, meta) {
+      verify_data_directory =
+        function(d) {
           # Check if the given directory exists. If not, throw an appropriate error
           if(!dir.exists(d)) {
             stop("The selected directory does not exist.")
@@ -361,16 +375,15 @@ setRefClass(
           if(!identifier$valid(d)) {
             stop("The selected directory does not contain the necessary data to proceed.")
           }
+        },
+
+      decode =
+        function(d, meta) {
+          verify_data_directory(d)
 
           # Create an empty DataMap to return the user-inputted data
           DataMap_UserInput =
-            DataMap(
-              input_data_field_map = USER_INPUT_FIELDS,
-              extract_fn =
-                function(d) {
-                  return(meta)
-                }
-            )
+            create_userinput_datamap(meta)
 
           if(!nrow(meta) == 0) {
             data_maps_expanded = append(data_maps, list("input" = DataMap_UserInput))
