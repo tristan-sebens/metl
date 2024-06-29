@@ -4,7 +4,7 @@
       test_fm_1$generate_data_type_list()
     Output
       $TAG_NUM
-      [1] "integer"
+      [1] "varchar(8)"
       
       $TAG_TYPE
       [1] "varchar(2)"
@@ -145,4 +145,23 @@
       t_fm1$get_id_field_names()
     Output
       [1] "TAG_NUM"   "TAG_TYPE"  "TIMESTAMP"
+
+# FieldMap::get_field_names
+
+    Code
+      t_fm1$get_field_names()
+    Output
+       [1] "TAG_NUM"                            "TAG_TYPE"                          
+       [3] "TIMESTAMP"                          "LATITUDE"                          
+       [5] "LONGITUDE"                          "LOCATION_TYPE"                     
+       [7] "LATITUDE_N_ERROR"                   "LATITUDE_s_ERROR"                  
+       [9] "LATITUDE_U"                         "LONGITUDE_U"                       
+      [11] "LOCATION_ERROR_ELLIPSE_ORIENTATION" "LOCATION_ERROR_SEMI_MINOR_AXIS"    
+      [13] "LOCATION_ERROR_SEMI_MAJOR_AXIS"     "LOCATION_ERROR_RADIUS"             
+      [15] "PRESSURE"                           "DEPTH"                             
+      [17] "DEPTH_INCREASE_DELTA_LIMIT"         "DEPTH_DECREASE_DELTA_LIMIT"        
+      [19] "TEMPERATURE"                        "TEMP_INCREASE_DELTA_LIMIT"         
+      [21] "TEMP_DECREASE_DELTA_LIMIT"          "TILT_X"                            
+      [23] "TILT_Y"                             "TILT_Z"                            
+      [25] "INCLINATION"                        "MAGNETIC_FIELD_STRENGTH"           
 
