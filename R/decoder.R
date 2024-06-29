@@ -360,15 +360,13 @@ setRefClass(
           # directory does not match the expected structure.
           if(!identifier$identify(d))
             warning(
-              writeLines(
-                paste0(
-                  c(
-                    "The selected directory does not show the structure expected by the selected Decoder:",
-                    "",
-                    identifier$failed_condition_messages(d)
-                  ),
-                  collapse = "\n"
-                )
+              paste0(
+                c(
+                  "The selected directory does not show the structure expected by the selected Decoder:",
+                  "",
+                  identifier$failed_condition_messages(d)
+                ),
+                collapse = "\n"
               )
             )
 
