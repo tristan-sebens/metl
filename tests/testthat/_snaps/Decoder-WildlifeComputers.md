@@ -1,4 +1,4 @@
-# Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175146
+# Decoder_WildlifeComputers_BenthicSPAT -> /wc/b_sp/ss/175146
 
     Code
       names(decode_op)
@@ -1152,7 +1152,7 @@
       72 1567483200 1567490400           0 [%]      0 [1]    1234 SuperTag
       73 1567490400 1567497600           0 [%]      0 [1]    1234 SuperTag
 
-# Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175147
+# Decoder_WildlifeComputers_BenthicSPAT -> /wc/b_sp/ss/175147
 
     Code
       names(decode_op)
@@ -2525,7 +2525,7 @@
       174 1568520000 1568527200           0 [%]      0 [1]    1234 SuperTag
       175 1568527200 1568534400           0 [%]      0 [1]    1234 SuperTag
 
-# Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175157
+# Decoder_WildlifeComputers_BenthicSPAT -> /wc/b_sp/ss/175157
 
     Code
       names(decode_op)
@@ -5198,7 +5198,7 @@
       142 1566273600 1566280800           0 [%]      0 [1]    1234 SuperTag
       143 1566280800 1566288000           0 [%]      0 [1]    1234 SuperTag
 
-# Decoder | Wildlife Computers Benthic SPAT -> /wc/b_sp/ss/175158
+# Decoder_WildlifeComputers_BenthicSPAT -> /wc/b_sp/ss/175158
 
     Code
       names(decode_op)
@@ -7628,7 +7628,7 @@
       196 1566273600 1566280800           0 [%]      0 [1]    1234 SuperTag
       197 1566280800 1566288000           0 [%]      0 [1]    1234 SuperTag
 
-# Decoder | Wildlife Computers MiniPAT -> /wc/mp/ss/174898
+# Decoder_WildlifeComputers_MiniPAT -> /wc/mp/ss/174898
 
     Code
       names(decode_op)
@@ -8907,7 +8907,7 @@
       24 SuperTag
       25 SuperTag
 
-# Decoder | Wildlife Computers MiniPAT -> /wc/mp/ss/174900
+# Decoder_WildlifeComputers_MiniPAT -> /wc/mp/ss/174900
 
     Code
       names(decode_op)

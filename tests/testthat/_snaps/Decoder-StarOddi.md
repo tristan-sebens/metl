@@ -1,4 +1,4 @@
-# Decoder | StarOddi DST -> /so/dst/sf/JS7977
+# Decoder_StarOddi_DST -> /so/dst/sf/JS7977
 
     Code
       names(decode_op)
@@ -33,7 +33,7 @@
       10 1468390800.  1.1         21.7 1234    SuperTag
       # i 45,359 more rows
 
-# Decoder | StarOddi DST Magnetic -> /so/dst_mag/sf/JS923
+# Decoder_StarOddi_DSTmagnetic -> /so/dst_mag/sf/JS923
 
     Code
       names(decode_op)
@@ -70,7 +70,7 @@
       # i abbreviated name: 1: MAGNETIC_FIELD_STRENGTH
       # i 2 more variables: TAG_NUM <chr>, TAG_TYPE <chr>
 
-# Decoder | StarOddi DST Magnetic -> /so/dst_mag/sf/JS927
+# Decoder_StarOddi_DSTmagnetic -> /so/dst_mag/sf/JS927
 
     Code
       names(decode_op)

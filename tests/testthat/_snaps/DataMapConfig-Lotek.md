@@ -1,4 +1,4 @@
-# DataMap_Lotek_1000.1100.1250_TagMetaData
+# DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/lc/4071
 
     Code
       dat_
@@ -14,7 +14,7 @@
          MAKE          MODEL
       1 Lotek 1000/1100/1250
 
----
+# DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/lc/5295
 
     Code
       dat_
@@ -30,7 +30,7 @@
          MAKE          MODEL
       1 Lotek 1000/1100/1250
 
----
+# DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/1484
 
     Code
       dat_
@@ -46,7 +46,7 @@
          MAKE          MODEL
       1 Lotek 1000/1100/1250
 
----
+# DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/1486
 
     Code
       dat_
@@ -62,7 +62,7 @@
          MAKE          MODEL
       1 Lotek 1000/1100/1250
 
----
+# DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/4066
 
     Code
       dat_
@@ -78,7 +78,7 @@
          MAKE          MODEL
       1 Lotek 1000/1100/1250
 
----
+# DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/4067
 
     Code
       dat_
@@ -94,7 +94,7 @@
          MAKE          MODEL
       1 Lotek 1000/1100/1250
 
-# DataMap_Lotek_1000.1100.1250_InstantSensorData
+# DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/lc/4071
 
     Code
       dat_
@@ -306,7 +306,7 @@
       98 1084666500 0.869204 [psi] 22.30202 [°C]
       99 1084667400 0.290357 [psi] 22.27878 [°C]
 
----
+# DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/lc/5295
 
     Code
       dat_
@@ -518,7 +518,7 @@
       98 1084666500  0.08012332 [psi] 22.28393 [°C]
       99 1084667400  0.08012332 [psi] 22.26072 [°C]
 
----
+# DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/sf/1484
 
     Code
       dat_
@@ -730,7 +730,7 @@
       98 898218000  1.31997500 [psi] 20.94159 [°C]
       99 898221600  1.31997500 [psi] 21.03291 [°C]
 
----
+# DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/sf/1486
 
     Code
       dat_
@@ -942,7 +942,7 @@
       98 895539600  442.721995 [psi]  4.614017 [°C]
       99 895543200  418.681904 [psi]  4.593566 [°C]
 
----
+# DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/sf/4066
 
     Code
       dat_
@@ -1154,7 +1154,7 @@
       98 1021119300 -6.775851 [psi] 19.09711 [°C]
       99 1021120200 -6.116089 [psi] 19.03086 [°C]
 
----
+# DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/sf/4067
 
     Code
       dat_
@@ -1366,7 +1366,7 @@
       98 1021119300 -0.02271176 [psi] 11.11387 [°C]
       99 1021120200 -0.02271176 [psi] 11.11387 [°C]
 
-# DataMap_Lotek_1300_TagMetaData
+# DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/gt/2466
 
     Code
       dat_
@@ -1382,7 +1382,7 @@
          MAKE MODEL
       1 Lotek  1300
 
----
+# DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/gt/3880
 
     Code
       dat_
@@ -1398,7 +1398,7 @@
          MAKE MODEL
       1 Lotek  1300
 
----
+# DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/lc/3788
 
     Code
       dat_
@@ -1414,7 +1414,7 @@
          MAKE MODEL
       1 Lotek  1300
 
----
+# DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/sf/5712
 
     Code
       dat_
@@ -1430,7 +1430,7 @@
          MAKE MODEL
       1 Lotek  1300
 
-# DataMap_Lotek_1300_InstantSensorData
+# DataMap_Lotek_1300_InstantSensorData -> /lt/lt_1300/gt/2466
 
     Code
       dat_
@@ -1642,7 +1642,7 @@
       98 1178751120 1.450377 [psi]  21.38 [°C]
       99 1178751360 1.450377 [psi]  21.34 [°C]
 
----
+# DataMap_Lotek_1300_InstantSensorData -> /lt/lt_1300/gt/3880
 
     Code
       dat_
@@ -1854,7 +1854,7 @@
       98 1210797120  2.900755 [psi]  12.21 [°C]
       99 1210797360  1.450377 [psi]  12.01 [°C]
 
----
+# DataMap_Lotek_1300_InstantSensorData -> /lt/lt_1300/lc/3788
 
     Code
       dat_
@@ -2066,7 +2066,7 @@
       98 1212523440 -2.900755 [psi]  21.82 [°C]
       99 1212523680 -1.450377 [psi]  21.80 [°C]
 
----
+# DataMap_Lotek_1300_InstantSensorData -> /lt/lt_1300/sf/5712
 
     Code
       dat_
@@ -68748,7 +68748,7 @@
       33333 1841451020 348.090571 [psi]   5.07 [°C]
        [ reached 'max' / getOption("max.print") -- omitted 377198 rows ]
 
-# DataMap_Lotek_1400.1800_TagMetaData
+# DataMap_Lotek_1400.1800_TagMetaData -> /lt/lt_1400_1800/gt/383
 
     Code
       dat_
@@ -68764,7 +68764,7 @@
          MAKE     MODEL
       1 Lotek 1400/1800
 
----
+# DataMap_Lotek_1400.1800_TagMetaData -> /lt/lt_1400_1800/sf/1546
 
     Code
       dat_
@@ -68780,7 +68780,7 @@
          MAKE     MODEL
       1 Lotek 1400/1800
 
-# DataMap_Lotek_1400.1800_InstantSensorData
+# DataMap_Lotek_1400.1800_InstantSensorData -> /lt/lt_1400_1800/gt/383
 
     Code
       dat_
@@ -69146,7 +69146,7 @@
       116 1305568500 -1.725949 [psi]  20.14 [°C]
       117 1305568560 -2.451138 [psi]  20.14 [°C]
 
----
+# DataMap_Lotek_1400.1800_InstantSensorData -> /lt/lt_1400_1800/sf/1546
 
     Code
       dat_

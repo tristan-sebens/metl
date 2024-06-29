@@ -9936,14 +9936,3 @@
       19 1381017600 1381103999 LIGHT_BASED_GEOLOC~     50.5      136. 1234    SuperTag
       20 1381276800 1381363199 LIGHT_BASED_GEOLOC~     53.3      134. 1234    SuperTag
 
-# Decoder::decode::verify_data_directory
-
-    Code
-      dc$verify_data_directory(d)
-    Output
-      The selected directory does not show the structure expected by the selected Decoder:
-      
-      Day log file missing or mislabeled. Should match pattern: LTD1300.\d\d\d\d_Day Log.csv
-    Condition
-      Warning in `dc$verify_data_directory()`:
-

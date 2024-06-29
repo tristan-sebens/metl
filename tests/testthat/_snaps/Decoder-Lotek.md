@@ -1,4 +1,4 @@
-# Decoder | Lotek 1000/1100/1250 -> /lt/lt_1000_1250/lc/4071
+# Decoder_Lotek_1000.1250 -> /lt/lt_1000_1250/lc/4071
 
     Code
       names(decode_op)
@@ -119,7 +119,7 @@
       98 1084666500 0.869204 [psi] 22.30202 [°C]    1234 SuperTag
       99 1084667400 0.290357 [psi] 22.27878 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1000/1100/1250 -> /lt/lt_1000_1250/lc/5295
+# Decoder_Lotek_1000.1250 -> /lt/lt_1000_1250/lc/5295
 
     Code
       names(decode_op)
@@ -240,7 +240,7 @@
       98 1084666500  0.08012332 [psi] 22.28393 [°C]    1234 SuperTag
       99 1084667400  0.08012332 [psi] 22.26072 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1000/1100/1250 -> /lt/lt_1000_1250/sf/1484
+# Decoder_Lotek_1000.1250 -> /lt/lt_1000_1250/sf/1484
 
     Code
       names(decode_op)
@@ -361,7 +361,7 @@
       98 898218000  1.31997500 [psi] 20.94159 [°C]    1234 SuperTag
       99 898221600  1.31997500 [psi] 21.03291 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1000/1100/1250 -> /lt/lt_1000_1250/sf/1486
+# Decoder_Lotek_1000.1250 -> /lt/lt_1000_1250/sf/1486
 
     Code
       names(decode_op)
@@ -482,7 +482,7 @@
       98 895539600  442.721995 [psi]  4.614017 [°C]    1234 SuperTag
       99 895543200  418.681904 [psi]  4.593566 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1000/1100/1250 -> /lt/lt_1000_1250/sf/4066
+# Decoder_Lotek_1000.1250 -> /lt/lt_1000_1250/sf/4066
 
     Code
       names(decode_op)
@@ -603,7 +603,7 @@
       98 1021119300 -6.775851 [psi] 19.09711 [°C]    1234 SuperTag
       99 1021120200 -6.116089 [psi] 19.03086 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1000/1100/1250 -> /lt/lt_1000_1250/sf/4067
+# Decoder_Lotek_1000.1250 -> /lt/lt_1000_1250/sf/4067
 
     Code
       names(decode_op)
@@ -724,7 +724,7 @@
       98 1021119300 -0.02271176 [psi] 11.11387 [°C]    1234 SuperTag
       99 1021120200 -0.02271176 [psi] 11.11387 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1300 -> /lt/lt_1300/gt/2466
+# Decoder_Lotek_1300 -> /lt/lt_1300/gt/2466
 
     Code
       names(decode_op)
@@ -845,7 +845,7 @@
       98 1178751120 1.450377 [psi]  21.38 [°C]    1234 SuperTag
       99 1178751360 1.450377 [psi]  21.34 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1300 -> /lt/lt_1300/gt/3880
+# Decoder_Lotek_1300 -> /lt/lt_1300/gt/3880
 
     Code
       names(decode_op)
@@ -966,7 +966,7 @@
       98 1210797120  2.900755 [psi]  12.21 [°C]    1234 SuperTag
       99 1210797360  1.450377 [psi]  12.01 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1300 -> /lt/lt_1300/lc/3788
+# Decoder_Lotek_1300 -> /lt/lt_1300/lc/3788
 
     Code
       names(decode_op)
@@ -1087,7 +1087,7 @@
       98 1212523440 -2.900755 [psi]  21.82 [°C]    1234 SuperTag
       99 1212523680 -1.450377 [psi]  21.80 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1300 -> /lt/lt_1300/sf/5712
+# Decoder_Lotek_1300 -> /lt/lt_1300/sf/5712
 
     Code
       names(decode_op)
@@ -21109,7 +21109,7 @@
       19999 1251261120 336.487552 [psi]   4.91 [°C]    1234 SuperTag
        [ reached 'max' / getOption("max.print") -- omitted 390532 rows ]
 
-# Decoder | Lotek 1400/1800 -> /lt/lt_1400_1800/gt/383
+# Decoder_Lotek_1400.1800 -> /lt/lt_1400_1800/gt/383
 
     Code
       names(decode_op)
@@ -21248,7 +21248,7 @@
       116 1305568500 -1.725949 [psi]  20.14 [°C]    1234 SuperTag
       117 1305568560 -2.451138 [psi]  20.14 [°C]    1234 SuperTag
 
-# Decoder | Lotek 1400/1800 -> /lt/lt_1400_1800/sf/1546
+# Decoder_Lotek_1400.1800 -> /lt/lt_1400_1800/sf/1546
 
     Code
       names(decode_op)

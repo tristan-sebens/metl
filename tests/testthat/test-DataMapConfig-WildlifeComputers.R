@@ -4,96 +4,82 @@
 
 # MiniPAT
 # ------------------
-test_that(
-  "DataMap_WildlifeComputers_MiniPAT_TagMetaData",
-  {
-    test_datamap(
-      dm =
-        DataMap_WildlifeComputers_MiniPAT_TagMetaData,
-      op_fm =
-        ABLTAG_METADATA_TABLE_FIELDS,
-      d =
-        test_data_d('wc', 'mp')
-    )
-  }
+test_all_data_dirs(
+  root = test_data_d('wc', 'mp'),
+  label = "DataMap_WildlifeComputers_MiniPAT_TagMetaData",
+  test_fn =
+    function(d) {
+      test_datamap_directory(
+        d = d,
+        op_fm = ABLTAG_METADATA_TABLE_FIELDS,
+        dm = DataMap_WildlifeComputers_MiniPAT_TagMetaData
+      )
+    }
 )
 
-test_that(
-  "DataMap_WildlifeComputers_MiniPAT_InstantSensorData",
-  {
-    test_datamap(
-      dm =
-        DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
-      op_fm =
-        ABLTAG_DATA_INSTANT_TABLE_FIELDS,
-      d =
-        test_data_d('wc', 'mp')
-    )
-  }
+test_all_data_dirs(
+  root = test_data_d('wc', 'mp'),
+  label = "DataMap_WildlifeComputers_MiniPAT_InstantSensorData",
+  test_fn =
+    function(d) {
+      test_datamap_directory(
+        d = d,
+        op_fm = ABLTAG_DATA_INSTANT_TABLE_FIELDS,
+        dm = DataMap_WildlifeComputers_MiniPAT_InstantSensorData
+      )
+    }
 )
 
-
-test_that(
-  "DataMap_WildlifeComputers_MiniPAT_SummarySensorData",
-  {
-    test_datamap(
-      dm =
-        DataMap_WildlifeComputers_MiniPAT_SummarySensorData,
-      op_fm =
-        ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
-      d =
-        test_data_d('wc', 'mp')
-    )
-  }
+test_all_data_dirs(
+  root = test_data_d('wc', 'mp'),
+  label = "DataMap_WildlifeComputers_MiniPAT_SummarySensorData",
+  test_fn =
+    function(d) {
+      test_datamap_directory(
+        d = d,
+        op_fm = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
+        dm = DataMap_WildlifeComputers_MiniPAT_SummarySensorData
+      )
+    }
 )
-
 
 # Benthic sPAT
 # ------------------
-test_that(
-  "DataMap_WildlifeComputers_BenthicSPAT_TagMetaData",
-  {
-    test_datamap(
-      dm =
-        DataMap_WildlifeComputers_BenthicSPAT_TagMetaData,
-      op_fm =
-        ABLTAG_METADATA_TABLE_FIELDS,
-      d =
-        test_data_d('wc', 'b_sp')
-    )
-  }
+test_all_data_dirs(
+  root = test_data_d('wc', 'b_sp'),
+  label = "DataMap_WildlifeComputers_BenthicSPAT_TagMetaData",
+  test_fn =
+    function(d) {
+      test_datamap_directory(
+        d = d,
+        op_fm = ABLTAG_METADATA_TABLE_FIELDS,
+        dm = DataMap_WildlifeComputers_BenthicSPAT_TagMetaData
+      )
+    }
 )
 
-test_that(
-  "DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData",
-  {
-    test_datamap(
-      dm =
-        DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData,
-      op_fm =
-        ABLTAG_DATA_INSTANT_TABLE_FIELDS,
-      d =
-        test_data_d('wc', 'b_sp')
-    )
-  }
+test_all_data_dirs(
+  root = test_data_d('wc', 'b_sp'),
+  label = "DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData",
+  test_fn =
+    function(d) {
+      test_datamap_directory(
+        d = d,
+        op_fm = ABLTAG_METADATA_TABLE_FIELDS,
+        dm = DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData
+      )
+    }
 )
 
-test_that(
-  "DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData",
-  {
-    test_datamap(
-      dm =
-        DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData,
-      op_fm =
-        ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
-      d =
-        test_data_d('wc', 'b_sp')
-    )
-  }
+test_all_data_dirs(
+  root = test_data_d('wc', 'b_sp'),
+  label = "DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData",
+  test_fn =
+    function(d) {
+      test_datamap_directory(
+        d = d,
+        op_fm = ABLTAG_DATA_SUMMARY_TABLE_FIELDS,
+        dm = DataMap_WildlifeComputers_BenthicSPAT_SummarySensorData
+      )
+    }
 )
-
-
-
-
-
-

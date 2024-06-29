@@ -32,18 +32,6 @@ test_decoder_on_data_dir =
   }
 
 
-test_decoder_on_all_data_dirs =
-  function(root, dc) {
-    for (d in get_data_dirs(root)) {
-      test_that(
-        paste0("Decoder | ", dc$label, " -> ", stringr::str_remove(d, test_data_d())),
-        {
-          test_decoder_on_data_dir(d, dc)
-        }
-      )
-    }
-  }
-
 # Map to indicate what function to use to compare the data in a Field based on that Field's data_type attribute
 data_type_check_fn_map =
   list(

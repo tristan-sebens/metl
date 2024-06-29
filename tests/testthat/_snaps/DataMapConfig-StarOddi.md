@@ -1,4 +1,4 @@
-# DataMap_StarOddi_DST_TagMetaData
+# DataMap_StarOddi_DST_TagMetaData -> /so/dst/sf/JS7977
 
     Code
       dat_
@@ -14,7 +14,7 @@
              MAKE                    MODEL
       1 Star Oddi DST (centi/milli)-(TD/F)
 
-# DataMap_StarOddi_DST_InstantSensorData
+# DataMap_StarOddi_DST_InstantSensorData -> /so/dst/sf/JS7977
 
     Code
       dat_
@@ -54,7 +54,7 @@
       10 1468390800.  1.1         21.7
       # i 45,359 more rows
 
-# DataMap_StarOddi_DSTmilliF_TagMetaData
+# DataMap_StarOddi_DSTmilliF_TagMetaData -> /so/dst_mf/sf/JS1229
 
     Code
       dat_
@@ -70,7 +70,7 @@
              MAKE                    MODEL
       1 Star Oddi DST (centi/milli)-(TD/F)
 
----
+# DataMap_StarOddi_DSTmilliF_TagMetaData -> /so/dst_mf/sf/JS142
 
     Code
       dat_
@@ -86,7 +86,7 @@
              MAKE                    MODEL
       1 Star Oddi DST (centi/milli)-(TD/F)
 
-# DataMap_StarOddi_DSTmilliF_InstantSensorData
+# DataMap_StarOddi_DSTmilliF_InstantSensorData -> /so/dst_mf/sf/JS1229
 
     Code
       dat_
@@ -126,7 +126,7 @@
       10 1437733080. -10.0        14.3
       # i 108,879 more rows
 
----
+# DataMap_StarOddi_DSTmilliF_InstantSensorData -> /so/dst_mf/sf/JS142
 
     Code
       dat_
@@ -166,7 +166,7 @@
       10 1432740960  -18.1        10.2 
       # i 697,823 more rows
 
-# DataMap_StarOddi_DSTmagnetic_TagMetaData
+# DataMap_StarOddi_DSTmagnetic_TagMetaData -> /so/dst_mag/sf/JS923
 
     Code
       dat_
@@ -182,7 +182,7 @@
              MAKE        MODEL
       1 Star Oddi DST magnetic
 
----
+# DataMap_StarOddi_DSTmagnetic_TagMetaData -> /so/dst_mag/sf/JS927
 
     Code
       dat_
@@ -198,7 +198,7 @@
              MAKE        MODEL
       1 Star Oddi DST magnetic
 
-# DataMap_StarOddi_DSTmagnetic_InstantSensorData
+# DataMap_StarOddi_DSTmagnetic_InstantSensorData -> /so/dst_mag/sf/JS923
 
     Code
       dat_
@@ -242,7 +242,7 @@
       # i 5,371 more rows
       # i abbreviated name: 1: MAGNETIC_FIELD_STRENGTH
 
----
+# DataMap_StarOddi_DSTmagnetic_InstantSensorData -> /so/dst_mag/sf/JS927
 
     Code
       dat_
