@@ -1,5 +1,18 @@
 
 test_that(
+  "DataMap::throw_error",
+  {
+    dm =
+      DataMap()
+
+    expect_error(
+      dm$throw_error("Test Error"),
+      "ERROR - DataMap: \nTest Error"
+    )
+  }
+)
+
+test_that(
   "DataMap::get_field_data",
   {
     fm1 = build_test_fieldmaps()$INSTANT_DATA_INPUT_FIELD_MAP
@@ -43,5 +56,35 @@ test_that(
         op_fm
       )
     )
+  }
+)
+
+test_that(
+  "DataMap_TagMetaData::instantiation",
+  {
+    dm_tmd =
+      DataMap_TagMetaData(
+        make = "Test",
+        model = "Tag",
+        input_data_field_map =
+          FieldMap(
+            table = "TEST_FIELDMAP"
+          )
+      )
+
+    expect_equal(dm_tmd$input_data_field_map$table, "TEST_FIELDMAP")
+  }
+)
+
+test_that(
+  "DataMap_TagMetaData::label",
+  {
+    dm =
+      DataMap_TagMetaData(
+        make = "Test",
+        model = "Tag"
+      )
+
+    expect_equal(dm$label(), "Test Tag")
   }
 )

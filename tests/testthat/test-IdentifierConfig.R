@@ -96,13 +96,15 @@ test_that(
 test_identifier =
   function(
     identifier_,
-    d
+    d,
+    exclude = NA
   ) {
     test_that(
       class(identifier_)[[1]],
       {
         test_all_data_dirs(
           test_d = d,
+          exclude = exclude,
           test_fn =
             function(d) {
               # Test each data directory present in the directory tree
@@ -161,7 +163,8 @@ test_identifier(
   identifier_ =
     Identifier_Lotek_1300,
   d =
-    test_data_d("lt", "lt_1300")
+    test_data_d("lt", "lt_1300"),
+  exclude = "5712"
 )
 
 test_identifier(

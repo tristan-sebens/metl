@@ -1,4 +1,16 @@
 test_that(
+  "Decoder::throw_error",
+  {
+    dc = build_test_decoder()
+
+    expect_error(
+      dc$data_maps[["meta"]]$throw_error("Test error message"),
+      "ERROR - DataMap_TestStub: \nTest error message"
+    )
+  }
+)
+
+test_that(
   "Decoder::decode_datamap",
   {
     dc = build_test_decoder()
@@ -38,7 +50,7 @@ test_that(
 
 
 test_that(
-  "Decoder::add_missing_fields",
+  "Decoder::add_missing_fields::one-to-many replacement",
   {
     d =
       test_data_d('lt', 'lt_1300', 'gt', '3880')
@@ -46,8 +58,12 @@ test_that(
     dc =
       Decoder_Lotek_1300
 
+    meta = data.frame(tag_num = "3880", tag_type = "ET")
+
+    ui_dm = dc$create_userinput_datamap(meta)
+
     dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
-    dat2 = dc$decode_datamap(d, dm = dc$data_maps[["meta"]], op_fm = dc$output_fieldmaps[["meta"]])
+    dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
 
     dat3 =
       dc$add_missing_fields(
@@ -55,27 +71,192 @@ test_that(
         dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
         dat1_op_fm = dc$output_fieldmaps[["instant"]],
         dat2 = dat2,
-        dat2_ip_fm = dc$data_maps[["meta"]]$input_data_field_map,
-        dat2_op_fm = dc$output_fieldmaps[["meta"]]
+        dat2_ip_fm = ui_dm$input_data_field_map,
+        dat2_op_fm = dc$output_fieldmaps[["input"]]
       )
 
-    # Ensure that the output data.frame is as expected# Ensure that the output data.frame is as expected# Ensure that the output data.frame is as expected
-    expect_snapshot(dat3)
+    # Ensure that the output data.frame is as expected
+    expect_contains(names(dat3), names(dat2))
+    expect_contains(names(dat3), names(dat1))
 
-    # Ensure that all of the data from dat1 is still present in dat3
-    expect_contains(
-      names(dat3),
-      names(dat1)
-    )
+    # Ensure that no rows have been lost
     expect_equal(
       nrow(dat1),
       nrow(dat3),
       label = "# rows in original data.frame",
       expected.label = "# rows in updated data.frame"
     )
+  }
+)
 
-    # Ensure that only the ID field was added to dat1
-    expect_false(names(dat2)[[2]] %in% names(dat3))
+test_that(
+  "Decoder::add_missing_fields::many-to-one replacement",
+  {
+    d =
+      test_data_d('lt', 'lt_1300', 'gt', '3880')
+
+    dc =
+      Decoder_Lotek_1300
+
+    meta = data.frame(tag_num = "3880", tag_type = "ET")
+
+    ui_dm = dc$create_userinput_datamap(meta)
+
+    dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
+    dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
+
+    # Make dat1 have a single row
+    dat1 = head(dat1, 1)
+
+    # Make dat2 have multiple identical rows
+    dat2 = rbind(dat2, dat2, dat2, dat2)
+
+    dat3 =
+      dc$add_missing_fields(
+        dat1 = dat1,
+        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
+        dat1_op_fm = dc$output_fieldmaps[["instant"]],
+        dat2 = dat2,
+        dat2_ip_fm = ui_dm$input_data_field_map,
+        dat2_op_fm = dc$output_fieldmaps[["input"]]
+      )
+
+    # Ensure that the output data.frame is as expected
+    expect_contains(names(dat3), names(dat2))
+    expect_contains(names(dat3), names(dat1))
+
+    # Ensure that no rows have been lost
+    expect_equal(
+      nrow(dat1),
+      nrow(dat3),
+      label = "# rows in original data.frame",
+      expected.label = "# rows in updated data.frame"
+    )
+  }
+)
+
+test_that(
+  "Decoder::add_missing_fields::many-to-many replacement (success)",
+  {
+    d =
+      test_data_d('lt', 'lt_1300', 'gt', '3880')
+
+    dc =
+      Decoder_Lotek_1300
+
+    meta = data.frame(tag_num = "3880", tag_type = "ET")
+
+    ui_dm = dc$create_userinput_datamap(meta)
+
+    dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
+    dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
+
+    # Make dat1 have a single row
+    dat1 = head(dat1, 4)
+
+    # Make dat2 have multiple rows, each with unique values
+    dat2 =
+      rbind(
+        dat2,
+        dplyr::mutate(dat2, TAG_NUM = 3881),
+        dplyr::mutate(dat2, TAG_NUM = 3882),
+        dplyr::mutate(dat2, TAG_NUM = 3883)
+      )
+
+    dat3 =
+      dc$add_missing_fields(
+        dat1 = dat1,
+        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
+        dat1_op_fm = dc$output_fieldmaps[["instant"]],
+        dat2 = dat2,
+        dat2_ip_fm = ui_dm$input_data_field_map,
+        dat2_op_fm = dc$output_fieldmaps[["input"]]
+      )
+
+    # Ensure that the output data.frame is as expected
+    expect_contains(names(dat3), names(dat2))
+    expect_contains(names(dat3), names(dat1))
+    # Ensure that all of the unique tag numbers made it into the new dataframe
+    expect_equal(dat3$TAG_NUM, dat2$TAG_NUM)
+
+    # Ensure that no rows have been lost
+    expect_equal(
+      nrow(dat1),
+      nrow(dat3),
+      label = "# rows in original data.frame",
+      expected.label = "# rows in updated data.frame"
+    )
+  }
+)
+
+test_that(
+  "Decoder::add_missing_fields::many-to-many replacement (success)",
+  {
+    d =
+      test_data_d('lt', 'lt_1300', 'gt', '3880')
+
+    dc =
+      Decoder_Lotek_1300
+
+    meta = data.frame(tag_num = "3880", tag_type = "ET")
+
+    ui_dm = dc$create_userinput_datamap(meta)
+
+    dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
+    dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
+
+    # Make dat1 have a single row
+    dat1 = head(dat1, 4)
+
+    # Make dat2 have multiple rows, each with unique values
+    # Should be TOO MANY rows
+    dat2 =
+      rbind(
+        dat2,
+        dplyr::mutate(dat2, TAG_NUM = 3881),
+        dplyr::mutate(dat2, TAG_NUM = 3882),
+        dplyr::mutate(dat2, TAG_NUM = 3883),
+        dplyr::mutate(dat2, TAG_NUM = 3884),
+        dplyr::mutate(dat2, TAG_NUM = 3885)
+      )
+
+    expect_error(
+      dc$add_missing_fields(
+        dat1 = dat1,
+        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
+        dat1_op_fm = dc$output_fieldmaps[["instant"]],
+        dat2 = dat2,
+        dat2_ip_fm = ui_dm$input_data_field_map,
+        dat2_op_fm = dc$output_fieldmaps[["input"]]
+      ),
+      "Both fields have multiple rows, but not the same number of rows, so behavior is undefined"
+    )
+  }
+)
+
+test_that(
+  "Decoder::add_missing_fields::empty_dataframe",
+  {
+    d =
+      test_data_d('lt', 'lt_1300', 'gt', '3880')
+
+    dc =
+      Decoder_Lotek_1300
+
+    dat2 = dc$decode_datamap(d, dm = dc$data_maps[["meta"]], op_fm = dc$output_fieldmaps[["meta"]])
+
+    dat1 =
+      dc$add_missing_fields(
+      dat1 = data.frame(),
+      dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
+      dat1_op_fm = dc$output_fieldmaps[["instant"]],
+      dat2 = dat2,
+      dat2_ip_fm = dc$data_maps[["meta"]]$input_data_field_map,
+      dat2_op_fm = dc$output_fieldmaps[["meta"]]
+    )
+
+    expect_equal(nrow(dat1), 0)
+    expect_equal(ncol(dat1), 0)
   }
 )
 
@@ -201,6 +382,280 @@ test_that(
     expect_snapshot(decode_op[["summary"]])
   }
 )
+
+test_that(
+  "Decoder::decode_to_dataframes",
+  {
+    d =
+      test_data_d('mt', 'xt_trans', 'rr', '118353')
+
+    input_meta =
+      data.frame(
+        tag_num = "1234",
+        tag_type = "SuperTag"
+      )
+
+    dc =
+      Decoder_MicrowaveTelemetry_XTag_Transmitted
+
+    res = dc$decode_to_dataframes(d, meta = input_meta)
+
+    # Check that there is one data.frame for every data map
+    expect_contains(names(res), names(dc$data_maps))
+    # Check that every data-type returned data in the form of a data.frame
+    for (data_type in names(res)) {
+      data_type_dat = res[[data_type]]
+      expect_gt(nrow(data_type_dat), 0)
+      expect_contains(class(data_type_dat), "data.frame")
+    }
+  }
+)
+
+test_that(
+  "Decoder::decode_to_csv",
+  {
+    d =
+      test_data_d('mt', 'xt_trans', 'rr', '118353')
+
+    input_meta =
+      data.frame(
+        tag_num = "1234",
+        tag_type = "SuperTag"
+      )
+
+    dc =
+      Decoder_MicrowaveTelemetry_XTag_Transmitted
+
+    out_d = tempdir('csv_data')
+
+    dc$decode_to_csv(d, meta = input_meta, op_d = out_d)
+
+    # Check that all of the expected files were created
+    expected_filenames =
+      lapply(
+        names(dc$data_maps),
+        function(data_type) paste0(data_type, '.csv')
+      ) %>%
+      unlist()
+    expect_contains(list.files(out_d), expected_filenames)
+    # Check that every data-type returned data
+    for (data_type in names(dc$data_maps)) {
+      data_type_dat = read.csv(file.path(out_d, paste0(data_type, '.csv')))
+      expect_gt(nrow(data_type_dat), 0)
+      expect_contains(class(data_type_dat), "data.frame")
+    }
+  }
+)
+
+test_that(
+  "Decoder::decode_to_db",
+  {
+    d =
+      test_data_d('mt', 'xt_trans', 'rr', '118353')
+
+    input_meta =
+      data.frame(
+        tag_num = "1234",
+        tag_type = "SuperTag"
+      )
+
+    dc =
+      Decoder_MicrowaveTelemetry_XTag_Transmitted
+
+    db_fieldmaps =
+      dc$output_fieldmaps[c("meta", "instant", "summary")]
+
+    db_conn =
+      build_db_from_fieldmaps(db_fieldmaps)
+
+    # Check that each of the tables in the DB are empty
+    for (data_type in names(db_fieldmaps)) {
+      db_test_table = dplyr::tbl(db_conn, db_fieldmaps[[data_type]]$table)
+      expect_equal(nrow(data.frame(db_test_table)), 0)
+    }
+
+    dc$decode_to_db(d, meta = input_meta, con = db_conn)
+    res = dc$decode_to_dataframes(d, meta = input_meta)
+
+    # Check that each of the tables in the DB were populated correctly
+    for (data_type in names(db_fieldmaps)) {
+      db_test_table = dplyr::tbl(db_conn, db_fieldmaps[[data_type]]$table)
+      db_tbl_dat = data.frame(db_test_table)
+      # No longer emtpy
+      expect_gt(nrow(db_tbl_dat), 0)
+      # Same number of rows as original data
+      expect_equal(nrow(db_tbl_dat), nrow(res[[data_type]]))
+    }
+
+    DBI::dbDisconnect(db_conn)
+  }
+)
+
+test_that(
+  "Decoder::decode::verify_data_directory",
+  {
+    dc = Decoder_Lotek_1300
+
+    d = "non_existant_directory"
+
+    # Non existant directory
+    expect_error(
+      dc$verify_data_directory(d),
+      "The selected directory does not exist."
+    )
+
+    # Existing directory, fails identify but is still valid
+    d = test_data_d('lt', 'lt_1300', 'sf', '5712')
+    # Decoder should throw a warning, but not an error
+    expect_warning(expect_no_error(dc$verify_data_directory(d)))
+    expect_snapshot(dc$verify_data_directory(d))
+
+    expect_warning(
+      {
+        res =
+          dc$decode_to_dataframes(
+            d,
+            meta = data.frame(tag_num = 5712, tag_type = "ET")
+          )
+      }
+    )
+
+    # Should still decode properly
+    expect_gt(nrow(res$meta), 0)
+    expect_gt(ncol(res$meta), 0)
+    expect_gt(nrow(res$instant), 0)
+    expect_gt(ncol(res$instant), 0)
+
+
+    # Existing directory, invalid for selected Decoder
+    d = test_data_d('so', 'dst', 'sf', 'JS7977')
+
+    expect_warning(
+      expect_error(
+        dc$verify_data_directory(d),
+        "The selected directory does not contain the necessary data to proceed."
+      )
+    )
+  }
+)
+
+test_that(
+  "Decoder::upsert",
+  {
+    test_op_fm =
+      FieldMap(
+        table = "TEST_TABLE",
+        field_list =
+          list(
+            TAG_ID_FIELD =
+              Field(
+                name = "TAG_ID",
+                id_field = T
+              ),
+            TAG_TYPE_FIELD =
+              Field(
+                name = "TAG_TYPE",
+                id_field = F
+              )
+          )
+      )
+
+    db_conn =
+      RSQLite::dbConnect(
+        drv = RSQLite::SQLite(),
+        # dbname = tempfile(fileext = ".db")
+        # Create the testing DB in memory
+        dbname = ":memory:"
+      )
+
+    DBI::dbExecute(
+      db_conn,
+      statement =
+        DBI::SQL(
+          'CREATE TABLE "TEST_TABLE" (
+            "TAG_ID"	INTEGER,
+            "TAG_TYPE" VARCHAR(10),
+            UNIQUE("TAG_ID")
+          );'
+        )
+    )
+
+    # Purposefully trip an error in the update step:
+    expect_error(
+      Decoder()$upsert(
+        con = db_conn,
+        dat = data.frame("TAG_ID" = 1),
+        output_data_field_map = test_op_fm
+      ),
+      "Error updating TEST_TABLE from temporary table"
+    )
+
+    # Test that no temporary tables remain in the DB
+    expect_equal(
+      length(
+          Filter(
+          function(table)
+              stringr::str_detect(table, stringr::regex('temp', ignore_case = T)),
+          DBI::dbListTables(db_conn)
+        )
+      ),
+      0
+    )
+
+    dat1 = data.frame(TAG_ID = 1, TAG_TYPE = 'A')
+
+    Decoder()$upsert(
+      con = db_conn,
+      dat = dat1,
+      output_data_field_map = test_op_fm
+    )
+
+    # Read the table data in from the DB
+    db_test_table = dplyr::tbl(db_conn, test_op_fm$table)
+
+    # For the moment, the only data present in the database should be that which we just inserted
+    expect_true(all(data.frame(db_test_table) == dat1))
+
+    # We'll upsert the same data again, which should have no effect on the table
+    Decoder()$upsert(
+      con = db_conn,
+      dat = dat1,
+      output_data_field_map = test_op_fm
+    )
+
+    # Again, all of the data in the table should be that which is in dat1
+    expect_true(all(data.frame(db_test_table) == dat1))
+
+    # Now we'll insert new data, which should be added to the table
+    # This should update the TAG_TYPE field on our one row
+    dat2 = data.frame(TAG_ID = 1, TAG_TYPE = 'B')
+
+    Decoder()$upsert(
+      con = db_conn,
+      dat = dat2,
+      output_data_field_map = test_op_fm
+    )
+
+    expect_false(all(data.frame(db_test_table) == dat1))
+    expect_true(all(data.frame(db_test_table) == dat2))
+
+    # Finally we'll insert data from a new tag, which should create a new row
+    dat3 = data.frame(TAG_ID = 2, TAG_TYPE = 'C')
+
+    Decoder()$upsert(
+      con = db_conn,
+      dat = dat3,
+      output_data_field_map = test_op_fm
+    )
+
+    # Now the data from both dat2 and dat2 should be in the table
+    expect_true(all(data.frame(db_test_table) == rbind(dat2, dat3)))
+
+    DBI::dbDisconnect(db_conn)
+  }
+)
+
+
 
 
 

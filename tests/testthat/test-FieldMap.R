@@ -69,7 +69,6 @@ test_that(
   }
 )
 
-
 test_that(
   "FieldMap::get_field_names",
   {
@@ -77,7 +76,34 @@ test_that(
 
     # Get the names of the fields from fm1
     expect_snapshot(t_fm1$get_field_names())
+    expect_gt(length(t_fm1$get_field_names()), 0)
 
+  }
+)
+
+test_that(
+  "FieldMap::get_independent_fields",
+  {
+    t_fm1 = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+
+    # Get the independent fields from fm1
+    # There should be no independent fields in the default implementation
+    expect_equal(length(t_fm1$get_independent_fields()), 0)
+
+    # Add an independent field to the FieldMap
+    ind_f_name = "independent_field"
+
+    t_fm1$field_list =
+      append(
+        t_fm1$field_list,
+        Field(
+          name = ind_f_name,
+          independent = T
+        )
+      )
+
+    expect_equal(length(t_fm1$get_independent_fields()), 1)
+    expect_equal(t_fm1$get_independent_fields()[[1]]$name, ind_f_name)
   }
 )
 
