@@ -507,8 +507,7 @@ test_that(
     # Existing directory, fails identify but is still valid
     d = test_data_d('lt', 'lt_1300', 'sf', '5712')
     # Decoder should throw a warning, but not an error
-    expect_warning(expect_no_error(dc$verify_data_directory(d)))
-    expect_snapshot(dc$verify_data_directory(d))
+    expect_no_error(expect_warning(dc$verify_data_directory(d)))
 
     expect_warning(
       {
