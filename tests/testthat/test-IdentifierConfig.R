@@ -99,56 +99,53 @@ test_identifier =
     d,
     exclude = NA
   ) {
-    test_that(
-      class(identifier_)[[1]],
-      {
-        test_all_data_dirs(
-          test_d = d,
-          exclude = exclude,
-          test_fn =
-            function(d) {
-              # Test each data directory present in the directory tree
+    label = deparse(substitute(identifier_))
+    test_all_data_dirs(
+      root = d,
+      exclude = exclude,
+      label = label,
+      test_fn =
+        function(d) {
+          # Test each data directory present in the directory tree
 
-              # Specified Identifier object should positively match to directory
-              expect(
-                ok =
-                  identifier_$identify(d),
-                failure_message =
-                  paste0(
-                    class(identifier_)[[1]],
-                    " does not match to test directory: \n",
-                    stringr::str_replace(d, test_data_d(), "")
-                  )
+          # Specified Identifier object should positively match to directory
+          expect(
+            ok =
+              identifier_$identify(d),
+            failure_message =
+              paste0(
+                class(identifier_)[[1]],
+                " does not match to test directory: \n",
+                stringr::str_replace(d, test_data_d(), "")
               )
+          )
 
-              # Apply all Identifiers to data directory
-              id_res = TagIdentifier(decoders = build_test_decoder_list())$identify(d)
+          # Apply all Identifiers to data directory
+          id_res = TagIdentifier(decoders = build_test_decoder_list())$identify(d)
 
-              # Only one Identifier object should positively match to directory
-              expect_equal(
-                sum(id_res$result),
-                1,
-                # Everything below here just constructs an informative error message
-                label =
-                  paste0(
-                    stringr::str_replace(d, test_data_d(), ""),
-                    " matches ", sum(id_res$result)," Identifier objects: \n\t - ",
-                    paste0(
-                        lapply(
-                          # Collect the list of Decoder objects which positively matched to this directory
-                          dplyr::filter(id_res, result == T)$dc,
-                          function(dc) {
-                            dc$label
-                          }
-                        ) %>%
-                        unlist
-                    ),
-                    " \nNumber of possible IDs"
-                  )
+          # Only one Identifier object should positively match to directory
+          expect_equal(
+            sum(id_res$result),
+            1,
+            # Everything below here just constructs an informative error message
+            label =
+              paste0(
+                stringr::str_replace(d, test_data_d(), ""),
+                " matches ", sum(id_res$result)," Identifier objects: \n\t - ",
+                paste0(
+                    lapply(
+                      # Collect the list of Decoder objects which positively matched to this directory
+                      dplyr::filter(id_res, result == T)$dc,
+                      function(dc) {
+                        dc$label
+                      }
+                    ) %>%
+                    unlist
+                ),
+                " \nNumber of possible IDs"
               )
-            }
-        )
-      }
+          )
+        }
     )
   }
 

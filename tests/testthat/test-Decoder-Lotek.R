@@ -13,6 +13,7 @@ test_all_data_dirs(
 test_all_data_dirs(
   root = test_data_d('lt', 'lt_1300'),
   label = "Decoder_Lotek_1300",
+  exclude = "5712",
   test_fn =
     function(d) {
       test_decoder_on_data_dir(

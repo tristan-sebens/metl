@@ -177,8 +177,13 @@ get_data_dirs =
 #' @param test_fn_ Test function to call on each data directory. Must take only a single character parameter `d`, which will be the data directory
 #' @param exclude Pattern(s) used to determine any directories which should be excluded from testing
 test_all_data_dirs =
-  function(root, test_fn, label) {
+  function(root, test_fn, label, exclude = NA) {
     for (d in get_data_dirs(root)) {
+      # Skip any directories which match any of the exclusion patterns
+      if(!is.na(exclude))
+        if (any(stringr::str_detect(d, exclude))) next
+
+
       test_that(
         paste0(label, " -> ", stringr::str_remove(d, test_data_d())),
         {
