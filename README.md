@@ -51,7 +51,7 @@ Sensor data and some metadata can be read directly from the target directory, bu
 ```r
 meta = 
   data.frame(
-    tag_id = "1234",
+    tag_num = "1234",
     tag_type = "SuperTag"
   )
 ```
