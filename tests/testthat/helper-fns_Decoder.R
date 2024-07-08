@@ -3,7 +3,9 @@ test_decoder_on_data_dir =
     input_meta =
       data.frame(
         tag_num = "1234",
-        tag_type = "SuperTag"
+        tag_type = "SuperTag",
+        rel_seq = 0,
+        species_code = 0
       )
 
     decode_op = dc$decode(d, input_meta)
