@@ -57,26 +57,65 @@ setRefClass(
           }
         },
 
+      check_input_dat_fields =
+        function(dat__) {
+          # Check that all fields expected by the input_data_field_map are present
+          missing_input_fields =
+            Filter(
+              function(f_) {
+                # If the field is not in the data and is not independently generated, it is missing
+                !any(
+                  # Check for both the primary name and any alternate names
+                  c(
+                    f_$name,
+                    f_$alternate_names
+                  )
+                  %in% names(dat__)
+                ) &
+                # Check if Field is independently generated, in which case it would not yet be present in the data
+                !f_$independent
+              },
+              input_data_field_map$field_list
+            )
+
+          # If any expected fields are missing, throw an error indicating which fields are missing
+          if (length(missing_input_fields) > 0) {
+            throw_error(
+              paste0(
+                "Missing expected input fields: ",
+                paste0(
+                  lapply(missing_input_fields, function(f) {f$name}),
+                  collapse = ", "
+                )
+              )
+            )
+          }
+        },
+
       # Transform the fields of the incoming tag data as dictated by the field maps
       transform_fields =
         function(dat__, output_data_field_map) {
+
+          # Check that the incoming data matched the expectations of the input data FieldMap
+          check_input_dat_fields(dat__)
+
           # Process each input field in turn
           # Limit conversion to those fields shared by both the input data field
           #   map and the output data field map
           common_fields =
             names(
-              .self$input_data_field_map$common_fields(
+              input_data_field_map$common_fields(
                 fm = output_data_field_map
               )
             )
 
           for (field_ in common_fields) {
             # Identify relevant input/output field objects
-            input_field_obj_ = .self$input_data_field_map$field_list[[field_]]
+            input_field_obj_ = input_data_field_map$field_list[[field_]]
             output_field_obj_ = output_data_field_map$field_list[[field_]]
 
             # Isolate field data
-            input_field_dat_ = .self$get_field_data(dat__, input_field_obj_)
+            input_field_dat_ = get_field_data(dat__, input_field_obj_)
 
             # Perform any specified pre-transformations
             input_field_dat_ =

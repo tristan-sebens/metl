@@ -464,6 +464,7 @@ LOTEK_1400.1800_INSTANT_DATA_FIELDS =
         TIMESTAMP_FIELD =
           Field(
             name = "Datetime",
+            independent = T,
             trans_fn =
               function(v, dat) {
                 as.POSIXct(
@@ -515,6 +516,7 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS =
         LOCATION_TYPE_FIELD =
           Field(
             name = "Location Type",
+            independent = T,
             trans_fn = function(v, ...) {return(LOCATION_TYPE__SATELLITE)}
           ),
         LATITUDE_FIELD =
@@ -577,6 +579,7 @@ MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS =
         LOCATION_TYPE_FIELD =
           Field(
             name = "Location Type",
+            independent = T,
             trans_fn = function(v, ...) {return(LOCATION_TYPE__SATELLITE)}
           ),
         LATITUDE_FIELD =
@@ -602,6 +605,7 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS =
         END_TIME_FIELD =
           Field(
             name = "End",
+            independent = T,
             trans_fn =
               function(v, dat, ...) {
                 timechange::time_add(
@@ -613,6 +617,7 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS =
         LOCATION_TYPE_FIELD =
           Field(
             name = "Location Type",
+            independent = T,
             trans_fn = function(v, ...) {return(LOCATION_TYPE__LIGHT_BASED_GEOLOCATION)}
           ),
         LATITUDE_FIELD =
@@ -638,6 +643,7 @@ MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS =
         END_TIME_FIELD =
           Field(
             name = "End",
+            independent = T,
             trans_fn =
               function(v, dat, ...) {
                 timechange::time_add(
@@ -649,6 +655,7 @@ MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS =
         LOCATION_TYPE_FIELD =
           Field(
             name = "Location Type",
+            independent = T,
             trans_fn = function(v, ...) {return(LOCATION_TYPE__LIGHT_BASED_GEOLOCATION)}
           ),
         LATITUDE_FIELD =
@@ -732,10 +739,10 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
             name = "Tilt-Y(°)",
             units = "°"
           ),
-        EAL_FIELD =
-          Field(
-            name = "EAL"
-          ),
+        # EAL_FIELD =
+        #   Field(
+        #     name = "EAL"
+        #   ),
         COMPASS_HEADING_FIELD =
           Field(
             name = "Comp.Head(°)",
@@ -771,6 +778,7 @@ WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS =
         TIMESTAMP_FIELD =
           Field(
             name = "Datetime",
+            independent = T,
             trans_fn =
               function(v, dat)
               {

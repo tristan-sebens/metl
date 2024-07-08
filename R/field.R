@@ -8,6 +8,7 @@ Field =
 #' @field data_type character. The data type of this field in a DB
 #' @field id_field logical. If set to TRUE this field will be used to identify unique records
 #' @field trans_fn function. Applied to the data vector associated with this Field immediately prior to standard transformation of units and fieldnames. MUST be of the form function(v, ...) {<transformation here>}. Must return a data vector. If necessary, other fields can be accessed within the function by modifying the parameter signature to function(v, dat, ...) {<transformation here>}, where dat will contain the unstransformed data.frame
+#' @field independent logical. TRUE indicates this field generates its own value, either using a pre-determined value or by synthesizing from other fields in the data
 #' @export Field
   setRefClass(
     "Field",
