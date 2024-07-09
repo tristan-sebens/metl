@@ -7633,7 +7633,7 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant" "summary"
+      [1] "meta"           "instant"        "summary"        "histogram_meta"
 
 ---
 
@@ -8907,12 +8907,43 @@
       24 SuperTag
       25 SuperTag
 
+---
+
+    Code
+      decode_op[["histogram_meta"]]
+    Output
+           BIN UPPER_LMIT   DATA_TYPE TAG_NUM TAG_TYPE
+      1      1          3 Temperature    1234 SuperTag
+      2      2          4 Temperature    1234 SuperTag
+      3      3          5 Temperature    1234 SuperTag
+      4      4          6 Temperature    1234 SuperTag
+      5      5          7 Temperature    1234 SuperTag
+      6      6          8 Temperature    1234 SuperTag
+      7      7          9 Temperature    1234 SuperTag
+      8      8         10 Temperature    1234 SuperTag
+      9      9         11 Temperature    1234 SuperTag
+      10    10         12 Temperature    1234 SuperTag
+      11    11         13 Temperature    1234 SuperTag
+      111   12        Inf Temperature    1234 SuperTag
+      12     1         50       Depth    1234 SuperTag
+      21     2        100       Depth    1234 SuperTag
+      31     3        150       Depth    1234 SuperTag
+      41     4        200       Depth    1234 SuperTag
+      51     5        250       Depth    1234 SuperTag
+      61     6        300       Depth    1234 SuperTag
+      71     7        350       Depth    1234 SuperTag
+      81     8        400       Depth    1234 SuperTag
+      91     9        450       Depth    1234 SuperTag
+      101   10        550       Depth    1234 SuperTag
+      112   11        650       Depth    1234 SuperTag
+      1111  12        Inf       Depth    1234 SuperTag
+
 # Decoder_WildlifeComputers_MiniPAT -> /wc/mp/ss/174900
 
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant" "summary"
+      [1] "meta"           "instant"        "summary"        "histogram_meta"
 
 ---
 
@@ -9278,4 +9309,35 @@
       5 1689292800 1689321600 227.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
       6 1689321600 1689350400 311.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]    1234 SuperTag
       7 1689350400 1689379200 535.5 [m]   792 [m]  NA [°C]  NA [°C]    1234 SuperTag
+
+---
+
+    Code
+      decode_op[["histogram_meta"]]
+    Output
+           BIN UPPER_LMIT   DATA_TYPE TAG_NUM TAG_TYPE
+      1      1          3 Temperature    1234 SuperTag
+      2      2          4 Temperature    1234 SuperTag
+      3      3          5 Temperature    1234 SuperTag
+      4      4          6 Temperature    1234 SuperTag
+      5      5          7 Temperature    1234 SuperTag
+      6      6          8 Temperature    1234 SuperTag
+      7      7          9 Temperature    1234 SuperTag
+      8      8         10 Temperature    1234 SuperTag
+      9      9         11 Temperature    1234 SuperTag
+      10    10         12 Temperature    1234 SuperTag
+      11    11         13 Temperature    1234 SuperTag
+      111   12        Inf Temperature    1234 SuperTag
+      12     1         50       Depth    1234 SuperTag
+      21     2        100       Depth    1234 SuperTag
+      31     3        150       Depth    1234 SuperTag
+      41     4        200       Depth    1234 SuperTag
+      51     5        250       Depth    1234 SuperTag
+      61     6        300       Depth    1234 SuperTag
+      71     7        350       Depth    1234 SuperTag
+      81     8        400       Depth    1234 SuperTag
+      91     9        450       Depth    1234 SuperTag
+      101   10        550       Depth    1234 SuperTag
+      112   11        650       Depth    1234 SuperTag
+      1111  12        Inf       Depth    1234 SuperTag
 

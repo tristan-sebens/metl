@@ -60,38 +60,7 @@ ABLTAG_METADATA_TABLE_FIELDS =
             name = "MODEL",
             data_type = "varchar(32)"
           )
-      # TAG_DEPLOYMENT_ID_FIELD =
-      #   InputField_FilteredSelect(
-      #     name = "DEPLOYMENT_ID",
-      #     label = "Deployment,
-      #     table = "TAG_RECOVERED_DEPLOYMENTS",
-      #     pk_field = "DEPLOYMENT_ID",
-      #     choice_field = "LABEL",
-      #     filter_db_field = "TAG_NUM",
-      #     filter_input_field = "TAG_ID"
-      #   ),
-      # TAG_DEPLOY_DATE =
-      #   InputField_DateTime(
-      #     name = "DATE_DEPLOYED",
-      #     data_type = "varchar(32)"
-      #   ),
-      # TAG_RECOVERY_DATE =
-      #   InputField_DateTime(
-      #     name = "DATE_RECOVERED",
-      #     data_type = "varchar(32)"
-      #   ),
-      # UPLOAD_TIMESTAMP_FIELD =
-      #   IndependentField(
-      #     name = "UPLOAD_TIMESTAMP",
-      #     data_type = "integer",
-      #     value_fn =
-      #       function(dat, ...) {
-      #         return(
-      #           as.numeric(as.POSIXct(Sys.time(), tz = ""))
-      #         )
-      #       }
-      #   )
-    )
+      )
   )
 
 
@@ -342,6 +311,33 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
             name = "KNOCKDOWNS",
             units = "1",
             data_type = "double(10, 2)"
+          )
+      )
+  )
+
+#' @export ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
+ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TAG_ID_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
+        TAG_TYPE_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
+        BIN_NUMBER_FIELD =
+          Field(
+            name = "BIN",
+            data_type = "integer"
+          ),
+        BIN_UPPER_LIMIT_FIELD =
+          Field(
+            name = "UPPER_LMIT",
+            data_type = "double(10, 2)"
+          ),
+        BIN_DATA_TYPE_FIELD =
+          Field(
+            name = "DATA_TYPE",
+            data_type = "varchar(32)"
           )
       )
   )
@@ -844,6 +840,26 @@ WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
           Field(
             name = "MaxTemp",
             units = "°C"
+          )
+      )
+  )
+
+#' @export WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS
+WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        BIN_NUMBER_FIELD =
+          Field(
+            name = "bin"
+          ),
+        BIN_UPPER_LIMIT_FIELD =
+          Field(
+            name = "upper_limit"
+          ),
+        BIN_DATA_TYPE_FIELD =
+          Field(
+            name = "type"
           )
       )
   )

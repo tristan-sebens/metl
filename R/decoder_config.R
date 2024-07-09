@@ -76,11 +76,20 @@ Decoder_WildlifeComputers_MiniPAT =
   Decoder(
     label = "Wildlife Computers MiniPAT",
     identifier = Identifier_WildlifeComputers_MiniPAT,
-    data_maps = list(
-      "meta" = DataMap_WildlifeComputers_MiniPAT_TagMetaData,
-      "instant" = DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
-      "summary" = DataMap_WildlifeComputers_MiniPAT_SummarySensorData
-    )
+    data_maps =
+      list(
+        "meta" = DataMap_WildlifeComputers_MiniPAT_TagMetaData,
+        "instant" = DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
+        "summary" = DataMap_WildlifeComputers_MiniPAT_SummarySensorData,
+        "histogram_meta" = DataMap_WildlifeComputers_MiniPAT_HistogramMetaData
+      ),
+    output_fieldmaps =
+      append(
+        Decoder()$output_fieldmaps,
+        list(
+          "histogram_meta" = ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
+        )
+      )
   )
 
 Decoder_WildlifeComputers_BenthicSPAT =
