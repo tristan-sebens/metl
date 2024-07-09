@@ -649,6 +649,67 @@ find_line_in_file =
        }
    )
 
+ #' DataMap - Wildlife Computers MiniPAT PDT (Profile of Depth and Temperature) data
+ #' @export DataMap_WildlifeComputers_MiniPAT_PDTData
+ DataMap_WildlifeComputers_MiniPAT_PDTData =
+   DataMap(
+     input_data_field_map =
+       WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS,
+     extract_fn =
+       function(d) {
+         fp =
+           list.files(d, pattern = "^.*PDTs\\.csv$", full.names = T)
+
+         # Initial read of  the data
+         pdt_dat1 =
+           read.csv(fp) %>%
+           # Convert the Date column to a POSIXct object
+           dplyr::mutate(Date = as.POSIXct(Date, format = "%H:%M:%S %d-%b-%Y")) %>%
+           dplyr::arrange(Date)
+
+         # First calculate the aggregation interval of the data
+         agg_interval =
+           pdt_dat1 %>%
+           dplyr::mutate(interval = dplyr::lead(Date) - Date) %>%
+           tidyr::drop_na(interval) %>%
+           dplyr::pull(interval) %>%
+           median()
+
+         # Next, calculate the end of each record based on the aggregation interval and the timestamp of the following record
+         pdt_dat1 %>%
+           dplyr::mutate(
+             End =
+               as.POSIXct(
+                 ifelse(
+                   dplyr::lead(Date) < Date + agg_interval,
+                   dplyr::lead(Date),
+                   Date + agg_interval
+                 )
+               )
+           ) %>%
+           # dplyr::select(!contains("Discont") & !contains("x.Ox")) %>%
+           # Finally, pivot the records into a more efficient format
+           tidyr::pivot_longer(
+             .,
+             cols =
+               names(.)[which(stringr::str_detect(names(.), "(?:Temp|Depth|Discont|X.Ox)\\d"))],
+             names_to = c("Type", "Num"),
+             names_pattern = "(\\D*(\\d+)\\D*)"
+           ) %>%
+           dplyr::mutate(Type = stringr::str_remove_all(Type, "\\d")) %>%
+           # dplyr::select(Date, Type, Num, value) %>%
+           # dplyr::group_by(Date, Num) %>%
+           tidyr::pivot_wider(
+             .,
+             names_from = Type,
+             values_from = value,
+             id_cols = names(.)[!names(.) %in% c("Type", "value")]
+           ) %>%
+           # Drop any rows which are missing any of the key values, as without all of them the record cannot be used
+           tidyr::drop_na(Depth, DepthError, MinTemp, MaxTemp)
+       }
+   )
+
  #' DataMap - Wildlife Computers Benthic sPAT tag metadata
  #' @export DataMap_WildlifeComputers_BenthicSPAT_TagMetaData
  DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =

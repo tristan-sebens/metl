@@ -81,13 +81,15 @@ Decoder_WildlifeComputers_MiniPAT =
         "meta" = DataMap_WildlifeComputers_MiniPAT_TagMetaData,
         "instant" = DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
         "summary" = DataMap_WildlifeComputers_MiniPAT_SummarySensorData,
-        "histogram_meta" = DataMap_WildlifeComputers_MiniPAT_HistogramMetaData
+        "histogram_meta" = DataMap_WildlifeComputers_MiniPAT_HistogramMetaData,
+        "pdt" = DataMap_WildlifeComputers_MiniPAT_PDTData
       ),
     output_fieldmaps =
       append(
         Decoder()$output_fieldmaps,
         list(
-          "histogram_meta" = ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
+          "histogram_meta" = ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS,
+          "pdt" = ABLTAG_PDT_DATA_TABLE_FIELDS
         )
       )
   )

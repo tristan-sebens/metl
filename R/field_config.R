@@ -342,6 +342,56 @@ ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
       )
   )
 
+#' @export ABLTAG_PDT_DATA_TABLE_FIELDS
+ABLTAG_PDT_DATA_TABLE_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TAG_ID_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
+        TAG_TYPE_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
+        START_TIME_FIELD =
+          Field(
+            name = "START_TIME",
+            id_field = T
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "END_TIME",
+            id_field = T
+          ),
+        TIME_OFFSET_FIELD =
+          Field(
+            name = "TIME_OFFSET"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "DEPTH"
+          ),
+        DEPTH_ERROR_FIELD =
+          Field(
+            name = "DEPTH_ERROR"
+          ),
+        TEMP_MIN_FIELD =
+          Field(
+            name = "TEMP_MIN"
+          ),
+        TEMP_MAX_FIELD =
+          Field(
+            name = "TEMP_MAX"
+          ),
+        PCT_DOX_FIELD =
+          Field(
+            name = "PCT_DOX"
+          ),
+        DISCONTINUITY_FIELD =
+          Field(
+            name = "DISCONTINUITY FLAG"
+          )
+      )
+  )
+
 #----------------
 # METADATA INPUT MAPS
 #----------------
@@ -863,6 +913,52 @@ WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS =
           )
       )
   )
+
+#' @export WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS
+WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
+          Field(
+            name = "Date"
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End"
+          ),
+        TIME_OFFSET_FIELD =
+          Field(
+            name = "Time.Offset"
+          ),
+        DEPTH_FIELD =
+          Field(
+            name = "Depth"
+          ),
+        DEPTH_ERROR_FIELD =
+          Field(
+            name = "DepthError"
+          ),
+        TEMP_MIN_FIELD =
+          Field(
+            name = "MinTemp"
+          ),
+        TEMP_MAX_FIELD =
+          Field(
+            name = "MaxTemp"
+          ),
+        PCT_DOX_FIELD =
+          Field(
+            name = "X.Ox"
+          ),
+        DISCONTINUITY_FIELD =
+          Field(
+            name = "Discont"
+          )
+      )
+  )
+
+
 
 #' @export WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS
 WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS =
