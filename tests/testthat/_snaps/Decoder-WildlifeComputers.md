@@ -7634,6 +7634,7 @@
       names(decode_op)
     Output
       [1] "meta"           "instant"        "summary"        "histogram_meta"
+      [5] "pdt"           
 
 ---
 
@@ -8938,12 +8939,35 @@
       112   11        650       Depth    1234 SuperTag
       1111  12        Inf       Depth    1234 SuperTag
 
+---
+
+    Code
+      decode_op[["pdt"]]
+    Output
+      # A tibble: 2,431 x 11
+         START_TIME          END_TIME            TIME_OFFSET DEPTH DEPTH_ERROR
+         <dttm>              <dttm>                    <dbl> <dbl>       <dbl>
+       1 2021-07-30 00:00:00 2021-07-31 00:00:00           0    56           4
+       2 2021-07-30 00:00:00 2021-07-31 00:00:00           0    80           4
+       3 2021-07-30 00:00:00 2021-07-31 00:00:00           0    96           4
+       4 2021-07-30 00:00:00 2021-07-31 00:00:00           0   144           4
+       5 2021-07-30 00:00:00 2021-07-31 00:00:00           0   160           4
+       6 2021-07-30 00:00:00 2021-07-31 00:00:00           0   184           4
+       7 2021-07-30 00:00:00 2021-07-31 00:00:00           0   200           4
+       8 2021-07-30 00:00:00 2021-07-31 00:00:00           0   240           4
+       9 2021-07-31 00:00:00 2021-08-01 00:00:00           0    88           4
+      10 2021-07-31 00:00:00 2021-08-01 00:00:00           0   120           4
+      # i 2,421 more rows
+      # i 6 more variables: TEMP_MIN <dbl>, TEMP_MAX <dbl>, PCT_DOX <dbl>,
+      #   `DISCONTINUITY FLAG` <dbl>, TAG_NUM <chr>, TAG_TYPE <chr>
+
 # Decoder_WildlifeComputers_MiniPAT -> /wc/mp/ss/174900
 
     Code
       names(decode_op)
     Output
       [1] "meta"           "instant"        "summary"        "histogram_meta"
+      [5] "pdt"           
 
 ---
 
@@ -9340,4 +9364,26 @@
       101   10        550       Depth    1234 SuperTag
       112   11        650       Depth    1234 SuperTag
       1111  12        Inf       Depth    1234 SuperTag
+
+---
+
+    Code
+      decode_op[["pdt"]]
+    Output
+      # A tibble: 3,403 x 11
+         START_TIME          END_TIME            TIME_OFFSET DEPTH DEPTH_ERROR
+         <dttm>              <dttm>                    <dbl> <dbl>       <dbl>
+       1 2021-07-15 06:00:00 2021-07-16 00:00:00           0     0           4
+       2 2021-07-15 06:00:00 2021-07-16 00:00:00           0    24           4
+       3 2021-07-15 06:00:00 2021-07-16 00:00:00           0    72           4
+       4 2021-07-15 06:00:00 2021-07-16 00:00:00           0   120           4
+       5 2021-07-15 06:00:00 2021-07-16 00:00:00           0   128           4
+       6 2021-07-15 06:00:00 2021-07-16 00:00:00           0   168           4
+       7 2021-07-15 06:00:00 2021-07-16 00:00:00           0   200           4
+       8 2021-07-15 06:00:00 2021-07-16 00:00:00           0   256           4
+       9 2021-07-16 00:00:00 2021-07-17 00:00:00           0    56           4
+      10 2021-07-16 00:00:00 2021-07-17 00:00:00           0    96           4
+      # i 3,393 more rows
+      # i 6 more variables: TEMP_MIN <dbl>, TEMP_MAX <dbl>, PCT_DOX <dbl>,
+      #   `DISCONTINUITY FLAG` <dbl>, TAG_NUM <chr>, TAG_TYPE <chr>
 
