@@ -480,62 +480,46 @@
        WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS,
      extract_fn =
        function(d) {
-         extract_bins_from_rtf_data =
-           function(rtf_dat, pattern) {
-             # Determine which indices contain the desiered data using a regular expression
-             ixs = which(stringr::str_detect(rtf_dat, pattern))[-1]
-
-             # Extract the data into a data frame
-             bins =
-               stringr::str_extract(rtf_dat[ixs], pattern = "^.*Bin (\\d+)\\s*(\\d+)$", group = c(1, 2)) %>%
-               data.frame() %>%
-               setNames(c("bin", "upper_limit")) %>%
-               dplyr::mutate(
-                 bin = as.numeric(bin),
-                 upper_limit = as.numeric(upper_limit)
-               )
-
-             # Explicitly add the implicit last bin with upper limit == Inf
-             bins =
-               rbind(
-                 bins,
-                 bins[nrow(bins),] %>%
-                   dplyr::mutate(
-                     bin = bin + 1,
-                     upper_limit = Inf
-                   )
-               )
-
-             return(bins)
-           }
-
-         # Identify the RTF file describing the histogram bins and extract all data from it
-         rtf_fp =
+         # Find the histogram data file
+         histos_fp =
            list.files(
              d,
-             pattern = "\\.rtf",
+             pattern = "Histos\\.csv",
              ignore.case = T,
              full.names = T
            )
 
-         rtf_dat = striprtf::read_rtf(rtf_fp)
-
-         # Extract temp bins
-         temp_bins =
-           extract_bins_from_rtf_data(rtf_dat, pattern = "Temperature Histogram")
-
-         # Extract depth bins
-         depth_bins =
-           extract_bins_from_rtf_data(rtf_dat, pattern = "Time at Depth Histogram")
-
-         # Combine bin info into a single frame
-         bins =
-           rbind(
-             temp_bins %>% dplyr::mutate(type = "Temperature"),
-             depth_bins %>% dplyr::mutate(type = "Depth")
+         histos_dat =
+           # Read in the data
+           read.csv(histos_fp) %>%
+           # Filter to just those rows which describe the bin limits for each data type
+           dplyr::filter(stringr::str_detect(HistType, "LIMITS")) %>%
+           dplyr::select(HistType, starts_with("Bin")) %>%
+           # Pivot the data so that each bin is a row
+           tidyr::pivot_longer(
+             cols = starts_with("Bin"),
+             names_to = "bin",
+             values_to = "upper_limit"
+           ) %>%
+           # Clean up the bin names
+           dplyr::mutate(
+             bin = as.numeric(stringr::str_remove(bin, "Bin")),
+             type =
+               plyr::mapvalues(
+                 HistType,
+                 from = c("TATLIMITS", "TADLIMITS"),
+                 to = c("temperature", "depth")
+               )
+           ) %>%
+           # Drop unused bins
+           tidyr::drop_na() %>%
+           # Explicitly add implicit final bins
+           dplyr::select(type, bin, upper_limit) %>%
+           dplyr::group_by(type) %>%
+           dplyr::reframe(
+             bin = c(bin, max(bin+1)),
+             upper_limit = c(upper_limit, Inf),
            )
-
-         return(bins)
        }
    )
 
