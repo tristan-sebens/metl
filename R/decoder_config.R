@@ -90,7 +90,7 @@ Decoder_WildlifeComputers_MiniPAT =
         Decoder()$output_fieldmaps,
         list(
           "histogram_meta" = ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS,
-          "histogram" = ABLTAG_HISTOGRAM_DATA_FIELDS,
+          "histogram" = ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS,
           "pdt" = ABLTAG_PDT_DATA_TABLE_FIELDS
         )
       )

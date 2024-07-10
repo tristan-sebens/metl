@@ -12,13 +12,13 @@ ABLTAG_USER_INPUT_FIELDS =
         TAG_ID_FIELD =
           Field(
             name = "TAG_NUM",
-            data_type = "varchar(8)",
+            data_type = "double(7, 0)",
             id_field = T
           ),
         TAG_TYPE_FIELD =
           Field(
             name = "TAG_TYPE",
-            data_type = "varchar(2)",
+            data_type = "varchar(3)",
             id_field = T
           ),
         TAG_SEQ_NUM_FIELD =
@@ -318,63 +318,95 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
   FieldMap(
+    table = "TAG_DATA_HISTOGRAM_META",
     field_list =
       list(
         TAG_ID_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
-        BIN_NUMBER_FIELD =
-          Field(
-            name = "BIN",
-            data_type = "integer"
-          ),
-        BIN_UPPER_LIMIT_FIELD =
-          Field(
-            name = "UPPER_LMIT",
-            data_type = "double(10, 2)"
-          ),
         BIN_DATA_TYPE_FIELD =
           Field(
             name = "DATA_TYPE",
-            data_type = "varchar(32)"
+            data_type = "varchar(32)",
+            id_field = T
+          ),
+        BIN_NUMBER_FIELD =
+          Field(
+            name = "BIN",
+            data_type = "integer",
+            id_field = T
+          ),
+        BIN_UPPER_LIMIT_FIELD =
+          Field(
+            name = "UPPER_LIMIT",
+            data_type = "double(10, 2)",
+            trans_fn =
+              function(v, ...) {
+                # The upper limit is sometimes recorded as Inf. Replace these with a large number, because Oracle can't deal with Inf
+                v[which(is.infinite(v))] = 1e7
+                return(v)
+              }
+          ),
+        BIN_UNITS_FIELD =
+          Field(
+            name = "UNITS",
+            data_type = "varchar(8)"
           )
       )
   )
 
-#' @export ABLTAG_HISTOGRAM_DATA_FIELDS
-ABLTAG_HISTOGRAM_DATA_FIELDS =
+#' @export ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS
+ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
   FieldMap(
+    table = "TAG_DATA_HISTOGRAM",
     field_list =
       list(
+        TAG_ID_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
+        TAG_TYPE_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         START_TIME_FIELD =
           Field(
             name = "START_TIME",
-            id_field = T
+            data_type = "integer",
+            id_field = T,
+            trans_fn =
+              function(v, ...) {
+                as.numeric(v)
+              }
           ),
         END_TIME_FIELD =
           Field(
             name = "END_TIME",
-            id_field = T
+            data_type = "integer",
+            id_field = T,
+            trans_fn =
+              function(v, ...) {
+                as.numeric(v)
+              }
           ),
         HISTOGRAM_DATA_TYPE_FIELD =
           Field(
             name = "DATA_TYPE",
+            data_type = "varchar(32)",
             id_field = T
           ),
         BIN_NUMBER_FIELD =
           Field(
-            name = "BIN_NUMBER",
+            name = "BIN",
+            data_type = "integer",
             id_field = T
           ),
         TIME_OFFSET_FIELD =
           Field(
-            name = "TIME_OFFSET"
+            name = "TIME_OFFSET",
+            data_type = "integer"
           ),
-
         BIN_VALUE_FIELD =
           Field(
-            name = "VALUE"
+            name = "VALUE",
+            data_type = "numeric(8, 2)"
           )
       )
   )
@@ -382,6 +414,7 @@ ABLTAG_HISTOGRAM_DATA_FIELDS =
 #' @export ABLTAG_PDT_DATA_TABLE_FIELDS
 ABLTAG_PDT_DATA_TABLE_FIELDS =
   FieldMap(
+    table = "TAG_DATA_PDT",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -391,40 +424,58 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
         START_TIME_FIELD =
           Field(
             name = "START_TIME",
-            id_field = T
+            id_field = T,
+            data_type = "integer",
+            trans_fn =
+              function(v, ...) {
+                as.numeric(v)
+              }
           ),
         END_TIME_FIELD =
           Field(
             name = "END_TIME",
-            id_field = T
+            id_field = T,
+            data_type = "integer",
+            trans_fn =
+              function(v, ...) {
+                as.numeric(v)
+              }
           ),
         TIME_OFFSET_FIELD =
           Field(
-            name = "TIME_OFFSET"
+            name = "TIME_OFFSET",
+            data_type = "integer"
           ),
         DEPTH_FIELD =
           Field(
-            name = "DEPTH"
+            name = "DEPTH",
+            data_type = "double(10, 2)",
+            id_field = T
           ),
         DEPTH_ERROR_FIELD =
           Field(
-            name = "DEPTH_ERROR"
+            name = "DEPTH_ERROR",
+            data_type = "double(10, 2)"
           ),
         TEMP_MIN_FIELD =
           Field(
-            name = "TEMP_MIN"
+            name = "TEMP_MIN",
+            data_type = "double(10, 2)"
           ),
         TEMP_MAX_FIELD =
           Field(
-            name = "TEMP_MAX"
+            name = "TEMP_MAX",
+            data_type = "double(10, 2)"
           ),
         PCT_DOX_FIELD =
           Field(
-            name = "PCT_DOX"
+            name = "PCT_DOX",
+            data_type = "double(10, 2)"
           ),
         DISCONTINUITY_FIELD =
           Field(
-            name = "DISCONTINUITY FLAG"
+            name = "DISCONTINUITY_FLAG",
+            data_type = "numeric(1, 0)"
           )
       )
   )
@@ -947,6 +998,25 @@ WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS =
         BIN_UPPER_LIMIT_FIELD =
           Field(
             name = "upper_limit"
+          ),
+        BIN_UNITS_FIELD =
+          Field(
+            name = "unit",
+            independent = T,
+            trans_fn =
+              function(v, dat, ip_fm, ...) {
+                data_type_v =
+                  dat[[ip_fm$field_list$BIN_DATA_TYPE_FIELD$name]]
+
+                units_v =
+                  plyr::mapvalues(
+                    data_type_v,
+                    from = c("depth", "temperature"),
+                    to = c("m", "°C")
+                  )
+
+                return(units_v)
+              }
           )
       )
   )
