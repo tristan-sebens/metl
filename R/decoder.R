@@ -297,7 +297,19 @@ setRefClass(
                   error =
                     function(cond) {
                       # Raise the error which caused the problem
-                      stop(paste0("Error creating temporary table ", temp_table_name, ": ", cond$message))
+                      stop(
+                        paste0(
+                          c(
+                            paste0(
+                              "Error creating temporary table ",
+                              temp_table_name,
+                              ":"
+                            ),
+                            get_cond_stack_messages(cond = cond)
+                          ),
+                          collapse = "\n"
+                        )
+                      )
                     }
                 )
 
@@ -328,9 +340,15 @@ setRefClass(
                     function(cond) {
                       stop(
                         paste0(
-                          "Error updating ",
-                          output_data_field_map$table,
-                          " from temporary table"
+                          c(
+                            paste0(
+                              "Error updating ",
+                              output_data_field_map$table,
+                              " from temporary table:"
+                            ),
+                            get_cond_stack_messages(cond = cond)
+                          ),
+                          collapse = "\n"
                         )
                       )
                     }
