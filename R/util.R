@@ -11,6 +11,20 @@
 # has class 'Node'. Define it here so the constructor knows what we're talking about
 setOldClass("Node")
 
+#' Collect and return the messages from a condition stack
+#'
+#' @param cond The condition from which to begin traversing the stack (from child to parent)
+#'
+#' @return A list of messages from the condition stack, including offending calls
+get_cond_stack_messages =
+  function(l = list(), cond) {
+    slug = paste0("In ", cond$call[1], ": ", cond$message)
+    l = unlist(append(l, slug))
+    if (!is.null(cond$parent))
+      l = get_cond_stack_messages(l = l, cond = cond$parent)
+    return(l)
+  }
+
 # Find the mode of a vector
 v_mode =
   function(v) {
