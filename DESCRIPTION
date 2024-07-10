@@ -32,6 +32,7 @@ Config/testthat/parallel: false
 Config/testthat/start-first: Decoder, DataMapConfig, DataMap_Base
 Collate:
     'util.R'
+    'tag_utils.R'
     'field.R'
     'data_map.R'
     'identifier.R'

@@ -11,6 +11,25 @@
 # has class 'Node'. Define it here so the constructor knows what we're talking about
 setOldClass("Node")
 
+# Find the mode of a vector
+v_mode =
+  function(v) {
+    # Collect set of unique values in v
+    uniqv = unique(v)
+    # Find the unique value which appears most frequently in v
+    mode_val = uniqv[which.max(tabulate(match(v, uniqv)))]
+    # Find the element in v which matches the value of the mode value
+    # This is done because in collecting the set of unique values in v, those
+    # values may lose certain characteristics. Specifically, difftime objects
+    # will be converted to numeric values, i.e. a vector of difftimes with a
+    # mode of 24hrs will be converted to a vector of numerics, the mode of which
+    # will be the integer 24. To preserve classes, we perform this final step to
+    # return an element of the original vector which matches the mode value
+    mode_ix = which(v == mode_val)[[1]]
+    mode = v[mode_ix]
+    return(mode)
+  }
+
 # Insert data into the test db
 populate_test_db =
   function(con, table, dat, ...) {
