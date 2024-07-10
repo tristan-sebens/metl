@@ -121,7 +121,9 @@ setRefClass(
             input_field_dat_ =
               input_field_obj_$trans_fn(
                 v = input_field_dat_,
-                dat = dat__
+                dat = dat__,
+                ip_fm = input_data_field_map,
+                op_fm = output_data_field_map
               )
 
             # Make consideration for units
