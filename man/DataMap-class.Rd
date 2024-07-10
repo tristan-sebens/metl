@@ -26,8 +26,6 @@ Not intended to be implemented directly
 \section{Methods}{
 
 \describe{
-\item{\code{augment(dat, output_data_field_map)}}{Augment the transformed dataset with any missing data}
-
 \item{\code{extract(d)}}{Extract data from directory `d`}
 
 \item{\code{transform(dat, output_data_field_map)}}{Transform extracted data, as dictated by the input/output `FieldMap` objects}
