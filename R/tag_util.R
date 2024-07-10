@@ -174,7 +174,8 @@ wc_minipat_calc_end_times =
         start = start_times
       ) %>%
       dplyr::left_join(
-        start_end_map
+        start_end_map,
+        by = c("start")
       )
 
     # Return the vector of end times

@@ -342,6 +342,43 @@ ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
       )
   )
 
+#' @export ABLTAG_HISTOGRAM_DATA_FIELDS
+ABLTAG_HISTOGRAM_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
+          Field(
+            name = "START_TIME",
+            id_field = T
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "END_TIME",
+            id_field = T
+          ),
+        HISTOGRAM_DATA_TYPE_FIELD =
+          Field(
+            name = "DATA_TYPE",
+            id_field = T
+          ),
+        BIN_NUMBER_FIELD =
+          Field(
+            name = "BIN_NUMBER",
+            id_field = T
+          ),
+        TIME_OFFSET_FIELD =
+          Field(
+            name = "TIME_OFFSET"
+          ),
+
+        BIN_VALUE_FIELD =
+          Field(
+            name = "VALUE"
+          )
+      )
+  )
+
 #' @export ABLTAG_PDT_DATA_TABLE_FIELDS
 ABLTAG_PDT_DATA_TABLE_FIELDS =
   FieldMap(
@@ -512,7 +549,7 @@ LOTEK_1400.1800_INSTANT_DATA_FIELDS =
             name = "Datetime",
             independent = T,
             trans_fn =
-              function(v, dat) {
+              function(v, dat, ...) {
                 as.POSIXct(
                   paste(
                     dat[["Date"]],
@@ -826,7 +863,7 @@ WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS =
             name = "Datetime",
             independent = T,
             trans_fn =
-              function(v, dat)
+              function(v, dat, ...)
               {
                  as.POSIXct(
                    paste0(dat$Day, dat$Time),
@@ -899,6 +936,10 @@ WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS =
   FieldMap(
     field_list =
       list(
+        BIN_DATA_TYPE_FIELD =
+          Field(
+            name = "type"
+          ),
         BIN_NUMBER_FIELD =
           Field(
             name = "bin"
@@ -906,10 +947,59 @@ WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS =
         BIN_UPPER_LIMIT_FIELD =
           Field(
             name = "upper_limit"
-          ),
-        BIN_DATA_TYPE_FIELD =
+          )
+      )
+  )
+
+#' @export WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_DATA_FIELDS
+WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_DATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        START_TIME_FIELD =
           Field(
-            name = "type"
+            name = "Date",
+            trans_fn =
+              function(v, ...) {
+                return(as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y"))
+              }
+          ),
+        END_TIME_FIELD =
+          Field(
+            name = "End",
+            independent = T,
+            trans_fn =
+              function(v, dat, ip_fm, ...) {
+                # Get the start time field
+                start_time_field = ip_fm$field_list[["START_TIME_FIELD"]]
+                # Get the start time data, and transform it into a POSIXct object
+                start_times =
+                  start_time_field$trans_fn(
+                    dat[[start_time_field$name]]
+                  )
+
+                end_times = wc_minipat_calc_end_times(start_times)
+              }
+          ),
+        DEPTH_SENSOR_RESOLUTION_FIELD =
+          Field(
+            name = "DepthSensor"
+          ),
+        HISTOGRAM_DATA_TYPE_FIELD =
+          Field(
+            name = "HistType"
+          ),
+        TIME_OFFSET_FIELD =
+          Field(
+            name = "Time.Offset"
+          ),
+        BIN_NUMBER_FIELD =
+          Field(
+            name = "Bin"
+          ),
+        BIN_VALUE_FIELD =
+          Field(
+            name = "Value"
           )
       )
   )
@@ -921,11 +1011,28 @@ WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS =
       list(
         START_TIME_FIELD =
           Field(
-            name = "Date"
+            name = "Date",
+            trans_fn =
+              function(v, ...) {
+                return(as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y"))
+              }
           ),
         END_TIME_FIELD =
           Field(
-            name = "End"
+            name = "End",
+            independent = T,
+            trans_fn =
+              function(v, dat, ip_fm, ...) {
+                # Get the start time field
+                start_time_field = ip_fm$field_list[["START_TIME_FIELD"]]
+                # Get the start time data, and transform it into a POSIXct object
+                start_times =
+                  start_time_field$trans_fn(
+                    dat[[start_time_field$name]]
+                  )
+
+                end_times = wc_minipat_calc_end_times(start_times)
+              }
           ),
         TIME_OFFSET_FIELD =
           Field(

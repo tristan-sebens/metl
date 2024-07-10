@@ -489,7 +489,7 @@
              full.names = T
            )
 
-         histos_dat =
+         histos_meta_dat =
            # Read in the data
            read.csv(histos_fp) %>%
            # Filter to just those rows which describe the bin limits for each data type
@@ -520,6 +520,52 @@
              bin = c(bin, max(bin+1)),
              upper_limit = c(upper_limit, Inf),
            )
+
+         return(histos_meta_dat)
+       }
+   )
+
+ #' DataMap - Wildlife Computers MiniPAT histogram data
+ #' @export DataMap_WildlifeComputers_MiniPAT_HistogramData
+ DataMap_WildlifeComputers_MiniPAT_HistogramData =
+   DataMap(
+     input_data_field_map =
+       WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_DATA_FIELDS,
+     extract_fn =
+       function(d) {
+         histos_fp =
+           list.files(
+             d,
+             pattern = "Histos\\.csv",
+             ignore.case = T,
+             full.names = T
+           )
+
+         histos_dat =
+           read.csv(histos_fp) %>%
+           dplyr::filter(HistType %in% c("TAT", "TAD")) %>%
+           tidyr::pivot_longer(
+             .,
+             cols =
+               names(.)[which(stringr::str_detect(names(.), "^Bin\\d+$"))],
+             names_to = "Bin",
+             values_to = "Value"
+           ) %>%
+           tidyr::drop_na(Value) %>%
+           dplyr::mutate(
+             Bin =
+               as.numeric(
+                 stringr::str_remove_all(Bin, "\\D")
+               ),
+             HistType =
+               plyr::mapvalues(
+                 HistType,
+                 from = c("TAT", "TAD"),
+                 to = c("temperature", "depth")
+               )
+           )
+
+         return(histos_dat)
        }
    )
 
@@ -531,39 +577,12 @@
        WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS,
      extract_fn =
        function(d) {
-         fp =
+         pdt_fp =
            list.files(d, pattern = "^.*PDTs\\.csv$", full.names = T)
 
          # Initial read of  the data
-         pdt_dat1 =
-           read.csv(fp) %>%
-           # Convert the Date column to a POSIXct object
-           dplyr::mutate(Date = as.POSIXct(Date, format = "%H:%M:%S %d-%b-%Y")) %>%
-           dplyr::arrange(Date)
-
-         # First calculate the aggregation interval of the data
-         agg_interval =
-           pdt_dat1 %>%
-           dplyr::mutate(interval = dplyr::lead(Date) - Date) %>%
-           tidyr::drop_na(interval) %>%
-           dplyr::pull(interval) %>%
-           # We will assume that the most common interval is the programmed aggregation interval
-           median()
-
-         # Next, calculate the end of each record based on the aggregation interval and the timestamp of the following record
-         pdt_dat1 %>%
-           dplyr::mutate(
-             End =
-               as.POSIXct(
-                 ifelse(
-                   dplyr::lead(Date) < Date + agg_interval,
-                   dplyr::lead(Date),
-                   Date + agg_interval
-                 )
-               )
-           ) %>%
-           # dplyr::select(!contains("Discont") & !contains("x.Ox")) %>%
-           # Finally, pivot the records into a more efficient format
+         pdt_dat =
+           read.csv(pdt_fp) %>%
            tidyr::pivot_longer(
              .,
              cols =
@@ -581,7 +600,10 @@
              id_cols = names(.)[!names(.) %in% c("Type", "value")]
            ) %>%
            # Drop any rows which are missing any of the key values, as without all of them the record cannot be used
-           tidyr::drop_na(Depth, DepthError, MinTemp, MaxTemp)
+           tidyr::drop_na(Depth, DepthError, MinTemp, MaxTemp) %>%
+           data.frame()
+
+         return(pdt_dat)
        }
    )
 

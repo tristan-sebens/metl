@@ -15,7 +15,10 @@ test_decoder_on_data_dir =
     # Ensure only expected data.frames are returned
     expect_snapshot(names(decode_op))
     expect_contains(
-      c("meta", "instant", "summary", "histogram_meta"),
+      c(
+        "meta", "instant", "summary",
+        "histogram_meta", "histogram", "pdt"
+      ),
       names(decode_op)
     )
     expect_contains(names(dc$data_maps), names(decode_op))
@@ -38,6 +41,11 @@ test_decoder_on_data_dir =
     if("histogram_meta" %in% names(dc$data_maps)) {
       expect_gt(nrow(decode_op[["histogram_meta"]]), 0)
       expect_snapshot(decode_op[["histogram_meta"]])
+    }
+
+    if("pdt" %in% names(dc$data_maps)) {
+      expect_gt(nrow(decode_op[["pdt"]]), 0)
+      expect_snapshot(decode_op[["pdt"]])
     }
   }
 
