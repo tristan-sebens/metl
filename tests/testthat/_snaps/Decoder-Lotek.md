@@ -16,7 +16,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP       PRESSURE   TEMPERATURE TAG_NUM TAG_TYPE
       1  1084579200 0.869204 [psi] 22.04689 [°C]    1234 SuperTag
@@ -137,7 +137,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP          PRESSURE   TEMPERATURE TAG_NUM TAG_TYPE
       1  1084579200  0.08012332 [psi] 21.98282 [°C]    1234 SuperTag
@@ -258,7 +258,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
          TIMESTAMP          PRESSURE   TEMPERATURE TAG_NUM TAG_TYPE
       1  897868800  1.31997500 [psi] 19.31769 [°C]    1234 SuperTag
@@ -379,7 +379,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
          TIMESTAMP          PRESSURE    TEMPERATURE TAG_NUM TAG_TYPE
       1  895190400    0.209354 [psi] 22.574157 [°C]    1234 SuperTag
@@ -500,7 +500,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP        PRESSURE   TEMPERATURE TAG_NUM TAG_TYPE
       1  1021032000 -6.116089 [psi] 23.64611 [°C]    1234 SuperTag
@@ -621,7 +621,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP          PRESSURE   TEMPERATURE TAG_NUM TAG_TYPE
       1  1021032000 -3.29827700 [psi] 20.12788 [°C]    1234 SuperTag
@@ -742,7 +742,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP       PRESSURE TEMPERATURE TAG_NUM TAG_TYPE
       1  1178727840 1.450377 [psi]  23.80 [°C]    1234 SuperTag
@@ -863,7 +863,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP        PRESSURE TEMPERATURE TAG_NUM TAG_TYPE
       1  1210773840  1.450377 [psi]  22.48 [°C]    1234 SuperTag
@@ -984,7 +984,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
           TIMESTAMP        PRESSURE TEMPERATURE TAG_NUM TAG_TYPE
       1  1212500160  0.000000 [psi]  23.71 [°C]    1234 SuperTag
@@ -1105,7 +1105,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
            TIMESTAMP        PRESSURE TEMPERATURE TAG_NUM TAG_TYPE
       1   1305561600 -1.725949 [psi]  20.82 [°C]    1234 SuperTag
@@ -1244,7 +1244,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
            TIMESTAMP         PRESSURE TEMPERATURE TAG_NUM TAG_TYPE
       1   1242122999  0.3625943 [psi]  25.42 [°C]    1234 SuperTag

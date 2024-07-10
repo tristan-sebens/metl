@@ -563,7 +563,8 @@
                  from = c("TAT", "TAD"),
                  to = c("temperature", "depth")
                )
-           )
+           ) %>%
+           data.frame()
 
          return(histos_dat)
        }

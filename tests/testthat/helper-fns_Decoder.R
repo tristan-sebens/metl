@@ -10,45 +10,30 @@ test_decoder_on_data_dir =
 
     decode_op = dc$decode(d, input_meta)
 
+    data_types =
+      c(
+        "meta", "instant", "summary",
+        "histogram_meta", "histogram", "pdt"
+      )
+
     # Ensure data.frames are returned
     expect_gt(length(decode_op), 0)
     # Ensure only expected data.frames are returned
     expect_snapshot(names(decode_op))
-    expect_contains(
-      c(
-        "meta", "instant", "summary",
-        "histogram_meta", "histogram", "pdt"
-      ),
-      names(decode_op)
-    )
+    expect_contains(data_types, names(decode_op))
     expect_contains(names(dc$data_maps), names(decode_op))
     # Ensure metadata is returned
     expect_contains(names(decode_op), "meta")
     expect_gt(nrow(decode_op[["meta"]]), 0)
     expect_snapshot(decode_op[["meta"]])
 
-    # Ensure expected data is returned
-    if("instant" %in% names(dc$data_maps)) {
-      expect_gt(nrow(decode_op[["instant"]]), 0)
-      expect_snapshot(decode_op[["instant"]])
-    }
-
-    if("summary" %in% names(dc$data_maps)) {
-      expect_gt(nrow(decode_op[["summary"]]), 0)
-      expect_snapshot(decode_op[["summary"]])
-    }
-
-    if("histogram_meta" %in% names(dc$data_maps)) {
-      expect_gt(nrow(decode_op[["histogram_meta"]]), 0)
-      expect_snapshot(decode_op[["histogram_meta"]])
-    }
-
-    if("pdt" %in% names(dc$data_maps)) {
-      expect_gt(nrow(decode_op[["pdt"]]), 0)
-      expect_snapshot(decode_op[["pdt"]])
+    for (data_type in data_types[-1]) {
+      if (data_type %in% names(dc$data_maps)) {
+        expect_gt(nrow(decode_op[[data_type]]), 0)
+        expect_snapshot(decode_op[[data_type]])
+      }
     }
   }
-
 
 # Map to indicate what function to use to compare the data in a Field based on that Field's data_type attribute
 data_type_check_fn_map =

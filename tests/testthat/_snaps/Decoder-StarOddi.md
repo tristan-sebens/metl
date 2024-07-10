@@ -16,7 +16,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
       # A tibble: 45,369 x 5
            TIMESTAMP DEPTH TEMPERATURE TAG_NUM TAG_TYPE
@@ -51,7 +51,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
       # A tibble: 5,381 x 9
           TIMESTAMP DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION MAGNETIC_FIELD_STREN~1
@@ -88,7 +88,7 @@
 ---
 
     Code
-      decode_op[["instant"]]
+      decode_op[[data_type]]
     Output
       # A tibble: 6,931 x 9
           TIMESTAMP DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION MAGNETIC_FIELD_STREN~1
