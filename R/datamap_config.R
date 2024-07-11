@@ -519,7 +519,8 @@
            dplyr::reframe(
              bin = c(bin, max(bin+1)),
              upper_limit = c(upper_limit, Inf),
-           )
+           ) %>%
+           data.frame()
 
          return(histos_meta_dat)
        }
