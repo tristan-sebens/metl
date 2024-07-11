@@ -4,10 +4,10 @@
       test_fm_1$generate_data_type_list()
     Output
       $TAG_NUM
-      [1] "varchar(8)"
+      [1] "double(7, 0)"
       
       $TAG_TYPE
-      [1] "varchar(2)"
+      [1] "varchar(3)"
       
       $TIMESTAMP
       [1] "integer"
