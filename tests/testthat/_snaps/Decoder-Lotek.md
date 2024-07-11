@@ -3,15 +3,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1000/1100/1250    1234 SuperTag
+         MAKE          MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1000/1100/1250    1234 SuperTag       0            0
 
 ---
 
@@ -124,15 +124,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1000/1100/1250    1234 SuperTag
+         MAKE          MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1000/1100/1250    1234 SuperTag       0            0
 
 ---
 
@@ -245,15 +245,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1000/1100/1250    1234 SuperTag
+         MAKE          MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1000/1100/1250    1234 SuperTag       0            0
 
 ---
 
@@ -366,15 +366,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1000/1100/1250    1234 SuperTag
+         MAKE          MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1000/1100/1250    1234 SuperTag       0            0
 
 ---
 
@@ -487,15 +487,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1000/1100/1250    1234 SuperTag
+         MAKE          MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1000/1100/1250    1234 SuperTag       0            0
 
 ---
 
@@ -608,15 +608,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1000/1100/1250    1234 SuperTag
+         MAKE          MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1000/1100/1250    1234 SuperTag       0            0
 
 ---
 
@@ -729,15 +729,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE MODEL TAG_NUM TAG_TYPE
-      1 Lotek  1300    1234 SuperTag
+         MAKE MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek  1300    1234 SuperTag       0            0
 
 ---
 
@@ -850,15 +850,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE MODEL TAG_NUM TAG_TYPE
-      1 Lotek  1300    1234 SuperTag
+         MAKE MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek  1300    1234 SuperTag       0            0
 
 ---
 
@@ -971,15 +971,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE MODEL TAG_NUM TAG_TYPE
-      1 Lotek  1300    1234 SuperTag
+         MAKE MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek  1300    1234 SuperTag       0            0
 
 ---
 
@@ -1092,15 +1092,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE     MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1400/1800    1234 SuperTag
+         MAKE     MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1400/1800    1234 SuperTag       0            0
 
 ---
 
@@ -1231,15 +1231,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-         MAKE     MODEL TAG_NUM TAG_TYPE
-      1 Lotek 1400/1800    1234 SuperTag
+         MAKE     MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Lotek 1400/1800    1234 SuperTag       0            0
 
 ---
 

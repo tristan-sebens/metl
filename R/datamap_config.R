@@ -94,12 +94,12 @@
          fps = list.files(d, pattern = "Regular Log", ignore.case = T)
 
          # Check that the data files in the directory match expectations
-         if(lengths(fps) > 1) {
+         if(length(fps) > 1) {
            throw_error(
              paste0("Too many 'Regular Log' files in ", d)
            )
          }
-         if(lengths(fps) == 0) {
+         if(length(fps) == 0) {
            throw_error(
              paste0("No 'Regular Log' files in ", d)
            )

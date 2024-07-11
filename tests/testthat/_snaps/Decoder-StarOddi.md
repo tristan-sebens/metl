@@ -3,15 +3,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-             MAKE                    MODEL TAG_NUM TAG_TYPE
-      1 Star Oddi DST (centi/milli)-(TD/F)    1234 SuperTag
+             MAKE                    MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Star Oddi DST (centi/milli)-(TD/F)    1234 SuperTag       0            0
 
 ---
 
@@ -38,15 +38,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-             MAKE        MODEL TAG_NUM TAG_TYPE
-      1 Star Oddi DST magnetic    1234 SuperTag
+             MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Star Oddi DST magnetic    1234 SuperTag       0            0
 
 ---
 
@@ -75,15 +75,15 @@
     Code
       names(decode_op)
     Output
-      [1] "meta"    "instant"
+      [1] "meta"       "instant"    "field_meta"
 
 ---
 
     Code
       decode_op[["meta"]]
     Output
-             MAKE        MODEL TAG_NUM TAG_TYPE
-      1 Star Oddi DST magnetic    1234 SuperTag
+             MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Star Oddi DST magnetic    1234 SuperTag       0            0
 
 ---
 

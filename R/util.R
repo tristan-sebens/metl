@@ -44,6 +44,66 @@ v_mode =
     return(mode)
   }
 
+#' Compile a hierarchical list of field descriptions from a list of output fieldmaps
+#'
+#' @param output_fieldmaps A list of output fieldmaps
+#'
+#' @return A hierarchical list of field descriptions
+get_field_descriptions =
+  function(output_fieldmaps) {
+    l = list()
+    for (op_fm_n in names(output_fieldmaps)) {
+      op_fm = output_fieldmaps[[op_fm_n]]
+      l[[op_fm_n]] = list()
+      for (f_n in names(op_fm$field_list)) {
+        f = op_fm$field_list[[f_n]]
+        l[[op_fm_n]][[f$name]] = list()
+        l[[op_fm_n]][[f$name]][['description']] = f$description
+        l[[op_fm_n]][[f$name]][['units']] = f$units
+      }
+    }
+    return(l)
+  }
+
+#' Build a data.frame of field metadata from a Decoder
+#'
+#' @param dc The `Decoder` to build the metadata frame from
+#'
+#' @return A data.frame of field metadata
+build_field_metadata_frame =
+  function(dc) {
+    l = get_field_descriptions(dc$output_fieldmaps)
+
+    df__ =
+      data.frame(
+        table = NA,
+        field = NA,
+        description = NA,
+        units = NA
+      )
+
+    for (table in names(l)) {
+      for (field in names(l[[table]])) {
+        df__ =
+          rbind(
+            df__,
+            data.frame(
+              table = table,
+              field = field,
+              units =
+                l[[table]][[field]][["units"]],
+              description =
+                l[[table]][[field]][["description"]]
+            )
+          )
+      }
+    }
+
+    return(df__ %>% data.frame() %>% tidyr::drop_na())
+  }
+
+
+
 # Insert data into the test db
 populate_test_db =
   function(con, table, dat, ...) {

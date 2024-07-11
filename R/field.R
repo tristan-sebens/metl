@@ -9,6 +9,7 @@ Field =
 #' @field id_field logical. If set to TRUE this field will be used to identify unique records
 #' @field trans_fn function. Applied to the data vector associated with this Field immediately prior to standard transformation of units and fieldnames. MUST be of the form function(v, ...) {<transformation here>}. Must return a data vector. If necessary, other fields can be accessed within the function by modifying the parameter signature to function(v, dat, ...) {<transformation here>}, where dat will contain the unstransformed data.frame
 #' @field independent logical. TRUE indicates this field generates its own value, either using a pre-determined value or by synthesizing from other fields in the data
+#' @field description character. Plain language description of the field
 #' @export Field
   setRefClass(
     "Field",
@@ -21,7 +22,8 @@ Field =
         data_type = "character", # Data type to be used for this field in the DB
         trans_fn = "function", # Function which will be applied to this field individually. Applied before all other transformations.
         uid = "character", # UID generated on instantiation
-        independent = "logical" # Indicates that this field generates its own value
+        independent = "logical", # Indicates that this field generates its own value,
+        description = "character" # Plain language description of the field
       ),
     methods =
       list(
@@ -29,14 +31,18 @@ Field =
           function(
             ...,
             alternate_names = list(),
+            units = "",
             trans_fn = function(v, ...) {v},
-            independent = F
+            independent = F,
+            description = "No description available"
           ) {
             callSuper(
               ...,
               alternate_names = alternate_names,
+              units = units,
               trans_fn = trans_fn,
-              independent = independent
+              independent = independent,
+              description = description
             )
             uid <<- uuid::UUIDgenerate()
           }
