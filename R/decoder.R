@@ -161,10 +161,10 @@ setRefClass(
                 missing_fields
             )
 
-          # Finally, if there are matching fields, check if those fields are also
+          # If there are matching fields, check if those fields are also
           # present in the input FieldMap of dat2. If they aren't then that means
           # these fields are the result of a prior completion just like this one.
-          available_fields =
+          original_data_fields =
             Filter(
               f =
                 function(e) {
@@ -172,6 +172,26 @@ setRefClass(
                 },
               x =
                 matching_fields
+            )
+
+          # Finally, check if any of the identified fields are optional AND
+          # missing their data. If they are, then it means that the optional
+          # data was not made available in this instance of the data, and we
+          # should not attempt to add it.
+          available_fields =
+            Filter(
+              f =
+                function(e) {
+                  field_ = dat2_op_fm$field_list[[e]]
+                  fieldname_ = field_$name
+                  fieldval_ = dat2[[fieldname_]]
+                  !all(
+                    field_$optional,
+                    is.null(fieldval_)
+                  )
+                },
+              x =
+                original_data_fields
             )
 
           # If such fields exist, this means that there are fields which are missing
