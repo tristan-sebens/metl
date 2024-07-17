@@ -27,6 +27,7 @@ ABLTAG_USER_INPUT_FIELDS =
           Field(
             name = "SEC_TAG_NUM",
             optional = T,
+            default = "",
             data_type = "varchar(32)",
             description = "An optional, secondary ID # for the tag."
           ),
@@ -34,6 +35,7 @@ ABLTAG_USER_INPUT_FIELDS =
           Field(
             name = "SEC_TAG_TYPE",
             optional = T,
+            default = "",
             data_type = "varchar(32)",
             description = "An optional, secondary tag type."
           ),
@@ -42,6 +44,7 @@ ABLTAG_USER_INPUT_FIELDS =
             name = "REL_SEQ",
             data_type  = "integer",
             id_field = T,
+            default = "",
             description = "The seqence number of deployment. Sometimes a tag is deployed multiple times with the same tag ID # and same tag-type code. This value helps to distinguish between these deployments."
           ),
         TAG_SPECIES_CODE_FIELD =
@@ -49,12 +52,14 @@ ABLTAG_USER_INPUT_FIELDS =
             name = "SPECIES_CODE",
             data_type = "integer",
             id_field = T,
+            default = "",
             description = "A numeric code representing the species of the animal tagged. The plain English description of each species code can be found in the SPECIES table in the ABLTAG DB."
           ),
         TAG_PLACEMENT_DESCRIPTION_FIELD =
           Field(
             name = "TAG_PLACEMENT",
             optional = T,
+            default = "",
             data_type = "varchar(32)",
             description = " Description of where the tag was placed on the animal."
           ),
@@ -68,6 +73,7 @@ ABLTAG_USER_INPUT_FIELDS =
           Field(
             name = "ATTACHMENT_MATERIAL",
             optional = T,
+            default = "",
             data_type = "varchar(32)",
             description = "The material used to attach the tag to the animal."
           ),
@@ -75,6 +81,7 @@ ABLTAG_USER_INPUT_FIELDS =
           Field(
             name = "TETHER_ASSEMBLY",
             optional = T,
+            default = "",
             data_type = "varchar(32)",
             description = "Description of the tether assembly used to attach the tag to the animal."
           ),
@@ -82,13 +89,15 @@ ABLTAG_USER_INPUT_FIELDS =
           Field(
             name = "ANCHOR_DIMENSION",
             optional = T,
-            data_type = "double(10, 2)",
+            default = "",
+            data_type = "varchar(32)",
             description = "The dimensions of the tag anchor (Length, Width, Thickness/Diameter) in mm"
           ),
         TAG_ANCHOR_MATERIAL_FIELD =
           Field(
             name = "ANCHOR_MATERIAL",
             optional = T,
+            default = "",
             data_type = "varchar(32)",
             description = "The material of the tag anchor."
           )
