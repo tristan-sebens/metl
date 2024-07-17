@@ -198,3 +198,24 @@ bump_timestamps =
     dplyr::arrange(ix) %>%
     dplyr::pull(timestamp)
   }
+
+#' Decorate any thrown errors with additional attributes
+#'
+#' Wrapper functtion which evaluates the contained expression, and if an error is thrown, adds additional attributes to the error object before rethrowing it.
+#'
+#' @param expr The function to evaluate
+#' @param ... Any named attributes to add to the error, with their values. E.g. `custom_attribute` = `custom_value`
+decorate_error =
+  function(expr, ...) {
+    tryCatch(
+      expr = expr,
+      error =
+        function(cond) {
+          kwargs = list(...)
+          for (key in names(kwargs)) {
+            cond[key] = kwargs[[key]]
+          }
+          stop(cond)
+        }
+    )
+  }
