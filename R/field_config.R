@@ -23,6 +23,20 @@ ABLTAG_USER_INPUT_FIELDS =
             id_field = T,
             description = "A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB."
           ),
+        TAG_ID_SECONDARY_FIELD =
+          Field(
+            name = "SEC_TAG_NUM",
+            optional = T,
+            data_type = "varchar(32)",
+            description = "An optional, secondary ID # for the tag."
+          ),
+        TAG_TYPE_SECONDARY_FIELD =
+          Field(
+            name = "SEC_TAG_TYPE",
+            optional = T,
+            data_type = "varchar(32)",
+            description = "An optional, secondary tag type."
+          ),
         TAG_SEQ_NUM_FIELD =
           Field(
             name = "REL_SEQ",
@@ -36,6 +50,47 @@ ABLTAG_USER_INPUT_FIELDS =
             data_type = "integer",
             id_field = T,
             description = "A numeric code representing the species of the animal tagged. The plain English description of each species code can be found in the SPECIES table in the ABLTAG DB."
+          ),
+        TAG_PLACEMENT_DESCRIPTION_FIELD =
+          Field(
+            name = "TAG_PLACEMENT",
+            optional = T,
+            data_type = "varchar(32)",
+            description = " Description of where the tag was placed on the animal."
+          ),
+        TAG_ATTACHMENT_METHOD_DESCRIPTION_FIELD =
+          Field(
+            name = "ATTACHMENT_METHOD",
+            data_type = "varchar(32)",
+            description = "Description of how the tag was attached to the animal."
+          ),
+        TAG_ATTACHMENT_MATERIAL_FIELD =
+          Field(
+            name = "ATTACHMENT_MATERIAL",
+            optional = T,
+            data_type = "varchar(32)",
+            description = "The material used to attach the tag to the animal."
+          ),
+        TAG_TETHER_ASSEMBLY_FIELD =
+          Field(
+            name = "TETHER_ASSEMBLY",
+            optional = T,
+            data_type = "varchar(32)",
+            description = "Description of the tether assembly used to attach the tag to the animal."
+          ),
+        TAG_ANCHOR_DIMMENSION_FIELD =
+          Field(
+            name = "ANCHOR_DIMENSION",
+            optional = T,
+            data_type = "double(10, 2)",
+            description = "The dimensions of the tag anchor (Length, Width, Thickness/Diameter) in mm"
+          ),
+        TAG_ANCHOR_MATERIAL_FIELD =
+          Field(
+            name = "ANCHOR_MATERIAL",
+            optional = T,
+            data_type = "varchar(32)",
+            description = "The material of the tag anchor."
           )
       )
   )
@@ -54,10 +109,26 @@ ABLTAG_METADATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
+        TAG_ID_SECONDARY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_SECONDARY_FIELD,
+        TAG_TYPE_SECONDARY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_SECONDARY_FIELD,
         TAG_SEQ_NUM_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_SEQ_NUM_FIELD,
         TAG_SPECIES_CODE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_SPECIES_CODE_FIELD,
+        TAG_PLACEMENT_DESCRIPTION_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_PLACEMENT_DESCRIPTION_FIELD,
+        TAG_ATTACHMENT_METHOD_DESCRIPTION_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ATTACHMENT_METHOD_DESCRIPTION_FIELD,
+        TAG_ATTACHMENT_MATERIAL_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ATTACHMENT_MATERIAL_FIELD,
+        TAG_TETHER_ASSEMBLY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TETHER_ASSEMBLY_FIELD,
+        TAG_ANCHOR_DIMMENSION_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ANCHOR_DIMMENSION_FIELD,
+        TAG_ANCHOR_MATERIAL_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ANCHOR_MATERIAL_FIELD,
         TAG_MAKE_FIELD =
           Field(
             name = "MAKE",
@@ -634,6 +705,14 @@ USER_INPUT_FIELDS =
           Field(
             name = "tag_type"
           ),
+        TAG_ID_SECONDARY_FIELD =
+          Field(
+            name = "secondary_tag_num"
+          ),
+        TAG_TYPE_SECONDARY_FIELD =
+          Field(
+            name = "secondary_tag_type"
+          ),
         TAG_SEQ_NUM_FIELD =
           Field(
             name = "rel_seq"
@@ -641,6 +720,30 @@ USER_INPUT_FIELDS =
         TAG_SPECIES_CODE_FIELD =
           Field(
             name = "species_code"
+          ),
+        TAG_PLACEMENT_DESCRIPTION_FIELD =
+          Field(
+            name = "tag_placement"
+          ),
+        TAG_ATTACHMENT_METHOD_DESCRIPTION_FIELD =
+          Field(
+            name = "attachment_method"
+          ),
+        TAG_ATTACHMENT_MATERIAL_FIELD =
+          Field(
+            name = "attachment_material"
+          ),
+        TAG_TETHER_ASSEMBLY_FIELD =
+          Field(
+            name = "tether_assembly_description"
+          ),
+        TAG_ANCHOR_DIMMENSION_FIELD =
+          Field(
+            name = "anchor_dimension"
+          ),
+        TAG_ANCHOR_MATERIAL_FIELD =
+          Field(
+            name = "anchor_material"
           )
       )
   )
