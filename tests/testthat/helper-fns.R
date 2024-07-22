@@ -82,19 +82,6 @@ build_test_metadata_dataset =
     #   write.csv(test_metadata_fp, row.names = F)
   }
 
-build_test_input_dataset =
-  function() {
-    return(
-      data.frame(
-        tag_num = "5712",
-        tag_type = "ET",
-        rel_seq = 1,
-        species_code = 56789,
-        attachment_method = "glue"
-      )
-    )
-  }
-
 #' Get list of decoders for testing
 #'
 #' Identifiers must be instantiated with a list of Decoder generators. This function provides that list

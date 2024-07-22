@@ -25,7 +25,6 @@ Field =
         uid = "character", # UID generated on instantiation
         independent = "logical", # Indicates that this field generates its own value
         optional = "logical", # Indicates that this field is not required. Extraction will proceed even if its value is missing
-        default = "ANY", # The value which will be used if this field is missing and has been marked `optional`
         description = "character" # Plain language description of the field
       ),
     methods =
@@ -37,8 +36,6 @@ Field =
             units = "",
             trans_fn = function(v, ...) {v},
             independent = F,
-            optional = F,
-            default = NULL,
             description = "No description available"
           ) {
             callSuper(
@@ -47,8 +44,6 @@ Field =
               units = units,
               trans_fn = trans_fn,
               independent = independent,
-              optional = optional,
-              default = default,
               description = description
             )
             uid <<- uuid::UUIDgenerate()

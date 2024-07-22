@@ -13,27 +13,24 @@ test_that(
 )
 
 test_that(
-  "DataMap::get_field_value",
+  "DataMap::get_field_data",
   {
     fm1 = build_test_fieldmaps()$INSTANT_DATA_INPUT_FIELD_MAP
-    fm2 = build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
 
     dm =
       DataMap()
 
     expect_snapshot(
-      dm$get_field_value(
+      dm$get_field_data(
         dat__ = build_test_dataset(),
-        input_field_obj_ = fm1$field_list$TIMESTAMP_FIELD,
-        output_field_obj_ = fm2$field_list$TIMESTAMP_FIELD
+        input_field_obj_ = fm1$field_list$TIMESTAMP_FIELD
       )
     )
 
     expect_snapshot(
-      dm$get_field_value(
+      dm$get_field_data(
         dat__ = build_test_dataset(),
-        input_field_obj_ = fm1$field_list$TEMPERATURE_FIELD,
-        output_field_obj_ = fm2$field_list$TIMESTAMP_FIELD
+        input_field_obj_ = fm1$field_list$TEMPERATURE_FIELD
       )
     )
   }

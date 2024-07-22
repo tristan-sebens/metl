@@ -10,12 +10,8 @@
     Code
       decode_op[["meta"]]
     Output
-             MAKE                    MODEL TAG_NUM TAG_TYPE SEC_TAG_NUM SEC_TAG_TYPE
-      1 Star Oddi DST (centi/milli)-(TD/F)    5712       ET                         
-        REL_SEQ SPECIES_CODE TAG_PLACEMENT ATTACHMENT_METHOD ATTACHMENT_MATERIAL
-      1       1        56789                            glue                    
-        TETHER_ASSEMBLY ANCHOR_DIMENSION ANCHOR_MATERIAL
-      1                                                 
+             MAKE                    MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Star Oddi DST (centi/milli)-(TD/F)    1234 SuperTag       0            0
 
 ---
 
@@ -25,16 +21,16 @@
       # A tibble: 45,369 x 5
            TIMESTAMP DEPTH TEMPERATURE TAG_NUM TAG_TYPE
                <dbl>   [m]        [°C] <chr>   <chr>   
-       1 1468358400.  1.1         24.8 5712    ET      
-       2 1468362000.  1.58        24.0 5712    ET      
-       3 1468365600.  1.1         23.4 5712    ET      
-       4 1468369200.  1.1         23.0 5712    ET      
-       5 1468372800.  1.1         22.6 5712    ET      
-       6 1468376400.  0.62        22.4 5712    ET      
-       7 1468380000.  1.1         22.2 5712    ET      
-       8 1468383600.  1.58        22.0 5712    ET      
-       9 1468387200.  1.1         21.9 5712    ET      
-      10 1468390800.  1.1         21.7 5712    ET      
+       1 1468358400.  1.1         24.8 1234    SuperTag
+       2 1468362000.  1.58        24.0 1234    SuperTag
+       3 1468365600.  1.1         23.4 1234    SuperTag
+       4 1468369200.  1.1         23.0 1234    SuperTag
+       5 1468372800.  1.1         22.6 1234    SuperTag
+       6 1468376400.  0.62        22.4 1234    SuperTag
+       7 1468380000.  1.1         22.2 1234    SuperTag
+       8 1468383600.  1.58        22.0 1234    SuperTag
+       9 1468387200.  1.1         21.9 1234    SuperTag
+      10 1468390800.  1.1         21.7 1234    SuperTag
       # i 45,359 more rows
 
 # Decoder_StarOddi_DSTmagnetic -> /so/dst_mag/sf/JS923
@@ -49,12 +45,8 @@
     Code
       decode_op[["meta"]]
     Output
-             MAKE        MODEL TAG_NUM TAG_TYPE SEC_TAG_NUM SEC_TAG_TYPE REL_SEQ
-      1 Star Oddi DST magnetic    5712       ET                                1
-        SPECIES_CODE TAG_PLACEMENT ATTACHMENT_METHOD ATTACHMENT_MATERIAL
-      1        56789                            glue                    
-        TETHER_ASSEMBLY ANCHOR_DIMENSION ANCHOR_MATERIAL
-      1                                                 
+             MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Star Oddi DST magnetic    1234 SuperTag       0            0
 
 ---
 
@@ -90,12 +82,8 @@
     Code
       decode_op[["meta"]]
     Output
-             MAKE        MODEL TAG_NUM TAG_TYPE SEC_TAG_NUM SEC_TAG_TYPE REL_SEQ
-      1 Star Oddi DST magnetic    5712       ET                                1
-        SPECIES_CODE TAG_PLACEMENT ATTACHMENT_METHOD ATTACHMENT_MATERIAL
-      1        56789                            glue                    
-        TETHER_ASSEMBLY ANCHOR_DIMENSION ANCHOR_MATERIAL
-      1                                                 
+             MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
+      1 Star Oddi DST magnetic    1234 SuperTag       0            0
 
 ---
 

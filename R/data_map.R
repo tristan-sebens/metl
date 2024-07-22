@@ -38,30 +38,20 @@ setRefClass(
           )
         },
 
-      get_field_value =
+      get_field_data =
         # Return the raw data from dat__ which is referred to by the input_field_obj__
-        function(dat__, input_field_obj_, output_field_obj_) {
-          # Start by setting the value to the default value
-          val = output_field_obj_$default
-          # Now check if a true value is present in the data to overwrite the default
-
-          # If the primary Field name is in the data.frame, return the corresponding value
+        function(dat__, input_field_obj_) {
           if(input_field_obj_$name %in% names(dat__)) {
-            val = dat__[[input_field_obj_$name]]
-          } else {
-            # If the primary Field name is not in the data.frame, check the alternate names
-            for (name_ in input_field_obj_$alternate_names) {
-              if(name_ %in% names(dat__)) {
-                val = dat__[[name_]]
-              }
-            }
+            return(dat__[[input_field_obj_$name]])
           }
 
-          # Finally, return the extracted value
-          return(val)
+          for (name_ in input_field_obj_$alternate_names) {
+            if(name_ %in% names(dat__)) {
+              return(dat__[[name_]])
+            }
+          }
         },
 
-      # Perform a QC check on the input data to ensure that all required fields are present
       check_input_dat_fields =
         function(dat__, output_data_field_map) {
           # Check that all fields expected by the input_data_field_map are present
@@ -105,8 +95,6 @@ setRefClass(
             )
           }
         },
-
-      # Perform a QC check on the output data to ensure that all required fields are present
       check_output_dat_fields =
         function(fields, dat) {
           # Find any fields in the output data which should be present, but are missing
@@ -158,13 +146,8 @@ setRefClass(
             input_field_obj_ = input_data_field_map$field_list[[field_]]
             output_field_obj_ = output_data_field_map$field_list[[field_]]
 
-            # Extract field data
-            input_field_dat_ =
-              get_field_value(
-                dat__,
-                input_field_obj_,
-                output_field_obj_
-              )
+            # Isolate field data
+            input_field_dat_ = get_field_data(dat__, input_field_obj_)
 
             # Perform any specified pre-transformations
             input_field_dat_ =
