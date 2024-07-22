@@ -38,6 +38,11 @@ setRefClass(
           )
         },
 
+      get_static =
+        function(n) {
+          return(.self$static[[n]])
+        },
+
       get_field_data =
         # Return the raw data from dat__ which is referred to by the input_field_obj__
         function(dat__, input_field_obj_) {
@@ -53,37 +58,28 @@ setRefClass(
         },
 
       check_input_dat_fields =
-        function(dat__, output_data_field_map) {
+        function(dat__) {
           # Check that all fields expected by the input_data_field_map are present
-          missing_input_field_names =
+          missing_input_fields =
             Filter(
-              function(n) {
-                ip_f_ = input_data_field_map$field_list[[n]]
-                op_f_ = output_data_field_map$field_list[[n]]
+              function(f_) {
                 # If the field is not in the data and is not independently generated, it is missing
-                all(
-                  !any(
-                    # Check for both the primary name and any alternate names
-                    c(
-                      ip_f_$name,
-                      ip_f_$alternate_names
-                    )
-                    %in% names(dat__)
-                  ),
-                  !any(
-                    # Check if Field is independently generated, in which case it would not yet be present in the data
-                    ip_f_$independent,
-                    # If the Field is optional, it may not necessarily be available from the input data
-                    op_f_$optional
+                !any(
+                  # Check for both the primary name and any alternate names
+                  c(
+                    f_$name,
+                    f_$alternate_names
                   )
-                )
+                  %in% names(dat__)
+                ) &
+                # Check if Field is independently generated, in which case it would not yet be present in the data
+                !f_$independent
               },
-              names(input_data_field_map$field_list)
+              input_data_field_map$field_list
             )
 
           # If any expected fields are missing, throw an error indicating which fields are missing
-          if (length(missing_input_field_names) > 0) {
-            missing_input_fields = input_data_field_map$field_list[missing_input_field_names]
+          if (length(missing_input_fields) > 0) {
             throw_error(
               paste0(
                 "Missing expected input fields: ",
@@ -95,41 +91,13 @@ setRefClass(
             )
           }
         },
-      check_output_dat_fields =
-        function(fields, dat) {
-          # Find any fields in the output data which should be present, but are missing
-          missing_fields =
-            fields %>%
-            Filter(
-              function(f) {
-                all(
-                  # The field is not present in the data
-                  !f$name %in% names(dat),
-                  # The field is required or is an ID field (which is implicitly required)
-                  any(!f$optional, f$id_field)
-                )
-              },
-              .
-            )
-
-          if(length(missing_fields) > 0) {
-            throw_error(
-              paste0(
-                "Missing required output fields: ",
-                paste0(
-                  lapply(missing_fields, function(f) {f$name}),
-                  collapse = ", "
-                )
-              )
-            )
-          }
-        },
 
       # Transform the fields of the incoming tag data as dictated by the field maps
       transform_fields =
         function(dat__, output_data_field_map) {
+
           # Check that the incoming data matched the expectations of the input data FieldMap
-          check_input_dat_fields(dat__, output_data_field_map)
+          check_input_dat_fields(dat__)
 
           # Process each input field in turn
           # Limit conversion to those fields shared by both the input data field
@@ -187,26 +155,16 @@ setRefClass(
             dat__[output_field_obj_$name] = output_field_dat_
           }
 
-          check_output_dat_fields(
-            fields = output_data_field_map$field_list[common_fields],
-            dat = dat__
-          )
-
-          transformed_field_names =
-            output_data_field_map$field_list[common_fields] %>%
-            Filter(
-              function(f) {
-                f$name %in% names(dat__)
-              },
-              .
-            ) %>%
-            lapply(
-              function(f) {f$name}
-            ) %>%
-            unlist(use.names = F)
-
           return(
-            dat__[transformed_field_names]
+            dat__[
+              lapply(
+                # Select the fields from the output field map that have
+                # corresponding entries in the input field map
+                output_data_field_map$field_list[common_fields],
+                function(f) {f$name}
+              ) %>%
+                unlist(use.names = F)
+            ]
           )
         },
 
