@@ -1,5 +1,35 @@
 # A collection of helper functions for reading, parsing, and formatting data from the supported tag types
 
+#' Search for one (or more) files in a directory by pattern
+#'
+#' Searches directory `d` for files which match the given pattern, and checks to ensure that the number of matching files matches the expected number of files. If not, an error is thrown, otherwise the matching filename(s) is(are) returned
+#'
+#' @param d The directory to search in
+#' @param pattern Regex pattern to match against filenames
+#' @param n The number of files expected to be found. Default is 1
+#'
+#' @return All matching filenames
+files_by_pattern =
+  function(d, pattern, n = 1, ...) {
+    fs = list.files(path = d, pattern = pattern, ...)
+
+    if (length(fs) != n) {
+      stop(
+        paste0(
+          c(
+            "File discovery error:",
+            paste0("Directory: ", d),
+            paste0("Pattern: ", pattern),
+            paste0("Expected ", n, " file", ifelse(n > 1, "s", ""), ", found ", length(fs))
+          ),
+          collapse = "\n"
+        )
+      )
+    }
+
+    return(fs)
+  }
+
 # ---------------------------
 # LOTEK TAGS
 # ---------------------------
