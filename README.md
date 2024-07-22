@@ -116,6 +116,29 @@ csv_directory = here::here() # Specify the directory into which the csv files sh
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta) 
 ```
 
+# **Timestamps**
+All timestamp fields in `metl` are formatted as `POSIXct` timestamp objects. This has the advantage of allowing us to specify a given instant in time without having to introduce the complexity of timezones, and sidestepping the confusion of preferred date/time string formats (YYYY-MM-DD HH:MM:SS, DD/MM/YY HH:MM, HH:MM:SS, HH:MM MM DD YYYY, etc). However, it has the notable disadvantage of being completely unreadable to humans in its native form of 10-digit integers (e.g. 1246458240).
+
+To address this users can convert POSIXct timestamps to the character representation of their choice using the `as.POSIXct` function [(documentation here)](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.POSIX*):
+
+```
+posix_int_timestamps = 
+  c(
+    1246458240,
+    1246458480,
+    1246458720, 
+    1246458960
+  )
+
+as.POSIXct(posix_int_timestamps)
+
+# Output
+# [1] "2009-07-01 06:24:00 AKDT"
+# [2] "2009-07-01 06:28:00 AKDT"
+# [3] "2009-07-01 06:32:00 AKDT"
+# [4] "2009-07-01 06:36:00 AKDT"
+```
+
 
 # **Proprietary post-processing software**
 
