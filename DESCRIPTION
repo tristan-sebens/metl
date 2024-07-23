@@ -12,7 +12,6 @@ Imports:
     tidyverse (>= 2.0.0),
     dbplyr,
     dplyr,
-    data.tree,
     DBI,
     magrittr,
     stringi,
