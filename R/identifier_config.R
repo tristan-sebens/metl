@@ -270,48 +270,69 @@ Identifier_WildlifeComputers_MiniPAT =
     conditions =
       list(
         Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?All.csv"),
-          message = "All.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?All.csv"
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Series.csv"),
+          message = "Series.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Series.csv",
+          optional = F
         ),
         Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Argos.csv"),
-          message = "Argos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Argos.csv"
-        ),
-        Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"),
-          message = "Corrupt.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"
-        ),
-        Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Histos.csv"),
-          message = "Histos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Histos.csv"
-        ),
-        Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?LightLoc.csv"),
-          message = "LightLoc.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?LightLoc.csv"
-        ),
-        Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"),
-          message = "RawArgos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"
-        ),
-        Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RTC.csv"),
-          message = "RTC.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RTC.csv"
-        ),
-        Condition(
-          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Status.csv"),
-          message = "Status.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Status.csv"
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?SeriesRange.csv"),
+          message = "SeriesRange.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?SeriesRange.csv",
+          optional = F
         ),
         Condition(
           condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?PDTs.csv"),
-          message = "PDTs.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?PDTs.csv"
+          message = "PDTs.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?PDTs.csv",
+          optional = F
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Histos.csv"),
+          message = "Histos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Histos.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?All.csv"),
+          message = "All.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?All.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Argos.csv"),
+          message = "Argos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Argos.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Corrupt.csv"),
+          message = "Corrupt.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Corrupt.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?LightLoc.csv"),
+          message = "LightLoc.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?LightLoc.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RawArgos.csv"),
+          message = "RawArgos.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RawArgos.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?RTC.csv"),
+          message = "RTC.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?RTC.csv",
+          optional = T
+        ),
+        Condition(
+          condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?Status.csv"),
+          message = "Status.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?Status.csv",
+          optional = T
         ),
         Condition(
           condition = function(d) check_for_files(d, "^\\d\\d\\d\\d\\d\\d-?SST.csv"),
-          message = "SST.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?SST.csv"
+          message = "SST.csv file missing or mislabeled. Should match pattern: ^\\d\\d\\d\\d\\d\\d-?SST.csv",
+          optional = T
         ),
         Condition(
           condition = function(d) check_for_files(d, "\\d\\d\\d\\d\\d\\d\\.prv"),
-          message = "PRV file missing or mislabeled. Should match pattern: \\d\\d\\d\\d\\d\\d\\.prv"
+          message = "PRV file missing or mislabeled. Should match pattern: \\d\\d\\d\\d\\d\\d\\.prv",
+          optional = T
         )
       )
   )
