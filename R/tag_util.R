@@ -76,6 +76,19 @@ lotek_1000.1100.1250_read_csv =
       dplyr::select_if(function(x) {sum(!is.na(x)) > 0 })
   }
 
+lotek_1400.1800_read_csv =
+  function(fp) {
+    "Read csv data from Lotek 1400/1800 formatted csv file"
+    read.csv(
+      fp,
+      skip =
+        lotek_find_line_in_file(
+          fp,
+          pattern = "Rec #"
+        ) - 1
+    )
+  }
+
 # ---------------------------
 # MICROWAVE TELEMETRY TAGS
 # ---------------------------

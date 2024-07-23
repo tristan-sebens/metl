@@ -1,3 +1,4 @@
+
 #' DataMap - Lotek 1000/1100/1250 tag metadata
 #' @export DataMap_Lotek_1000.1100.1250_TagMetaData
  DataMap_Lotek_1000.1100.1250_TagMetaData =
@@ -20,20 +21,20 @@
           c(
             # "LIGHT",
             # "SUPPLY",
-            "PRESSURE",
-            "TEMPERATURE"
+            "^\\d+PRESSURE\\.csv$",
+            "^\\d+TEMPERATURE\\.csv$"
           ) %>%
           # Find all of the relevant datafiles, and read them in as dataframes
           lapply(
             FUN =
               function(pattern) {
                 dat =
-                  list.files(
+                  files_by_pattern(
                     d,
                     pattern = pattern,
                     ignore.case = T,
                     full.names = T
-                  )[[1]] %>%
+                  ) %>%
                   lotek_1000.1100.1250_read_csv() %>%
                   # Parse the timestamps into POSIXcts
                   # Typically this should be done in the 'trans_fn' of the
@@ -91,22 +92,10 @@
      input_data_field_map = LOTEK_1300_INSTANT_DATA_FIELDS,
      extract_fn =
        function(d) {
-         fps = list.files(d, pattern = "Regular Log", ignore.case = T)
-
-         # Check that the data files in the directory match expectations
-         if(length(fps) > 1) {
-           throw_error(
-             paste0("Too many 'Regular Log' files in ", d)
-           )
-         }
-         if(length(fps) == 0) {
-           throw_error(
-             paste0("No 'Regular Log' files in ", d)
-           )
-         }
+         fp = files_by_pattern(d, pattern = "Regular Log", ignore.case = T)
 
          # Read data from the data file
-         dat = read.csv(file.path(d, fps[[1]]))
+         dat = read.csv(file.path(d, fp))
 
          return(dat)
        }
@@ -129,39 +118,17 @@
      input_data_field_map = LOTEK_1400.1800_INSTANT_DATA_FIELDS,
      extract_fn =
        function(d) {
-         read_csv_lotek_1400.1800 =
-           function(fp) {
-             "Read csv data from Lotek 1400/1800 formatted csv file"
-             read.csv(
-               fp,
-               skip =
-                 lotek_find_line_in_file(
-                   fp,
-                   pattern = "Rec #"
-                 ) - 1
-             )
-           }
          # Retrieve the csv data file
-         fps =
-           list.files(
+         fp =
+           files_by_pattern(
              d,
              pattern = "^.*\\.csv",
              ignore.case = T,
              full.names = T
            )
-         # There should be only one csv file. If there are more, we don't know
-         # which one to use.
-         if (length(fps) > 1) {
-           throw_error(
-             paste0(
-               "Too many CSV files present in directory: ",
-               d
-             )
-           )
-         }
 
          # Read in data
-         dat = read_csv_lotek_1400.1800(fps[[1]])
+         dat = lotek_1400.1800_read_csv(fp)
 
          return(dat)
        }
@@ -184,7 +151,7 @@
        function(d) {
          # All of the temperature and pressure data is extracted from the .xls file
          # Find the xls file in the directory
-         mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
+         mt_xt_xl_fp = files_by_pattern(d, pattern = "^\\d*\\.xls", full.names = T)
 
          # Get pressure/depth data
          press_dat =
@@ -241,7 +208,7 @@
        function(d) {
          # All of the temperature and pressure data is extracted from the .xls file
          # Find the xls file in the directory
-         mt_xt_xl_fp = list.files(d, pattern = "^\\d*\\.xls", full.names = T)
+         mt_xt_xl_fp = files_by_pattern(d, pattern = "^\\d*\\.xls", full.names = T)
 
          # Get location data
          light_geoloc_dat =
@@ -274,7 +241,7 @@
        function(d) {
          # Find the xlsm file in the directory
          mt_xt_xl_fp =
-           list.files(
+           files_by_pattern(
              d,
              pattern = stringr::regex("^\\d*_Recovered.xlsm"),
              full.names = T
@@ -332,7 +299,7 @@
          # All of the temperature and pressure data is extracted from the .xls file
          # Find the xls file in the directory
          mt_xt_xl_fp =
-           list.files(
+           files_by_pattern(
              d,
              pattern = stringr::regex("^\\d*_Recovered.xlsm"),
              full.names = T
@@ -367,10 +334,8 @@
      input_data_field_map = STAR_ODDI_DST_FIELDS,
      extract_fn =
        function(d) {
-         fs =
-           list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
-
-         fp = fs[[1]]
+         fp =
+           files_by_pattern(d, pattern = "^[^~]*\\.xlsx", full.names = T)
 
          dat_ =
            # readxl throws up a warning every time we convert a number to a datetime
@@ -405,10 +370,9 @@
      input_data_field_map = STAR_ODDI_DST_MAGNETIC_FIELDS,
      extract_fn =
        function(d) {
-         fs =
-           list.files(d, pattern = "^[^~]*\\.xlsx", full.names = T)
+         fp =
+           files_by_pattern(d, pattern = "^[^~]*\\.xlsx", full.names = T)
 
-         fp = fs[[1]]
 
          dat_ =
            suppressMessages(
@@ -441,11 +405,17 @@
      extract_fn =
        function(d) {
          # Find the Series.csv file
-         fn = list.files(d, pattern = stringr::regex("(\\d*)-Series\\.csv", ignore_case = T))[[1]]
+         fp =
+           files_by_pattern(
+             d,
+             pattern = "(\\d*)-Series\\.csv",
+             ignore.case = T,
+             full.names = T
+           )
 
          # Read in the data
          dat =
-           read.csv(file.path(d, fn))
+           read.csv(fp)
 
          return(dat)
        }
@@ -458,14 +428,19 @@
      input_data_field_map = WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS,
      extract_fn =
        function(d) {
+         # Find the SeriesRange.csv file
+         fp =
+           files_by_pattern(
+             d,
+             pattern="\\d*-SeriesRange\\.csv",
+             ignore.case=T,
+             full.names = T
+           )
+
          # Read in the raw data
          dat =
            read.csv(
-             list.files(
-               d,
-               pattern=stringr::regex("\\d*-SeriesRange\\.csv", ignore_case=T),
-               full.names = T
-             )
+             fp
            )
 
          return(dat)
@@ -535,7 +510,7 @@
      extract_fn =
        function(d) {
          histos_fp =
-           list.files(
+           files_by_pattern(
              d,
              pattern = "Histos\\.csv",
              ignore.case = T,
@@ -580,7 +555,7 @@
      extract_fn =
        function(d) {
          pdt_fp =
-           list.files(d, pattern = "^.*PDTs\\.csv$", full.names = T)
+           files_by_pattern(d, pattern = "^.*PDTs\\.csv$", full.names = T)
 
          # Initial read of  the data
          pdt_dat =
@@ -625,18 +600,22 @@
      input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS,
      extract_fn =
        function(d) {
+         # Find the Locations.csv file
+         locations_fp =
+           files_by_pattern(
+             d,
+             pattern=stringr::regex("\\d*-Locations\\.csv", ignore_case=T),
+             full.names = T
+           )
          # Read in the raw data
          dat =
            read.csv(
-             list.files(
-               d,
-               pattern=stringr::regex("\\d*-Locations\\.csv", ignore_case=T),
-               full.names = T
-             ),
+             locations_fp,
              # Some of the fields in this file have spaces in their names
              # without this flag, dplyr would convert those spaces to '.'s
              check.names = F
            )
+
          return(dat)
        }
    )
@@ -648,15 +627,18 @@
      input_data_field_map = WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS,
      extract_fn =
        function(d) {
+         # Find the Orientations.csv file
+         orientation_fp =
+           files_by_pattern(
+             d,
+             pattern="\\d*-Orientation\\.csv",
+             ignore.case=T,
+             full.names = T
+           )
+
          # Read in the raw data
          dat =
-           read.csv(
-             list.files(
-               d,
-               pattern=stringr::regex("\\d*-Orientation\\.csv", ignore_case=T),
-               full.names = T
-             )
-           )
+           read.csv(orientation_fp)
 
          return(dat)
        }
@@ -695,7 +677,7 @@
      extract_fn =
       function(d) {
         # Find the csv file in the directory (should only be one)
-        fp = list.files(d, pattern = ".*\\.csv$", full.names = T)
+        fp = files_by_pattern(d, pattern = ".*\\.csv$", full.names = T)
 
         # Read in the data
         dat = read.csv(fp, check.names = F)
