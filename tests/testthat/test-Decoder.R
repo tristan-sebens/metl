@@ -211,6 +211,11 @@ test_that(
         dplyr::mutate(dat2, TAG_NUM = 3883)
       )
 
+    dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map
+    dat1_op_fm = dc$output_fieldmaps[["instant"]]
+    dat2_ip_fm = ui_dm$input_data_field_map
+    dat2_op_fm = dc$output_fieldmaps[["input"]]
+
     dat3 =
       dc$add_missing_fields(
         dat1 = dat1,

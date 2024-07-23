@@ -1,4 +1,4 @@
-testthat(
+test_that(
   "files_by_pattern",
   {
     d = test_data_d('wc', 'mp', 'ss', '174900')
