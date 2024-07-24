@@ -10,10 +10,6 @@ secrets/*
 # No RStudio IDE files
 .Rproj.user/*
 .Rhistory
-
-# Nothing from the db folders
-
-
 .Rproj.user
 
 # No lock files
@@ -21,3 +17,4 @@ secrets/*
 
 R/scratch
 dark_readme.css
+readme.html
