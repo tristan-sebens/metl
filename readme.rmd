@@ -5,7 +5,6 @@ author: "Tristan N. G. Sebens, M.S."
 output: 
   html_document:
     title: 'README.md'
-    variant: github_markdown
     keep_md: yes
     css: dark_readme.css
     toc: True
