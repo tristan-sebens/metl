@@ -5,7 +5,7 @@ author: "Tristan N. G. Sebens, M.S."
 output: 
   html_document:
     title: 'README'
-    # keep_md: yes
+    keep_md: True
     css: dark_readme.css
     toc: True
     toc_depth: 4
@@ -42,7 +42,7 @@ In addition, when using `metl` to load data directly into an **Oracle** database
 `metl` can be installed with `devtools`
 
 ```{r, results='hide', eval=FALSE}
-devtools::install_github("https://github.com/tristan-sebens/metl", upgrade="never")
+devtools::install_github("https://github.com/tristan-sebens/metl")
 ```
 
 # **Quickstart**
@@ -117,6 +117,14 @@ db_conn =
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
 
 ```{r, results='hide', eval=FALSE}
+meta =
+  data.frame(
+    tag_num = "1234",
+    tag_type = "SuperTag"
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
+
 decoder$decode_to_db(d = d, con = db_conn, meta = meta)
 ```
 
@@ -127,6 +135,14 @@ The `Decoder` object will now extract all possible data from the data directory,
 The `Decoder` can produce the extracted data as a collection of `data.frames`. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced. You can find a table of data types produced by each supported tag type.
 
 ```{r, results='hide', eval=FALSE}
+meta =
+  data.frame(
+    tag_num = "1234",
+    tag_type = "SuperTag"
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
+
 res = decoder$decode_to_dataframes(d = d, meta=meta)
 
 metadata = res[['meta']]
@@ -139,6 +155,14 @@ summary_data = res[['summary']]
 Finally, the `Decoder` object can write the extracted data to a collection of `.csv` files in a specified directory.
 ```{r, results='hide', eval=FALSE}
 csv_directory = here::here() # Specify the directory into which the csv files should be written
+
+meta =
+  data.frame(
+    tag_num = "1234",
+    tag_type = "SuperTag"
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
 
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
 ```

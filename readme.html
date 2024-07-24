@@ -476,7 +476,7 @@ with the package.</p>
 <h1><span class="header-section-number">3</span>
 <strong>Installation</strong></h1>
 <p><code>metl</code> can be installed with <code>devtools</code></p>
-<pre class="r"><code>devtools::install_github(&quot;https://github.com/tristan-sebens/metl&quot;, upgrade=&quot;never&quot;)</code></pre>
+<pre class="r"><code>devtools::install_github(&quot;https://github.com/tristan-sebens/metl&quot;)</code></pre>
 </div>
 <div id="quickstart" class="section level1" number="4">
 <h1><span class="header-section-number">4</span>
@@ -570,7 +570,15 @@ extraction</strong></h3>
 <p>Once we have connected to the database, we call the
 <code>process_to_db</code> method, passing the connection object in as a
 parameter.</p>
-<pre class="r"><code>decoder$decode_to_db(d = d, con = db_conn, meta = meta)</code></pre>
+<pre class="r"><code>meta =
+  data.frame(
+    tag_num = &quot;1234&quot;,
+    tag_type = &quot;SuperTag&quot;
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
+
+decoder$decode_to_db(d = d, con = db_conn, meta = meta)</code></pre>
 <p>The <code>Decoder</code> object will now extract all possible data
 from the data directory, then attempt to load that data into the target
 database.</p>
@@ -585,7 +593,15 @@ elements of a named list, with the names corresponding to the type of
 data extracted. Which types of data are available will depend on what
 types of data are produced. You can find a table of data types produced
 by each supported tag type.</p>
-<pre class="r"><code>res = decoder$decode_to_dataframes(d = d, meta=meta)
+<pre class="r"><code>meta =
+  data.frame(
+    tag_num = &quot;1234&quot;,
+    tag_type = &quot;SuperTag&quot;
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
+
+res = decoder$decode_to_dataframes(d = d, meta=meta)
 
 metadata = res[[&#39;meta&#39;]]
 instant_data = res[[&#39;instant&#39;]]
@@ -597,6 +613,14 @@ Extract data to <code>.csv</code> files</strong></h2>
 <p>Finally, the <code>Decoder</code> object can write the extracted data
 to a collection of <code>.csv</code> files in a specified directory.</p>
 <pre class="r"><code>csv_directory = here::here() # Specify the directory into which the csv files should be written
+
+meta =
+  data.frame(
+    tag_num = &quot;1234&quot;,
+    tag_type = &quot;SuperTag&quot;
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
 
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)</code></pre>
 </div>

@@ -41,7 +41,7 @@ In addition, when using `metl` to load data directly into an **Oracle** database
 
 
 ``` r
-devtools::install_github("https://github.com/tristan-sebens/metl", upgrade="never")
+devtools::install_github("https://github.com/tristan-sebens/metl")
 ```
 
 # **Quickstart**
@@ -122,6 +122,14 @@ Once we have connected to the database, we call the `process_to_db` method, pass
 
 
 ``` r
+meta =
+  data.frame(
+    tag_num = "1234",
+    tag_type = "SuperTag"
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
+
 decoder$decode_to_db(d = d, con = db_conn, meta = meta)
 ```
 
@@ -133,6 +141,14 @@ The `Decoder` can produce the extracted data as a collection of `data.frames`. T
 
 
 ``` r
+meta =
+  data.frame(
+    tag_num = "1234",
+    tag_type = "SuperTag"
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
+
 res = decoder$decode_to_dataframes(d = d, meta=meta)
 
 metadata = res[['meta']]
@@ -146,6 +162,14 @@ Finally, the `Decoder` object can write the extracted data to a collection of `.
 
 ``` r
 csv_directory = here::here() # Specify the directory into which the csv files should be written
+
+meta =
+  data.frame(
+    tag_num = "1234",
+    tag_type = "SuperTag"
+  )
+
+decoder = metl::decoders$Decoder_StarOddi_DST
 
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
 ```
