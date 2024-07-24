@@ -4,15 +4,15 @@ subtitle: "Marine Ecosystem & Stock Assessment (**M**ESA) Extract/Transform/Load
 author: "Tristan N. G. Sebens, M.S."
 output: 
   html_document:
-    title: 'README.md'
-    keep_md: yes
+    title: 'README'
+    # keep_md: yes
     css: dark_readme.css
     toc: True
     toc_depth: 4
     number_sections: True
 ---
 
-```{r, load_package, echo=FALSE, results='hide'}
+```{r, load_package, echo=FALSE, results='hide', message=FALSE}
 devtools::load_all()
 ```
 
@@ -184,7 +184,7 @@ as.POSIXct(posix_int_timestamps)
 # [4] "2009-07-01 06:36:00 AKDT"
 ```
 
-# **Units**
+## **Units**
 All units in `metl` are specified using the `units` package, the documentation for which can be found [here](https://www.rdocumentation.org/packages/units/versions/0.8-5). This package provides a comprehensive list of SI units, and facilitates conversion from one unit to another. This is particularly useful when dealing with sensor data, as different tags may use different units to represent the same physical quantity.
 
 The units in which a field is recorded are specified in the `units` attribute of the `Field` object that corresponds to the data field. During extraction, the `Decoder` compares the units of the input `Field` object to those of the output `Field` object, and performs any necessary conversions. This is of particular use when we have multiple type of tags which record the same data, but in different units.
