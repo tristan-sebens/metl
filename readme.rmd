@@ -144,7 +144,25 @@ csv_directory = here::here() # Specify the directory into which the csv files sh
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
 ```
 
-# **Timestamps**
+# **Input/Output Data**
+
+## **Output data types**
+Tags can record a multitude of different kinds of data and/or data products. For example, a tag may record instantaneous sensor readings, and periodically calculate aggregate summary statistics of those readings over given intervals of time. Most tags also record internal status records, such as current battery levels or details about successful connections to satellites. Each of these data sets are fundamentally distinct from one another, and so they should be kept separate. However, it is still important that when we extract data from the tag that all relevant data is extracted and provided to the user.
+
+To accommodate this, each `Decoder` object contains one or more `DataMap` objects, stored as in the `data_maps` list attribute. Each `DataMap` is responsible for the data of a particular type. When a `Decoder` is used to extract data from a directory, it outputs one data product for each type of data produced by the tag. Additionally, all `Decoders` output one additional data product called `field_meta`, which provides a plain-text description of each field in each output data product, and specified which units are used by the field, if any. 
+
+
+The format of the data products depends on the method employed:
+
+- When using `decode_to_db`, the `Decoder` will attempt to write each data type to its own table. 
+- When using `decode_to_data.frames`, the `Decoder` will produce one `data.frame` for each data type.
+- When using `decoder_to_csv`, the `Decoder` will produce one `.csv` file for each data type.
+
+`Decoders` can be configured with any number of `DataMaps` in order to support the extraction of any necessary data type. During extraction, the `Decoder` will iterate over the `data_maps` attribute, using the logic defined within the `DataMap` to first extract and then transform the corresponding data.
+
+Those pre-configured `Decoder` objects which ship with `metl` already have a number `DataMap` objects defined for them. Which tags produce which types of data is listed [here](#output-data-types-by-tag), and a description of each of these data types is also provided [here](#metl-data-type-descriptions).
+
+## **Timestamps**
 All timestamp fields in `metl` are formatted as `POSIXct` timestamp objects. This has the advantage of allowing us to specify a given instant in time without having to introduce the complexity of timezones, and sidestepping the confusion of preferred date/time string formats (YYYY-MM-DD HH:MM:SS, DD/MM/YY HH:MM, HH:MM:SS, HH:MM MM DD YYYY, etc). However, it has the notable disadvantage of being completely unreadable to humans in its native form of 10-digit integers (e.g. 1246458240).
 
 To address this users can convert POSIXct timestamps to the character representation of their choice using the `as.POSIXct` function [(documentation here)](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.POSIX*):
@@ -167,20 +185,12 @@ as.POSIXct(posix_int_timestamps)
 # [4] "2009-07-01 06:36:00 AKDT"
 ```
 
-# **Output data types**
-Tags can record a multitude of different kinds of data and/or data products. For example, a tag may record instantaneous sensor readings, and periodically calculate aggregate summary statistics of those readings over given intervals of time. Most tags also record internal status records, such as current battery levels or details about successful connections to satellites. Each of these data sets are fundamentally distinct from one another, and so they should be kept separate. However, it is still important that when we extract data from the tag that all relevant data is extracted and provided to the user.
+# **Units**
+All units in `metl` are specified using the `units` package, the documentation for which can be found [here](https://www.rdocumentation.org/packages/units/versions/0.8-5). This package provides a comprehensive list of SI units, and facilitates conversion from one unit to another. This is particularly useful when dealing with sensor data, as different tags may use different units to represent the same physical quantity.
 
-To accommodate this, each `Decoder` object contains one or more `DataMap` objects, stored as in the `data_maps` list attribute. Each `DataMap` is responsible for the data of a particular type. When a `Decoder` is used to extract data from a directory, it outputs one data product for each type of data produced by the tag. The format of the product depends on the method employed:
+The units in which a field is recorded are specified in the `units` attribute of the `Field` object that corresponds to the data field. During extraction, the `Decoder` compares the units of the input `Field` object to those of the output `Field` object, and performs any necessary conversions. This is of particular use when we have multiple type of tags which record the same data, but in different units.
 
-- When using `decode_to_db`, the `Decoder` will attempt to write each data type to its own table. 
-- When using `decode_to_data.frames`, the `Decoder` will produce one `data.frame` for each data type.
-- When using `decoder_to_csv`, the `Decoder` will produce one `.csv` file for each data type.
-
-`Decoders` can be configured with any number of `DataMaps` in order to support the extraction of any necessary data type. During extraction, the `Decoder` will iterate over the `data_maps` attribute, using the logic defined within the `DataMap` to first extract and then transform the corresponding data.
-
-Those pre-configured `Decoder` objects which ship with `metl` already have a number `DataMap` objects defined for them. Which tags produce which types of data is listed [here](#output-data-types-by-tag), and a description of each of these data types is also provided [here](#metl-data-type-descriptions).
-
-# **Proprietary post-processing software**
+## **Proprietary post-processing software**
 
 When dealing with telemetry tags, very often there is a post-processing step which takes the raw data files from the tag and converts them into usable files. Examples of this post-processing software include *tag-talk32* for Lotek tags, *SeaStar* for StarOddi tags, or *SeaDock* for Desert Star tags. Typically, the raw data which is actually output by the tag is encoded in a proprietary file format which only the post-processing software is capable of reading. Alternatively, the files may be readable, but only interpretable when the organization of the underlying data is understood *a priori*.
 
@@ -233,7 +243,12 @@ for (dec_ in decoders) {
     )
 }
 
+# Change NAs to emtpy character strings (blanks)
+data_type_by_tag[is.na(data_type_by_tag)] = ""
+
+# Output as markdown table
 data_type_by_tag %>% 
+  unique() %>% 
   dplyr::select(make, model, meta, everything()) %>% 
   knitr::kable()
 ```
