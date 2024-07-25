@@ -155,16 +155,48 @@ setRefClass(
             dat__[output_field_obj_$name] = output_field_dat_
           }
 
+          # Find any independent fields in the output FieldMap:
+          independent_fields =
+            output_data_field_map$get_independent_fields()
+
+          # Generate the independent field values
+          for (ind_field_ in independent_fields) {
+            dat__[ind_field_$name] =
+              ind_field_$trans_fn(
+                dat = dat__,
+                ip_fm = input_data_field_map,
+                op_fm = output_data_field_map
+              )
+          }
+
+          # Compile a list of fields to be returned
+          return_fields =
+            # Get the names of all common fields
+            output_data_field_map$common_fields(
+              fm = input_data_field_map
+            ) %>%
+            # Append the names of any independent fields
+            append(
+              output_data_field_map$get_independent_fields()
+            ) %>%
+            # Extract the names of each of the identified Field objects
+            lapply(function(f) {f$name}) %>%
+            unlist(use.names = F)
+
+          return_dat =
+            dat__[return_fields]
+
           return(
-            dat__[
-              lapply(
-                # Select the fields from the output field map that have
-                # corresponding entries in the input field map
-                output_data_field_map$field_list[common_fields],
-                function(f) {f$name}
-              ) %>%
-                unlist(use.names = F)
-            ]
+            # dat__[
+            #   lapply(
+            #     # Select the fields from the output field map that have
+            #     # corresponding entries in the input field map
+            #     output_data_field_map$field_list[common_fields],
+            #     function(f) {f$name}
+            #   ) %>%
+            #     unlist(use.names = F)
+            # ]
+            return_dat
           )
         },
 
