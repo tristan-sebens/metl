@@ -247,6 +247,7 @@ decoders = list(
   "Decoder_MicrowaveTelemetry_XTag_Recovered" = Decoder_MicrowaveTelemetry_XTag_Recovered,
   "Decoder_StarOddi_DST" = Decoder_StarOddi_DST,
   "Decoder_StarOddi_DSTmagnetic" = Decoder_StarOddi_DSTmagnetic,
+  "Decoder_StarOddi_DST_milliF" = Decoder_StarOddi_DST,
   "Decoder_WildlifeComputers_MiniPAT" = Decoder_WildlifeComputers_MiniPAT,
   "Decoder_WildlifeComputers_BenthicSPAT" = Decoder_WildlifeComputers_BenthicSPAT
 )
