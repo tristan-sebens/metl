@@ -88,7 +88,7 @@ test_that(
 
     # Get the independent fields from fm1
     # There should be no independent fields in the default implementation
-    expect_equal(length(t_fm1$get_independent_fields()), 0)
+    expect_equal(length(t_fm1$get_independent_fields()), 1)
 
     # Add an independent field to the FieldMap
     ind_f_name = "independent_field"
@@ -102,8 +102,8 @@ test_that(
         )
       )
 
-    expect_equal(length(t_fm1$get_independent_fields()), 1)
-    expect_equal(t_fm1$get_independent_fields()[[1]]$name, ind_f_name)
+    expect_equal(length(t_fm1$get_independent_fields()), 2)
+    expect_equal(t_fm1$get_independent_fields()[[2]]$name, ind_f_name)
   }
 )
 

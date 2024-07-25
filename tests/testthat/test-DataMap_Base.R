@@ -23,13 +23,6 @@ test_that(
     expect_snapshot(
       dm$get_field_data(
         dat__ = build_test_dataset(),
-        input_field_obj_ = fm1$field_list$TIMESTAMP_FIELD
-      )
-    )
-
-    expect_snapshot(
-      dm$get_field_data(
-        dat__ = build_test_dataset(),
         input_field_obj_ = fm1$field_list$TEMPERATURE_FIELD
       )
     )

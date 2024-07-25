@@ -25,6 +25,16 @@ get_cond_stack_messages =
     return(l)
   }
 
+#' Convert POSIXct timestamp to character string
+#'
+#' Provides a way to convert a POSIXct timestamp to a character string in a consistant manner
+#'
+#' @param v
+posix_timestamp_to_character =
+  function(v) {
+    return(format(v, format = "%Y-%m-%d %H:%M:%S %Z"))
+  }
+
 # Find the mode of a vector
 v_mode =
   function(v) {

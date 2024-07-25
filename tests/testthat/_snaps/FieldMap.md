@@ -9,8 +9,11 @@
       $TAG_TYPE
       [1] "varchar(3)"
       
-      $TIMESTAMP
+      $TIMESTAMP_POSIXct
       [1] "integer"
+      
+      $TIMESTAMP
+      [1] "varchar(32)"
       
       $LATITUDE
       [1] "double(10, 6)"
@@ -87,7 +90,7 @@
     Code
       names(fm1_fm2_cf)
     Output
-      [1] "TIMESTAMP_FIELD"   "DEPTH_FIELD"       "TEMPERATURE_FIELD"
+      [1] "TIMESTAMP_POSIX_FIELD" "DEPTH_FIELD"           "TEMPERATURE_FIELD"    
 
 # FieldMap::uncommon_fields
 
@@ -103,27 +106,28 @@
     Output
        [1] "TAG_ID_FIELD"                             
        [2] "TAG_TYPE_FIELD"                           
-       [3] "LATITUDE_FIELD"                           
-       [4] "LONGITUDE_FIELD"                          
-       [5] "LOCATION_TYPE_FIELD"                      
-       [6] "LATITUDE_N_ERROR_FIELD"                   
-       [7] "LATITUDE_S_ERROR_FIELD"                   
-       [8] "LATITUDE_U_FIELD"                         
-       [9] "LONGITUDE_ERROR_FIELD"                    
-      [10] "LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD" 
-      [11] "LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD"     
-      [12] "LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD"     
-      [13] "LOCATION_ERROR_RADIUS"                    
-      [14] "PRESSURE_FIELD"                           
-      [15] "DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD"      
-      [16] "DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD"      
-      [17] "TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD"
-      [18] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
-      [19] "TILT_X_FIELD"                             
-      [20] "TILT_Y_FIELD"                             
-      [21] "TILT_Z_FIELD"                             
-      [22] "INCLINATION_FIELD"                        
-      [23] "MAGNETIC_STRENGTH_FIELD"                  
+       [3] "TIMESTAMP_CHARACTER_FIELD"                
+       [4] "LATITUDE_FIELD"                           
+       [5] "LONGITUDE_FIELD"                          
+       [6] "LOCATION_TYPE_FIELD"                      
+       [7] "LATITUDE_N_ERROR_FIELD"                   
+       [8] "LATITUDE_S_ERROR_FIELD"                   
+       [9] "LATITUDE_U_FIELD"                         
+      [10] "LONGITUDE_ERROR_FIELD"                    
+      [11] "LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD" 
+      [12] "LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD"     
+      [13] "LOCATION_ERROR_SEMI_MAJOR_AXIS_FIELD"     
+      [14] "LOCATION_ERROR_RADIUS"                    
+      [15] "PRESSURE_FIELD"                           
+      [16] "DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD"      
+      [17] "DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD"      
+      [18] "TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD"
+      [19] "TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD"
+      [20] "TILT_X_FIELD"                             
+      [21] "TILT_Y_FIELD"                             
+      [22] "TILT_Z_FIELD"                             
+      [23] "INCLINATION_FIELD"                        
+      [24] "MAGNETIC_STRENGTH_FIELD"                  
 
 ---
 
@@ -137,14 +141,14 @@
     Code
       names(t_fm1$get_id_fields())
     Output
-      [1] "TAG_ID_FIELD"    "TAG_TYPE_FIELD"  "TIMESTAMP_FIELD"
+      [1] "TAG_ID_FIELD"          "TAG_TYPE_FIELD"        "TIMESTAMP_POSIX_FIELD"
 
 # FieldMap::get_id_field_names
 
     Code
       t_fm1$get_id_field_names()
     Output
-      [1] "TAG_NUM"   "TAG_TYPE"  "TIMESTAMP"
+      [1] "TAG_NUM"           "TAG_TYPE"          "TIMESTAMP_POSIXct"
 
 # FieldMap::get_field_names
 
@@ -152,16 +156,17 @@
       t_fm1$get_field_names()
     Output
        [1] "TAG_NUM"                            "TAG_TYPE"                          
-       [3] "TIMESTAMP"                          "LATITUDE"                          
-       [5] "LONGITUDE"                          "LOCATION_TYPE"                     
-       [7] "LATITUDE_N_ERROR"                   "LATITUDE_s_ERROR"                  
-       [9] "LATITUDE_U"                         "LONGITUDE_U"                       
-      [11] "LOCATION_ERROR_ELLIPSE_ORIENTATION" "LOCATION_ERROR_SEMI_MINOR_AXIS"    
-      [13] "LOCATION_ERROR_SEMI_MAJOR_AXIS"     "LOCATION_ERROR_RADIUS"             
-      [15] "PRESSURE"                           "DEPTH"                             
-      [17] "DEPTH_INCREASE_DELTA_LIMIT"         "DEPTH_DECREASE_DELTA_LIMIT"        
-      [19] "TEMPERATURE"                        "TEMP_INCREASE_DELTA_LIMIT"         
-      [21] "TEMP_DECREASE_DELTA_LIMIT"          "TILT_X"                            
-      [23] "TILT_Y"                             "TILT_Z"                            
-      [25] "INCLINATION"                        "MAGNETIC_FIELD_STRENGTH"           
+       [3] "TIMESTAMP_POSIXct"                  "TIMESTAMP"                         
+       [5] "LATITUDE"                           "LONGITUDE"                         
+       [7] "LOCATION_TYPE"                      "LATITUDE_N_ERROR"                  
+       [9] "LATITUDE_s_ERROR"                   "LATITUDE_U"                        
+      [11] "LONGITUDE_U"                        "LOCATION_ERROR_ELLIPSE_ORIENTATION"
+      [13] "LOCATION_ERROR_SEMI_MINOR_AXIS"     "LOCATION_ERROR_SEMI_MAJOR_AXIS"    
+      [15] "LOCATION_ERROR_RADIUS"              "PRESSURE"                          
+      [17] "DEPTH"                              "DEPTH_INCREASE_DELTA_LIMIT"        
+      [19] "DEPTH_DECREASE_DELTA_LIMIT"         "TEMPERATURE"                       
+      [21] "TEMP_INCREASE_DELTA_LIMIT"          "TEMP_DECREASE_DELTA_LIMIT"         
+      [23] "TILT_X"                             "TILT_Y"                            
+      [25] "TILT_Z"                             "INCLINATION"                       
+      [27] "MAGNETIC_FIELD_STRENGTH"           
 
