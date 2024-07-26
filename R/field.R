@@ -35,6 +35,7 @@ Field =
             units = "",
             trans_fn = function(v, ...) {v},
             independent = F,
+            nullable = F,
             description = "No description available"
           ) {
             callSuper(
@@ -43,6 +44,7 @@ Field =
               units = units,
               trans_fn = trans_fn,
               independent = independent,
+              nullable = nullable,
               description = description
             )
             uid <<- uuid::UUIDgenerate()
