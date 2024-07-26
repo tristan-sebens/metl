@@ -88,34 +88,17 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
-            name = "TIMESTAMP_POSIXct",
+            name = "TIMESTAMP",
             data_type = "integer",
             id_field = T,
             trans_fn =
               function(v, ...) {
+                # Make sure that all incoming timestamps are unique, to satisfy the UNIQUE constraint on the table
                 bump_timestamps(v = as.numeric(v), incr = 1e-1)
               },
             description = "The instant in time to which this record corresponds, expressed as a POSIXct timestamp."
-          ),
-        TIMESTAMP_CHARACTER_FIELD =
-          Field(
-            name = "TIMESTAMP",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$TIMESTAMP_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The instant in time to which this record corresponds, expressed as a character string."
           ),
         LATITUDE_FIELD =
           Field(
@@ -271,9 +254,9 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
+            name = "START_TIME",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -282,27 +265,9 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
               },
             description = "The start time of the summary period, expressed as a POSIXct timestamp."
           ),
-        START_TIME_CHARACTER_FIELD =
+        END_TIME_FIELD =
           Field(
-            name = "START_TIME",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$START_TIME_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The start time of the summary period, expressed as a character string."
-          ),
-        END_TIME_POSIX_FIELD =
-          Field(
-            name = "END_TIME_POSIXct",
+            name = "END_TIME",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -310,24 +275,6 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
                 as.numeric(v)
               },
             description = "The end time of the summary period, expressed as a POSIXct timestamp."
-          ),
-        END_TIME_CHARACTER_FIELD =
-          Field(
-            name = "END_TIME",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$END_TIME_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The end time of the summary period, expressed as a character string."
           ),
         LATITUDE_FIELD =
           Field(
@@ -461,9 +408,9 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
+            name = "START_TIME",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -472,52 +419,16 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
               },
             description = "The start time of the summary period, expressed as a POSIXct timestamp."
           ),
-        START_TIME_CHARACTER_FIELD =
+        END_TIME_FIELD =
           Field(
-            name = "START_TIME",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$START_TIME_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The start time of the summary period, expressed as a character string."
-          ),
-        END_TIME_POSIX_FIELD =
-          Field(
-            name = "END_TIME_POSIXct",
+            name = "END_TIME",
             data_type = "integer",
             id_field = T,
             trans_fn =
               function(v, ...) {
                 as.numeric(v)
               },
-            description = "The end time of the summary period, expressed as a POSIXct timestamp."
-          ),
-        END_TIME_CHARACTER_FIELD =
-          Field(
-            name = "END_TIME",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$END_TIME_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The end time of the summary period, expressed as a character string."
+            description = "The end time of the summary period. UTC"
           ),
         HISTOGRAM_DATA_TYPE_FIELD =
           Field(
@@ -558,63 +469,27 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
-            data_type = "integer",
+            name = "START_TIME",
             id_field = T,
+            data_type = "integer",
             trans_fn =
               function(v, ...) {
                 as.numeric(v)
               },
             description = "The start time of the summary period, expressed as a POSIXct timestamp."
           ),
-        START_TIME_CHARACTER_FIELD =
+        END_TIME_FIELD =
           Field(
-            name = "START_TIME",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$START_TIME_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The start time of the summary period, expressed as a character string."
-          ),
-        END_TIME_POSIX_FIELD =
-          Field(
-            name = "END_TIME_POSIXct",
-            data_type = "integer",
+            name = "END_TIME",
             id_field = T,
+            data_type = "integer",
             trans_fn =
               function(v, ...) {
                 as.numeric(v)
               },
-            description = "The end time of the summary period, expressed as a POSIXct timestamp."
-          ),
-        END_TIME_CHARACTER_FIELD =
-          Field(
-            name = "END_TIME",
-            data_type = "varchar(32)",
-            independent = T,
-            trans_fn =
-              function(v, dat, op_fm, ...) {
-                posix_ct_field_name =
-                  op_fm$field_list$END_TIME_POSIX_FIELD$name
-
-                # Convert the POSIXct timestamps to character timestamps, using the local timezone
-                v =
-                  posix_timestamp_to_character(as.POSIXct(dat[[posix_ct_field_name]]))
-
-                return(v)
-              },
-            description = "The end time of the summary period, expressed as a character string."
+            description = "The end time of the summary period. UTC"
           ),
         TIME_OFFSET_FIELD =
           Field(
@@ -780,7 +655,7 @@ LOTEK_1000.1100.1250_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Time"
           ),
@@ -804,7 +679,7 @@ LOTEK_1300_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "TimeS",
             trans_fn =
@@ -849,7 +724,7 @@ LOTEK_1400.1800_INSTANT_DATA_FIELDS =
           Field(
             name = "Time"
           ),
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Datetime",
             independent = T,
@@ -890,7 +765,7 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Date/Time"
           ),
@@ -918,11 +793,13 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS =
         DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "Δ Lim Dives",
+            nullable = T,
             trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           ),
         DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "Δ Lim Ascents",
+            nullable = T,
             trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           ),
         TEMPERATURE_FIELD =
@@ -933,11 +810,13 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_INSTANT_DATA_FIELDS =
         TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "Δ Lim +Temp",
+            nullable = T,
             trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           ),
         TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD =
           Field(
             name = "Δ Lim -Temp",
+            nullable = T,
             trans_fn = function(v, ...) {return(ifelse(is.na(v), 0, 1))}
           )
       )
@@ -948,7 +827,7 @@ MICROWAVE_TELEMETRY_XTAG_RECOVERED_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Date/Time"
           ),
@@ -986,21 +865,18 @@ MICROWAVE_TELEMETRY_XTAG_TRANSMITTED_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
             name = "Date"
           ),
-        END_TIME_POSIX_FIELD =
+        END_TIME_FIELD =
           Field(
             name = "End",
             independent = T,
             trans_fn =
-              function(v, dat, ip_fm, ...) {
-                start_time_field_name =
-                  ip_fm$field_list$START_TIME_POSIX_FIELD$name
-
+              function(v, dat, ...) {
                 timechange::time_add(
-                  dat[[start_time_field_name]],
+                  dat[['Date']],
                   hour = 23, minute = 59, second = 59
                 )
               }
@@ -1027,21 +903,18 @@ MICROWAVE_TELEMETRY_XTAG_RECOVERED_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
             name = "Date"
           ),
-        END_TIME_POSIX_FIELD =
+        END_TIME_FIELD =
           Field(
             name = "End",
             independent = T,
             trans_fn =
-              function(v, dat, ip_fm, ...) {
-                start_time_field_name =
-                  ip_fm$field_list$START_TIME_POSIX_FIELD$name
-
+              function(v, dat, ...) {
                 timechange::time_add(
-                  dat[[start_time_field_name]],
+                  dat[['Date']],
                   hour = 23, minute = 59, second = 59
                 )
               }
@@ -1071,7 +944,7 @@ STAR_ODDI_DST_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Date & Time",
             # Excel datestamps are recorded as days from a unique origin
@@ -1101,7 +974,7 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Date & Time",
             # Excel datestamps are recorded as days from a unique origin
@@ -1169,7 +1042,7 @@ WILDLIFE_COMPUTERS_MINIPAT_INSTANT_DATA_FIELDS =
           Field(
             name = "Time"
           ),
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Datetime",
             independent = T,
@@ -1201,7 +1074,7 @@ WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
             name = "Start",
             data_type = "varchar(32)",
@@ -1210,7 +1083,7 @@ WILDLIFE_COMPUTERS_MINIPAT_SUMMARY_DATA_FIELDS =
                 as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
               }
           ),
-        END_TIME_POSIX_FIELD =
+        END_TIME_FIELD =
           Field(
             name = "End",
             data_type = "varchar(32)",
@@ -1286,7 +1159,7 @@ WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
             name = "Date",
             trans_fn =
@@ -1294,14 +1167,14 @@ WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_DATA_FIELDS =
                 return(as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y"))
               }
           ),
-        END_TIME_POSIX_FIELD =
+        END_TIME_FIELD =
           Field(
             name = "End",
             independent = T,
             trans_fn =
               function(v, dat, ip_fm, ...) {
                 # Get the start time field
-                start_time_field = ip_fm$field_list$START_TIME_POSIX_FIELD
+                start_time_field = ip_fm$field_list[["START_TIME_FIELD"]]
                 # Get the start time data, and transform it into a POSIXct object
                 start_times =
                   start_time_field$trans_fn(
@@ -1341,7 +1214,7 @@ WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
             name = "Date",
             trans_fn =
@@ -1349,14 +1222,14 @@ WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS =
                 return(as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y"))
               }
           ),
-        END_TIME_POSIX_FIELD =
+        END_TIME_FIELD =
           Field(
             name = "End",
             independent = T,
             trans_fn =
               function(v, dat, ip_fm, ...) {
                 # Get the start time field
-                start_time_field = ip_fm$field_list$START_TIME_POSIX_FIELD
+                start_time_field = ip_fm$field_list[["START_TIME_FIELD"]]
                 # Get the start time data, and transform it into a POSIXct object
                 start_times =
                   start_time_field$trans_fn(
@@ -1410,7 +1283,7 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "Date",
             trans_fn =
@@ -1451,7 +1324,7 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        START_TIME_POSIX_FIELD =
+        START_TIME_FIELD =
           Field(
             name = "Start",
             data_type = "varchar(32)",
@@ -1460,7 +1333,7 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
                 as.POSIXct(v, format = "%H:%M:%S %d-%b-%Y")
               }
           ),
-        END_TIME_POSIX_FIELD =
+        END_TIME_FIELD =
           Field(
             name = "End",
             data_type = "varchar(32)",
@@ -1488,7 +1361,7 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
       list(
-        TIMESTAMP_POSIX_FIELD =
+        TIMESTAMP_FIELD =
           Field(
             name = "date(dd/mm/yyy)/time",
             trans_fn =

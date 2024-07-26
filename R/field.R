@@ -23,6 +23,7 @@ Field =
         trans_fn = "function", # Function which will be applied to this field individually. Applied before all other transformations.
         uid = "character", # UID generated on instantiation
         independent = "logical", # Indicates that this field generates its own value,
+        nullable = "logical", # Indicates that this field can be NULL
         description = "character" # Plain language description of the field
       ),
     methods =

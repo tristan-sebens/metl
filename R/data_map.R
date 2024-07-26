@@ -72,8 +72,12 @@ setRefClass(
                   )
                   %in% names(dat__)
                 ) &
-                # Check if Field is independently generated, in which case it would not yet be present in the data
-                !f_$independent
+                !any(
+                  # Check if Field is independently generated, in which case it would not yet be present in the data
+                  f_$independent,
+                  #Similarly, if the Field is nullable, then it may simply be absent from
+                  f_$nullable
+                )
               },
               input_data_field_map$field_list
             )
