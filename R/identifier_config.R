@@ -152,17 +152,6 @@ Identifier_StarOddi_DST =
                     d,
                     "(~$)*JS\\d+\\.xlsx",
                     n=length(list.files(d))
-                  ),
-                  check_for_fields(
-                    fp =
-                      fp,
-                    fields =
-                      c(
-                        "Comp.Head(°)",
-                        "Comp.4p(°)",
-                        "Mag.vec(nT)"
-                      ),
-                    present = F
                   )
                 )
               )
@@ -184,17 +173,15 @@ Identifier_StarOddi_DSTmagnetic =
               fp = list.files(d, full.names = T, pattern = "^JS\\d+\\.xlsx")[[1]]
               return(
                 all(
-                  check_for_files(d, "^JS\\d+\\.xlsx"),
+                  check_for_files(
+                    d,
+                    "^JS\\d+\\.xlsx"
+                  ),
                   # Check that all files in the directory are either the datafile, or Excel's temporary lock file
-                  check_for_fields(
-                    fp =
-                      fp,
-                    fields =
-                      c(
-                        "Comp.Head(°)",
-                        "Comp.4p(°)",
-                        "Mag.vec(nT)"
-                      )
+                  check_for_files(
+                    d,
+                    "(~$)*JS\\d+\\.xlsx",
+                    n=length(list.files(d))
                   )
                 )
               )

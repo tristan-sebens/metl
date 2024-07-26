@@ -992,18 +992,18 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
           ),
         TEMPERATURE_FIELD =
           Field(
-            name = "Temp(°C)",
-            alternate_names = list("Temperature(°C)"),
+            name = "Temp(\u00B0C)",
+            alternate_names = list("Temperature(\u00B0C)"),
             units = "degrees_Celsius"
           ),
         TILT_X_FIELD =
           Field(
-            name = "Tilt-X(°)",
+            name = "Tilt-X(\u00B0)",
             units = "degrees"
           ),
         TILT_Y_FIELD =
           Field(
-            name = "Tilt-Y(°)",
+            name = "Tilt-Y(\u00B0)",
             units = "degrees"
           ),
         # EAL_FIELD =
@@ -1012,12 +1012,12 @@ STAR_ODDI_DST_MAGNETIC_FIELDS =
         #   ),
         COMPASS_HEADING_FIELD =
           Field(
-            name = "Comp.Head(°)",
+            name = "Comp.Head(\u00B0)",
             units = "degrees"
           ),
         INCLINATION_FIELD =
           Field(
-            name = "Inclination(°)",
+            name = "Inclination(\u00B0)",
             units = "degrees"
           ),
         MAGNETIC_STRENGTH_FIELD =
