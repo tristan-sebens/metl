@@ -1,6 +1,6 @@
 Package: metl
 Title: MESA Extract/Transform/Load (METL)
-Version: 0.1.1
+Version: 0.2
 Authors@R: 
     person("Tristan", "Sebens", , "tristan.sebens@noaa.gov", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
