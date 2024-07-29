@@ -282,72 +282,87 @@ Users can extend `metl` to support additional makes and models of tags, and can 
 
 `metl` is an object-oriented package, and uses a handful of custom object classes to define how data is extracted and exported from tags.
 
-- `Decoder` - Defines all logic required to process a particular make/model of tag.
-  - Attributes:
-    - `identifier` - An `Identifier` object used to determine whether or not a data directory was produced by the given tag type.
-    - `metadata_map`, `instant_datamap`, and `summary_datamap` - `DataMap` objects which define how to extract each of the three types of data from a data directory.
-- `DataMap` - Defines all logic required to take data of a single type (meta/instant/summary) from a data directory all the way to the final output format.
-  - Attributes:
-    - `extract_`
-      - Function which accepts a single parameter `d`, which is the path to a data directory, and returns a single `data.frame` object, which is the raw input data to be transformed and then loaded by the pipeline.
-    - `input_data_field_map`
-      - `FieldMap` object which describes the fields that are present in the `data.frame` returned by `extract_`.
+- `Decoder` - Encapsulates all logic required to extract and transform all data produced by a particular make/model of tag.
+
+- `DataMap` - Defines the logic required to extract and transform a single type of data (see [data-types documentation](#metl-data-type-descriptions)) produced by a particular make/model of tag.
+
 - `FieldMap` - Defines the fields present in a dataset. Can describe both input and output datasets. Used by the `DataMap` class to define how input fields map to output fields.
-  - Attributes:
-    `field_list` - List of `Field` objects, each of which describes a single field in the corresponding dataset.
-- `Field`
-  - Defines a single field in a dataset, either input or output.
-  - Attributes:
-    - `name` - The name of the field in the dataset
-    - `units` - Units of the field. Must be valid units as described by `units::valid_udunits()`
+
+- `Field` - Defines a single field in a dataset, either input or output.
 
 
 ## **Basic example: adding a new type of tag to `metl`**
 
-Let's consider a basic example. Suppose we have a new tag type, as-yet unsupported by the `metl` package: the 'Tuff1' tag, made by 'TuffTags INC.' We have a data directory at path `d`, which is the output data products collected from a single Tuff1 tag.
+Let's consider a basic example. Suppose we have a new tag type, as-yet unsupported by the `metl` package: the 'Tuff1' tag, made by 'TuffTags INC.' We have a data directory at path `tuff1_d`, which is the output data products collected from a single Tuff1 tag.
 
-  For the simplicity, we'll assume that the Tuff1 tag only produces instantaneous data, a common pattern in older tags. We'll start by defining the ETL pathway for the instant data.
 
-  ### **Building a custom `DataMap`**
 
-  #### **The `extract_fn`**
+
+### **Building a custom `DataMap`**
+
+  First, we'll need to define one `DataMap` object for each type of data produced by the Tuff1 tag. See here for more on [data-types](#metl-output-data-types). All tags have metadata, so we'll need to define a metadata `DataMap`. For simplicity, we'll assume that the Tuff1 tag only produces instantaneous sensor data, a common pattern in older tags. This means we'll only have to define 2 `DataMap` objects: one for the metadata, and one for the instantaneous sensor data.
+  
+We'll start with the `DataMap` for instantaneous data.
+
+#### **The `extract_fn`**
 
   To start with, we'll define our `extract_fn`. This is a function which must accept `d` as its only parameter, and return a single `data.frame`, the instant data in its raw input format.
 
 Tuff1 tags are simple devices, and very conveniently store all of their instantaneous sensor data in a single `.csv` file. This `.csv` file is always named 'sensor_<id>.csv', where <id> is the four digit ID used to identify the tag. Luckily for us, all of the instant sensor data fields are stored in this `.csv` file, so our `extract_fn` function will be very simple:
 
-```r
-tuff1_extract_fn = function(d) {
-  # Use a regular expression to find the instant sensor data
-  instant_data_filepath = list.files(d, pattern = "sensor_\\d*\\.csv")[[1]]
 
-  # Read in the instant sensor data from the file
-  instant_sensor_data = read.csv(instant_data_filepath)
+``` r
+tuff1_extract_fn = 
+  function(d) {
+    # Use a regular expression to find the instant sensor data
+    instant_data_filepath = 
+      list.files(
+        d,
+        pattern = "sensor_\\d*\\.csv",
+        full.names = T
+      )
 
-  # Return the data
-  return(instant_sensor_data)
-}
+    # Read in the instant sensor data from the file
+    instant_sensor_data = read.csv(instant_data_filepath)   
+
+    # Return the data in a data.frame
+    return(instant_sensor_data)
+  }
 ```
 
-We can now use `tuff1_extract_fn()` to quickly extract the instant sensor data from any data directory produced by a Tuff1 tag.
+We can now use `tuff1_extract_fn()` to extract the instant sensor data from any data directory produced by a Tuff1 tag.
+
+
+``` r
+tuff1_dat = 
+  tuff1_extract_fn(d = tuff1_d)
+
+knitr::kable(head(tuff1_dat))
+```
+
+
+
+|timestamp           |      press|     temp|
+|:-------------------|----------:|--------:|
+|2002-05-10 04:00:00 | -0.2274082| 68.23019|
+|2002-05-10 04:15:00 | -0.2725804| 68.23019|
+|2002-05-10 04:30:00 | -0.2274082| 68.23019|
+|2002-05-10 04:45:00 | -0.0918991| 68.39158|
+|2002-05-10 05:00:00 | -0.0015659| 68.39158|
+|2002-05-10 05:15:00 | -0.0015659| 68.35122|
 
 #### **Defining a `FieldMap`**
 
-Next we need to define a `FieldMap` for our extracted data. Tuff1 tags record temperature and depth data, along with the date and time of the reading:
+Looking at the data returned by our `tuff1_extract_fn`, we see that it contains the fields `timestamp`, `press`, and `temp`, which refer to the timestamp, pressure, and temperature fields respectively. However, `metl` doesn't know anything about the structure of the data we've collected. We need to define a `FieldMap` object to define which fields are present in the dataset.
 
-timestamp | depth | temperature
--- | -- | --
-2024-04-01 13:00:00 | -48 | 5.3
-2024-04-01 14:00:00 | -56 | 5.1
-2024-04-01 15:00:00 | -47 | 4.9
-2024-04-01 16:00:00 | -51 | 5.2
-2024-04-01 16:00:00 | -53 | 5.6
-2024-04-01 16:00:00 | -56 | 5.5
-... | ... | ...
+A `FieldMap` object is primarily composed of a list of `Field` objects. Each `Field` object represents a single field in a data.frame. The `Field` object describes a number of attributes about the field, but for now we'll focus on just two: the name of the field, and the units it's in, if any. 
 
-Based on this, we define a `FieldMap` which identifies each field within the dataset:
+We'll say that we know that the Tuff1 tags record temperature in degrees Fahrenheit, and pressure in bars.
 
-```
+The `FieldMap` for the Tuff1 tag looks something like this:
+
+
+``` r
 tuff1_input_fieldmap =
   FieldMap(
     # A list of the fields contained within the incoming dataset
@@ -357,23 +372,38 @@ tuff1_input_fieldmap =
           Field(
             name = "timestamp"
           ),
-        DEPTH_FIELD =
+        PRESSURE_FIELD =
           Field(
-            name = "depth"
+            name = "press",
+            units = "bar"
           ),
         TEMPERATURE_FIELD =
           Field(
-            name = "temperature"
+            name = "temp",
+            units = "fahrenheit"
           )
       )
   )
 ```
 
-By choosing these list-names for each of our `Field` objects in `field_list`, we implicitly identify the *type* of data contained in each field. The full list of available names can be found in the [field vocabulary](#field-vocabulary). If you are extracting a field for which there is not an established list-name, you can use any name. Just be sure that the corresponding field object in the output `FieldMap` object uses the same list-name.
+##### **Converting to POSIXct timestamps**
 
-We also have to define the units of our fields wherever possible. The `timestamp` field has no units, but both `depth` and `temperature` do. We can update our `FieldMap` to reflect this:
+There is an outstanding problem with our incoming data: the `timestamp` field is a character field. `metl` expects that any and all timestamp fields will be formatted as `POSIXct` timestamp objects. This is because by using `POSIXct` objects, we can avoid all of the headaches and complexities associated with timezones.
 
-```
+What is the optimal way to address this? We could simply modify the `extract_fn` to convert the `timestamp` field to a `POSIXct` object before returning the data. However, this would be a poor choice, as it would mean that the `extract_fn` would be responsible for both extracting the data and transforming it, meaning that it would have to have knowledge about the structure and naming of the data.frame it was extracting. This would make the `extract_fn` less flexible, and more difficult to maintain.
+
+Fortunately there is a better method:
+
+##### **The `trans_fn` attribute**
+
+`Field` objects have a number of attributes which we can use to describe and alter each data field to suit our needs. For now, we'll cover one additional attribute, the `trans_fn`. This is a function which can be used to define simple transformations which should be applied to individual data fields. For a full list of `Field` object attributes, see the [Field class documentation](Field.md).
+
+The `trans_fn` is passed the values of the field in the vector `v`. `trans_fn` is also passed a handful of other parameters which may be useful to us when transforming our data, but we won't need any of these so we'll simply include the `...` argument to catch them for us.
+
+Now we can update our `FieldMap` object to perform the timestamp conversion for us:
+
+
+``` r
 tuff1_input_fieldmap =
   FieldMap(
     # A list of the fields contained within the incoming dataset
@@ -381,54 +411,74 @@ tuff1_input_fieldmap =
       list(
         TIMESTAMP_FIELD =
           Field(
-            name = "timestamp"
+            name = "timestamp",
+            # Here we add the timestamp conversion function
+            trans_fn = 
+              function(v, ...) {
+                return(as.POSIXct(v, format = "%Y-%m-%d %H:%M:%S"))
+              }
           ),
-        DEPTH_FIELD =
+        PRESSURE_FIELD =
           Field(
-            name = "depth",
-            units = "m"
+            name = "press",
+            units = "bar"
           ),
         TEMPERATURE_FIELD =
           Field(
-            name = "temperature",
-            units = "°C"
+            name = "temp",
+            units = "fahrenheit"
           )
       )
   )
 ```
-
-`Field` objects are capable of describing a host of attributes about the field, including units, data type, and more. For a full list of available attributes, see the [Field class documentation](Field.md).
 
 #### **Building a `DataMap`**
 
 We can now use our `tuff1_extract` and `tuff1_input_fieldmap` to construct a `DataMap` for instant sensor data collected by Tuff1 tags:
 
-```
+
+``` r
 tuff1_instant_sensor_datamap =
   DataMap(
     input_data_field_map = tuff1_input_fieldmap,
-    extract_fn = tuff1_extract
+    extract_fn = tuff1_extract_fn
   )
 ```
 
-That's it! Our datamap can now be used to extract instantaneous sensor data from any data directory produced by a Tuff1 tag. We can confirm this is true by extracting from our example directory `d`:
+That's it! Our datamap can now be used to extract instantaneous sensor data from any data directory produced by a Tuff1 tag. We can confirm this is true by extracting from our example directory `tuff1_d`:
 
-  ```
-tuff1_inst_dat =
-  tuff1_instant_sensor_datamap$extract(d)
 
-head(tuff1_inst_dat)
+``` r
+tuff1_datamap_dat = 
+  tuff1_instant_sensor_datamap$extract(d = tuff1_d)
+
+knitr::kable(head(tuff1_datamap_dat))
 ```
 
-For the sake of simplicity, we'll assume that Tuff1 tags don't record any summary data. However, if they did, we would simply repeat the steps we followed to create our `tuff1_instant_sensor_datamap` but altering the `extract_` function and the `input_data_field_map` as appropriate.
+
+
+|timestamp           |      press|     temp|
+|:-------------------|----------:|--------:|
+|2002-05-10 04:00:00 | -0.2274082| 68.23019|
+|2002-05-10 04:15:00 | -0.2725804| 68.23019|
+|2002-05-10 04:30:00 | -0.2274082| 68.23019|
+|2002-05-10 04:45:00 | -0.0918991| 68.39158|
+|2002-05-10 05:00:00 | -0.0015659| 68.39158|
+|2002-05-10 05:15:00 | -0.0015659| 68.35122|
+
+
+For the sake of simplicity, we're assuming that Tuff1 tags don't record any data other than instantaneous sensor data. However, if they did, we would simply repeat the steps we followed to create our `tuff1_instant_sensor_datamap` but altering the `extract_` function and the `input_data_field_map` as needed to extract the other types of data from the data directory.
+
+You may notice that despite defining units and a `trans_fn` in out `FieldMap` none of the data fields have been transformed. This is because all transformations happen in the `transform` method of the `DataMap` which is called by the `Decoder` object. We'll cover this shortly.
 
 ### **Building a metadata `DataMap`**
 
 We will also need to be able to extract the appropriate tag metadata from each Tuff1 tag. In our simple use-case, the necessary metadata will be limited to the make and model of the tag. We'll expect that the user will provide the tag # in the `meta` data.frame.
 
-```r
+
+``` r
 # We'll start by constructing a FieldMap for the make and model Fields:
-  tuff1_meta_fieldmap =
+tuff1_input_meta_fieldmap =
   FieldMap(
     field_list =
       list(
@@ -447,7 +497,7 @@ We will also need to be able to extract the appropriate tag metadata from each T
 # We'll then construct a DataMap object to provide the metadata as a data.frame.
 tuff1_meta_datamap =
   DataMap(
-    input_data_field_map = tuff1_meta_fieldmap,
+    input_data_field_map = tuff1_input_meta_fieldmap,
     extract_fn =
       function(d) {
         # In this example case, the metadata is static, so we'll just return a data.frame with the make and model
@@ -459,35 +509,95 @@ tuff1_meta_datamap =
         )
       }
   )
-
 ```
 
 Now when we call the `extract()` method on our new object, we'll receive a `data.frame` describing the metadata needed for this tag:
 
-```
-tuff1_metadata = tuff1_meta_datamap$extract(d)
-
-head(tuff1_metadata)
-```
-
 ### **Building the `Decoder`**
 
-We're nearly done extending `metl` to support the Tuff1 tag!
+We're nearly done extending support to the Tuff1 tag! The final step is to construct the `Decoder` object. Once we have this in place, we can use it to quickly and easily extract data from any data directory produced by a Tuff1 tag.
 
-  We now have all of the pieces we need to define a `Decoder` object for our Tuff1 tag.
 
-```
+``` r
 tuff1_decoder =
   Decoder(
-    datamaps =
+    data_maps =
       list(
-        meta = tuff1_meta_datamap,
-        instant = tuff1_instant_sensor_datamap
+        "meta" = tuff1_meta_datamap,
+        "instant" = tuff1_instant_sensor_datamap
       )
   )
 ```
-This `Decoder` can now be used to extract all of the necessary data from any data directory which has been produced by a Tuff1 tag. HOWEVER, ther
 
+This `Decoder` can now be used to extract all of the necessary data from any data directory which has been produced by a Tuff1 tag. We can confirm this by extracting data from our example directory `tuff1_d`:
+
+
+``` r
+tuff1_dats = 
+  tuff1_decoder$decode_to_dataframes(
+    d = tuff1_d,
+    # We'll explain more about this parameter later
+    meta = data.frame()
+  )
+
+tuff1_meta_dat = tuff1_dats$meta
+tuff1_instant_dat = tuff1_dats$instant
+
+knitr::kable(head(tuff1_instant_dat))
+```
+
+
+
+|  TIMESTAMP|          PRESSURE|   TEMPERATURE|
+|----------:|-----------------:|-------------:|
+| 1021032000| -3.29827700 [psi]| 20.12788 [°C]|
+| 1021032900| -3.95344400 [psi]| 20.12788 [°C]|
+| 1021033800| -3.29827700 [psi]| 20.12788 [°C]|
+| 1021034700| -1.33288400 [psi]| 20.21755 [°C]|
+| 1021035600| -0.02271176 [psi]| 20.21755 [°C]|
+| 1021036500| -0.02271176 [psi]| 20.19512 [°C]|
+
+Just like that our Tuff1 `Decoder` is successfully extracting tag data and transforming it to a standardized format! But wait, there's a piece missing! If we look at the instant sensor data output by the `Decoder` we see it's been transformed! The names of the fields have changed, and so have the units of the pressure and temperature fields. How did `metl` know to do this?
+
+There is an additional piece which we have not yet covered, which is the output `FieldMap` object. Just as we used a `FieldMap` to define the structure of our input data, so a second `FieldMap` is used to define the structure of the output data, including the names of the fields, their units, and other miscellaneous attributes. 
+
+`metl` was designed an implemented by the MESA group of Auke Bay Laboratories specifically to upload data into the ABLTAG database. As such, `Decoder` objects default to using output `FieldMap` objects which are pre-configured to output data in the format expected by the ABLTAG database. However, these `FieldMap` objects can be easily customized to output data in any format desired.
+
+#### **The output `FieldMap`**
+
+Often times when we extract data from a raw source, we want to perform some kind of transformation on it in order to standardize it. This is particularly true when, as in the case of electronic tag data, we are extracting data recorded in many different forms and formats, but want to standardize them all into the same format.
+
+`metl` is designed to automatically standardize the incoming data into a common form. To do this, we define the structure of that standardized output format. This is done by using another `FieldMap` object. Here is an example of an output `FieldMap` object for the instant sensor data of the Tuff1 tag:
+
+
+``` r
+tuff1_output_fieldmap =
+  FieldMap(
+    field_list =
+      list(
+        TIMESTAMP_FIELD =
+          Field(
+            name = "TIME"
+          ),
+        PRESSURE_FIELD =
+          Field(
+            name = "PRESSURE",
+            units = "psi"
+          ),
+        TEMPERATURE_FIELD =
+          Field(
+            name = "TEMPERATURE",
+            units = "degrees_Celsius"
+          )
+      )
+  )
+```
+
+The output `FieldMap` references the same data fields as the input `FieldMap`, but the names have changed, as have the units for the pressure and temperature fields. So how does `metl` know which fields in the input `FieldMap` correspond to which fields in the output `FieldMap`?
+
+`metl` determines this by looking at the list-names of each `Field` object in the `field_list`s of the input and output `FieldMap`s. If an element in the `field_list` of the input `FieldMap` has the same name as an element in the `field_list` of the output `FieldMap`, then `metl` will assume that these two fields correspond to one another. For this reason, it is important that the list names of the different fields remain consistent between input and output `FieldMap` objects.
+
+As mentioned before, `metl` uses a number of default output `FieldMap` objects to standardize incoming data. If new data is added to the pipeline via a new `Decoder`, it is important that the input `FieldMap` elements have list-names which match to elements in the output `FieldMap`. A list of all currently used `Field` list names can be found [here](#field-vocabulary)
 
 # **Adding additional data to the `Decoder` object**
 
@@ -588,7 +698,7 @@ The `Decoder` objects which `metl` ships with are already pre-configured with `F
 
 For example, here we can change the output units of the DEPTH or TEMPERATURE fields:
 
-  ```r
+```r
 # Change the output units of the DEPTH field to feet:
 tuff1_decoder$output_fieldmaps$instant$field_list$DEPTH_FIELD$units = "ft"
 # Change the output units of the TEMPERATURE field to F:
@@ -607,89 +717,38 @@ In order to do this, we must have a method of identifying whether or not two rec
 
 ABLTAG uses the following constraints, and we recommend following the same pattern:
 
-  - metadata table - UNIQUE constraint on the 'tag_id' field.
+- metadata table - UNIQUE constraint on the 'tag_id' field.
 - instant data table - UNIQUE constraint on the combination of the 'tag_id' and 'timestamp' fields
 - summary data table - UNIQUE constraint on the combination of the 'tag_id', 'start_time', and 'end_time' fields
 
-### **Configuring `Pipe` object**
-
-Configuring the `Pipe` object means specifying where each type of data retrieved from the tags should be loaded in the database.
-
-To do this, we use `FieldMap` objects. `FieldMap` objects describe the fields of a particular data source. They are made up of a list of `Field` objects, which describe individual fields: name, type, units, etc. We can define how one data source is mapped to another data source by defining two `FieldMap` objects, one for the input data source, and one for the output data source.
-
-A basic example:
-  ```
-INPUT_METADATA_FIELDS =
-  FieldMap(
-    field_list =
-      list(
-        TAG_ID_FIELD =
-          Field(
-            name = "id"
-          ),
-        TAG_MAKE_FIELD =
-          Field(
-            name = "make"
-          ),
-        TAG_MODEL_FIELD =
-          Field(
-            name = "model"
-          )
-      )
-  )
-```
-
-This `FieldMap` describes a dataset with three fields, `id`, `make`, and `model`. Now we add a second `FieldMap`:
-
-  ```
-OUTPUT_METADATA_FIELDS =
-  FieldMap(
-    field_list =
-      list(
-        TAG_ID_FIELD =
-          Field(
-            name = "TAG_ID"
-          ),
-        TAG_MAKE_FIELD =
-          Field(
-            name = "TAG_MAKE"
-          ),
-        TAG_MODEL_FIELD =
-          Field(
-            name = "TAG_MODEL"
-          )
-      )
-  )
-```
-Notice that the list name of each `Field` object is the same, but the `name` of each `Field` has changed. This second `FieldMap` describes the same three fields, but with different names (`TAG_ID`, `TAG_MAKE`, and `TAG_MODEL`). `metl` uses an input `FieldMap` and output `FieldMap` to determine how input fields are mapped to output fields, and matches `Field` objects in the input and ouput `FieldMaps` based on their list names.
 
 Input `FieldMap` objects are already defined and used for all supported tags. A list of the list names for each of the fields can be found in the section on [field vocabulary](#field-vocabulary).
 
-  # **Field vocabulary**
+# **Field vocabulary**
   This section lists the standardized names for each type of data produced by the supported tags. Output `FieldMaps` must use these same terms for their `Field` objects in order for the corresponding input fields to be mapped properly.
 
-  ### **Metadata**
+### **Metadata**
 
-  Data type | Field name
-  ------------- | -------------
-    Tag ID # | `TAG_ID_FIELD`
-  Tag brand / make / manufacture | `TAG_MAKE_FIELD`
-  Tag model | `TAG_MODEL_FIELD`
+Data type | Field name
+------------- | -------------
+  Tag ID # | `TAG_ID_FIELD`
+Tag brand / make / manufacture | `TAG_MAKE_FIELD`
+Tag model | `TAG_MODEL_FIELD`
 
-  ### **Instant Data**
+### **Instant Data**
 
-  Data type | Field name | Units | Notes
-  ------------- | ------------- | ------------- | -------------
-    Tag ID # | `TAG_ID_FIELD` | Used to link instant data to tag metadata
-  Timestamp / Datetime | `TIMESTAMP_FIELD` | POSIXct timestamp
-  Latitude | `LATITUDE_FIELD` | °
-  Longitude | `LONGITUDE_FIELD` | °
-  Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` | | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation
-  Latitude error (N) | `LATITUDE_N_ERROR_FIELD`
-  Latitude error (S) | `LATITUDE_S_ERROR_FIELD`
-  Latitude (U) | `LATITUDE_U_FIELD` | | Some kind of error metric produced by the GPE2 geolocation software. Still not sure what it means.
-  Longitude error | `LONGITUDE_ERROR_FIELD`
-  Location error - ellipse orientation | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD` | | This field, along with the next three, define an elliptical area of location. I assume this is associated with some kind of confidence interval, but as of yet I don't know which.
+Data type | Field name | Units | Notes
+------------- | ------------- | ------------- | -------------
+  Tag ID # | `TAG_ID_FIELD` | Used to link instant data to tag metadata
+Timestamp / Datetime | `TIMESTAMP_FIELD` | POSIXct timestamp
+Latitude | `LATITUDE_FIELD` | °
+Longitude | `LONGITUDE_FIELD` | °
+Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` | | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation
+Latitude error (N) | `LATITUDE_N_ERROR_FIELD`
+Latitude error (S) | `LATITUDE_S_ERROR_FIELD`
+Latitude (U) | `LATITUDE_U_FIELD` | | Some kind of error metric produced by the GPE2 geolocation software. Still not sure what it means.
+Longitude error | `LONGITUDE_ERROR_FIELD`
+Location error - ellipse orientation | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD` | | This field, along with the next three, define an elliptical area of location. I assume this is associated with some kind of confidence interval, but as of yet I don't know which.
 Location error - semi minor axis | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`
 Location error - semi major axis | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`
 Location error - radius | `LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD`
@@ -706,24 +765,24 @@ Tilt (z axis) | `TILT_Z_FIELD` | ° | Change in orientation from vertical, z-axi
 Inclination (away from vertical) | `INCLINATION_FIELD` | ° | Absolute angle of deviation from vertical
 Magnetic field strength | `MAGNETIC_STRENGTH_FIELD` | nT | Strength of the Earth's magnetic field
 
-  ### **Summary data**
+### **Summary data**
 
-  Data type | Field name | Units | Notes
-  ------------- | ------------- | ------------- | -------------
-    Tag ID # | `TAG_ID_FIELD` | Used to link summary data to tag metadata
-  Start time | `START_TIME_FIELD` | POSIXct timestamp | The start of the time period which this data describes
-  End time | `END_TIME_FIELD` | POSIXct timestamp | The end of the time period which this data describes
-  Latitude | `LATITUDE_FIELD` | ° | The average latitude over the time period
-  Longitude | `LONGITUDE_FIELD` | ° | The average latitude over the time period
-  Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` | | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation
-  Minimum depth | `MIN_DEPTH_FIELD` | m | The minimum depth reading encountered by the tag during the time period
-  Maximum depth | `MAX_DEPTH_FIELD` | m | The maximum depth reading encountered by the tag during the time period
-  Average depth | `MEAN_DEPTH_FIELD` | m | The average depth reading encountered by the tag during the time period
-  Minimum temperature | `MIN_TEMP_FIELD` | ° | Same as above, but for temperature
-  Maximum temperature | `MAX_TEMP_FIELD` | ° | Same as above, but for temperature
-  Average temperature | `MEAN_TEMP_FIELD` | ° | Same as above, but for temperature
-  Percentage upright | `UPRIGHT_FIELD` | % | The percentage of the time period that the tag was upright (vertical)
-  Knockdowns | `KNOCKDOWN_FIELD` | | The number of times that the tag was knocked over during this time period
+Data type | Field name | Units | Notes
+------------- | ------------- | ------------- | -------------
+  Tag ID # | `TAG_ID_FIELD` | Used to link summary data to tag metadata
+Start time | `START_TIME_FIELD` | POSIXct timestamp | The start of the time period which this data describes
+End time | `END_TIME_FIELD` | POSIXct timestamp | The end of the time period which this data describes
+Latitude | `LATITUDE_FIELD` | ° | The average latitude over the time period
+Longitude | `LONGITUDE_FIELD` | ° | The average latitude over the time period
+Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` | | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation
+Minimum depth | `MIN_DEPTH_FIELD` | m | The minimum depth reading encountered by the tag during the time period
+Maximum depth | `MAX_DEPTH_FIELD` | m | The maximum depth reading encountered by the tag during the time period
+Average depth | `MEAN_DEPTH_FIELD` | m | The average depth reading encountered by the tag during the time period
+Minimum temperature | `MIN_TEMP_FIELD` | ° | Same as above, but for temperature
+Maximum temperature | `MAX_TEMP_FIELD` | ° | Same as above, but for temperature
+Average temperature | `MEAN_TEMP_FIELD` | ° | Same as above, but for temperature
+Percentage upright | `UPRIGHT_FIELD` | % | The percentage of the time period that the tag was upright (vertical)
+Knockdowns | `KNOCKDOWN_FIELD` | | The number of times that the tag was knocked over during this time period
 
 
   # **Bug Reporting**
