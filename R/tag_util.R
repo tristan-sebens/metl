@@ -44,7 +44,7 @@ lotek_find_line_in_file =
 
     # Check that any lines matched
     if (!any(matches)) {
-      throw_error(
+      stop(
         paste0(
           "Parsing file - No matches of '",
           pattern,
