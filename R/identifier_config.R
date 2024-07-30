@@ -152,6 +152,11 @@ Identifier_StarOddi_DST =
                     d,
                     "(~$)*JS\\d+\\.xlsx",
                     n=length(list.files(d))
+                  ),
+                  # Should not have the following fields, as they would indicate this is a DST magnetic, not a DST
+                  !check_for_fields(
+                    fp,
+                    c("Comp.Head(°)", "Comp.4p(°)", "Mag.vec(nT)")
                   )
                 )
               )
@@ -182,6 +187,11 @@ Identifier_StarOddi_DSTmagnetic =
                     d,
                     "(~$)*JS\\d+\\.xlsx",
                     n=length(list.files(d))
+                  ),
+                  # Check for these fields to distinguish that this is data from a DST magnetic, not a DST
+                  check_for_fields(
+                    fp,
+                    c("Comp.Head(°)", "Comp.4p(°)", "Mag.vec(nT)")
                   )
                 )
               )
