@@ -475,7 +475,6 @@ setRefClass(
           decoded_data_list = list()
           # Iterate over each data map in the decoder's data_maps list
           for (data_type in names(data_maps_expanded)) {
-            print(data_type)
             decoded_data =
               decode_datamap(
                 dm = data_maps_expanded[[data_type]],
