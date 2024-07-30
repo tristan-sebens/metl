@@ -1494,6 +1494,10 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
 
 
 #' @export DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS
+#'
+#' DesertStar SeaTag MOD data fields
+#'
+#' Unlke most input data FieldMap objects, the Field objects in this FieldMap have their data_types specified. This is because, unlike the other tag-types, Decoding DesertStar data is a two-step process, so this input FieldMap will initially be used as both the input AND output FieldMap object, and will therefore be checked to ensure that the output values match the expected types.
 DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =
@@ -1501,6 +1505,7 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
         TIMESTAMP_POSIX_FIELD =
           Field(
             name = "date(dd/mm/yyy)/time",
+            data_type = "posix",
             trans_fn =
               function(v, ...) {
                 # Because of how the DesertStar data is organized, and how we parse it, the timestamp field ends up getting parsed TWICE, with different formats each time. This will allow the package to read the stamps both times
@@ -1518,59 +1523,69 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
           ),
         TAG_ID_FIELD =
           Field(
-            name = "Tag SN"
+            name = "Tag SN",
+            data_type = "varchar"
           ),
         DEPTH_FIELD =
           Field(
             name = "depth(m)",
             units = 'm',
+            data_type = "double",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         TEMPERATURE_FIELD =
           Field(
             name = "temp(deg C)",
+            data_type = "double",
             units = "degrees_Celsius",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         MAGNETIC_STRENGTH_X_FIELD =
           Field(
             name = "magX(nT)",
+            data_type = "double",
             units = "nT",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         MAGNETIC_STRENGTH_Y_FIELD =
           Field(
             name = "magY(nT)",
+            data_type = "double",
             units = "nT",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         MAGNETIC_STRENGTH_Z_FIELD =
           Field(
             name = "magZ(nT)",
+            data_type = "double",
             units = "nT",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_X_FIELD =
           Field(
             name = "accelX(G)",
+            data_type = "double",
             units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_Y_FIELD =
           Field(
             name = "accelY(G)",
+            data_type = "double",
             units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_Z_FIELD =
           Field(
             name = "accelZ(G)",
+            data_type = "double",
             units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           ),
         ACCELERATION_DELTA_MAGNITUDE_FIELD =
           Field(
             name = "accel delta mag(G)",
+            data_type = "double",
             units = "gravity",
             trans_fn = function(v, ...) {return(as.numeric(v))}
           )

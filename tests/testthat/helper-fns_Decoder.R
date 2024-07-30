@@ -40,6 +40,7 @@ test_decoder_on_data_dir =
 data_type_check_fn_map =
   list(
     "varchar" = is.character,
+    "posix" = function(v) {return("POSIXct" %in% class(v))},
     "text" = is.character,
     "integer" = is.numeric,
     "double" = is.numeric,
