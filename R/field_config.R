@@ -96,7 +96,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         TIMESTAMP_POSIX_FIELD =
           Field(
-            name = "TIMESTAMP_POSIXct",
+            name = "TIMESTAMP_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -279,7 +279,7 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         START_TIME_POSIX_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
+            name = "START_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -308,7 +308,7 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
           ),
         END_TIME_POSIX_FIELD =
           Field(
-            name = "END_TIME_POSIXct",
+            name = "END_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -469,7 +469,7 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         START_TIME_POSIX_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
+            name = "START_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -498,7 +498,7 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
           ),
         END_TIME_POSIX_FIELD =
           Field(
-            name = "END_TIME_POSIXct",
+            name = "END_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
