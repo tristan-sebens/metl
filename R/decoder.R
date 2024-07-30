@@ -438,33 +438,44 @@ setRefClass(
           }
         },
 
-      decode =
-        function(d, meta) {
-          verify_data_directory(d)
-
+      expand_data_maps =
+        function(meta) {
           data_maps_expanded = data_maps
 
-          # Create an empty DataMap to return the user-inputted data
-          DataMap_UserInput =
-            create_userinput_datamap(meta)
-
           if(!nrow(meta) == 0) {
+            # Create a stub DataMap to return the user-inputted data
+            DataMap_UserInput =
+              create_userinput_datamap(meta)
+
             data_maps_expanded =
               append(data_maps, list("input" = DataMap_UserInput))
           }
 
-          # Create an empty DataMap to return the FieldMetaData
-          DataMap_FieldMetaData =
-            create_field_meta_datamap()
+          if("field_meta" %in% names(output_fieldmaps)) {
+            # Create a stub DataMap to return the Field metadata
+            DataMap_FieldMetaData =
+              create_field_meta_datamap()
 
-          data_maps_expanded =
-            append(data_maps_expanded, list("field_meta" = DataMap_FieldMetaData))
+            data_maps_expanded =
+              append(data_maps_expanded, list("field_meta" = DataMap_FieldMetaData))
+          }
+
+          return(data_maps_expanded)
+
+        },
+
+      decode =
+        function(d, meta) {
+          verify_data_directory(d)
+
+          # Expand data_maps with DataMap objects for auto-generated data
+          data_maps_expanded = expand_data_maps(meta)
 
           # Initialize an empty list to hold data
           decoded_data_list = list()
-
           # Iterate over each data map in the decoder's data_maps list
           for (data_type in names(data_maps_expanded)) {
+            print(data_type)
             decoded_data =
               decode_datamap(
                 dm = data_maps_expanded[[data_type]],
