@@ -1,5 +1,15 @@
 # A collection of helper functions for reading, parsing, and formatting data from the supported tag types
 
+instrument_types =
+  list(
+    "archival",
+    "popup",
+    "acoustic tag",
+    "acoustic receiver"
+  )
+
+names(instrument_types) = instrument_types
+
 #' Search for one (or more) files in a directory by pattern
 #'
 #' Searches directory `d` for files which match the given pattern, and checks to ensure that the number of matching files matches the expected number of files. If not, an error is thrown, otherwise the matching filename(s) is(are) returned

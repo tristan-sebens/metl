@@ -235,7 +235,8 @@ DataMap_TagMetaData =
     fields =
       list(
         make = "character",
-        model = "character"
+        model = "character",
+        instrument_type = "character"
       ),
     methods =
       list(
@@ -269,7 +270,8 @@ DataMap_TagMetaData =
           data.frame() %>%
             dplyr::reframe(
               "{.self$input_data_field_map$field_list$TAG_MAKE_FIELD$name}" := .self$make,
-              "{.self$input_data_field_map$field_list$TAG_MODEL_FIELD$name}" := .self$model
+              "{.self$input_data_field_map$field_list$TAG_MODEL_FIELD$name}" := .self$model,
+              "{.self$input_data_field_map$field_list$INSTRUMENT_TYPE_FIELD$name}" := .self$instrument_type
             )
         }
       )

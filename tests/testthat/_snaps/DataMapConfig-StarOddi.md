@@ -3,16 +3,16 @@
     Code
       dat_
     Output
-             make                    model
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model instrument_type
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE                    MODEL
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 # DataMap_StarOddi_DST_InstantSensorData -> /so/dst/sf/JS7977
 
@@ -59,32 +59,32 @@
     Code
       dat_
     Output
-             make                    model
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model instrument_type
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE                    MODEL
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 # DataMap_StarOddi_DSTmilliF_TagMetaData -> /so/dst_mf/sf/JS142
 
     Code
       dat_
     Output
-             make                    model
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model instrument_type
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE                    MODEL
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 # DataMap_StarOddi_DSTmilliF_InstantSensorData -> /so/dst_mf/sf/JS1229
 
@@ -171,32 +171,32 @@
     Code
       dat_
     Output
-             make        model
-      1 Star Oddi DST magnetic
+             make        model instrument_type
+      1 Star Oddi DST magnetic        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE        MODEL
-      1 Star Oddi DST magnetic
+             MAKE        MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST magnetic        archival
 
 # DataMap_StarOddi_DSTmagnetic_TagMetaData -> /so/dst_mag/sf/JS927
 
     Code
       dat_
     Output
-             make        model
-      1 Star Oddi DST magnetic
+             make        model instrument_type
+      1 Star Oddi DST magnetic        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE        MODEL
-      1 Star Oddi DST magnetic
+             MAKE        MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST magnetic        archival
 
 # DataMap_StarOddi_DSTmagnetic_InstantSensorData -> /so/dst_mag/sf/JS923
 

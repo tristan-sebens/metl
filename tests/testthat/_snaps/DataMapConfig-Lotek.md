@@ -3,96 +3,96 @@
     Code
       dat_
     Output
-         make          model
-      1 Lotek 1000/1100/1250
+         make          model instrument_type
+      1 Lotek 1000/1100/1250        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE          MODEL
-      1 Lotek 1000/1100/1250
+         MAKE          MODEL INSTRUMENT_TYPE
+      1 Lotek 1000/1100/1250        archival
 
 # DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/lc/5295
 
     Code
       dat_
     Output
-         make          model
-      1 Lotek 1000/1100/1250
+         make          model instrument_type
+      1 Lotek 1000/1100/1250        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE          MODEL
-      1 Lotek 1000/1100/1250
+         MAKE          MODEL INSTRUMENT_TYPE
+      1 Lotek 1000/1100/1250        archival
 
 # DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/1484
 
     Code
       dat_
     Output
-         make          model
-      1 Lotek 1000/1100/1250
+         make          model instrument_type
+      1 Lotek 1000/1100/1250        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE          MODEL
-      1 Lotek 1000/1100/1250
+         MAKE          MODEL INSTRUMENT_TYPE
+      1 Lotek 1000/1100/1250        archival
 
 # DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/1486
 
     Code
       dat_
     Output
-         make          model
-      1 Lotek 1000/1100/1250
+         make          model instrument_type
+      1 Lotek 1000/1100/1250        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE          MODEL
-      1 Lotek 1000/1100/1250
+         MAKE          MODEL INSTRUMENT_TYPE
+      1 Lotek 1000/1100/1250        archival
 
 # DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/4066
 
     Code
       dat_
     Output
-         make          model
-      1 Lotek 1000/1100/1250
+         make          model instrument_type
+      1 Lotek 1000/1100/1250        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE          MODEL
-      1 Lotek 1000/1100/1250
+         MAKE          MODEL INSTRUMENT_TYPE
+      1 Lotek 1000/1100/1250        archival
 
 # DataMap_Lotek_1000.1100.1250_TagMetaData -> /lt/lt_1000_1250/sf/4067
 
     Code
       dat_
     Output
-         make          model
-      1 Lotek 1000/1100/1250
+         make          model instrument_type
+      1 Lotek 1000/1100/1250        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE          MODEL
-      1 Lotek 1000/1100/1250
+         MAKE          MODEL INSTRUMENT_TYPE
+      1 Lotek 1000/1100/1250        archival
 
 # DataMap_Lotek_1000.1100.1250_InstantSensorData -> /lt/lt_1000_1250/lc/4071
 
@@ -1371,64 +1371,64 @@
     Code
       dat_
     Output
-         make model
-      1 Lotek  1300
+         make model instrument_type
+      1 Lotek  1300        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE MODEL
-      1 Lotek  1300
+         MAKE MODEL INSTRUMENT_TYPE
+      1 Lotek  1300        archival
 
 # DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/gt/3880
 
     Code
       dat_
     Output
-         make model
-      1 Lotek  1300
+         make model instrument_type
+      1 Lotek  1300        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE MODEL
-      1 Lotek  1300
+         MAKE MODEL INSTRUMENT_TYPE
+      1 Lotek  1300        archival
 
 # DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/lc/3788
 
     Code
       dat_
     Output
-         make model
-      1 Lotek  1300
+         make model instrument_type
+      1 Lotek  1300        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE MODEL
-      1 Lotek  1300
+         MAKE MODEL INSTRUMENT_TYPE
+      1 Lotek  1300        archival
 
 # DataMap_Lotek_1300_TagMetaData -> /lt/lt_1300/sf/5712
 
     Code
       dat_
     Output
-         make model
-      1 Lotek  1300
+         make model instrument_type
+      1 Lotek  1300        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE MODEL
-      1 Lotek  1300
+         MAKE MODEL INSTRUMENT_TYPE
+      1 Lotek  1300        archival
 
 # DataMap_Lotek_1300_InstantSensorData -> /lt/lt_1300/gt/2466
 
@@ -60419,32 +60419,32 @@
     Code
       dat_
     Output
-         make     model
-      1 Lotek 1400/1800
+         make     model instrument_type
+      1 Lotek 1400/1800        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE     MODEL
-      1 Lotek 1400/1800
+         MAKE     MODEL INSTRUMENT_TYPE
+      1 Lotek 1400/1800        archival
 
 # DataMap_Lotek_1400.1800_TagMetaData -> /lt/lt_1400_1800/sf/1546
 
     Code
       dat_
     Output
-         make     model
-      1 Lotek 1400/1800
+         make     model instrument_type
+      1 Lotek 1400/1800        archival
 
 ---
 
     Code
       dat_t_
     Output
-         MAKE     MODEL
-      1 Lotek 1400/1800
+         MAKE     MODEL INSTRUMENT_TYPE
+      1 Lotek 1400/1800        archival
 
 # DataMap_Lotek_1400.1800_InstantSensorData -> /lt/lt_1400_1800/gt/383
 

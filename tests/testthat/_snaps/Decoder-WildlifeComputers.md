@@ -10,8 +10,10 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Wildlife Computers Benthic sPAT    1234 SuperTag       0            0
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+        SPECIES_CODE
+      1            0
 
 ---
 
@@ -1238,8 +1240,10 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Wildlife Computers Benthic sPAT    1234 SuperTag       0            0
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+        SPECIES_CODE
+      1            0
 
 ---
 
@@ -2787,8 +2791,10 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Wildlife Computers Benthic sPAT    1234 SuperTag       0            0
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+        SPECIES_CODE
+      1            0
 
 ---
 
@@ -5604,8 +5610,10 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Wildlife Computers Benthic sPAT    1234 SuperTag       0            0
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+        SPECIES_CODE
+      1            0
 
 ---
 
@@ -8233,8 +8241,10 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE   MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Wildlife Computers MiniPAT    1234 SuperTag       0            0
+                      MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       0
+        SPECIES_CODE
+      1            0
 
 ---
 
@@ -22086,8 +22096,10 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE   MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Wildlife Computers MiniPAT    1234 SuperTag       0            0
+                      MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       0
+        SPECIES_CODE
+      1            0
 
 ---
 

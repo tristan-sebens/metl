@@ -3,8 +3,8 @@
     Code
       metadata
     Output
-                      MAKE   MODEL
-      1 Wildlife Computers MiniPAT
+                      MAKE   MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers MiniPAT           popup
 
 ---
 
@@ -56,8 +56,10 @@
     Code
       metadata_c
     Output
-                       MAKE MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Microwave Telemetry X-Tag    1234 SuperTag       1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag       1
+        SPECIES_CODE
+      1        56789
 
 ---
 
@@ -6641,8 +6643,10 @@
     Code
       decode_op[["meta"]]
     Output
-                       MAKE MODEL TAG_NUM TAG_TYPE REL_SEQ SPECIES_CODE
-      1 Microwave Telemetry X-Tag    1234 SuperTag       1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag       1
+        SPECIES_CODE
+      1        56789
 
 ---
 

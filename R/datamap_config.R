@@ -4,7 +4,8 @@
  DataMap_Lotek_1000.1100.1250_TagMetaData =
   DataMap_TagMetaData(
     make = "Lotek",
-    model = "1000/1100/1250"
+    model = "1000/1100/1250",
+    instrument_type = instrument_types$archival
   )
 
 #' DataMap for the Lotek 1000/1100/1250 tags
@@ -81,7 +82,8 @@
  DataMap_Lotek_1300_TagMetaData =
    DataMap_TagMetaData(
      make = "Lotek",
-     model = "1300"
+     model = "1300",
+     instrument_type = instrument_types$archival
    )
 
 
@@ -107,7 +109,8 @@
  DataMap_Lotek_1400.1800_TagMetaData =
    DataMap_TagMetaData(
      make = "Lotek",
-     model = "1400/1800"
+     model = "1400/1800",
+     instrument_type = instrument_types$archival
    )
 
 
@@ -139,7 +142,8 @@
  DataMap_MicrowaveTelemetry_XTag_Transmitted_TagMetaData =
    DataMap_TagMetaData(
      make = "Microwave Telemetry",
-     model = "X-Tag"
+     model = "X-Tag",
+     instrument_type = instrument_types$popup
    )
 
  #' Datamap - Microwave Telemetry X-tag instant sensor data (transmitted via Satellite)
@@ -229,7 +233,8 @@
  DataMap_MicrowaveTelemetry_XTag_Recovered_TagMetaData =
    DataMap_TagMetaData(
      make = "Microwave Telemetry",
-     model = "X-Tag"
+     model = "X-Tag",
+     instrument_type = instrument_types$archival
    )
 
  #' Datamap - Microwave Telemetry X-tag instant sensor data (physically recovered)
@@ -324,7 +329,8 @@
  DataMap_StarOddi_DST_TagMetaData =
    DataMap_TagMetaData(
      make = "Star Oddi",
-     model = "DST (centi/milli)-(TD/F)"
+     model = "DST (centi/milli)-(TD/F)",
+     instrument_type = instrument_types$archival
    )
 
  #' DataMap - StarOddi DST instant sensor data
@@ -360,7 +366,8 @@
  DataMap_StarOddi_DSTmagnetic_TagMetaData =
    DataMap_TagMetaData(
      make = "Star Oddi",
-     model = "DST magnetic"
+     model = "DST magnetic",
+     instrument_type = instrument_types$archival
    )
 
  #' DataMap - StarOddi DST magnetic instant sensor data
@@ -394,7 +401,8 @@
  DataMap_WildlifeComputers_MiniPAT_TagMetaData =
    DataMap_TagMetaData(
      make = "Wildlife Computers",
-     model = "MiniPAT"
+     model = "MiniPAT",
+     instrument_type = instrument_types$popup
    )
 
  #' DataMap - Wildlife Computers MiniPAT instant sensor data
@@ -589,7 +597,8 @@
  DataMap_WildlifeComputers_BenthicSPAT_TagMetaData =
    DataMap_TagMetaData(
      make = "Wildlife Computers",
-     model = "Benthic sPAT"
+     model = "Benthic sPAT",
+     instrument_type = instrument_types$popup
    )
 
 
@@ -666,7 +675,8 @@
  DataMap_DesertStar_SeaTagMOD_TagMetaData =
    DataMap_TagMetaData(
      make = "Desert Star",
-     model = "SeaTag MOD"
+     model = "SeaTag MOD",
+     instrument_type = instrument_types$popup
    )
 
  #' DataMap - Desert Star SeaTag MOD instant sensor data

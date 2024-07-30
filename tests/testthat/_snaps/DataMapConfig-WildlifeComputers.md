@@ -3,32 +3,32 @@
     Code
       dat_
     Output
-                      make   model
-      1 Wildlife Computers MiniPAT
+                      make   model instrument_type
+      1 Wildlife Computers MiniPAT           popup
 
 ---
 
     Code
       dat_t_
     Output
-                      MAKE   MODEL
-      1 Wildlife Computers MiniPAT
+                      MAKE   MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers MiniPAT           popup
 
 # DataMap_WildlifeComputers_MiniPAT_TagMetaData -> /wc/mp/ss/174900
 
     Code
       dat_
     Output
-                      make   model
-      1 Wildlife Computers MiniPAT
+                      make   model instrument_type
+      1 Wildlife Computers MiniPAT           popup
 
 ---
 
     Code
       dat_t_
     Output
-                      MAKE   MODEL
-      1 Wildlife Computers MiniPAT
+                      MAKE   MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers MiniPAT           popup
 
 # DataMap_WildlifeComputers_MiniPAT_InstantSensorData -> /wc/mp/ss/174898
 
@@ -6435,64 +6435,64 @@
     Code
       dat_
     Output
-                      make        model
-      1 Wildlife Computers Benthic sPAT
+                      make        model instrument_type
+      1 Wildlife Computers Benthic sPAT           popup
 
 ---
 
     Code
       dat_t_
     Output
-                      MAKE        MODEL
-      1 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers Benthic sPAT           popup
 
 # DataMap_WildlifeComputers_BenthicSPAT_TagMetaData -> /wc/b_sp/ss/175147
 
     Code
       dat_
     Output
-                      make        model
-      1 Wildlife Computers Benthic sPAT
+                      make        model instrument_type
+      1 Wildlife Computers Benthic sPAT           popup
 
 ---
 
     Code
       dat_t_
     Output
-                      MAKE        MODEL
-      1 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers Benthic sPAT           popup
 
 # DataMap_WildlifeComputers_BenthicSPAT_TagMetaData -> /wc/b_sp/ss/175157
 
     Code
       dat_
     Output
-                      make        model
-      1 Wildlife Computers Benthic sPAT
+                      make        model instrument_type
+      1 Wildlife Computers Benthic sPAT           popup
 
 ---
 
     Code
       dat_t_
     Output
-                      MAKE        MODEL
-      1 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers Benthic sPAT           popup
 
 # DataMap_WildlifeComputers_BenthicSPAT_TagMetaData -> /wc/b_sp/ss/175158
 
     Code
       dat_
     Output
-                      make        model
-      1 Wildlife Computers Benthic sPAT
+                      make        model instrument_type
+      1 Wildlife Computers Benthic sPAT           popup
 
 ---
 
     Code
       dat_t_
     Output
-                      MAKE        MODEL
-      1 Wildlife Computers Benthic sPAT
+                      MAKE        MODEL INSTRUMENT_TYPE
+      1 Wildlife Computers Benthic sPAT           popup
 
 # DataMap_WildlifeComputers_BenthicSPAT_InstantSensorData -> /wc/b_sp/ss/175146
 
