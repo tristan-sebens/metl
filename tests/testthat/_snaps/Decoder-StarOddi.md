@@ -11,9 +11,9 @@
       decode_op[["meta"]]
     Output
              MAKE                    MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Star Oddi DST (centi/milli)-(TD/F)        archival    1234 SuperTag       0
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 
@@ -48,7 +48,7 @@
       decode_op[["meta"]]
     Output
              MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Star Oddi DST magnetic        archival    1234 SuperTag       0            0
+      1 Star Oddi DST magnetic        archival    1234 SuperTag       1        56789
 
 ---
 
@@ -85,7 +85,7 @@
       decode_op[["meta"]]
     Output
              MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Star Oddi DST magnetic        archival    1234 SuperTag       0            0
+      1 Star Oddi DST magnetic        archival    1234 SuperTag       1        56789
 
 ---
 

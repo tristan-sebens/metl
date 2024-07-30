@@ -11,9 +11,9 @@
       decode_op[["meta"]]
     Output
                       MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 
@@ -1241,9 +1241,9 @@
       decode_op[["meta"]]
     Output
                       MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 
@@ -2792,9 +2792,9 @@
       decode_op[["meta"]]
     Output
                       MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 
@@ -5611,9 +5611,9 @@
       decode_op[["meta"]]
     Output
                       MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       0
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 
@@ -8242,9 +8242,9 @@
       decode_op[["meta"]]
     Output
                       MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       0
+      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 
@@ -22097,9 +22097,9 @@
       decode_op[["meta"]]
     Output
                       MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       0
+      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       1
         SPECIES_CODE
-      1            0
+      1        56789
 
 ---
 

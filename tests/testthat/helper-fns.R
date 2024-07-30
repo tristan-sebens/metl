@@ -82,6 +82,16 @@ build_test_metadata_dataset =
     #   write.csv(test_metadata_fp, row.names = F)
   }
 
+build_input_meta_dataset =
+  function() {
+    data.frame(
+      tag_num = "1234",
+      tag_type = "SuperTag",
+      seq_num = 1,
+      species_code = 56789
+    )
+  }
+
 #' Get list of decoders for testing
 #'
 #' Identifiers must be instantiated with a list of Decoder generators. This function provides that list

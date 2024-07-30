@@ -59,12 +59,7 @@ test_that(
       Decoder_Lotek_1300
 
     meta =
-      data.frame(
-        tag_num = "3880",
-        tag_type = "ET",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -120,12 +115,7 @@ test_that(
       Decoder_Lotek_1300
 
     meta =
-      data.frame(
-        tag_num = "3880",
-        tag_type = "ET",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -187,12 +177,7 @@ test_that(
       Decoder_Lotek_1300
 
     meta =
-      data.frame(
-        tag_num = "3880",
-        tag_type = "ET",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -262,12 +247,7 @@ test_that(
       Decoder_Lotek_1300
 
     meta =
-      data.frame(
-        tag_num = "3880",
-        tag_type = "ET",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -340,12 +320,7 @@ test_that(
 
     # Synthesize the requsite input data
     input =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     # Create an empty DataMap to return the user-inputted data
     DataMap_UserInput =
@@ -432,12 +407,7 @@ test_that(
       Decoder_MicrowaveTelemetry_XTag_Transmitted
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     decode_op = dc$decode(d, input_meta)
 
@@ -463,12 +433,7 @@ test_that(
       test_data_d('mt', 'xt_trans', 'rr', '118353')
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     dc =
       Decoder_MicrowaveTelemetry_XTag_Transmitted
@@ -493,12 +458,7 @@ test_that(
       test_data_d('mt', 'xt_trans', 'rr', '118353')
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     dc =
       Decoder_MicrowaveTelemetry_XTag_Transmitted
@@ -531,12 +491,7 @@ test_that(
       test_data_d('mt', 'xt_trans', 'rr', '118353')
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag",
-        rel_seq = 1,
-        species_code = 56789
-      )
+      build_input_meta_dataset()
 
     dc =
       Decoder_MicrowaveTelemetry_XTag_Transmitted
@@ -592,12 +547,7 @@ test_that(
           dc$decode_to_dataframes(
             d,
             meta =
-              data.frame(
-                tag_num = "5712",
-                tag_type = "ET",
-                rel_seq = 1,
-                species_code = 56789
-              )
+              build_input_meta_dataset()
           )
       }
     )
