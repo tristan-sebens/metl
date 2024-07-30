@@ -26,3 +26,17 @@ test_that(
     expect_equal(length(fs), total_num_csvs)
   }
 )
+
+
+test_that(
+  "lotek_find_line_in_file::not lotek file",
+  {
+    fp = test_data_d('_readme_example', '12345', 'sensor_12345.csv')
+
+
+    expect_error(
+      lotek_find_line_in_file(fp, pattern = "CSV DATA"),
+      "No matches of 'CSV DATA' found in first"
+    )
+  }
+)

@@ -17,11 +17,11 @@ setOldClass("Node")
 #'
 #' @return A list of messages from the condition stack, including offending calls
 get_cond_stack_messages =
-  function(l = list(), cond) {
+  function(cond, l = list()) {
     slug = paste0("In ", cond$call[1], ": ", cond$message)
     l = unlist(append(l, slug))
     if (!is.null(cond$parent))
-      l = get_cond_stack_messages(l = l, cond = cond$parent)
+      l = get_cond_stack_messages(cond = cond$parent, l = l)
     return(l)
   }
 
@@ -207,25 +207,4 @@ bump_timestamps =
     dplyr::mutate(timestamp = timestamp + (incr)*(seq_n - 1)) %>%
     dplyr::arrange(ix) %>%
     dplyr::pull(timestamp)
-  }
-
-#' Decorate any thrown errors with additional attributes
-#'
-#' Wrapper functtion which evaluates the contained expression, and if an error is thrown, adds additional attributes to the error object before rethrowing it.
-#'
-#' @param expr The function to evaluate
-#' @param ... Any named attributes to add to the error, with their values. E.g. `custom_attribute` = `custom_value`
-decorate_error =
-  function(expr, ...) {
-    tryCatch(
-      expr = expr,
-      error =
-        function(cond) {
-          kwargs = list(...)
-          for (key in names(kwargs)) {
-            cond[key] = kwargs[[key]]
-          }
-          stop(cond)
-        }
-    )
   }
