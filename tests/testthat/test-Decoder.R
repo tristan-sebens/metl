@@ -58,25 +58,41 @@ test_that(
     dc =
       Decoder_Lotek_1300
 
-    meta = data.frame(tag_num = "3880", tag_type = "ET")
+    meta =
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
-    dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
+    dat1 = dc$decode_datamap(d = d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
     dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
+
+    dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map
+    dat1_op_fm = dc$output_fieldmaps[["instant"]]
+    dat2_ip_fm = ui_dm$input_data_field_map
+    dat2_op_fm = dc$output_fieldmaps[["input"]]
 
     dat3 =
       dc$add_missing_fields(
         dat1 = dat1,
-        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
-        dat1_op_fm = dc$output_fieldmaps[["instant"]],
+        dat1_ip_fm = dat1_ip_fm,
+        dat1_op_fm = dat1_op_fm,
         dat2 = dat2,
-        dat2_ip_fm = ui_dm$input_data_field_map,
-        dat2_op_fm = dc$output_fieldmaps[["input"]]
+        dat2_ip_fm = dat2_ip_fm,
+        dat2_op_fm = dat2_op_fm
       )
 
-    # Ensure that the output data.frame is as expected
-    expect_contains(names(dat3), names(dat2))
+    missing_fields =
+      dat1_op_fm$common_fields(dat2_op_fm) %>%
+      lapply(
+        function(f) {
+          f$name
+        }
+      ) %>%
+      unlist(use.names = F)
+
+    # Check that the missing fields have been added
+    expect_contains(names(dat3), missing_fields)
+    # Check that the original fields are still present
     expect_contains(names(dat3), names(dat1))
 
     # Ensure that no rows have been lost
@@ -98,7 +114,8 @@ test_that(
     dc =
       Decoder_Lotek_1300
 
-    meta = data.frame(tag_num = "3880", tag_type = "ET")
+    meta =
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -111,18 +128,33 @@ test_that(
     # Make dat2 have multiple identical rows
     dat2 = rbind(dat2, dat2, dat2, dat2)
 
+    dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map
+    dat1_op_fm = dc$output_fieldmaps[["instant"]]
+    dat2_ip_fm = ui_dm$input_data_field_map
+    dat2_op_fm = dc$output_fieldmaps[["input"]]
+
     dat3 =
       dc$add_missing_fields(
         dat1 = dat1,
-        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
-        dat1_op_fm = dc$output_fieldmaps[["instant"]],
+        dat1_ip_fm = dat1_ip_fm,
+        dat1_op_fm = dat1_op_fm,
         dat2 = dat2,
-        dat2_ip_fm = ui_dm$input_data_field_map,
-        dat2_op_fm = dc$output_fieldmaps[["input"]]
+        dat2_ip_fm = dat2_ip_fm,
+        dat2_op_fm = dat2_op_fm
       )
 
-    # Ensure that the output data.frame is as expected
-    expect_contains(names(dat3), names(dat2))
+    missing_fields =
+      dat1_op_fm$common_fields(dat2_op_fm) %>%
+      lapply(
+        function(f) {
+          f$name
+        }
+      ) %>%
+      unlist(use.names = F)
+
+    # Check that the missing fields have been added
+    expect_contains(names(dat3), missing_fields)
+    # Check that the original fields are still present
     expect_contains(names(dat3), names(dat1))
 
     # Ensure that no rows have been lost
@@ -144,7 +176,8 @@ test_that(
     dc =
       Decoder_Lotek_1300
 
-    meta = data.frame(tag_num = "3880", tag_type = "ET")
+    meta =
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -163,18 +196,33 @@ test_that(
         dplyr::mutate(dat2, TAG_NUM = 3883)
       )
 
+    dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map
+    dat1_op_fm = dc$output_fieldmaps[["instant"]]
+    dat2_ip_fm = ui_dm$input_data_field_map
+    dat2_op_fm = dc$output_fieldmaps[["input"]]
+
     dat3 =
       dc$add_missing_fields(
         dat1 = dat1,
-        dat1_ip_fm = dc$data_maps[["instant"]]$input_data_field_map,
-        dat1_op_fm = dc$output_fieldmaps[["instant"]],
+        dat1_ip_fm = dat1_ip_fm,
+        dat1_op_fm = dat1_op_fm,
         dat2 = dat2,
-        dat2_ip_fm = ui_dm$input_data_field_map,
-        dat2_op_fm = dc$output_fieldmaps[["input"]]
+        dat2_ip_fm = dat2_ip_fm,
+        dat2_op_fm = dat2_op_fm
       )
 
-    # Ensure that the output data.frame is as expected
-    expect_contains(names(dat3), names(dat2))
+    missing_fields =
+      dat1_op_fm$common_fields(dat2_op_fm) %>%
+      lapply(
+        function(f) {
+          f$name
+        }
+      ) %>%
+      unlist(use.names = F)
+
+    # Check that the missing fields have been added
+    expect_contains(names(dat3), missing_fields)
+    # Check that the original fields are still present
     expect_contains(names(dat3), names(dat1))
     # Ensure that all of the unique tag numbers made it into the new dataframe
     expect_equal(dat3$TAG_NUM, dat2$TAG_NUM)
@@ -198,7 +246,8 @@ test_that(
     dc =
       Decoder_Lotek_1300
 
-    meta = data.frame(tag_num = "3880", tag_type = "ET")
+    meta =
+      build_input_meta_dataset()
 
     ui_dm = dc$create_userinput_datamap(meta)
 
@@ -271,10 +320,7 @@ test_that(
 
     # Synthesize the requsite input data
     input =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag"
-      )
+      build_input_meta_dataset()
 
     # Create an empty DataMap to return the user-inputted data
     DataMap_UserInput =
@@ -361,17 +407,14 @@ test_that(
       Decoder_MicrowaveTelemetry_XTag_Transmitted
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag"
-      )
+      build_input_meta_dataset()
 
     decode_op = dc$decode(d, input_meta)
 
     # Ensure data.frames are returned
     expect_gt(length(decode_op), 0)
     # Ensure only expected data.frames are returned
-    expect_equal(names(decode_op), c("meta", "instant", "summary"))
+    expect_equal(names(decode_op), c("meta", "instant", "summary", "field_meta"))
     # Ensure returned data.frames are not empty
     expect_gt(nrow(decode_op[["meta"]]), 0)
     expect_gt(nrow(decode_op[["instant"]]), 0)
@@ -390,10 +433,7 @@ test_that(
       test_data_d('mt', 'xt_trans', 'rr', '118353')
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag"
-      )
+      build_input_meta_dataset()
 
     dc =
       Decoder_MicrowaveTelemetry_XTag_Transmitted
@@ -418,10 +458,7 @@ test_that(
       test_data_d('mt', 'xt_trans', 'rr', '118353')
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag"
-      )
+      build_input_meta_dataset()
 
     dc =
       Decoder_MicrowaveTelemetry_XTag_Transmitted
@@ -454,23 +491,18 @@ test_that(
       test_data_d('mt', 'xt_trans', 'rr', '118353')
 
     input_meta =
-      data.frame(
-        tag_num = "1234",
-        tag_type = "SuperTag"
-      )
+      build_input_meta_dataset()
 
     dc =
       Decoder_MicrowaveTelemetry_XTag_Transmitted
 
-    db_fieldmaps =
-      dc$output_fieldmaps[c("meta", "instant", "summary")]
+    db_field_maps = dc$output_fieldmaps[c("meta", "field_meta", "instant", "summary")]
 
-    db_conn =
-      build_db_from_fieldmaps(db_fieldmaps)
+    db_conn = build_db_from_fieldmaps(fms = db_field_maps)
 
     # Check that each of the tables in the DB are empty
-    for (data_type in names(db_fieldmaps)) {
-      db_test_table = dplyr::tbl(db_conn, db_fieldmaps[[data_type]]$table)
+    for (data_type in names(db_field_maps)) {
+      db_test_table = dplyr::tbl(db_conn, db_field_maps[[data_type]]$table)
       expect_equal(nrow(data.frame(db_test_table)), 0)
     }
 
@@ -478,8 +510,8 @@ test_that(
     res = dc$decode_to_dataframes(d, meta = input_meta)
 
     # Check that each of the tables in the DB were populated correctly
-    for (data_type in names(db_fieldmaps)) {
-      db_test_table = dplyr::tbl(db_conn, db_fieldmaps[[data_type]]$table)
+    for (data_type in names(db_field_maps)) {
+      db_test_table = dplyr::tbl(db_conn, db_field_maps[[data_type]]$table)
       db_tbl_dat = data.frame(db_test_table)
       # No longer emtpy
       expect_gt(nrow(db_tbl_dat), 0)
@@ -514,7 +546,8 @@ test_that(
         res =
           dc$decode_to_dataframes(
             d,
-            meta = data.frame(tag_num = 5712, tag_type = "ET")
+            meta =
+              build_input_meta_dataset()
           )
       }
     )

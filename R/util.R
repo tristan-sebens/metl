@@ -11,6 +11,109 @@
 # has class 'Node'. Define it here so the constructor knows what we're talking about
 setOldClass("Node")
 
+#' Collect and return the messages from a condition stack
+#'
+#' @param cond The condition from which to begin traversing the stack (from child to parent)
+#'
+#' @return A list of messages from the condition stack, including offending calls
+get_cond_stack_messages =
+  function(cond, l = list()) {
+    slug = paste0("In ", cond$call[1], ": ", cond$message)
+    l = unlist(append(l, slug))
+    if (!is.null(cond$parent))
+      l = get_cond_stack_messages(cond = cond$parent, l = l)
+    return(l)
+  }
+
+#' Convert POSIXct timestamp to character string
+#'
+#' Provides a way to convert a POSIXct timestamp to a character string in a consistant manner
+#'
+#' @param v A vector of POSIXct timestamps
+posix_timestamp_to_character =
+  function(v) {
+    return(format(v, format = "%Y-%m-%d %H:%M:%S %Z"))
+  }
+
+# Find the mode of a vector
+v_mode =
+  function(v) {
+    # Collect set of unique values in v
+    uniqv = unique(v)
+    # Find the unique value which appears most frequently in v
+    mode_val = uniqv[which.max(tabulate(match(v, uniqv)))]
+    # Find the element in v which matches the value of the mode value
+    # This is done because in collecting the set of unique values in v, those
+    # values may lose certain characteristics. Specifically, difftime objects
+    # will be converted to numeric values, i.e. a vector of difftimes with a
+    # mode of 24hrs will be converted to a vector of numerics, the mode of which
+    # will be the integer 24. To preserve classes, we perform this final step to
+    # return an element of the original vector which matches the mode value
+    mode_ix = which(v == mode_val)[[1]]
+    mode = v[mode_ix]
+    return(mode)
+  }
+
+#' Compile a hierarchical list of field descriptions from a list of output fieldmaps
+#'
+#' @param output_fieldmaps A list of output fieldmaps
+#'
+#' @return A hierarchical list of field descriptions
+get_field_descriptions =
+  function(output_fieldmaps) {
+    l = list()
+    for (op_fm_n in names(output_fieldmaps)) {
+      op_fm = output_fieldmaps[[op_fm_n]]
+      l[[op_fm_n]] = list()
+      for (f_n in names(op_fm$field_list)) {
+        f = op_fm$field_list[[f_n]]
+        l[[op_fm_n]][[f$name]] = list()
+        l[[op_fm_n]][[f$name]][['description']] = f$description
+        l[[op_fm_n]][[f$name]][['units']] = f$units
+      }
+    }
+    return(l)
+  }
+
+#' Build a data.frame of field metadata from a Decoder
+#'
+#' @param dc The `Decoder` to build the metadata frame from
+#'
+#' @return A data.frame of field metadata
+build_field_metadata_frame =
+  function(dc) {
+    l = get_field_descriptions(dc$output_fieldmaps)
+
+    df__ =
+      data.frame(
+        table = NA,
+        field = NA,
+        description = NA,
+        units = NA
+      )
+
+    for (table in names(l)) {
+      for (field in names(l[[table]])) {
+        df__ =
+          rbind(
+            df__,
+            data.frame(
+              table = table,
+              field = field,
+              units =
+                l[[table]][[field]][["units"]],
+              description =
+                l[[table]][[field]][["description"]]
+            )
+          )
+      }
+    }
+
+    return(df__ %>% data.frame() %>% tidyr::drop_na())
+  }
+
+
+
 # Insert data into the test db
 populate_test_db =
   function(con, table, dat, ...) {

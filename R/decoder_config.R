@@ -76,11 +76,15 @@ Decoder_WildlifeComputers_MiniPAT =
   Decoder(
     label = "Wildlife Computers MiniPAT",
     identifier = Identifier_WildlifeComputers_MiniPAT,
-    data_maps = list(
-      "meta" = DataMap_WildlifeComputers_MiniPAT_TagMetaData,
-      "instant" = DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
-      "summary" = DataMap_WildlifeComputers_MiniPAT_SummarySensorData
-    )
+    data_maps =
+      list(
+        "meta" = DataMap_WildlifeComputers_MiniPAT_TagMetaData,
+        "instant" = DataMap_WildlifeComputers_MiniPAT_InstantSensorData,
+        "summary" = DataMap_WildlifeComputers_MiniPAT_SummarySensorData,
+        "histogram_meta" = DataMap_WildlifeComputers_MiniPAT_HistogramMetaData,
+        "histogram" = DataMap_WildlifeComputers_MiniPAT_HistogramData,
+        "pdt" = DataMap_WildlifeComputers_MiniPAT_PDTData
+      )
   )
 
 Decoder_WildlifeComputers_BenthicSPAT =
@@ -94,7 +98,7 @@ Decoder_WildlifeComputers_BenthicSPAT =
     )
   )
 
-Decoder_DesertStart_SeaTagMOD_DIRECTORY =
+Decoder_DesertStar_SeaTagMOD_DIRECTORY =
   Decoder(
     label = "DesertStar SeaTagMod Directory",
     identifier = Identifier_DesertStar_SeaTagMOD_DIRECTORY,
@@ -102,7 +106,6 @@ Decoder_DesertStart_SeaTagMOD_DIRECTORY =
       list(
         "instant" = DataMap_DesertStar_SeaTagMOD_InstantSensorData_Directory
       ),
-    # We don't want the directory processor to perform any kind of transformation, so we set the output FieldMap to be equivalent to the input FieldMap, ensuring that all fields are kept and no transformation/renaming is done.
     output_fieldmaps =
       list(
         "instant" = DataMap_DesertStar_SeaTagMOD_InstantSensorData_Directory$input_data_field_map
@@ -131,17 +134,21 @@ Decoder_DesertStar_SeaTagMOD =
             # Define a temporary directory to store the output
             tmp_d = file.path(tempdir(check = T), 'data')
 
+            if(dir.exists(tmp_d)) {
+              unlink(tmp_d, recursive = T)
+            }
+
             # Create the data subdir in the new temp directory
             dir.create(tmp_d)
 
             # Extract all of the data from the directory
             dat_dir =
-              Decoder_DesertStart_SeaTagMOD_DIRECTORY$decode_to_dataframes(d, meta = data.frame())
+              Decoder_DesertStar_SeaTagMOD_DIRECTORY$decode_to_dataframes(d, meta = data.frame())
 
-            for (data_type in names(Decoder_DesertStart_SeaTagMOD_DIRECTORY$data_maps)) {
+            for (data_type in names(Decoder_DesertStar_SeaTagMOD_DIRECTORY$data_maps)) {
               # Identify the name of the tag ID field
               tag_id_field =
-                Decoder_DesertStart_SeaTagMOD_DIRECTORY$data_maps[[data_type]]$
+                Decoder_DesertStar_SeaTagMOD_DIRECTORY$data_maps[[data_type]]$
                 input_data_field_map$
                 field_list$
                 TAG_ID_FIELD$
@@ -180,12 +187,10 @@ Decoder_DesertStar_SeaTagMOD =
               lapply(
                 data_dirs,
                 function(d_id) {
-
                   # Isloate the relevant metadata from the 'meta' frame
-                  type =
-                    meta_lookup %>%
-                    dplyr::filter(tag_num == d_id) %>%
-                    dplyr::pull(tag_type)
+                  d_meta =
+                    meta %>%
+                    dplyr::filter(tag_num == d_id)
 
                   dd = file.path(tmp_d, d_id)
 
@@ -194,11 +199,7 @@ Decoder_DesertStar_SeaTagMOD =
                   dat =
                     Decoder_DesertStar_SeaTagMOD_SINGLETAG$decode_to_dataframes(
                       dd,
-                      meta =
-                        data.frame(
-                          tag_num = d_id,
-                          tag_type = type
-                        )
+                      meta = d_meta
                     )
 
                   return(dat)
@@ -243,6 +244,8 @@ decoders = list(
   "Decoder_MicrowaveTelemetry_XTag_Recovered" = Decoder_MicrowaveTelemetry_XTag_Recovered,
   "Decoder_StarOddi_DST" = Decoder_StarOddi_DST,
   "Decoder_StarOddi_DSTmagnetic" = Decoder_StarOddi_DSTmagnetic,
+  "Decoder_StarOddi_DST_milliF" = Decoder_StarOddi_DST,
   "Decoder_WildlifeComputers_MiniPAT" = Decoder_WildlifeComputers_MiniPAT,
-  "Decoder_WildlifeComputers_BenthicSPAT" = Decoder_WildlifeComputers_BenthicSPAT
+  "Decoder_WildlifeComputers_BenthicSPAT" = Decoder_WildlifeComputers_BenthicSPAT,
+  "Decoder_DesertStar_SeaTagMOD" = Decoder_DesertStar_SeaTagMOD
 )

@@ -10,10 +10,6 @@ secrets/*
 # No RStudio IDE files
 .Rproj.user/*
 .Rhistory
-
-# Nothing from the db folders
-
-
 .Rproj.user
 
 # No lock files

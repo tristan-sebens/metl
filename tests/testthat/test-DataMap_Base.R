@@ -23,13 +23,6 @@ test_that(
     expect_snapshot(
       dm$get_field_data(
         dat__ = build_test_dataset(),
-        input_field_obj_ = fm1$field_list$TIMESTAMP_FIELD
-      )
-    )
-
-    expect_snapshot(
-      dm$get_field_data(
-        dat__ = build_test_dataset(),
         input_field_obj_ = fm1$field_list$TEMPERATURE_FIELD
       )
     )
@@ -55,6 +48,35 @@ test_that(
         dat__,
         op_fm
       )
+    )
+  }
+)
+
+test_that(
+  "DataMap::transform_fields::mislabeled input fields",
+  {
+    dm =
+      .self =
+      DataMap(
+        input_data_field_map = build_test_fieldmaps()$INSTANT_DATA_INPUT_FIELD_MAP
+      )
+
+    dat__ = build_test_dataset()
+
+    op_fm =
+      build_test_fieldmaps()$INSTANT_DATA_OUTPUT_FIELD_MAP
+
+    expect_error(
+      # Attempt to transform the data, but mislabel one field.
+      # The system should throw an error indicating that said field is missing
+      dm$transform_fields(
+        dat__ =
+          dat__ %>%
+          dplyr::mutate(Depth1 = Depth) %>%
+          dplyr::select(-Depth),
+        op_fm
+      ),
+      regexp = "Missing expected input fields: Depth"
     )
   }
 )

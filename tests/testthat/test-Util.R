@@ -38,3 +38,42 @@ test_that(
     )
   }
 )
+
+
+test_that(
+  "get_cond_stack_messages",
+  {
+
+    err_msg = "This is an error message"
+    par_msg = "This is an error message from a parent condition"
+
+    tryCatch(
+      stop(err_msg),
+      error = function(cond) err <<- cond
+    )
+    # Test that the function returns the correct message for a given condition
+    expect_true(
+      stringr::str_detect(
+        get_cond_stack_messages(cond = err),
+        err_msg
+      )
+    )
+
+    tryCatch(
+      stop(par_msg),
+      error = function(cond) parent <<- cond
+    )
+
+    err$parent = parent
+
+    # Test that the function returns the correct message for a given condition
+    expect_true(
+      all(
+        stringr::str_detect(
+          get_cond_stack_messages(cond = err),
+          c(err_msg, par_msg)
+        )
+      )
+    )
+  }
+)

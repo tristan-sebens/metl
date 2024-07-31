@@ -22,6 +22,10 @@ Field class. Represents a single data field and its key metadata for future
 \item{\code{id_field}}{logical. If set to TRUE this field will be used to identify unique records}
 
 \item{\code{trans_fn}}{function. Applied to the data vector associated with this Field immediately prior to standard transformation of units and fieldnames. MUST be of the form function(v, ...) {\if{html}{\out{<transformation here>}}}. Must return a data vector. If necessary, other fields can be accessed within the function by modifying the parameter signature to function(v, dat, ...) {\if{html}{\out{<transformation here>}}}, where dat will contain the unstransformed data.frame}
+
+\item{\code{independent}}{logical. TRUE indicates this field generates its own value, either using a pre-determined value or by synthesizing from other fields in the data}
+
+\item{\code{description}}{character. Plain language description of the field}
 }}
 
 

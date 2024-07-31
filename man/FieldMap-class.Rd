@@ -27,12 +27,6 @@ Collection of Field objects, with some added functionality to facilitate the con
 
 \item{\code{get_independent_fields()}}{Get all independent Field objects as a named list}
 
-\item{\code{get_input_fields()}}{Get any user-input Field objects as named list}
-
-\item{\code{get_non_input_fields()}}{Get all non-user-input Field objects as named list}
-
-\item{\code{refresh(...)}}{Call the `refresh` function on all internal Field objects. Useful for updating reference Fields}
-
 \item{\code{uncommon_fields(fm)}}{Generate a list of the Fields NOT shared by this FieldMap and the given FieldMap}
 }}
 

@@ -3,16 +3,16 @@
     Code
       dat_
     Output
-             make                    model
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model instrument_type
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE                    MODEL
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 # DataMap_StarOddi_DST_InstantSensorData -> /so/dst/sf/JS7977
 
@@ -39,19 +39,19 @@
     Code
       dat_t_
     Output
-      # A tibble: 45,369 x 3
-           TIMESTAMP DEPTH TEMPERATURE
-               <dbl>   [m]        [°C]
-       1 1468358400.  1.1         24.8
-       2 1468362000.  1.58        24.0
-       3 1468365600.  1.1         23.4
-       4 1468369200.  1.1         23.0
-       5 1468372800.  1.1         22.6
-       6 1468376400.  0.62        22.4
-       7 1468380000.  1.1         22.2
-       8 1468383600.  1.58        22.0
-       9 1468387200.  1.1         21.9
-      10 1468390800.  1.1         21.7
+      # A tibble: 45,369 x 4
+         TIMESTAMP_POSIXct DEPTH TEMPERATURE TIMESTAMP               
+                     <dbl>   [m]        [°C] <chr>                   
+       1       1468358400.  1.1         24.8 2016-07-12 13:20:00 AKDT
+       2       1468362000.  1.58        24.0 2016-07-12 14:20:00 AKDT
+       3       1468365600.  1.1         23.4 2016-07-12 15:19:59 AKDT
+       4       1468369200.  1.1         23.0 2016-07-12 16:20:00 AKDT
+       5       1468372800.  1.1         22.6 2016-07-12 17:20:00 AKDT
+       6       1468376400.  0.62        22.4 2016-07-12 18:19:59 AKDT
+       7       1468380000.  1.1         22.2 2016-07-12 19:20:00 AKDT
+       8       1468383600.  1.58        22.0 2016-07-12 20:20:00 AKDT
+       9       1468387200.  1.1         21.9 2016-07-12 21:19:59 AKDT
+      10       1468390800.  1.1         21.7 2016-07-12 22:20:00 AKDT
       # i 45,359 more rows
 
 # DataMap_StarOddi_DSTmilliF_TagMetaData -> /so/dst_mf/sf/JS1229
@@ -59,32 +59,32 @@
     Code
       dat_
     Output
-             make                    model
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model instrument_type
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE                    MODEL
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 # DataMap_StarOddi_DSTmilliF_TagMetaData -> /so/dst_mf/sf/JS142
 
     Code
       dat_
     Output
-             make                    model
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             make                    model instrument_type
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE                    MODEL
-      1 Star Oddi DST (centi/milli)-(TD/F)
+             MAKE                    MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival
 
 # DataMap_StarOddi_DSTmilliF_InstantSensorData -> /so/dst_mf/sf/JS1229
 
@@ -111,19 +111,19 @@
     Code
       dat_t_
     Output
-      # A tibble: 108,889 x 3
-           TIMESTAMP DEPTH TEMPERATURE
-               <dbl>   [m]        [°C]
-       1 1437732000. -10.2        14.0
-       2 1437732120. -10.2        14.0
-       3 1437732240. -10.2        14.0
-       4 1437732360. -10.2        14.1
-       5 1437732480. -10.5        14.1
-       6 1437732600. -10.0        14.2
-       7 1437732720  -10.3        14.2
-       8 1437732840. -10.3        14.2
-       9 1437732960. -10.0        14.2
-      10 1437733080. -10.0        14.3
+      # A tibble: 108,889 x 4
+         TIMESTAMP_POSIXct DEPTH TEMPERATURE TIMESTAMP               
+                     <dbl>   [m]        [°C] <chr>                   
+       1       1437732000. -10.2        14.0 2015-07-24 02:00:00 AKDT
+       2       1437732120. -10.2        14.0 2015-07-24 02:02:00 AKDT
+       3       1437732240. -10.2        14.0 2015-07-24 02:03:59 AKDT
+       4       1437732360. -10.2        14.1 2015-07-24 02:05:59 AKDT
+       5       1437732480. -10.5        14.1 2015-07-24 02:07:59 AKDT
+       6       1437732600. -10.0        14.2 2015-07-24 02:09:59 AKDT
+       7       1437732720  -10.3        14.2 2015-07-24 02:12:00 AKDT
+       8       1437732840. -10.3        14.2 2015-07-24 02:14:00 AKDT
+       9       1437732960. -10.0        14.2 2015-07-24 02:16:00 AKDT
+      10       1437733080. -10.0        14.3 2015-07-24 02:18:00 AKDT
       # i 108,879 more rows
 
 # DataMap_StarOddi_DSTmilliF_InstantSensorData -> /so/dst_mf/sf/JS142
@@ -151,19 +151,19 @@
     Code
       dat_t_
     Output
-      # A tibble: 697,833 x 3
-           TIMESTAMP  DEPTH TEMPERATURE
-               <dbl>    [m]        [°C]
-       1 1432739880   -7.82       11.1 
-       2 1432740000. -27.0        10.7 
-       3 1432740120. -22.3         9.87
-       4 1432740240. -17.7         9.47
-       5 1432740360. -16.5         9.77
-       6 1432740480. -18.1        10   
-       7 1432740600. -17.4        10   
-       8 1432740720. -18.1        10.1 
-       9 1432740840. -15.5        10.2 
-      10 1432740960  -18.1        10.2 
+      # A tibble: 697,833 x 4
+         TIMESTAMP_POSIXct  DEPTH TEMPERATURE TIMESTAMP               
+                     <dbl>    [m]        [°C] <chr>                   
+       1       1432739880   -7.82       11.1  2015-05-27 07:17:59 AKDT
+       2       1432740000. -27.0        10.7  2015-05-27 07:20:00 AKDT
+       3       1432740120. -22.3         9.87 2015-05-27 07:22:00 AKDT
+       4       1432740240. -17.7         9.47 2015-05-27 07:24:00 AKDT
+       5       1432740360. -16.5         9.77 2015-05-27 07:26:00 AKDT
+       6       1432740480. -18.1        10    2015-05-27 07:27:59 AKDT
+       7       1432740600. -17.4        10    2015-05-27 07:29:59 AKDT
+       8       1432740720. -18.1        10.1  2015-05-27 07:31:59 AKDT
+       9       1432740840. -15.5        10.2  2015-05-27 07:33:59 AKDT
+      10       1432740960  -18.1        10.2  2015-05-27 07:36:00 AKDT
       # i 697,823 more rows
 
 # DataMap_StarOddi_DSTmagnetic_TagMetaData -> /so/dst_mag/sf/JS923
@@ -171,32 +171,32 @@
     Code
       dat_
     Output
-             make        model
-      1 Star Oddi DST magnetic
+             make        model instrument_type
+      1 Star Oddi DST magnetic        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE        MODEL
-      1 Star Oddi DST magnetic
+             MAKE        MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST magnetic        archival
 
 # DataMap_StarOddi_DSTmagnetic_TagMetaData -> /so/dst_mag/sf/JS927
 
     Code
       dat_
     Output
-             make        model
-      1 Star Oddi DST magnetic
+             make        model instrument_type
+      1 Star Oddi DST magnetic        archival
 
 ---
 
     Code
       dat_t_
     Output
-             MAKE        MODEL
-      1 Star Oddi DST magnetic
+             MAKE        MODEL INSTRUMENT_TYPE
+      1 Star Oddi DST magnetic        archival
 
 # DataMap_StarOddi_DSTmagnetic_InstantSensorData -> /so/dst_mag/sf/JS923
 
@@ -226,21 +226,21 @@
     Code
       dat_t_
     Output
-      # A tibble: 5,381 x 7
-          TIMESTAMP DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION MAGNETIC_FIELD_STREN~1
-              <dbl>   [m]        [°C]    [°]    [°]         [°]           [nanoteslas]
-       1     1.45e9 -12.9        5.44     -6    -22          59                  36445
-       2     1.45e9 -13.5        6.08     -6    -27          64                  35631
-       3     1.45e9 -12.6        5.97     -7    -28          63                  34923
-       4     1.45e9 -12.3        5.76     -6    -25          74                  33458
-       5     1.45e9 -13.1        4.83     -8    -27          65                  36081
-       6     1.45e9 -12.7        4.46     -7    -24          78                  35266
-       7     1.45e9 -13          4.72     -7    -28          88                  31032
-       8     1.45e9 -12.2        5.58     -7    -25          79                  31592
-       9     1.45e9 -12.9        6.33     -8    -27          82                  30298
-      10     1.45e9 -12.8        6.22     -7    -28          78                  29886
+      # A tibble: 5,381 x 8
+         TIMESTAMP_POSIXct DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
+                     <dbl>   [m]        [°C]    [°]    [°]         [°]
+       1       1449144000  -12.9        5.44     -6    -22          59
+       2       1449158400. -13.5        6.08     -6    -27          64
+       3       1449172800. -12.6        5.97     -7    -28          63
+       4       1449187200  -12.3        5.76     -6    -25          74
+       5       1449201600. -13.1        4.83     -8    -27          65
+       6       1449216000. -12.7        4.46     -7    -24          78
+       7       1449230400  -13          4.72     -7    -28          88
+       8       1449244800. -12.2        5.58     -7    -25          79
+       9       1449259200. -12.9        6.33     -8    -27          82
+      10       1449273600  -12.8        6.22     -7    -28          78
       # i 5,371 more rows
-      # i abbreviated name: 1: MAGNETIC_FIELD_STRENGTH
+      # i 2 more variables: MAGNETIC_FIELD_STRENGTH [nanoteslas], TIMESTAMP <chr>
 
 # DataMap_StarOddi_DSTmagnetic_InstantSensorData -> /so/dst_mag/sf/JS927
 
@@ -269,19 +269,19 @@
     Code
       dat_t_
     Output
-      # A tibble: 6,931 x 7
-          TIMESTAMP DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION MAGNETIC_FIELD_STREN~1
-              <dbl>   [m]        [°C]    [°]    [°]         [°]           [nanoteslas]
-       1     1.45e9 -6.35        5.26      1    -69          30                  22626
-       2     1.45e9 -6.35        5.91      3    -64          32                  25048
-       3     1.45e9 -7.19        5.69      3    -63          30                  24987
-       4     1.45e9 -6.35        5.58      4    -62          54                  16588
-       5     1.45e9 -6.35        4.45      1    -66          40                  16821
-       6     1.45e9 -7.19        4.48      3    -60          45                  20674
-       7     1.45e9 -7.19        4.74      2    -64          45                  21829
-       8     1.45e9 -5.52        5.69      1    -68          43                  22976
-       9     1.45e9 -6.35        6.41      1    -66          48                  19803
-      10     1.45e9 -7.19        6.41      2    -65          37                  24011
+      # A tibble: 6,931 x 8
+         TIMESTAMP_POSIXct DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
+                     <dbl>   [m]        [°C]    [°]    [°]         [°]
+       1       1449144000  -6.35        5.26      1    -69          30
+       2       1449158400. -6.35        5.91      3    -64          32
+       3       1449172800. -7.19        5.69      3    -63          30
+       4       1449187200  -6.35        5.58      4    -62          54
+       5       1449201600. -6.35        4.45      1    -66          40
+       6       1449216000. -7.19        4.48      3    -60          45
+       7       1449230400  -7.19        4.74      2    -64          45
+       8       1449244800. -5.52        5.69      1    -68          43
+       9       1449259200. -6.35        6.41      1    -66          48
+      10       1449273600  -7.19        6.41      2    -65          37
       # i 6,921 more rows
-      # i abbreviated name: 1: MAGNETIC_FIELD_STRENGTH
+      # i 2 more variables: MAGNETIC_FIELD_STRENGTH [nanoteslas], TIMESTAMP <chr>
 
