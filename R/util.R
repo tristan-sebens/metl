@@ -29,7 +29,7 @@ get_cond_stack_messages =
 #'
 #' Provides a way to convert a POSIXct timestamp to a character string in a consistant manner
 #'
-#' @param v
+#' @param v A vector of POSIXct timestamps
 posix_timestamp_to_character =
   function(v) {
     return(format(v, format = "%Y-%m-%d %H:%M:%S %Z"))
@@ -207,30 +207,4 @@ bump_timestamps =
     dplyr::mutate(timestamp = timestamp + (incr)*(seq_n - 1)) %>%
     dplyr::arrange(ix) %>%
     dplyr::pull(timestamp)
-  }
-
-
-#' Build message for successful insertion into DB
-#'
-#' Builds a character string message which indicates a successful DB insertion, as well as the number of rows inserted/updated in each table.
-#'
-#' @param rows_updated Named list where each name is the name of an updated DB table, and each value is the number of rows inserted/updated in that table.
-build_db_success_message =
-  function(rows_updated) {
-    paste0(
-      c(
-        "Data inserted into DB succesfully.",
-        "Row counts:",
-        lapply(
-          names(rows_updated),
-          function(data_type) {
-            output_table_name = output_fieldmaps[[data_type]]$table
-            num_rows_updated = rows_updated[[data_type]]
-            return(paste0(" - ", output_table_name, ": ", num_rows_updated))
-          }
-        ) %>%
-          unlist()
-      ),
-      collapse = "\n"
-    )
   }
