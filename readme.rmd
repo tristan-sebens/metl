@@ -34,7 +34,7 @@ devtools::load_all()
 - `DBI` (>=`1.2.3`)
 - `odbc` (>= `1.5.0`)
 
-These package dependencies and others are recorded in the package description, and should be automatically handled by the package manager. We highlight these three here because they are exceptional examples in terms of causing problems for the package when out of date.
+These package dependencies and others are recorded in the package description, and should be automatically handled by the package manager. We highlight these three here because they are exceptional in terms of causing problems for the package when out of date.
 
 In addition, when using `metl` to load data directly into an **Oracle** database, users must have an up-to-date Oracle obdc driver installed on their machine. Other DB systems (Microsoft SQL Server, PostGRESQL, SQLite, etc.) should work natively with the package.
 
@@ -57,31 +57,48 @@ This section will guide you through the basic steps of using `metl` to extract d
 
 The file structure of each data directory will vary depending on the make and model of the tag, but in general, `d` should contain all of the files produced by the post-processing software for the tag.
 
+```{r, eval=FALSE, results='hide'}
+# d specifies the path of the data directory
+# e.g. 
+# d = tcltk::tk_choose.dir()
+```
+
+```{r, results='hide', echo=FALSE}
+d = here::here('tests', 'testthat', '_fixtures', '_data', 'wc', 'b_sp', 'ss', '175146')
+```
+
+
 ### **The Decoder object**
 
 The primary work object of the `metl` package is the `Decoder` object, which is responsible for extracting all data from a single tag data directory, transforming it into its output format, and loading it into its final destination. The `Decoder` objects can load the data to a database, write data to `.csv` files, or return the data as `data.frame` objects.
 
 `metl` ships with a number of pre-configured `Decoder` objects, one for each supported tag type. These objects are stored in the `decoders` list, and can be accessed by name. `metl` is also designed to facilitate extending its functionality to easily cover unsupported tags. See ["Extending `metl`""](#extending-metl) for more information.
 
-For the quickstart example, we will use an included `Decoder` object, one configured for the StarOddi DST magnetic tag:
+For the quickstart example, we will use an included `Decoder` object, one configured for the Wildlife Computers Benthic sPAT tag:
 
-```{r, results='hide', eval=FALSE}
-decoder = metl::decoders$Decoder_StarOddi_DST
+```{r, results='hide', eval=TRUE}
+decoder = metl::decoders$Decoder_WildlifeComputers_BenthicSPAT
 ```
 
 A list of supported tags can be found [here](#list-of-supported-tags), and a full list of the pre-configured `Decoder` objects shipped with `metl` can be seen by running the following code:
 
-```{r, results='hide', eval=FALSE}
+```{r, eval=FALSE}
 names(metl::decoders)
 ```
 
-Sensor data and some metadata can be read directly from the target directory, but additional metadata must be supplied in the function call via a `data.frame` object passed in to the `meta` parameter of the function call:
+#### **The `meta` data.frame**
 
-```{r, results='hide', eval=FALSE}
+Ssome metadata can be read directly from the target directory, but additional metadata must be supplied by the user. This additional data is passed into the function call via the `meta` parameter, and must be formatted as a `data.frame` object.
+
+Below is an example of a `meta` data.frame. This example includes all of the fields which are required to be provided by the user when inserting into the ABLTAG DB. When using this code, you will need to change these values to match the tag you are importing
+
+```{r, results='hide', eval=TRUE}
 meta =
   data.frame(
-    tag_num = "1234",
-    tag_type = "SuperTag"
+    tag_num = "1234", # Tag ID number
+    tag_type = "SuperTag", # Tag type, as specified in ABLTAG DB
+    species_code = 20510, # Species code, as specified in ABLTAG DB
+    seq_num = 1 # Sequence number. Check DB doc for more details.
   )
 ```
 
@@ -114,57 +131,71 @@ db_conn =
 
 ### **Initiate extraction**
 
-Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter.
+Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter. The `Decoder` will extract data from the data directory, load it into the DB, and report the results.
 
-```{r, results='hide', eval=FALSE}
-meta =
-  data.frame(
-    tag_num = "1234",
-    tag_type = "SuperTag"
+```{r, echo=FALSE, results='hide'}
+fms = 
+  decoder$output_fieldmaps[
+    names(decoder$output_fieldmaps)[!names(decoder$output_fieldmaps) %in% c("input")]
+  ]
+
+db_conn = 
+  build_db_from_fieldmaps(
+    fms = fms
   )
+```
 
-decoder = metl::decoders$Decoder_StarOddi_DST
-
+```{r}
 decoder$decode_to_db(d = d, con = db_conn, meta = meta)
 ```
 
-The `Decoder` object will now extract all possible data from the data directory, then attempt to load that data into the target database.
+Read [here](#overwriting-data) to learn how `metl` handles uploading data to a DB which is already present.
 
 ## **Use case 2: Extracting data to data.frames**
 
-The `Decoder` can produce the extracted data as a collection of `data.frames`. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced. You can find a table of data types produced by each supported tag type.
+The `Decoder` can produce the extracted data as a collection of `data.frames`. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced. You can find a table of data types produced by each supported tag type [here](#output-data-types-by-tag).
 
-```{r, results='hide', eval=FALSE}
-meta =
-  data.frame(
-    tag_num = "1234",
-    tag_type = "SuperTag"
-  )
+In this example we used the Benthic sPAT tag from Wildlife Computers, which produces three types of data: `meta`, `instant`, and `summary`.
 
-decoder = metl::decoders$Decoder_StarOddi_DST
-
+```{r, eval=FALSE}
 res = decoder$decode_to_dataframes(d = d, meta=meta)
 
 metadata = res[['meta']]
 instant_data = res[['instant']]
 summary_data = res[['summary']]
+
+head(metadata)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+res = decoder$decode_to_dataframes(d = d, meta=meta)
+
+metadata = res[['meta']]
+instant_data = res[['instant']]
+summary_data = res[['summary']]
+
+knitr::kable(metadata)
 ```
 
 ## **Use case 3: Extract data to `.csv` files**
+```{r, results='hide', echo=FALSE}
+# Behind the scenes, create a directory into which the output csv files can be written
+csv_directory = here::here('tests', 'testthat', '_fixtures', '_data', '_readme_example', 'output')
 
-Finally, the `Decoder` object can write the extracted data to a collection of `.csv` files in a specified directory.
-```{r, results='hide', eval=FALSE}
-csv_directory = here::here() # Specify the directory into which the csv files should be written
+# Remove the directory if it already exists
+if(dir.exists(csv_directory)) {
+  unlink(csv_directory, recursive = T)
+}
 
-meta =
-  data.frame(
-    tag_num = "1234",
-    tag_type = "SuperTag"
-  )
-
-decoder = metl::decoders$Decoder_StarOddi_DST
-
+# Recreate the directory anew
+dir.create(csv_directory)
+```
+Finally, the `Decoder` object can write the extracted data to a collection of `.csv` files in a specified directory. The `Decoder` will create one `.csv` file for each type of data produced.
+```{r}
+# `csv_directory` specifies the directory into which the csv files should be written
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
+
+print(list.files(csv_directory))
 ```
 
 # **Input/Output Data**
@@ -172,7 +203,7 @@ decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
 ## **Output data types**
 Tags can record a multitude of different kinds of data and/or data products. For example, a tag may record instantaneous sensor readings, and periodically calculate aggregate summary statistics of those readings over given intervals of time. Most tags also record internal status records, such as current battery levels or details about successful connections to satellites. Each of these data sets are fundamentally distinct from one another, and so they should be kept separate. However, it is still important that when we extract data from the tag that all relevant data is extracted and provided to the user.
 
-To accommodate this, each `Decoder` object contains one or more `DataMap` objects, stored as in the `data_maps` list attribute. Each `DataMap` is responsible for the data of a particular type. When a `Decoder` is used to extract data from a directory, it outputs one data product for each type of data produced by the tag. Additionally, all `Decoders` output one additional data product called `field_meta`, which provides a plain-text description of each field in each output data product, and specified which units are used by the field, if any. 
+To accommodate this, each `Decoder` object contains one or more `DataMap` objects, stored in the `data_maps` list attribute. Each `DataMap` is responsible for extracting the data of a particular type. When a `Decoder` is used to extract data from a directory, it outputs one data product for each `DataMap`. Additionally, all `Decoders` output one additional data product called `field_meta`, which provides a plain-text description of each field in each output data product, and specified which units are used by the field, if any. 
 
 
 The format of the data products depends on the method employed:
@@ -211,15 +242,23 @@ as.POSIXct(posix_int_timestamps)
 ## **Units**
 All units in `metl` are specified using the `units` package, the documentation for which can be found [here](https://www.rdocumentation.org/packages/units/versions/0.8-5). This package provides a comprehensive list of SI units, and facilitates conversion from one unit to another. This is particularly useful when dealing with sensor data, as different tags may use different units to represent the same physical quantity.
 
-The units in which a field is recorded are specified in the `units` attribute of the `Field` object that corresponds to the data field. During extraction, the `Decoder` compares the units of the input `Field` object to those of the output `Field` object, and performs any necessary conversions. This is of particular use when we have multiple type of tags which record the same data, but in different units.
+The units in which a field is recorded are specified in the `units` attribute of the `Field` object that corresponds to the data field. `metl` automatically applies the specified units to the incoming data during extraction. During the transformation step the `Decoder` compares the units of the input `Field` object to those of the output `Field` object, and performs any necessary conversions. This is of particular use when we have multiple type of tags which record the same readings in different units and we wish to standardize their outputs.
 
 ## **Proprietary post-processing software**
 
 When dealing with telemetry tags, very often there is a post-processing step which takes the raw data files from the tag and converts them into usable files. Examples of this post-processing software include *tag-talk32* for Lotek tags, *SeaStar* for StarOddi tags, or *SeaDock* for Desert Star tags. Typically, the raw data which is actually output by the tag is encoded in a proprietary file format which only the post-processing software is capable of reading. Alternatively, the files may be readable, but only interpretable when the organization of the underlying data is understood *a priori*.
 
-Either way, the use of these post-processing software packages is typically unavoidable when obtaining data from telemetry tags. As such, `metl` is NOT intended as a replacement for these software packages, but is rather a followup package used to quickly and consistently read and format the data output by these post-processing packages. [The expected inputs for each of the supported tag types are listed below](#list-of-supported-tags).
+Either way, the use of these post-processing software packages is typically unavoidable when obtaining data from telemetry tags. As such, `metl` is NOT intended as a replacement for these software packages, but is rather a followup step used to quickly and consistently read and format the data output by these post-processing packages. [The expected inputs for each of the supported tag types are listed below](#list-of-supported-tags).
 
 When using `metl` to process tag data, it is **CRITICAL** that the structure and contents of the data have not been altered in ANY way. In order to identify the make/model of the tag which produced a given data directory, `metl` must make some *very* specific assumptions about the naming conventions, file formats, and presence/absence of files in a given directory. Even files which are not actually read by the extraction code may be important markers used by `metl` to identify which tag type was used to produce the data, and therefore how to extract and format the data within.
+
+## **Overwriting data**
+
+When inserting into a DB, `metl` first checks to see if any of the uploaded data is already present in the DB. This is accomplished by using `UNIQUE` constraints set on the target table. As an example, instantaneous sensor data is loaded into the *TAG_DATA_INSTANT* table in the ABLTAG database. This table has a `UNIQUE` constraint on three fields: *TAG_NUM*, *TAG_TYPE*, and *TIMESTAMP*. Only one record can exist in the table for a given combination of values for these three fields, effectively meaning that each tag (identified by *TAG_NUM* and *TAG_TYPE*) can only have one record per instant in time.
+
+When loading to a DB, `metl` first loads the data into a temporary table, and then uses a `MERGE` query to join the new data to the extant data in the table. Any records which were already present in the table and which match records in the new data (according to the `UNIQUE` constraint) are overwritten by their counterparts in the new data. This is typically expected to have no effect, as the records recorded by a tag are not expected to change between uploads. However it does mean that if **additional** data is retrieved for a tag, the entire dataset can be uploaded to the DB without duplicating records already present in the DB.
+
+If you are configuring `metl` to upload into a database with a different schema, you will need to implement appropriate `UNIQUE` constraints on all of your tables (theoretically, this can also be accomplished by using the same fields to define a `PRIMARY KEY`, but this remains untested). Additionally, you will need to identify all of the `Field` objects in your output `FieldMap` which correspond to these `UNIQUE` fields and mark them as such by setting the `id_field` attribute of each of them to `TRUE` 
 
 # **List of supported tags**
 The following tags are currently supported on the main branch. However, it should be noted that the package has been designed to make adding support for additional tag types to be as accessible as possible.

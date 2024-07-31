@@ -371,7 +371,11 @@ pipeline</h3>
 <li><a href="#data-directories" id="toc-data-directories"><span class="toc-section-number">4.0.1</span> <strong>Data
 directories</strong></a></li>
 <li><a href="#the-decoder-object" id="toc-the-decoder-object"><span class="toc-section-number">4.0.2</span> <strong>The Decoder
-object</strong></a></li>
+object</strong></a>
+<ul>
+<li><a href="#the-meta-data.frame" id="toc-the-meta-data.frame"><span class="toc-section-number">4.0.2.1</span> <strong>The <code>meta</code>
+data.frame</strong></a></li>
+</ul></li>
 <li><a href="#use-case-1-load-data-directly-into-database" id="toc-use-case-1-load-data-directly-into-database"><span class="toc-section-number">4.1</span> <strong>Use case 1: Load data
 directly into database</strong></a>
 <ul>
@@ -395,6 +399,8 @@ types</strong></a></li>
 <li><a href="#units" id="toc-units"><span class="toc-section-number">5.3</span> <strong>Units</strong></a></li>
 <li><a href="#proprietary-post-processing-software" id="toc-proprietary-post-processing-software"><span class="toc-section-number">5.4</span> <strong>Proprietary
 post-processing software</strong></a></li>
+<li><a href="#overwriting-data" id="toc-overwriting-data"><span class="toc-section-number">5.5</span> <strong>Overwriting
+data</strong></a></li>
 </ul></li>
 <li><a href="#list-of-supported-tags" id="toc-list-of-supported-tags"><span class="toc-section-number">6</span> <strong>List of supported
 tags</strong></a>
@@ -480,8 +486,8 @@ installed:</p>
 </ul>
 <p>These package dependencies and others are recorded in the package
 description, and should be automatically handled by the package manager.
-We highlight these three here because they are exceptional examples in
-terms of causing problems for the package when out of date.</p>
+We highlight these three here because they are exceptional in terms of
+causing problems for the package when out of date.</p>
 <p>In addition, when using <code>metl</code> to load data directly into
 an <strong>Oracle</strong> database, users must have an up-to-date
 Oracle obdc driver installed on their machine. Other DB systems
@@ -517,6 +523,9 @@ this).</p>
 make and model of the tag, but in general, <code>d</code> should contain
 all of the files produced by the post-processing software for the
 tag.</p>
+<pre class="r"><code># d specifies the path of the data directory
+# e.g. 
+# d = tcltk::tk_choose.dir()</code></pre>
 </div>
 <div id="the-decoder-object" class="section level3" number="4.0.2">
 <h3><span class="header-section-number">4.0.2</span> <strong>The Decoder
@@ -535,22 +544,32 @@ accessed by name. <code>metl</code> is also designed to facilitate
 extending its functionality to easily cover unsupported tags. See <a href="#extending-metl">“Extending <code>metl</code>””</a> for more
 information.</p>
 <p>For the quickstart example, we will use an included
-<code>Decoder</code> object, one configured for the StarOddi DST
-magnetic tag:</p>
-<pre class="r"><code>decoder = metl::decoders$Decoder_StarOddi_DST</code></pre>
+<code>Decoder</code> object, one configured for the Wildlife Computers
+Benthic sPAT tag:</p>
+<pre class="r"><code>decoder = metl::decoders$Decoder_WildlifeComputers_BenthicSPAT</code></pre>
 <p>A list of supported tags can be found <a href="#list-of-supported-tags">here</a>, and a full list of the
 pre-configured <code>Decoder</code> objects shipped with
 <code>metl</code> can be seen by running the following code:</p>
 <pre class="r"><code>names(metl::decoders)</code></pre>
-<p>Sensor data and some metadata can be read directly from the target
-directory, but additional metadata must be supplied in the function call
-via a <code>data.frame</code> object passed in to the <code>meta</code>
-parameter of the function call:</p>
+<div id="the-meta-data.frame" class="section level4" number="4.0.2.1">
+<h4><span class="header-section-number">4.0.2.1</span> <strong>The
+<code>meta</code> data.frame</strong></h4>
+<p>Ssome metadata can be read directly from the target directory, but
+additional metadata must be supplied by the user. This additional data
+is passed into the function call via the <code>meta</code> parameter,
+and must be formatted as a <code>data.frame</code> object.</p>
+<p>Below is an example of a <code>meta</code> data.frame. This example
+includes all of the fields which are required to be provided by the user
+when inserting into the ABLTAG DB. When using this code, you will need
+to change these values to match the tag you are importing</p>
 <pre class="r"><code>meta =
   data.frame(
-    tag_num = &quot;1234&quot;,
-    tag_type = &quot;SuperTag&quot;
+    tag_num = &quot;1234&quot;, # Tag ID number
+    tag_type = &quot;SuperTag&quot;, # Tag type, as specified in ABLTAG DB
+    species_code = 20510, # Species code, as specified in ABLTAG DB
+    seq_num = 1 # Sequence number. Check DB doc for more details.
   )</code></pre>
+</div>
 </div>
 <div id="use-case-1-load-data-directly-into-database" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> <strong>Use case 1:
@@ -585,19 +604,18 @@ like this:</p>
 extraction</strong></h3>
 <p>Once we have connected to the database, we call the
 <code>process_to_db</code> method, passing the connection object in as a
-parameter.</p>
-<pre class="r"><code>meta =
-  data.frame(
-    tag_num = &quot;1234&quot;,
-    tag_type = &quot;SuperTag&quot;
-  )
-
-decoder = metl::decoders$Decoder_StarOddi_DST
-
-decoder$decode_to_db(d = d, con = db_conn, meta = meta)</code></pre>
-<p>The <code>Decoder</code> object will now extract all possible data
-from the data directory, then attempt to load that data into the target
-database.</p>
+parameter. The <code>Decoder</code> will extract data from the data
+directory, load it into the DB, and report the results.</p>
+<pre class="r"><code>decoder$decode_to_db(d = d, con = db_conn, meta = meta)</code></pre>
+<pre><code>## Data inserted into DB succesfully.
+## Row counts:
+##  - TAG: 1
+##  - TAG_DATA_INSTANT: 350
+##  - TAG_DATA_SUMMARY: 73
+##  - TAG_FIELD_METADATA: 88</code></pre>
+<p>Read <a href="#overwriting-data">here</a> to learn how
+<code>metl</code> handles uploading data to a DB which is already
+present.</p>
 </div>
 </div>
 <div id="use-case-2-extracting-data-to-data.frames" class="section level2" number="4.2">
@@ -608,37 +626,63 @@ collection of <code>data.frames</code>. These are provided as the
 elements of a named list, with the names corresponding to the type of
 data extracted. Which types of data are available will depend on what
 types of data are produced. You can find a table of data types produced
-by each supported tag type.</p>
-<pre class="r"><code>meta =
-  data.frame(
-    tag_num = &quot;1234&quot;,
-    tag_type = &quot;SuperTag&quot;
-  )
-
-decoder = metl::decoders$Decoder_StarOddi_DST
-
-res = decoder$decode_to_dataframes(d = d, meta=meta)
+by each supported tag type <a href="#output-data-types-by-tag">here</a>.</p>
+<p>In this example we used the Benthic sPAT tag from Wildlife Computers,
+which produces three types of data: <code>meta</code>,
+<code>instant</code>, and <code>summary</code>.</p>
+<pre class="r"><code>res = decoder$decode_to_dataframes(d = d, meta=meta)
 
 metadata = res[[&#39;meta&#39;]]
 instant_data = res[[&#39;instant&#39;]]
-summary_data = res[[&#39;summary&#39;]]</code></pre>
+summary_data = res[[&#39;summary&#39;]]
+
+head(metadata)</code></pre>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="18%" />
+<col width="9%" />
+<col width="10%" />
+<col width="9%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">MAKE</th>
+<th align="left">MODEL</th>
+<th align="left">INSTRUMENT_TYPE</th>
+<th align="left">TAG_NUM</th>
+<th align="left">TAG_TYPE</th>
+<th align="right">SEQ_NUM</th>
+<th align="right">SPECIES_CODE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Wildlife Computers</td>
+<td align="left">Benthic sPAT</td>
+<td align="left">popup</td>
+<td align="left">1234</td>
+<td align="left">SuperTag</td>
+<td align="right">1</td>
+<td align="right">20510</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="use-case-3-extract-data-to-.csv-files" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> <strong>Use case 3:
 Extract data to <code>.csv</code> files</strong></h2>
 <p>Finally, the <code>Decoder</code> object can write the extracted data
-to a collection of <code>.csv</code> files in a specified directory.</p>
-<pre class="r"><code>csv_directory = here::here() # Specify the directory into which the csv files should be written
+to a collection of <code>.csv</code> files in a specified directory. The
+<code>Decoder</code> will create one <code>.csv</code> file for each
+type of data produced.</p>
+<pre class="r"><code># `csv_directory` specifies the directory into which the csv files should be written
+decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
 
-meta =
-  data.frame(
-    tag_num = &quot;1234&quot;,
-    tag_type = &quot;SuperTag&quot;
-  )
-
-decoder = metl::decoders$Decoder_StarOddi_DST
-
-decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)</code></pre>
+print(list.files(csv_directory))</code></pre>
+<pre><code>## [1] &quot;field_meta.csv&quot; &quot;instant.csv&quot;    &quot;meta.csv&quot;       &quot;summary.csv&quot;</code></pre>
 </div>
 </div>
 <div id="inputoutput-data" class="section level1" number="5">
@@ -658,15 +702,14 @@ separate. However, it is still important that when we extract data from
 the tag that all relevant data is extracted and provided to the
 user.</p>
 <p>To accommodate this, each <code>Decoder</code> object contains one or
-more <code>DataMap</code> objects, stored as in the
-<code>data_maps</code> list attribute. Each <code>DataMap</code> is
-responsible for the data of a particular type. When a
-<code>Decoder</code> is used to extract data from a directory, it
-outputs one data product for each type of data produced by the tag.
-Additionally, all <code>Decoders</code> output one additional data
-product called <code>field_meta</code>, which provides a plain-text
-description of each field in each output data product, and specified
-which units are used by the field, if any.</p>
+more <code>DataMap</code> objects, stored in the <code>data_maps</code>
+list attribute. Each <code>DataMap</code> is responsible for extracting
+the data of a particular type. When a <code>Decoder</code> is used to
+extract data from a directory, it outputs one data product for each
+<code>DataMap</code>. Additionally, all <code>Decoders</code> output one
+additional data product called <code>field_meta</code>, which provides a
+plain-text description of each field in each output data product, and
+specified which units are used by the field, if any.</p>
 <p>The format of the data products depends on the method employed:</p>
 <ul>
 <li>When using <code>decode_to_db</code>, the <code>Decoder</code> will
@@ -730,12 +773,14 @@ dealing with sensor data, as different tags may use different units to
 represent the same physical quantity.</p>
 <p>The units in which a field is recorded are specified in the
 <code>units</code> attribute of the <code>Field</code> object that
-corresponds to the data field. During extraction, the
-<code>Decoder</code> compares the units of the input <code>Field</code>
-object to those of the output <code>Field</code> object, and performs
-any necessary conversions. This is of particular use when we have
-multiple type of tags which record the same data, but in different
-units.</p>
+corresponds to the data field. <code>metl</code> automatically applies
+the specified units to the incoming data during extraction. During the
+transformation step the <code>Decoder</code> compares the units of the
+input <code>Field</code> object to those of the output
+<code>Field</code> object, and performs any necessary conversions. This
+is of particular use when we have multiple type of tags which record the
+same readings in different units and we wish to standardize their
+outputs.</p>
 </div>
 <div id="proprietary-post-processing-software" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> <strong>Proprietary
@@ -753,10 +798,9 @@ interpretable when the organization of the underlying data is understood
 <p>Either way, the use of these post-processing software packages is
 typically unavoidable when obtaining data from telemetry tags. As such,
 <code>metl</code> is NOT intended as a replacement for these software
-packages, but is rather a followup package used to quickly and
-consistently read and format the data output by these post-processing
-packages. <a href="#list-of-supported-tags">The expected inputs for each
-of the supported tag types are listed below</a>.</p>
+packages, but is rather a followup step used to quickly and consistently
+read and format the data output by these post-processing packages. <a href="#list-of-supported-tags">The expected inputs for each of the
+supported tag types are listed below</a>.</p>
 <p>When using <code>metl</code> to process tag data, it is
 <strong>CRITICAL</strong> that the structure and contents of the data
 have not been altered in ANY way. In order to identify the make/model of
@@ -767,6 +811,40 @@ directory. Even files which are not actually read by the extraction code
 may be important markers used by <code>metl</code> to identify which tag
 type was used to produce the data, and therefore how to extract and
 format the data within.</p>
+</div>
+<div id="overwriting-data" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> <strong>Overwriting
+data</strong></h2>
+<p>When inserting into a DB, <code>metl</code> first checks to see if
+any of the uploaded data is already present in the DB. This is
+accomplished by using <code>UNIQUE</code> constraints set on the target
+table. As an example, instantaneous sensor data is loaded into the
+<em>TAG_DATA_INSTANT</em> table in the ABLTAG database. This table has a
+<code>UNIQUE</code> constraint on three fields: <em>TAG_NUM</em>,
+<em>TAG_TYPE</em>, and <em>TIMESTAMP</em>. Only one record can exist in
+the table for a given combination of values for these three fields,
+effectively meaning that each tag (identified by <em>TAG_NUM</em> and
+<em>TAG_TYPE</em>) can only have one record per instant in time.</p>
+<p>When loading to a DB, <code>metl</code> first loads the data into a
+temporary table, and then uses a <code>MERGE</code> query to join the
+new data to the extant data in the table. Any records which were already
+present in the table and which match records in the new data (according
+to the <code>UNIQUE</code> constraint) are overwritten by their
+counterparts in the new data. This is typically expected to have no
+effect, as the records recorded by a tag are not expected to change
+between uploads. However it does mean that if
+<strong>additional</strong> data is retrieved for a tag, the entire
+dataset can be uploaded to the DB without duplicating records already
+present in the DB.</p>
+<p>If you are configuring <code>metl</code> to upload into a database
+with a different schema, you will need to implement appropriate
+<code>UNIQUE</code> constraints on all of your tables (theoretically,
+this can also be accomplished by using the same fields to define a
+<code>PRIMARY KEY</code>, but this remains untested). Additionally, you
+will need to identify all of the <code>Field</code> objects in your
+output <code>FieldMap</code> which correspond to these
+<code>UNIQUE</code> fields and mark them as such by setting the
+<code>id_field</code> attribute of each of them to <code>TRUE</code></p>
 </div>
 </div>
 <div id="list-of-supported-tags" class="section level1" number="6">
@@ -958,7 +1036,7 @@ data-type, read <a href="#metl-data-type-descriptions">here</a>.</p>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">8</td>
+<td align="left">9</td>
 <td align="left">Wildlife Computers</td>
 <td align="left">MiniPAT</td>
 <td align="left">✓</td>
@@ -969,12 +1047,23 @@ data-type, read <a href="#metl-data-type-descriptions">here</a>.</p>
 <td align="left">✓</td>
 </tr>
 <tr class="even">
-<td align="left">9</td>
+<td align="left">10</td>
 <td align="left">Wildlife Computers</td>
 <td align="left">Benthic sPAT</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
 <td align="left">✓</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">11</td>
+<td align="left">Desert Star</td>
+<td align="left">SeaTag MOD</td>
+<td align="left">✓</td>
+<td align="left">✓</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1411,41 +1500,41 @@ knitr::kable(head(tuff1_instant_dat))</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">TIMESTAMP</th>
 <th align="right">PRESSURE</th>
 <th align="right">TEMPERATURE</th>
+<th align="left">TIMESTAMP</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">1021032000</td>
 <td align="right">-3.29827700 [psi]</td>
 <td align="right">20.12788 [°C]</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="right">1021032900</td>
 <td align="right">-3.95344400 [psi]</td>
 <td align="right">20.12788 [°C]</td>
+<td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="right">1021033800</td>
 <td align="right">-3.29827700 [psi]</td>
 <td align="right">20.12788 [°C]</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="right">1021034700</td>
 <td align="right">-1.33288400 [psi]</td>
 <td align="right">20.21755 [°C]</td>
+<td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="right">1021035600</td>
 <td align="right">-0.02271176 [psi]</td>
 <td align="right">20.21755 [°C]</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="right">1021036500</td>
 <td align="right">-0.02271176 [psi]</td>
 <td align="right">20.19512 [°C]</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
