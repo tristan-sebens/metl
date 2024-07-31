@@ -1493,11 +1493,11 @@ WILDLIFE_COMPUTERS_BENTHIC_SPAT_SUMMARY_DATA_FIELDS =
   )
 
 
-#' @export DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS
-#'
+
 #' DesertStar SeaTag MOD data fields
 #'
 #' Unlke most input data FieldMap objects, the Field objects in this FieldMap have their data_types specified. This is because, unlike the other tag-types, Decoding DesertStar data is a two-step process, so this input FieldMap will initially be used as both the input AND output FieldMap object, and will therefore be checked to ensure that the output values match the expected types.
+#' @export DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS
 DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
   FieldMap(
     field_list =

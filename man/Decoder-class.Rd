@@ -23,6 +23,8 @@ fields. dat_2/dm_2 refer to the data from which we MAY take data to
 put into dat_1. Any fields defined by dm_1$output_data_field_map which
 are missing from dat_1 but are present in dat_2 will be added to dat_1.}
 
+\item{\code{build_db_success_message(rows_updated)}}{Builds a character string message which indicates a successful DB insertion, as well as the number of rows inserted/updated in each table.}
+
 \item{\code{decode_datamap(d, dm, op_fm)}}{Execute all necessary steps to read and transform raw data for one DataMap}
 }}
 

@@ -9,8 +9,6 @@
 #' @field input_data_field_map FieldMap. Map of the data fields and their original format
 #' @field extract_fn function(d) Function which extracts the appropriate data from the files in directory `d`
 #'
-#' @return An instance of the DataMap class
-#'
 #' @export DataMap
 DataMap =
   #----

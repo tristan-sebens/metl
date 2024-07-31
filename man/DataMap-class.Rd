@@ -5,9 +5,6 @@
 \alias{DataMap-class}
 \alias{DataMap}
 \title{DataMap}
-\value{
-An instance of the DataMap class
-}
 \description{
 Provides base structure for all make/model specific tag data maps
 Analagous to a table in the final DB. Desribes programatically how the data
