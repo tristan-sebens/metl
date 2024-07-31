@@ -90,7 +90,7 @@ names(metl::decoders)
 
 Ssome metadata can be read directly from the target directory, but additional metadata must be supplied by the user. This additional data is passed into the function call via the `meta` parameter, and must be formatted as a `data.frame` object.
 
-Below is an example of a `meta` data.frame. This example includes all of the fields which are required to be provided by the user when inserting into the ABLTAG DB. When using this code, you will need to change these values to match the tag you are importing
+Below is an example of a `meta` `data.frame`. This example includes all of the fields which are required to be provided by the user when inserting into the ABLTAG DB. When using this code, you will need to change these values to match the tag you are importing.
 
 
 ``` r
@@ -102,6 +102,8 @@ meta =
     seq_num = 1 # Sequence number. Check DB doc for more details.
   )
 ```
+
+Due to the way that their data is stored, DesertStar tags require a slight modification to this process. See here for more details.
 
 ## **Use case 1: Load data directly into database**
 
@@ -156,7 +158,7 @@ Read [here](#overwriting-data) to learn how `metl` handles uploading data to a D
 
 ## **Use case 2: Extracting data to data.frames**
 
-The `Decoder` can produce the extracted data as a collection of `data.frames`. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced. You can find a table of data types produced by each supported tag type [here](#output-data-types-by-tag).
+The `Decoder` can produce the extracted data as a collection of `data.frame`s. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced. You can find a table of data types produced by each supported tag type [here](#output-data-types-by-tag).
 
 In this example we used the Benthic sPAT tag from Wildlife Computers, which produces three types of data: `meta`, `instant`, and `summary`.
 
@@ -253,6 +255,35 @@ When inserting into a DB, `metl` first checks to see if any of the uploaded data
 When loading to a DB, `metl` first loads the data into a temporary table, and then uses a `MERGE` query to join the new data to the extant data in the table. Any records which were already present in the table and which match records in the new data (according to the `UNIQUE` constraint) are overwritten by their counterparts in the new data. This is typically expected to have no effect, as the records recorded by a tag are not expected to change between uploads. However it does mean that if **additional** data is retrieved for a tag, the entire dataset can be uploaded to the DB without duplicating records already present in the DB.
 
 If you are configuring `metl` to upload into a database with a different schema, you will need to implement appropriate `UNIQUE` constraints on all of your tables (theoretically, this can also be accomplished by using the same fields to define a `PRIMARY KEY`, but this remains untested). Additionally, you will need to identify all of the `Field` objects in your output `FieldMap` which correspond to these `UNIQUE` fields and mark them as such by setting the `id_field` attribute of each of them to `TRUE` 
+
+## **DesertStar tags**
+
+DesertStar tags are unique amongst the supported tags because of the manner in which their data is reported and stored. Most tags, sanely, produce one set of data per tag. By contrast, DesertStar tags report their data by dat, *en masse*. If, for example, you have ten DesertStar tags active in the field, then every day you will receive a report of all of the transmissions which ANY of those tags made, all in a single document. Over the course of several weeks, months, or years, this means that all of the data from our tags will be hopelessly intermixed. In order to import this data, we must first parse it all so that we can distinguish which data is being reported by each tag.
+
+`metl` does implement a `Decoder` object which is capable of doing this, and as such DesertStar tags can be processed in the same manner as all of the other tags. However, there is one caveat: the `meta` input. Typically, this `data.frame` contains metadata which corresponds to a single tag. In the case of DesertStar tags, it must instead contain metadata for *all* of the tags which have data present in the directory. This can be thought of as all of the `meta` `data.frame`s for each of the individual DesertStar tags bound into a single `data.frame`.  
+
+
+``` r
+meta =
+  data.frame(
+    tag_num = c("1234", "2384", "2239", "9867"), # Tag ID number
+    tag_type = c("AB", "AB", "ET", "EC", "TX", "LF"), # Tag type, as specified in ABLTAG DB
+    species_code = 20510, # Species code, as specified in ABLTAG DB
+    seq_num = c(1, 2, 2, 1, 3) # Sequence number. Check DB doc for more details.
+  )
+
+head(meta)
+```
+
+
+|tag_num |tag_type | species_code| seq_num|
+|:-------|:--------|------------:|-------:|
+|1234    |AB       |        20510|       1|
+|2384    |AB       |        20510|       2|
+|2239    |ET       |        20510|       2|
+|9867    |EC       |        20510|       1|
+|8273    |TX       |        20510|       3|
+
 
 # **List of supported tags**
 The following tags are currently supported on the main branch. However, it should be noted that the package has been designed to make adding support for additional tag types to be as accessible as possible.
@@ -381,7 +412,7 @@ knitr::kable(head(tuff1_dat))
 
 Looking at the data returned by our `tuff1_extract_fn`, we see that it contains the fields `timestamp`, `press`, and `temp`, which refer to the timestamp, pressure, and temperature fields respectively. However, `metl` doesn't know anything about the structure of the data we've collected. We need to define a `FieldMap` object to define which fields are present in the dataset.
 
-A `FieldMap` object is primarily composed of a list of `Field` objects. Each `Field` object represents a single field in a data.frame. The `Field` object describes a number of attributes about the field, but for now we'll focus on just two: the name of the field, and the units it's in, if any. 
+A `FieldMap` object is primarily composed of a list of `Field` objects. Each `Field` object represents a single field in a `data.frame`. The `Field` object describes a number of attributes about the field, but for now we'll focus on just two: the name of the field, and the units it's in, if any. 
 
 We'll say that we know that the Tuff1 tags record temperature in degrees Fahrenheit, and pressure in bars.
 
@@ -416,7 +447,7 @@ tuff1_input_fieldmap =
 
 There is an outstanding problem with our incoming data: the `timestamp` field is a character field. `metl` expects that any and all timestamp fields will be formatted as `POSIXct` timestamp objects. This is because by using `POSIXct` objects, we can avoid all of the headaches and complexities associated with timezones.
 
-What is the optimal way to address this? We could simply modify the `extract_fn` to convert the `timestamp` field to a `POSIXct` object before returning the data. However, this would be a poor choice, as it would mean that the `extract_fn` would be responsible for both extracting the data and transforming it, meaning that it would have to have knowledge about the structure and naming of the data.frame it was extracting. This would make the `extract_fn` less flexible, and more difficult to maintain.
+What is the optimal way to address this? We could simply modify the `extract_fn` to convert the `timestamp` field to a `POSIXct` object before returning the data. However, this would be a poor choice, as it would mean that the `extract_fn` would be responsible for both extracting the data and transforming it, meaning that it would have to have knowledge about the structure and naming of the `data.frame` it was extracting. This would make the `extract_fn` less flexible, and more difficult to maintain.
 
 Fortunately there is a better method:
 
@@ -499,7 +530,7 @@ You may notice that despite defining units and a `trans_fn` in out `FieldMap` no
 
 ### **Building a metadata `DataMap`**
 
-We will also need to be able to extract the appropriate tag metadata from each Tuff1 tag. In our simple use-case, the necessary metadata will be limited to the make and model of the tag. We'll expect that the user will provide the tag # in the `meta` data.frame.
+We will also need to be able to extract the appropriate tag metadata from each Tuff1 tag. In our simple use-case, the necessary metadata will be limited to the make and model of the tag. We'll expect that the user will provide the tag # in the `meta` `data.frame`.
 
 
 ``` r

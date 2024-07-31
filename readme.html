@@ -401,6 +401,8 @@ types</strong></a></li>
 post-processing software</strong></a></li>
 <li><a href="#overwriting-data" id="toc-overwriting-data"><span class="toc-section-number">5.5</span> <strong>Overwriting
 data</strong></a></li>
+<li><a href="#desertstar-tags" id="toc-desertstar-tags"><span class="toc-section-number">5.6</span> <strong>DesertStar
+tags</strong></a></li>
 </ul></li>
 <li><a href="#list-of-supported-tags" id="toc-list-of-supported-tags"><span class="toc-section-number">6</span> <strong>List of supported
 tags</strong></a>
@@ -558,10 +560,11 @@ pre-configured <code>Decoder</code> objects shipped with
 additional metadata must be supplied by the user. This additional data
 is passed into the function call via the <code>meta</code> parameter,
 and must be formatted as a <code>data.frame</code> object.</p>
-<p>Below is an example of a <code>meta</code> data.frame. This example
-includes all of the fields which are required to be provided by the user
-when inserting into the ABLTAG DB. When using this code, you will need
-to change these values to match the tag you are importing</p>
+<p>Below is an example of a <code>meta</code> <code>data.frame</code>.
+This example includes all of the fields which are required to be
+provided by the user when inserting into the ABLTAG DB. When using this
+code, you will need to change these values to match the tag you are
+importing.</p>
 <pre class="r"><code>meta =
   data.frame(
     tag_num = &quot;1234&quot;, # Tag ID number
@@ -569,6 +572,8 @@ to change these values to match the tag you are importing</p>
     species_code = 20510, # Species code, as specified in ABLTAG DB
     seq_num = 1 # Sequence number. Check DB doc for more details.
   )</code></pre>
+<p>Due to the way that their data is stored, DesertStar tags require a
+slight modification to this process. See here for more details.</p>
 </div>
 </div>
 <div id="use-case-1-load-data-directly-into-database" class="section level2" number="4.1">
@@ -622,7 +627,7 @@ present.</p>
 <h2><span class="header-section-number">4.2</span> <strong>Use case 2:
 Extracting data to data.frames</strong></h2>
 <p>The <code>Decoder</code> can produce the extracted data as a
-collection of <code>data.frames</code>. These are provided as the
+collection of <code>data.frame</code>s. These are provided as the
 elements of a named list, with the names corresponding to the type of
 data extracted. Which types of data are available will depend on what
 types of data are produced. You can find a table of data types produced
@@ -845,6 +850,81 @@ will need to identify all of the <code>Field</code> objects in your
 output <code>FieldMap</code> which correspond to these
 <code>UNIQUE</code> fields and mark them as such by setting the
 <code>id_field</code> attribute of each of them to <code>TRUE</code></p>
+</div>
+<div id="desertstar-tags" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> <strong>DesertStar
+tags</strong></h2>
+<p>DesertStar tags are unique amongst the supported tags because of the
+manner in which their data is reported and stored. Most tags, sanely,
+produce one set of data per tag. By contrast, DesertStar tags report
+their data by dat, <em>en masse</em>. If, for example, you have ten
+DesertStar tags active in the field, then every day you will receive a
+report of all of the transmissions which ANY of those tags made, all in
+a single document. Over the course of several weeks, months, or years,
+this means that all of the data from our tags will be hopelessly
+intermixed. In order to import this data, we must first parse it all so
+that we can distinguish which data is being reported by each tag.</p>
+<p><code>metl</code> does implement a <code>Decoder</code> object which
+is capable of doing this, and as such DesertStar tags can be processed
+in the same manner as all of the other tags. However, there is one
+caveat: the <code>meta</code> input. Typically, this
+<code>data.frame</code> contains metadata which corresponds to a single
+tag. In the case of DesertStar tags, it must instead contain metadata
+for <em>all</em> of the tags which have data present in the directory.
+This can be thought of as all of the <code>meta</code>
+<code>data.frame</code>s for each of the individual DesertStar tags
+bound into a single <code>data.frame</code>.</p>
+<pre class="r"><code>meta =
+  data.frame(
+    tag_num = c(&quot;1234&quot;, &quot;2384&quot;, &quot;2239&quot;, &quot;9867&quot;), # Tag ID number
+    tag_type = c(&quot;AB&quot;, &quot;AB&quot;, &quot;ET&quot;, &quot;EC&quot;, &quot;TX&quot;, &quot;LF&quot;), # Tag type, as specified in ABLTAG DB
+    species_code = 20510, # Species code, as specified in ABLTAG DB
+    seq_num = c(1, 2, 2, 1, 3) # Sequence number. Check DB doc for more details.
+  )
+
+head(meta)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">tag_num</th>
+<th align="left">tag_type</th>
+<th align="right">species_code</th>
+<th align="right">seq_num</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1234</td>
+<td align="left">AB</td>
+<td align="right">20510</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">2384</td>
+<td align="left">AB</td>
+<td align="right">20510</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">2239</td>
+<td align="left">ET</td>
+<td align="right">20510</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">9867</td>
+<td align="left">EC</td>
+<td align="right">20510</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">8273</td>
+<td align="left">TX</td>
+<td align="right">20510</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="list-of-supported-tags" class="section level1" number="6">
@@ -1256,9 +1336,10 @@ we’ve collected. We need to define a <code>FieldMap</code> object to
 define which fields are present in the dataset.</p>
 <p>A <code>FieldMap</code> object is primarily composed of a list of
 <code>Field</code> objects. Each <code>Field</code> object represents a
-single field in a data.frame. The <code>Field</code> object describes a
-number of attributes about the field, but for now we’ll focus on just
-two: the name of the field, and the units it’s in, if any.</p>
+single field in a <code>data.frame</code>. The <code>Field</code> object
+describes a number of attributes about the field, but for now we’ll
+focus on just two: the name of the field, and the units it’s in, if
+any.</p>
 <p>We’ll say that we know that the Tuff1 tags record temperature in
 degrees Fahrenheit, and pressure in bars.</p>
 <p>The <code>FieldMap</code> for the Tuff1 tag looks something like
@@ -1299,9 +1380,9 @@ complexities associated with timezones.</p>
 would be a poor choice, as it would mean that the
 <code>extract_fn</code> would be responsible for both extracting the
 data and transforming it, meaning that it would have to have knowledge
-about the structure and naming of the data.frame it was extracting. This
-would make the <code>extract_fn</code> less flexible, and more difficult
-to maintain.</p>
+about the structure and naming of the <code>data.frame</code> it was
+extracting. This would make the <code>extract_fn</code> less flexible,
+and more difficult to maintain.</p>
 <p>Fortunately there is a better method:</p>
 </div>
 <div id="the-trans_fn-attribute" class="section level5" number="7.2.1.2.2">
@@ -1430,7 +1511,8 @@ metadata <code>DataMap</code></strong></h3>
 <p>We will also need to be able to extract the appropriate tag metadata
 from each Tuff1 tag. In our simple use-case, the necessary metadata will
 be limited to the make and model of the tag. We’ll expect that the user
-will provide the tag # in the <code>meta</code> data.frame.</p>
+will provide the tag # in the <code>meta</code>
+<code>data.frame</code>.</p>
 <pre class="r"><code># We&#39;ll start by constructing a FieldMap for the make and model Fields:
 tuff1_input_meta_fieldmap =
   FieldMap(
