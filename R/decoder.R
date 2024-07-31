@@ -366,20 +366,21 @@ setRefClass(
                   expr =
                     {
                       # UPSERT the new data into the target table
-                      DBI::dbExecute(
-                        con = con,
-                        statement =
-                          # Build the upsert sql statement
-                          dbplyr::sql_query_upsert(
-                            con = con,
-                            table = output_table_name,
-                            from = temp_table_name,
-                            # Fields used to find unique records
-                            by = id_fs,
-                            # Fields to be updated (non-id fields)
-                            update_cols = names(dat)[!names(dat) %in% id_fs]
-                          )
-                      )
+                      num_rows_updated =
+                        DBI::dbExecute(
+                          con = con,
+                          statement =
+                            # Build the upsert sql statement
+                            dbplyr::sql_query_upsert(
+                              con = con,
+                              table = output_table_name,
+                              from = temp_table_name,
+                              # Fields used to find unique records
+                              by = id_fs,
+                              # Fields to be updated (non-id fields)
+                              update_cols = names(dat)[!names(dat) %in% id_fs]
+                            )
+                        )
                     },
                   error =
                     function(cond) {
@@ -408,6 +409,8 @@ setRefClass(
                 }
               }
           )
+
+          return(num_rows_updated)
         },
 
       verify_data_directory =
@@ -533,6 +536,8 @@ setRefClass(
           decoded_data =
             decode_to_dataframes(...)
 
+
+          rows_updated = list()
           # Start a DB transaction within which each data.frame will be upserted
           # This way, if for some reason one data.frame fails to upsert, the
           # transaction will be rolled back and no data will be saved.
@@ -546,14 +551,19 @@ setRefClass(
                 # Get the data.frame for the current data type
                 dat = decoded_data[[data_type]]
                 # Perform the upsert
-                upsert(
-                  con=con,
-                  dat=dat,
-                  output_data_field_map=output_data_field_map
-                )
+                num_rows_updated =
+                  upsert(
+                    con=con,
+                    dat=dat,
+                    output_data_field_map=output_data_field_map
+                  )
+
+                rows_updated[data_type] = num_rows_updated
               }
             }
           )
+
+          return(writeLines(build_db_success_message(rows_updated)))
         }
     )
 )

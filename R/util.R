@@ -208,3 +208,29 @@ bump_timestamps =
     dplyr::arrange(ix) %>%
     dplyr::pull(timestamp)
   }
+
+
+#' Build message for successful insertion into DB
+#'
+#' Builds a character string message which indicates a successful DB insertion, as well as the number of rows inserted/updated in each table.
+#'
+#' @param rows_updated Named list where each name is the name of an updated DB table, and each value is the number of rows inserted/updated in that table.
+build_db_success_message =
+  function(rows_updated) {
+    paste0(
+      c(
+        "Data inserted into DB succesfully.",
+        "Row counts:",
+        lapply(
+          names(rows_updated),
+          function(data_type) {
+            output_table_name = output_fieldmaps[[data_type]]$table
+            num_rows_updated = rows_updated[[data_type]]
+            return(paste0(" - ", output_table_name, ": ", num_rows_updated))
+          }
+        ) %>%
+          unlist()
+      ),
+      collapse = "\n"
+    )
+  }
