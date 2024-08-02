@@ -3,10 +3,10 @@ title: "METL pipeline"
 subtitle: "Marine Ecosystem & Stock Assessment (**M**ESA) Extract/Transform/Load (**ETL**) pipeline"
 author: "Tristan N. G. Sebens, M.S."
 output: 
-  html_document:
-    title: 'README'
-    keep_md: True
-    css: dark_readme.css
+  md_document:
+    # title: 'README'
+    # keep_md: True
+    # css: dark_readme.css
     toc: True
     toc_depth: 4
     number_sections: True
