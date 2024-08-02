@@ -1,17 +1,20 @@
 ---
-title: "METL pipeline"
-subtitle: "Marine Ecosystem & Stock Assessment (**M**ESA) Extract/Transform/Load (**ETL**) pipeline"
-author: "Tristan N. G. Sebens, M.S."
+title: "METL"
+author: "Tristan N. G. Sebens, M.S. \n"
+date: "`r paste0('Last updated: ', format(Sys.time(), '%d %B, %Y'))`"
 # template: readme_custom_metl.html
 output: 
-  html_document:
-    title: 'README'
-    keep_md: True
-    css: dark_readme.css
-    toc: True
+  github_document:
+    toc: true
     toc_depth: 4
-    # toc_float: true
-    number_sections: True
+    number_sections: true
+  # html_document:
+  #   title: 'README'
+  #   keep_md: true
+  #   css: dark_readme.css
+  #   toc: true
+  #   toc_depth: 4
+  #   number_sections: true
 ---
 
 ```{r, load_package, echo=FALSE, results='hide', message=FALSE}
@@ -20,26 +23,26 @@ devtools::load_all()
 
 # **Description**
 
-  `metl` provides an R interface for users to extract raw sensor data from a variety of different makes/models of marine biological research tags, and standardize the format of their output. This data can be output in one of three ways:
+`metl` (Marine Ecosystem & Stock Assessment (**M**ESA) **E**xtract/**T**ransform/**L**oad) provides an R interface for users to extract raw sensor data from a variety of different makes/models of marine biological research tags, and standardize the format of their output. This data can be output in one of three ways:
 
-1. returning the data as `data.frame` objects
-2. writing the data to `.csv` files
-3. loading the data directly into a database
-
+1.  returning the data as `data.frame` objects
+2.  writing the data to `.csv` files
+3.  loading the data directly into a database
 
 # **Requirements**
 
 `metl` requires the following R packages to be installed:
 
-- `tidyverse` (>= `2.0.0`)
-- `DBI` (>=`1.2.3`)
-- `odbc` (>= `1.5.0`)
+-   `tidyverse` (\>= `2.0.0`)
+-   `DBI` (\>=`1.2.3`)
+-   `odbc` (\>= `1.5.0`)
 
 These package dependencies and others are recorded in the package description, and should be automatically handled by the package manager. We highlight these three here because they are exceptional in terms of causing problems for the package when out of date.
 
 In addition, when using `metl` to load data directly into an **Oracle** database, users must have an up-to-date Oracle obdc driver installed on their machine. Other DB systems (Microsoft SQL Server, PostGRESQL, SQLite, etc.) should work natively with the package.
 
 # **Installation**
+
 `metl` can be installed with `devtools`
 
 ```{r, results='hide', eval=FALSE}
@@ -67,7 +70,6 @@ The file structure of each data directory will vary depending on the make and mo
 ```{r, results='hide', echo=FALSE}
 d = here::here('tests', 'testthat', '_fixtures', '_data', 'wc', 'b_sp', 'ss', '175146')
 ```
-
 
 ### **The Decoder object**
 
@@ -181,6 +183,7 @@ knitr::kable(metadata)
 ```
 
 ## **Use case 3: Extract data to `.csv` files**
+
 ```{r, results='hide', echo=FALSE}
 # Behind the scenes, create a directory into which the output csv files can be written
 csv_directory = here::here('tests', 'testthat', '_fixtures', '_data', '_readme_example', 'output')
@@ -193,7 +196,9 @@ if(dir.exists(csv_directory)) {
 # Recreate the directory anew
 dir.create(csv_directory)
 ```
+
 Finally, the `Decoder` object can write the extracted data to a collection of `.csv` files in a specified directory. The `Decoder` will create one `.csv` file for each type of data produced.
+
 ```{r}
 # `csv_directory` specifies the directory into which the csv files should be written
 decoder$decode_to_csv(d = d, op_d = csv_directory, meta = meta)
@@ -204,22 +209,23 @@ print(list.files(csv_directory))
 # **Input/Output Data**
 
 ## **Output data types**
+
 Tags can record a multitude of different kinds of data and/or data products. For example, a tag may record instantaneous sensor readings, and periodically calculate aggregate summary statistics of those readings over given intervals of time. Most tags also record internal status records, such as current battery levels or details about successful connections to satellites. Each of these data sets are fundamentally distinct from one another, and so they should be kept separate. However, it is still important that when we extract data from the tag that all relevant data is extracted and provided to the user.
 
-To accommodate this, each `Decoder` object contains one or more `DataMap` objects, stored in the `data_maps` list attribute. Each `DataMap` is responsible for extracting the data of a particular type. When a `Decoder` is used to extract data from a directory, it outputs one data product for each `DataMap`. Additionally, all `Decoders` output one additional data product called `field_meta`, which provides a plain-text description of each field in each output data product, and specified which units are used by the field, if any. 
-
+To accommodate this, each `Decoder` object contains one or more `DataMap` objects, stored in the `data_maps` list attribute. Each `DataMap` is responsible for extracting the data of a particular type. When a `Decoder` is used to extract data from a directory, it outputs one data product for each `DataMap`. Additionally, all `Decoders` output one additional data product called `field_meta`, which provides a plain-text description of each field in each output data product, and specified which units are used by the field, if any.
 
 The format of the data products depends on the method employed:
 
-- When using `decode_to_db`, the `Decoder` will attempt to write each data type to its own table. 
-- When using `decode_to_data.frames`, the `Decoder` will produce one `data.frame` for each data type.
-- When using `decoder_to_csv`, the `Decoder` will produce one `.csv` file for each data type.
+-   When using `decode_to_db`, the `Decoder` will attempt to write each data type to its own table.
+-   When using `decode_to_data.frames`, the `Decoder` will produce one `data.frame` for each data type.
+-   When using `decoder_to_csv`, the `Decoder` will produce one `.csv` file for each data type.
 
 `Decoders` can be configured with any number of `DataMaps` in order to support the extraction of any necessary data type. During extraction, the `Decoder` will iterate over the `data_maps` attribute, using the logic defined within the `DataMap` to first extract and then transform the corresponding data.
 
 Those pre-configured `Decoder` objects which ship with `metl` already have a number `DataMap` objects defined for them. Which tags produce which types of data is listed [here](#output-data-types-by-tag), and a description of each of these data types is also provided [here](#metl-data-type-descriptions).
 
 ## **Timestamps**
+
 All timestamp fields in `metl` are formatted as `POSIXct` timestamp objects. This has the advantage of allowing us to specify a given instant in time without having to introduce the complexity of timezones, and sidestepping the confusion of preferred date/time string formats (YYYY-MM-DD HH:MM:SS, DD/MM/YY HH:MM, HH:MM:SS, HH:MM MM DD YYYY, etc). However, it has the notable disadvantage of being completely unreadable to humans in its native form of 10-digit integers (e.g. 1246458240).
 
 To address this users can convert POSIXct timestamps to the character representation of their choice using the `as.POSIXct` function [(documentation here)](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.POSIX*):
@@ -243,6 +249,7 @@ as.POSIXct(posix_int_timestamps)
 ```
 
 ## **Units**
+
 All units in `metl` are specified using the `units` package, the documentation for which can be found [here](https://www.rdocumentation.org/packages/units/versions/0.8-5). This package provides a comprehensive list of SI units, and facilitates conversion from one unit to another. This is particularly useful when dealing with sensor data, as different tags may use different units to represent the same physical quantity.
 
 The units in which a field is recorded are specified in the `units` attribute of the `Field` object that corresponds to the data field. `metl` automatically applies the specified units to the incoming data during extraction. During the transformation step the `Decoder` compares the units of the input `Field` object to those of the output `Field` object, and performs any necessary conversions. This is of particular use when we have multiple type of tags which record the same readings in different units and we wish to standardize their outputs.
@@ -255,19 +262,19 @@ Either way, the use of these post-processing software packages is typically unav
 
 When using `metl` to process tag data, it is **CRITICAL** that the structure and contents of the data have not been altered in ANY way. In order to identify the make/model of the tag which produced a given data directory, `metl` must make some *very* specific assumptions about the naming conventions, file formats, and presence/absence of files in a given directory. Even files which are not actually read by the extraction code may be important markers used by `metl` to identify which tag type was used to produce the data, and therefore how to extract and format the data within.
 
-## **Overwriting data**
+## **Overwriting data** {#overwriting-data}
 
 When inserting into a DB, `metl` first checks to see if any of the uploaded data is already present in the DB. This is accomplished by using `UNIQUE` constraints set on the target table. As an example, instantaneous sensor data is loaded into the *TAG_DATA_INSTANT* table in the ABLTAG database. This table has a `UNIQUE` constraint on three fields: *TAG_NUM*, *TAG_TYPE*, and *TIMESTAMP*. Only one record can exist in the table for a given combination of values for these three fields, effectively meaning that each tag (identified by *TAG_NUM* and *TAG_TYPE*) can only have one record per instant in time.
 
 When loading to a DB, `metl` first loads the data into a temporary table, and then uses a `MERGE` query to join the new data to the extant data in the table. Any records which were already present in the table and which match records in the new data (according to the `UNIQUE` constraint) are overwritten by their counterparts in the new data. This is typically expected to have no effect, as the records recorded by a tag are not expected to change between uploads. However it does mean that if **additional** data is retrieved for a tag, the entire dataset can be uploaded to the DB without duplicating records already present in the DB.
 
-If you are configuring `metl` to upload into a database with a different schema, you will need to implement appropriate `UNIQUE` constraints on all of your tables (theoretically, this can also be accomplished by using the same fields to define a `PRIMARY KEY`, but this remains untested). Additionally, you will need to identify all of the `Field` objects in your output `FieldMap` which correspond to these `UNIQUE` fields and mark them as such by setting the `id_field` attribute of each of them to `TRUE` 
+If you are configuring `metl` to upload into a database with a different schema, you will need to implement appropriate `UNIQUE` constraints on all of your tables (theoretically, this can also be accomplished by using the same fields to define a `PRIMARY KEY`, but this remains untested). Additionally, you will need to identify all of the `Field` objects in your output `FieldMap` which correspond to these `UNIQUE` fields and mark them as such by setting the `id_field` attribute of each of them to `TRUE`
 
 ## **DesertStar tags**
 
 DesertStar tags are unique amongst the supported tags because of the manner in which their data is reported and stored. Most tags, sanely, produce one set of data per tag. By contrast, DesertStar tags report their data by dat, *en masse*. If, for example, you have ten DesertStar tags active in the field, then every day you will receive a report of all of the transmissions which ANY of those tags made, all in a single document. Over the course of several weeks, months, or years, this means that all of the data from our tags will be hopelessly intermixed. In order to import this data, we must first parse it all so that we can distinguish which data is being reported by each tag.
 
-`metl` does implement a `Decoder` object which is capable of doing this, and as such DesertStar tags can be processed in the same manner as all of the other tags. However, there is one caveat: the `meta` input. Typically, this `data.frame` contains metadata which corresponds to a single tag. In the case of DesertStar tags, it must instead contain metadata for *all* of the tags which have data present in the directory. This can be thought of as all of the `meta` `data.frame`s for each of the individual DesertStar tags bound into a single `data.frame`.  
+`metl` does implement a `Decoder` object which is capable of doing this, and as such DesertStar tags can be processed in the same manner as all of the other tags. However, there is one caveat: the `meta` input. Typically, this `data.frame` contains metadata which corresponds to a single tag. In the case of DesertStar tags, it must instead contain metadata for *all* of the tags which have data present in the directory. This can be thought of as all of the `meta` `data.frame`s for each of the individual DesertStar tags bound into a single `data.frame`.
 
 ```{r, eval=FALSE}
 meta =
@@ -293,28 +300,30 @@ meta =
 knitr::kable(meta)
 ```
 
+# **List of supported tags** {#list-of-supported-tags}
 
-# **List of supported tags**
 The following tags are currently supported on the main branch. However, it should be noted that the package has been designed to make adding support for additional tag types to be as accessible as possible.
 
-Manufacture  | Model | `metl` expected inputs
-------------- | ------------- | -------------
-Lotek | LTD 1000 | Output of [**tagtalk32**](https://www.lotek.com/)
-Lotek | LTD 1100 | Output of [**tagtalk32**](https://www.lotek.com/)
-Lotek | LTD 1250 | Output of [**tagtalk32**](https://www.lotek.com/)
-Lotek | LTD 1300 | Output of [**tagtalk32**](https://www.lotek.com/)
-Lotek | LAT 1400 | Output of [**tagtalk32**](https://www.lotek.com/)
-Lotek | LAT 1800 | Output of [**tagtalk32**](https://www.lotek.com/)
-Microwave Telemetry | X-Tag | `.xls` file, product of post-processing software
-Star Oddi | DST | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software)
-Star Oddi | DST milli-F | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software)
-Star Oddi | DST magnetic | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software)
-Wildlife Computers | Benthic sPAT | Data downloaded from [Wildlife Computers portal](https://my.wildlifecomputers.com/)
-Wildlife Computers | MiniPAT | Data downloaded from [Wildlife Computers portal](https://my.wildlifecomputers.com/)
-Desert Star | SeaTag MOD | Output of [**SeaDock**](https://desert-star-systems-llc1.odoo.com/page/software)
+| Manufacture         | Model        | `metl` expected inputs                                                                                |
+|------------------------|------------------------|------------------------|
+| Lotek               | LTD 1000     | Output of [**tagtalk32**](https://www.lotek.com/)                                                     |
+| Lotek               | LTD 1100     | Output of [**tagtalk32**](https://www.lotek.com/)                                                     |
+| Lotek               | LTD 1250     | Output of [**tagtalk32**](https://www.lotek.com/)                                                     |
+| Lotek               | LTD 1300     | Output of [**tagtalk32**](https://www.lotek.com/)                                                     |
+| Lotek               | LAT 1400     | Output of [**tagtalk32**](https://www.lotek.com/)                                                     |
+| Lotek               | LAT 1800     | Output of [**tagtalk32**](https://www.lotek.com/)                                                     |
+| Microwave Telemetry | X-Tag        | `.xls` file, product of post-processing software                                                      |
+| Star Oddi           | DST          | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software) |
+| Star Oddi           | DST milli-F  | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software) |
+| Star Oddi           | DST magnetic | Output of [**SeaStar**](https://www.star-oddi.com/products/accessories/seastar--application-software) |
+| Wildlife Computers  | Benthic sPAT | Data downloaded from [Wildlife Computers portal](https://my.wildlifecomputers.com/)                   |
+| Wildlife Computers  | MiniPAT      | Data downloaded from [Wildlife Computers portal](https://my.wildlifecomputers.com/)                   |
+| Desert Star         | SeaTag MOD   | Output of [**SeaDock**](https://desert-star-systems-llc1.odoo.com/page/software)                      |
 
-## **Output data-types by tag**
+## **Output data-types by tag** {#output-data-types-by-tag}
+
 The types of data output by each of the supported tag types. For a more detailed description of what kind of data is represented by each data-type, read [here](#metl-data-type-descriptions).
+
 ```{r, tag_output_data_types_table, echo=FALSE, format="markdown"}
 data_type_by_tag = data.frame()
 for (dec_ in decoders) {
@@ -349,7 +358,8 @@ data_type_by_tag %>%
   knitr::kable()
 ```
 
-## **`metl` data type descriptions**
+## **`metl` data type descriptions** {#metl-data-type-descriptions}
+
 ```{r, data_type_descriptions, echo=FALSE}
 list(
   meta = "Metadata. Data describing the tag itself, and its deployment",
@@ -368,8 +378,7 @@ list(
   knitr::kable()
 ```
 
-
-# **Extending `metl`**
+# **Extending `metl`** {#extending-metl}
 
 Users can extend `metl` to support additional makes and models of tags, and can customize its inputs/outputs to suit their needs. Doing so requires a stronger overview of the internal mechanics of the package.
 
@@ -377,14 +386,13 @@ Users can extend `metl` to support additional makes and models of tags, and can 
 
 `metl` is an object-oriented package, and uses a handful of custom object classes to define how data is extracted and exported from tags.
 
-- `Decoder` - Encapsulates all logic required to extract and transform all data produced by a particular make/model of tag.
+-   `Decoder` - Encapsulates all logic required to extract and transform all data produced by a particular make/model of tag.
 
-- `DataMap` - Defines the logic required to extract and transform a single type of data (see [data-types documentation](#metl-data-type-descriptions)) produced by a particular make/model of tag.
+-   `DataMap` - Defines the logic required to extract and transform a single type of data (see [data-types documentation](#metl-data-type-descriptions)) produced by a particular make/model of tag.
 
-- `FieldMap` - Defines the fields present in a dataset. Can describe both input and output datasets. Used by the `DataMap` class to define how input fields map to output fields.
+-   `FieldMap` - Defines the fields present in a dataset. Can describe both input and output datasets. Used by the `DataMap` class to define how input fields map to output fields.
 
-- `Field` - Defines a single field in a dataset, either input or output.
-
+-   `Field` - Defines a single field in a dataset, either input or output.
 
 ## **Basic example: adding a new type of tag to `metl`**
 
@@ -395,18 +403,17 @@ tuff1_d =
   here::here('tests', 'testthat', '_fixtures', '_data', '_readme_example', '12345')
 ```
 
-
 ### **Building a custom `DataMap`**
 
-  First, we'll need to define one `DataMap` object for each type of data produced by the Tuff1 tag. See here for more on [data-types](#metl-output-data-types). All tags have metadata, so we'll need to define a metadata `DataMap`. For simplicity, we'll assume that the Tuff1 tag only produces instantaneous sensor data, a common pattern in older tags. This means we'll only have to define 2 `DataMap` objects: one for the metadata, and one for the instantaneous sensor data.
-  
+First, we'll need to define one `DataMap` object for each type of data produced by the Tuff1 tag. See here for more on [data-types](#metl-output-data-types). All tags have metadata, so we'll need to define a metadata `DataMap`. For simplicity, we'll assume that the Tuff1 tag only produces instantaneous sensor data, a common pattern in older tags. This means we'll only have to define 2 `DataMap` objects: one for the metadata, and one for the instantaneous sensor data.
+
 We'll start with the `DataMap` for instantaneous data.
 
 #### **The `extract_fn`**
 
-  To start with, we'll define our `extract_fn`. This is a function which must accept `d` as its only parameter, and return a single `data.frame`, the instant data in its raw input format.
+To start with, we'll define our `extract_fn`. This is a function which must accept `d` as its only parameter, and return a single `data.frame`, the instant data in its raw input format.
 
-Tuff1 tags are simple devices, and very conveniently store all of their instantaneous sensor data in a single `.csv` file. This `.csv` file is always named 'sensor_<id>.csv', where <id> is the four digit ID used to identify the tag. Luckily for us, all of the instant sensor data fields are stored in this `.csv` file, so our `extract_fn` function will be very simple:
+Tuff1 tags are simple devices, and very conveniently store all of their instantaneous sensor data in a single `.csv` file. This `.csv` file is always named 'sensor\_<id>.csv', where <id> is the four digit ID used to identify the tag. Luckily for us, all of the instant sensor data fields are stored in this `.csv` file, so our `extract_fn` function will be very simple:
 
 ```{r, tuff1_extract_fn, results='hide'}
 tuff1_extract_fn = 
@@ -440,7 +447,7 @@ knitr::kable(head(tuff1_dat))
 
 Looking at the data returned by our `tuff1_extract_fn`, we see that it contains the fields `timestamp`, `press`, and `temp`, which refer to the timestamp, pressure, and temperature fields respectively. However, `metl` doesn't know anything about the structure of the data we've collected. We need to define a `FieldMap` object to define which fields are present in the dataset.
 
-A `FieldMap` object is primarily composed of a list of `Field` objects. Each `Field` object represents a single field in a `data.frame`. The `Field` object describes a number of attributes about the field, but for now we'll focus on just two: the name of the field, and the units it's in, if any. 
+A `FieldMap` object is primarily composed of a list of `Field` objects. Each `Field` object represents a single field in a `data.frame`. The `Field` object describes a number of attributes about the field, but for now we'll focus on just two: the name of the field, and the units it's in, if any.
 
 We'll say that we know that the Tuff1 tags record temperature in degrees Fahrenheit, and pressure in bars.
 
@@ -536,14 +543,13 @@ tuff1_datamap_dat =
 knitr::kable(head(tuff1_datamap_dat))
 ```
 
-
 For the sake of simplicity, we're assuming that Tuff1 tags don't record any data other than instantaneous sensor data. However, if they did, we would simply repeat the steps we followed to create our `tuff1_instant_sensor_datamap` but altering the `extract_` function and the `input_data_field_map` as needed to extract the other types of data from the data directory.
 
 You may notice that despite defining units and a `trans_fn` in out `FieldMap` none of the data fields have been transformed. This is because all transformations happen in the `transform` method of the `DataMap` which is called by the `Decoder` object. We'll cover this shortly.
 
 ### **Building a metadata `DataMap`**
 
-We will also need to be able to extract the appropriate tag metadata from each Tuff1 tag. In our simple use-case, the necessary metadata will be limited to the make and model of the tag. We'll expect that the user will provide the tag # in the `meta` `data.frame`.
+We will also need to be able to extract the appropriate tag metadata from each Tuff1 tag. In our simple use-case, the necessary metadata will be limited to the make and model of the tag. We'll expect that the user will provide the tag \# in the `meta` `data.frame`.
 
 ```{r, tuff1_metadata_datamap}
 # We'll start by constructing a FieldMap for the make and model Fields:
@@ -616,7 +622,7 @@ knitr::kable(head(tuff1_instant_dat))
 
 Just like that our Tuff1 `Decoder` is successfully extracting tag data and transforming it to a standardized format! But wait, there's a piece missing! If we look at the instant sensor data output by the `Decoder` we see it's been transformed! The names of the fields have changed, and so have the units of the pressure and temperature fields. How did `metl` know to do this?
 
-There is an additional piece which we have not yet covered, which is the output `FieldMap` object. Just as we used a `FieldMap` to define the structure of our input data, so a second `FieldMap` is used to define the structure of the output data, including the names of the fields, their units, and other miscellaneous attributes. 
+There is an additional piece which we have not yet covered, which is the output `FieldMap` object. Just as we used a `FieldMap` to define the structure of our input data, so a second `FieldMap` is used to define the structure of the output data, including the names of the fields, their units, and other miscellaneous attributes.
 
 `metl` was designed an implemented by the MESA group of Auke Bay Laboratories specifically to upload data into the ABLTAG database. As such, `Decoder` objects default to using output `FieldMap` objects which are pre-configured to output data in the format expected by the ABLTAG database. However, these `FieldMap` objects can be easily customized to output data in any format desired.
 
@@ -659,52 +665,52 @@ As mentioned before, `metl` uses a number of default output `FieldMap` objects t
 
 Often times when extracting data from a data directory, there may be many types of data which we wish to extract. Often, these types of data will be fundamentally distinct from one another, and therefore not appropriate to store in the same `data.frame` or database table. For example, a tag may produce the following kinds of data:
 
-  - **System status data**: *data which describes the state of the tag, such as battery voltage, memory usage, etc.*
-  - **Instantaneous sensor data**: *data which describes the instantaneous state of the tags sensors such as temperature, depth, etc.*
-  - **Summary sensor data**: *data which provides aggregate statistics of the state of the tags sensors over a given time period.*
+-   **System status data**: *data which describes the state of the tag, such as battery voltage, memory usage, etc.*
+-   **Instantaneous sensor data**: *data which describes the instantaneous state of the tags sensors such as temperature, depth, etc.*
+-   **Summary sensor data**: *data which provides aggregate statistics of the state of the tags sensors over a given time period.*
 
-  While these data are distinct, they are also interrelated, and we may wish to keep the associated with one another even if they are not stored in the same table.
+While these data are distinct, they are also interrelated, and we may wish to keep the associated with one another even if they are not stored in the same table.
 
 `metl` accomplishes this using its `DataMap` objects. Each `Decoder` has a `data_maps` attribute: a named list of `DataMap` objects, each of which is responsible for extracting a single type of data from a data directory. The names of the `DataMap` objects in the `data_maps` list are used to identify the type of data they extract.
 
 If we wished to extend our `tuff1_decoder` to also extract summary sensor data, we would simply define a new `DataMap` object for this data, and add it to the `data_maps` list of our `tuff1_decoder` object:
 
-  ```r
+``` r
 # Define the FieldMap for the summary sensor data
 tuff1_summary_fieldmap =
-  FieldMap(
-    field_list =
-      list(
-        START_TIME_FIELD =
-          Field(
-            name = "start_time"
-          ),
-        END_TIME_FIELD =
-          Field(
-            name = "end_time"
-          ),
-        DEPTH_FIELD =
-          Field(
-            name = "depth",
-            units = "m"
-          ),
-        TEMPERATURE_FIELD =
-          Field(
-            name = "temperature",
-            units = "°C"
-          )
-      )
-  )
+FieldMap(
+  field_list =
+    list(
+      START_TIME_FIELD =
+        Field(
+          name = "start_time"
+        ),
+      END_TIME_FIELD =
+        Field(
+          name = "end_time"
+        ),
+      DEPTH_FIELD =
+        Field(
+          name = "depth",
+          units = "m"
+        ),
+      TEMPERATURE_FIELD =
+        Field(
+          name = "temperature",
+          units = "°C"
+        )
+    )
+)
 
 tuff1_summary_datamap =
-  DataMap(
-    input_data_field_map = tuff1_summary_fieldmap,
-    extract_fn =
-      function(d) {
-        # Retrieve the summary sensor data from `d`
-        ...
-      }
-  )
+DataMap(
+  input_data_field_map = tuff1_summary_fieldmap,
+  extract_fn =
+    function(d) {
+      # Retrieve the summary sensor data from `d`
+      ...
+    }
+)
 
 tuff1_decoder$data_maps$summary = tuff1_summary_datamap
 ```
@@ -716,11 +722,12 @@ However, there is a missing piece. We've defined how `tuff1_decoder` should extr
 # **Configuring data input/output format**
 
 ## **FieldMap objects**
+
 As mentioned before, `metl` defines the fields present in a dataset using `FieldMap` objects. These objects are made up of a list of `Field` objects, each of which describes a single field in the dataset. `metl` uses `FieldMap` objects to define both the input format of the data, and using these two together it can transform incoming data into its output format.
 
 To do this, `metl` has to be able to recognize which fields in the input `FieldMap` correspond to the fields in the output `FieldMap`. This is done by matching the list names of the `Field` objects in the input and output `FieldMap` objects. For example, if in our input `FieldMap` object we have a `Field` object with the list name `DEPTH_FIELD`, then in our output `FieldMap` object we must also have a `Field` object with the list name `DEPTH_FIELD`, then `metl` will know that these two fields correspond to one another.
 
-```r
+``` r
 # Example input FieldMap
 input_field_map =
   FieldMap(
@@ -754,7 +761,7 @@ The `Decoder` objects which `metl` ships with are already pre-configured with `F
 
 For example, here we can change the output units of the DEPTH or TEMPERATURE fields:
 
-```r
+``` r
 # Change the output units of the DEPTH field to feet:
 tuff1_decoder$output_fieldmaps$instant$field_list$DEPTH_FIELD$units = "ft"
 # Change the output units of the TEMPERATURE field to F:
@@ -762,8 +769,6 @@ tuff1_decoder$output_fieldmaps$instant$field_list$TEMPERATURE_FIELD$units = "°F
 ```
 
 The `tuff1_decoder` will now output the DEPTH and TEMPERATURE fields in `ft` and `°F`, respectively.
-
-
 
 # **Uploading duplicate data to a database - UNIQUE constraints**
 
@@ -773,91 +778,89 @@ In order to do this, we must have a method of identifying whether or not two rec
 
 ABLTAG uses the following constraints, and we recommend following the same pattern:
 
-- metadata table - UNIQUE constraint on the 'tag_id' field.
-- instant data table - UNIQUE constraint on the combination of the 'tag_id' and 'timestamp' fields
-- summary data table - UNIQUE constraint on the combination of the 'tag_id', 'start_time', and 'end_time' fields
-
+-   metadata table - UNIQUE constraint on the 'tag_id' field.
+-   instant data table - UNIQUE constraint on the combination of the 'tag_id' and 'timestamp' fields
+-   summary data table - UNIQUE constraint on the combination of the 'tag_id', 'start_time', and 'end_time' fields
 
 Input `FieldMap` objects are already defined and used for all supported tags. A list of the list names for each of the fields can be found in the section on [field vocabulary](#field-vocabulary).
 
-# **Field vocabulary**
-  This section lists the standardized names for each type of data produced by the supported tags. Output `FieldMaps` must use these same terms for their `Field` objects in order for the corresponding input fields to be mapped properly.
+# **Field vocabulary** {#field-vocabulary}
+
+This section lists the standardized names for each type of data produced by the supported tags. Output `FieldMaps` must use these same terms for their `Field` objects in order for the corresponding input fields to be mapped properly.
 
 ### **Metadata**
 
-Data type | Field name
-------------- | -------------
-  Tag ID # | `TAG_ID_FIELD`
-Tag brand / make / manufacture | `TAG_MAKE_FIELD`
-Tag model | `TAG_MODEL_FIELD`
+| Data type                      | Field name        |
+|--------------------------------|-------------------|
+| Tag ID \#                      | `TAG_ID_FIELD`    |
+| Tag brand / make / manufacture | `TAG_MAKE_FIELD`  |
+| Tag model                      | `TAG_MODEL_FIELD` |
 
 ### **Instant Data**
 
-Data type | Field name | Units | Notes
-------------- | ------------- | ------------- | -------------
-  Tag ID # | `TAG_ID_FIELD` | Used to link instant data to tag metadata
-Timestamp / Datetime | `TIMESTAMP_FIELD` | POSIXct timestamp
-Latitude | `LATITUDE_FIELD` | °
-Longitude | `LONGITUDE_FIELD` | °
-Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` | | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation
-Latitude error (N) | `LATITUDE_N_ERROR_FIELD`
-Latitude error (S) | `LATITUDE_S_ERROR_FIELD`
-Latitude (U) | `LATITUDE_U_FIELD` | | Some kind of error metric produced by the GPE2 geolocation software. Still not sure what it means.
-Longitude error | `LONGITUDE_ERROR_FIELD`
-Location error - ellipse orientation | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD` | | This field, along with the next three, define an elliptical area of location. I assume this is associated with some kind of confidence interval, but as of yet I don't know which.
-Location error - semi minor axis | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`
-Location error - semi major axis | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`
-Location error - radius | `LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD`
-Pressure | `PRESSURE_FIELD` | psi
-Temperature | `TEMPERATURE_FIELD` | °C
-Depth | `DEPTH_FIELD` | m
-Temperature - delta limit breached (increase) | `TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD` | | This field is produced by Microwave Telemetry X-Tags. The full explanation is too complex for this format. Essentially this field flags records for which the temperature rose too quickly for the reading to be accurate.
-Temperature - delta limit breached (decrease) | `TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD` | | Same as above, but for temperature decreases.
-Depth - delta limit breached (ascending) | `DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD` | | Same as above, but for depth.
-Depth - delta limit breached (descending) | `DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD` | | Same as above, but for depth.
-Tilt (x axis) | `TILT_X_FIELD` | ° | Change in orientation from vertical, x-axis.
-Tilt (y axis) | `TILT_Y_FIELD` | ° | Change in orientation from vertical, y-axis.
-Tilt (z axis) | `TILT_Z_FIELD` | ° | Change in orientation from vertical, z-axis.
-Inclination (away from vertical) | `INCLINATION_FIELD` | ° | Absolute angle of deviation from vertical
-Magnetic field strength | `MAGNETIC_STRENGTH_FIELD` | nT | Strength of the Earth's magnetic field
+| Data type                                     | Field name                                  | Units                                     | Notes                                                                                                                                                                                                                      |
+|------------------|------------------|------------------|------------------|
+| Tag ID \#                                     | `TAG_ID_FIELD`                              | Used to link instant data to tag metadata |                                                                                                                                                                                                                            |
+| Timestamp / Datetime                          | `TIMESTAMP_FIELD`                           | POSIXct timestamp                         |                                                                                                                                                                                                                            |
+| Latitude                                      | `LATITUDE_FIELD`                            | °                                         |                                                                                                                                                                                                                            |
+| Longitude                                     | `LONGITUDE_FIELD`                           | °                                         |                                                                                                                                                                                                                            |
+| Location type (satellite/geolocation)         | `LOCATION_TYPE_FIELD`                       |                                           | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation                                                                                                                               |
+| Latitude error (N)                            | `LATITUDE_N_ERROR_FIELD`                    |                                           |                                                                                                                                                                                                                            |
+| Latitude error (S)                            | `LATITUDE_S_ERROR_FIELD`                    |                                           |                                                                                                                                                                                                                            |
+| Latitude (U)                                  | `LATITUDE_U_FIELD`                          |                                           | Some kind of error metric produced by the GPE2 geolocation software. Still not sure what it means.                                                                                                                         |
+| Longitude error                               | `LONGITUDE_ERROR_FIELD`                     |                                           |                                                                                                                                                                                                                            |
+| Location error - ellipse orientation          | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`  |                                           | This field, along with the next three, define an elliptical area of location. I assume this is associated with some kind of confidence interval, but as of yet I don't know which.                                         |
+| Location error - semi minor axis              | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`  |                                           |                                                                                                                                                                                                                            |
+| Location error - semi major axis              | `LOCATION_ERROR_ELLIPSE_ORIENTATION_FIELD`  |                                           |                                                                                                                                                                                                                            |
+| Location error - radius                       | `LOCATION_ERROR_SEMI_MINOR_AXIS_FIELD`      |                                           |                                                                                                                                                                                                                            |
+| Pressure                                      | `PRESSURE_FIELD`                            | psi                                       |                                                                                                                                                                                                                            |
+| Temperature                                   | `TEMPERATURE_FIELD`                         | °C                                        |                                                                                                                                                                                                                            |
+| Depth                                         | `DEPTH_FIELD`                               | m                                         |                                                                                                                                                                                                                            |
+| Temperature - delta limit breached (increase) | `TEMPERATURE_INCREASE_LIMIT_EXCEEDED_FIELD` |                                           | This field is produced by Microwave Telemetry X-Tags. The full explanation is too complex for this format. Essentially this field flags records for which the temperature rose too quickly for the reading to be accurate. |
+| Temperature - delta limit breached (decrease) | `TEMPERATURE_DECREASE_LIMIT_EXCEEDED_FIELD` |                                           | Same as above, but for temperature decreases.                                                                                                                                                                              |
+| Depth - delta limit breached (ascending)      | `DEPTH_DECREASE_LIMIT_EXCEEDED_FIELD`       |                                           | Same as above, but for depth.                                                                                                                                                                                              |
+| Depth - delta limit breached (descending)     | `DEPTH_INCREASE_LIMIT_EXCEEDED_FIELD`       |                                           | Same as above, but for depth.                                                                                                                                                                                              |
+| Tilt (x axis)                                 | `TILT_X_FIELD`                              | °                                         | Change in orientation from vertical, x-axis.                                                                                                                                                                               |
+| Tilt (y axis)                                 | `TILT_Y_FIELD`                              | °                                         | Change in orientation from vertical, y-axis.                                                                                                                                                                               |
+| Tilt (z axis)                                 | `TILT_Z_FIELD`                              | °                                         | Change in orientation from vertical, z-axis.                                                                                                                                                                               |
+| Inclination (away from vertical)              | `INCLINATION_FIELD`                         | °                                         | Absolute angle of deviation from vertical                                                                                                                                                                                  |
+| Magnetic field strength                       | `MAGNETIC_STRENGTH_FIELD`                   | nT                                        | Strength of the Earth's magnetic field                                                                                                                                                                                     |
 
 ### **Summary data**
 
-Data type | Field name | Units | Notes
-------------- | ------------- | ------------- | -------------
-  Tag ID # | `TAG_ID_FIELD` | Used to link summary data to tag metadata
-Start time | `START_TIME_FIELD` | POSIXct timestamp | The start of the time period which this data describes
-End time | `END_TIME_FIELD` | POSIXct timestamp | The end of the time period which this data describes
-Latitude | `LATITUDE_FIELD` | ° | The average latitude over the time period
-Longitude | `LONGITUDE_FIELD` | ° | The average latitude over the time period
-Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` | | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation
-Minimum depth | `MIN_DEPTH_FIELD` | m | The minimum depth reading encountered by the tag during the time period
-Maximum depth | `MAX_DEPTH_FIELD` | m | The maximum depth reading encountered by the tag during the time period
-Average depth | `MEAN_DEPTH_FIELD` | m | The average depth reading encountered by the tag during the time period
-Minimum temperature | `MIN_TEMP_FIELD` | ° | Same as above, but for temperature
-Maximum temperature | `MAX_TEMP_FIELD` | ° | Same as above, but for temperature
-Average temperature | `MEAN_TEMP_FIELD` | ° | Same as above, but for temperature
-Percentage upright | `UPRIGHT_FIELD` | % | The percentage of the time period that the tag was upright (vertical)
-Knockdowns | `KNOCKDOWN_FIELD` | | The number of times that the tag was knocked over during this time period
+| Data type                             | Field name            | Units                                     | Notes                                                                                        |
+|------------------|------------------|------------------|------------------|
+| Tag ID \#                             | `TAG_ID_FIELD`        | Used to link summary data to tag metadata |                                                                                              |
+| Start time                            | `START_TIME_FIELD`    | POSIXct timestamp                         | The start of the time period which this data describes                                       |
+| End time                              | `END_TIME_FIELD`      | POSIXct timestamp                         | The end of the time period which this data describes                                         |
+| Latitude                              | `LATITUDE_FIELD`      | °                                         | The average latitude over the time period                                                    |
+| Longitude                             | `LONGITUDE_FIELD`     | °                                         | The average latitude over the time period                                                    |
+| Location type (satellite/geolocation) | `LOCATION_TYPE_FIELD` |                                           | Indicates whether this location estimate was produced by a GPS satellite fix, or geolocation |
+| Minimum depth                         | `MIN_DEPTH_FIELD`     | m                                         | The minimum depth reading encountered by the tag during the time period                      |
+| Maximum depth                         | `MAX_DEPTH_FIELD`     | m                                         | The maximum depth reading encountered by the tag during the time period                      |
+| Average depth                         | `MEAN_DEPTH_FIELD`    | m                                         | The average depth reading encountered by the tag during the time period                      |
+| Minimum temperature                   | `MIN_TEMP_FIELD`      | °                                         | Same as above, but for temperature                                                           |
+| Maximum temperature                   | `MAX_TEMP_FIELD`      | °                                         | Same as above, but for temperature                                                           |
+| Average temperature                   | `MEAN_TEMP_FIELD`     | °                                         | Same as above, but for temperature                                                           |
+| Percentage upright                    | `UPRIGHT_FIELD`       | \%                                        | The percentage of the time period that the tag was upright (vertical)                        |
+| Knockdowns                            | `KNOCKDOWN_FIELD`     |                                           | The number of times that the tag was knocked over during this time period                    |
 
+\# **Bug Reporting**
 
-  # **Bug Reporting**
+The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or any other form of input, please create an issue on the GitHub website. Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users.
 
-  The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or any other form of input, please create an issue on the GitHub website. Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users.
+\# **Disclaimer**
 
-  # **Disclaimer**
+This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
-  This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department
-  of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
+\# Contact
 
-  # Contact
+Tristan N G Sebens, M.S.
 
-  Tristan N G Sebens, M.S.
+NOAA Affiliate - MESA Program
 
-  NOAA Affiliate - MESA Program
+[tristan.sebens\@NOAA.gov](mailto:tristan.sebens@NOAA.gov){.email}
 
-  tristan.sebens@NOAA.gov
+[tristan.ng.sebens\@gmail.com](mailto:tristan.ng.sebens@gmail.com){.email}
 
-  tristan.ng.sebens@gmail.com
-
-  1(907)-500-5430
+1(907)-500-5430
