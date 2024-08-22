@@ -663,6 +663,11 @@
          dat =
            ds_extract_packet_type_from_dir(
              d = d,
+             # In the DesertStar documentation, there is mention of an additional
+             # sensor data packet type, SDPT_MODSNS. However, I have thus far
+             # been unable to locate any such packets in the data I have
+             # available, leading me to believe that this is a legacy form of
+             # data packet which is no longer in use.
              packet_name = "SDPT_MODSN2"
            )
 
