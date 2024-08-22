@@ -506,7 +506,7 @@ test_that(
       expect_equal(nrow(data.frame(db_test_table)), 0)
     }
 
-    dc$decode_to_db(d, meta = input_meta, con = db_conn)
+    dc$decode_to_db(d, meta = input_meta, con = db_conn, silent=T)
     res = dc$decode_to_dataframes(d, meta = input_meta)
 
     # Check that each of the tables in the DB were populated correctly

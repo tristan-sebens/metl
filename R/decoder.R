@@ -552,7 +552,7 @@ Decoder =
           },
 
         decode_to_db =
-          function(..., con) {
+          function(..., con, silent=F) {
             # Extract the data from the directory
             decoded_data =
               decode_to_dataframes(...)
@@ -584,7 +584,14 @@ Decoder =
               }
             )
 
-            return(writeLines(build_db_success_message(rows_updated)))
+            # Print results, unless set to silent
+            if(!silent)
+              return(writeLines(build_db_success_message(rows_updated)))
           }
       )
   )
+
+
+
+
+
