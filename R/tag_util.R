@@ -412,3 +412,48 @@ ds_extract_packet_type_from_dir =
 
     return(dat)
   }
+
+ds_stmod_extract_sensor_data =
+  function(fp) {
+    # Extract the packet headers from the file
+    packet_headers = ds_extract_packet_headers(fp)
+
+    # Get the raw packet data from the file
+    df_raw = ds_extract_raw_packet_dataframe(fp)
+
+    # Find the rows which correspond to SeaTag MOD sensor packets
+    sdpt_modsn2_pk_ixs = which(df_raw[["PacketType"]] == "SDPT_MODSN2")
+    # In the DesertStar documentation, there is mention of an additional
+    # sensor data packet type, SDPT_MODSNS. However, I have thus far
+    # been unable to locate any such packets in the data I have
+    # available, leading me to believe that this is a legacy form of
+    # data packet which is no longer in use.
+
+    # Extract the sensor data packets, and rename the columns based on the header
+    sdpt_modsn2_dat =
+      df_raw[sdpt_modsn2_pk_ixs, ] %>%
+      magrittr::set_colnames(c("PacketType", packet_headers[["SDPT_MODSN2"]])) %>%
+      # Drop empty columns
+      dplyr::select(., names(.)[!is.na(names(.))])
+
+    # Identify the ARGOS data packets which correspond to each sensor packet
+    argos_pk_ixs = sdpt_modsn2_pk_ixs - 1
+
+    # Extract the ARGOS data and rename the columns based on the header
+    argos_dat =
+      df_raw[argos_pk_ixs, ] %>%
+      magrittr::set_colnames(c("PacketType", packet_headers[["SDPT_ARGOS"]])) %>%
+      # Drop empty columns
+      dplyr::select(., names(.)[!is.na(names(.))])
+
+    # Join the sensor data with the corresponding ARGOS data
+    # All we really care about is the tag ID #, but will bundle everything else from the ARGOS data in with it,
+    dat =
+      cbind(
+        sdpt_modsn2_dat,
+        argos_dat %>%
+          dplyr::select(-PacketType)
+      )
+
+    return(dat)
+  }

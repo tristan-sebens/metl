@@ -1523,6 +1523,11 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
           ),
         TAG_ID_FIELD =
           Field(
+            name = "PTT",
+            data_type = "varchar"
+          ),
+        TAG_SERIAL_NUMBER_FIELD =
+          Field(
             name = "Tag SN",
             data_type = "varchar"
           ),
