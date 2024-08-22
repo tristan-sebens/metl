@@ -274,6 +274,37 @@ ds_subset_list_by_pattern =
     ]
   }
 
+ds_extract_raw_packet_dataframe =
+  function(fp) {
+    # Extract the raw data from the Excel file, skipping the metadata lines
+    # Format as data.frame with single column 'raw' which contains all values for each row as a single string concatenated with commas
+    df_raw =
+      ds_subset_list_by_pattern(
+        readLines(fp),
+        start_pattern = "Beginning of log"
+      ) %>%
+      data.frame('raw' = .)
+
+    # separate the values of each row into individial columns. First column will always be PacketType. The rest will vary depending on the packet type to which the row corresponds
+    df_value =
+      suppressWarnings(
+        df_raw$raw %>%
+          # Split each raw line into separate fields
+          lapply(
+            function(l) {
+              return(strsplit(l, split=',')[[1]])
+            }
+          ) %>%
+          # Bind the split values into a matrix
+          do.call(rbind, .) %>%
+          # Convert to dataframe
+          as.data.frame() %>%
+          dplyr::rename('PacketType' = 'V1')
+      )
+
+    return(df_value)
+  }
+
 # Parse the DesertStar file and extract the packet header definitions
 ds_extract_packet_headers =
   function(
@@ -322,70 +353,37 @@ ds_extract_packet_headers =
 # data file
 ds_extract_packet_dataframes =
   function(fp) {
-    # Extract the raw packet data from the file
-    packet_defs = ds_extract_packet_headers(fp)
+    # Get the header definitions for all packets present in this file
+    packet_headers =
+      ds_extract_packet_headers(fp)
+
 
     df_raw =
-      ds_subset_list_by_pattern(
-        readLines(fp),
-        start_pattern = "Beginning of log"
-      ) %>%
-      data.frame('raw' = .)
+      ds_extract_raw_packet_dataframe(fp) %>%
+      # Filter out rows that don't correspond to any known packet type
+      dplyr::filter(PacketType %in% names(packet_headers))
 
-    # Organize the raw data into a dataframe, containing the name of the
-    # packet, and the raw data string
-    df_packet =
-      df_raw %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(
-        packet = unlist(strsplit(raw, ','))[[1]]
-      ) %>%
-      dplyr::ungroup() %>%
-      dplyr::filter(
-        stringr::str_detect(
-          packet,
-          "SDPT_"
-        )
-      ) %>%
-      dplyr::select(packet, raw)
 
-    # Initialize an empty list which we will use to collect our results
-    df_packet_list = list()
+    # Split df_value into a list of data.frames, each one corresponding to a different packet type
+    df_packets =
+      split(df_value, df_value$PacketType) %>%
+      lapply(
+        function(df) {
+          # Get the header for this packet type
+          header = packet_headers[[df$PacketType[1]]]
 
-    suppressWarnings(
-      {
-        for (
-          df in
-          df_packet %>%
-          dplyr::group_by(packet) %>%
-          dplyr::group_split(.keep = T)
-        ) {
-          # Get the packet type
-          name = df$packet[[1]]
-          # Build the dataframe
-          value =
-            df$raw %>%
-            # Split each raw line into separate fields
-            lapply(
-              function(l) {
-                return(strsplit(l, split=',')[[1]])
-              }
-            ) %>%
-            # Bind the split values into a matrix
-            do.call(rbind, .) %>%
-            # Convert to dataframe
-            as.data.frame() %>%
-            # Set column names based on packet definition
-            magrittr::set_colnames(c("Packet Type", packet_defs[[df$packet[[1]]]])) %>%
-            # Drop empty columns
-            dplyr::select(., names(.)[!is.na(names(.))])
-          df_packet_list[[name]] = value
+          # Rename the columns of the data.frame to match the header
+          colnames(df) = c("PacketType", header)
+
+          return(
+            df %>%
+              # Drop empty columns
+              dplyr::select(., names(.)[!is.na(names(.))])
+          )
         }
+      )
 
-      }
-    )
-
-    return(df_packet_list)
+    return(df_packets)
   }
 
 # Extract all packets of a given type from a directory.
