@@ -20,7 +20,7 @@
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1567411727  56.0818 -169.5286                                156
       2          1567411965  56.0984 -169.5298                                110
       3          1567413490  56.1029 -169.5376                                  4
@@ -1079,7 +1079,7 @@
     Code
       decode_op[[data_type]]
     Output
-         START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+         START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1          1566972000       1566979200          99 [%]      1 [1]
       2          1566979200       1566986400         100 [%]      0 [1]
       3          1566986400       1566993600          97 [%]     15 [1]
@@ -1250,7 +1250,7 @@
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1568452478  58.5051 -176.6335                                102
       2          1568454226  58.5018 -176.6306                                 83
       3          1568457550  58.5037 -176.6145                                101
@@ -2426,7 +2426,7 @@
     Code
       decode_op[[data_type]]
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1567274400       1567281600          59 [%]    124 [1]
       2           1567281600       1567288800          37 [%]    127 [1]
       3           1567288800       1567296000          53 [%]    127 [1]
@@ -2801,7 +2801,7 @@
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1566227700  55.7981 -169.3614                                 81
       2          1566227700  55.7981 -169.3614                                 81
       3          1566228114  55.8004 -169.3633                                 91
@@ -5309,7 +5309,7 @@
     Code
       decode_op[[data_type]]
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1565258400       1565265600          99 [%]      2 [1]
       2           1565265600       1565272800         100 [%]      0 [1]
       3           1565272800       1565280000          99 [%]      1 [1]
@@ -5620,7 +5620,7 @@
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1566271359  55.2141 -168.0051                                122
       2          1566272599  55.2137 -168.0108                                103
       3          1566273367  55.2164 -168.0167                                 77
@@ -7831,7 +7831,7 @@
     Code
       decode_op[[data_type]]
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1564869600       1564876800          98 [%]      3 [1]
       2           1564876800       1564884000         100 [%]      0 [1]
       3           1564884000       1564891200         100 [%]      0 [1]
@@ -8251,7 +8251,7 @@
     Code
       decode_op[[data_type]]
     Output
-           TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
+           TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
       1           1659283200    NA [m]    5.4 [°C] 2022-07-31 08:00:00 AKDT    1234
       2           1659283800    NA [m]    5.4 [°C] 2022-07-31 08:10:00 AKDT    1234
       3           1659284400    NA [m]    5.4 [°C] 2022-07-31 08:20:00 AKDT    1234
@@ -10657,7 +10657,7 @@
     Code
       decode_op[[data_type]]
     Output
-         START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP
+         START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP
       1          1659283200       1659312000    NA [m]    NA [m]  5.1 [°C]  7.4 [°C]
       2          1659312000       1659340800 179.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]
       3          1659340800       1659369600  95.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]
@@ -10746,7 +10746,7 @@
     Code
       decode_op[[data_type]]
     Output
-           START_TIME_POSIXct END_TIME_POSIXct   DATA_TYPE BIN TIME_OFFSET VALUE
+           START_TIME_POSIXCT END_TIME_POSIXCT   DATA_TYPE BIN TIME_OFFSET VALUE
       1            1627614000       1627632000 temperature   1           0   0.0
       2            1627614000       1627632000 temperature   2           0   0.0
       3            1627614000       1627632000 temperature   3           0   5.7
@@ -22106,7 +22106,7 @@
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
+          TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
       1          1689120000    NA [m]    6.1 [°C] 2023-07-11 16:00:00 AKDT    1234
       2          1689120600    NA [m]    6.1 [°C] 2023-07-11 16:10:00 AKDT    1234
       3          1689121200    NA [m]    6.1 [°C] 2023-07-11 16:20:00 AKDT    1234
@@ -22786,7 +22786,7 @@
     Code
       decode_op[[data_type]]
     Output
-        START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
+        START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
       1         1689120000       1689148800    NA [m]    NA [m] 5.9 [°C] 6.2 [°C]
       2         1689148800       1689177600 295.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]
       3         1689206400       1689235200 391.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]
@@ -22839,7 +22839,7 @@
     Code
       decode_op[[data_type]]
     Output
-           START_TIME_POSIXct END_TIME_POSIXct   DATA_TYPE BIN TIME_OFFSET VALUE
+           START_TIME_POSIXCT END_TIME_POSIXCT   DATA_TYPE BIN TIME_OFFSET VALUE
       1            1626357600       1626422400 temperature   1           0   0.0
       2            1626357600       1626422400 temperature   2           0   0.0
       3            1626357600       1626422400 temperature   3           0  21.9

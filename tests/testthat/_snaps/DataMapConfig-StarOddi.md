@@ -40,7 +40,7 @@
       dat_t_
     Output
       # A tibble: 45,369 x 4
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TIMESTAMP               
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TIMESTAMP               
                      <dbl>   [m]        [°C] <chr>                   
        1       1468358400.  1.1         24.8 2016-07-12 13:20:00 AKDT
        2       1468362000.  1.58        24.0 2016-07-12 14:20:00 AKDT
@@ -112,7 +112,7 @@
       dat_t_
     Output
       # A tibble: 108,889 x 4
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TIMESTAMP               
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TIMESTAMP               
                      <dbl>   [m]        [°C] <chr>                   
        1       1437732000. -10.2        14.0 2015-07-24 02:00:00 AKDT
        2       1437732120. -10.2        14.0 2015-07-24 02:02:00 AKDT
@@ -152,7 +152,7 @@
       dat_t_
     Output
       # A tibble: 697,833 x 4
-         TIMESTAMP_POSIXct  DEPTH TEMPERATURE TIMESTAMP               
+         TIMESTAMP_POSIXCT  DEPTH TEMPERATURE TIMESTAMP               
                      <dbl>    [m]        [°C] <chr>                   
        1       1432739880   -7.82       11.1  2015-05-27 07:17:59 AKDT
        2       1432740000. -27.0        10.7  2015-05-27 07:20:00 AKDT
@@ -227,7 +227,7 @@
       dat_t_
     Output
       # A tibble: 5,381 x 8
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
                      <dbl>   [m]        [°C]    [°]    [°]         [°]
        1       1449144000  -12.9        5.44     -6    -22          59
        2       1449158400. -13.5        6.08     -6    -27          64
@@ -270,7 +270,7 @@
       dat_t_
     Output
       # A tibble: 6,931 x 8
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
                      <dbl>   [m]        [°C]    [°]    [°]         [°]
        1       1449144000  -6.35        5.26      1    -69          30
        2       1449158400. -6.35        5.91      3    -64          32

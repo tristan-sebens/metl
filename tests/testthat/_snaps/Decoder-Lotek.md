@@ -11,14 +11,14 @@
       decode_op[["meta"]]
     Output
          MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       0            0
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct       PRESSURE   TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT       PRESSURE   TEMPERATURE                TIMESTAMP
       1         1084579200 0.869204 [psi] 22.04689 [°C] 2004-05-14 16:00:00 AKDT
       2         1084580100 0.869204 [psi] 22.00061 [°C] 2004-05-14 16:15:00 AKDT
       3         1084581000 0.290357 [psi] 21.97749 [°C] 2004-05-14 16:30:00 AKDT
@@ -232,14 +232,14 @@
       decode_op[["meta"]]
     Output
          MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       0            0
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct          PRESSURE   TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT          PRESSURE   TEMPERATURE                TIMESTAMP
       1         1084579200  0.08012332 [psi] 21.98282 [°C] 2004-05-14 16:00:00 AKDT
       2         1084580100 -0.50312100 [psi] 21.91354 [°C] 2004-05-14 16:15:00 AKDT
       3         1084581000  0.08012332 [psi] 21.89046 [°C] 2004-05-14 16:30:00 AKDT
@@ -453,14 +453,14 @@
       decode_op[["meta"]]
     Output
          MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       0            0
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct          PRESSURE   TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT          PRESSURE   TEMPERATURE                TIMESTAMP
       1          897868800  1.31997500 [psi] 19.31769 [°C] 1998-06-14 16:00:00 AKDT
       2          897872400  0.67445900 [psi] 19.49633 [°C] 1998-06-14 17:00:00 AKDT
       3          897876000  0.67445900 [psi] 19.63059 [°C] 1998-06-14 18:00:00 AKDT
@@ -674,14 +674,14 @@
       decode_op[["meta"]]
     Output
          MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       0            0
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct          PRESSURE    TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT          PRESSURE    TEMPERATURE                TIMESTAMP
       1          895190400    0.209354 [psi] 22.574157 [°C] 1998-05-14 16:00:00 AKDT
       2          895194000    0.000000 [psi]  3.117647 [°C] 1998-05-14 17:00:00 AKDT
       3          895197600    0.209354 [psi] 22.926749 [°C] 1998-05-14 18:00:00 AKDT
@@ -895,14 +895,14 @@
       decode_op[["meta"]]
     Output
          MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       0            0
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct        PRESSURE   TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT        PRESSURE   TEMPERATURE                TIMESTAMP
       1         1021032000 -6.116089 [psi] 23.64611 [°C] 2002-05-10 04:00:00 AKDT
       2         1021032900 -5.456364 [psi] 23.59873 [°C] 2002-05-10 04:15:00 AKDT
       3         1021033800 -6.116089 [psi] 23.55137 [°C] 2002-05-10 04:30:00 AKDT
@@ -1116,14 +1116,14 @@
       decode_op[["meta"]]
     Output
          MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       0            0
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct          PRESSURE   TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT          PRESSURE   TEMPERATURE                TIMESTAMP
       1         1021032000 -3.29827700 [psi] 20.12788 [°C] 2002-05-10 04:00:00 AKDT
       2         1021032900 -3.95344400 [psi] 20.12788 [°C] 2002-05-10 04:15:00 AKDT
       3         1021033800 -3.29827700 [psi] 20.12788 [°C] 2002-05-10 04:30:00 AKDT
@@ -1337,14 +1337,14 @@
       decode_op[["meta"]]
     Output
          MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek  1300        archival    1234 SuperTag       0            0
+      1 Lotek  1300        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct       PRESSURE TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT       PRESSURE TEMPERATURE                TIMESTAMP
       1         1178727840 1.450377 [psi]  23.80 [°C] 2007-05-09 08:24:00 AKDT
       2         1178728080 2.900755 [psi]  24.00 [°C] 2007-05-09 08:28:00 AKDT
       3         1178728320 1.450377 [psi]  23.87 [°C] 2007-05-09 08:32:00 AKDT
@@ -1558,14 +1558,14 @@
       decode_op[["meta"]]
     Output
          MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek  1300        archival    1234 SuperTag       0            0
+      1 Lotek  1300        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct        PRESSURE TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT        PRESSURE TEMPERATURE                TIMESTAMP
       1         1210773840  1.450377 [psi]  22.48 [°C] 2008-05-14 06:04:00 AKDT
       2         1210774080  0.000000 [psi]  22.35 [°C] 2008-05-14 06:08:00 AKDT
       3         1210774320  2.900755 [psi]  22.29 [°C] 2008-05-14 06:12:00 AKDT
@@ -1779,14 +1779,14 @@
       decode_op[["meta"]]
     Output
          MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek  1300        archival    1234 SuperTag       0            0
+      1 Lotek  1300        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-         TIMESTAMP_POSIXct        PRESSURE TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT        PRESSURE TEMPERATURE                TIMESTAMP
       1         1212500160  0.000000 [psi]  23.71 [°C] 2008-06-03 05:36:00 AKDT
       2         1212500400 -1.450377 [psi]  23.47 [°C] 2008-06-03 05:40:00 AKDT
       3         1212500640 -1.450377 [psi]  23.36 [°C] 2008-06-03 05:44:00 AKDT
@@ -2000,14 +2000,14 @@
       decode_op[["meta"]]
     Output
          MAKE     MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1400/1800        archival    1234 SuperTag       0            0
+      1 Lotek 1400/1800        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct        PRESSURE TEMPERATURE                TIMESTAMP
+          TIMESTAMP_POSIXCT        PRESSURE TEMPERATURE                TIMESTAMP
       1          1305561600 -1.725949 [psi]  20.82 [°C] 2011-05-16 08:00:00 AKDT
       2          1305561660 -1.725949 [psi]  20.80 [°C] 2011-05-16 08:01:00 AKDT
       3          1305561720 -2.451138 [psi]  20.80 [°C] 2011-05-16 08:02:00 AKDT
@@ -2257,14 +2257,14 @@
       decode_op[["meta"]]
     Output
          MAKE     MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1400/1800        archival    1234 SuperTag       0            0
+      1 Lotek 1400/1800        archival    1234 SuperTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct         PRESSURE TEMPERATURE                TIMESTAMP
+          TIMESTAMP_POSIXCT         PRESSURE TEMPERATURE                TIMESTAMP
       1          1242122999  0.3625943 [psi]  25.42 [°C] 2009-05-12 02:09:59 AKDT
       2          1242123599  1.0877830 [psi]  24.94 [°C] 2009-05-12 02:19:59 AKDT
       3          1242124199  1.0877830 [psi]  24.76 [°C] 2009-05-12 02:29:59 AKDT
