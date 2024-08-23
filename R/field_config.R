@@ -101,7 +101,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                bump_timestamps(v = as.numeric(v), incr = 1e-1)
+                bump_timestamps(v = as.numeric(v), incr = 1)
               },
             description = "The instant in time to which this record corresponds, expressed as a POSIXct timestamp."
           ),
