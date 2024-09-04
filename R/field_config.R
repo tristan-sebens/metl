@@ -47,7 +47,7 @@ ABLTAG_USER_INPUT_FIELDS =
 #' @export ABLTAG_METADATA_TABLE_FIELDS
 ABLTAG_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG",
+    table = "ELECTRONIC_TAG_METADATA",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -86,7 +86,7 @@ ABLTAG_METADATA_TABLE_FIELDS =
 #' @export ABLTAG_DATA_INSTANT_TABLE_FIELDS
 ABLTAG_DATA_INSTANT_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_INSTANT",
+    table = "ELECTRONIC_TAG_DATA_INSTANT",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
@@ -269,7 +269,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
 #' @export ABLTAG_DATA_SUMMARY_TABLE_FIELDS
 ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_SUMMARY",
+    table = "ELECTRONIC_TAG_DATA_SUMMARY",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
@@ -415,7 +415,7 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_HISTOGRAM_META",
+    table = "ELECTRONIC_TAG_DATA_HISTOGRAM_META",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -460,7 +460,7 @@ ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_HISTOGRAM",
+    table = "ELECTRONIC_TAG_DATA_HISTOGRAM",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -557,7 +557,7 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
 #' @export ABLTAG_PDT_DATA_TABLE_FIELDS
 ABLTAG_PDT_DATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_PDT",
+    table = "ELECTRONIC_TAG_DATA_PDT",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -677,7 +677,7 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
 #' @export ABLTAG_FIELD_METADATA_TABLE_FIELDS
 ABLTAG_FIELD_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_FIELD_METADATA",
+    table = "ELECTRONIC_TAG_FIELD_METADATA",
     field_list =
       list(
         TABLE_NAME_FIELD =
