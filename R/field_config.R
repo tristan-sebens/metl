@@ -23,6 +23,20 @@ ABLTAG_USER_INPUT_FIELDS =
             id_field = T,
             description = "A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB."
           ),
+        TAG_ID_SECONDARY_FIELD =
+          Field(
+            name = "TAG_NUM_SECONDARY",
+            data_type = "double(7, 0)",
+            id_field = F,
+            description = "Secondary tag id value."
+          ),
+        TAG_TYPE_SECONDARY_FIELD =
+          Field(
+            name = "TAG_TYPE_SECONDARY",
+            data_type = "varchar(3)",
+            id_field = F,
+            description = "Secondary tag type value."
+          ),
         TAG_SEQ_NUM_FIELD =
           Field(
             name = "SEQ_NUM",
@@ -54,6 +68,10 @@ ABLTAG_METADATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
+        TAG_ID_SECONDARY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_SECONDARY_FIELD,
+        TAG_TYPE_SECONDARY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_SECONDARY_FIELD,
         TAG_SEQ_NUM_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_SEQ_NUM_FIELD,
         TAG_SPECIES_CODE_FIELD =
@@ -768,6 +786,14 @@ USER_INPUT_FIELDS =
         TAG_TYPE_FIELD =
           Field(
             name = "tag_type"
+          ),
+        TAG_ID_SECONDARY_FIELD =
+          Field(
+            name = "tag_num_secondary"
+          ),
+        TAG_TYPE_SECONDARY_FIELD =
+          Field(
+            name = "tag_type_secondary"
           ),
         TAG_SEQ_NUM_FIELD =
           Field(

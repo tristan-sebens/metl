@@ -1,2 +1,2 @@
-"MAKE","MODEL","INSTRUMENT_TYPE","TAG_NUM","TAG_TYPE","SEQ_NUM","SPECIES_CODE"
-"Wildlife Computers","Benthic sPAT","popup","1234","SuperTag",1,20510
+"MAKE","MODEL","INSTRUMENT_TYPE","TAG_NUM","TAG_TYPE","TAG_NUM_SECONDARY","TAG_TYPE_SECONDARY","SEQ_NUM","SPECIES_CODE"
+"Wildlife Computers","Benthic sPAT","popup","1234","SuperTag","","",1,20510

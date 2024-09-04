@@ -100,6 +100,8 @@ meta =
   data.frame(
     tag_num = "1234", # Tag ID number
     tag_type = "SuperTag", # Tag type, as specified in ABLTAG DB
+    tag_num_secondary = "", # Secondary tag ID number
+    tag_type_secondary = "", # Secondary tag type
     species_code = 20510, # Species code, as specified in ABLTAG DB
     seq_num = 1 # Sequence number. Check DB doc for more details.
   )
