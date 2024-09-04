@@ -10,8 +10,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
+         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -231,8 +233,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
+         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -452,8 +456,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
+         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -673,8 +679,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
+         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -894,8 +902,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
+         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -1115,8 +1125,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1000/1100/1250        archival    1234 SuperTag       1        56789
+         MAKE          MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1000/1100/1250        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -1336,8 +1348,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek  1300        archival    1234 SuperTag       1        56789
+         MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek  1300        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -1557,8 +1571,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek  1300        archival    1234 SuperTag       1        56789
+         MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek  1300        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -1778,8 +1794,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek  1300        archival    1234 SuperTag       1        56789
+         MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek  1300        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -1999,8 +2017,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE     MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1400/1800        archival    1234 SuperTag       1        56789
+         MAKE     MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1400/1800        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -2256,8 +2276,10 @@
     Code
       decode_op[["meta"]]
     Output
-         MAKE     MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Lotek 1400/1800        archival    1234 SuperTag       1        56789
+         MAKE     MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Lotek 1400/1800        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 

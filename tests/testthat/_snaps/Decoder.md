@@ -56,10 +56,10 @@
     Code
       metadata_c
     Output
-                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Microwave Telemetry X-Tag           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -1161,7 +1161,7 @@
       1092        1380168000       NA        NA     SATELLITE   0.672435 [m]
       1093        1380171600       NA        NA     SATELLITE   0.672435 [m]
       1094        1380175151   56.385   134.642     SATELLITE         NA [m]
-      1095        1380175151   56.385   134.642     SATELLITE         NA [m]
+      1095        1380175152   56.385   134.642     SATELLITE         NA [m]
       1096        1380175200       NA        NA     SATELLITE   0.672435 [m]
       1097        1380178800       NA        NA     SATELLITE   0.672435 [m]
       1098        1380182400       NA        NA     SATELLITE   0.000000 [m]
@@ -6066,7 +6066,7 @@
       1092 2013-09-25 20:00:00 AKDT    1234 SuperTag
       1093 2013-09-25 21:00:00 AKDT    1234 SuperTag
       1094 2013-09-25 21:59:11 AKDT    1234 SuperTag
-      1095 2013-09-25 21:59:11 AKDT    1234 SuperTag
+      1095 2013-09-25 21:59:12 AKDT    1234 SuperTag
       1096 2013-09-25 22:00:00 AKDT    1234 SuperTag
       1097 2013-09-25 23:00:00 AKDT    1234 SuperTag
       1098 2013-09-26 00:00:00 AKDT    1234 SuperTag
@@ -6643,10 +6643,10 @@
     Code
       decode_op[["meta"]]
     Output
-                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Microwave Telemetry X-Tag           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -7748,7 +7748,7 @@
       1092        1380168000       NA        NA     SATELLITE   0.672435 [m]
       1093        1380171600       NA        NA     SATELLITE   0.672435 [m]
       1094        1380175151   56.385   134.642     SATELLITE         NA [m]
-      1095        1380175151   56.385   134.642     SATELLITE         NA [m]
+      1095        1380175152   56.385   134.642     SATELLITE         NA [m]
       1096        1380175200       NA        NA     SATELLITE   0.672435 [m]
       1097        1380178800       NA        NA     SATELLITE   0.672435 [m]
       1098        1380182400       NA        NA     SATELLITE   0.000000 [m]
@@ -12653,7 +12653,7 @@
       1092 2013-09-25 20:00:00 AKDT    1234 SuperTag
       1093 2013-09-25 21:00:00 AKDT    1234 SuperTag
       1094 2013-09-25 21:59:11 AKDT    1234 SuperTag
-      1095 2013-09-25 21:59:11 AKDT    1234 SuperTag
+      1095 2013-09-25 21:59:12 AKDT    1234 SuperTag
       1096 2013-09-25 22:00:00 AKDT    1234 SuperTag
       1097 2013-09-25 23:00:00 AKDT    1234 SuperTag
       1098 2013-09-26 00:00:00 AKDT    1234 SuperTag
