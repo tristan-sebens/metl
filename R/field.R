@@ -57,7 +57,10 @@ Field =
 #'
 #' Collection of Field objects, with some added functionality to facilitate the convenient use of said Field objects both within the package and when interfacing with a DB
 #'
-#' @field fields Field. The Field objects contained within this map/
+#' @field table character. The DB table to which this `FieldMap` corresponds
+#' @field description character. A plain language description of the DB to which this `FieldMap` corresponds
+#' @field field_list list. The `Field` objects contained within this map
+#' @field generate_db_meta logical. Boolean value which indicates if this `FieldMap` should be included when generating metadata for the DB
 #'
 #' @export FieldMap
 FieldMap =
@@ -67,11 +70,26 @@ FieldMap =
       list(
         # The DB table this FieldMap represents
         table = "character",
+        # A plain language description of the DB to which this FieldMap corresponds
+        description = "character",
         # The list of fields
-        field_list = "list"
+        field_list = "list",
+        # Boolean value which indicates if this FieldMap should be included when generating metadata for the DB
+        generate_db_meta = "logical"
       ),
     methods =
       list(
+        initialize =
+          function(
+            generate_db_meta = T,
+            ...
+          ) {
+            callSuper(
+              ...,
+              generate_db_meta = generate_db_meta
+            )
+          },
+
         # Generate a field data type list, in the format expected by the DBI package
         generate_data_type_list =
           function(field_list_ = .self$field_list) {

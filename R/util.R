@@ -105,13 +105,18 @@ build_field_metadata_frame =
       )
 
     for (table in names(l)) {
+      # Check if the FieldMap is intended to have DB metadata generated for it
+      if (!dc$output_fieldmaps[[table]]$generate_db_meta)
+        next
       for (field in names(l[[table]])) {
         df__ =
           rbind(
             df__,
             data.frame(
-              table = table,
-              field = field,
+              table =
+                dc$output_fieldmaps[[table]]$table,
+              field =
+                field,
               units =
                 l[[table]][[field]][["units"]],
               description =
