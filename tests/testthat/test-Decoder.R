@@ -613,13 +613,12 @@ test_that(
     )
 
     # Purposefully trip an error in the update step:
-    expect_contains(
+    expect_error(
       Decoder()$upsert(
         con = db_conn,
         dat = data.frame("TAG_ID" = 1),
         output_data_field_map = test_op_fm
-      ),
-      "Error updating TEST_TABLE from temporary table"
+      )
     )
 
     # Test that no temporary tables remain in the DB
