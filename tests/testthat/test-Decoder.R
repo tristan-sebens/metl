@@ -613,7 +613,7 @@ test_that(
     )
 
     # Purposefully trip an error in the update step:
-    expect_error(
+    expect_contains(
       Decoder()$upsert(
         con = db_conn,
         dat = data.frame("TAG_ID" = 1),

@@ -409,7 +409,7 @@ Decoder =
                             cond,
                             paste0(
                               "metl: Error updating ",
-                              output_data_field_map$table,
+                              output_table_name,
                               " from temporary table"
                             )
                           )
