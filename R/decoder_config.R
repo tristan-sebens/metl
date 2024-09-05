@@ -236,16 +236,40 @@ Decoder_DesertStar_SeaTagMOD =
 
 # Aggregate all of the above configured Decoder objects into a named list, then export that list
 #' @export decoders
-decoders = list(
-  "Decoder_Lotek_1000.1100.1250" = Decoder_Lotek_1000.1100.1250,
-  "Decoder_Lotek_1300" = Decoder_Lotek_1300,
-  "Decoder_Lotek_1400.1800" = Decoder_Lotek_1400.1800,
-  "Decoder_MicrowaveTelemetry_XTag_Transmitted" = Decoder_MicrowaveTelemetry_XTag_Transmitted,
-  "Decoder_MicrowaveTelemetry_XTag_Recovered" = Decoder_MicrowaveTelemetry_XTag_Recovered,
-  "Decoder_StarOddi_DST" = Decoder_StarOddi_DST,
-  "Decoder_StarOddi_DSTmagnetic" = Decoder_StarOddi_DSTmagnetic,
-  "Decoder_StarOddi_DST_milliF" = Decoder_StarOddi_DST,
-  "Decoder_WildlifeComputers_MiniPAT" = Decoder_WildlifeComputers_MiniPAT,
-  "Decoder_WildlifeComputers_BenthicSPAT" = Decoder_WildlifeComputers_BenthicSPAT,
-  "Decoder_DesertStar_SeaTagMOD" = Decoder_DesertStar_SeaTagMOD
-)
+decoders =
+  list(
+    "Lotek" =
+      list(
+        "LTD_1000.1100.1250" = Decoder_Lotek_1000.1100.1250,
+        "LTD_1300" = Decoder_Lotek_1300,
+        "LAT_1400.1800" = Decoder_Lotek_1400.1800
+      ),
+    "MicrowaveTelemetry" =
+      list(
+        "XTag_Transmitted" = Decoder_MicrowaveTelemetry_XTag_Transmitted,
+        "XTag_Recovered" = Decoder_MicrowaveTelemetry_XTag_Recovered
+      ),
+    "StarOddi" =
+      list(
+        "DST" = Decoder_StarOddi_DST,
+        "DST_magnetic" = Decoder_StarOddi_DSTmagnetic,
+        "DST_milliF" = Decoder_StarOddi_DST
+      ),
+    "WildlifeComputers" =
+      list(
+        "MiniPAT" = Decoder_WildlifeComputers_MiniPAT,
+        "BenthicSPAT" = Decoder_WildlifeComputers_BenthicSPAT
+      ),
+    "DesertStar" =
+      list(
+        "SeaTagMOD" = Decoder_DesertStar_SeaTagMOD
+      )
+  )
+
+#' Print list of supported tags
+#' @export
+supported_decoders =
+  function() {
+    names_rec(decoders, max_depth = 2)
+
+  }

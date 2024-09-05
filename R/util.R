@@ -11,6 +11,20 @@
 # has class 'Node'. Define it here so the constructor knows what we're talking about
 setOldClass("Node")
 
+#' Recursively traverse nested list, printing out list names
+#'
+#' @param l list to traverse
+#' @param max_depth maximum depth of recursion
+names_rec =
+  function(l, current_depth = 1, max_depth = 1) {
+    for (e in names(l)) {
+      writeLines(paste0(rep("  ", current_depth - 1), e, "\n"))
+      if (is.list(l[[e]])) {
+        names_rec(l[[e]], current_depth + 1, max_depth)
+      }
+    }
+  }
+
 #' Collect and return the messages from a condition stack
 #'
 #' @param cond The condition from which to begin traversing the stack (from child to parent)

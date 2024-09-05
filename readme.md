@@ -143,7 +143,7 @@ For the quickstart example, we will use an included `Decoder` object,
 one configured for the Wildlife Computers Benthic sPAT tag:
 
 ``` r
-decoder = metl::decoders$Decoder_WildlifeComputers_BenthicSPAT
+decoder = metl::decoders$WildlifeComputers$BenthicSPAT
 ```
 
 A list of supported tags can be found [here](#6-list-of-supported-tags),
@@ -151,7 +151,7 @@ and a full list of the pre-configured `Decoder` objects shipped with
 `metl` can be seen by running the following code:
 
 ``` r
-names(metl::decoders)
+metl::supported_decoders()
 ```
 
 #### 4.0.2.1 **The `meta` data.frame**
