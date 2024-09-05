@@ -25,18 +25,16 @@ names_rec =
     }
   }
 
-#' Collect and return the messages from a condition stack
+#' Prepend error message
 #'
-#' @param cond The condition from which to begin traversing the stack (from child to parent)
+#' Utility function to prepend messages to error conditions. Useful for adding additional details about when, where, and how an error occurred
 #'
-#' @return A list of messages from the condition stack, including offending calls
-get_cond_stack_messages =
-  function(cond, l = list()) {
-    slug = paste0("In ", cond$call[1], ": ", cond$message)
-    l = unlist(append(l, slug))
-    if (!is.null(cond$parent))
-      l = get_cond_stack_messages(cond = cond$parent, l = l)
-    return(l)
+#' @param cond The condition to which to prepend the message
+#' @param prefix The message to prepend
+prepend_error_message =
+  function(cond, prefix) {
+    cond$message = append(prefix, cond$message, after = )
+    return(cond)
   }
 
 #' Convert POSIXct timestamp to character string

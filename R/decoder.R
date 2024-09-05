@@ -309,7 +309,6 @@ Decoder =
                 output_data_field_map$table
               )
 
-            # Execute the whole upsert in a try/catch statment so that even if an
             # error is encountered, we can ensure the tempoary table gets dropped.
             tryCatch(
               expr =
@@ -330,8 +329,8 @@ Decoder =
                       # my code. For now, I'm just wrapping the call in this
                       # suppression clause to prevent the message from messing up the
                       # package output.
-                      # suppressMessages(
-                      #   {
+                      suppressMessages(
+                        {
                           # Copy data to temporary table
                           dbplyr::db_copy_to(
                             con = con,
@@ -356,24 +355,21 @@ Decoder =
                             # EXPLICITLY delete the table when we're done with it.
                             temporary = F
                           )
-                      #   }
-                      # )
+                        }
+                      )
                     },
 
                     error =
                       function(cond) {
                         # Raise the error which caused the problem
                         stop(
-                          paste0(
-                            c(
-                              paste0(
-                                "Error creating temporary table ",
-                                temp_table_name,
-                                ":"
-                              ),
-                              get_cond_stack_messages(cond = cond)
-                            ),
-                            collapse = "\n"
+                          # Add an indicator note to the error that it occurred while creating the temporary table
+                          prepend_error_message(
+                            cond,
+                            paste0(
+                              "metl: Error creating temporary table ",
+                              temp_table_name
+                            )
                           )
                         )
                       }
@@ -386,6 +382,7 @@ Decoder =
                   tryCatch(
                     expr =
                       {
+
                         # UPSERT the new data into the target table
                         num_rows_updated =
                           DBI::dbExecute(
@@ -405,17 +402,16 @@ Decoder =
                       },
                     error =
                       function(cond) {
+                        # Raise the error which caused the problem
                         stop(
-                          paste0(
-                            c(
-                              paste0(
-                                "Error updating ",
-                                output_data_field_map$table,
-                                " from temporary table:"
-                              ),
-                              get_cond_stack_messages(cond = cond)
-                            ),
-                            collapse = "\n"
+                          # Add an indicator note to the error that it occurred while creating the temporary table
+                          prepend_error_message(
+                            cond,
+                            paste0(
+                              "metl: Error updating ",
+                              output_data_field_map$table,
+                              " from temporary table"
+                            )
                           )
                         )
                       }
