@@ -80,13 +80,13 @@ The primary work object of the `metl` package is the `Decoder` object, which is 
 For the quickstart example, we will use an included `Decoder` object, one configured for the Wildlife Computers Benthic sPAT tag:
 
 ```{r, results='hide', eval=TRUE}
-decoder = metl::decoders$Decoder_WildlifeComputers_BenthicSPAT
+decoder = metl::decoders$WildlifeComputers$BenthicSPAT
 ```
 
 A list of supported tags can be found [here](#list-of-supported-tags), and a full list of the pre-configured `Decoder` objects shipped with `metl` can be seen by running the following code:
 
 ```{r, eval=FALSE}
-names(metl::decoders)
+metl::supported_decoders()
 ```
 
 #### **The `meta` data.frame**
@@ -100,6 +100,8 @@ meta =
   data.frame(
     tag_num = "1234", # Tag ID number
     tag_type = "SuperTag", # Tag type, as specified in ABLTAG DB
+    tag_num_secondary = "", # Secondary tag ID number
+    tag_type_secondary = "", # Secondary tag type
     species_code = 20510, # Species code, as specified in ABLTAG DB
     seq_num = 1 # Sequence number. Check DB doc for more details.
   )
@@ -326,7 +328,7 @@ The types of data output by each of the supported tag types. For a more detailed
 
 ```{r, tag_output_data_types_table, echo=FALSE, format="markdown"}
 data_type_by_tag = data.frame()
-for (dec_ in decoders) {
+for (dec_ in unlist(decoders)) {
   tag_meta_dm = dec_$data_maps$meta
   
   make_ = tag_meta_dm$make

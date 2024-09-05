@@ -11,7 +11,7 @@
     Code
       dm$transform_fields(dat__, op_fm)
     Output
-         TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP
       1         1659312000 228.5 [m]    5.3 [°C] 2022-07-31 16:00:00 AKDT
       2         1659312600 241.0 [m]    5.3 [°C] 2022-07-31 16:10:00 AKDT
       3         1659313200 228.5 [m]    5.3 [°C] 2022-07-31 16:20:00 AKDT

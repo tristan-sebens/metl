@@ -2,7 +2,7 @@ METL
 ================
 Tristan N. G. Sebens, M.S.
 
-Last updated: 02 August, 2024
+Last updated: 04 September, 2024
 
 - [1 **Description**](#1-description)
 - [2 **Requirements**](#2-requirements)
@@ -143,7 +143,7 @@ For the quickstart example, we will use an included `Decoder` object,
 one configured for the Wildlife Computers Benthic sPAT tag:
 
 ``` r
-decoder = metl::decoders$Decoder_WildlifeComputers_BenthicSPAT
+decoder = metl::decoders$WildlifeComputers$BenthicSPAT
 ```
 
 A list of supported tags can be found [here](#6-list-of-supported-tags),
@@ -151,7 +151,7 @@ and a full list of the pre-configured `Decoder` objects shipped with
 `metl` can be seen by running the following code:
 
 ``` r
-names(metl::decoders)
+metl::supported_decoders()
 ```
 
 #### 4.0.2.1 **The `meta` data.frame**
@@ -171,6 +171,8 @@ meta =
   data.frame(
     tag_num = "1234", # Tag ID number
     tag_type = "SuperTag", # Tag type, as specified in ABLTAG DB
+    tag_num_secondary = "", # Secondary tag ID number
+    tag_type_secondary = "", # Secondary tag type
     species_code = 20510, # Species code, as specified in ABLTAG DB
     seq_num = 1 # Sequence number. Check DB doc for more details.
   )
@@ -224,10 +226,10 @@ decoder$decode_to_db(d = d, con = db_conn, meta = meta)
 
     ## Data inserted into DB succesfully.
     ## Row counts:
-    ##  - TAG: 1
-    ##  - TAG_DATA_INSTANT: 350
-    ##  - TAG_DATA_SUMMARY: 73
-    ##  - TAG_FIELD_METADATA: 88
+    ##  - ELECTRONIC_TAG_METADATA: 1
+    ##  - ELECTRONIC_TAG_DATA_INSTANT: 350
+    ##  - ELECTRONIC_TAG_DATA_SUMMARY: 73
+    ##  - ELECTRONIC_TAG_FIELD_METADATA: 92
 
 Read [here](#55-overwriting-data) to learn how `metl` handles uploading
 data to a DB which is already present.
@@ -254,9 +256,9 @@ summary_data = res[['summary']]
 head(metadata)
 ```
 
-| MAKE               | MODEL        | INSTRUMENT_TYPE | TAG_NUM | TAG_TYPE | SEQ_NUM | SPECIES_CODE |
-|:-------------------|:-------------|:----------------|:--------|:---------|--------:|-------------:|
-| Wildlife Computers | Benthic sPAT | popup           | 1234    | SuperTag |       1 |        20510 |
+| MAKE               | MODEL        | INSTRUMENT_TYPE | TAG_NUM | TAG_TYPE | TAG_NUM_SECONDARY | TAG_TYPE_SECONDARY | SEQ_NUM | SPECIES_CODE |
+|:-------------------|:-------------|:----------------|:--------|:---------|:------------------|:-------------------|--------:|-------------:|
+| Wildlife Computers | Benthic sPAT | popup           | 1234    | SuperTag |                   |                    |       1 |        20510 |
 
 ## 4.3 **Use case 3: Extract data to `.csv` files**
 

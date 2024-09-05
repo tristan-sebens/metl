@@ -660,13 +660,19 @@
      input_data_field_map = DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS,
      extract_fn =
        function(d) {
-         dat =
-           ds_extract_packet_type_from_dir(
-             d = d,
-             packet_name = "SDPT_MODSN2"
-           )
+         # Find all of the data files in the directory
+         fps =
+           list.files(d, pattern = '.csv', ignore.case = T, full.names = T)
 
-         return(dat)
+         dat =
+           fps %>%
+           head(4) %>%
+           lapply(
+             function(fp) {
+               ds_stmod_extract_sensor_data(fp)
+             }
+           ) %>%
+           dplyr::bind_rows()
        }
    )
 

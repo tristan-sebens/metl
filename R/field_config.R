@@ -23,6 +23,20 @@ ABLTAG_USER_INPUT_FIELDS =
             id_field = T,
             description = "A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB."
           ),
+        TAG_ID_SECONDARY_FIELD =
+          Field(
+            name = "TAG_NUM_SECONDARY",
+            data_type = "double(7, 0)",
+            id_field = F,
+            description = "Secondary tag id value."
+          ),
+        TAG_TYPE_SECONDARY_FIELD =
+          Field(
+            name = "TAG_TYPE_SECONDARY",
+            data_type = "varchar(3)",
+            id_field = F,
+            description = "Secondary tag type value."
+          ),
         TAG_SEQ_NUM_FIELD =
           Field(
             name = "SEQ_NUM",
@@ -47,13 +61,17 @@ ABLTAG_USER_INPUT_FIELDS =
 #' @export ABLTAG_METADATA_TABLE_FIELDS
 ABLTAG_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG",
+    table = "ELECTRONIC_TAG_METADATA",
     field_list =
       list(
         TAG_ID_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_FIELD,
         TAG_TYPE_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
+        TAG_ID_SECONDARY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_ID_SECONDARY_FIELD,
+        TAG_TYPE_SECONDARY_FIELD =
+          ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_SECONDARY_FIELD,
         TAG_SEQ_NUM_FIELD =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_SEQ_NUM_FIELD,
         TAG_SPECIES_CODE_FIELD =
@@ -86,7 +104,7 @@ ABLTAG_METADATA_TABLE_FIELDS =
 #' @export ABLTAG_DATA_INSTANT_TABLE_FIELDS
 ABLTAG_DATA_INSTANT_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_INSTANT",
+    table = "ELECTRONIC_TAG_DATA_INSTANT",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
@@ -101,7 +119,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
             id_field = T,
             trans_fn =
               function(v, ...) {
-                bump_timestamps(v = as.numeric(v), incr = 1e-1)
+                bump_timestamps(v = as.numeric(v), incr = 1)
               },
             description = "The instant in time to which this record corresponds, expressed as a POSIXct timestamp."
           ),
@@ -269,7 +287,7 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
 #' @export ABLTAG_DATA_SUMMARY_TABLE_FIELDS
 ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_SUMMARY",
+    table = "ELECTRONIC_TAG_DATA_SUMMARY",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
@@ -415,7 +433,7 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_HISTOGRAM_META",
+    table = "ELECTRONIC_TAG_DATA_HISTOGRAM_META",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -460,7 +478,7 @@ ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_HISTOGRAM",
+    table = "ELECTRONIC_TAG_DATA_HISTOGRAM",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -557,7 +575,7 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
 #' @export ABLTAG_PDT_DATA_TABLE_FIELDS
 ABLTAG_PDT_DATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_DATA_PDT",
+    table = "ELECTRONIC_TAG_DATA_PDT",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -677,7 +695,7 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
 #' @export ABLTAG_FIELD_METADATA_TABLE_FIELDS
 ABLTAG_FIELD_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "TAG_FIELD_METADATA",
+    table = "ELECTRONIC_TAG_FIELD_METADATA",
     field_list =
       list(
         TABLE_NAME_FIELD =
@@ -768,6 +786,14 @@ USER_INPUT_FIELDS =
         TAG_TYPE_FIELD =
           Field(
             name = "tag_type"
+          ),
+        TAG_ID_SECONDARY_FIELD =
+          Field(
+            name = "tag_num_secondary"
+          ),
+        TAG_TYPE_SECONDARY_FIELD =
+          Field(
+            name = "tag_type_secondary"
           ),
         TAG_SEQ_NUM_FIELD =
           Field(
@@ -1522,6 +1548,11 @@ DESERTSTAR_SEATAG_MOD_INSTANT_DATA_FIELDS =
               }
           ),
         TAG_ID_FIELD =
+          Field(
+            name = "PTT",
+            data_type = "varchar"
+          ),
+        TAG_SERIAL_NUMBER_FIELD =
           Field(
             name = "Tag SN",
             data_type = "varchar"

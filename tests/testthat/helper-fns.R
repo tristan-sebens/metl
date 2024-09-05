@@ -87,6 +87,8 @@ build_input_meta_dataset =
     data.frame(
       tag_num = "1234",
       tag_type = "SuperTag",
+      tag_num_secondary = "5678",
+      tag_type_secondary = "UltraTag",
       seq_num = 1,
       species_code = 56789
     )

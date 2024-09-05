@@ -10,10 +10,10 @@
     Code
       decode_op[["meta"]]
     Output
-             MAKE                    MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Star Oddi DST (centi/milli)-(TD/F)        archival    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+             MAKE                    MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE
+      1 Star Oddi DST (centi/milli)-(TD/F)        archival    1234 SuperTag
+        TAG_NUM_SECONDARY TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1              5678           UltraTag       1        56789
 
 ---
 
@@ -21,7 +21,7 @@
       decode_op[[data_type]]
     Output
       # A tibble: 45,369 x 6
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TIMESTAMP                TAG_NUM TAG_TYPE
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TIMESTAMP                TAG_NUM TAG_TYPE
                      <dbl>   [m]        [°C] <chr>                    <chr>   <chr>   
        1       1468358400.  1.1         24.8 2016-07-12 13:20:00 AKDT 1234    SuperTag
        2       1468362000.  1.58        24.0 2016-07-12 14:20:00 AKDT 1234    SuperTag
@@ -47,8 +47,10 @@
     Code
       decode_op[["meta"]]
     Output
-             MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Star Oddi DST magnetic        archival    1234 SuperTag       1        56789
+             MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Star Oddi DST magnetic        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -56,7 +58,7 @@
       decode_op[[data_type]]
     Output
       # A tibble: 5,381 x 10
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
                      <dbl>   [m]        [°C]    [°]    [°]         [°]
        1       1449144000  -12.9        5.44     -6    -22          59
        2       1449158400. -13.5        6.08     -6    -27          64
@@ -84,8 +86,10 @@
     Code
       decode_op[["meta"]]
     Output
-             MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM SPECIES_CODE
-      1 Star Oddi DST magnetic        archival    1234 SuperTag       1        56789
+             MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Star Oddi DST magnetic        archival    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
@@ -93,7 +97,7 @@
       decode_op[[data_type]]
     Output
       # A tibble: 6,931 x 10
-         TIMESTAMP_POSIXct DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
+         TIMESTAMP_POSIXCT DEPTH TEMPERATURE TILT_X TILT_Y INCLINATION
                      <dbl>   [m]        [°C]    [°]    [°]         [°]
        1       1449144000  -6.35        5.26      1    -69          30
        2       1449158400. -6.35        5.91      3    -64          32

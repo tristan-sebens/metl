@@ -3641,7 +3641,7 @@
     Code
       dat_t_
     Output
-           TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP
+           TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP
       1           1659283200    NA [m]    5.4 [°C] 2022-07-31 08:00:00 AKDT
       2           1659283800    NA [m]    5.4 [°C] 2022-07-31 08:10:00 AKDT
       3           1659284400    NA [m]    5.4 [°C] 2022-07-31 08:20:00 AKDT
@@ -5864,7 +5864,7 @@
     Code
       dat_t_
     Output
-          TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP
+          TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP
       1          1689120000    NA [m]    6.1 [°C] 2023-07-11 16:00:00 AKDT
       2          1689120600    NA [m]    6.1 [°C] 2023-07-11 16:10:00 AKDT
       3          1689121200    NA [m]    6.1 [°C] 2023-07-11 16:20:00 AKDT
@@ -6317,7 +6317,7 @@
     Code
       dat_t_
     Output
-         START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP
+         START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP
       1          1659283200       1659312000    NA [m]    NA [m]  5.1 [°C]  7.4 [°C]
       2          1659312000       1659340800 179.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]
       3          1659340800       1659369600  95.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]
@@ -6413,7 +6413,7 @@
     Code
       dat_t_
     Output
-        START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
+        START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
       1         1689120000       1689148800    NA [m]    NA [m] 5.9 [°C] 6.2 [°C]
       2         1689148800       1689177600 295.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]
       3         1689206400       1689235200 391.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]
@@ -15945,7 +15945,7 @@
     Code
       dat_t_
     Output
-         START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+         START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1          1566972000       1566979200          99 [%]      1 [1]
       2          1566979200       1566986400         100 [%]      0 [1]
       3          1566986400       1566993600          97 [%]     15 [1]
@@ -16457,7 +16457,7 @@
     Code
       dat_t_
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1567274400       1567281600          59 [%]    124 [1]
       2           1567281600       1567288800          37 [%]    127 [1]
       3           1567288800       1567296000          53 [%]    127 [1]
@@ -17109,7 +17109,7 @@
     Code
       dat_t_
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1565258400       1565265600          99 [%]      2 [1]
       2           1565265600       1565272800         100 [%]      0 [1]
       3           1565272800       1565280000          99 [%]      1 [1]
@@ -17805,7 +17805,7 @@
     Code
       dat_t_
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1564869600       1564876800          98 [%]      3 [1]
       2           1564876800       1564884000         100 [%]      0 [1]
       3           1564884000       1564891200         100 [%]      0 [1]

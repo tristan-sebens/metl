@@ -10,17 +10,17 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag
+        TAG_NUM_SECONDARY TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1              5678           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1567411727  56.0818 -169.5286                                156
       2          1567411965  56.0984 -169.5298                                110
       3          1567413490  56.1029 -169.5376                                  4
@@ -216,13 +216,13 @@
       193        1567858178  56.3619 -168.9026                                 83
       194        1567858446  56.3610 -168.9047                                 91
       195        1567859874  56.3591 -168.9011                                108
-      196        1567859874  56.3586 -168.9022                                 80
+      196        1567859875  56.3586 -168.9022                                 80
       197        1567861179  56.3565 -168.8943                                123
       198        1567863703  56.3579 -168.8989                                 99
       199        1567864179  56.3593 -168.8890                                 94
       200        1567864417  56.3621 -168.8818                                 82
       201        1567865872  56.3608 -168.8947                                 75
-      202        1567865872  56.3615 -168.8922                                 87
+      202        1567865873  56.3615 -168.8922                                 87
       203        1567867210  56.3620 -168.8967                                 75
       204        1567869556  56.3681 -168.8892                                 72
       205        1567870209  56.3706 -168.8838                                 62
@@ -340,10 +340,10 @@
       317        1568097648  56.5552 -168.5584                                 25
       318        1568097887  56.5643 -168.5832                                107
       319        1568099197  56.5631 -168.5651                                 84
-      320        1568099197  56.5631 -168.5651                                 84
+      320        1568099198  56.5631 -168.5651                                 84
       321        1568099256  56.5654 -168.5704                                 86
       322        1568105091  56.5676 -168.5144                                  2
-      323        1568105091  56.5622 -168.5163                                138
+      323        1568105092  56.5622 -168.5163                                138
       324        1568107585  56.5868 -168.5134                                140
       325        1568108714  56.5785 -168.4820                                 47
       326        1568109574  56.5745 -168.4908                                 82
@@ -918,13 +918,13 @@
       193                   327 2019-09-07 04:09:38 AKDT    1234 SuperTag
       194                   165 2019-09-07 04:14:06 AKDT    1234 SuperTag
       195                   234 2019-09-07 04:37:54 AKDT    1234 SuperTag
-      196                   219 2019-09-07 04:37:54 AKDT    1234 SuperTag
+      196                   219 2019-09-07 04:37:55 AKDT    1234 SuperTag
       197                   530 2019-09-07 04:59:39 AKDT    1234 SuperTag
       198                   209 2019-09-07 05:41:43 AKDT    1234 SuperTag
       199                   250 2019-09-07 05:49:39 AKDT    1234 SuperTag
       200                  1406 2019-09-07 05:53:37 AKDT    1234 SuperTag
       201                   177 2019-09-07 06:17:52 AKDT    1234 SuperTag
-      202                   219 2019-09-07 06:17:52 AKDT    1234 SuperTag
+      202                   219 2019-09-07 06:17:53 AKDT    1234 SuperTag
       203                   194 2019-09-07 06:40:10 AKDT    1234 SuperTag
       204                   396 2019-09-07 07:19:16 AKDT    1234 SuperTag
       205                   243 2019-09-07 07:30:09 AKDT    1234 SuperTag
@@ -1042,10 +1042,10 @@
       317                   564 2019-09-09 22:40:48 AKDT    1234 SuperTag
       318                   675 2019-09-09 22:44:47 AKDT    1234 SuperTag
       319                   353 2019-09-09 23:06:37 AKDT    1234 SuperTag
-      320                   353 2019-09-09 23:06:37 AKDT    1234 SuperTag
+      320                   353 2019-09-09 23:06:38 AKDT    1234 SuperTag
       321                   334 2019-09-09 23:07:36 AKDT    1234 SuperTag
       322                  1679 2019-09-10 00:44:51 AKDT    1234 SuperTag
-      323                  1261 2019-09-10 00:44:51 AKDT    1234 SuperTag
+      323                  1261 2019-09-10 00:44:52 AKDT    1234 SuperTag
       324                  1305 2019-09-10 01:26:25 AKDT    1234 SuperTag
       325                  1267 2019-09-10 01:45:14 AKDT    1234 SuperTag
       326                   306 2019-09-10 01:59:34 AKDT    1234 SuperTag
@@ -1079,7 +1079,7 @@
     Code
       decode_op[[data_type]]
     Output
-         START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+         START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1          1566972000       1566979200          99 [%]      1 [1]
       2          1566979200       1566986400         100 [%]      0 [1]
       3          1566986400       1566993600          97 [%]     15 [1]
@@ -1240,17 +1240,17 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag
+        TAG_NUM_SECONDARY TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1              5678           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1568452478  58.5051 -176.6335                                102
       2          1568454226  58.5018 -176.6306                                 83
       3          1568457550  58.5037 -176.6145                                101
@@ -1339,7 +1339,7 @@
       86         1568604065  58.4785 -176.4524                                103
       87         1568606109  58.4766 -176.4495                                 90
       88         1568606615  58.4802 -176.4453                                103
-      89         1568606615  58.4746 -176.4469                                 66
+      89         1568606616  58.4746 -176.4469                                 66
       90         1568607565  58.4792 -176.4384                                 81
       91         1568610083  58.4758 -176.4388                                 96
       92         1568611947  58.4355 -176.3353                                111
@@ -1450,7 +1450,7 @@
       197        1568788908  58.2337 -177.2640                                100
       198        1568789383  58.2103 -177.2588                                  6
       199        1568790778  58.2204 -177.2729                                139
-      200        1568790778  58.2214 -177.2772                                145
+      200        1568790779  58.2214 -177.2772                                145
       201        1568794905  58.2265 -177.3183                                 78
       202        1568795320  58.2112 -177.2821                                103
       203        1568801287  58.2149 -177.3887                                102
@@ -1530,7 +1530,7 @@
       277        1568961552  58.1261 -178.2654                                 NA
       278        1568962321  58.1109 -178.1056                                109
       279        1568962824  58.1101 -178.1079                                 94
-      280        1568962824  58.1101 -178.1079                                 94
+      280        1568962825  58.1101 -178.1079                                 94
       281        1568963890  58.0962 -178.0922                                108
       282        1568965370  58.1065 -178.1052                                102
       283        1568966612  58.1404 -178.1339                                149
@@ -1629,13 +1629,13 @@
       376        1569162116  58.0243 -178.0458                                126
       377        1569162591  58.0223 -178.0354                                 85
       378        1569163390  58.0255 -178.0353                                 64
-      379        1569163390  58.0244 -178.0355                                 75
+      379        1569163391  58.0244 -178.0355                                 75
       380        1569165135  58.0262 -178.0421                                 74
       381        1569166910  58.0284 -178.0308                                 65
       382        1569168185  58.0254 -178.0360                                145
       383        1569168599  58.0231 -178.0508                                 82
       384        1569169399  58.0242 -178.0415                                 85
-      385        1569169399  58.0252 -178.0445                                 92
+      385        1569169400  58.0252 -178.0445                                 92
       386        1569171086  58.0261 -178.0434                                 83
       387        1569173957  58.0188 -178.0331                                128
       388        1569174668  58.0214 -178.0310                                 46
@@ -2119,7 +2119,7 @@
       86                    326 2019-09-15 19:21:05 AKDT    1234 SuperTag
       87                    378 2019-09-15 19:55:09 AKDT    1234 SuperTag
       88                    699 2019-09-15 20:03:35 AKDT    1234 SuperTag
-      89                    775 2019-09-15 20:03:35 AKDT    1234 SuperTag
+      89                    775 2019-09-15 20:03:36 AKDT    1234 SuperTag
       90                    562 2019-09-15 20:19:25 AKDT    1234 SuperTag
       91                    228 2019-09-15 21:01:23 AKDT    1234 SuperTag
       92                   3047 2019-09-15 21:32:27 AKDT    1234 SuperTag
@@ -2230,7 +2230,7 @@
       197                   205 2019-09-17 22:41:48 AKDT    1234 SuperTag
       198                   362 2019-09-17 22:49:43 AKDT    1234 SuperTag
       199                   643 2019-09-17 23:12:58 AKDT    1234 SuperTag
-      200                   514 2019-09-17 23:12:58 AKDT    1234 SuperTag
+      200                   514 2019-09-17 23:12:59 AKDT    1234 SuperTag
       201                  2444 2019-09-18 00:21:45 AKDT    1234 SuperTag
       202                  1958 2019-09-18 00:28:40 AKDT    1234 SuperTag
       203                   812 2019-09-18 02:08:07 AKDT    1234 SuperTag
@@ -2310,7 +2310,7 @@
       277                 10141 2019-09-19 22:39:12 AKDT    1234 SuperTag
       278                   387 2019-09-19 22:52:01 AKDT    1234 SuperTag
       279                   481 2019-09-19 23:00:24 AKDT    1234 SuperTag
-      280                   481 2019-09-19 23:00:24 AKDT    1234 SuperTag
+      280                   481 2019-09-19 23:00:25 AKDT    1234 SuperTag
       281                  8884 2019-09-19 23:18:10 AKDT    1234 SuperTag
       282                   267 2019-09-19 23:42:50 AKDT    1234 SuperTag
       283                  7123 2019-09-20 00:03:32 AKDT    1234 SuperTag
@@ -2409,13 +2409,13 @@
       376                  3096 2019-09-22 06:21:56 AKDT    1234 SuperTag
       377                   358 2019-09-22 06:29:51 AKDT    1234 SuperTag
       378                   304 2019-09-22 06:43:10 AKDT    1234 SuperTag
-      379                   234 2019-09-22 06:43:10 AKDT    1234 SuperTag
+      379                   234 2019-09-22 06:43:11 AKDT    1234 SuperTag
       380                   167 2019-09-22 07:12:15 AKDT    1234 SuperTag
       381                  3383 2019-09-22 07:41:50 AKDT    1234 SuperTag
       382                   524 2019-09-22 08:03:05 AKDT    1234 SuperTag
       383                   898 2019-09-22 08:09:59 AKDT    1234 SuperTag
       384                   236 2019-09-22 08:23:19 AKDT    1234 SuperTag
-      385                   201 2019-09-22 08:23:19 AKDT    1234 SuperTag
+      385                   201 2019-09-22 08:23:20 AKDT    1234 SuperTag
       386                   227 2019-09-22 08:51:26 AKDT    1234 SuperTag
       387                   494 2019-09-22 09:39:17 AKDT    1234 SuperTag
       388                   599 2019-09-22 09:51:08 AKDT    1234 SuperTag
@@ -2426,7 +2426,7 @@
     Code
       decode_op[[data_type]]
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1567274400       1567281600          59 [%]    124 [1]
       2           1567281600       1567288800          37 [%]    127 [1]
       3           1567288800       1567296000          53 [%]    127 [1]
@@ -2791,19 +2791,19 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag
+        TAG_NUM_SECONDARY TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1              5678           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1566227700  55.7981 -169.3614                                 81
-      2          1566227700  55.7981 -169.3614                                 81
+      2          1566227701  55.7981 -169.3614                                 81
       3          1566228114  55.8004 -169.3633                                 91
       4          1566228854  55.7903 -169.3511                                120
       5          1566229298  55.8134 -169.0927                                 NA
@@ -3015,7 +3015,7 @@
       211        1566560267  55.9742 -169.9832                                146
       212        1566560922  55.9687 -169.9853                                 82
       213        1566562434  55.9674 -169.9593                                 99
-      214        1566562434  55.9499 -169.9187                                106
+      214        1566562435  55.9499 -169.9187                                106
       215        1566562523  55.9672 -169.9683                                 79
       216        1566565875  55.9625 -169.9666                                 99
       217        1566566289  55.9601 -169.9662                                 98
@@ -3186,7 +3186,7 @@
       382        1566831889  55.9595 -169.8533                                114
       383        1566835748  55.9508 -169.8591                                 80
       384        1566837620  55.9481 -169.8665                                 64
-      385        1566837620  55.9475 -169.8781                                 85
+      385        1566837621  55.9475 -169.8781                                 85
       386        1566839255  55.9463 -169.8596                                117
       387        1566841693  55.9495 -169.8715                                111
       388        1566855183  55.9590 -169.8571                                109
@@ -3209,7 +3209,7 @@
       405        1566884537  55.9429 -169.8599                                154
       406        1566885546  55.9248 -169.8490                                101
       407        1566887538  55.9245 -169.8543                                 88
-      408        1566887538  55.9238 -169.8561                                 88
+      408        1566887539  55.9238 -169.8561                                 88
       409        1566889025  55.9231 -169.8486                                 85
       410        1566891366  55.9126 -169.8462                                139
       411        1566893438  55.9313 -169.8600                                140
@@ -3406,7 +3406,7 @@
       602        1567222855  56.3353 -170.0800                                 71
       603        1567223656  56.3328 -170.0889                                 92
       604        1567224396  56.3302 -170.0909                                101
-      605        1567224396  56.3318 -170.0934                                 89
+      605        1567224397  56.3318 -170.0934                                 89
       606        1567226123  56.3286 -170.1027                                 91
       607        1567228323  56.3266 -170.1172                                 92
       608        1567228651  56.3170 -170.1079                                  3
@@ -3558,12 +3558,12 @@
       754        1567514777  56.2088 -170.0588                                 29
       755        1567515640  56.2032 -170.0552                                 99
       756        1567517037  56.2077 -170.0478                                141
-      757        1567517037  56.2052 -170.0439                                146
+      757        1567517038  56.2052 -170.0439                                146
       758        1567520104  56.2197 -170.0722                                100
       759        1567520223  56.2167 -170.0350                                 95
       760        1567520520  56.2155 -170.0418                                 76
       761        1567523044  56.2207 -170.0331                                 78
-      762        1567523044  56.2225 -170.0245                                 75
+      762        1567523045  56.2225 -170.0245                                 75
       763        1567524882  56.2231 -170.0136                                 73
       764        1567526039  56.2264 -170.0067                                 66
       765        1567526248  56.2285 -169.9949                                 84
@@ -4471,7 +4471,7 @@
       833                           1098                             73
           LOCATION_ERROR_RADIUS                TIMESTAMP TAG_NUM TAG_TYPE
       1                     159 2019-08-19 07:15:00 AKDT    1234 SuperTag
-      2                     159 2019-08-19 07:15:00 AKDT    1234 SuperTag
+      2                     159 2019-08-19 07:15:01 AKDT    1234 SuperTag
       3                     233 2019-08-19 07:21:54 AKDT    1234 SuperTag
       4                    2140 2019-08-19 07:34:14 AKDT    1234 SuperTag
       5                   42961 2019-08-19 07:41:38 AKDT    1234 SuperTag
@@ -4683,7 +4683,7 @@
       211                   818 2019-08-23 03:37:47 AKDT    1234 SuperTag
       212                   494 2019-08-23 03:48:42 AKDT    1234 SuperTag
       213                   542 2019-08-23 04:13:54 AKDT    1234 SuperTag
-      214                  1160 2019-08-23 04:13:54 AKDT    1234 SuperTag
+      214                  1160 2019-08-23 04:13:55 AKDT    1234 SuperTag
       215                   223 2019-08-23 04:15:23 AKDT    1234 SuperTag
       216                   326 2019-08-23 05:11:15 AKDT    1234 SuperTag
       217                   216 2019-08-23 05:18:09 AKDT    1234 SuperTag
@@ -4854,7 +4854,7 @@
       382                   273 2019-08-26 07:04:49 AKDT    1234 SuperTag
       383                   735 2019-08-26 08:09:08 AKDT    1234 SuperTag
       384                   188 2019-08-26 08:40:20 AKDT    1234 SuperTag
-      385                   643 2019-08-26 08:40:20 AKDT    1234 SuperTag
+      385                   643 2019-08-26 08:40:21 AKDT    1234 SuperTag
       386                   496 2019-08-26 09:07:35 AKDT    1234 SuperTag
       387                   582 2019-08-26 09:48:13 AKDT    1234 SuperTag
       388                   608 2019-08-26 13:33:03 AKDT    1234 SuperTag
@@ -4877,7 +4877,7 @@
       405                   885 2019-08-26 21:42:17 AKDT    1234 SuperTag
       406                   445 2019-08-26 21:59:06 AKDT    1234 SuperTag
       407                   473 2019-08-26 22:32:18 AKDT    1234 SuperTag
-      408                   404 2019-08-26 22:32:18 AKDT    1234 SuperTag
+      408                   404 2019-08-26 22:32:19 AKDT    1234 SuperTag
       409                   455 2019-08-26 22:57:05 AKDT    1234 SuperTag
       410                  2128 2019-08-26 23:36:06 AKDT    1234 SuperTag
       411                  1035 2019-08-27 00:10:38 AKDT    1234 SuperTag
@@ -5074,7 +5074,7 @@
       602                   368 2019-08-30 19:40:55 AKDT    1234 SuperTag
       603                   242 2019-08-30 19:54:16 AKDT    1234 SuperTag
       604                   297 2019-08-30 20:06:36 AKDT    1234 SuperTag
-      605                   347 2019-08-30 20:06:36 AKDT    1234 SuperTag
+      605                   347 2019-08-30 20:06:37 AKDT    1234 SuperTag
       606                   235 2019-08-30 20:35:23 AKDT    1234 SuperTag
       607                   717 2019-08-30 21:12:03 AKDT    1234 SuperTag
       608                  3259 2019-08-30 21:17:31 AKDT    1234 SuperTag
@@ -5226,12 +5226,12 @@
       754                   958 2019-09-03 04:46:17 AKDT    1234 SuperTag
       755                   275 2019-09-03 05:00:40 AKDT    1234 SuperTag
       756                   603 2019-09-03 05:23:57 AKDT    1234 SuperTag
-      757                   975 2019-09-03 05:23:57 AKDT    1234 SuperTag
+      757                   975 2019-09-03 05:23:58 AKDT    1234 SuperTag
       758                  1088 2019-09-03 06:15:04 AKDT    1234 SuperTag
       759                   275 2019-09-03 06:17:03 AKDT    1234 SuperTag
       760                   310 2019-09-03 06:22:00 AKDT    1234 SuperTag
       761                  2136 2019-09-03 07:04:04 AKDT    1234 SuperTag
-      762                   312 2019-09-03 07:04:04 AKDT    1234 SuperTag
+      762                   312 2019-09-03 07:04:05 AKDT    1234 SuperTag
       763                   867 2019-09-03 07:34:42 AKDT    1234 SuperTag
       764                   214 2019-09-03 07:53:59 AKDT    1234 SuperTag
       765                  3486 2019-09-03 07:57:28 AKDT    1234 SuperTag
@@ -5309,7 +5309,7 @@
     Code
       decode_op[[data_type]]
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1565258400       1565265600          99 [%]      2 [1]
       2           1565265600       1565272800         100 [%]      0 [1]
       3           1565272800       1565280000          99 [%]      1 [1]
@@ -5610,17 +5610,17 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                      MAKE        MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE
+      1 Wildlife Computers Benthic sPAT           popup    1234 SuperTag
+        TAG_NUM_SECONDARY TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1              5678           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
+          TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_ERROR_ELLIPSE_ORIENTATION
       1          1566271359  55.2141 -168.0051                                122
       2          1566272599  55.2137 -168.0108                                103
       3          1566273367  55.2164 -168.0167                                 77
@@ -5717,7 +5717,7 @@
       94         1566403968  55.1934 -168.6734                                 83
       95         1566407554  55.2079 -168.6951                                 60
       96         1566409063  55.2057 -168.6950                                132
-      97         1566409063  55.2122 -168.6826                                 93
+      97         1566409064  55.2122 -168.6826                                 93
       98         1566410010  55.2182 -168.7116                                 86
       99         1566420626  55.2766 -168.7643                                 99
       100        1566426440  55.3142 -168.8104                                100
@@ -6030,7 +6030,7 @@
       407        1566945622  55.2130 -169.9521                                 98
       408        1566947661  55.2108 -169.9536                                101
       409        1566951537  55.2062 -169.9580                                 79
-      410        1566951537  55.2199 -169.9051                                 75
+      410        1566951538  55.2199 -169.9051                                 75
       411        1566953758  55.2058 -169.9552                                 96
       412        1566957516  55.2026 -169.9561                                 99
       413        1566957724  55.2034 -169.9585                                 87
@@ -6190,7 +6190,7 @@
       567        1567238084  54.9546 -170.3160                                 79
       568        1567240625  54.9610 -170.3110                                 91
       569        1567244008  54.9479 -170.2953                                142
-      570        1567244008  54.9479 -170.2953                                142
+      570        1567244009  54.9479 -170.2953                                142
       571        1567246388  54.9558 -170.3090                                 59
       572        1567247693  54.9556 -170.3089                                138
       573        1567252411  54.9577 -170.3116                                 85
@@ -7187,7 +7187,7 @@
       94                    150 2019-08-21 08:12:48 AKDT    1234 SuperTag
       95                    446 2019-08-21 09:12:34 AKDT    1234 SuperTag
       96                    747 2019-08-21 09:37:43 AKDT    1234 SuperTag
-      97                    442 2019-08-21 09:37:43 AKDT    1234 SuperTag
+      97                    442 2019-08-21 09:37:44 AKDT    1234 SuperTag
       98                    234 2019-08-21 09:53:30 AKDT    1234 SuperTag
       99                   1521 2019-08-21 12:50:26 AKDT    1234 SuperTag
       100                   262 2019-08-21 14:27:20 AKDT    1234 SuperTag
@@ -7500,7 +7500,7 @@
       407                   194 2019-08-27 14:40:22 AKDT    1234 SuperTag
       408                   260 2019-08-27 15:14:21 AKDT    1234 SuperTag
       409                   502 2019-08-27 16:18:57 AKDT    1234 SuperTag
-      410                  1631 2019-08-27 16:18:57 AKDT    1234 SuperTag
+      410                  1631 2019-08-27 16:18:58 AKDT    1234 SuperTag
       411                   241 2019-08-27 16:55:58 AKDT    1234 SuperTag
       412                   212 2019-08-27 17:58:36 AKDT    1234 SuperTag
       413                   164 2019-08-27 18:02:04 AKDT    1234 SuperTag
@@ -7660,7 +7660,7 @@
       567                   242 2019-08-30 23:54:44 AKDT    1234 SuperTag
       568                  1580 2019-08-31 00:37:05 AKDT    1234 SuperTag
       569                   952 2019-08-31 01:33:28 AKDT    1234 SuperTag
-      570                   952 2019-08-31 01:33:28 AKDT    1234 SuperTag
+      570                   952 2019-08-31 01:33:29 AKDT    1234 SuperTag
       571                   205 2019-08-31 02:13:08 AKDT    1234 SuperTag
       572                   581 2019-08-31 02:34:53 AKDT    1234 SuperTag
       573                   251 2019-08-31 03:53:31 AKDT    1234 SuperTag
@@ -7831,7 +7831,7 @@
     Code
       decode_op[[data_type]]
     Output
-          START_TIME_POSIXct END_TIME_POSIXct PERCENT_UPRIGHT KNOCKDOWNS
+          START_TIME_POSIXCT END_TIME_POSIXCT PERCENT_UPRIGHT KNOCKDOWNS
       1           1564869600       1564876800          98 [%]      3 [1]
       2           1564876800       1564884000         100 [%]      0 [1]
       3           1564884000       1564891200         100 [%]      0 [1]
@@ -8241,17 +8241,17 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                      MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Wildlife Computers MiniPAT           popup    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-           TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
+           TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
       1           1659283200    NA [m]    5.4 [°C] 2022-07-31 08:00:00 AKDT    1234
       2           1659283800    NA [m]    5.4 [°C] 2022-07-31 08:10:00 AKDT    1234
       3           1659284400    NA [m]    5.4 [°C] 2022-07-31 08:20:00 AKDT    1234
@@ -10657,7 +10657,7 @@
     Code
       decode_op[[data_type]]
     Output
-         START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP
+         START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH  MIN_TEMP  MAX_TEMP
       1          1659283200       1659312000    NA [m]    NA [m]  5.1 [°C]  7.4 [°C]
       2          1659312000       1659340800 179.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]
       3          1659340800       1659369600  95.5 [m] 272.0 [m]  5.1 [°C]  5.7 [°C]
@@ -10746,7 +10746,7 @@
     Code
       decode_op[[data_type]]
     Output
-           START_TIME_POSIXct END_TIME_POSIXct   DATA_TYPE BIN TIME_OFFSET VALUE
+           START_TIME_POSIXCT END_TIME_POSIXCT   DATA_TYPE BIN TIME_OFFSET VALUE
       1            1627614000       1627632000 temperature   1           0   0.0
       2            1627614000       1627632000 temperature   2           0   0.0
       3            1627614000       1627632000 temperature   3           0   5.7
@@ -22096,17 +22096,17 @@
     Code
       decode_op[["meta"]]
     Output
-                      MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Wildlife Computers MiniPAT           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                      MAKE   MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Wildlife Computers MiniPAT           popup    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[[data_type]]
     Output
-          TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
+          TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP TAG_NUM
       1          1689120000    NA [m]    6.1 [°C] 2023-07-11 16:00:00 AKDT    1234
       2          1689120600    NA [m]    6.1 [°C] 2023-07-11 16:10:00 AKDT    1234
       3          1689121200    NA [m]    6.1 [°C] 2023-07-11 16:20:00 AKDT    1234
@@ -22786,7 +22786,7 @@
     Code
       decode_op[[data_type]]
     Output
-        START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
+        START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
       1         1689120000       1689148800    NA [m]    NA [m] 5.9 [°C] 6.2 [°C]
       2         1689148800       1689177600 295.5 [m]   728 [m] 5.9 [°C] 6.2 [°C]
       3         1689206400       1689235200 391.5 [m]   792 [m] 5.9 [°C] 6.2 [°C]
@@ -22839,7 +22839,7 @@
     Code
       decode_op[[data_type]]
     Output
-           START_TIME_POSIXct END_TIME_POSIXct   DATA_TYPE BIN TIME_OFFSET VALUE
+           START_TIME_POSIXCT END_TIME_POSIXCT   DATA_TYPE BIN TIME_OFFSET VALUE
       1            1626357600       1626422400 temperature   1           0   0.0
       2            1626357600       1626422400 temperature   2           0   0.0
       3            1626357600       1626422400 temperature   3           0  21.9

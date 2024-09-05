@@ -9,7 +9,7 @@
       $TAG_TYPE
       [1] "varchar(3)"
       
-      $TIMESTAMP_POSIXct
+      $TIMESTAMP_POSIXCT
       [1] "integer"
       
       $TIMESTAMP
@@ -148,7 +148,7 @@
     Code
       t_fm1$get_id_field_names()
     Output
-      [1] "TAG_NUM"           "TAG_TYPE"          "TIMESTAMP_POSIXct"
+      [1] "TAG_NUM"           "TAG_TYPE"          "TIMESTAMP_POSIXCT"
 
 # FieldMap::get_field_names
 
@@ -156,7 +156,7 @@
       t_fm1$get_field_names()
     Output
        [1] "TAG_NUM"                            "TAG_TYPE"                          
-       [3] "TIMESTAMP_POSIXct"                  "TIMESTAMP"                         
+       [3] "TIMESTAMP_POSIXCT"                  "TIMESTAMP"                         
        [5] "LATITUDE"                           "LONGITUDE"                         
        [7] "LOCATION_TYPE"                      "LATITUDE_N_ERROR"                  
        [9] "LATITUDE_s_ERROR"                   "LATITUDE_U"                        

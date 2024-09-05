@@ -11,7 +11,7 @@
     Code
       instant_data
     Output
-         TIMESTAMP_POSIXct     DEPTH TEMPERATURE                TIMESTAMP
+         TIMESTAMP_POSIXCT     DEPTH TEMPERATURE                TIMESTAMP
       1         1659312000 228.5 [m]    5.3 [°C] 2022-07-31 16:00:00 AKDT
       2         1659312600 241.0 [m]    5.3 [°C] 2022-07-31 16:10:00 AKDT
       3         1659313200 228.5 [m]    5.3 [°C] 2022-07-31 16:20:00 AKDT
@@ -28,7 +28,7 @@
     Code
       summary_data
     Output
-         START_TIME_POSIXct END_TIME_POSIXct MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
+         START_TIME_POSIXCT END_TIME_POSIXCT MIN_DEPTH MAX_DEPTH MIN_TEMP MAX_TEMP
       1          1659283200       1659312000    NA [m]    NA [m] 5.1 [°C] 7.4 [°C]
       2          1659312000       1659340800 179.5 [m]   272 [m] 5.1 [°C] 5.7 [°C]
       3          1659340800       1659369600  95.5 [m]   272 [m] 5.1 [°C] 5.7 [°C]
@@ -56,17 +56,17 @@
     Code
       metadata_c
     Output
-                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Microwave Telemetry X-Tag           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
     Code
       instant_data_c
     Output
-           TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_TYPE          DEPTH
+           TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_TYPE          DEPTH
       1           1378425600       NA        NA     SATELLITE 244.766340 [m]
       2           1378426500       NA        NA     SATELLITE         NA [m]
       3           1378427400       NA        NA     SATELLITE         NA [m]
@@ -1161,7 +1161,7 @@
       1092        1380168000       NA        NA     SATELLITE   0.672435 [m]
       1093        1380171600       NA        NA     SATELLITE   0.672435 [m]
       1094        1380175151   56.385   134.642     SATELLITE         NA [m]
-      1095        1380175151   56.385   134.642     SATELLITE         NA [m]
+      1095        1380175152   56.385   134.642     SATELLITE         NA [m]
       1096        1380175200       NA        NA     SATELLITE   0.672435 [m]
       1097        1380178800       NA        NA     SATELLITE   0.672435 [m]
       1098        1380182400       NA        NA     SATELLITE   0.000000 [m]
@@ -6066,7 +6066,7 @@
       1092 2013-09-25 20:00:00 AKDT    1234 SuperTag
       1093 2013-09-25 21:00:00 AKDT    1234 SuperTag
       1094 2013-09-25 21:59:11 AKDT    1234 SuperTag
-      1095 2013-09-25 21:59:11 AKDT    1234 SuperTag
+      1095 2013-09-25 21:59:12 AKDT    1234 SuperTag
       1096 2013-09-25 22:00:00 AKDT    1234 SuperTag
       1097 2013-09-25 23:00:00 AKDT    1234 SuperTag
       1098 2013-09-26 00:00:00 AKDT    1234 SuperTag
@@ -6613,7 +6613,7 @@
       summary_data_c
     Output
       # A tibble: 20 x 9
-         START_TIME_POSIXct END_TIME_POSIXct LATITUDE LONGITUDE LOCATION_TYPE         
+         START_TIME_POSIXCT END_TIME_POSIXCT LATITUDE LONGITUDE LOCATION_TYPE         
                       <dbl>            <dbl>    <dbl>     <dbl> <chr>                 
        1         1379462400       1379548799     66.5      135. LIGHT_BASED_GEOLOCATI~
        2         1379548800       1379635199     42.5      139. LIGHT_BASED_GEOLOCATI~
@@ -6643,17 +6643,17 @@
     Code
       decode_op[["meta"]]
     Output
-                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEQ_NUM
-      1 Microwave Telemetry X-Tag           popup    1234 SuperTag       1
-        SPECIES_CODE
-      1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag              5678
+        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
+      1           UltraTag       1        56789
 
 ---
 
     Code
       decode_op[["instant"]]
     Output
-           TIMESTAMP_POSIXct LATITUDE LONGITUDE LOCATION_TYPE          DEPTH
+           TIMESTAMP_POSIXCT LATITUDE LONGITUDE LOCATION_TYPE          DEPTH
       1           1378425600       NA        NA     SATELLITE 244.766340 [m]
       2           1378426500       NA        NA     SATELLITE         NA [m]
       3           1378427400       NA        NA     SATELLITE         NA [m]
@@ -7748,7 +7748,7 @@
       1092        1380168000       NA        NA     SATELLITE   0.672435 [m]
       1093        1380171600       NA        NA     SATELLITE   0.672435 [m]
       1094        1380175151   56.385   134.642     SATELLITE         NA [m]
-      1095        1380175151   56.385   134.642     SATELLITE         NA [m]
+      1095        1380175152   56.385   134.642     SATELLITE         NA [m]
       1096        1380175200       NA        NA     SATELLITE   0.672435 [m]
       1097        1380178800       NA        NA     SATELLITE   0.672435 [m]
       1098        1380182400       NA        NA     SATELLITE   0.000000 [m]
@@ -12653,7 +12653,7 @@
       1092 2013-09-25 20:00:00 AKDT    1234 SuperTag
       1093 2013-09-25 21:00:00 AKDT    1234 SuperTag
       1094 2013-09-25 21:59:11 AKDT    1234 SuperTag
-      1095 2013-09-25 21:59:11 AKDT    1234 SuperTag
+      1095 2013-09-25 21:59:12 AKDT    1234 SuperTag
       1096 2013-09-25 22:00:00 AKDT    1234 SuperTag
       1097 2013-09-25 23:00:00 AKDT    1234 SuperTag
       1098 2013-09-26 00:00:00 AKDT    1234 SuperTag
@@ -13200,7 +13200,7 @@
       decode_op[["summary"]]
     Output
       # A tibble: 20 x 9
-         START_TIME_POSIXct END_TIME_POSIXct LATITUDE LONGITUDE LOCATION_TYPE         
+         START_TIME_POSIXCT END_TIME_POSIXCT LATITUDE LONGITUDE LOCATION_TYPE         
                       <dbl>            <dbl>    <dbl>     <dbl> <chr>                 
        1         1379462400       1379548799     66.5      135. LIGHT_BASED_GEOLOCATI~
        2         1379548800       1379635199     42.5      139. LIGHT_BASED_GEOLOCATI~

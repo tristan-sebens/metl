@@ -161,7 +161,7 @@ Identifier_StarOddi_DST =
                 )
               )
             },
-          message = "Data file missing or mislabeled. Should match pattern: ^JS\\d+\\.xlsx and contain fields: Comp.Head(°), Comp.4p(°), Mag.vec(nT)"
+          message = "Data file missing or mislabeled. Should match pattern: ^JS\\d+\\.xlsx and should not contain fields: Comp.Head(°), Comp.4p(°), Mag.vec(nT)"
         )
       )
   )
