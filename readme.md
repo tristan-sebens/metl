@@ -75,6 +75,13 @@ output. This data can be output in one of three ways:
 2.  writing the data to `.csv` files
 3.  loading the data directly into a database
 
+`metl` was designed and implemented by the MESA group of Auke Bay
+Laboratories specifically to upload data into the `ABLTAG` database. The
+relevant tables in ABLTAG are described [here](#12-abltag-database).
+However, the package is designed to be easily extended to support
+additional tag types and output formats, and to be configured to upload
+to different databases.
+
 # 2 **Requirements**
 
 `metl` requires the following R packages to be installed:
@@ -884,7 +891,7 @@ structure of our input data, so a second `FieldMap` is used to define
 the structure of the output data, including the names of the fields,
 their units, and other miscellaneous attributes.
 
-`metl` was designed an implemented by the MESA group of Auke Bay
+`metl` was designed and implemented by the MESA group of Auke Bay
 Laboratories specifically to upload data into the ABLTAG database. As
 such, `Decoder` objects default to using output `FieldMap` objects which
 are pre-configured to output data in the format expected by the ABLTAG
