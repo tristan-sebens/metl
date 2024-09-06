@@ -130,6 +130,28 @@ build_field_metadata_frame =
   }
 
 
+#' Build a data.frame of metadata describing the DB tables to which this system writes
+#'
+#' @param dc The Decoder to build the metadata frame from
+#'
+#' @return A data.frame of table metadata
+build_table_metadata_frame =
+  function(dc) {
+    fms__ =
+      Filter(
+        function(fm) {fm$generate_db_meta},
+        dc$output_fieldmaps
+      )
+
+    return(
+      data.frame(
+        table = unlist(lapply(fms__, function(fm) fm$table), use.names = F),
+        description = unlist(lapply(fms__, function(fm) fm$description), use.names = F)
+      )
+    )
+  }
+
+
 
 # Insert data into the test db
 populate_test_db =

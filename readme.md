@@ -2,7 +2,7 @@ METL
 ================
 Tristan N. G. Sebens, M.S.
 
-Last updated: 04 September, 2024
+Last updated: 05 September, 2024
 
 - [1 **Description**](#1-description)
 - [2 **Requirements**](#2-requirements)
@@ -57,6 +57,11 @@ Last updated: 04 September, 2024
   - [11.0.1 **Metadata**](#1101-metadata)
   - [11.0.2 **Instant Data**](#1102-instant-data)
   - [11.0.3 **Summary data**](#1103-summary-data)
+- [12 **ABLTAG Database**](#12-abltag-database)
+  - [12.1 **Table metadata**](#121-table-metadata)
+  - [12.2 **Field metadata**](#122-field-metadata)
+- [13 **Bug Reporting**](#13-bug-reporting)
+- [14 **Disclaimer**](#14-disclaimer)
 
 # 1 **Description**
 
@@ -229,7 +234,7 @@ decoder$decode_to_db(d = d, con = db_conn, meta = meta)
     ##  - ELECTRONIC_TAG_METADATA: 1
     ##  - ELECTRONIC_TAG_DATA_INSTANT: 350
     ##  - ELECTRONIC_TAG_DATA_SUMMARY: 73
-    ##  - ELECTRONIC_TAG_FIELD_METADATA: 92
+    ##  - ELECTRONIC_TAG_FIELD_METADATA: 88
 
 Read [here](#55-overwriting-data) to learn how `metl` handles uploading
 data to a DB which is already present.
@@ -1188,16 +1193,198 @@ mapped properly.
 | Percentage upright                    | `UPRIGHT_FIELD`       | %                                         | The percentage of the time period that the tag was upright (vertical)                        |
 | Knockdowns                            | `KNOCKDOWN_FIELD`     |                                           | The number of times that the tag was knocked over during this time period                    |
 
-\# **Bug Reporting**
+# 12 **ABLTAG Database**
+
+`ABLTAG` is an internal Oracle database hosted by Auke Bay Laboratories,
+and is intended to be a centralized clearinghouse where sensor data
+collected by all manners of electronic tags can be stored in a
+standardized format. The `metl` package has been designed to support
+`ABLTAG` specifically, and so ships pre-configured to interface with
+`ABLTAG` (it is possible to alter this configuration to fit a custom
+configuration. Please see **[Configuring data input/output
+format](#9-configuring-data-inputoutput-format)** for more information.)
+
+For convenience, below is a compilation of metadata for the tables and
+fields in the `ABLTAG` database which this package has been
+pre-configured to write to:
+
+## 12.1 **Table metadata**
+
+| table                              | description                                                                                 |
+|:-----------------------------------|:--------------------------------------------------------------------------------------------|
+| ELECTRONIC_TAG_METADATA            | Metadata for individual tags, including make, model, and instrument type.                   |
+| ELECTRONIC_TAG_DATA_INSTANT        | Instantaneous sensor data from electronic tags, including temperature, depth, and location. |
+| ELECTRONIC_TAG_DATA_SUMMARY        | Aggregate statistics summarizing sensor readings over a specified period of time.           |
+| ELECTRONIC_TAG_DATA_HISTOGRAM_META | Metadata for the histogram bins used to in the histogram data collected by tags.            |
+| ELECTRONIC_TAG_DATA_HISTOGRAM      | Histogram (binned) data collected by tags.                                                  |
+| ELECTRONIC_TAG_DATA_PDT            | Profile of Depth and Temperature (PDT) data. Describes temperature ranges at given depths.  |
+| ELECTRONIC_TAG_TABLE_METADATA      | Descriptions of the electronic tag data tables in the ABLTAG database.                      |
+| ELECTRONIC_TAG_FIELD_METADATA      | Descriptions of the fields in the electronic tag data tables in the ABLTAG database.        |
+
+## 12.2 **Field metadata**
+
+##### ELECTRONIC_TAG_METADATA
+
+Metadata for individual tags, including make, model, and instrument
+type.
+
+| field              | description                                                                                                                                                                             | units |
+|:-------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
+| TAG_NUM            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                                                          |       |
+| TAG_TYPE           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB.                            |       |
+| TAG_NUM_SECONDARY  | Secondary tag id value.                                                                                                                                                                 |       |
+| TAG_TYPE_SECONDARY | Secondary tag type value.                                                                                                                                                               |       |
+| SEQ_NUM            | The seqence number of deployment. Sometimes a tag is deployed multiple times with the same tag ID \# and same tag-type code. This value helps to distinguish between these deployments. |       |
+| SPECIES_CODE       | A numeric code representing the species of the animal tagged. The plain English description of each species code can be found in the SPECIES table in the ABLTAG DB.                    |       |
+| MAKE               | The tag’s manufacturer.                                                                                                                                                                 |       |
+| MODEL              | The tag model.                                                                                                                                                                          |       |
+| INSTRUMENT_TYPE    | One of: archival, popup, acoustic tag, acoustic receiver                                                                                                                                |       |
+
+##### ELECTRONIC_TAG_DATA_INSTANT
+
+Instantaneous sensor data from electronic tags, including temperature,
+depth, and location.
+
+| field                              | description                                                                                                                                                                                                                                      | units           |
+|:-----------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|
+| TAG_NUM                            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                                                                                                                   |                 |
+| TAG_TYPE                           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB.                                                                                     |                 |
+| TIMESTAMP_POSIXCT                  | The instant in time to which this record corresponds, expressed as a POSIXct timestamp.                                                                                                                                                          |                 |
+| TIMESTAMP                          | The instant in time to which this record corresponds, expressed as a character string.                                                                                                                                                           |                 |
+| LATITUDE                           | The latitude of the tag at the time of this record. Expressed as standard WGS84 units                                                                                                                                                            |                 |
+| LONGITUDE                          | The longitude of the tag at the time of this record. Expressed as standard WGS84 units                                                                                                                                                           |                 |
+| LOCATION_TYPE                      | The method used to determine the location of this tag: GPS, Light-based geolocation, etc.                                                                                                                                                        |                 |
+| LATITUDE_N_ERROR                   | No description available                                                                                                                                                                                                                         |                 |
+| LATITUDE_s_ERROR                   | No description available                                                                                                                                                                                                                         |                 |
+| LATITUDE_U                         | No description available                                                                                                                                                                                                                         |                 |
+| LONGITUDE_U                        | No description available                                                                                                                                                                                                                         |                 |
+| LOCATION_ERROR_ELLIPSE_ORIENTATION | No description available                                                                                                                                                                                                                         |                 |
+| LOCATION_ERROR_SEMI_MINOR_AXIS     | No description available                                                                                                                                                                                                                         |                 |
+| LOCATION_ERROR_SEMI_MAJOR_AXIS     | No description available                                                                                                                                                                                                                         |                 |
+| LOCATION_ERROR_RADIUS              | No description available                                                                                                                                                                                                                         |                 |
+| PRESSURE                           | The pressure reading of the tag at the time of this record.                                                                                                                                                                                      | psi             |
+| DEPTH                              | The depth reading of the tag at the time of this record.                                                                                                                                                                                         | m               |
+| DEPTH_INCREASE_DELTA_LIMIT         | Due to the manner in which their data is transmitted, Microwave Telemetry X-Tags tags can only record a limited amount of change in depth per record. If this limit is exeeded, the true depth is AT LEAST the recorded depth.                   |                 |
+| DEPTH_DECREASE_DELTA_LIMIT         | Due to the manner in which their data is transmitted, Microwave Telemetry X-Tags tags can only record a limited amount of change in depth per record. If this limit is exeeded, the true depth is AT MOST the recorded depth.                    |                 |
+| TEMPERATURE                        | The temperature reading of the tag at the time of this record.                                                                                                                                                                                   | degrees_Celsius |
+| TEMP_INCREASE_DELTA_LIMIT          | Due to the manner in which their data is transmitted, Microwave Telemetry X-Tags tags can only record a limited amount of change in temperature per record. If this limit is exeeded, the true temperature is AT LEAST the recorded temperature. |                 |
+| TEMP_DECREASE_DELTA_LIMIT          | Due to the manner in which their data is transmitted, Microwave Telemetry X-Tags tags can only record a limited amount of change in temperature per record. If this limit is exeeded, the true temperature is AT MOST the recorded temperature.  |                 |
+| TILT_X                             | The tilt of the tag on the X axis (pitch) at the time of this record.                                                                                                                                                                            | degrees         |
+| TILT_Y                             | The tilt of the tag on the Y axis (yaw) at the time of this record.                                                                                                                                                                              | degrees         |
+| TILT_Z                             | The tilt of the tag on the Z axis (roll) at the time of this record.                                                                                                                                                                             | degrees         |
+| INCLINATION                        | No description available                                                                                                                                                                                                                         | degrees         |
+| MAGNETIC_FIELD_STRENGTH            | The strength of the Earth’s magnetic field at the time of this record.                                                                                                                                                                           | nanoteslas      |
+
+##### ELECTRONIC_TAG_DATA_SUMMARY
+
+Aggregate statistics summarizing sensor readings over a specified period
+of time.
+
+| field              | description                                                                                                                                                  | units           |
+|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|
+| TAG_NUM            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                               |                 |
+| TAG_TYPE           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB. |                 |
+| START_TIME_POSIXCT | The start time of the summary period, expressed as a POSIXct timestamp.                                                                                      |                 |
+| START_TIME         | The start time of the summary period, expressed as a character string.                                                                                       |                 |
+| END_TIME_POSIXCT   | The end time of the summary period, expressed as a POSIXct timestamp.                                                                                        |                 |
+| END_TIME           | The end time of the summary period, expressed as a character string.                                                                                         |                 |
+| LATITUDE           | The latitude of the tag during the summary period. Expressed as standard WGS84 units                                                                         |                 |
+| LONGITUDE          | The longitude of the tag during the summary period. Expressed as standard WGS84 units                                                                        |                 |
+| LOCATION_TYPE      | The method used to determine the location of the tag: GPS, Light-based geolocation, etc.                                                                     |                 |
+| MIN_DEPTH          | The minimum depth recorded during the summary period.                                                                                                        | m               |
+| MEAN_DEPTH         | The mean depth recorded during the summary period.                                                                                                           | m               |
+| MAX_DEPTH          | The maximum depth recorded during the summary period.                                                                                                        | m               |
+| MIN_TEMP           | The minimum temperature recorded during the summary period.                                                                                                  | degrees_Celsius |
+| MEAN_TEMP          | The mean temperature recorded during the summary period.                                                                                                     | degrees_Celsius |
+| MAX_TEMP           | The maximum temperature recorded during the summary period.                                                                                                  | degrees_Celsius |
+| PERCENT_UPRIGHT    | The percentage of time the tag was upright during the summary period.                                                                                        | %               |
+| KNOCKDOWNS         | The number of times the tag was knocked down during the summary period.                                                                                      | 1               |
+
+##### ELECTRONIC_TAG_DATA_HISTOGRAM_META
+
+Metadata for the histogram bins used to in the histogram data collected
+by tags.
+
+| field       | description                                                                                                                                                  | units |
+|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
+| TAG_NUM     | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                               |       |
+| TAG_TYPE    | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB. |       |
+| DATA_TYPE   | The type of data described by this bin, e.g. temperature, depth, etc.                                                                                        |       |
+| BIN         | The bin number. Bins are numbered from 1 to N, where N is the number of bins in the histogram.                                                               |       |
+| UPPER_LIMIT | The upper limit of the bin. The bin is inclusive of this value. The non-inclusive lower limit is defined by the upper-limit of the previous bin.             |       |
+| UNITS       | The SI units of the bin data.                                                                                                                                |       |
+
+##### ELECTRONIC_TAG_DATA_HISTOGRAM
+
+Histogram (binned) data collected by tags.
+
+| field              | description                                                                                                                                                  | units |
+|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
+| TAG_NUM            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                               |       |
+| TAG_TYPE           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB. |       |
+| START_TIME_POSIXCT | The start time of the summary period, expressed as a POSIXct timestamp.                                                                                      |       |
+| START_TIME         | The start time of the summary period, expressed as a character string.                                                                                       |       |
+| END_TIME_POSIXCT   | The end time of the summary period, expressed as a POSIXct timestamp.                                                                                        |       |
+| END_TIME           | The end time of the summary period, expressed as a character string.                                                                                         |       |
+| DATA_TYPE          | The type of data described by this histogram, e.g. temperature, depth, etc.                                                                                  |       |
+| BIN                | The bin number. Bins are numbered from 1 to N, where N is the number of bins in the histogram.                                                               |       |
+| TIME_OFFSET        | Calculated difference between the tag’s clock and the time reported by Argos.                                                                                |       |
+| VALUE              | The value of the bin, expressed as the percentage of data points which fell within this bin.                                                                 |       |
+
+##### ELECTRONIC_TAG_DATA_PDT
+
+Profile of Depth and Temperature (PDT) data. Describes temperature
+ranges at given depths.
+
+| field              | description                                                                                                                                                                      | units           |
+|:-------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|
+| TAG_NUM            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                                                   |                 |
+| TAG_TYPE           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB.                     |                 |
+| START_TIME_POSIXct | The start time of the summary period, expressed as a POSIXct timestamp.                                                                                                          |                 |
+| START_TIME         | The start time of the summary period, expressed as a character string.                                                                                                           |                 |
+| END_TIME_POSIXct   | The end time of the summary period, expressed as a POSIXct timestamp.                                                                                                            |                 |
+| END_TIME           | The end time of the summary period, expressed as a character string.                                                                                                             |                 |
+| TIME_OFFSET        | Calculated difference between the tag’s clock and the time reported by Argos.                                                                                                    |                 |
+| DEPTH              | The depth at which this series of readings were taken.                                                                                                                           | m               |
+| DEPTH_ERROR        | The accuracy of the depth-reading which is related to the resolution of the encoded depth. For example, 4 means the measured depth is within +/- 4 meters of the reported value. | m               |
+| TEMP_MIN           | The minimum temperature recorded during the summary period.                                                                                                                      | degrees_Celsius |
+| TEMP_MAX           | The maximum temperature recorded during the summary period.                                                                                                                      | degrees_Celsius |
+| PCT_DOX            | The % dissolved oxygen at the corresponding depth.                                                                                                                               | %               |
+| DISCONTINUITY_FLAG | Flag indicating a discontinuity at this depth. 1 = discontinuity, 0 = no discontinuity.                                                                                          |                 |
+
+##### ELECTRONIC_TAG_TABLE_METADATA
+
+Descriptions of the electronic tag data tables in the ABLTAG database.
+
+| field       | description                            | units |
+|:------------|:---------------------------------------|:------|
+| TABLE_NAME  | The name of the table.                 |       |
+| DESCRIPTION | A plain text description of the table. |       |
+
+##### ELECTRONIC_TAG_FIELD_METADATA
+
+Descriptions of the fields in the electronic tag data tables in the
+ABLTAG database.
+
+| field       | description                                        | units |
+|:------------|:---------------------------------------------------|:------|
+| TABLE_NAME  | The name of the table to which this field belongs. |       |
+| FIELD_NAME  | The name of the field.                             |       |
+| UNITS       | The SI units of the field.                         |       |
+| DESCRIPTION | A plain text description of the field.             |       |
+
+# 13 **Bug Reporting**
 
 The MESA development team appreciates and strongly encourages feedback
 on this product. If you are having difficulties with the package, have
-suggestions on future improvements, or any other form of input, please
-create an issue on the GitHub website. Our only request is that you
-first take some time to review *existing* issues to ensure that the
-challenge you are facing has not already been identified by other users.
+suggestions on future improvements, or have any other form of input,
+please create an issue on the [GitHub
+website](https://github.com/tristan-sebens/metl/issues). Our only
+request is that you first take some time to review *existing* issues to
+ensure that the challenge you are facing has not already been identified
+by other users, to prevent any buildup of duplicate tickets.
 
-\# **Disclaimer**
+# 14 **Disclaimer**
 
 This repository is a scientific product and is not official
 communication of the National Oceanic and Atmospheric Administration, or

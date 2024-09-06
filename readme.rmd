@@ -847,11 +847,67 @@ This section lists the standardized names for each type of data produced by the 
 | Percentage upright                    | `UPRIGHT_FIELD`       | \%                                        | The percentage of the time period that the tag was upright (vertical)                        |
 | Knockdowns                            | `KNOCKDOWN_FIELD`     |                                           | The number of times that the tag was knocked over during this time period                    |
 
-\# **Bug Reporting**
+# **ABLTAG Database**
 
-The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or any other form of input, please create an issue on the GitHub website. Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users.
+`ABLTAG` is an internal Oracle database hosted by Auke Bay Laboratories, and is intended to be a centralized clearinghouse where sensor data collected by all manners of electronic tags can be stored in a standardized format. The `metl` package has been designed to support `ABLTAG` specifically, and so ships pre-configured to interface with `ABLTAG` (it is possible to alter this configuration to fit a custom configuration. Please see **[Configuring data input/output format](#configuring-data-inputoutput-format)** for more information.)
 
-\# **Disclaimer**
+For convenience, below is a compilation of metadata for the tables and fields in the `ABLTAG` database which this package has been pre-configured to write to:
+
+## **Table metadata**
+
+```{r, echo=FALSE}
+table_metadata = 
+  build_table_metadata_frame(Decoder())
+
+table_metadata %>% 
+  knitr::kable()
+```
+
+
+## **Field metadata**
+
+```{r, echo=FALSE, results='asis'}
+raw_df = 
+  build_field_metadata_frame(Decoder())
+
+tables =
+  raw_df %>%
+  dplyr::group_by(table) %>%
+  dplyr::group_split()
+
+names(tables) = 
+  tables %>% 
+    sapply(
+      function(table_df) {
+        return(table_df[['table']][[1]])
+      }
+    )
+
+# `tables` is in the wrong order, so to get the right order we'll access it's elements by name
+table_order = raw_df$table %>% unique
+
+for (table_name in table_order) {
+  table_df = tables[[table_name]]
+  table_description = 
+    table_metadata %>% 
+    dplyr::filter(table == table_name) %>% 
+    dplyr::pull(description)
+  cat("##### ", table_name, "{-} \n\n")
+  cat(table_description)
+  print(
+    table_df %>%
+    dplyr::select(-table) %>%
+    knitr::kable(label = table_name)
+  )
+}
+
+```
+
+# **Bug Reporting**
+
+The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or have any other form of input, please create an issue on the [GitHub website](https://github.com/tristan-sebens/metl/issues). Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users, to prevent any buildup of duplicate tickets.
+
+# **Disclaimer**
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
