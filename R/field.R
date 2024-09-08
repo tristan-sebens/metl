@@ -84,11 +84,13 @@ FieldMap =
         initialize =
           function(
             generate_db_meta = T,
+            description = "No description available.",
             ...
           ) {
             callSuper(
               ...,
-              generate_db_meta = generate_db_meta
+              generate_db_meta = generate_db_meta,
+              description = description
             )
           },
 
