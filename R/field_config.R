@@ -519,6 +519,7 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
             name = "START_TIME",
             data_type = "varchar(32)",
             independent = T,
+            id_field = F,
             trans_fn =
               function(v, dat, op_fm, ...) {
                 posix_ct_field_name =
@@ -548,6 +549,7 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
             name = "END_TIME",
             data_type = "varchar(32)",
             independent = T,
+            id_field = F,
             trans_fn =
               function(v, dat, op_fm, ...) {
                 posix_ct_field_name =
@@ -605,7 +607,7 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         START_TIME_POSIX_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
+            name = "START_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -634,7 +636,7 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
           ),
         END_TIME_POSIX_FIELD =
           Field(
-            name = "END_TIME_POSIXct",
+            name = "END_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
