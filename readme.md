@@ -232,7 +232,7 @@ report the results.
 If you are uploading to a database other than `ABLTAG`, you will first
 have to configure the output of the `Decoder` object to match the
 internal structure of your database. Learn more
-[here](#9-configuring-data-inputoutput-format)
+[here](#9-configuring-data-inputoutput-format).
 
 ``` r
 decoder$decode_to_db(d = d, con = db_conn, meta = meta)
@@ -250,12 +250,12 @@ data to a DB which is already present.
 
 ## 4.2 **Use case 2: Extracting data to data.frames**
 
-The `Decoder` can produce the extracted data as a collection of
-`data.frame`s. These are provided as the elements of a named list, with
-the names corresponding to the type of data extracted. Which types of
-data are available will depend on what types of data are produced. You
-can find a table of data types produced by each supported tag type
-[here](#61-output-data-types-by-tag).
+The `Decoder` can also produce the extracted data as a collection of
+`data.frame` objects. These are provided as the elements of a named
+list, with the names corresponding to the type of data extracted. Which
+types of data are available will depend on what types of data are
+produced by the tag. You can find a table of data types produced by each
+supported tag type [here](#61-output-data-types-by-tag).
 
 In this example we used the Benthic sPAT tag from Wildlife Computers,
 which produces three types of data: `meta`, `instant`, and `summary`.
