@@ -30,14 +30,12 @@ ABLTAG_USER_INPUT_FIELDS =
           Field(
             name = "TAG_NUM_SECONDARY",
             data_type = "double(7, 0)",
-            id_field = F,
             description = "Secondary tag id value."
           ),
         TAG_TYPE_SECONDARY_FIELD =
           Field(
             name = "TAG_TYPE_SECONDARY",
             data_type = "varchar(3)",
-            id_field = F,
             description = "Secondary tag type value."
           ),
         TAG_SEQ_NUM_FIELD =
@@ -519,7 +517,6 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
             name = "START_TIME",
             data_type = "varchar(32)",
             independent = T,
-            id_field = F,
             trans_fn =
               function(v, dat, op_fm, ...) {
                 posix_ct_field_name =
@@ -549,7 +546,6 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
             name = "END_TIME",
             data_type = "varchar(32)",
             independent = T,
-            id_field = F,
             trans_fn =
               function(v, dat, op_fm, ...) {
                 posix_ct_field_name =
