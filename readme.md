@@ -2,7 +2,7 @@ METL
 ================
 Tristan N. G. Sebens, M.S.
 
-Last updated: 05 September, 2024
+Last updated: 08 September, 2024
 
 - [1 **Description**](#1-description)
 - [2 **Requirements**](#2-requirements)
@@ -133,7 +133,7 @@ files produced by the post-processing software for the tag.
 ``` r
 # d specifies the path of the data directory
 # e.g. 
-# d = tcltk::tk_choose.dir()
+d = tcltk::tk_choose.dir()
 ```
 
 ### 4.0.2 **The Decoder object**
@@ -155,7 +155,9 @@ For the quickstart example, we will use an included `Decoder` object,
 one configured for the Wildlife Computers Benthic sPAT tag:
 
 ``` r
-decoder = metl::decoders$WildlifeComputers$BenthicSPAT
+library(metl)
+
+decoder = decoders$WildlifeComputers$BenthicSPAT
 ```
 
 A list of supported tags can be found [here](#6-list-of-supported-tags),
@@ -163,7 +165,7 @@ and a full list of the pre-configured `Decoder` objects shipped with
 `metl` can be seen by running the following code:
 
 ``` r
-metl::supported_decoders()
+supported_decoders()
 ```
 
 #### 4.0.2.1 **The `meta` data.frame**
@@ -200,13 +202,6 @@ slight modification to this process. See here for more details.
 First we need to establish a connection to our database. We do this by
 constructing a database connection object using `DBI::dbConnect`.
 
-``` r
-db_conn =
-  DBI::dbConnect(
-    ... # Database connection details. See DBI documentation for specifics
-  )
-```
-
 If you are uploading to the ABLTAG database, this step will require that
 you are currently able to connect to the ABLTAG DB. Ensure that IT has
 installed ODBC and Oracle on your local machine, and that you are
@@ -214,8 +209,10 @@ connected to the ABL internal network. Your connection code will look
 like this:
 
 ``` r
+library(DBI)
+
 db_conn =
-  DBI::dbConnect(
+  dbConnect(
     odbc::odbc(),
     Driver="{Oracle in instantclient_19_18}",
     Dbq="AFSC",
@@ -231,6 +228,11 @@ Once we have connected to the database, we call the `process_to_db`
 method, passing the connection object in as a parameter. The `Decoder`
 will extract data from the data directory, load it into the DB, and
 report the results.
+
+If you are uploading to a database other than `ABLTAG`, you will first
+have to configure the output of the `Decoder` object to match the
+internal structure of your database. Learn more
+[here](#9-configuring-data-inputoutput-format)
 
 ``` r
 decoder$decode_to_db(d = d, con = db_conn, meta = meta)
@@ -529,14 +531,16 @@ data-type, read [here](#62-metl-data-type-descriptions).
 
 ## 6.2 **`metl` data type descriptions**
 
-| Data type      | Description                                                                                         |
-|:---------------|:----------------------------------------------------------------------------------------------------|
-| meta           | Metadata. Data describing the tag itself, and its deployment                                        |
-| instant        | Instantaneous sensor data. Sensor reading data, each of which refers to a specific instant in time. |
-| summary        | Summary data. Aggregate statistics calculated over a given interval of time.                        |
-| histogram      | Histogram data. Summary data which is reported using bins, rather than aggregate statistics.        |
-| histogram_meta | Histogram metadata. Describes the bins used in the histogram data.                                  |
-| pdt            | Profile of Depth & Temperature. Describes the temperature associated with various depths.           |
+| table                              | description                                                                                 |
+|:-----------------------------------|:--------------------------------------------------------------------------------------------|
+| ELECTRONIC_TAG_METADATA            | Metadata for individual tags, including make, model, and instrument type.                   |
+| ELECTRONIC_TAG_DATA_INSTANT        | Instantaneous sensor data from electronic tags, including temperature, depth, and location. |
+| ELECTRONIC_TAG_DATA_SUMMARY        | Aggregate statistics summarizing sensor readings over a specified period of time.           |
+| ELECTRONIC_TAG_DATA_HISTOGRAM_META | Metadata for the histogram bins used in the histogram data collected by tags.               |
+| ELECTRONIC_TAG_DATA_HISTOGRAM      | Histogram (binned) data collected by tags.                                                  |
+| ELECTRONIC_TAG_DATA_PDT            | Profile of Depth and Temperature (PDT) data. Describes temperature ranges at given depths.  |
+| ELECTRONIC_TAG_TABLE_METADATA      | Descriptions of the electronic tag data tables in the ABLTAG database.                      |
+| ELECTRONIC_TAG_FIELD_METADATA      | Descriptions of the fields in the electronic tag data tables in the ABLTAG database.        |
 
 # 7 **Extending `metl`**
 
@@ -1222,7 +1226,7 @@ pre-configured to write to:
 | ELECTRONIC_TAG_METADATA            | Metadata for individual tags, including make, model, and instrument type.                   |
 | ELECTRONIC_TAG_DATA_INSTANT        | Instantaneous sensor data from electronic tags, including temperature, depth, and location. |
 | ELECTRONIC_TAG_DATA_SUMMARY        | Aggregate statistics summarizing sensor readings over a specified period of time.           |
-| ELECTRONIC_TAG_DATA_HISTOGRAM_META | Metadata for the histogram bins used to in the histogram data collected by tags.            |
+| ELECTRONIC_TAG_DATA_HISTOGRAM_META | Metadata for the histogram bins used in the histogram data collected by tags.               |
 | ELECTRONIC_TAG_DATA_HISTOGRAM      | Histogram (binned) data collected by tags.                                                  |
 | ELECTRONIC_TAG_DATA_PDT            | Profile of Depth and Temperature (PDT) data. Describes temperature ranges at given depths.  |
 | ELECTRONIC_TAG_TABLE_METADATA      | Descriptions of the electronic tag data tables in the ABLTAG database.                      |
@@ -1309,8 +1313,8 @@ of time.
 
 ##### ELECTRONIC_TAG_DATA_HISTOGRAM_META
 
-Metadata for the histogram bins used to in the histogram data collected
-by tags.
+Metadata for the histogram bins used in the histogram data collected by
+tags.
 
 | field       | description                                                                                                                                                  | units |
 |:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
@@ -1347,9 +1351,9 @@ ranges at given depths.
 |:-------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------|
 | TAG_NUM            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                                                   |                 |
 | TAG_TYPE           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB.                     |                 |
-| START_TIME_POSIXct | The start time of the summary period, expressed as a POSIXct timestamp.                                                                                                          |                 |
+| START_TIME_POSIXCT | The start time of the summary period, expressed as a POSIXct timestamp.                                                                                                          |                 |
 | START_TIME         | The start time of the summary period, expressed as a character string.                                                                                                           |                 |
-| END_TIME_POSIXct   | The end time of the summary period, expressed as a POSIXct timestamp.                                                                                                            |                 |
+| END_TIME_POSIXCT   | The end time of the summary period, expressed as a POSIXct timestamp.                                                                                                            |                 |
 | END_TIME           | The end time of the summary period, expressed as a character string.                                                                                                             |                 |
 | TIME_OFFSET        | Calculated difference between the tag’s clock and the time reported by Argos.                                                                                                    |                 |
 | DEPTH              | The depth at which this series of readings were taken.                                                                                                                           | m               |
