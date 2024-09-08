@@ -61,7 +61,7 @@ test_that(
     meta =
       build_input_meta_dataset()
 
-    ui_dm = dc$create_userinput_datamap(meta)
+    ui_dm = dc$create_user_input_datamap(meta)
 
     dat1 = dc$decode_datamap(d = d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
     dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
@@ -117,7 +117,7 @@ test_that(
     meta =
       build_input_meta_dataset()
 
-    ui_dm = dc$create_userinput_datamap(meta)
+    ui_dm = dc$create_user_input_datamap(meta)
 
     dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
     dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
@@ -179,7 +179,7 @@ test_that(
     meta =
       build_input_meta_dataset()
 
-    ui_dm = dc$create_userinput_datamap(meta)
+    ui_dm = dc$create_user_input_datamap(meta)
 
     dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
     dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
@@ -249,7 +249,7 @@ test_that(
     meta =
       build_input_meta_dataset()
 
-    ui_dm = dc$create_userinput_datamap(meta)
+    ui_dm = dc$create_user_input_datamap(meta)
 
     dat1 = dc$decode_datamap(d, dm = dc$data_maps[["instant"]], op_fm = dc$output_fieldmaps[["instant"]])
     dat2 = dc$decode_datamap(d, dm = ui_dm, op_fm = dc$output_fieldmaps[["input"]])
