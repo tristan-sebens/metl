@@ -446,7 +446,7 @@ ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
     table =
       "ELECTRONIC_TAG_DATA_HISTOGRAM_META",
     description =
-      "Metadata for the histogram bins used to in the histogram data collected by tags.",
+      "Metadata for the histogram bins used in the histogram data collected by tags.",
     field_list =
       list(
         TAG_ID_FIELD =
