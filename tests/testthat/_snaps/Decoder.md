@@ -56,10 +56,10 @@
     Code
       metadata_c
     Output
-                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
-      1 Microwave Telemetry X-Tag           popup    1234 SuperTag              5678
-        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
-      1           UltraTag       1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEC_TAG_NUM
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag        5678
+        SEC_TAG_TYPE SEQ_NUM SPECIES_CODE
+      1     UltraTag       1        56789
 
 ---
 
@@ -6643,10 +6643,10 @@
     Code
       decode_op[["meta"]]
     Output
-                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE TAG_NUM_SECONDARY
-      1 Microwave Telemetry X-Tag           popup    1234 SuperTag              5678
-        TAG_TYPE_SECONDARY SEQ_NUM SPECIES_CODE
-      1           UltraTag       1        56789
+                       MAKE MODEL INSTRUMENT_TYPE TAG_NUM TAG_TYPE SEC_TAG_NUM
+      1 Microwave Telemetry X-Tag           popup    1234 SuperTag        5678
+        SEC_TAG_TYPE SEQ_NUM SPECIES_CODE
+      1     UltraTag       1        56789
 
 ---
 
