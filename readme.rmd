@@ -2,19 +2,11 @@
 title: "METL"
 author: "Tristan N. G. Sebens, M.S. \n"
 date: "`r paste0('Last updated: ', format(Sys.time(), '%d %B, %Y'))`"
-# template: readme_custom_metl.html
 output: 
   github_document:
     toc: true
     toc_depth: 4
     number_sections: true
-  # html_document:
-  #   title: 'README'
-  #   keep_md: true
-  #   css: dark_readme.css
-  #   toc: true
-  #   toc_depth: 4
-  #   number_sections: true
 ---
 
 ```{r, load_package, echo=FALSE, results='hide', message=FALSE}
@@ -498,7 +490,14 @@ Fortunately there is a better method:
 
 `Field` objects have a number of attributes which we can use to describe and alter each data field to suit our needs. For now, we'll cover one additional attribute, the `trans_fn`. This is a function which can be used to define simple transformations which should be applied to individual data fields. For a full list of `Field` object attributes, see the [Field class documentation](Field.md).
 
-The `trans_fn` is passed the values of the field in the vector `v`. `trans_fn` is also passed a handful of other parameters which may be useful to us when transforming our data, but we won't need any of these so we'll simply include the `...` argument to catch them for us.
+The `trans_fn` is passed the values of the field in the vector `v`. `trans_fn` is also passed a handful of other parameters which may be useful to us when transforming our data. These include:
+
+- `v` - Field values
+- `dat` - The entire `data.frame`
+- `ip_fm` - The input `FieldMap` object
+- `op_fm` - The output `FieldMap` object
+
+Typically we won't need any of the values other than `v`, but they still get passed to `trans_fn` during execution, so we'll include `...` in our function parameters. It is CRITICAL that this be included in the function signature. If it is not, the function will not work. Additionally, it is STRONGLY encouraged that you use `...` rather than simply adding each parameter explicitly into the function signature. This is because it is possible that future iterations of the `metl` package will pass additional values into `trans_fn`, and without the `...` these new parameters will need to be explicitly named as well. Using `...` keeps your `trans_fn` protected against future changes to the package.
 
 Now we can update our `FieldMap` object to perform the timestamp conversion for us:
 

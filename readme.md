@@ -270,9 +270,9 @@ summary_data = res[['summary']]
 head(metadata)
 ```
 
-| MAKE               | MODEL        | INSTRUMENT_TYPE | TAG_NUM | TAG_TYPE | TAG_NUM_SECONDARY | TAG_TYPE_SECONDARY | SEQ_NUM | SPECIES_CODE |
-|:-------------------|:-------------|:----------------|:--------|:---------|:------------------|:-------------------|--------:|-------------:|
-| Wildlife Computers | Benthic sPAT | popup           | 1234    | SuperTag |                   |                    |       1 |        20510 |
+| MAKE               | MODEL        | INSTRUMENT_TYPE | TAG_NUM | TAG_TYPE | SEC_TAG_NUM | SEC_TAG_TYPE | SEQ_NUM | SPECIES_CODE |
+|:-------------------|:-------------|:----------------|:--------|:---------|:------------|:-------------|--------:|-------------:|
+| Wildlife Computers | Benthic sPAT | popup           | 1234    | SuperTag |             |              |       1 |        20510 |
 
 ## 4.3 **Use case 3: Extract data to `.csv` files**
 
@@ -711,8 +711,24 @@ see the [Field class documentation](Field.md).
 
 The `trans_fn` is passed the values of the field in the vector `v`.
 `trans_fn` is also passed a handful of other parameters which may be
-useful to us when transforming our data, but we won’t need any of these
-so we’ll simply include the `...` argument to catch them for us.
+useful to us when transforming our data. These include:
+
+- `v` - Field values
+- `dat` - The entire `data.frame`
+- `ip_fm` - The input `FieldMap` object
+- `op_fm` - The output `FieldMap` object
+
+Typically we won’t need any of the values other than `v`, but they still
+get passed to `trans_fn` during execution, so we’ll include `...` in our
+function parameters. It is CRITICAL that this be included in the
+function signature. If it is not, the function will not work.
+Additionally, it is STRONGLY encouraged that you use `...` rather than
+simply adding each parameter explicitly into the function signature.
+This is because it is possible that future iterations of the `metl`
+package will pass additional values into `trans_fn`, and without the
+`...` these new parameters will need to be explicitly named as well.
+Using `...` keeps your `trans_fn` protected against future changes to
+the package.
 
 Now we can update our `FieldMap` object to perform the timestamp
 conversion for us:
@@ -1239,17 +1255,17 @@ pre-configured to write to:
 Metadata for individual tags, including make, model, and instrument
 type.
 
-| field              | description                                                                                                                                                                             | units |
-|:-------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
-| TAG_NUM            | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                                                          |       |
-| TAG_TYPE           | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB.                            |       |
-| TAG_NUM_SECONDARY  | Secondary tag id value.                                                                                                                                                                 |       |
-| TAG_TYPE_SECONDARY | Secondary tag type value.                                                                                                                                                               |       |
-| SEQ_NUM            | The seqence number of deployment. Sometimes a tag is deployed multiple times with the same tag ID \# and same tag-type code. This value helps to distinguish between these deployments. |       |
-| SPECIES_CODE       | A numeric code representing the species of the animal tagged. The plain English description of each species code can be found in the SPECIES table in the ABLTAG DB.                    |       |
-| MAKE               | The tag’s manufacturer.                                                                                                                                                                 |       |
-| MODEL              | The tag model.                                                                                                                                                                          |       |
-| INSTRUMENT_TYPE    | One of: archival, popup, acoustic tag, acoustic receiver                                                                                                                                |       |
+| field           | description                                                                                                                                                                             | units |
+|:----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
+| TAG_NUM         | The ID \# of the tag. This may or may not be the same as the number printed on the tag itself.                                                                                          |       |
+| TAG_TYPE        | A 2-3 letter code describing how this tag was deployed. The plain English description of each code type can be found in the TAG_TYPE table in the ABLTAG DB.                            |       |
+| SEC_TAG_NUM     | Secondary tag id value.                                                                                                                                                                 |       |
+| SEC_TAG_TYPE    | Secondary tag type value.                                                                                                                                                               |       |
+| SEQ_NUM         | The seqence number of deployment. Sometimes a tag is deployed multiple times with the same tag ID \# and same tag-type code. This value helps to distinguish between these deployments. |       |
+| SPECIES_CODE    | A numeric code representing the species of the animal tagged. The plain English description of each species code can be found in the SPECIES table in the ABLTAG DB.                    |       |
+| MAKE            | The tag’s manufacturer.                                                                                                                                                                 |       |
+| MODEL           | The tag model.                                                                                                                                                                          |       |
+| INSTRUMENT_TYPE | One of: archival, popup, acoustic tag, acoustic receiver                                                                                                                                |       |
 
 ##### ELECTRONIC_TAG_DATA_INSTANT
 
