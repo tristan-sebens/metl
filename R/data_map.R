@@ -18,10 +18,35 @@ setRefClass(
     list(
       # Field map for the incoming raw data
       input_data_field_map = "FieldMap",
-      extract_fn = "function"
+      # Function which extracts the data from the directory
+      extract_fn = "function",
+      # Flag which indicates if this input data type is optional
+      optional = "logical"
     ),
   methods =
     list(
+      initialize =
+        function(
+          ...,
+          optional = F
+        ) {
+          callSuper(
+            ...,
+            optional = optional
+          )
+        },
+
+      initialize =
+        function(
+          optional = F,
+          ...
+        ) {
+          callSuper(
+            optional = optional,
+            ...
+          )
+        },
+
       # Helper function to throw an error with a pre-appended message to help identify
       # the source of the error
       throw_error =

@@ -518,15 +518,48 @@ Decoder =
             decoded_data_list = list()
             # Iterate over each data map in the decoder's data_maps list
             for (data_type in names(data_maps_expanded)) {
-              decoded_data =
-                decode_datamap(
-                  dm = data_maps_expanded[[data_type]],
-                  d = d,
-                  op_fm = output_fieldmaps[[data_type]]
-                )
+              tryCatch(
+                {
+                  decoded_data =
+                    decode_datamap(
+                      dm = data_maps_expanded[[data_type]],
+                      d = d,
+                      op_fm = output_fieldmaps[[data_type]]
+                    )
 
-              # Add the decoded data to the list
-              decoded_data_list[[data_type]] = decoded_data
+                  # Add the decoded data to the list
+                  decoded_data_list[[data_type]] = decoded_data
+                },
+                error =
+                  function(cond) {
+                    # If an error is thrown, check to see if this DataMap is
+                    # optional. If it is, then we can ignore the error and
+                    # continue. If it is not, then we should re-throw the error.
+                    if(!data_maps_expanded[[data_type]]$optional) {
+                      stop(cond)
+                    } else {
+                      warning(
+                        header =
+                          paste0(
+                            "Error decoding '",
+                            data_type,
+                            "' data. Data is marked as optional, so the error will be ignored.",
+                            "\n"
+                          ),
+                        x =
+                          paste0(
+                            c(
+                              "Error content: ",
+                              cond$message,
+                              cond$body
+                            ),
+                            collapse = "\n"
+                          )
+                      )
+                    }
+                  }
+
+              )
             }
 
             if(length(data_maps_expanded) > 1) {
