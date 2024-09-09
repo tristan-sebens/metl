@@ -28,13 +28,13 @@ ABLTAG_USER_INPUT_FIELDS =
           ),
         TAG_ID_SECONDARY_FIELD =
           Field(
-            name = "TAG_NUM_SECONDARY",
+            name = "SEC_TAG_NUM",
             data_type = "double(7, 0)",
             description = "Secondary tag id value."
           ),
         TAG_TYPE_SECONDARY_FIELD =
           Field(
-            name = "TAG_TYPE_SECONDARY",
+            name = "SEC_TAG_TYPE",
             data_type = "varchar(3)",
             description = "Secondary tag type value."
           ),
