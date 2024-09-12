@@ -14786,7 +14786,7 @@
     Code
       decode_op[[data_type]]
     Output
-           START_TIME_POSIXct END_TIME_POSIXct TIME_OFFSET   DEPTH DEPTH_ERROR
+           START_TIME_POSIXCT END_TIME_POSIXCT TIME_OFFSET   DEPTH DEPTH_ERROR
       1            1627632000       1627718400           0  56 [m]       4 [m]
       2            1627632000       1627718400           0  80 [m]       4 [m]
       3            1627632000       1627718400           0  96 [m]       4 [m]
@@ -26967,7 +26967,7 @@
     Code
       decode_op[[data_type]]
     Output
-           START_TIME_POSIXct END_TIME_POSIXct TIME_OFFSET   DEPTH DEPTH_ERROR
+           START_TIME_POSIXCT END_TIME_POSIXCT TIME_OFFSET   DEPTH DEPTH_ERROR
       1            1626357600       1626422400           0   0 [m]       4 [m]
       2            1626357600       1626422400           0  24 [m]       4 [m]
       3            1626357600       1626422400           0  72 [m]       4 [m]

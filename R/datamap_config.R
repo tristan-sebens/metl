@@ -459,13 +459,14 @@
  #' @export DataMap_WildlifeComputers_MiniPAT_HistogramMetaData
  DataMap_WildlifeComputers_MiniPAT_HistogramMetaData =
    DataMap(
+     optional = T,
      input_data_field_map =
        WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_META_FIELDS,
      extract_fn =
        function(d) {
          # Find the histogram data file
          histos_fp =
-           list.files(
+           files_by_pattern(
              d,
              pattern = "Histos\\.csv",
              ignore.case = T,
@@ -513,6 +514,7 @@
  #' @export DataMap_WildlifeComputers_MiniPAT_HistogramData
  DataMap_WildlifeComputers_MiniPAT_HistogramData =
    DataMap(
+     optional = T,
      input_data_field_map =
        WILDLIFE_COMPUTERS_MINIPAT_HISTOGRAM_DATA_FIELDS,
      extract_fn =
@@ -558,6 +560,7 @@
  #' @export DataMap_WildlifeComputers_MiniPAT_PDTData
  DataMap_WildlifeComputers_MiniPAT_PDTData =
    DataMap(
+     optional = T,
      input_data_field_map =
        WILDLIFE_COMPUTERS_MINIPAT_PDT_DATA_FIELDS,
      extract_fn =

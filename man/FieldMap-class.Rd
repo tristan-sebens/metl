@@ -11,7 +11,13 @@ Collection of Field objects, with some added functionality to facilitate the con
 \section{Fields}{
 
 \describe{
-\item{\code{fields}}{Field. The Field objects contained within this map/}
+\item{\code{table}}{character. The DB table to which this \code{FieldMap} corresponds}
+
+\item{\code{description}}{character. A plain language description of the DB to which this \code{FieldMap} corresponds}
+
+\item{\code{field_list}}{list. The \code{Field} objects contained within this map}
+
+\item{\code{generate_db_meta}}{logical. Boolean value which indicates if this \code{FieldMap} should be included when generating metadata for the DB}
 }}
 
 \section{Methods}{

@@ -25,18 +25,16 @@ names_rec =
     }
   }
 
-#' Collect and return the messages from a condition stack
+#' Prepend error message
 #'
-#' @param cond The condition from which to begin traversing the stack (from child to parent)
+#' Utility function to prepend messages to error conditions. Useful for adding additional details about when, where, and how an error occurred
 #'
-#' @return A list of messages from the condition stack, including offending calls
-get_cond_stack_messages =
-  function(cond, l = list()) {
-    slug = paste0("In ", cond$call[1], ": ", cond$message)
-    l = unlist(append(l, slug))
-    if (!is.null(cond$parent))
-      l = get_cond_stack_messages(cond = cond$parent, l = l)
-    return(l)
+#' @param cond The condition to which to prepend the message
+#' @param prefix The message to prepend
+prepend_error_message =
+  function(cond, prefix) {
+    cond$message = append(prefix, cond$message, after = )
+    return(cond)
   }
 
 #' Convert POSIXct timestamp to character string
@@ -107,13 +105,18 @@ build_field_metadata_frame =
       )
 
     for (table in names(l)) {
+      # Check if the FieldMap is intended to have DB metadata generated for it
+      if (!dc$output_fieldmaps[[table]]$generate_db_meta)
+        next
       for (field in names(l[[table]])) {
         df__ =
           rbind(
             df__,
             data.frame(
-              table = table,
-              field = field,
+              table =
+                dc$output_fieldmaps[[table]]$table,
+              field =
+                field,
               units =
                 l[[table]][[field]][["units"]],
               description =
@@ -124,6 +127,28 @@ build_field_metadata_frame =
     }
 
     return(df__ %>% data.frame() %>% tidyr::drop_na())
+  }
+
+
+#' Build a data.frame of metadata describing the DB tables to which this system writes
+#'
+#' @param dc The Decoder to build the metadata frame from
+#'
+#' @return A data.frame of table metadata
+build_table_metadata_frame =
+  function(dc) {
+    fms__ =
+      Filter(
+        function(fm) {fm$generate_db_meta},
+        dc$output_fieldmaps
+      )
+
+    return(
+      data.frame(
+        table = unlist(lapply(fms__, function(fm) fm$table), use.names = F),
+        description = unlist(lapply(fms__, function(fm) fm$description), use.names = F)
+      )
+    )
   }
 
 

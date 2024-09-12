@@ -7,6 +7,9 @@
 #' @export ABLTAG_USER_INPUT_FIELDS
 ABLTAG_USER_INPUT_FIELDS =
   FieldMap(
+    table =
+      "USER_INPUT",
+    generate_db_meta = F,
     field_list =
       list(
         TAG_ID_FIELD =
@@ -25,16 +28,14 @@ ABLTAG_USER_INPUT_FIELDS =
           ),
         TAG_ID_SECONDARY_FIELD =
           Field(
-            name = "TAG_NUM_SECONDARY",
+            name = "SEC_TAG_NUM",
             data_type = "double(7, 0)",
-            id_field = F,
             description = "Secondary tag id value."
           ),
         TAG_TYPE_SECONDARY_FIELD =
           Field(
-            name = "TAG_TYPE_SECONDARY",
+            name = "SEC_TAG_TYPE",
             data_type = "varchar(3)",
-            id_field = F,
             description = "Secondary tag type value."
           ),
         TAG_SEQ_NUM_FIELD =
@@ -61,7 +62,10 @@ ABLTAG_USER_INPUT_FIELDS =
 #' @export ABLTAG_METADATA_TABLE_FIELDS
 ABLTAG_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_METADATA",
+    table =
+      "ELECTRONIC_TAG_METADATA",
+    description =
+      "Metadata for individual tags, including make, model, and instrument type.",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -104,7 +108,10 @@ ABLTAG_METADATA_TABLE_FIELDS =
 #' @export ABLTAG_DATA_INSTANT_TABLE_FIELDS
 ABLTAG_DATA_INSTANT_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_DATA_INSTANT",
+    table =
+      "ELECTRONIC_TAG_DATA_INSTANT",
+    description =
+      "Instantaneous sensor data from electronic tags, including temperature, depth, and location.",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
@@ -287,7 +294,10 @@ ABLTAG_DATA_INSTANT_TABLE_FIELDS =
 #' @export ABLTAG_DATA_SUMMARY_TABLE_FIELDS
 ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_DATA_SUMMARY",
+    table =
+      "ELECTRONIC_TAG_DATA_SUMMARY",
+    description =
+      "Aggregate statistics summarizing sensor readings over a specified period of time.",
     field_list =
       list(
         # Link tag id field to TAG table primary key field
@@ -433,7 +443,10 @@ ABLTAG_DATA_SUMMARY_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_DATA_HISTOGRAM_META",
+    table =
+      "ELECTRONIC_TAG_DATA_HISTOGRAM_META",
+    description =
+      "Metadata for the histogram bins used in the histogram data collected by tags.",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -478,7 +491,10 @@ ABLTAG_HISTOGRAM_METADATA_TABLE_FIELDS =
 #' @export ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS
 ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_DATA_HISTOGRAM",
+    table =
+      "ELECTRONIC_TAG_DATA_HISTOGRAM",
+    description =
+      "Histogram (binned) data collected by tags.",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -575,7 +591,10 @@ ABLTAG_HISTOGRAM_DATA_TABLE_FIELDS =
 #' @export ABLTAG_PDT_DATA_TABLE_FIELDS
 ABLTAG_PDT_DATA_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_DATA_PDT",
+    table =
+      "ELECTRONIC_TAG_DATA_PDT",
+    description =
+      "Profile of Depth and Temperature (PDT) data. Describes temperature ranges at given depths.",
     field_list =
       list(
         TAG_ID_FIELD =
@@ -584,7 +603,7 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
           ABLTAG_USER_INPUT_FIELDS$field_list$TAG_TYPE_FIELD,
         START_TIME_POSIX_FIELD =
           Field(
-            name = "START_TIME_POSIXct",
+            name = "START_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -613,7 +632,7 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
           ),
         END_TIME_POSIX_FIELD =
           Field(
-            name = "END_TIME_POSIXct",
+            name = "END_TIME_POSIXCT",
             data_type = "integer",
             id_field = T,
             trans_fn =
@@ -691,34 +710,67 @@ ABLTAG_PDT_DATA_TABLE_FIELDS =
       )
   )
 
-#` Fields describing the metadata for each field uploaded to the DB
-#' @export ABLTAG_FIELD_METADATA_TABLE_FIELDS
-ABLTAG_FIELD_METADATA_TABLE_FIELDS =
+#' Fields for metadata describing the tables to which these data are written
+#' @export ABLTAG_TABLE_METADATA_TABLE_FIELDS
+ABLTAG_TABLE_METADATA_TABLE_FIELDS =
   FieldMap(
-    table = "ELECTRONIC_TAG_FIELD_METADATA",
+    table =
+      "ELECTRONIC_TAG_TABLE_METADATA",
+    description =
+      "Descriptions of the electronic tag data tables in the ABLTAG database.",
     field_list =
       list(
         TABLE_NAME_FIELD =
           Field(
             name = "TABLE_NAME",
             data_type = "varchar(32)",
-            id_field = T
+            id_field = T,
+            description = "The name of the table."
+          ),
+        TABLE_DESCRIPTION_FIELD =
+          Field(
+            name = "DESCRIPTION",
+            data_type = "varchar(255)",
+            description = "A plain text description of the table."
+          )
+      )
+  )
+
+#' Fields describing the metadata for each field uploaded to the DB
+#' @export ABLTAG_FIELD_METADATA_TABLE_FIELDS
+ABLTAG_FIELD_METADATA_TABLE_FIELDS =
+  FieldMap(
+    table =
+      "ELECTRONIC_TAG_FIELD_METADATA",
+    description =
+      "Descriptions of the fields in the electronic tag data tables in the ABLTAG database.",
+    field_list =
+      list(
+        TABLE_NAME_FIELD =
+          Field(
+            name = "TABLE_NAME",
+            data_type = "varchar(32)",
+            id_field = T,
+            description = "The name of the table to which this field belongs."
           ),
         FIELD_NAME_FIELD =
           Field(
             name = "FIELD_NAME",
             data_type = "varchar(32)",
-            id_field = T
+            id_field = T,
+            description = "The name of the field."
           ),
         FIELD_UNITS_FIELD =
           Field(
             name = "UNITS",
-            data_type = "varchar(8)"
+            data_type = "varchar(8)",
+            description = "The SI units of the field."
           ),
         FIELD_DESCRIPTION_FIELD =
           Field(
             name = "DESCRIPTION",
-            data_type = "varchar(255)"
+            data_type = "varchar(255)",
+            description = "A plain text description of the field."
           )
       )
   )
@@ -748,9 +800,26 @@ AUTOGENERATED_METADATA_FIELDS =
       )
   )
 
+#' Data automatically generated by the system to describe the tables in the outgoing data
+#' @export AUTOGENERATED_TABLE_METADATA_FIELDS
+AUTOGENERATED_TABLE_METADATA_FIELDS =
+  FieldMap(
+    field_list =
+      list(
+        TABLE_NAME_FIELD =
+          Field(
+            name = "table"
+          ),
+        TABLE_DESCRIPTION_FIELD =
+          Field(
+            name = "description"
+          )
+      )
+  )
+
 #' Data automatically generated by the system to describe the fields in the outgoing data
-#' @export AUTOGENERATED_FIELD_METADATA_TABLE_FIELDS
-AUTOGENERATED_FIELD_METADATA_TABLE_FIELDS =
+#' @export AUTOGENERATED_FIELD_METADATA_FIELDS
+AUTOGENERATED_FIELD_METADATA_FIELDS =
   FieldMap(
     field_list =
       list(

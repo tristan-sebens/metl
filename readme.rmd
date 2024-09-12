@@ -2,19 +2,11 @@
 title: "METL"
 author: "Tristan N. G. Sebens, M.S. \n"
 date: "`r paste0('Last updated: ', format(Sys.time(), '%d %B, %Y'))`"
-# template: readme_custom_metl.html
 output: 
   github_document:
     toc: true
     toc_depth: 4
     number_sections: true
-  # html_document:
-  #   title: 'README'
-  #   keep_md: true
-  #   css: dark_readme.css
-  #   toc: true
-  #   toc_depth: 4
-  #   number_sections: true
 ---
 
 ```{r, load_package, echo=FALSE, results='hide', message=FALSE}
@@ -28,6 +20,8 @@ devtools::load_all()
 1.  returning the data as `data.frame` objects
 2.  writing the data to `.csv` files
 3.  loading the data directly into a database
+
+`metl` was designed and implemented by the MESA group of Auke Bay Laboratories specifically to upload data into the `ABLTAG` database. The relevant tables in ABLTAG are described [here](#abltag-database). However, the package is designed to be easily extended to support additional tag types and output formats, and to be configured to upload to different databases.
 
 # **Requirements**
 
@@ -64,7 +58,7 @@ The file structure of each data directory will vary depending on the make and mo
 ```{r, eval=FALSE, results='hide'}
 # d specifies the path of the data directory
 # e.g. 
-# d = tcltk::tk_choose.dir()
+d = tcltk::tk_choose.dir()
 ```
 
 ```{r, results='hide', echo=FALSE}
@@ -80,13 +74,15 @@ The primary work object of the `metl` package is the `Decoder` object, which is 
 For the quickstart example, we will use an included `Decoder` object, one configured for the Wildlife Computers Benthic sPAT tag:
 
 ```{r, results='hide', eval=TRUE}
-decoder = metl::decoders$WildlifeComputers$BenthicSPAT
+library(metl)
+
+decoder = decoders$WildlifeComputers$BenthicSPAT
 ```
 
 A list of supported tags can be found [here](#list-of-supported-tags), and a full list of the pre-configured `Decoder` objects shipped with `metl` can be seen by running the following code:
 
 ```{r, eval=FALSE}
-metl::supported_decoders()
+supported_decoders()
 ```
 
 #### **The `meta` data.frame**
@@ -115,18 +111,13 @@ Due to the way that their data is stored, DesertStar tags require a slight modif
 
 First we need to establish a connection to our database. We do this by constructing a database connection object using `DBI::dbConnect`.
 
-```{r, results='hide', eval=FALSE}
-db_conn =
-  DBI::dbConnect(
-    ... # Database connection details. See DBI documentation for specifics
-  )
-```
-
 If you are uploading to the ABLTAG database, this step will require that you are currently able to connect to the ABLTAG DB. Ensure that IT has installed ODBC and Oracle on your local machine, and that you are connected to the ABL internal network. Your connection code will look like this:
 
 ```{r, results='hide', eval=FALSE}
+library(DBI)
+
 db_conn =
-  DBI::dbConnect(
+  dbConnect(
     odbc::odbc(),
     Driver="{Oracle in instantclient_19_18}",
     Dbq="AFSC",
@@ -139,6 +130,8 @@ db_conn =
 ### **Initiate extraction**
 
 Once we have connected to the database, we call the `process_to_db` method, passing the connection object in as a parameter. The `Decoder` will extract data from the data directory, load it into the DB, and report the results.
+
+If you are uploading to a database other than `ABLTAG`, you will first have to configure the output of the `Decoder` object to match the internal structure of your database. Learn more [here](#configuring-data-inputoutput-format).
 
 ```{r, echo=FALSE, results='hide'}
 fms = 
@@ -160,7 +153,7 @@ Read [here](#overwriting-data) to learn how `metl` handles uploading data to a D
 
 ## **Use case 2: Extracting data to data.frames**
 
-The `Decoder` can produce the extracted data as a collection of `data.frame`s. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced. You can find a table of data types produced by each supported tag type [here](#output-data-types-by-tag).
+The `Decoder` can also produce the extracted data as a collection of `data.frame` objects. These are provided as the elements of a named list, with the names corresponding to the type of data extracted. Which types of data are available will depend on what types of data are produced by the tag. You can find a table of data types produced by each supported tag type [here](#output-data-types-by-tag).
 
 In this example we used the Benthic sPAT tag from Wildlife Computers, which produces three types of data: `meta`, `instant`, and `summary`.
 
@@ -363,20 +356,26 @@ data_type_by_tag %>%
 ## **`metl` data type descriptions** {#metl-data-type-descriptions}
 
 ```{r, data_type_descriptions, echo=FALSE}
-list(
-  meta = "Metadata. Data describing the tag itself, and its deployment",
-  instant = "Instantaneous sensor data. Sensor reading data, each of which refers to a specific instant in time.",
-  summary = "Summary data. Aggregate statistics calculated over a given interval of time.",
-  histogram = "Histogram data. Summary data which is reported using bins, rather than aggregate statistics.",
-  histogram_meta = "Histogram metadata. Describes the bins used in the histogram data.",
-  pdt = "Profile of Depth & Temperature. Describes the temperature associated with various depths."
+dc = Decoder()
+
+output_tables = 
+  Filter(
+    function(name) {dc$output_fieldmaps[[name]]$generate_db_meta},
+    names(dc$output_fieldmaps)
+  )
+
+data.frame(
+  data_type = names(dc$output_fieldmaps)
 ) %>% 
-  as.data.frame() %>% 
-  tidyr::pivot_longer(
-    cols = everything(),
-    names_to = "Data type",
-    values_to = "Description"
+  dplyr::rowwise() %>% 
+  dplyr::mutate(
+    table = dc$output_fieldmaps[[data_type]]$table,
+    description = dc$output_fieldmaps[[data_type]]$description
   ) %>% 
+  dplyr::filter(
+    data_type %in% output_tables
+  ) %>% 
+  dplyr::select(table, description) %>% 
   knitr::kable()
 ```
 
@@ -491,7 +490,14 @@ Fortunately there is a better method:
 
 `Field` objects have a number of attributes which we can use to describe and alter each data field to suit our needs. For now, we'll cover one additional attribute, the `trans_fn`. This is a function which can be used to define simple transformations which should be applied to individual data fields. For a full list of `Field` object attributes, see the [Field class documentation](Field.md).
 
-The `trans_fn` is passed the values of the field in the vector `v`. `trans_fn` is also passed a handful of other parameters which may be useful to us when transforming our data, but we won't need any of these so we'll simply include the `...` argument to catch them for us.
+The `trans_fn` is passed the values of the field in the vector `v`. `trans_fn` is also passed a handful of other parameters which may be useful to us when transforming our data. These include:
+
+- `v` - Field values
+- `dat` - The entire `data.frame`
+- `ip_fm` - The input `FieldMap` object
+- `op_fm` - The output `FieldMap` object
+
+Typically we won't need any of the values other than `v`, but they still get passed to `trans_fn` during execution, so we'll include `...` in our function parameters. It is CRITICAL that this be included in the function signature. If it is not, the function will not work. Additionally, it is STRONGLY encouraged that you use `...` rather than simply adding each parameter explicitly into the function signature. This is because it is possible that future iterations of the `metl` package will pass additional values into `trans_fn`, and without the `...` these new parameters will need to be explicitly named as well. Using `...` keeps your `trans_fn` protected against future changes to the package.
 
 Now we can update our `FieldMap` object to perform the timestamp conversion for us:
 
@@ -626,7 +632,7 @@ Just like that our Tuff1 `Decoder` is successfully extracting tag data and trans
 
 There is an additional piece which we have not yet covered, which is the output `FieldMap` object. Just as we used a `FieldMap` to define the structure of our input data, so a second `FieldMap` is used to define the structure of the output data, including the names of the fields, their units, and other miscellaneous attributes.
 
-`metl` was designed an implemented by the MESA group of Auke Bay Laboratories specifically to upload data into the ABLTAG database. As such, `Decoder` objects default to using output `FieldMap` objects which are pre-configured to output data in the format expected by the ABLTAG database. However, these `FieldMap` objects can be easily customized to output data in any format desired.
+`metl` was designed and implemented by the MESA group of Auke Bay Laboratories specifically to upload data into the ABLTAG database. As such, `Decoder` objects default to using output `FieldMap` objects which are pre-configured to output data in the format expected by the ABLTAG database. However, these `FieldMap` objects can be easily customized to output data in any format desired.
 
 #### **The output `FieldMap`**
 
@@ -847,11 +853,67 @@ This section lists the standardized names for each type of data produced by the 
 | Percentage upright                    | `UPRIGHT_FIELD`       | \%                                        | The percentage of the time period that the tag was upright (vertical)                        |
 | Knockdowns                            | `KNOCKDOWN_FIELD`     |                                           | The number of times that the tag was knocked over during this time period                    |
 
-\# **Bug Reporting**
+# **ABLTAG Database**
 
-The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or any other form of input, please create an issue on the GitHub website. Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users.
+`ABLTAG` is an internal Oracle database hosted by Auke Bay Laboratories, and is intended to be a centralized clearinghouse where sensor data collected by all manners of electronic tags can be stored in a standardized format. The `metl` package has been designed to support `ABLTAG` specifically, and so ships pre-configured to interface with `ABLTAG` (it is possible to alter this configuration to fit a custom configuration. Please see **[Configuring data input/output format](#configuring-data-inputoutput-format)** for more information.)
 
-\# **Disclaimer**
+For convenience, below is a compilation of metadata for the tables and fields in the `ABLTAG` database which this package has been pre-configured to write to:
+
+## **Table metadata**
+
+```{r, echo=FALSE}
+table_metadata = 
+  build_table_metadata_frame(Decoder())
+
+table_metadata %>% 
+  knitr::kable()
+```
+
+
+## **Field metadata**
+
+```{r, echo=FALSE, results='asis'}
+raw_df = 
+  build_field_metadata_frame(Decoder())
+
+tables =
+  raw_df %>%
+  dplyr::group_by(table) %>%
+  dplyr::group_split()
+
+names(tables) = 
+  tables %>% 
+    sapply(
+      function(table_df) {
+        return(table_df[['table']][[1]])
+      }
+    )
+
+# `tables` is in the wrong order, so to get the right order we'll access it's elements by name
+table_order = raw_df$table %>% unique
+
+for (table_name in table_order) {
+  table_df = tables[[table_name]]
+  table_description = 
+    table_metadata %>% 
+    dplyr::filter(table == table_name) %>% 
+    dplyr::pull(description)
+  cat("##### ", table_name, "{-} \n\n")
+  cat(table_description)
+  print(
+    table_df %>%
+    dplyr::select(-table) %>%
+    knitr::kable(label = table_name)
+  )
+}
+
+```
+
+# **Bug Reporting**
+
+The MESA development team appreciates and strongly encourages feedback on this product. If you are having difficulties with the package, have suggestions on future improvements, or have any other form of input, please create an issue on the [GitHub website](https://github.com/tristan-sebens/metl/issues). Our only request is that you first take some time to review *existing* issues to ensure that the challenge you are facing has not already been identified by other users, to prevent any buildup of duplicate tickets.
+
+# **Disclaimer**
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
